@@ -176,12 +176,13 @@ Kelvin row's, because it inherits `MIRED_PER_SHIFT_STEP` — **fitted, not
 published**. Never let it name warm or cool inside one shift step of neutral;
 "Mojave Sun" lands 0.1 mired either side depending on that estimate.
 
-Parameter rows use the shared `ParamRow` from `settings-table.tsx`, and its
-column widths are **fixed, not `auto`**. Each row is its own grid — a `<details>`
-cannot share tracks with siblings — so `auto` let every row size to its own
-content and the columns came out ragged. Any new parameter table must reuse
-`ParamRow`, and must have room for all three tracks: squeezed into a side column
-the effect text collapsed to 43px wide.
+Settings render as cards, one parameter per card (`ParamCard` in
+`param-cards.tsx`, owner 2026-10-28): the value large, Sony's label under it,
+and both kinds of help one tap away in a native `<details>` — the axis, the
+effect, the explanation. Any new parameter display reuses `ParamCard` and its
+`CARD_GRID`, and keeps the `param-row` class the first-screen gate counts as
+content. The combined White Balance cast stays on the wide WB card, never on a
+dial's card.
 
 ## Rule 5 — Changing a range means changing one file
 
@@ -322,8 +323,8 @@ Do not write App Router code from memory. Read the relevant file first:
   `seed:emit` refuses it until then, and `migration-roots.test.ts` checks each
   batch against its own two files.
   Code never assumes the content plane has been migrated: ids are read through
-  `RECIPE_ID_TRANSITION_RE` / `recipeIdKey`; the recipe page, its OG image and
-  `/api/tweak` find a slug through `resolveRecipeSlug()` (308 from a former
+  `RECIPE_ID_TRANSITION_RE` / `recipeIdKey`; the recipe page and its OG image
+  find a slug through `resolveRecipeSlug()` (308 from a former
   slug to the current one, 307 the other way, never a static redirect in
   `next.config.ts`); and every control-plane read keyed by `recipe_slug` uses
   `.in('recipe_slug', slugAliases(slug))`, permanently — a row written while
@@ -339,11 +340,10 @@ Do not write App Router code from memory. Read the relevant file first:
   Moderation lives in `/admin/colorlab` through `/api/admin/community-photos`
   (`adminGate()`, then `controlAdmin()`): hiding sets `approved = false` and
   never deletes; the public read stays on `controlRead()` and leaves the filter
-  to RLS, because anon is granted no `approved` column to filter with. A
-  proposal's sample is the same URL in a second table, so `/api/proposals`
-  drops any sample that matches a hidden row (`withoutHiddenSamples`, read with
-  `controlAdmin()`, unknown fails closed). Anything new that draws a reader's
-  URL must do the same.
+  to RLS, because anon is granted no `approved` column to filter with.
+  Anything new that draws a reader's URL from another table must drop the
+  URLs a moderator hid, read with `controlAdmin()`, unknown failing closed —
+  as `/api/proposals` did with its samples until proposals were removed.
 - **The thumbnail is the mark; the palette feeds it.** `paletteFor()`
   (`src/lib/camera/palette.ts`) grades nine swatches — a neutral ramp and six
   hues — from the recipe's own settings in Sony's documented directions. The
@@ -351,8 +351,9 @@ Do not write App Router code from memory. Read the relevant file first:
   a cartridge for a Creative Look, a clapperboard for a Picture Profile, the
   ramp on its film or stripes, the hues on its sticker and in the bokeh behind
   it (`bokehFor`, seeded on the code), the initials, code and Sony base in
-  print. The recipe page shows the nine named. It is a reading of the
-  settings, never a camera preview, and the recipe page says so in one line. Every
+  print; the recipe page carries the same mark beside its title, and no
+  swatch strip (owner, 2026-10-28). It is a reading of the settings, never
+  a camera preview, and nothing may present it as one. Every
   magnitude is in `PALETTE_WEIGHTS`, neutral defaults to refit from an a7 IV
   ColorChecker shoot; the tests pin direction and bands, not numbers. Color
   Depth is raw (the accent's is centred: it answers a different question),
@@ -448,8 +449,7 @@ files allowed a raw hex, and the audit's hex grep excludes them by name.
 
 Interface colour comes from the tokens in `globals.css`, never from Tailwind's
 default scales. `community` / `proposal` / `ai` / `danger` / `heart` are named
-for meaning, so a reader can tell the three offers on a recipe page apart before
-reading a word — reaching for `emerald-500` instead puts an sRGB colour in an
+for meaning, so a reader can tell kinds of content apart before reading a word — reaching for `emerald-500` instead puts an sRGB colour in an
 OKLCH interface and drifts a shade per component. They live in **`@theme
 static`**: a plain `@theme` only emits a variable Tailwind has seen a utility
 use, and one read solely through `var()` is dropped, which is how the proposal
@@ -516,7 +516,7 @@ width/height queries, and `(display-mode: standalone)`.
 
 `ANTHROPIC_API_KEY` and `SUPABASE_SERVICE_ROLE_KEY` are server-only — never
 prefix them `NEXT_PUBLIC_`, never import them into a Client Component.
-AI output is re-validated with `recipeSchema` after it returns, regardless of
+AI output is re-validated against its schema after it returns, regardless of
 what the tool schema claims.
 
 **The anon key is public** — it ships in the browser bundle, so anyone can call
@@ -524,7 +524,7 @@ PostgREST directly. RLS is row-level and cannot hide a column: a table holding
 `author_email` needs a column-level `grant select (…) to anon`, not just a
 policy. Never `select('*')` in a route that answers an unauthenticated request;
 name the columns. `proposal_votes` is emails only and is readable by the service
-role alone. Pinned by `no-email-leak.test.ts` and the privilege tests in
+role alone (the proposals feature is gone, its tables stay as history). Pinned by `no-email-leak.test.ts` and the privilege tests in
 `migration.test.ts`.
 
 Two migration roots, two databases. `supabase/migrations` is the control
@@ -616,15 +616,13 @@ Without valid highlights the page renders the feature bullets and the open
 table — never an empty section. Highlights are content: every number in them
 must come from that camera's own sources.
 
-## AI ("Tweak with AI")
+## AI
 
-`claude-sonnet-5` via structured outputs, so the JSON shape is constrained by the
-same Zod schema as everything else. But **structured outputs strips numeric
-bounds** (`minimum`/`maximum` are not in the JSON Schema subset it supports), so
-ranges are stated in the prompt too — generated by `src/lib/ai/constraints.ts`
-from `constants.ts`, never hand-written. Zod re-validates the result, then retries
-once with the failures fed back. Never trust the model's claim that it stayed in
-range.
+"Tweak with AI" was removed with proposals and voting (owner, 2026-10-28); the
+one model call left is the admin's translation (`/api/admin/translate`). Never
+trust a model's output as valid: parse it against the schema it claims to fit,
+and state numeric bounds in the prompt, because structured outputs strips
+`minimum`/`maximum`.
 
 ## Performance — two things are load-bearing
 

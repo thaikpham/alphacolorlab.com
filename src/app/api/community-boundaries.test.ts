@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 /**
  * Which project each community route is allowed to touch.
  *
- * Community rows — comments, proposals, votes, photographs — stay on the
+ * Community rows — comments and photographs — stay on the
  * control plane, because they are about people: they carry author and voter
  * email addresses, and they are meaningless without the Auth users they belong
  * to. Recipes moved to the content plane. So a single POST now spans both
@@ -25,16 +25,14 @@ import { describe, expect, it } from 'vitest';
 const ROUTES = {
   comments: 'src/app/api/comments/route.ts',
   photos: 'src/app/api/community-photos/route.ts',
-  proposals: 'src/app/api/proposals/route.ts',
-  vote: 'src/app/api/proposals/vote/route.ts',
 } as const;
 
 const sources = Object.fromEntries(
   Object.entries(ROUTES).map(([name, path]) => [name, readFileSync(path, 'utf8')]),
 ) as Record<keyof typeof ROUTES, string>;
 
-/** The three routes whose row references a recipe by slug. */
-const SLUG_ROUTES = ['comments', 'photos', 'proposals'] as const;
+/** The routes whose row references a recipe by slug: both of them. */
+const SLUG_ROUTES = ['comments', 'photos'] as const;
 
 describe.each(Object.entries(ROUTES))('%s', (name, path) => {
   const source = sources[name as keyof typeof ROUTES];
@@ -51,7 +49,7 @@ describe.each(Object.entries(ROUTES))('%s', (name, path) => {
   });
 
   it('keeps its writes on the control plane', () => {
-    if (name === 'photos' || name === 'vote' || source.includes('.insert(')) {
+    if (name === 'photos' || source.includes('.insert(')) {
       expect(source).toContain('controlAdmin()');
     }
   });
@@ -65,9 +63,7 @@ describe.each(Object.entries(ROUTES))('%s', (name, path) => {
 describe.each(SLUG_ROUTES)('%s', (name) => {
   const source = sources[name];
 
-  /* Proposals ask for the recipe's format as well, to validate the settings
-     against it; the probe and its failure contract are the same. */
-  const probe = /publishedRecipe(Exists|Format)\(/;
+  const probe = /publishedRecipeExists\(/;
 
   it('confirms the recipe against the content plane', () => {
     expect(source).toMatch(probe);
@@ -87,57 +83,6 @@ describe.each(SLUG_ROUTES)('%s', (name) => {
        the content project was restricted. */
     expect(source).toMatch(/communityErrorBody\('recipeNotFound'\)/);
     expect(source).toMatch(/communityErrorBody\(outage\)/);
-  });
-});
-
-describe('the vote route', () => {
-  const source = sources.vote;
-
-  it('does not consult the content plane at all', () => {
-    /* `proposal_votes` references `recipe_proposals` with a real foreign key,
-       and both are on the control plane. A content lookup here would make every
-       heart depend on the other project being up, for a constraint Postgres is
-       already enforcing. */
-    expect(source).not.toMatch(/publishedRecipe(Exists|Format)/);
-  });
-
-  it('resolves vote state with the secret client, because the table is all emails', () => {
-    expect(source).toMatch(/controlAdmin\(\)[\s\S]{0,900}proposal_votes/);
-  });
-
-  it('checks the result of every write, not just the last one', () => {
-    /* All four calls here once discarded their `error`, so the route answered
-       `{ ok: true, voted: true }` whether or not a vote had been stored — a
-       heart that filled in, came back empty after a refresh, and left nothing
-       in any log. The read was the subtlest: a failed `select` gave `null`,
-       which reads as "has not voted" and sent the handler into the insert
-       branch, straight at the unique constraint it was meant to respect. */
-    const destructuredWrites = [...source.matchAll(/await db\s*\n?\s*\.from\(/g)];
-    expect(destructuredWrites.length).toBeGreaterThan(0);
-    for (const name of ['existing.error', 'write.error', 'tally.error', 'counter.error']) {
-      expect(source).toContain(name);
-    }
-  });
-
-  it('never discards a Supabase result on the write path', () => {
-    /* `await db.from(...)...;` as a statement is a discarded result. Every call
-       in this route has to be bound and checked. */
-    expect(source).not.toMatch(/^\s+await db\.from\(/m);
-  });
-});
-
-describe('the proposals read', () => {
-  const source = sources.proposals;
-
-  it('reads the public list through the control anon client', () => {
-    expect(source).toMatch(/controlRead\(\)[\s\S]{0,200}recipe_proposals/);
-  });
-
-  it('survives a control outage while resolving the viewer', () => {
-    /* `requireUser` throws on an outage now. Before the try/catch, that escaped
-       a public GET as an uncaught 500 — a signed-out reader could not see the
-       proposal list because somebody else's session could not be checked. */
-    expect(source).toMatch(/try\s*\{\s*\n\s*viewer = \(await requireUser\(request\)\)/);
   });
 });
 

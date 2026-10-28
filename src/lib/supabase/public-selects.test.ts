@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { PGlite } from '@electric-sql/pglite';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { PRODUCT_COLUMNS } from '@/lib/cameras/row';
-import { COMMENT_COLUMNS, PHOTO_COLUMNS, PROPOSAL_COLUMNS } from '@/lib/community/columns';
+import { COMMENT_COLUMNS, PHOTO_COLUMNS } from '@/lib/community/columns';
 import { PUBLIC_COLUMNS } from '@/lib/lab/data';
 import { RECIPE_COLUMNS } from '@/lib/recipes/row';
 
@@ -64,7 +64,6 @@ async function selectAs(db: PGlite, role: string, table: string, list: string) {
 /* The community tables live on control only. The content tables are read from
    content, and from control during a rollback, so both roots must serve them. */
 const READS: [string, string, string, () => PGlite[]][] = [
-  ['recipe_proposals', 'PROPOSAL_COLUMNS', PROPOSAL_COLUMNS, () => [control]],
   ['recipe_comments', 'COMMENT_COLUMNS', COMMENT_COLUMNS, () => [control]],
   ['community_photos', 'PHOTO_COLUMNS', PHOTO_COLUMNS, () => [control]],
   ['lab_articles', 'PUBLIC_COLUMNS', PUBLIC_COLUMNS, () => [control, content]],

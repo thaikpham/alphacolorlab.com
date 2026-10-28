@@ -29,21 +29,12 @@ export const COMMUNITY_ERRORS = {
   missingFields: 400,
   /** No recipe with that slug. */
   recipeNotFound: 404,
-  /** No proposal with that id — deleted since the list was loaded, or never was. */
-  proposalNotFound: 404,
   /** This recipe already holds the maximum number of community photos. */
   photoLimitReached: 409,
   /** A photo URL that is not an https:// address. */
   invalidImageUrl: 400,
   /** A photo URL on a social CDN whose signed links expire (`image-hosts.ts`). */
   expiringImageHost: 400,
-  /** A proposal without the sample photograph that gives it evidence. */
-  sampleUrlRequired: 400,
-  /**
-   * Proposal settings or white balance the camera schema rejects — out of
-   * range, a key from the other format, or the wrong format for the recipe.
-   */
-  invalidSettings: 400,
   /** A request body over the route's byte cap. Refused before it is parsed. */
   payloadTooLarge: 413,
   /** Persistence failed. Deliberately vague: the detail goes to the log. */

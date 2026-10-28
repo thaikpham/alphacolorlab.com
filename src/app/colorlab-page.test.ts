@@ -157,39 +157,16 @@ describe('the recipe card', () => {
     expect(card).toMatch(/<div className="h-\[210px\] w-full overflow-hidden">\s*<MarkSlot recipe=\{recipe\} \/>/);
     expect(card).toMatch(/role="img" aria-label=\{label\}/);
     expect(card).toContain('<RecipeBokeh recipe={recipe} />');
-    expect(card).toContain('<RecipeMark recipe={recipe} size="m" />');
+    expect(card).toContain('<RecipeMark recipe={recipe} size="m" className="hidden @min-[15rem]:block" />');
+    expect(card).toContain('<RecipeMark recipe={recipe} size="s" className="@min-[15rem]:hidden" />');
+    expect(card).toContain('@container');
     expect(card).not.toMatch(/RecipePalette|RecipePhoto|RecipeColorField|recipe\.images|<Image|<img/);
     expect(card).toContain('FORMAT_LABELS[recipe.format]');
   });
 });
 
-describe('the recipe palette', () => {
-  const palette = readFileSync('src/components/recipe-palette.tsx', 'utf8');
-  const recipePage = readFileSync('src/app/[locale]/recipe/[slug]/page.tsx', 'utf8');
+describe('the share card', () => {
   const og = readFileSync('src/app/[locale]/recipe/[slug]/opengraph-image.tsx', 'utf8');
-
-  it('is one labelled image, the ramp then six hues, with nothing written on it and no strokes', () => {
-    expect(palette).toMatch(/role="img"\s*aria-label=\{label\}/);
-    expect(palette).toContain("const RAMP: readonly SwatchId[] = ['highlight', 'mid', 'shadow'];");
-    expect(palette).toContain(
-      "const BARS: readonly SwatchId[] = ['red', 'skin', 'yellow', 'foliage', 'sky', 'blossom'];",
-    );
-    expect(palette).toMatch(/grid-cols-\[1fr_3fr\]/);
-    expect(palette).toMatch(/<span key=\{id\} style=\{\{ background: swatch\[id\]\.css \}\} \/>/g);
-    expect(palette).not.toMatch(/\bborder\b|\bring-|outline-|#[0-9a-fA-F]{3}/);
-  });
-
-  it('lives on the recipe page, names its swatches and states its limit', () => {
-    expect(palette).not.toMatch(/variant/);
-    expect(palette).toMatch(/<p className="meta">\{t\('note'\)\}<\/p>/);
-    expect(recipePage).toMatch(
-      /<RecipePalette palette=\{recipe\.palette\} tone=\{recipe\.tone\} style=\{recipe\.style\} light=\{recipe\.light\} \/>/,
-    );
-  });
-
-  it('says which light it was read under when that is not daylight', () => {
-    expect(palette).toMatch(/\{light \? <p className="meta">\{t\('light', \{ kelvin: light \}\)\}<\/p> : null\}/);
-  });
 
   it('runs along the share card in hex, from the same swatches', () => {
     expect(og).toMatch(/recipe\.palette\.map\(\(swatch\) =>/);

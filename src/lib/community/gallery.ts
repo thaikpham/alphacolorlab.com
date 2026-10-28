@@ -4,13 +4,15 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { slugAliases } from '@/lib/recipes/slug-aliases';
 
 /**
- * What both gallery write paths share.
+ * What a gallery write needs: the cap and the origin marker.
  *
- * A community photo arrives two ways: `POST /api/community-photos`, and as the
- * sample photograph of a proposal. The second path used to restate the insert
- * by hand and drifted from the first in every way that mattered — no photo cap,
- * a credit longer than the column's own CHECK, and the author's address in
- * `submitted_by`, a column the anon key could read.
+ * A community photo arrives through `POST /api/community-photos`. It also
+ * arrived as a proposal's sample photograph until proposals were removed
+ * (2026-10-28); that second path once restated the insert by hand and drifted
+ * from the first in every way that mattered — no photo cap, a credit longer
+ * than the column's own CHECK, and the author's address in `submitted_by`, a
+ * column the anon key could read. Anything new that writes the gallery goes
+ * through here.
  */
 
 export const MAX_PHOTOS_PER_RECIPE = 40;

@@ -202,20 +202,21 @@ describe('the collage, with no catalogue photographs', () => {
   /* A photographed recipe used to flash "No photos yet" until the GET came
      back. Placeholders until it settles — ok, refused or offline — and the
      empty state only after. */
-  it('shows placeholder tiles until the first answer, and the empty state only after it', () => {
+  it('shows placeholder tiles until the first answer, and the add tile alone after an empty one', () => {
     /* `loaded` is "the answer for THIS recipe has come back": it starts
        unset, and a recipe the GET has not answered yet is not loaded. */
     expect(source).toMatch(/const \[loadedSlug, setLoadedSlug\] = useState<string \| null>\(null\);/);
     expect(source).toMatch(/const loaded = loadedSlug === slug;/);
-    expect(source).toMatch(/\{!loaded && allPhotos\.length === 0 && \(/);
-    expect(source).toMatch(/\{loaded && allPhotos\.length === 0 && !isFormOpen && \(/);
-    const placeholders = source.slice(source.indexOf('{/* Still asking'), source.indexOf('{/* Empty State */}'));
-    expect(placeholders).toMatch(/<ul aria-hidden className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3/);
-    /* The radius of the tiles they stand in for, so nothing changes shape
-       when the photographs arrive. */
+    expect(source).toMatch(/\{!loaded && allPhotos\.length === 0\s*\?/);
+    const placeholders = source.slice(source.indexOf('{/* Still asking'), source.indexOf('<ContributeTile'));
+    /* In the grid itself, so nothing changes shape when the photographs
+       arrive: the same radius as the tiles they stand in for. */
     expect(placeholders).toContain('bg-glass rounded-lg');
     expect(source).toContain('overflow-hidden rounded-lg cursor-zoom-in');
     expect(placeholders).not.toMatch(/\bt\(/);
+    /* Owner, 2026-10-28: an empty grid is the add tile alone — a title and a
+       button, no sentence between. */
+    expect(source).not.toContain('galleryEmpty');
   });
 
   it('settles on every answer the GET can give, but not on an abort', () => {
@@ -263,7 +264,7 @@ describe('the gallery copy', () => {
       for (const [key, value] of Object.entries(m.recipe)) {
         expect(value, key).not.toMatch(/[←→]|\bkey\)|phím/);
       }
-      expect(m.recipe.galleryEmpty).not.toMatch(/below|bên dưới/);
+      expect(m.recipe).not.toHaveProperty('galleryEmpty');
       expect(m.recipe).not.toHaveProperty('prevTitle');
       expect(m.recipe).not.toHaveProperty('nextTitle');
     }

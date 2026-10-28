@@ -18,8 +18,6 @@ import { describe, expect, it } from 'vitest';
 const WRITE_ROUTES = [
   'src/app/api/comments/route.ts',
   'src/app/api/community-photos/route.ts',
-  'src/app/api/proposals/route.ts',
-  'src/app/api/proposals/vote/route.ts',
 ];
 
 describe.each(WRITE_ROUTES)('%s', (path) => {
@@ -42,7 +40,7 @@ describe.each(WRITE_ROUTES)('%s', (path) => {
   });
 
   it('writes the author columns from the verified user', () => {
-    if (!source.includes('author_email:')) return; // vote route stores no author
+    if (!source.includes('author_email:')) return; // a photo stores no author address
     expect(source).toContain('author_email: user.email');
     expect(source).toContain('author_name: user.name');
   });
@@ -53,8 +51,9 @@ describe.each(WRITE_ROUTES)('%s', (path) => {
   });
 
   it('never writes an address into community_photos.submitted_by', () => {
-    /* The proposals route seeds the gallery too, and it wrote `user.email`
-       here while the guard below watched only community-photos/route.ts. */
+    /* The proposals route (removed 2026-10-28) seeded the gallery too, and it
+       wrote `user.email` here while the guard below watched only
+       community-photos/route.ts. Any new writer of the gallery is held here. */
     expect(source).not.toMatch(/submitted_by:\s*user\.email/);
     if (source.includes('submitted_by:')) {
       expect(source).toMatch(/submitted_by:\s*clientKey\(req(uest)?\)/);
@@ -86,17 +85,6 @@ describe('community photos POST', () => {
        relying on that alone. */
     expect(source).not.toMatch(/submitted_by:\s*user\.email/);
     expect(source).toContain('submitted_by: clientKey(req)');
-  });
-});
-
-describe('proposals GET', () => {
-  const source = readFileSync('src/app/api/proposals/route.ts', 'utf8');
-
-  it('resolves the viewer from the session, not a query parameter', () => {
-    // An address in a query string is copied into every access log, and could
-    // be set to somebody else's to learn how they voted.
-    expect(source).not.toMatch(/searchParams\.get\(\s*['"`]viewer['"`]\s*\)/);
-    expect(source).toContain('await requireUser(request))?.email');
   });
 });
 

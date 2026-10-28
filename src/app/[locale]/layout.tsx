@@ -68,7 +68,6 @@ export default async function LocaleLayout({
     nav: messages.nav,
     recipe: messages.recipe,
     search: messages.search,
-    tweak: messages.tweak,
   };
 
   /* Resolved through the same validator the client factories use, so a

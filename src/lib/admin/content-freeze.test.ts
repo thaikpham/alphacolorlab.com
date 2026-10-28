@@ -44,8 +44,6 @@ describe('what the freeze must not reach', () => {
   const UNAFFECTED = [
     'src/app/api/comments/route.ts',
     'src/app/api/community-photos/route.ts',
-    'src/app/api/proposals/route.ts',
-    'src/app/api/proposals/vote/route.ts',
     'src/app/api/admin/session/route.ts',
     'src/lib/lab/data.ts',
     'src/lib/recipes/source.ts',

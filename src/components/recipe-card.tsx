@@ -89,10 +89,14 @@ async function MarkSlot({ recipe }: { recipe: RecipeView }) {
   const [t, tBrowse] = await Promise.all([getTranslations('palette'), getTranslations('browse')]);
   const label = t('label', { tone: tBrowse(`tones.${recipe.tone}`), style: tBrowse(`styles.${recipe.style}`) });
   return (
-    <div role="img" aria-label={label} className="relative h-full w-full bg-sunken shadow-[var(--elevation-inset)]">
+    <div role="img" aria-label={label} className="@container relative h-full w-full bg-sunken shadow-[var(--elevation-inset)]">
       <RecipeBokeh recipe={recipe} />
+      {/* The M mark is 216px wide. A card narrower than that — two to a row
+          on a phone, six in the recipe page's related row — takes the S
+          mark instead of cutting the M one off at its edges. */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <RecipeMark recipe={recipe} size="m" />
+        <RecipeMark recipe={recipe} size="m" className="hidden @min-[15rem]:block" />
+        <RecipeMark recipe={recipe} size="s" className="@min-[15rem]:hidden" />
       </div>
     </div>
   );

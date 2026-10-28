@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { OPEN_PROPOSAL_EVENT, OPEN_TWEAK_EVENT } from '@/lib/community/events';
 import { communityErrorOf } from '@/lib/community/errors';
 import { isExpiringImageHost } from '@/lib/community/image-hosts';
 import { useAuth } from '@/components/auth-context';
@@ -34,14 +33,9 @@ const MIN_PREVIEW_WIDTH = 320;
 type PreviewState = { src: string; ok: boolean; width: number };
 
 /*
- * The three offer icons.
- *
- * They used to be sRGB gradient illustrations — emerald, fuchsia and amber,
- * eleven hex literals between them, three of which were a competitor's
- * signature hue. They are now single-colour glyphs drawn in `currentColor`,
- * so each one takes the signal colour of the offer it belongs to
- * (`community` / `proposal` / `ai`) and cannot drift a shade from it. Depth
- * comes from opacity, and the cut-outs are the ground colour.
+ * The contribute tile's glyph, drawn in `currentColor` so it takes the
+ * `community` signal of the offer it belongs to. Depth comes from opacity,
+ * and the cut-outs are the ground colour.
  */
 
 function CameraIcon({ className }: { className?: string }) {
@@ -64,45 +58,6 @@ function CameraIcon({ className }: { className?: string }) {
   );
 }
 
-function VoteIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden focusable="false">
-      {/* Ballot paper */}
-      <path
-        d="M17 9C17 7.34315 18.3431 6 20 6H28C29.6569 6 31 7.34315 31 9V20H17V9Z"
-        fill="currentColor"
-        opacity="0.4"
-      />
-      {/* The vote itself */}
-      <path
-        d="M24 17.4c-3.5-2.5-5.3-4.2-5.3-6.1a2.85 2.85 0 0 1 5.3-1.5 2.85 2.85 0 0 1 5.3 1.5c0 1.9-1.8 3.6-5.3 6.1Z"
-        fill="currentColor"
-      />
-      {/* Box, lid rim, slot */}
-      <rect x="6" y="21" width="36" height="19" rx="6" fill="currentColor" opacity="0.9" />
-      <rect x="4" y="17" width="40" height="7" rx="3.5" fill="currentColor" opacity="0.55" />
-      <rect x="16" y="19" width="16" height="3" rx="1.5" fill="var(--color-void)" opacity="0.85" />
-    </svg>
-  );
-}
-
-function AiSparkleIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden focusable="false">
-      <path
-        d="M22 5C22 14.5 14.5 22 5 22C14.5 22 22 29.5 22 39C22 29.5 29.5 22 39 22C29.5 22 22 14.5 22 5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M35 3C35 7.5 38.5 11 43 11C38.5 11 35 14.5 35 19C35 14.5 31.5 11 27 11C31.5 11 35 7.5 35 3Z"
-        fill="currentColor"
-        opacity="0.6"
-      />
-      <circle cx="9" cy="37" r="2" fill="currentColor" opacity="0.6" />
-    </svg>
-  );
-}
-
 /**
  * The lightbox's own images, sized.
  *
@@ -114,58 +69,28 @@ function AiSparkleIcon({ className }: { className?: string }) {
  */
 const sized = (src: string, width: number) => catalogueImageLoader({ src, width });
 
-/** Signal colour per offer — the whole reason these three read as different. */
-const OFFER_TINT = {
-  community: 'text-community',
-  proposal: 'text-proposal',
-  ai: 'text-ai',
-} as const;
-
 /**
- * One of the three offers under the collage.
+ * The last cell of the photo grid: the way to add one (owner, 2026-10-28). It
+ * was one of three offers under the grid, beside "propose a version" and
+ * "tweak with AI", both since removed. In the grid it is where a reader
+ * looks for photographs, and an empty grid is this tile alone — a title and
+ * a button, nothing between.
  *
- * A translucent tile with the glyph in its signal colour. It is deliberately NOT the
- * launcher's squircle-and-spectrum treatment: that glow is the ecosystem's one
- * sanctioned exception, and a second row of tiles wearing it would make it
- * decoration. `.app-tile-shell`, `.app-tile` and `.accent-glow` went with it —
- * those classes no longer exist and were rendering as nothing.
- *
- * The `title` attribute carries the longer description that the old card
- * printed under its heading. Losing the visible line is the point of the
- * redesign; losing the sentence is not.
+ * Sunken rather than raised: it is a slot waiting for a photograph, not a
+ * photograph. The glyph carries `community` cyan, the signal for what
+ * readers contribute.
  */
-function ActionTile({
-  accent,
-  icon,
-  label,
-  description,
-  expanded,
-  onClick,
-}: {
-  accent: 'community' | 'proposal' | 'ai';
-  icon: React.ReactNode;
-  label: string;
-  description: string;
-  expanded?: boolean;
-  onClick: () => void;
-}) {
+function ContributeTile({ open, label, onClick }: { open: boolean; label: string; onClick: () => void }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-expanded={expanded}
-      title={description}
-      className="group flex flex-col items-center gap-3 cursor-pointer shrink-0"
+      aria-expanded={open}
+      aria-controls="contribute-photo-form"
+      className="surface-sunken group flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-lg px-3 text-center cursor-pointer text-community"
     >
-      <span
-        className={`surface flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 transition-transform duration-200 ease-out group-hover:-translate-y-1 ${OFFER_TINT[accent]}`}
-      >
-        {icon}
-      </span>
-
-      <span className="text-body-sm sm:text-body font-semibold text-ink text-center whitespace-nowrap">
-        {label}
-      </span>
+      <CameraIcon className="w-9 h-9 sm:w-11 sm:h-11 transition-transform duration-200 ease-out group-hover:-translate-y-0.5" />
+      <span className="text-body-sm sm:text-body font-semibold text-ink">{label}</span>
     </button>
   );
 }
@@ -470,20 +395,6 @@ export function RecipeGallery({ slug, title }: RecipeGalleryProps) {
     });
   };
 
-  /* The proposal form lives in a sibling section with no shared parent state, so
-     the button asks for it by event rather than lifting the whole editor up. */
-  const handleProposeVersionClick = () => {
-    window.dispatchEvent(new CustomEvent(OPEN_PROPOSAL_EVENT));
-  };
-
-  /* The AI panel renders nothing until asked for, so this cannot just scroll to
-     it — there is no element to scroll to. Same sibling-component problem as
-     the proposal editor, solved the same way; the panel does its own scrolling
-     and focusing once it has mounted. */
-  const handleTweakAiClick = () => {
-    window.dispatchEvent(new CustomEvent(OPEN_TWEAK_EVENT));
-  };
-
   const allCredits = useMemo(() => ({ ...remoteCredits, ...localCredits }), [remoteCredits, localCredits]);
   const currentLightboxSrc = lightboxIndex !== null ? allPhotos[lightboxIndex] : null;
   const currentLightboxCredit: PhotoCredit | undefined = currentLightboxSrc
@@ -491,141 +402,88 @@ export function RecipeGallery({ slug, title }: RecipeGalleryProps) {
     : undefined;
 
   return (
-    <section className="mt-8">
-      {/* Asymmetrical Prime Photographic Collage Grid */}
-      {allPhotos.length > 0 && (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mb-6">
-          {allPhotos.map((src, i) => {
-            const isHeroTile = i === 0;
-            const credit = allCredits[src];
+    <section aria-labelledby="sample-photos" className="flex flex-col gap-4">
+      <h2 id="sample-photos" className="text-title-3 font-semibold tracking-[-0.02em] text-ink">
+        {t('samplePhotos')}
+      </h2>
 
-            return (
-              <li
-                key={src}
-                className={`group relative ${
-                  isHeroTile ? 'sm:col-span-2 lg:col-span-2 sm:row-span-2' : ''
+      {/* One grid: the readers' photographs, newest first and the first one
+          the large tile, then the tile that adds one. Two columns on a phone,
+          so the add tile sits beside a photograph instead of filling a screen
+          of its own. Until the first answer arrives, neutral tiles hold the
+          grid's shape; with none at all, the add tile is the whole grid. */}
+      <ul className="grid grid-cols-2 lg:grid-cols-3 gap-3.5">
+        {allPhotos.map((src, i) => {
+          const isHeroTile = i === 0;
+          const credit = allCredits[src];
+
+          return (
+            <li key={src} className={`group relative ${isHeroTile ? 'col-span-2 sm:row-span-2' : ''}`}>
+              <button
+                type="button"
+                onClick={() => openPhoto(i)}
+                aria-label={t('zoomPhoto', { index: i + 1, title })}
+                className={`group relative block w-full overflow-hidden rounded-lg cursor-zoom-in shadow-[var(--elevation-1)] transition-transform duration-300 ${
+                  isHeroTile ? 'aspect-[4/3] sm:aspect-[16/10] h-full' : 'aspect-[4/3]'
                 }`}
               >
-                <button
-                  type="button"
-                  onClick={() => openPhoto(i)}
-                  aria-label={t('zoomPhoto', { index: i + 1, title })}
-                  className={`group relative block w-full overflow-hidden rounded-lg cursor-zoom-in shadow-[var(--elevation-1)] transition-transform duration-300 ${
-                    isHeroTile ? 'aspect-[4/3] sm:aspect-[16/10] h-full min-h-[18rem]' : 'aspect-[4/3]'
-                  }`}
-                >
-                  <Image
-                    src={src}
-                    alt={t('photoAlt', { title, index: i + 1 })}
-                    fill
-                    sizes={
-                      isHeroTile
-                        ? '(max-width: 1024px) 100vw, 50vw'
-                        : '(max-width: 1024px) 50vw, 25vw'
-                    }
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                    /* Every tile is a reader's URL: nothing to size, and
-                       nothing preloaded on a third party's behalf. */
-                    unoptimized
-                    onError={() => markPhotoFailed(src)}
-                  />
+                <Image
+                  src={src}
+                  alt={t('photoAlt', { title, index: i + 1 })}
+                  fill
+                  sizes={isHeroTile ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 1024px) 50vw, 33vw'}
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  /* Every tile is a reader's URL: nothing to size, and
+                     nothing preloaded on a third party's behalf. */
+                  unoptimized
+                  onError={() => markPhotoFailed(src)}
+                />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-transparent to-void/40 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3 sm:p-4">
-                    <span className="self-start text-label font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded-sm bg-void/70 text-ink backdrop-blur-[30px]">
-                      {/* Every photograph is a reader's, the hero included:
-                          the large slot is positional, not a featured shot. */}
-                      {t('tagCommunity')}
-                    </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-transparent to-void/40 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3 sm:p-4">
+                  <span className="self-start text-label font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded-sm bg-void/70 text-ink backdrop-blur-[30px]">
+                    {/* Every photograph is a reader's, the hero included:
+                        the large slot is positional, not a featured shot. */}
+                    {t('tagCommunity')}
+                  </span>
 
-                    <div className="flex items-end justify-between text-meta text-ink">
-                      <div>
-                        <span className="block truncate max-w-[80%] font-semibold">{title}</span>
-                        {credit?.authorName && (
-                          <span className="block mt-0.5 text-community">
-                            {t('photoBy')} {credit.authorName}
-                          </span>
-                        )}
-                      </div>
-                      <span className="font-semibold underline underline-offset-2 shrink-0">
-                        {t('zoom')} ↗
-                      </span>
+                  <div className="flex items-end justify-between text-meta text-ink">
+                    <div>
+                      <span className="block truncate max-w-[80%] font-semibold">{title}</span>
+                      {credit?.authorName && (
+                        <span className="block mt-0.5 text-community">
+                          {t('photoBy')} {credit.authorName}
+                        </span>
+                      )}
                     </div>
+                    <span className="font-semibold underline underline-offset-2 shrink-0">
+                      {t('zoom')} ↗
+                    </span>
                   </div>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+                </div>
+              </button>
+            </li>
+          );
+        })}
 
-      {/* Still asking: neutral tiles in the collage's own grid, no copy. */}
-      {!loaded && allPhotos.length === 0 && (
-        <ul aria-hidden className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mb-6">
-          {[0, 1, 2].map((i) => (
-            <li
-              key={i}
-              className={`bg-glass rounded-lg ${
-                i === 0
-                  ? 'sm:col-span-2 lg:col-span-2 sm:row-span-2 aspect-[4/3] sm:aspect-[16/10] h-full min-h-[18rem]'
-                  : 'aspect-[4/3]'
-              }`}
-            />
-          ))}
-        </ul>
-      )}
+        {/* Still asking: neutral tiles in the grid's own shape, no copy. */}
+        {!loaded && allPhotos.length === 0
+          ? [0, 1].map((i) => (
+              <li
+                key={`placeholder-${i}`}
+                aria-hidden
+                className={`bg-glass rounded-lg ${i === 0 ? 'col-span-2 sm:row-span-2 aspect-[4/3] sm:aspect-[16/10] h-full' : 'aspect-[4/3]'}`}
+              />
+            ))
+          : null}
 
-      {/* Empty State */}
-      {loaded && allPhotos.length === 0 && !isFormOpen && (
-        <div className="surface p-8 text-center flex flex-col items-center justify-center gap-3 mb-6">
-          <p className="text-body text-ink-muted max-w-md">{t('galleryEmpty')}</p>
-        </div>
-      )}
-
-      {/* Contribute a photo · propose a version · tweak with AI.
-
-          `items-start`, so a label that wraps to two lines cannot drag its
-          neighbours' tiles down with it — the three icons stay on one line
-          whatever the locale does to the text.
-
-          `mt-16 mb-0`, which looks lopsided and is not. The two neighbours are
-          not symmetric: above is the collage, a sibling inside this section, so
-          its `mb-6` collapses with whatever margin sits here and the gap is
-          simply the larger of the two. Below is the next section — a sibling in
-          a `flex flex-col gap-8` parent, where margins do not collapse at all,
-          so its own `mt-8` stacks on the parent's 32px gap and the gap can
-          never be less than 64px. Matching that 64 on top is what makes the row
-          sit evenly between them, and it is the same rhythm as every other
-          block boundary in this column.
-
-          So: if the parent's `gap-8` or the sections' `mt-8` ever change, this
-          number has to change with them. */}
-      <div className="flex items-start justify-center gap-6 sm:gap-12 md:gap-16 mt-14 sm:mt-16 mb-0 flex-wrap">
-        <ActionTile
-          accent="community"
-          icon={<CameraIcon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />}
-          label={t('contributePhoto')}
-          /* This tile toggles, so the tooltip says what the next press does. */
-          description={isFormOpen ? t('cancel') : t('contributePhotoDesc')}
-          expanded={isFormOpen}
-          onClick={handleContributePhotoClick}
-        />
-
-        <ActionTile
-          accent="proposal"
-          icon={<VoteIcon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />}
-          label={t('proposeVersion')}
-          description={t('proposeVersionDesc')}
-          onClick={handleProposeVersionClick}
-        />
-
-        <ActionTile
-          accent="ai"
-          icon={<AiSparkleIcon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />}
-          label={t('tweakAi')}
-          description={t('tweakAiDesc')}
-          onClick={handleTweakAiClick}
-        />
-      </div>
+        <li>
+          <ContributeTile
+            open={isFormOpen}
+            label={isFormOpen ? t('cancel') : t('contributePhoto')}
+            onClick={handleContributePhotoClick}
+          />
+        </li>
+      </ul>
 
       {/* User Image Contribution Form with Author Credit & Social Link Inputs */}
       {isFormOpen && (
@@ -633,17 +491,13 @@ export function RecipeGallery({ slug, title }: RecipeGalleryProps) {
           id="contribute-photo-form"
           noValidate
           onSubmit={handleAddPhoto}
-          /* The separation from the tiles above lives here, not on the row —
-             the row runs to `mb-0` so that when this form is closed it is the
-             section's last child and its own margin cannot widen the gap to the
-             next section. */
-          className="surface p-5 sm:p-6 mt-6 mb-0 animate-fade-in flex flex-col gap-4"
+          className="surface p-5 sm:p-6 animate-fade-in flex flex-col gap-4"
         >
           {/* `noValidate`: `type="url"` stays for the phone keyboard, but the
               browser's own bubble — in the browser's language, not the page's —
               used to block the submit before the localised checks in
               `handleAddPhoto` could run. */}
-          <h2 className="text-body-lg font-semibold text-ink">{t('formTitle')}</h2>
+          <h3 className="text-body-lg font-semibold text-ink">{t('formTitle')}</h3>
 
           {/* 1. Image URL (Required) */}
           <div>

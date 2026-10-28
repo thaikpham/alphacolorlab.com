@@ -3,7 +3,7 @@ import { PGlite } from '@electric-sql/pglite';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { recipeIdKey } from './recipe-id';
 import { toRow } from './row';
-import { PHOTO_COLUMNS, PROPOSAL_COLUMNS } from '../community/columns';
+import { PHOTO_COLUMNS } from '../community/columns';
 import type { Recipe } from '../camera/schema';
 
 /**
@@ -239,21 +239,6 @@ describe('migrations', () => {
     await expect(proposal(`https://${'a'.repeat(2048)}`)).rejects.toThrow(
       /recipe_proposals_sample_image_url_check/,
     );
-  });
-
-  it.each(['anon', 'authenticated'])('%s can read every column the proposals route selects', async (role) => {
-    /* `PROPOSAL_COLUMNS` names sample_image_url, which only 0019 adds. A column
-       the grant does not cover is "permission denied" for the whole query, so
-       every GET /api/proposals would answer 503. This pins the dependency; it
-       cannot pin the order — 0019 must be applied before the route ships. */
-    const columns = PROPOSAL_COLUMNS;
-    expect(columns).toContain('sample_image_url');
-    await db.exec(`set role ${role}`);
-    try {
-      await expect(db.query(`select ${columns} from recipe_proposals limit 0`)).resolves.toBeDefined();
-    } finally {
-      await db.exec('reset role');
-    }
   });
 
   /* An operator adding an editor copies 0009's `insert (email, note)`. With a

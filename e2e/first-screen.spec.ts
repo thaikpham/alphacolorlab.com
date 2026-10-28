@@ -79,5 +79,7 @@ test('the first screens ask little: the list and a recipe page stay within their
   // is the measurement, only down. Re-measured 2026-10-24 after merging main a3ef537 (situations, PP refresh,
   // library colour) on clearcast-pro, which printed 6.2: lowered 6.4 -> 6.3. Re-measured 2026-10-26 after merging
   // main 415f9ff on cl-001-film-hard-faded (slugs come from the name now), which printed 6.1: lowered 6.3 -> 6.2.
-  expect(screens).toBeLessThanOrEqual(6.2);
+  // Re-measured 2026-10-28 after the recipe page redesign (cards, no palette strip, no proposals or AI tweak),
+  // which printed 4.5: lowered 6.2 -> 4.6.
+  expect(screens).toBeLessThanOrEqual(4.6);
 });
