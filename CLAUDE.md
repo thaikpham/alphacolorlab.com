@@ -95,6 +95,13 @@ seven-colour spectral glow (`LAUNCHER_GLOW`). It is the only multi-hue gradient,
 rotating animation, and the only off-scale radius in the ecosystem. Do not reuse it
 anywhere else — a spectrum applied twice is decoration.
 
+## Drawings are not surfaces
+
+The recipe mark (`recipe-mark.tsx`: a white cartridge or clapperboard with dark printed
+type, in front of the recipe's own bokeh) and the situation drawings (`situation-art.tsx`)
+are drawn objects; rules 3–5 describe the interface around them. Their colour is the
+recipe's swatches or the accent ramp, their type stays on the scale. Nowhere else.
+
 ## Deleted — do not reintroduce
 
 `.glass` · `.glass-flat` · `.eyebrow` (now `.label`) · `--font-mono` · `--font-display` ·

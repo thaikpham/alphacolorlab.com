@@ -1,17 +1,21 @@
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { accentCss } from '@/lib/camera/color';
 import { FORMAT_LABELS } from '@/lib/camera/constants';
 import type { RecipeView } from '@/lib/recipes/source';
 import type { SituationId } from '@/lib/recipes/taxonomy';
 import { recipeTitle } from '@/lib/recipes/title';
-import { RecipePalette } from './recipe-palette';
+import { RecipeBokeh, RecipeMark } from './recipe-mark';
 
 /**
- * Grid card: the recipe's palette in a 210px slot, then its identity
- * underneath. No recipe carries a photograph — pictures come only from
- * readers, on the recipe page — so the thumbnail is the nine swatches its own
- * settings grade (`paletteFor`), the same layout on every card so a column
- * means the same thing across the grid.
+ * Grid card: the recipe's mark in a 210px slot, then its identity underneath.
+ * No recipe carries a photograph — pictures come only from readers, on the
+ * recipe page. Until 2026-10-28 the slot held the nine swatches its settings
+ * grade; readers found nine bars hard to choose from, so the owner replaced
+ * them with the mark (`recipe-mark.tsx`): a cartridge or a clapperboard
+ * carrying the same swatches on its film, stripes and sticker, standing in
+ * front of the recipe's own bokeh. The nine bars stay on the recipe page,
+ * named, where there is room to read them.
  *
  * The format, the name and the situations sit on the card's own surface,
  * where `ink` / `ink-faint` mean what they say.
@@ -62,7 +66,7 @@ export function RecipeCard({
       style={{ '--accent': accent } as React.CSSProperties}
     >
       <div className="h-[210px] w-full overflow-hidden">
-        <RecipePalette palette={recipe.palette} tone={recipe.tone} style={recipe.style} variant="card" />
+        <MarkSlot recipe={recipe} />
       </div>
 
       <div className="flex flex-col gap-2 px-5 pt-[19px] pb-[22px]">
@@ -73,5 +77,23 @@ export function RecipeCard({
         {situations ? <p className="meta line-clamp-1">{situations}</p> : null}
       </div>
     </Link>
+  );
+}
+
+/**
+ * The slot: sunken into the card, lit by the recipe's bokeh, its mark standing
+ * in the middle. One labelled image, with the palette's own label — what the
+ * colours read as — since the mark repeats the name written under it.
+ */
+async function MarkSlot({ recipe }: { recipe: RecipeView }) {
+  const [t, tBrowse] = await Promise.all([getTranslations('palette'), getTranslations('browse')]);
+  const label = t('label', { tone: tBrowse(`tones.${recipe.tone}`), style: tBrowse(`styles.${recipe.style}`) });
+  return (
+    <div role="img" aria-label={label} className="relative h-full w-full bg-sunken shadow-[var(--elevation-inset)]">
+      <RecipeBokeh recipe={recipe} />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <RecipeMark recipe={recipe} size="m" />
+      </div>
+    </div>
   );
 }

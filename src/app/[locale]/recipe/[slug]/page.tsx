@@ -5,6 +5,7 @@ import { SiteHeader } from '@/components/site-header';
 import { RecipeGallery } from '@/components/recipe-gallery';
 import { RecipePalette } from '@/components/recipe-palette';
 import { RecipeCard } from '@/components/recipe-card';
+import { RecipeMark } from '@/components/recipe-mark';
 import { RecipeStructuredData } from '@/components/structured-data';
 import { ClTable, PpTable } from '@/components/settings-table';
 import { RecipeCommunitySection } from '@/components/recipe-community-section';
@@ -188,33 +189,46 @@ export default async function RecipePage({
           <div data-part="hero" className="lg:col-span-6 xl:col-span-7 lg:col-start-1 lg:row-start-1 flex flex-col gap-8">
             {/* Recipe Header & Description */}
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                {/* The name carries the code now (`PP-048-Soft Clean
-                    Portrait`). A row still on the old `SCL-PP-048: Huế Silk`
-                    shape — until the library sync reaches production — keeps
-                    its code here, since its title drops it. */}
-                {recipe.name.includes(': ') && (
-                  <span className="chip label text-ink">
-                    {recipe.id}
-                  </span>
-                )}
-                {/* The code is uppercase on the camera; the Look's name is not,
-                    and in `.label` "BW (Black & White)" ran to four words. */}
-                {look && (
-                  <span className="chip label bg-accent-900 text-accent-200">
-                    CL: {look.code} <span className="normal-case">({look.label})</span>
-                  </span>
-                )}
-                {recipe.format === 'pp' && (
-                  <span className="chip label bg-accent-900 text-accent-200">
-                    PICTURE PROFILE
-                  </span>
-                )}
-              </div>
+              {/* The recipe's mark beside its code and name (owner,
+                  2026-10-28): the cartridge or clapperboard its card carries.
+                  Not on a phone: there the settings come straight after the
+                  hero, and a 176px object above them is the opposite. Beside
+                  the title where the hero is wide (sm–md, xl+), above it in
+                  lg's half-width column, where beside would leave the title
+                  ~230px. */}
+              <div className="sm:flex sm:items-start sm:gap-8 lg:block xl:flex xl:gap-10">
+                <RecipeMark recipe={recipe} size="m" className="hidden sm:block lg:mb-6 xl:hidden" />
+                <RecipeMark recipe={recipe} size="l" className="hidden xl:block" />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    {/* The name carries the code now (`PP-048-Soft Clean
+                        Portrait`). A row still on the old `SCL-PP-048: Huế Silk`
+                        shape — until the library sync reaches production — keeps
+                        its code here, since its title drops it. */}
+                    {recipe.name.includes(': ') && (
+                      <span className="chip label text-ink">
+                        {recipe.id}
+                      </span>
+                    )}
+                    {/* The code is uppercase on the camera; the Look's name is not,
+                        and in `.label` "BW (Black & White)" ran to four words. */}
+                    {look && (
+                      <span className="chip label bg-accent-900 text-accent-200">
+                        CL: {look.code} <span className="normal-case">({look.label})</span>
+                      </span>
+                    )}
+                    {recipe.format === 'pp' && (
+                      <span className="chip label bg-accent-900 text-accent-200">
+                        PICTURE PROFILE
+                      </span>
+                    )}
+                  </div>
 
-              <h1 className="text-title-1 sm:text-display font-extrabold leading-[1.12] tracking-[-0.02em] text-ink">
-                {title}
-              </h1>
+                  <h1 className="text-title-1 sm:text-display font-extrabold leading-[1.12] tracking-[-0.02em] text-ink">
+                    {title}
+                  </h1>
+                </div>
+              </div>
 
               <p className="mt-4 whitespace-pre-line leading-relaxed text-ink-muted text-body sm:text-body-lg">
                 {recipe.description}
@@ -231,7 +245,7 @@ export default async function RecipePage({
                   swatches as its card, named, with the one accuracy line the
                   palette needs (it is not a camera preview). */}
               <div className="mt-6">
-                <RecipePalette palette={recipe.palette} tone={recipe.tone} style={recipe.style} variant="page" light={recipe.light} />
+                <RecipePalette palette={recipe.palette} tone={recipe.tone} style={recipe.style} light={recipe.light} />
               </div>
 
               {/* Situations, style and tone, each a way back into the catalogue. */}

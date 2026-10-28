@@ -344,10 +344,15 @@ Do not write App Router code from memory. Read the relevant file first:
   drops any sample that matches a hidden row (`withoutHiddenSamples`, read with
   `controlAdmin()`, unknown fails closed). Anything new that draws a reader's
   URL must do the same.
-- **The thumbnail is the palette.** `paletteFor()` (`src/lib/camera/palette.ts`)
-  grades nine swatches — a neutral ramp and six hues — from the recipe's own
-  settings in Sony's documented directions. It is a reading of the settings,
-  never a camera preview, and the recipe page says so in one line. Every
+- **The thumbnail is the mark; the palette feeds it.** `paletteFor()`
+  (`src/lib/camera/palette.ts`) grades nine swatches — a neutral ramp and six
+  hues — from the recipe's own settings in Sony's documented directions. The
+  card draws them on the recipe's mark (owner, 2026-10-28; `recipe-mark.tsx`):
+  a cartridge for a Creative Look, a clapperboard for a Picture Profile, the
+  ramp on its film or stripes, the hues on its sticker and in the bokeh behind
+  it (`bokehFor`, seeded on the code), the initials, code and Sony base in
+  print. The recipe page shows the nine named. It is a reading of the
+  settings, never a camera preview, and the recipe page says so in one line. Every
   magnitude is in `PALETTE_WEIGHTS`, neutral defaults to refit from an a7 IV
   ColorChecker shoot; the tests pin direction and bands, not numbers. Color
   Depth is raw (the accent's is centred: it answers a different question),

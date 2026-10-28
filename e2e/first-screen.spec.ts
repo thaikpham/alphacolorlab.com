@@ -48,8 +48,14 @@ test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true
  * on the new instance, `cl-001-film-hard-faded` (PR #24 named slugs after the
  * recipe), whose first screen shows the same frame, "All recipes" and four
  * taxonomy links (two situations, a style, a tone).
+ *
+ * `list` 23 -> 21 on 2026-10-28, lowered with the change that caused it: the
+ * situation tiles carry a drawing now (owner; `situation-art.tsx`), 96px where
+ * the colour band was 64px, so the second row of tiles (Street, Travel) moved
+ * below a 390×844 screen. The recipe page's first screen does not move: its
+ * mark is hidden on a phone.
  */
-const BUDGET = { list: 23, detail: 9 };
+const BUDGET = { list: 21, detail: 9 };
 
 test('the first screens ask little: the list and a recipe page stay within their budgets', async ({ page }) => {
   await routeAssetHosts(page);

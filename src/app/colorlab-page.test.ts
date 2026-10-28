@@ -121,9 +121,13 @@ describe('the browse row', () => {
 });
 
 describe('the situation tiles', () => {
-  it('show a name, a count and the recipes’ own colours — never a photograph', () => {
+  /* Owner, 2026-10-28: a drawing of the situation replaced the band of the
+     first eight recipes' accents, which did not say what a situation is
+     for. Still never a photograph (D3). */
+  it('show a drawing, a name and a count — never a photograph', () => {
     expect(tiles).not.toMatch(/RecipePhoto|<Image|images\[0\]|<img/);
-    expect(tiles).toContain('accentCss(r.accent)');
+    expect(tiles).toContain('<SituationArt situation={id} className="h-24" />');
+    expect(tiles).not.toContain('accentCss');
     expect(tiles).toContain("tHome('resultCount', { count: own.length })");
     expect(tiles).toContain('visibleSituations(recipes)');
   });
@@ -145,13 +149,16 @@ describe('the recipe card', () => {
     expect(card).toMatch(/<p className="meta line-clamp-1">\{situations\}<\/p>/);
   });
 
-  /* No recipe carries a photograph: the 210px slot is the palette its own
-     settings grade, never a photo component or the old accent wash. */
-  it('shows the recipe’s palette as its thumbnail', () => {
-    expect(card).toMatch(
-      /<div className="h-\[210px\] w-full overflow-hidden">\s*<RecipePalette palette=\{recipe\.palette\} tone=\{recipe\.tone\} style=\{recipe\.style\} variant="card" \/>/,
-    );
-    expect(card).not.toMatch(/RecipePhoto|RecipeColorField|recipe\.images|<Image|<img/);
+  /* No recipe carries a photograph: the 210px slot is the recipe's mark in
+     front of its own bokeh (owner, 2026-10-28), one image labelled with what
+     its colours read as — never a photo component, the old accent wash or
+     the nine bars, which moved to the recipe page. */
+  it('shows the recipe’s mark as its thumbnail', () => {
+    expect(card).toMatch(/<div className="h-\[210px\] w-full overflow-hidden">\s*<MarkSlot recipe=\{recipe\} \/>/);
+    expect(card).toMatch(/role="img" aria-label=\{label\}/);
+    expect(card).toContain('<RecipeBokeh recipe={recipe} />');
+    expect(card).toContain('<RecipeMark recipe={recipe} size="m" />');
+    expect(card).not.toMatch(/RecipePalette|RecipePhoto|RecipeColorField|recipe\.images|<Image|<img/);
     expect(card).toContain('FORMAT_LABELS[recipe.format]');
   });
 });
@@ -172,11 +179,11 @@ describe('the recipe palette', () => {
     expect(palette).not.toMatch(/\bborder\b|\bring-|outline-|#[0-9a-fA-F]{3}/);
   });
 
-  it('names its swatches and states its limit on the recipe page only', () => {
-    expect(palette).toMatch(/if \(variant === 'card'\) return grid;/);
+  it('lives on the recipe page, names its swatches and states its limit', () => {
+    expect(palette).not.toMatch(/variant/);
     expect(palette).toMatch(/<p className="meta">\{t\('note'\)\}<\/p>/);
     expect(recipePage).toMatch(
-      /<RecipePalette palette=\{recipe\.palette\} tone=\{recipe\.tone\} style=\{recipe\.style\} variant="page" light=\{recipe\.light\} \/>/,
+      /<RecipePalette palette=\{recipe\.palette\} tone=\{recipe\.tone\} style=\{recipe\.style\} light=\{recipe\.light\} \/>/,
     );
   });
 

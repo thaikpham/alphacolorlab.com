@@ -3,9 +3,9 @@ import type { Palette, Swatch, SwatchId } from '@/lib/camera/palette';
 import type { StyleId, ToneId } from '@/lib/recipes/taxonomy';
 
 /**
- * A recipe's palette: the nine swatches `paletteFor` grades from its own
- * settings, laid out the same way everywhere so a column means the same thing
- * on every card.
+ * A recipe's palette on its page: the nine swatches `paletteFor` grades from
+ * its own settings, named. The card shows the same swatches on its mark
+ * (`recipe-mark.tsx`) since 2026-10-28; this strip is where they are read.
  *
  * Left, the neutral ramp stacked highlight / mid / shadow — where tone, black
  * level, knee and the white-balance cast read without a hue in the way. Right,
@@ -14,8 +14,8 @@ import type { StyleId, ToneId } from '@/lib/recipes/taxonomy';
  * adjacency is the divider (CLAUDE.md rule 4), and the card's radius clips it.
  *
  * Nothing is written on the swatches. Type over an arbitrary colour is the one
- * contrast the system cannot guarantee, so the card's text stays on the card's
- * own surface below, and the page's swatch names sit under the strip.
+ * contrast the system cannot guarantee, so the swatch names sit under the
+ * strip.
  *
  * It is a reading of the settings, never a preview of what the camera records
  * (`palette.ts`), which is why the page carries one accuracy line under it.
@@ -31,13 +31,11 @@ export async function RecipePalette({
   palette,
   tone,
   style,
-  variant,
   light = null,
 }: {
   palette: Palette;
   tone: ToneId;
   style: StyleId;
-  variant: 'card' | 'page';
   /** Kelvin the palette was read under, when it is not daylight (`RecipeView.light`). */
   light?: number | null;
 }) {
@@ -49,7 +47,7 @@ export async function RecipePalette({
     <div
       role="img"
       aria-label={label}
-      className={`grid w-full grid-cols-[1fr_3fr] ${variant === 'card' ? 'h-full' : 'h-40 sm:h-48'}`}
+      className="grid h-40 w-full grid-cols-[1fr_3fr] sm:h-48"
     >
       <div className="grid grid-rows-3">
         {RAMP.map((id) => (
@@ -63,8 +61,6 @@ export async function RecipePalette({
       </div>
     </div>
   );
-
-  if (variant === 'card') return grid;
 
   return (
     <figure className="flex flex-col gap-3">

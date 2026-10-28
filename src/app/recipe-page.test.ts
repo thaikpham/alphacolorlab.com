@@ -38,6 +38,19 @@ describe('the settings column', () => {
   });
 });
 
+describe('the mark in the hero', () => {
+  /* Owner, 2026-10-28: the recipe's cartridge or clapperboard beside its code
+     and name. Never on a phone, where the settings come straight after the
+     hero (the first-screen gate holds the page's height there); above the
+     title in lg's half-width column, beside it where the hero is wide. */
+  it('is hidden on a phone, beside the title at sm and xl, above it at lg', () => {
+    expect(page).toContain('<div className="sm:flex sm:items-start sm:gap-8 lg:block xl:flex xl:gap-10">');
+    expect(page).toContain('<RecipeMark recipe={recipe} size="m" className="hidden sm:block lg:mb-6 xl:hidden" />');
+    expect(page).toContain('<RecipeMark recipe={recipe} size="l" className="hidden xl:block" />');
+    expect(page.indexOf('<RecipeMark')).toBeLessThan(page.indexOf('<h1'));
+  });
+});
+
 describe('the order a phone reads', () => {
   /* On a phone the grid is one column, so source order is reading order.
      It was hero → gallery → AI → community → white balance → settings: the
