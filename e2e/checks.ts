@@ -158,7 +158,9 @@ export async function inSight(page: Page) {
       return right - left > 1 && bottom - top > 1;
     };
     const all = [...document.querySelectorAll('a[href],button,[role=button],input,select,summary')].filter(seen);
-    const rows = all.filter((el) => el.matches('details.param-row > summary'));
+    /* A parameter card's own control — the summary of a <details> row, or the
+       info button of a card — is the page's content, not its frame. */
+    const rows = all.filter((el) => el.matches('details.param-row > summary, .param-row > button[popovertarget]'));
     const controls = all.filter((el) => !rows.includes(el));
     const name = (el: Element) => (el.getAttribute('aria-label') || el.textContent || '').trim().slice(0, 30);
     return { controls: controls.length, rows: rows.length, names: controls.map(name) };

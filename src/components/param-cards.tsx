@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import { useId, type CSSProperties, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   CL_PARAM_LABELS,
@@ -27,14 +27,14 @@ import { WbShiftPlane } from './wb-shift-plane';
 
 /**
  * A recipe's settings as cards, one parameter per card (owner, 2026-10-28,
- * after the Fujistyle app's recipe sheet): the value large, the camera's name
- * for the dial under it. It replaced the three-column rows, which read as a
- * spreadsheet.
+ * after the Fujistyle app's recipe sheet; made compact on 2026-10-29): the
+ * camera's name for the dial, the value under it. It replaced the
+ * three-column rows, which read as a spreadsheet.
  *
- * The two kinds of help the rows carried are still here, one tap away: open a
- * card and it says which axis the value works on, what THIS value is doing
+ * The two kinds of help the rows carried are still here, behind each card's
+ * info button: which axis the value works on, what THIS value is doing
  * (`effects.ts`, graded against the dial's own range) and what the dial is
- * (`explanations.ts`). Native `<details>`, so it works before hydration and
+ * (`explanations.ts`). A native popover, so it works before hydration and
  * ships no JavaScript.
  *
  * Labels and value formatting come from `constants.ts` / `format.ts`, never
@@ -46,19 +46,25 @@ import { WbShiftPlane } from './wb-shift-plane';
  */
 
 /**
- * A value set as a number reads at 25/800; a name (`S-Cinetone`, `Type3`,
- * `Narrow -7`) at 21/600, so a long Sony string still fits two columns on a
- * phone at a size on the scale.
+ * The card grid. Two a row on a phone, seven on a wide desktop, where each
+ * Picture Profile group is one row. `items-start`: the dial cards beside the
+ * wide White Balance card keep their own height instead of stretching to it.
  */
-const NUMERIC = /^(?:[+\-−]?\d[\d.]*(?:%|K)?|[ABGM]\d[\d.]*)$/;
+export const CARD_GRID = 'grid grid-cols-2 items-start gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7';
 
 /**
- * The card grid. Two a row on a phone, six on a desktop. `items-start`: an
- * open card grows on its own, instead of stretching every card in its row
- * into an empty box.
+ * One parameter, one card (owner, 2026-10-29: smaller, and the help behind an
+ * info button). The label flush left, the value under it at one size, and in
+ * the corner a button that opens the card's quote box: the axis, what this
+ * value is doing, what the dial is. The box is a native popover — the browser
+ * toggles it on the button, closes it on a second press, a click outside or
+ * Escape, and ships no script for it. Where the browser can anchor, it hangs
+ * under its card; elsewhere it takes the popover default, centred.
+ *
+ * Every card carries `param-row`, and its button sits directly inside it:
+ * the first-screen gate counts those as the page's content, apart from its
+ * controls (e2e/checks.ts).
  */
-export const CARD_GRID = 'grid grid-cols-2 items-start gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4 xl:grid-cols-6';
-
 export function ParamCard({
   label,
   value,
@@ -78,67 +84,73 @@ export function ParamCard({
   /** The value's own colour where it means one: a Color Depth channel, a WB axis. */
   tint?: string;
 }) {
-  const valueClass = NUMERIC.test(value)
-    ? 'text-title-2 font-extrabold'
-    : 'text-title-3 font-semibold';
+  const t = useTranslations('recipe');
+  /* The popover's id and the anchor's name, unique per card and stable across
+     server and client. `useId` yields `:r1:`-style ids; both attributes need
+     plain characters. */
+  const popId = `pop${useId().replace(/[^A-Za-z0-9_-]/g, '')}`;
+  const anchor = { '--pa': `--${popId}` } as CSSProperties;
   const valueStyle: CSSProperties | undefined = tint ? { color: tint } : undefined;
 
-  /* Label first in the source, so a screen reader hears "Black Level, -7";
-     the column is reversed to put the value on top. */
   const face = (
-    <span className="flex flex-col-reverse items-center gap-1.5 text-center">
+    <span className="flex min-w-0 flex-col gap-0.5">
       <span className="label leading-tight">{label}</span>
-      {sub ? <span className="meta text-ink-muted leading-tight">{sub}</span> : null}
       <span
-        /* One line height for both sizes, so a closed `-9` and a closed
-           `S-Cinetone` stand the same height side by side. */
-        className={`${valueClass} tracking-[-0.02em] leading-8 tabular-nums break-words max-w-full ${tint ? '' : 'text-ink'}`}
+        className={`text-title-3 font-semibold tracking-[-0.02em] leading-tight tabular-nums break-words ${tint ? '' : 'text-ink'}`}
         style={valueStyle}
       >
         {value}
       </span>
+      {sub ? <span className="meta leading-tight">{sub}</span> : null}
     </span>
   );
 
   if (!effect && !explanation) {
-    return <div className="param-row row-tint px-3 pt-4 pb-3.5">{face}</div>;
+    return <div className="param-row row-tint px-3.5 py-3">{face}</div>;
   }
 
   return (
-    <details className="param-row group row-tint relative px-3 pt-4 pb-3.5 open:bg-white/[0.08]">
-      <summary className="cursor-pointer list-none marker:content-none">
-        {face}
-        <InfoGlyph className="absolute top-2 right-2" />
-      </summary>
-      <div className="mt-3 flex flex-col gap-1.5 text-left">
-        <hr className="seam mb-1.5" />
-        {effect ? (
-          <>
-            <span className="label text-accent-400">{AXIS_LABELS[effect.axis][locale]}</span>
-            <p className="text-body-sm leading-relaxed text-ink-muted">{effect[locale]}</p>
-          </>
-        ) : null}
-        {explanation ? <p className="meta leading-relaxed">{explanation}</p> : null}
+    <div className="param-row param-card row-tint relative px-3.5 py-3 pr-11" style={anchor}>
+      {face}
+      {/* `pointer-coarse:` lifts the button to the 44px floor on a touch screen
+          without widening it under a mouse. */}
+      <button
+        type="button"
+        popoverTarget={popId}
+        aria-label={t('explain', { param: label })}
+        className="param-info absolute top-1 right-1 flex h-8 w-8 pointer-coarse:h-11 pointer-coarse:w-11 cursor-pointer items-center justify-center rounded-sm text-ink-faint transition-colors hover:text-ink"
+      >
+        <InfoGlyph />
+      </button>
+      <div id={popId} popover="auto" className="param-pop" style={anchor}>
+        <div className="surface-raised animate-fade-in flex flex-col gap-2 p-4">
+          <span className="flex items-baseline justify-between gap-3">
+            <span className="label">{label}</span>
+            <span className="text-body font-semibold tabular-nums text-ink">{value}</span>
+          </span>
+          {effect ? (
+            <>
+              <span className="label text-accent-400">{AXIS_LABELS[effect.axis][locale]}</span>
+              <p className="text-body-sm leading-relaxed text-ink">{effect[locale]}</p>
+            </>
+          ) : null}
+          {explanation ? (
+            <>
+              <hr className="seam" />
+              <p className="meta leading-relaxed">{explanation}</p>
+            </>
+          ) : null}
+        </div>
       </div>
-    </details>
+    </div>
   );
 }
 
-/**
- * The cue that a card opens (owner, 2026-10-28: an info button, not a bare
- * "?"). It sits inside the `<summary>`, which is the real button, so it is
- * drawn rather than nested — a `<button>` inside a summary would swallow the
- * tap. Lit in the accent while its card is open; the nearest `.group` is the
- * `<details>`.
- */
+/** The info button's glyph. Lit in the accent while its box is open (globals.css, `.param-info`). */
 function InfoGlyph({ className = '' }: { className?: string }) {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 20 20"
-      className={`h-5 w-5 shrink-0 text-ink-faint transition-colors group-hover:text-ink group-open:text-accent-300 ${className}`}
-    >
-      <circle cx="10" cy="10" r="10" className="fill-white/[0.08] group-open:fill-accent-900" />
+    <svg aria-hidden="true" viewBox="0 0 20 20" className={`h-5 w-5 shrink-0 ${className}`}>
+      <circle cx="10" cy="10" r="10" className="fill-white/[0.08]" />
       <circle cx="10" cy="5.9" r="1.15" fill="currentColor" />
       <rect x="9.1" y="8.4" width="1.8" height="6.2" rx="0.9" fill="currentColor" />
     </svg>
@@ -258,7 +270,7 @@ export function WbPanel({ recipe, locale }: { recipe: RecipeView; locale: Locale
     <section className="surface p-4 sm:p-5">
       <h3 className="label mb-3">White Balance Shift</h3>
       <div className={CARD_GRID}>
-        <div className="row-tint col-span-2 sm:col-span-3 lg:col-span-2 xl:col-span-3 flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:gap-6">
+        <div className="row-tint col-span-2 sm:col-span-3 lg:col-span-2 xl:col-span-3 2xl:col-span-4 flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:gap-6">
           <div className="w-40 shrink-0 self-center sm:w-44">
             <WbShiftPlane recipes={[recipe]} />
           </div>

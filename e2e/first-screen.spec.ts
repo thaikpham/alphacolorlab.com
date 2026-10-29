@@ -12,9 +12,9 @@ import { SCREENS, ready, resolve, routeAssetHosts, visit } from './setup.ts';
  * The page height is a length, not a count, and stays a ceiling. Design-kit's targets: a list ≤ 12, a detail ≤ 7 plus the
  * frame.
  *
- * A recipe page is a reading layout of `<details>` parameter rows (AGENTS.md
- * Rule 4), each with a `<summary>`. Those are the content, not the frame, so
- * they are counted apart, logged, and held to no ceiling: a phone layout that
+ * A recipe page is a reading layout of parameter cards (AGENTS.md Rule 4),
+ * each with its info button. Those are the content, not the frame, so they
+ * are counted apart, logged, and held to no ceiling: a phone layout that
  * brings the settings up the page is the point, not a regression.
  *
  * "In sight" means on the screen: an element's box is clipped by the viewport
@@ -85,6 +85,7 @@ test('the first screens ask little: the list and a recipe page stay within their
   // main 415f9ff on cl-001-film-hard-faded (slugs come from the name now), which printed 6.1: lowered 6.3 -> 6.2.
   // Re-measured 2026-10-28 after the recipe page redesign (cards, no palette strip, no proposals or AI tweak),
   // which printed 4.5: lowered 6.2 -> 4.6. Re-measured the same day without the hero's chips, which printed
-  // 4.4: lowered 4.6 -> 4.5.
-  expect(screens).toBeLessThanOrEqual(4.5);
+  // 4.4: lowered 4.6 -> 4.5. Re-measured 2026-10-29 with the compact recipe card in the related row, which
+  // printed 3.9: lowered 4.5 -> 4.0.
+  expect(screens).toBeLessThanOrEqual(4.0);
 });

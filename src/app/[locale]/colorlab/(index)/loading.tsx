@@ -56,15 +56,14 @@ export default async function Loading() {
         </div>
         {/* `.surface` rather than a hand-rolled radius: it is the class the real
             recipe card uses, so the skeleton lands at the same 26px corner and
-            elevation and nothing shifts when content arrives. The 210px photo
-            and the body's padding and gaps are `RecipeCard`'s: a label, a
-            title and one meta line. */}
-        <ul aria-hidden className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6">
-          {Array.from({ length: 6 }).map((_, i) => (
+            elevation and nothing shifts when content arrives. The 160px stage
+            and the body's padding and gaps are `RecipeCard`'s: a title and one
+            meta line. Ten, so the five desktop columns fill two rows. */}
+        <ul aria-hidden className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8">
+          {Array.from({ length: 10 }).map((_, i) => (
             <li key={i} className="surface overflow-hidden">
-              <div className="h-[210px] w-full bg-glass" />
-              <div className="flex flex-col gap-2 px-5 pt-[19px] pb-[22px]">
-                <div className="h-4 w-24 rounded-sm bg-glass" />
+              <div className="h-40 w-full bg-glass" />
+              <div className="flex flex-col gap-1 px-4 pt-3 pb-4">
                 <div className="h-6 w-3/4 rounded-sm bg-glass" />
                 <div className="h-4 w-1/2 rounded-sm bg-glass" />
               </div>

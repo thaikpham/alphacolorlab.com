@@ -356,12 +356,12 @@ Do not write App Router code from memory. Read the relevant file first:
 - **The thumbnail is the mark; the palette feeds it.** `paletteFor()`
   (`src/lib/camera/palette.ts`) grades nine swatches — a neutral ramp and six
   hues — from the recipe's own settings in Sony's documented directions. The
-  card draws them on the recipe's mark (owner, 2026-10-28; `recipe-mark.tsx`):
-  a cartridge for a Creative Look, a clapperboard for a Picture Profile, the
-  ramp on its film or stripes, the hues on its sticker and in the bokeh behind
-  it (`bokehFor`, seeded on the code), the initials, code and Sony base in
-  print; the recipe page carries the same mark beside its title, and no
-  swatch strip (owner, 2026-10-28). It is a reading of the settings, never
+  card draws them on the recipe's mark (owner, 2026-10-28/29; `recipe-mark.tsx`):
+  a cartridge for a Creative Look, a cinema reel for a Picture Profile, the
+  ramp on the leader's three frames, the hues on the cartridge's sticker and
+  in the reel's six windows, and behind both a halo of those hues
+  (`haloSpectrum`), the initials, code and Sony base in print; the recipe page
+  carries the same mark beside its title, and no swatch strip. It is a reading of the settings, never
   a camera preview, and nothing may present it as one. Every
   magnitude is in `PALETTE_WEIGHTS`, neutral defaults to refit from an a7 IV
   ColorChecker shoot; the tests pin direction and bands, not numbers. Color
@@ -436,7 +436,8 @@ cannot install (ADR 0006). The rules:
 
 ## Design
 
-Browse page runs full-bleed (`max-w-[160rem]`) at 1 / 2 / 3 / 4 / 5 / 6 columns.
+Browse page runs full-bleed (`max-w-[160rem]`) at 2 / 3 / 4 / 5 / 6 / 7 / 8 columns
+(compact cards since 2026-10-29: a 160px stage and two lines).
 Recipe pages stay at `max-w-[86rem]` — that is a reading layout, and full width
 hurts it. Custom breakpoints (`3xl`, `4xl`) are declared in `@theme`; Tailwind v4
 generates **no rule** for the inline `min-[2100px]:` form, so the column count

@@ -106,6 +106,7 @@
     "next": "Ảnh tiếp theo",
     "goTo": "Chuyển đến ảnh {index}",
     "paramsLabel": "Cài đặt máy ảnh",
+    "explain": "Giải thích {param}",
     "photoAlt": "{title} — ảnh {index}",
     "previewAlt": "Xem trước ảnh bạn đang thêm",
     "wbNet": "Tông tổng thể",

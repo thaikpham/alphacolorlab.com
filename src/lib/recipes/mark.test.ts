@@ -3,9 +3,19 @@ import { describe, expect, it } from 'vitest';
 import recipesSeed from '../../../data/recipes.seed.json';
 import { CREATIVE_LOOK_CODES, PP_GAMMA } from '@/lib/camera/constants';
 import type { Recipe } from '@/lib/camera/schema';
-import { BOKEH_DISCS, BOKEH_SPARKS, bokehFor, markBase, markCode, markInitials, MARK_HUES } from './mark';
+import { haloSpectrum, markBase, markCode, markInitials, MARK_HUES } from './mark';
+import { paletteFor } from '@/lib/camera/palette';
 
 const seed = recipesSeed as unknown as Recipe[];
+
+describe('recipeMood', () => {
+  it('drops the code from the name, whichever shape it has', async () => {
+    const { recipeMood } = await import('./title');
+    expect(recipeMood('CL-013-Golden Matte Muted')).toBe('Golden Matte Muted');
+    expect(recipeMood('SCL-PP-001: Mojave Sun')).toBe('Mojave Sun');
+    expect(recipeMood('Plain Name')).toBe('Plain Name');
+  });
+});
 
 describe('markInitials', () => {
   it('takes the first letter of each word of the mood', () => {
@@ -49,37 +59,21 @@ describe('the code and the base', () => {
   });
 });
 
-describe('bokehFor', () => {
-  it('lights the same recipe the same way every time, whichever id shape it holds', () => {
-    expect(bokehFor('CL-013')).toEqual(bokehFor('CL-013'));
-    expect(bokehFor('SCL-PP-001')).toEqual(bokehFor('PP-001'));
-  });
-
-  it('lights two recipes differently', () => {
-    const layouts = new Set(seed.map((r) => JSON.stringify(bokehFor(r.id))));
-    expect(layouts.size).toBe(seed.length);
-  });
-
-  it('keeps every light inside the slot, in the recipe’s six hues', () => {
-    for (const r of seed) {
-      const { discs, sparks, wash } = bokehFor(r.id);
-      expect(discs).toHaveLength(BOKEH_DISCS);
-      expect(sparks).toHaveLength(BOKEH_SPARKS);
-      for (const l of [...discs, ...sparks]) {
-        expect(l.x).toBeGreaterThanOrEqual(0);
-        expect(l.x).toBeLessThanOrEqual(100);
-        expect(l.y).toBeGreaterThanOrEqual(0);
-        expect(l.y).toBeLessThanOrEqual(100);
-        expect(MARK_HUES).toContain(l.hue);
-        expect(l.opacity).toBeLessThanOrEqual(0.75);
-      }
-      expect(wash.x).toBeGreaterThanOrEqual(20);
-      expect(wash.x).toBeLessThanOrEqual(80);
+describe('haloSpectrum', () => {
+  it('is the six hues in palette order, closed on the first', () => {
+    const r = seed[0];
+    const palette = paletteFor(r);
+    const stops = haloSpectrum(palette).split(', ');
+    expect(stops).toHaveLength(MARK_HUES.length + 1);
+    expect(stops[0]).toBe(stops[stops.length - 1]);
+    for (const [i, hue] of MARK_HUES.entries()) {
+      expect(stops[i]).toBe(palette.find((s) => s.id === hue)!.css);
     }
   });
 
-  /* Ten discs over six hues: every hue is lit at least once. */
-  it('uses all six hues', () => {
-    expect(new Set(bokehFor('CL-001').discs.map((d) => d.hue)).size).toBe(MARK_HUES.length);
+  it('glows grey for a monochrome recipe', () => {
+    const mono = seed.find((r) => r.format === 'cl' && r.settings.look === 'BW');
+    if (!mono) return;
+    for (const stop of haloSpectrum(paletteFor(mono)).split(', ')) expect(stop).toMatch(/oklch\([\d.]+% 0 /);
   });
 });

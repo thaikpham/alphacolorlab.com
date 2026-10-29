@@ -159,9 +159,11 @@ export async function RecipeBrowse({ model, title }: { model: BrowseModel; title
               screens declared in `@theme`; the inline `min-[2100px]:` form
               generates no rule at all, so it must not be "simplified" back
               to that. */}
-          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6">
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8">
             {recipes.map((r) => (
-              <li key={r.id}>
+              /* `grid` stretches the card to its row: a title that wraps to
+                 two lines no longer leaves its neighbours short. */
+              <li key={r.id} className="grid">
                 <RecipeCard recipe={r} situationLabels={situationLabels} />
               </li>
             ))}

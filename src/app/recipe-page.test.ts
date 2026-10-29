@@ -75,24 +75,27 @@ describe('the hero', () => {
 });
 
 describe('the parameter cards', () => {
-  /* One parameter per card: the value large, Sony's name for the dial under
-     it, the effect and the explanation one tap away (Rule 4). */
-  /* Owner, 2026-10-28: a small info button, not a bare "?". Drawn inside
-     the summary, never a nested <button>, which would swallow the tap. */
-  it('open from a drawn info glyph inside the summary', () => {
-    expect(cards).toMatch(/<summary[^>]*>\s*\{face\}\s*<InfoGlyph/);
-    expect(cards).not.toMatch(/>\s*\?\s*</);
-    const glyph = cards.slice(cards.indexOf('function InfoGlyph'), cards.indexOf('export function ParamPanel'));
-    expect(glyph).toContain('aria-hidden="true"');
-    expect(glyph).not.toMatch(/<button/);
-  });
-
-  it('are native disclosures that carry both kinds of help', () => {
-    expect(cards).toMatch(/<details className="param-row group row-tint/);
+  /* One parameter per card: the label, the value under it, and an info
+     button that opens the card's quote box — a native popover the browser
+     toggles, closes on a second press, a click outside or Escape (owner,
+     2026-10-29). Both kinds of help live in the box (Rule 4). */
+  it('open a native popover from an info button, with both kinds of help', () => {
+    expect(cards).toMatch(/<button\s+type="button"\s+popoverTarget=\{popId\}/);
+    expect(cards).toMatch(/<div id=\{popId\} popover="auto" className="param-pop"/);
     expect(cards).toContain('{effect[locale]}');
     expect(cards).toContain('AXIS_LABELS[effect.axis][locale]');
     expect(cards).toContain('{explanation}');
+    expect(cards).not.toMatch(/<details className="param-row/);
     expect(cards).not.toMatch(/'use client'/);
+    expect(cards).not.toMatch(/>\s*\?\s*</);
+  });
+
+  /* The button names what it opens, in the reader's language, and meets the
+     44px floor on a touch screen without widening under a mouse. */
+  it('name the button and size it for touch', () => {
+    expect(cards).toContain("aria-label={t('explain', { param: label })}");
+    expect(cards).toMatch(/className="param-info[^"]*pointer-coarse:h-11 pointer-coarse:w-11/);
+    for (const m of messages) expect(typeof (m.recipe as Record<string, string>).explain).toBe('string');
   });
 
   /* The combined cast belongs to no single dial, so it sits on the wide

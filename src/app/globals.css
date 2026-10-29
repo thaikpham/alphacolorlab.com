@@ -347,6 +347,41 @@ body {
       var(--elevation-spec);
   }
 
+  /* A parameter card's info button and the quote box it opens (recipe page,
+     2026-10-29). The box is a native popover: the browser toggles it on the
+     button, closes it on a second press, a click outside or Escape, and no
+     script ships for it. Preflight zeroes the popover's margin, so the
+     centred default needs its `auto` back; where the browser can anchor, the
+     box hangs under its card instead, flipping to stay on screen. The opaque
+     ground is on the popover and the glass on the panel inside it, as every
+     surface over a page is built (AGENTS.md, Design). */
+  .param-card {
+    anchor-name: var(--pa);
+  }
+
+  .param-info:has(+ .param-pop:popover-open) {
+    color: var(--color-accent-300);
+  }
+
+  .param-pop {
+    margin: auto;
+    width: min(22rem, calc(100vw - 2rem));
+    overflow: visible;
+    border-radius: var(--radius-lg);
+    color: var(--color-ink);
+    background: color-mix(in oklch, var(--color-void) 95%, transparent);
+  }
+
+  @supports (position-anchor: --p) {
+    .param-pop {
+      position-anchor: var(--pa);
+      inset: auto;
+      margin: 0.5rem 0 0;
+      position-area: bottom span-right;
+      position-try-fallbacks: flip-inline, flip-block, flip-block flip-inline;
+    }
+  }
+
   /* Where a divider genuinely helps — above a footer, under a panel header —
      it is light, not a line: a gradient that fades out at both ends. */
   .seam {
@@ -688,6 +723,38 @@ body {
    as colour bleeding out from under the tile, the tight one is the rim light
    that keeps its edge defined. One layer alone reads as a coloured drop shadow.
 --------------------------------------------------------------------------- */
+
+/* The recipe mark's halo (recipe-mark.tsx, owner 2026-10-29). The launcher's
+   two-layer construction — a wide blurred halation and a tight rim light —
+   with THIS recipe's six hues as `--mark-spectrum`, read from its palette,
+   never the launcher's spectrum: the palette as light, so a warm recipe glows
+   warm and a monochrome one grey. No rotation: that stays the launcher's. The
+   stage is the box behind the object; the object paints over it. */
+.mark-glow-stage {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mark-glow,
+.mark-glow-rim {
+  position: absolute;
+  background: conic-gradient(from 210deg, var(--mark-spectrum));
+}
+
+.mark-glow {
+  inset: -14%;
+  border-radius: 30%;
+  filter: blur(var(--glow-blur)) saturate(1.15);
+  opacity: 0.55;
+}
+
+.mark-glow-rim {
+  inset: -2%;
+  border-radius: 26%;
+  filter: blur(var(--rim-blur)) saturate(1.25);
+  opacity: 0.6;
+}
 
 /* Landing-only stage. Flat `--color-void`, painted over the body's three
    ambient washes: the launcher is the one screen with nothing behind the

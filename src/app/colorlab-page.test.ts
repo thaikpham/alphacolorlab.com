@@ -139,26 +139,30 @@ describe('the situation tiles', () => {
 });
 
 describe('the recipe card', () => {
-  /* D10 and Q4: a format in `ink-faint`, a name without its code, the
-     situations it browses under. No parameter chips, no tag line, no signal
-     colour borrowed to mean a format. */
-  it('is a label, a name and one meta line', () => {
+  /* Owner, 2026-10-29 ("too big and ugly"): two lines under the stage — the
+     mood as the title, the situations under it. Each fact once: no format
+     eyebrow and no code in the text (the mark prints both; a screen reader
+     hears them in the heading). No parameter
+     chips, no tag line, no signal colour borrowed to mean a format. */
+  it('is a title and one meta line, each fact printed once', () => {
     expect(card).not.toMatch(/text-community|text-proposal|recipeChips|recipe\.tags|wbLabel/);
-    expect(card).toMatch(/<span className="label">\{kind\}<\/span>/);
-    expect(card).toContain('recipeTitle(recipe.name)');
+    expect(card).not.toMatch(/<span className="label">/);
+    expect(card).toContain('{recipeMood(recipe.name)}');
+    /* The mark prints the code and is aria-hidden: the heading speaks it. */
+    expect(card).toMatch(/<span className="sr-only">\s*\{recipeIdKey\(recipe\.id\)\}, \{kind\}:/);
     expect(card).toMatch(/<p className="meta line-clamp-1">\{situations\}<\/p>/);
   });
 
-  /* No recipe carries a photograph: the 210px slot is the recipe's mark in
-     front of its own bokeh (owner, 2026-10-28), one image labelled with what
-     its colours read as — never a photo component, the old accent wash or
-     the nine bars, which moved to the recipe page. */
+  /* No recipe carries a photograph: the stage is the recipe's mark in its
+     own halo (owner, 2026-10-29), one image labelled with what its colours
+     read as — never a photo component, the old accent wash or the
+     nine bars. The card's mark, or the small one in a card under 12rem. */
   it('shows the recipe’s mark as its thumbnail', () => {
-    expect(card).toMatch(/<div className="h-\[210px\] w-full overflow-hidden">\s*<MarkSlot recipe=\{recipe\} \/>/);
+    expect(card).toMatch(/<div className="h-40 w-full overflow-hidden">\s*<MarkSlot recipe=\{recipe\} \/>/);
     expect(card).toMatch(/role="img" aria-label=\{label\}/);
-    expect(card).toContain('<RecipeBokeh recipe={recipe} />');
-    expect(card).toContain('<RecipeMark recipe={recipe} size="m" className="hidden @min-[15rem]:block" />');
-    expect(card).toContain('<RecipeMark recipe={recipe} size="s" className="@min-[15rem]:hidden" />');
+    expect(card).not.toContain('RecipeBokeh');
+    expect(card).toContain('<RecipeMark recipe={recipe} size="sm" className="hidden @min-[12rem]:block" />');
+    expect(card).toContain('<RecipeMark recipe={recipe} size="s" className="@min-[12rem]:hidden" />');
     expect(card).toContain('@container');
     expect(card).not.toMatch(/RecipePalette|RecipePhoto|RecipeColorField|recipe\.images|<Image|<img/);
     expect(card).toContain('FORMAT_LABELS[recipe.format]');
@@ -179,7 +183,8 @@ describe('the share card', () => {
 
 describe('/colorlab loading skeleton', () => {
   /* It was a centred 86rem three-column block with 4/5 tiles, standing in for
-     a full-bleed one-to-six-column grid — the jump it exists to prevent. */
+     a full-bleed grid (two to eight columns since 2026-10-29) — the jump it
+     exists to prevent. */
   it('has the page grid’s container and columns', () => {
     const pageMain = classOf(browse, 'main');
     const skeletonMain = classOf(loading, 'main');
@@ -192,11 +197,12 @@ describe('/colorlab loading skeleton', () => {
   });
 
   it('sizes the tiles like a recipe card', () => {
-    expect(loading).toContain('h-[210px]');
+    expect(loading).toContain('<div className="h-40 w-full bg-glass" />');
+    expect(card).toContain('<div className="h-40 w-full overflow-hidden">');
     expect(loading).not.toContain('aspect-[4/5]');
-    /* The card body's three bars: label, title, meta — at the card's gaps. */
-    expect(loading).toContain('flex flex-col gap-2 px-5 pt-[19px] pb-[22px]');
-    expect(card).toContain('flex flex-col gap-2 px-5 pt-[19px] pb-[22px]');
+    /* The card body's two bars: title and meta — at the card's gaps. */
+    expect(loading).toContain('flex flex-col gap-1 px-4 pt-3 pb-4');
+    expect(card).toContain('flex flex-col gap-1 px-4 pt-3 pb-4');
   });
 
   it('sits in the index route group, beside the situation route rather than above it', () => {

@@ -6,7 +6,7 @@ import recipesSeed from '../../data/recipes.seed.json';
 import { paletteFor } from '@/lib/camera/palette';
 import type { Recipe } from '@/lib/camera/schema';
 import { markBase, markCode, markInitials, MARK_SIZES, type MarkInput, type MarkSize } from '@/lib/recipes/mark';
-import { RecipeBokeh, RecipeMark } from './recipe-mark';
+import { RecipeMark } from './recipe-mark';
 
 /**
  * The mark as markup. Plain `.ts` with `createElement`: the vitest include
@@ -37,15 +37,33 @@ describe('RecipeMark', () => {
     }
   });
 
-  /* A Creative Look's leader shows the ramp as three frames; a Picture
-     Profile's clapper stripes its highlight and shadow. */
-  it('draws a cartridge for a Creative Look and a clapperboard for a Picture Profile', () => {
+  /* Both leaders show the ramp as three frames; the reel shows the six hues
+     through its windows, the cartridge on its sticker. */
+  it('draws a cartridge for a Creative Look and a reel for a Picture Profile', () => {
     const swatch = (r: MarkInput, id: string) => r.palette.find((s) => s.id === id)!.css;
-    const film = render(cl);
-    for (const id of ['highlight', 'mid', 'shadow']) expect(film).toContain(`background:${swatch(cl, id)}`);
-    expect(film).not.toContain('repeating-linear-gradient');
-    const slate = render(pp);
-    expect(slate).toContain(`repeating-linear-gradient(135deg, ${swatch(pp, 'highlight')}`);
+    for (const r of [cl, pp]) {
+      const html = render(r);
+      for (const id of ['highlight', 'mid', 'shadow']) expect(html, r.id).toContain(`background:${swatch(r, id)}`);
+    }
+    expect(render(pp)).toContain('border-radius:50%');
+    expect(render(pp)).not.toMatch(/repeating-linear-gradient|rotate\(/);
+    expect(render(cl)).not.toContain('border-radius:50%');
+  });
+
+  /* The halo: the recipe's own six hues as one conic sweep behind the object,
+     its blur scaled to the mark. Off on request, for a light ground. */
+  it('glows in its own six hues, and can be lit off', () => {
+    const html = render(cl);
+    expect(html).toContain('class="mark-glow-stage"');
+    expect(html).toContain('class="mark-glow"');
+    expect(html).toContain('class="mark-glow-rim"');
+    const spectrum = html.match(/--mark-spectrum:([^;]+);/)?.[1];
+    expect(spectrum?.split(', ')).toHaveLength(7);
+    for (const id of ['red', 'skin', 'yellow', 'foliage', 'sky', 'blossom']) {
+      expect(spectrum).toContain(cl.palette.find((s) => s.id === id)!.css);
+    }
+    expect(html).toMatch(/--glow-blur:41px/);
+    expect(renderToStaticMarkup(createElement(RecipeMark, { recipe: cl, halo: false }))).not.toContain('mark-glow');
   });
 
   it('carries the six hues on its sticker', () => {
@@ -77,14 +95,5 @@ describe('RecipeMark', () => {
         expect(html).not.toMatch(/\bborder(?:-(?:top|right|bottom|left))?(?:-width|-style)?:|outline:|\bring-/);
       }
     }
-  });
-});
-
-describe('RecipeBokeh', () => {
-  it('lights the slot with thirteen soft lights in the recipe’s own colours', () => {
-    const html = renderToStaticMarkup(createElement(RecipeBokeh, { recipe: cl }));
-    expect(html).toMatch(/^<div aria-hidden="true"/);
-    expect(html.match(/radial-gradient\(circle closest-side/g)).toHaveLength(13);
-    expect(html).toContain(cl.palette.find((s) => s.id === 'mid')!.css);
   });
 });

@@ -1,16 +1,4 @@
 {
-  "src/app/[locale]/colorlab/(index)/loading.tsx": {
-    "belowFloor": 0,
-    "mono": 0,
-    "palette": 0,
-    "hex": 0,
-    "stroke": 0,
-    "deletedVocab": 0,
-    "scrollbarCss": 0,
-    "arbitraryPx": 3,
-    "duration": 0,
-    "hardCorner": 0
-  },
   "src/app/[locale]/recipe/[slug]/page.tsx": {
     "belowFloor": 0,
     "mono": 0,
@@ -187,7 +175,7 @@
     "stroke": 0,
     "deletedVocab": 0,
     "scrollbarCss": 0,
-    "arbitraryPx": 3,
+    "arbitraryPx": 0,
     "duration": 1,
     "hardCorner": 0
   },

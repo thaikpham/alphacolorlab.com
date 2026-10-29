@@ -106,6 +106,7 @@
     "next": "Next photo",
     "goTo": "Go to photo {index}",
     "paramsLabel": "Camera settings",
+    "explain": "Explain {param}",
     "photoAlt": "{title} — photo {index}",
     "previewAlt": "Preview of the photo you are adding",
     "wbNet": "Overall tone",

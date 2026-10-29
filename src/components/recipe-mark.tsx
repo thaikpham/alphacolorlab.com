@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 import {
-  bokehFor,
+  haloSpectrum,
   markBase,
   markCode,
   markInitials,
@@ -12,16 +12,17 @@ import {
 
 /**
  * The recipe mark (owner, 2026-10-28; canvas "Recipe chip marks"): a white
- * 35mm cartridge standing up for a Creative Look, a white clapperboard for a
- * Picture Profile. It replaced the nine-swatch strip on the card, which
+ * 35mm cartridge standing up for a Creative Look, a white cinema reel for a
+ * Picture Profile (a clapperboard until 2026-10-29). It replaced the nine-swatch strip on the card, which
  * readers found hard to choose from: a silhouette says stills or cinema
  * before a word is read, and the initials give a recipe a handle.
  *
- * The colour is on the film, never under the type. The cartridge's leader
- * shows three frames — the recipe's highlight, mid and shadow — and the
- * clapper's stripes alternate its highlight and shadow, so a black-and-white
- * profile gets the classic clapper. A sticker on the body carries its six
- * hues. All of it is `paletteFor`'s reading of the settings, never a preview.
+ * The colour is on the film, never under the type. Each object's leader
+ * shows three frames — the recipe's highlight, mid and shadow; the cartridge
+ * wears a sticker of its six hues and the reel shows them through its six
+ * windows; and behind both a halo of those hues (`haloSpectrum`), lit the way
+ * the launcher's tiles are, from this recipe's own swatches. All of it is
+ * `paletteFor`'s reading of the settings, never a preview.
  *
  * It is a drawn object, not a surface. That is why its body is white and its
  * type dark — the paper room's ink, printed on the object — and why its
@@ -29,9 +30,9 @@ import {
  * screen reader: the name is always written next to it, and the card's slot
  * carries the palette's label.
  *
- * Four sizes, every type size a step of the scale and none under 13px: what
+ * Five sizes, every type size a step of the scale and none under 13px: what
  * does not fit drops out (the code at `s`, the id and sticker at `xs`)
- * instead of shrinking.
+ * instead of shrinking. `sm` is the browse card's.
  */
 
 type Dims = {
@@ -48,6 +49,8 @@ type Dims = {
 const SIZES: Readonly<Record<MarkSize, Omit<Dims, 'size' | 'h' | 'k'>>> = {
   xs: { w: 66, initials: 'text-body', showId: false, showCode: false },
   s: { w: 120, initials: 'text-title-3 tracking-[-0.02em]', showId: true, showCode: false },
+  /* The browse card's size (owner, 2026-10-29: the cards were too big). */
+  sm: { w: 156, initials: 'text-title-2 tracking-[-0.02em]', showId: true, showCode: true },
   m: { w: 216, initials: 'text-title-1 tracking-[-0.02em]', showId: true, showCode: true },
   l: { w: 288, initials: 'text-display tracking-[-0.02em]', showId: true, showCode: true },
 };
@@ -61,9 +64,7 @@ function dims(size: MarkSize): Dims {
    base and paper ink, printed on a thing standing in the slot. */
 const LABEL_WHITE =
   'linear-gradient(90deg, oklch(99.5% 0.002 275) 0%, oklch(97.5% 0.003 275) 45%, oklch(89% 0.006 275) 100%)';
-const ACRYLIC = 'linear-gradient(180deg, oklch(99% 0.002 275), oklch(95.5% 0.004 275))';
 const METAL = 'linear-gradient(180deg, oklch(82% 0.006 275), oklch(54% 0.006 275))';
-const PIN = 'radial-gradient(circle closest-side, oklch(62% 0.006 275), oklch(34% 0.006 275) 88%, transparent)';
 const FILM = 'oklch(11% 0.006 275)';
 const SPROCKET = 'oklch(100% 0 0 / 0.16)';
 const STICKER = 'oklch(96.5% 0.014 85)';
@@ -135,13 +136,13 @@ function Sprockets({ d, width, edge }: { d: Dims; width: number; edge: 'top' | '
 
 function Cartridge({ d, c, ink }: { d: Dims; c: Record<string, string>; ink: Ink }) {
   const px = scale(d);
-  const bodyW = d.size === 'xs' ? 44 : d.size === 's' ? 72 : px(100);
+  const bodyW = d.size === 'xs' ? 44 : d.size === 's' ? 72 : d.size === 'sm' ? 84 : px(100);
   const lip = Math.max(2, px(4));
   const knobW = px(22);
   const knobH = Math.max(4, px(10));
   const capH = Math.max(4, px(8));
-  const tongueW = d.size === 'xs' ? 16 : d.size === 's' ? 32 : px(44);
-  const tongueH = d.size === 'xs' ? 20 : d.size === 's' ? 36 : px(56);
+  const tongueW = d.size === 'xs' ? 16 : d.size === 's' ? 32 : d.size === 'sm' ? 34 : px(44);
+  const tongueH = d.size === 'xs' ? 20 : d.size === 's' ? 36 : d.size === 'sm' ? 44 : px(56);
   const x0 = Math.round((d.w - (bodyW + 2 * lip + tongueW)) / 2);
   const bodyL = x0 + lip;
   const labelT = knobH + capH;
@@ -221,69 +222,111 @@ function Cartridge({ d, c, ink }: { d: Dims; c: Record<string, string>; ink: Ink
   );
 }
 
-function Clapper({ d, c, ink }: { d: Dims; c: Record<string, string>; ink: Ink }) {
+/* Per size: the reel's diameter, its hub's, and a window's radius. */
+const REEL: Readonly<Record<MarkSize, { d: number; hub: number; win: number }>> = {
+  xs: { d: 52, hub: 34, win: 4 },
+  s: { d: 90, hub: 62, win: 7 },
+  sm: { d: 122, hub: 80, win: 9 },
+  m: { d: 150, hub: 96, win: 11 },
+  l: { d: 200, hub: 128, win: 15 },
+};
+
+/**
+ * Picture Profile: a cinema reel (owner, 2026-10-29; it was a clapperboard),
+ * white like the cartridge, its leader coming off the rim to the right. Six
+ * windows between the spokes show the recipe's six hues; the leader's three
+ * frames are its highlight, mid and shadow; the hub is the ivory label with
+ * the name.
+ */
+function Reel({ d, c, ink }: { d: Dims; c: Record<string, string>; ink: Ink }) {
   const px = scale(d);
-  const stripe = Math.max(4, px(12));
-  const stripes = `repeating-linear-gradient(135deg, ${c.highlight} 0 ${stripe}px, ${c.shadow} ${stripe}px ${stripe * 2}px)`;
-  const slateT = px(40);
-  const bandH = px(18);
-  const stickH = px(18);
-  const pin = Math.max(5, px(9));
-  const compact = d.size === 's' || d.size === 'xs';
+  const { d: D, hub, win } = REEL[d.size];
+  const cx = D / 2;
+  const cy = d.h / 2;
+  const ring = (D / 2 + hub / 2) / 2;
+  const tongueW = d.w - D + px(6);
+  const tongueH = d.size === 'xs' ? 20 : d.size === 's' ? 36 : d.size === 'sm' ? 44 : px(56);
+  const tongueT = Math.round(cy - D / 2 + px(18));
+  const holeH = Math.max(2, px(4));
+  const frameT = holeH + px(7);
+  const tuck = px(6);
 
   return (
     <>
-      {/* The clapper stick, open. */}
+      {/* The leader, off the rim. */}
       <span
-        className="absolute"
+        className="absolute overflow-hidden"
         style={{
-          left: 0,
-          top: slateT - stickH,
-          width: d.w,
-          height: stickH,
-          borderRadius: px(4),
-          background: stripes,
-          boxShadow: LIFT,
-          transform: 'rotate(-6deg)',
-          transformOrigin: `${px(6)}px ${stickH}px`,
-        }}
-      />
-      {/* The slate. */}
-      <span
-        className={`absolute flex flex-col items-start overflow-hidden ${d.size === 'xs' ? 'justify-center' : 'justify-between'}`}
-        style={{
-          left: 0,
-          top: slateT,
-          width: d.w,
-          height: d.h - slateT,
-          padding: `${bandH + (compact ? px(6) : px(12))}px ${px(16)}px ${compact ? px(6) : px(14)}px`,
-          borderRadius: `${px(6)}px ${px(6)}px ${px(14)}px ${px(14)}px`,
-          background: ACRYLIC,
+          left: D - tuck,
+          top: tongueT,
+          width: tongueW,
+          height: tongueH,
+          borderRadius: `0 ${px(3)}px ${px(3)}px 0`,
+          background: FILM,
           boxShadow: LIFT,
         }}
       >
-        <span className="absolute inset-x-0 top-0" style={{ height: bandH, background: stripes }} />
-        {d.size === 'xs' ? null : <Sticker d={d} c={c} />}
-        <Initials d={d}>{ink.initials}</Initials>
-        {d.showId ? (
-          <span className="flex" style={{ gap: px(8) }}>
-            <Small>{ink.code}</Small>
-            {d.showCode ? <Small keepCase>{ink.base}</Small> : null}
-          </span>
-        ) : null}
+        <Sprockets d={d} width={tongueW - tuck} edge="top" />
+        <Sprockets d={d} width={tongueW - tuck} edge="bottom" />
+        <span
+          className="absolute flex"
+          style={{ left: tuck + px(4), right: px(4), top: frameT, height: tongueH - 2 * frameT, gap: Math.max(2, px(3)) }}
+        >
+          <span className="flex-1" style={{ background: c.highlight }} />
+          <span className="flex-1" style={{ background: c.mid }} />
+          <span className="flex-1" style={{ background: c.shadow }} />
+        </span>
       </span>
-      {/* The hinge pin. */}
+      {/* The reel. */}
       <span
         className="absolute"
         style={{
-          left: px(5),
-          top: slateT - pin / 2 - px(2),
-          width: pin,
-          height: pin,
-          background: PIN,
-          filter: 'drop-shadow(0 1px 1px oklch(0% 0 0 / 0.6))',
+          left: 0,
+          top: cy - D / 2,
+          width: D,
+          height: D,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle at 36% 30%, oklch(99.5% 0.002 275), oklch(95% 0.004 275) 62%, oklch(88% 0.006 275) 100%)',
+          boxShadow: `${LIFT}, inset 0 1px 0 oklch(100% 0 0 / 0.9)`,
         }}
-      />
+      >
+        {MARK_HUES.map((hue, i) => {
+          const a = ((i * 60 - 90) * Math.PI) / 180;
+          return (
+            <span
+              key={hue}
+              className="absolute"
+              style={{
+                left: cx + ring * Math.cos(a) - win,
+                top: cx + ring * Math.sin(a) - win,
+                width: win * 2,
+                height: win * 2,
+                borderRadius: '50%',
+                background: c[hue],
+                boxShadow: 'inset 0 1px 3px oklch(0% 0 0 / 0.4)',
+              }}
+            />
+          );
+        })}
+        {/* The hub label. */}
+        <span
+          className="absolute flex flex-col items-center justify-center text-center"
+          style={{
+            left: cx - hub / 2,
+            top: cx - hub / 2,
+            width: hub,
+            height: hub,
+            borderRadius: '50%',
+            gap: Math.max(2, px(4)),
+            background: STICKER,
+            boxShadow: 'inset 0 1px 3px oklch(0% 0 0 / 0.18), 0 1px 0 oklch(100% 0 0 / 0.8)',
+          }}
+        >
+          {d.showCode ? <Small keepCase>{ink.base}</Small> : null}
+          <Initials d={d}>{ink.initials}</Initials>
+          {d.showId ? <Small>{ink.code}</Small> : null}
+        </span>
+      </span>
     </>
   );
 }
@@ -292,55 +335,54 @@ export function RecipeMark({
   recipe,
   size = 'm',
   className = '',
+  halo = true,
 }: {
   recipe: MarkInput;
   size?: MarkSize;
   /** Placement and visibility only (`hidden sm:block`); the mark sizes itself. */
   className?: string;
+  /** The recipe's halo behind the object. Off only where the ground is light. */
+  halo?: boolean;
 }) {
   const d = dims(size);
   const c = swatchCss(recipe.palette);
   const ink: Ink = { initials: markInitials(recipe.name), code: markCode(recipe.id), base: markBase(recipe) };
+  const box = haloBox(recipe.format, d);
   return (
     <div aria-hidden="true" className={`relative shrink-0 ${className}`} style={{ width: d.w, height: d.h }}>
-      {recipe.format === 'cl' ? <Cartridge d={d} c={c} ink={ink} /> : <Clapper d={d} c={c} ink={ink} />}
+      {halo ? (
+        <span
+          className="mark-glow-stage"
+          style={{
+            left: box.left,
+            top: box.top,
+            width: box.width,
+            height: box.height,
+            '--mark-spectrum': haloSpectrum(recipe.palette),
+            '--glow-blur': `${Math.round(d.w * 0.19)}px`,
+            '--rim-blur': `${Math.round(d.w * 0.06)}px`,
+          } as CSSProperties}
+        >
+          <span className="mark-glow" />
+          <span className="mark-glow-rim" />
+        </span>
+      ) : null}
+      {recipe.format === 'cl' ? <Cartridge d={d} c={c} ink={ink} /> : <Reel d={d} c={c} ink={ink} />}
     </div>
   );
 }
 
-/**
- * The lights behind a mark (owner, 2026-10-28: the slot was too empty). Ten
- * soft discs and three sparks in the recipe's six hues and a wash of its mid
- * swatch, laid out by `bokehFor` from a seed on the code, so each card is its
- * own and the same recipe looks the same everywhere. Fills its parent.
- */
-export function RecipeBokeh({ recipe }: { recipe: Pick<MarkInput, 'id' | 'palette'> }) {
-  const c = swatchCss(recipe.palette);
-  const { discs, sparks, wash } = bokehFor(recipe.id);
-  const light = (l: (typeof discs)[number], solid: number) => (
-    <span
-      key={`${l.x}-${l.y}`}
-      className="absolute -translate-x-1/2 -translate-y-1/2"
-      style={{
-        left: `${l.x}%`,
-        top: `${l.y}%`,
-        width: l.size,
-        height: l.size,
-        background: `radial-gradient(circle closest-side, ${c[l.hue]} ${solid}%, transparent)`,
-        opacity: l.opacity,
-      }}
-    />
-  );
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 overflow-hidden"
-      style={{
-        background: `radial-gradient(70% 80% at ${wash.x}% ${wash.y}%, color-mix(in oklch, ${c.mid} 22%, transparent), transparent 72%)`,
-      }}
-    >
-      {discs.map((l) => light(l, 78))}
-      {sparks.map((l) => light(l, 60))}
-    </div>
-  );
+/** Where the halo sits: behind the cartridge's body, behind the reel's disc. */
+function haloBox(format: 'cl' | 'pp', d: Dims): { left: number; top: number; width: number; height: number } {
+  const px = scale(d);
+  if (format === 'pp') {
+    const D = REEL[d.size].d;
+    return { left: 0, top: d.h / 2 - D / 2, width: D, height: D };
+  }
+  const bodyW = d.size === 'xs' ? 44 : d.size === 's' ? 72 : d.size === 'sm' ? 84 : px(100);
+  const lip = Math.max(2, px(4));
+  const tongueW = d.size === 'xs' ? 16 : d.size === 's' ? 32 : d.size === 'sm' ? 34 : px(44);
+  const knobH = Math.max(4, px(10));
+  const x0 = Math.round((d.w - (bodyW + 2 * lip + tongueW)) / 2);
+  return { left: x0, top: knobH, width: bodyW + 2 * lip, height: d.h - knobH - 4 };
 }
