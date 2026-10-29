@@ -346,8 +346,8 @@ one of them. So the order still matters:
    execution:
 
    ```sql
-   insert into supabase_migrations.schema_migrations (version, name, statements)
-   values ('20261028000000', 'recipe_code_slugs', null)
+   insert into supabase_migrations.schema_migrations (version, name)
+   values ('20261028000000', 'recipe_code_slugs')
    on conflict (version) do nothing;
    ```
 
@@ -416,12 +416,12 @@ pushed into it: `20261006000000` is not a control file, so such a push refuses.
 
    delete from supabase_migrations.schema_migrations
     where version not in ('0001', '0002', '0003', '20261006000000');
-   insert into supabase_migrations.schema_migrations (version, name, statements) values
-     ('0001', 'content_baseline', null),
-     ('0002', 'recipe_upload_bucket', null),
-     ('0003', 'lab_article_kind_and_meta', null),
-     ('20261006000000', 'reconcile_control_lineage', null)
-   on conflict (version) do update set name = excluded.name, statements = excluded.statements;
+   insert into supabase_migrations.schema_migrations (version, name) values
+     ('0001', 'content_baseline'),
+     ('0002', 'recipe_upload_bucket'),
+     ('0003', 'lab_article_kind_and_meta'),
+     ('20261006000000', 'reconcile_control_lineage')
+   on conflict (version) do update set name = excluded.name;
    commit;
    ```
 

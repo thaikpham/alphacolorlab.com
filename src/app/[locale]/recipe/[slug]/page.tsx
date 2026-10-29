@@ -111,20 +111,6 @@ export default async function RecipePage({
 
   const accent = accentCss(recipe.accent);
   const title = recipeTitle(recipe.name);
-  /* Where this recipe browses: its situations, its style and its tone, each
-     a link into the catalogue narrowed to that value. These replaced the tag
-     list — tags are provenance ("sri-lanka"), kept in the data for search and
-     no longer shown (D9). Not `.label`: "Phong cảnh & thiên nhiên" is four
-     words, and uppercase stops at three. */
-  const browseChips = [
-    ...recipe.situations.map((id) => ({
-      key: `situation:${id}`,
-      href: `/colorlab/${id}`,
-      label: tBrowse(`situations.${id}`),
-    })),
-    { key: 'style', href: `/colorlab?style=${recipe.style}`, label: tBrowse(`styles.${recipe.style}`) },
-    { key: 'tone', href: `/colorlab?tone=${recipe.tone}`, label: tBrowse(`tones.${recipe.tone}`) },
-  ];
   /* Other recipes for this one's primary situation, or nothing at all — the
      row is left out rather than shown empty. */
   const more = moreForSituation(recipe, catalogue);
@@ -176,8 +162,10 @@ export default async function RecipePage({
             "propose a version" and "tweak with AI" went with it. */}
         <div className="flex flex-col gap-12">
           {/* The mark, then the code chip and the name beside it; the
-              description, the camera warning and the ways back into the
-              catalogue under the name from sm, under both on a phone. */}
+              description and the camera warning under the name from sm,
+              under both on a phone. The situation, style and tone chips that
+              led back into the catalogue went on 2026-10-28 (owner): the
+              "More for …" row at the foot and the browse page carry that. */}
           <div
             data-part="hero"
             className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-4 gap-y-5 sm:gap-x-8 xl:gap-x-10"
@@ -223,17 +211,6 @@ export default async function RecipePage({
               <div className="empty:hidden">
                 <MyCameraWarning warnings={warnings} />
               </div>
-
-              {/* Situations, style and tone, each a way back into the catalogue. */}
-              <ul className="flex flex-wrap gap-2">
-                {browseChips.map((chip) => (
-                  <li key={chip.key}>
-                    <Link href={chip.href} className="chip chip-action text-ink">
-                      {chip.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 

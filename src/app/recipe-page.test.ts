@@ -64,11 +64,29 @@ describe('the hero', () => {
     expect(page.indexOf('<RecipeMark')).toBeLessThan(page.indexOf('<h1'));
     expect(page).toMatch(/col-span-2 sm:col-span-1 sm:col-start-2/);
   });
+
+  /* Owner, 2026-10-28: the situation, style and tone chips went from the
+     hero; the "More for …" row and the browse page lead back instead. */
+  it('carries no chips back into the catalogue', () => {
+    const hero = page.slice(page.indexOf('data-part="hero"'), page.indexOf('data-part="settings"'));
+    expect(hero).not.toMatch(/chip-action|<Link\b/);
+    expect(page).not.toContain('browseChips');
+  });
 });
 
 describe('the parameter cards', () => {
   /* One parameter per card: the value large, Sony's name for the dial under
      it, the effect and the explanation one tap away (Rule 4). */
+  /* Owner, 2026-10-28: a small info button, not a bare "?". Drawn inside
+     the summary, never a nested <button>, which would swallow the tap. */
+  it('open from a drawn info glyph inside the summary', () => {
+    expect(cards).toMatch(/<summary[^>]*>\s*\{face\}\s*<InfoGlyph/);
+    expect(cards).not.toMatch(/>\s*\?\s*</);
+    const glyph = cards.slice(cards.indexOf('function InfoGlyph'), cards.indexOf('export function ParamPanel'));
+    expect(glyph).toContain('aria-hidden="true"');
+    expect(glyph).not.toMatch(/<button/);
+  });
+
   it('are native disclosures that carry both kinds of help', () => {
     expect(cards).toMatch(/<details className="param-row group row-tint/);
     expect(cards).toContain('{effect[locale]}');

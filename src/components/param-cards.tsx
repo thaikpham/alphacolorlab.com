@@ -108,10 +108,7 @@ export function ParamCard({
     <details className="param-row group row-tint relative px-3 pt-4 pb-3.5 open:bg-white/[0.08]">
       <summary className="cursor-pointer list-none marker:content-none">
         {face}
-        {/* The cue that the card opens, as the rows had. */}
-        <span aria-hidden className="absolute top-2 right-3 text-meta text-ink-faint group-open:hidden">
-          ?
-        </span>
+        <InfoGlyph className="absolute top-2 right-2" />
       </summary>
       <div className="mt-3 flex flex-col gap-1.5 text-left">
         <hr className="seam mb-1.5" />
@@ -124,6 +121,27 @@ export function ParamCard({
         {explanation ? <p className="meta leading-relaxed">{explanation}</p> : null}
       </div>
     </details>
+  );
+}
+
+/**
+ * The cue that a card opens (owner, 2026-10-28: an info button, not a bare
+ * "?"). It sits inside the `<summary>`, which is the real button, so it is
+ * drawn rather than nested — a `<button>` inside a summary would swallow the
+ * tap. Lit in the accent while its card is open; the nearest `.group` is the
+ * `<details>`.
+ */
+function InfoGlyph({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 20 20"
+      className={`h-5 w-5 shrink-0 text-ink-faint transition-colors group-hover:text-ink group-open:text-accent-300 ${className}`}
+    >
+      <circle cx="10" cy="10" r="10" className="fill-white/[0.08] group-open:fill-accent-900" />
+      <circle cx="10" cy="5.9" r="1.15" fill="currentColor" />
+      <rect x="9.1" y="8.4" width="1.8" height="6.2" rx="0.9" fill="currentColor" />
+    </svg>
   );
 }
 
@@ -250,11 +268,9 @@ export function WbPanel({ recipe, locale }: { recipe: RecipeView; locale: Locale
             <p className="text-body-sm leading-relaxed text-ink-muted">{net[locale]}</p>
             {interplay ? <p className="meta leading-relaxed">{interplay[locale]}</p> : null}
             <details className="group mt-1">
-              <summary className="flex cursor-pointer items-baseline gap-1.5 list-none marker:content-none text-meta text-ink-muted transition-colors hover:text-ink">
+              <summary className="flex cursor-pointer items-center gap-1.5 list-none marker:content-none text-meta text-ink-muted transition-colors hover:text-ink">
                 {t('wbOverview')}
-                <span aria-hidden className="text-ink-faint group-open:hidden">
-                  ?
-                </span>
+                <InfoGlyph />
               </summary>
               <div className="mt-2 flex max-w-prose flex-col gap-2">
                 {WB_OVERVIEW[locale].map((paragraph) => (

@@ -54,8 +54,12 @@ test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true
  * the colour band was 64px, so the second row of tiles (Street, Travel) moved
  * below a 390×844 screen. The recipe page's first screen does not move: its
  * mark is hidden on a phone.
+ *
+ * `detail` 9 -> 5 on 2026-10-28, lowered with the change that caused it: the
+ * recipe page's hero lost its situation, style and tone chips (owner), so the
+ * phone's first screen is the frame and "All recipes".
  */
-const BUDGET = { list: 21, detail: 9 };
+const BUDGET = { list: 21, detail: 5 };
 
 test('the first screens ask little: the list and a recipe page stay within their budgets', async ({ page }) => {
   await routeAssetHosts(page);
@@ -80,6 +84,7 @@ test('the first screens ask little: the list and a recipe page stay within their
   // library colour) on clearcast-pro, which printed 6.2: lowered 6.4 -> 6.3. Re-measured 2026-10-26 after merging
   // main 415f9ff on cl-001-film-hard-faded (slugs come from the name now), which printed 6.1: lowered 6.3 -> 6.2.
   // Re-measured 2026-10-28 after the recipe page redesign (cards, no palette strip, no proposals or AI tweak),
-  // which printed 4.5: lowered 6.2 -> 4.6.
-  expect(screens).toBeLessThanOrEqual(4.6);
+  // which printed 4.5: lowered 6.2 -> 4.6. Re-measured the same day without the hero's chips, which printed
+  // 4.4: lowered 4.6 -> 4.5.
+  expect(screens).toBeLessThanOrEqual(4.5);
 });
