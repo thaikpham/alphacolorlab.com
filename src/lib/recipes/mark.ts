@@ -35,7 +35,11 @@ export type MarkInput = DistributivePick<Recipe, 'format' | 'settings'> & {
  */
 export function markInitials(name: string): string {
   const parsed = parseRecipeName(name);
-  const words = parsed ? parsed.words : recipeTitle(name).split(/\s+/);
+  /* A name the vocabulary does not parse still reads its words: the code in
+     front of them (`PP-080-`) is not one. */
+  const words = parsed
+    ? parsed.words
+    : recipeTitle(name).replace(/^(?:SCL-)?(?:PP|CL)-\d{3}-/, '').split(/\s+/);
   return words
     .filter((w) => /^\p{L}/u.test(w))
     .slice(0, 3)

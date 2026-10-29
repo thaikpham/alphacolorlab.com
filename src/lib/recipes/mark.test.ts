@@ -9,8 +9,13 @@ const seed = recipesSeed as unknown as Recipe[];
 
 describe('markInitials', () => {
   it('takes the first letter of each word of the mood', () => {
-    expect(markInitials('CL-013-Airy Warm Pastel')).toBe('AWP');
-    expect(markInitials('PP-048-Soft Clean Portrait')).toBe('SCP');
+    expect(markInitials('CL-013-Golden Matte Muted')).toBe('GMM');
+    expect(markInitials('PP-048-Neutral Soft Muted')).toBe('NSM');
+  });
+
+  /* The vocabulary changes (2026-10-28 dropped HLG): a stored name it no
+     longer parses still gives its words, never the code's letter. */
+  it('reads a name the vocabulary no longer parses without the code', () => {
     expect(markInitials('PP-080-Range HLG Daylight')).toBe('RHD');
   });
 

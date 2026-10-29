@@ -63,10 +63,10 @@ describe('RecipeMark', () => {
       expect(html).not.toMatch(/font-size/);
       expect(html.match(TYPE_CLASSES)?.length).toBeGreaterThan(0);
     }
-    expect(render(pp, 's')).not.toContain('>S-Cinetone<');
+    expect(render(pp, 's')).not.toContain(`>${markBase(pp)}<`);
     expect(render(pp, 's')).toContain('>PP-048<');
     expect(render(pp, 'xs')).not.toContain('>PP-048<');
-    expect(render(pp, 'xs')).toContain('>SCP<');
+    expect(render(pp, 'xs')).toContain(`>${markInitials(pp.name)}<`);
   });
 
   it('writes no hex and draws no stroke', () => {
