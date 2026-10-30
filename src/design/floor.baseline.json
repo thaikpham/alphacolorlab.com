@@ -143,18 +143,6 @@
     "duration": 0,
     "hardCorner": 0
   },
-  "src/components/launcher-grid.tsx": {
-    "belowFloor": 0,
-    "mono": 0,
-    "palette": 0,
-    "hex": 0,
-    "stroke": 0,
-    "deletedVocab": 0,
-    "scrollbarCss": 0,
-    "arbitraryPx": 2,
-    "duration": 0,
-    "hardCorner": 0
-  },
   "src/components/product-gallery-viewer.tsx": {
     "belowFloor": 0,
     "mono": 0,

@@ -26,57 +26,22 @@ type Props = {
 };
 
 /**
- * One tile size, everywhere.
+ * One layout, everywhere (owner, 2026-10-30): the first app four times the
+ * size of the other two.
  *
- * The landing page and the header's ecosystem overlay used to render this
- * component at two different sizes — `lg` and `md` — and the two drifted: the
- * overlay's tiles stopped at 96px while the page's went to 132px, so the same
- * three apps were two different objects depending on which door you came
- * through. There is one ramp now, held in the token package, and no prop to
- * pick a different one with.
+ * A grid of four units by two. ColorLab is the first entry and takes the two
+ * left units on both rows — a tile two units wide and two tall, its name
+ * under it. The other two apps stack down the right, one unit each with the
+ * name beside it. On a phone the right column drops under the big tile and
+ * the two rows keep their shape. The unit, the gaps and the breakpoints are
+ * `.launcher-grid`'s in globals.css, with the glow blurs that go with each
+ * size; there is no size prop to diverge with, so the landing page and the
+ * header's ecosystem overlay render the same object.
  *
- * The widths are the old ones scaled by 1.5. The glow blurs in globals.css are
- * scaled with them — they are absolute pixels, and a halo that does not grow
- * with its tile reads as a rim.
+ * Written out as classes rather than derived from another string: Tailwind v4
+ * scans source text for class names, and a class assembled at runtime is one
+ * the scanner never sees.
  */
-const TILE =
-  'w-[var(--layout-tile-mobile)] h-[var(--layout-tile-mobile)] ' +
-  'sm:w-[var(--layout-tile-tablet)] sm:h-[var(--layout-tile-tablet)] ' +
-  'lg:w-[var(--layout-tile-desktop)] lg:h-[var(--layout-tile-desktop)]';
-
-/**
- * Three apps: two columns until `md`, one row of three above it.
- *
- * The switch used to be at `sm`. Three tiles fit across a 640px screen at the
- * old 112px; at 168px they do not — 3 × 168 plus two 40px gaps is 584px, and
- * the overlay pays 40px of padding on each side of a 640px viewport, leaving
- * 560px. The tile cannot shrink to fit without dropping the type under the
- * 13px floor, so the third tile wraps to its own row instead. Same reasoning
- * that put the phone breakpoint at two columns, applied at the size above it.
- *
- * `sm:max-w-[460px]` is what keeps that wrap from reading as a mistake. The
- * columns are `1fr`, so an uncapped grid spreads two tiles across the full
- * 3xl and parks the orphaned third under the far left with half the row
- * empty beside it. On a phone the grid is already about as wide as the tiles
- * and the question never comes up; at 700px it does. The cap is scoped to
- * `sm` alone — `md:max-w-3xl` hands the full width back the moment all three
- * fit on one row.
- *
- * The space between tiles is mostly the column, not the gap: each tile is
- * centred in a `1fr` track, so the visible gutter is `(width + gap) / 3 - tile`
- * and a wider gap alone buys a third of itself. That is why the widths move
- * with the gaps. At `md` the grid is width-bound by the viewport (768 less the
- * overlay's 80 is 688px), and 3 × 168 + 2 × 64 = 632 still fits; at `lg`,
- * `max-w-4xl` (896px) inside 944px gives a ~127px gutter between 198px tiles.
- *
- * Written out in full rather than derived from another string. Tailwind v4
- * scans source text for class names: a class assembled at runtime is one the
- * scanner never sees, so it emits no rule for it. Same trap as the inline
- * `min-[2100px]:` form that silently never changed a column count.
- */
-const GRID =
-  'grid w-full max-w-3xl sm:max-w-[460px] md:max-w-3xl lg:max-w-4xl grid-cols-2 md:grid-cols-3 ' +
-  'items-start justify-items-center gap-x-10 gap-y-12 sm:gap-x-14 sm:gap-y-14 md:gap-x-16 lg:gap-x-20';
 
 /**
  * One tile: two glow layers behind an opaque icon face.
@@ -85,44 +50,36 @@ const GRID =
  * the tile; the moment it tints the artwork it stops being a signature and
  * becomes a filter over the apps' icons.
  */
-function Tile({ app }: { app: EcosystemAppDef }) {
+function Face({ app, big }: { app: EcosystemAppDef; big: boolean }) {
   return (
-    <>
-      <div
-        className={`launcher-tile ${TILE}`}
-        style={{ '--launcher-spectrum': SPECTRUM } as React.CSSProperties}
-      >
-        <span aria-hidden className="launcher-glow" />
-        <span aria-hidden className="launcher-glow-rim" />
-        <div className={`launcher-face ${app.iconInset}`}>
-          {/* Both marks are rendered and CSS picks one (`.mark-on-dark` /
-              `.mark-on-paper` in globals.css): the theme is a class on the
-              page, not a media query, so there is nothing to branch on here. */}
-          <Image
-            src={app.icon}
-            alt=""
-            width={200}
-            height={200}
-            unoptimized
-            className="mark-on-dark w-full h-full object-contain"
-          />
-          <Image
-            src={app.iconLight}
-            alt=""
-            width={200}
-            height={200}
-            unoptimized
-            className="mark-on-paper w-full h-full object-contain"
-          />
-        </div>
+    <div
+      className={`launcher-tile ${big ? 'launcher-tile-big' : 'launcher-tile-unit'}`}
+      style={{ '--launcher-spectrum': SPECTRUM } as React.CSSProperties}
+    >
+      <span aria-hidden className="launcher-glow" />
+      <span aria-hidden className="launcher-glow-rim" />
+      <div className={`launcher-face ${app.iconInset}`}>
+        {/* Both marks are rendered and CSS picks one (`.mark-on-dark` /
+            `.mark-on-paper` in globals.css): the theme is a class on the
+            page, not a media query, so there is nothing to branch on here. */}
+        <Image
+          src={app.icon}
+          alt=""
+          width={200}
+          height={200}
+          unoptimized
+          className="mark-on-dark w-full h-full object-contain"
+        />
+        <Image
+          src={app.iconLight}
+          alt=""
+          width={200}
+          height={200}
+          unoptimized
+          className="mark-on-paper w-full h-full object-contain"
+        />
       </div>
-      {/* 13px at the mobile tile size is the floor, 15px above it. The name
-          recedes by weight and ink step, never by dropping under 13. */}
-      <span className="text-meta sm:text-body font-semibold text-ink text-center leading-tight">
-        <span className="sm:hidden">{app.shortName}</span>
-        <span className="hidden sm:inline">{app.name}</span>
-      </span>
-    </>
+    </div>
   );
 }
 
@@ -138,15 +95,33 @@ function Tile({ app }: { app: EcosystemAppDef }) {
  * its app.
  */
 export function LauncherGrid({ onNavigate }: Props) {
-  const shell =
-    'launcher-link group flex flex-col items-center gap-3 sm:gap-4 text-center ' +
-    'max-w-[240px] min-h-[var(--layout-touch-target)] cursor-pointer';
-
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className={`${GRID} animate-fade-in`}>
-        {ECOSYSTEM_APPS.map((app) => {
-          const tile = <Tile app={app} />;
+      <div className="launcher-grid animate-fade-in">
+        {ECOSYSTEM_APPS.map((app, i) => {
+          const big = i === 0;
+          /* The big tile: the face, the name under it. A small one: the face,
+             the name beside it. The name is the link's accessible name, so it
+             stays inside the link in both. 13px is the floor and the small
+             tiles' names sit at the body size; the big tile's at the card
+             title's. */
+          const className = big
+            ? 'launcher-link launcher-link-big group flex flex-col items-center gap-3 sm:gap-4 text-center cursor-pointer'
+            : 'launcher-link launcher-link-unit group flex items-center gap-4 sm:gap-5 text-left cursor-pointer';
+          const content = (
+            <>
+              <Face app={app} big={big} />
+              <span
+                className={
+                  big
+                    ? 'text-body sm:text-title-3 font-semibold text-ink leading-tight'
+                    : 'text-body font-semibold text-ink leading-tight min-w-0'
+                }
+              >
+                {app.name}
+              </span>
+            </>
+          );
 
           if (app.external) {
             return (
@@ -156,16 +131,16 @@ export function LauncherGrid({ onNavigate }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => onNavigate && setTimeout(onNavigate, 200)}
-                className={shell}
+                className={className}
               >
-                {tile}
+                {content}
               </a>
             );
           }
 
           return (
-            <Link key={app.key} href={app.href} onClick={onNavigate} className={shell}>
-              {tile}
+            <Link key={app.key} href={app.href} onClick={onNavigate} className={className}>
+              {content}
             </Link>
           );
         })}
