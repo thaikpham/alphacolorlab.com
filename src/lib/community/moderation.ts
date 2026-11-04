@@ -31,9 +31,7 @@ export type ModerationPatch = z.infer<typeof moderationPatchSchema>;
  * The submission routes cap a recipe at `MAX_PHOTOS_PER_RECIPE` *visible*
  * photos, and a hidden row no longer holds a place, so enough
  * submit-and-hide cycles can reach this ceiling from inside the app. The list
- * then shows the newest 200 rows only, and `hiddenPhotoUrls` in
- * `/api/proposals` fails closed for that recipe — every sample dropped —
- * rather than miss a hidden row.
+ * then shows the newest 200 rows only.
  */
 export const MODERATION_LIST_LIMIT = 200;
 
@@ -67,31 +65,4 @@ export function toModeratedPhoto(row: ModerationRow): ModeratedPhoto {
     approved: row.approved === true,
     createdAt: String(row.created_at),
   };
-}
-
-/**
- * Proposals with every hidden gallery photo taken off them as a sample.
- *
- * A proposal's sample also joins the gallery, so one URL sits in two tables:
- * `community_photos.image_url`, which moderation switches, and
- * `recipe_proposals.sample_image_url`, which it does not. Hiding a photo must
- * take it off the proposal card too, and filing a fresh proposal with a hidden
- * URL must not put it back — so the proposals read matches by URL, whatever
- * row the URL arrived on, and "Show again" restores it with no data change.
- *
- * `hidden` is the slug's hidden URLs, or `null` when they could not be read.
- * Unknown fails closed: every sample is dropped, because serving one an editor
- * hid is the failure this exists to prevent. Only a URL actually hidden is
- * matched, never "absent from the visible gallery": a sample that never joined
- * it (the cap was reached, or its insert failed) was never moderated.
- */
-export function withoutHiddenSamples<T extends { sampleImageUrl: string | null }>(
-  items: readonly T[],
-  hidden: ReadonlySet<string> | null,
-): T[] {
-  return items.map((item) =>
-    item.sampleImageUrl !== null && (hidden === null || hidden.has(item.sampleImageUrl))
-      ? { ...item, sampleImageUrl: null }
-      : item,
-  );
 }

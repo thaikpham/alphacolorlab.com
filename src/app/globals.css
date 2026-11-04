@@ -347,6 +347,41 @@ body {
       var(--elevation-spec);
   }
 
+  /* A parameter card's info button and the quote box it opens (recipe page,
+     2026-10-29). The box is a native popover: the browser toggles it on the
+     button, closes it on a second press, a click outside or Escape, and no
+     script ships for it. Preflight zeroes the popover's margin, so the
+     centred default needs its `auto` back; where the browser can anchor, the
+     box hangs under its card instead, flipping to stay on screen. The opaque
+     ground is on the popover and the glass on the panel inside it, as every
+     surface over a page is built (AGENTS.md, Design). */
+  .param-card {
+    anchor-name: var(--pa);
+  }
+
+  .param-info:has(+ .param-pop:popover-open) {
+    color: var(--color-accent-300);
+  }
+
+  .param-pop {
+    margin: auto;
+    width: min(22rem, calc(100vw - 2rem));
+    overflow: visible;
+    border-radius: var(--radius-lg);
+    color: var(--color-ink);
+    background: color-mix(in oklch, var(--color-void) 95%, transparent);
+  }
+
+  @supports (position-anchor: --p) {
+    .param-pop {
+      position-anchor: var(--pa);
+      inset: auto;
+      margin: 0.5rem 0 0;
+      position-area: bottom span-right;
+      position-try-fallbacks: flip-inline, flip-block, flip-block flip-inline;
+    }
+  }
+
   /* Where a divider genuinely helps — above a footer, under a panel header —
      it is light, not a line: a gradient that fades out at both ends. */
   .seam {
@@ -689,6 +724,7 @@ body {
    that keeps its edge defined. One layer alone reads as a coloured drop shadow.
 --------------------------------------------------------------------------- */
 
+
 /* Landing-only stage. Flat `--color-void`, painted over the body's three
    ambient washes: the launcher is the one screen with nothing behind the
    tiles, so the spectral glow is the only light in the frame. No artwork, no
@@ -708,9 +744,111 @@ body {
   }
 }
 
+/* The launcher's layout (owner, 2026-10-30): four units by two. The first app
+   is two units square on the left with its name under it; the other two stack
+   down the right, one unit each with the name beside it. Below `sm` the right
+   column drops under the big tile. The unit climbs with the room: the phone
+   tile up to `lg`, where the overlay's 560px inside a 640px viewport cannot
+   hold the four-unit row at the tablet size; the tablet tile from `lg`; the
+   desktop tile from `xl`. Each size is written out against the token rather
+   than through a custom property of its own: globals.css may declare none the
+   package does not own (token-drift.test.ts). The glow blurs below follow the
+   face they sit under, because a blur is absolute pixels and one that does
+   not grow with its tile reads as a rim. */
+.launcher-grid {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  justify-items: start;
+  align-items: center;
+  row-gap: 1.5rem;
+}
+
+.launcher-link-big {
+  justify-self: center;
+}
+
+/* A small tile's row runs the big tile's width, so the stacked names align. */
+.launcher-link-unit {
+  width: calc(2 * var(--layout-tile-mobile) + 1.5rem);
+}
+
 .launcher-tile {
   position: relative;
   display: block;
+  flex: none;
+}
+
+.launcher-tile-unit {
+  width: var(--layout-tile-mobile);
+  height: var(--layout-tile-mobile);
+}
+
+/* Two units and the gap between them, so its edges line up with the stack. */
+.launcher-tile-big {
+  width: calc(2 * var(--layout-tile-mobile) + 1.5rem);
+  height: calc(2 * var(--layout-tile-mobile) + 1.5rem);
+}
+
+@media (min-width: 40rem) {
+  .launcher-grid {
+    grid-template-columns: auto auto;
+    grid-template-rows: var(--layout-tile-mobile) var(--layout-tile-mobile) auto;
+    row-gap: 1.75rem;
+    column-gap: 3rem;
+  }
+
+  .launcher-link-big {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    align-self: start;
+  }
+
+  .launcher-link-unit {
+    grid-column: 2;
+    width: auto;
+  }
+
+  .launcher-tile-big {
+    width: calc(2 * var(--layout-tile-mobile) + 1.75rem);
+    height: calc(2 * var(--layout-tile-mobile) + 1.75rem);
+  }
+}
+
+@media (min-width: 64rem) {
+  .launcher-grid {
+    grid-template-rows: var(--layout-tile-tablet) var(--layout-tile-tablet) auto;
+    row-gap: 2rem;
+    column-gap: 3.5rem;
+  }
+
+  .launcher-tile-unit {
+    width: var(--layout-tile-tablet);
+    height: var(--layout-tile-tablet);
+  }
+
+  .launcher-tile-big {
+    width: calc(2 * var(--layout-tile-tablet) + 2rem);
+    height: calc(2 * var(--layout-tile-tablet) + 2rem);
+  }
+}
+
+@media (min-width: 80rem) {
+  .launcher-grid {
+    grid-template-rows: var(--layout-tile-desktop) var(--layout-tile-desktop) auto;
+    row-gap: 2.5rem;
+    column-gap: 4.5rem;
+  }
+
+  .launcher-tile-unit {
+    width: var(--layout-tile-desktop);
+    height: var(--layout-tile-desktop);
+  }
+
+  .launcher-tile-big {
+    width: calc(2 * var(--layout-tile-desktop) + 2.5rem);
+    height: calc(2 * var(--layout-tile-desktop) + 2.5rem);
+  }
 }
 
 .launcher-glow,
@@ -798,19 +936,60 @@ body {
   transform: scale(0.97);
 }
 
-/* Below 640px the tile drops to 114px, and a 39px blur on a 114px square is a
-   coloured fog rather than a halo — both layers tighten with it, by the same
-   ratio they held before the tile was scaled up. */
-@media (max-width: 39.9375rem) {
-  .launcher-glow {
+/* The blurs follow the face. A 39px blur on a 114px square is a coloured fog
+   rather than a halo, and the same blur under a 300px face is a rim — each
+   size takes the blur the 198px tile had, scaled by its own width. Below
+   `xl` the unit is the tablet tile; below `lg` the phone tile. */
+@media (max-width: 79.9375rem) {
+  .launcher-tile-unit .launcher-glow {
+    filter: blur(33px) saturate(1.15);
+  }
+
+  .launcher-tile-unit .launcher-glow-rim {
+    filter: blur(10px) saturate(1.25);
+  }
+}
+
+@media (max-width: 63.9375rem) {
+  .launcher-tile-unit .launcher-glow {
     inset: -11%;
     filter: blur(22px) saturate(1.15);
   }
 
-  .launcher-glow-rim {
+  .launcher-tile-unit .launcher-glow-rim {
     filter: blur(8px) saturate(1.25);
   }
+}
 
+.launcher-tile-big .launcher-glow {
+  filter: blur(86px) saturate(1.15);
+}
+
+.launcher-tile-big .launcher-glow-rim {
+  filter: blur(26px) saturate(1.25);
+}
+
+@media (max-width: 79.9375rem) {
+  .launcher-tile-big .launcher-glow {
+    filter: blur(72px) saturate(1.15);
+  }
+
+  .launcher-tile-big .launcher-glow-rim {
+    filter: blur(22px) saturate(1.25);
+  }
+}
+
+@media (max-width: 63.9375rem) {
+  .launcher-tile-big .launcher-glow {
+    filter: blur(50px) saturate(1.15);
+  }
+
+  .launcher-tile-big .launcher-glow-rim {
+    filter: blur(15px) saturate(1.25);
+  }
+}
+
+@media (max-width: 39.9375rem) {
   .launcher-link:hover {
     transform: none;
   }

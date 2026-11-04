@@ -65,6 +65,6 @@ describe('the recipe page', () => {
   it('renders the line from warnings it computes for every choice', () => {
     expect(page).toContain('const options = cameraOptions(products);');
     expect(page).toContain('const warnings = cameraWarnings(recipe, options);');
-    expect(page).toMatch(/<div className="mt-4 empty:hidden">\s*<MyCameraWarning warnings=\{warnings\} \/>\s*<\/div>/);
+    expect(page).toMatch(/<div className="empty:hidden">\s*<MyCameraWarning warnings=\{warnings\} \/>\s*<\/div>/);
   });
 });

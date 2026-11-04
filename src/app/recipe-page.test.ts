@@ -8,84 +8,133 @@ import { describe, expect, it } from 'vitest';
  */
 
 const page = readFileSync('src/app/[locale]/recipe/[slug]/page.tsx', 'utf8');
-const table = readFileSync('src/components/settings-table.tsx', 'utf8');
+const cards = readFileSync('src/components/param-cards.tsx', 'utf8');
 const gallery = readFileSync('src/components/recipe-gallery.tsx', 'utf8');
-const wbTable = readFileSync('src/components/wb-table.tsx', 'utf8');
+const comments = readFileSync('src/components/recipe-comments.tsx', 'utf8');
 const messages = ['en', 'vi'].map(
   (l) => JSON.parse(readFileSync(`messages/${l}.json`, 'utf8')) as { recipe: Record<string, string> },
 );
 
-describe('the page width', () => {
-  /* A reading layout (AGENTS.md "Design"): the browse runs full-bleed at
-     160rem, a recipe stays at 86rem, where full width hurts it. */
-  it('is 86rem, not the browse’s full bleed', () => {
-    expect(page).toContain('<main className="mx-auto w-full max-w-[86rem] flex-1 inset-safe pb-24">');
-    expect(page).not.toContain('max-w-[160rem]');
-  });
-});
-
-describe('the settings column', () => {
-  /* At 1024px a 5/12 column with gap-12 is about 342px inside its padding.
-     ParamRow's 9rem + 8.5rem tracks and two gaps left the effect track about
-     6px wide — the collapse AGENTS.md rule 4 warns about. */
-  it('is half the page at lg and five twelfths only from xl', () => {
-    expect(page).toContain('lg:col-span-6 xl:col-span-7');
-    expect(page).toContain('lg:col-span-6 xl:col-span-5');
-    expect(page).not.toMatch(/lg:col-span-[57]\b(?! xl)/);
-    /* Column gap only from xl: the grid's ROW gap is now what separates
-       the hero from the gallery below it, and that stayed 2rem. */
-    expect(page).toContain('gap-8 xl:gap-x-12');
+describe('one reading column', () => {
+  /* Owner, 2026-10-28: the settings as cards, six to a row on a desktop, so
+     the page is one column at every width and source order is reading order.
+     The two-column grid with a sticky settings column went with the rows. */
+  it('keeps the reading width and drops the two columns', () => {
+    expect(page).toContain('max-w-[86rem]');
+    expect(page).not.toMatch(/lg:col-span-|lg:sticky|lg:grid-cols-12/);
   });
 
-  /* Beside a 16rem plane, `1fr` was about 62px at 1024px and the readout is a
-     non-wrapping `text-title-2` — "7000K, B3-M1.5" is about 190px — so the grid
-     ran out of the card and the page scrolled sideways. */
-  it('stacks the shift plane over the readout while the column is narrow', () => {
-    expect(page).toContain('sm:grid-cols-[16rem_1fr] lg:grid-cols-1 2xl:grid-cols-[16rem_1fr]');
-    expect(page).toMatch(/<div className="min-w-0">\s*<FormattedWb/);
-    expect(wbTable).toMatch(/inline-flex flex-wrap items-center/);
-  });
-});
-
-describe('the order a phone reads', () => {
-  /* On a phone the grid is one column, so source order is reading order.
-     It was hero → gallery → AI → community → white balance → settings: the
+  /* It was hero → gallery → AI → community → white balance → settings: the
      settings, the reason to open a recipe, started on screen 3 of 6. */
-  it('puts the settings straight after the hero, before the gallery, AI and community', () => {
+  it('reads hero, settings, then the readers’ part', () => {
     const at = (part: string) => page.indexOf(`data-part="${part}"`);
     expect(at('hero')).toBeGreaterThan(-1);
     expect(at('settings')).toBeGreaterThan(at('hero'));
     expect(at('participation')).toBeGreaterThan(at('settings'));
-    for (const tag of ['<RecipeGallery', '<TweakPanel', '<RecipeCommunitySection']) {
-      expect(page.indexOf(tag)).toBeGreaterThan(at('participation'));
-    }
-    expect(page.indexOf('<WbShiftPlane')).toBeGreaterThan(at('settings'));
-    expect(page.indexOf('<WbShiftPlane')).toBeLessThan(at('participation'));
+    expect(page.indexOf('<WbPanel')).toBeGreaterThan(at('settings'));
+    expect(page.indexOf('<WbPanel')).toBeLessThan(page.indexOf('<PpCards'));
+    expect(page.indexOf('<RecipeGallery')).toBeGreaterThan(at('participation'));
+    expect(page.indexOf('<RecipeComments')).toBeGreaterThan(page.indexOf('<RecipeGallery'));
   });
 
-  /* Desktop keeps its two columns: hero over participation on the left,
-     settings on the right across both rows. `auto 1fr` sends any height the
-     spanning column adds to the second row, under the participation block,
-     so no gap opens between the hero and the gallery. */
-  it('places the three parts back into the desktop columns', () => {
-    expect(page).toContain('lg:grid-rows-[auto_1fr]');
-    expect(page).toMatch(/data-part="hero"\s+className="[^"]*lg:col-start-1 lg:row-start-1\b/);
-    expect(page).toMatch(/data-part="participation"\s+className="[^"]*lg:col-start-1 lg:row-start-2\b/);
-    expect(page).toMatch(
-      /data-part="settings"\s+className="[^"]*lg:col-start-7 xl:col-start-8 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-24/,
-    );
+  /* Owner, 2026-10-28: "propose & vote on a new version" and "tweak with AI"
+     are gone, and so is the nine-swatch strip — the mark carries the colour. */
+  it('has no proposals, no AI tweak and no palette strip', () => {
+    expect(page).not.toMatch(/TweakPanel|RecipeCommunitySection|RecipePalette|ProposalList/);
+    expect(gallery).not.toMatch(/OPEN_PROPOSAL_EVENT|OPEN_TWEAK_EVENT|proposeVersion|tweakAi/);
+    const code = comments.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+    expect(code).not.toMatch(/proposal|vote|heart/i);
+    for (const m of messages) {
+      expect(m).not.toHaveProperty('tweak');
+      expect(m.recipe).not.toHaveProperty('proposeVersion');
+      expect(m.recipe).not.toHaveProperty('tweakAi');
+    }
+  });
+});
+
+describe('the hero', () => {
+  /* The mark at every width: small beside the code and the name on a phone,
+     M from sm, L from xl. The description and the ways back sit under the
+     name from sm and under both on a phone. */
+  it('puts the mark beside the code and the name, one size per width', () => {
+    expect(page).toContain('<RecipeMark recipe={recipe} size="s" className="sm:hidden" />');
+    expect(page).toContain('<RecipeMark recipe={recipe} size="m" className="hidden sm:block xl:hidden" />');
+    expect(page).toContain('<RecipeMark recipe={recipe} size="l" className="hidden xl:block" />');
+    expect(page).toContain('grid grid-cols-[auto_minmax(0,1fr)]');
+    expect(page.indexOf('<RecipeMark')).toBeLessThan(page.indexOf('<h1'));
+    expect(page).toMatch(/col-span-2 sm:col-span-1 sm:col-start-2/);
+  });
+
+  /* Owner, 2026-10-28: the situation, style and tone chips went from the
+     hero; the "More for …" row and the browse page lead back instead. */
+  it('carries no chips back into the catalogue', () => {
+    const hero = page.slice(page.indexOf('data-part="hero"'), page.indexOf('data-part="settings"'));
+    expect(hero).not.toMatch(/chip-action|<Link\b/);
+    expect(page).not.toContain('browseChips');
+  });
+});
+
+describe('the parameter cards', () => {
+  /* One parameter per card: the label, the value under it, and an info
+     button that opens the card's quote box — a native popover the browser
+     toggles, closes on a second press, a click outside or Escape (owner,
+     2026-10-29). Both kinds of help live in the box (Rule 4). */
+  it('open a native popover from an info button, with both kinds of help', () => {
+    expect(cards).toMatch(/<button\s+type="button"\s+popoverTarget=\{popId\}/);
+    expect(cards).toMatch(/<div id=\{popId\} popover="auto" className="param-pop"/);
+    expect(cards).toContain('{effect[locale]}');
+    expect(cards).toContain('AXIS_LABELS[effect.axis][locale]');
+    expect(cards).toContain('{explanation}');
+    expect(cards).not.toMatch(/<details className="param-row/);
+    expect(cards).not.toMatch(/'use client'/);
+    expect(cards).not.toMatch(/>\s*\?\s*</);
+  });
+
+  /* The button names what it opens, in the reader's language, and meets the
+     44px floor on a touch screen without widening under a mouse. */
+  it('name the button and size it for touch', () => {
+    expect(cards).toContain("aria-label={t('explain', { param: label })}");
+    expect(cards).toMatch(/className="param-info[^"]*pointer-coarse:h-11 pointer-coarse:w-11/);
+    for (const m of messages) expect(typeof (m.recipe as Record<string, string>).explain).toBe('string');
+  });
+
+  /* The combined cast belongs to no single dial, so it sits on the wide
+     White Balance card, never on Temperature (Rule 4). */
+  it('keep the white balance summary off the dials', () => {
+    expect(cards).toMatch(/const \{ net, interplay \} = wbSummary\(wb\)/);
+    const dial = cards.slice(cards.indexOf('export function ParamCard'), cards.indexOf('export function ParamPanel'));
+    expect(dial).not.toContain('wbSummary');
+  });
+
+  it('take their labels from constants.ts, never a literal per call', () => {
+    expect(cards).toMatch(/label=\{PP_PARAM_LABELS\.blackLevel\}/);
+    expect(cards).toMatch(/label=\{CL_PARAM_LABELS\[p\]\}/);
+    expect(cards).toMatch(/value=\{formatClValue\(p, value\)\}/);
   });
 });
 
 describe('the outline', () => {
-  /* h1 → h4 with the contribute form open, and an h3 introducing the h2s it
-     sat above. axe's heading-order fails the first. */
+  /* h1 → h2 (camera settings, sample photos, comments) → h3 (each panel, the
+     contribute form). axe's heading-order fails a skip. */
   it('steps h1 → h2 → h3 and never skips', () => {
-    expect(gallery).not.toMatch(/<h[3-6]\b/);
-    expect(gallery).toMatch(/<h2 className="text-body-lg font-semibold text-ink">\{t\('formTitle'\)\}<\/h2>/);
-    expect(page).toMatch(/<h2 className="[^"]*">\{t\('paramsLabel'\)\}<\/h2>/);
-    expect(table).toMatch(/<h3 className="label mb-2">\{title\}<\/h3>/);
-    expect(table).not.toMatch(/<h2\b/);
+    expect(page).toMatch(/<h2 id="camera-settings" className="[^"]*">\s*\{t\('paramsLabel'\)\}/);
+    expect(cards).toMatch(/<h3 className="label mb-2">\{title\}<\/h3>/);
+    expect(cards).not.toMatch(/<h2\b/);
+    expect(gallery).toMatch(/<h2 id="sample-photos"/);
+    expect(gallery).toMatch(/<h3 className="text-body-lg font-semibold text-ink">\{t\('formTitle'\)\}<\/h3>/);
+    expect(gallery).not.toMatch(/<h[4-6]\b/);
+    expect(comments).toMatch(/<h2 id="comments-title"/);
+  });
+});
+
+describe('the photo grid', () => {
+  /* The way to add a photograph is the grid's last cell (owner, 2026-10-28);
+     with no photographs it is the whole grid — a title and a button. */
+  it('ends with the contribute tile, and has no empty-state sentence', () => {
+    const grid = gallery.slice(gallery.indexOf('<ul className="grid'), gallery.indexOf('</ul>', gallery.indexOf('<ul className="grid')));
+    expect(grid.lastIndexOf('<ContributeTile')).toBeGreaterThan(grid.lastIndexOf('allPhotos.map'));
+    expect(gallery).not.toContain('galleryEmpty');
+    for (const m of messages) expect(m.recipe).not.toHaveProperty('galleryEmpty');
   });
 });
 

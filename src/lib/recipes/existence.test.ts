@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { publishedRecipeExists, publishedRecipeFormat } from './existence';
+import { publishedRecipeExists } from './existence';
 import { ContentUnavailableError } from '@/lib/supabase/errors';
 
 /**
@@ -119,32 +119,5 @@ describe('publishedRecipeExists', () => {
   it('keeps the upstream message out of the thrown error', async () => {
     query.result = { data: null, error: { message: 'relation "recipes" does not exist' } };
     await expect(publishedRecipeExists('x')).rejects.toThrow(/^recipes\.exists$/);
-  });
-});
-
-describe('publishedRecipeFormat', () => {
-  /* The proposals route validates settings against the recipe's own format —
-     a Picture Profile proposal on a Creative Look recipe is Rule 2 broken in a
-     jsonb column — so its existence probe has to say which format it found. */
-  it('names the format of a published recipe, reading only that column', async () => {
-    query.result = { data: [{ format: 'cl' }], error: null };
-    await expect(publishedRecipeFormat('fl-raoul-rutnam')).resolves.toBe('cl');
-    expect(query.columns).toBe('format');
-    expect(query.published).toBe(true);
-    expect(query.slugs).toEqual(['fl-raoul-rutnam', 'cl-001', 'cl-001-film-hard-faded']);
-  });
-
-  it('is null when no published row matches', async () => {
-    await expect(publishedRecipeFormat('never-existed')).resolves.toBeNull();
-  });
-
-  it('throws ContentUnavailableError rather than reporting the recipe missing', async () => {
-    query.result = { data: null, error: { message: 'exceed_cached_egress_quota' } };
-    await expect(publishedRecipeFormat('x')).rejects.toBeInstanceOf(ContentUnavailableError);
-  });
-
-  it('refuses a format it does not know instead of passing it on', async () => {
-    query.result = { data: [{ format: 'raw' }], error: null };
-    await expect(publishedRecipeFormat('x')).rejects.toBeInstanceOf(ContentUnavailableError);
   });
 });

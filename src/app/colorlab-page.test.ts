@@ -121,9 +121,13 @@ describe('the browse row', () => {
 });
 
 describe('the situation tiles', () => {
-  it('show a name, a count and the recipes’ own colours — never a photograph', () => {
+  /* Owner, 2026-10-28: a drawing of the situation replaced the band of the
+     first eight recipes' accents, which did not say what a situation is
+     for. Still never a photograph (D3). */
+  it('show a drawing, a name and a count — never a photograph', () => {
     expect(tiles).not.toMatch(/RecipePhoto|<Image|images\[0\]|<img/);
-    expect(tiles).toContain('accentCss(r.accent)');
+    expect(tiles).toContain('<SituationArt situation={id} className="h-24" />');
+    expect(tiles).not.toContain('accentCss');
     expect(tiles).toContain("tHome('resultCount', { count: own.length })");
     expect(tiles).toContain('visibleSituations(recipes)');
   });
@@ -135,54 +139,40 @@ describe('the situation tiles', () => {
 });
 
 describe('the recipe card', () => {
-  /* D10 and Q4: a format in `ink-faint`, a name without its code, the
-     situations it browses under. No parameter chips, no tag line, no signal
-     colour borrowed to mean a format. */
-  it('is a label, a name and one meta line', () => {
+  /* Owner, 2026-10-29 ("too big and ugly"): two lines under the stage — the
+     mood as the title, the situations under it. Each fact once: no format
+     eyebrow and no code in the text (the mark prints both; a screen reader
+     hears them in the heading). No parameter
+     chips, no tag line, no signal colour borrowed to mean a format. */
+  it('is a title and one meta line, each fact printed once', () => {
     expect(card).not.toMatch(/text-community|text-proposal|recipeChips|recipe\.tags|wbLabel/);
-    expect(card).toMatch(/<span className="label">\{kind\}<\/span>/);
-    expect(card).toContain('recipeTitle(recipe.name)');
+    expect(card).not.toMatch(/<span className="label">/);
+    expect(card).toContain('{recipeMood(recipe.name)}');
+    /* The mark prints the code and is aria-hidden: the heading speaks it. */
+    expect(card).toMatch(/<span className="sr-only">\s*\{recipeIdKey\(recipe\.id\)\}, \{kind\}:/);
     expect(card).toMatch(/<p className="meta line-clamp-1">\{situations\}<\/p>/);
   });
 
-  /* No recipe carries a photograph: the 210px slot is the palette its own
-     settings grade, never a photo component or the old accent wash. */
-  it('shows the recipe’s palette as its thumbnail', () => {
-    expect(card).toMatch(
-      /<div className="h-\[210px\] w-full overflow-hidden">\s*<RecipePalette palette=\{recipe\.palette\} tone=\{recipe\.tone\} style=\{recipe\.style\} variant="card" \/>/,
-    );
-    expect(card).not.toMatch(/RecipePhoto|RecipeColorField|recipe\.images|<Image|<img/);
-    expect(card).toContain('FORMAT_LABELS[recipe.format]');
+  /* No recipe carries a photograph: the stage is the recipe’s mark on the
+     card's sunken ground, nothing behind it (owner, 2026-11-04), one
+     image labelled with what its colours read as — never a photo component, the
+     old accent wash or the nine bars. The card’s mark, or the small one in a
+     card under 12rem. */
+  it("shows the recipe’s mark as its thumbnail", () => {
+    expect(card).toMatch(/<div className="h-40 w-full overflow-hidden">\s*<MarkSlot recipe=\{recipe\} \/>/);
+    expect(card).toMatch(/role="img"\s+aria-label=\{label\}/);
+    expect(card).not.toMatch(/markBackdrop|gradient/);
+    expect(card).not.toContain("RecipeBokeh");
+    expect(card).toContain("<RecipeMark recipe={recipe} size=\"sm\" className=\"hidden @min-[12rem]:block\" />");
+    expect(card).toContain("<RecipeMark recipe={recipe} size=\"s\" className=\"@min-[12rem]:hidden\" />");
+    expect(card).toContain("@container");
+    expect(card).not.toMatch(/RecipePalette|RecipePhoto|RecipeColorField|recipe\.images|<Image|<img/);
+    expect(card).toContain("FORMAT_LABELS[recipe.format]");
   });
 });
 
-describe('the recipe palette', () => {
-  const palette = readFileSync('src/components/recipe-palette.tsx', 'utf8');
-  const recipePage = readFileSync('src/app/[locale]/recipe/[slug]/page.tsx', 'utf8');
+describe('the share card', () => {
   const og = readFileSync('src/app/[locale]/recipe/[slug]/opengraph-image.tsx', 'utf8');
-
-  it('is one labelled image, the ramp then six hues, with nothing written on it and no strokes', () => {
-    expect(palette).toMatch(/role="img"\s*aria-label=\{label\}/);
-    expect(palette).toContain("const RAMP: readonly SwatchId[] = ['highlight', 'mid', 'shadow'];");
-    expect(palette).toContain(
-      "const BARS: readonly SwatchId[] = ['red', 'skin', 'yellow', 'foliage', 'sky', 'blossom'];",
-    );
-    expect(palette).toMatch(/grid-cols-\[1fr_3fr\]/);
-    expect(palette).toMatch(/<span key=\{id\} style=\{\{ background: swatch\[id\]\.css \}\} \/>/g);
-    expect(palette).not.toMatch(/\bborder\b|\bring-|outline-|#[0-9a-fA-F]{3}/);
-  });
-
-  it('names its swatches and states its limit on the recipe page only', () => {
-    expect(palette).toMatch(/if \(variant === 'card'\) return grid;/);
-    expect(palette).toMatch(/<p className="meta">\{t\('note'\)\}<\/p>/);
-    expect(recipePage).toMatch(
-      /<RecipePalette palette=\{recipe\.palette\} tone=\{recipe\.tone\} style=\{recipe\.style\} variant="page" light=\{recipe\.light\} \/>/,
-    );
-  });
-
-  it('says which light it was read under when that is not daylight', () => {
-    expect(palette).toMatch(/\{light \? <p className="meta">\{t\('light', \{ kelvin: light \}\)\}<\/p> : null\}/);
-  });
 
   it('runs along the share card in hex, from the same swatches', () => {
     expect(og).toMatch(/recipe\.palette\.map\(\(swatch\) =>/);
@@ -195,7 +185,8 @@ describe('the recipe palette', () => {
 
 describe('/colorlab loading skeleton', () => {
   /* It was a centred 86rem three-column block with 4/5 tiles, standing in for
-     a full-bleed one-to-six-column grid — the jump it exists to prevent. */
+     a full-bleed grid (two to eight columns since 2026-10-29) — the jump it
+     exists to prevent. */
   it('has the page grid’s container and columns', () => {
     const pageMain = classOf(browse, 'main');
     const skeletonMain = classOf(loading, 'main');
@@ -208,11 +199,12 @@ describe('/colorlab loading skeleton', () => {
   });
 
   it('sizes the tiles like a recipe card', () => {
-    expect(loading).toContain('h-[210px]');
+    expect(loading).toContain('<div className="h-40 w-full bg-glass" />');
+    expect(card).toContain('<div className="h-40 w-full overflow-hidden">');
     expect(loading).not.toContain('aspect-[4/5]');
-    /* The card body's three bars: label, title, meta — at the card's gaps. */
-    expect(loading).toContain('flex flex-col gap-2 px-5 pt-[19px] pb-[22px]');
-    expect(card).toContain('flex flex-col gap-2 px-5 pt-[19px] pb-[22px]');
+    /* The card body's two bars: title and meta — at the card's gaps. */
+    expect(loading).toContain('flex flex-col gap-1 px-4 pt-3 pb-4');
+    expect(card).toContain('flex flex-col gap-1 px-4 pt-3 pb-4');
   });
 
   it('sits in the index route group, beside the situation route rather than above it', () => {

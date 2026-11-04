@@ -150,6 +150,24 @@ relaxed, because a full spectrum belongs to no brand.
 It stays an exception by being rare. Reuse it on a card, a badge or a header and
 the launcher stops being the signature — at which point delete it there too.
 
+## Drawings are not surfaces
+
+Two things on the catalogue are drawn objects, and the surface rules describe
+the interface around them, not them (owner, 2026-10-28):
+
+- **The recipe mark** (`recipe-mark.tsx`) — a white 35mm cartridge for a
+  Creative Look, a white cinema reel for a Picture Profile, with nothing
+  behind it (owner, 2026-11-04: no halo, no gradient). Its type is dark
+  because it is printed on a white object (the paper room's ink); its corners
+  follow the object; its film, windows and sticker are the recipe's own
+  swatches, which is content — the colour the recipe makes — not decoration.
+  Type on it stays on the scale and never under 13px.
+- **The situation drawings** (`situation-art.tsx`) — ink at low opacity on the
+  tile's own film and one light in the accent ramp. No second hue, no outline.
+
+Neither licenses the treatment anywhere else: a white panel, dark type on a
+surface or a multi-hue field in the interface is still a defect.
+
 ## Deleted — do not reintroduce
 
 `.glass` · `.glass-flat` · `.eyebrow` (now `.label`) · `--font-mono` ·

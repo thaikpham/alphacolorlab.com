@@ -9,10 +9,6 @@
  * against the control root as anon.
  */
 
-/** `recipe_proposals` — the GET read and the POST insert's return. */
-export const PROPOSAL_COLUMNS =
-  'id, recipe_slug, title, author_name, author_avatar, sample_image_url, settings, white_balance, vote_count, created_at';
-
 /** `recipe_comments` — the GET read and the POST insert's return. */
 export const COMMENT_COLUMNS = 'id, recipe_slug, author_name, author_avatar, content, created_at';
 

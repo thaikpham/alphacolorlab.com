@@ -25,7 +25,7 @@ const { NOT_FOUND_APPS, NotFoundBody, notFoundApp } = await import('@/components
 /**
  * The `[locale]` error boundary, rendered with a real catalogue.
  *
- * Plain `.ts` with `createElement`, for the reason `recipe-community-section`
+ * Plain `.ts` with `createElement`, for the reason `recipe-comments`
  * gives: the vitest include pattern is `*.test.ts`.
  */
 const INTL: ComponentProps<typeof NextIntlClientProvider> = {

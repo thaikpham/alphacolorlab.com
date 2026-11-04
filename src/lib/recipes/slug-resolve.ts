@@ -13,7 +13,7 @@ export type ResolvedRecipe = {
  * catalogue holds it: the slug itself, else any other spelling it has had
  * (`slugAliases`, newest first). Null when none is a published recipe.
  *
- * This is how the recipe route, its share card and `/api/tweak` work in every
+ * This is how the recipe route and its share card work in every
  * state of the content plane. Today it holds `pp-001-vivid-nostalgia-film`,
  * and a link to `pp-001` (a card on a migrated page, the `?id=` map) or to
  * `mojave-sun` (a link shared years ago) finds it; after 20261028000000 it

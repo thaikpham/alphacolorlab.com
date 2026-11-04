@@ -30,11 +30,10 @@ for (const size of SIZES) {
       // Regions where 1 % of a page is a whole changed element.
       if (template === '/recipe/:recipe') {
         await expect(page.locator('header').first()).toHaveScreenshot(`recipe-header-${size.name}.png`, { animations: 'disabled', maxDiffPixelRatio: 0.002 });
-        // The hero is the block that holds the id and format chips, the h1,
-        // the description and the tags (recipe/[slug]/page.tsx, "Recipe Header
-        // & Description"): the h1's own wrapper, so a chip or a tag that moves
-        // is caught along with the title.
-        await expect(page.locator('main div:has(> h1)').first()).toHaveScreenshot(`recipe-hero-${size.name}.png`, { animations: 'disabled', maxDiffPixelRatio: 0.002 });
+        // The hero: the mark, the code chip, the h1 and the description
+        // (recipe/[slug]/page.tsx), one grid since the 2026-10-28 redesign,
+        // so a chip that moves is caught along with the title.
+        await expect(page.locator('[data-part="hero"]')).toHaveScreenshot(`recipe-hero-${size.name}.png`, { animations: 'disabled', maxDiffPixelRatio: 0.002 });
       }
     });
   }

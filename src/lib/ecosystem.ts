@@ -50,10 +50,11 @@ export type EcosystemAppDef = {
    */
   iconInset: string;
   /**
-   * Short form for the two-column mobile grid, where a 76px tile is narrower
-   * than "ColorLab 2.0" set at the 13px floor. Not a translation — the same
-   * product-name rule applies, this is just the name the product itself uses
-   * when it has no room.
+   * Short form, for a slot narrower than the name at the 13px floor. The
+   * launcher's names sit beside or under faces wide enough for the full name
+   * since 2026-10-30, so nothing reads it today; kept for the next narrow
+   * slot. Not a translation — the same product-name rule applies, this is
+   * just the name the product itself uses when it has no room.
    */
   shortName: string;
 };

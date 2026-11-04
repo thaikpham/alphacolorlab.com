@@ -12,9 +12,9 @@ import { SCREENS, ready, resolve, routeAssetHosts, visit } from './setup.ts';
  * The page height is a length, not a count, and stays a ceiling. Design-kit's targets: a list ≤ 12, a detail ≤ 7 plus the
  * frame.
  *
- * A recipe page is a reading layout of `<details>` parameter rows (AGENTS.md
- * Rule 4), each with a `<summary>`. Those are the content, not the frame, so
- * they are counted apart, logged, and held to no ceiling: a phone layout that
+ * A recipe page is a reading layout of parameter cards (AGENTS.md Rule 4),
+ * each with its info button. Those are the content, not the frame, so they
+ * are counted apart, logged, and held to no ceiling: a phone layout that
  * brings the settings up the page is the point, not a regression.
  *
  * "In sight" means on the screen: an element's box is clipped by the viewport
@@ -48,8 +48,18 @@ test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true
  * on the new instance, `cl-001-film-hard-faded` (PR #24 named slugs after the
  * recipe), whose first screen shows the same frame, "All recipes" and four
  * taxonomy links (two situations, a style, a tone).
+ *
+ * `list` 23 -> 21 on 2026-10-28, lowered with the change that caused it: the
+ * situation tiles carry a drawing now (owner; `situation-art.tsx`), 96px where
+ * the colour band was 64px, so the second row of tiles (Street, Travel) moved
+ * below a 390×844 screen. The recipe page's first screen does not move: its
+ * mark is hidden on a phone.
+ *
+ * `detail` 9 -> 5 on 2026-10-28, lowered with the change that caused it: the
+ * recipe page's hero lost its situation, style and tone chips (owner), so the
+ * phone's first screen is the frame and "All recipes".
  */
-const BUDGET = { list: 23, detail: 9 };
+const BUDGET = { list: 21, detail: 5 };
 
 test('the first screens ask little: the list and a recipe page stay within their budgets', async ({ page }) => {
   await routeAssetHosts(page);
@@ -73,5 +83,9 @@ test('the first screens ask little: the list and a recipe page stay within their
   // is the measurement, only down. Re-measured 2026-10-24 after merging main a3ef537 (situations, PP refresh,
   // library colour) on clearcast-pro, which printed 6.2: lowered 6.4 -> 6.3. Re-measured 2026-10-26 after merging
   // main 415f9ff on cl-001-film-hard-faded (slugs come from the name now), which printed 6.1: lowered 6.3 -> 6.2.
-  expect(screens).toBeLessThanOrEqual(6.2);
+  // Re-measured 2026-10-28 after the recipe page redesign (cards, no palette strip, no proposals or AI tweak),
+  // which printed 4.5: lowered 6.2 -> 4.6. Re-measured the same day without the hero's chips, which printed
+  // 4.4: lowered 4.6 -> 4.5. Re-measured 2026-10-29 with the compact recipe card in the related row, which
+  // printed 3.9: lowered 4.5 -> 4.0.
+  expect(screens).toBeLessThanOrEqual(4.0);
 });

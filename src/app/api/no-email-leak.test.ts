@@ -4,19 +4,19 @@ import * as COLUMN_LISTS from '@/lib/community/columns';
 import { toModeratedPhoto } from '@/lib/community/moderation';
 
 /**
- * `/api/comments` and `/api/proposals` are public and unauthenticated: anyone
- * can fetch them for any slug, with no session.
+ * `/api/comments` is public and unauthenticated: anyone can fetch it for any
+ * slug, with no session.
  *
- * Both once selected `*` and mapped `author_email` straight into the response,
- * and the proposals route additionally returned `votedBy` — the full list of
- * every voter's address. So a plain GET enumerated the Google email address of
- * everyone who had ever commented or voted on a recipe.
+ * It once selected `*` and mapped `author_email` straight into the response,
+ * and the proposals route (removed 2026-10-28) additionally returned `votedBy`
+ * — the full list of every voter's address. So a plain GET enumerated the
+ * Google email address of everyone who had ever commented or voted.
  *
  * Emails are still stored (a comment has to be attributable) and still sent
  * inbound on POST. They must simply never come back out.
  */
 
-const ROUTES = ['src/app/api/comments/route.ts', 'src/app/api/proposals/route.ts'];
+const ROUTES = ['src/app/api/comments/route.ts'];
 
 describe.each(ROUTES)('%s', (path) => {
   const source = readFileSync(path, 'utf8');
@@ -58,35 +58,6 @@ describe.each(ROUTES)('%s', (path) => {
   });
 });
 
-describe('the proposals column list', () => {
-  const source = readFileSync('src/app/api/proposals/route.ts', 'utf8');
-
-  it('is the list both selects read, and it leaves author_email out', () => {
-    const columns = COLUMN_LISTS.PROPOSAL_COLUMNS.split(',').map((c) => c.trim());
-    expect(columns).not.toContain('author_email');
-    expect(columns).toContain('author_name');
-    expect(source.match(/\.select\(PROPOSAL_COLUMNS\)/g)).toHaveLength(2);
-  });
-});
-
-describe('proposals vote state', () => {
-  const source = readFileSync('src/app/api/proposals/route.ts', 'utf8');
-
-  it('reports only the requesting viewer’s vote, never the voter list', () => {
-    expect(source).toContain('hasVoted');
-    expect(source).not.toMatch(/votedBy:/);
-    // Scoping the vote query to one address is what keeps it from being a dump.
-    expect(source).toMatch(/\.eq\(\s*['"`]user_email['"`]\s*,\s*viewer\s*\)/);
-  });
-});
-
-/**
- * Photo moderation is behind `adminGate()`, not public — but it reads on the
- * service role, which RLS and the column grant do not bind. Every column of
- * `community_photos` is readable there, `submitted_by` included, so the column
- * list and the mapper are the whole boundary between an address and the
- * browser.
- */
 describe('the photo moderation route', () => {
   const source = readFileSync('src/app/api/admin/community-photos/route.ts', 'utf8');
   /* Comments out, so a sentence that mentions `.select()` is not a call. */

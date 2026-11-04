@@ -38,10 +38,9 @@ describe('the cut copy', () => {
     expect(browse).toMatch(/<Link href="\/colorlab" className="btn-glass">\s*\{t\('emptyAction'\)\}/);
   });
 
-  it('shows a tab count only when there is something to count', () => {
-    const community = src('src/components/recipe-community-section.tsx');
-    expect(community).toContain("commentsLoaded && comments.length > 0 ? t('tabComments', { count: comments.length }) : t('tabCommentsPlain')");
-    expect(community).toMatch(/proposalsLoaded && proposals\.length > 0\s*\?\s*t\('tabProposals', \{ count: proposals\.length \}\)\s*:\s*t\('tabProposalsPlain'\)/);
+  it('shows a comment count only when there is something to count', () => {
+    const comments = src('src/components/recipe-comments.tsx');
+    expect(comments).toContain("loaded && comments.length > 0 ? t('titleCount', { count: comments.length }) : t('title')");
   });
 
   it('gives an empty feed its title and the way out, nothing between', () => {

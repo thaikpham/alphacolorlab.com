@@ -25,8 +25,6 @@ import { COMMUNITY_ERRORS } from '@/lib/community/errors';
 const ROUTES = [
   'src/app/api/comments/route.ts',
   'src/app/api/community-photos/route.ts',
-  'src/app/api/proposals/route.ts',
-  'src/app/api/proposals/vote/route.ts',
 ];
 
 /** `error:` values that are a quoted string rather than a code helper call. */
