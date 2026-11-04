@@ -349,8 +349,10 @@ Do not write App Router code from memory. Read the relevant file first:
   Moderation lives in `/admin/colorlab` through `/api/admin/community-photos`
   (`adminGate()`, then `controlAdmin()`): hiding sets `approved = false` and
   never deletes; the public read stays on `controlRead()` and leaves the filter
-  to RLS, because anon is granted no `approved` column to filter with.
-  Anything new that draws a reader's URL from another table must drop the
+  to RLS, because anon is granted no `approved` column to filter with. The
+  40-photo cap counts visible rows only (`visiblePhotoCount`, `controlAdmin()`);
+  a hidden link still answers duplicate, and showing a hidden photo is refused
+  once 40 are visible. Anything new that draws a reader's URL from another table must drop the
   URLs a moderator hid, read with `controlAdmin()`, unknown failing closed —
   as `/api/proposals` did with its samples until proposals were removed.
 - **The thumbnail is the mark; the palette feeds it.** `paletteFor()`
