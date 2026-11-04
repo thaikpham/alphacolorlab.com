@@ -123,21 +123,6 @@ export function LauncherGrid({ onNavigate }: Props) {
             </>
           );
 
-          if (app.external) {
-            return (
-              <a
-                key={app.key}
-                href={app.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => onNavigate && setTimeout(onNavigate, 200)}
-                className={className}
-              >
-                {content}
-              </a>
-            );
-          }
-
           return (
             <Link key={app.key} href={app.href} onClick={onNavigate} className={className}>
               {content}

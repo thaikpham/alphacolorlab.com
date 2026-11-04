@@ -190,18 +190,13 @@ dial's card.
 Creative Look or supporting a new body touches `constants.ts` only. Use the
 `sync-camera-constants` skill; do not hand-edit downstream files to match.
 
-## Rule 6 — One app here, one set of design tokens, two readers elsewhere
+## Rule 6 — One app, one set of design tokens
 
-This repo is Alpha ColorLab and nothing else. **CheeseBooth**
-(`cheese-booth.vercel.app`) and **Sony Live SOP** (`sonylivesop.vercel.app`)
-are separate projects in separate repos with their own deploys and their own
-CI. The ecosystem launcher in `site-header.tsx` links out to them by absolute
-URL; there is no copy of their source here and no way to build them from here.
-"Fix CheeseBooth" is a task in another repo.
-
-They were workspaces under `apps/` for a while, which is why `npm run verify`
-used to gate three apps. It gates one. It is still what CI runs and still what
-to run before assuming a change is safe.
+This repo is the whole ecosystem now: ColorLab, Sony Wiki and the blog, three
+tiles in `ECOSYSTEM_APPS` (`src/lib/ecosystem.ts`), all in-app routes.
+CheeseBooth and Sony Live SOP were dropped from the launcher on 2026-11-04 and
+are not linked from anywhere; do not add them back. `npm run verify` gates
+this one app and is what CI runs.
 
 Shared surfaces, ink, the accent ramp, signal colours, the type scale, radius,
 elevation, breakpoints and spacing are defined **once** in
@@ -226,10 +221,10 @@ Two things to know before touching the emitter:
   with `mkdirSync(…, { recursive: true })`, so a stale path in `TARGETS` does
   not error — it *creates* the folder. The six `apps/…` entries would have
   grown an untracked `apps/` tree back out of the first emit after the split.
-- **`tokens.css` has an empty destination list on purpose.** Its only consumer
-  is out of repo. It is still emitted to `dist/`, which is how CheeseBooth takes
-  a token change — by hand now. Nothing checks that it did: `token-drift.test.ts`
-  asserts only about paths this repo owns, because a guard that names a folder
+- **`tokens.css` has an empty destination list on purpose.** Nothing in this
+  repo reads it; it is still emitted to `dist/` for a consumer without
+  Tailwind. `token-drift.test.ts` asserts only about paths this repo owns,
+  because a guard that names a folder
   which may not exist is the vacuous pass that once let an entire app go missing
   from a green suite.
 

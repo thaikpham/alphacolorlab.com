@@ -1501,7 +1501,10 @@ function SiteHeaderInner() {
 
     {/* Full-Screen Backdrop Blur & iPad-style Launchpad */}
     {isEcosystemOpen && mounted && typeof document !== 'undefined' && createPortal(
-      <div ref={portalRef} className="fixed inset-0 z-[99990]">
+      <div ref={portalRef} className="theme-void fixed inset-0 z-[99990]">
+        {/* `theme-void`: on /blog the paper tokens reach this portal through
+            `:root`, and the launcher must look the same here as in the other
+            two apps. The class restates the dark room on the portal itself. */}
         {/* Backdrop. The ground at 80%, not 60%: at 60% the recipe photographs
             behind still came through the blur as legible shapes and competed
             with the icons for attention. A launcher has to feel like a layer
@@ -1557,15 +1560,7 @@ function SiteHeaderInner() {
                 roughly 70% of the tile. Percentages, not `p-4`, so they hold at
                 both tile sizes without a breakpoint. */}
             {/* One list, two surfaces — see `ECOSYSTEM_APPS`. The landing page
-                at `/` renders the same tiles from the same definitions, so a
-                new app appears in both without touching either. An entry may
-                carry an absolute URL rather than a route, which is what
-                `external` marks: such an app is a separate project on its own
-                repo and its own Vercel deployment, so this app has no copy of
-                its source and no way to render it. Embedding one in an iframe
-                was tried — reachable then at `/cheesebooth` and `/livesop` —
-                and it cost the reader the app's own chrome, its URL bar and its
-                deep links. Send them to the real origin. */}
+                at `/` renders the same tiles from the same definitions. */}
             <div ref={launcherRef}>
               <LauncherGrid onNavigate={() => setIsEcosystemOpen(false)} />
             </div>
