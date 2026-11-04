@@ -118,7 +118,7 @@ describe('the outline', () => {
      contribute form). axe's heading-order fails a skip. */
   it('steps h1 → h2 → h3 and never skips', () => {
     expect(page).toMatch(/<h2 id="camera-settings" className="[^"]*">\s*\{t\('paramsLabel'\)\}/);
-    expect(cards).toMatch(/<h3 className="label mb-3">\{title\}<\/h3>/);
+    expect(cards).toMatch(/<h3 className="label mb-2">\{title\}<\/h3>/);
     expect(cards).not.toMatch(/<h2\b/);
     expect(gallery).toMatch(/<h2 id="sample-photos"/);
     expect(gallery).toMatch(/<h3 className="text-body-lg font-semibold text-ink">\{t\('formTitle'\)\}<\/h3>/);

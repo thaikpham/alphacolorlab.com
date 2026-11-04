@@ -50,7 +50,7 @@ import { WbShiftPlane } from './wb-shift-plane';
  * Picture Profile group is one row. `items-start`: the dial cards beside the
  * wide White Balance card keep their own height instead of stretching to it.
  */
-export const CARD_GRID = 'grid grid-cols-2 items-start gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-7';
+export const CARD_GRID = 'grid grid-cols-2 items-start gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8';
 
 /**
  * One parameter, one card (owner, 2026-10-29: smaller, and the help behind an
@@ -96,7 +96,7 @@ export function ParamCard({
     <span className="flex min-w-0 flex-col gap-0.5">
       <span className="label leading-tight">{label}</span>
       <span
-        className={`text-title-3 font-semibold tracking-[-0.02em] leading-tight tabular-nums break-words ${tint ? '' : 'text-ink'}`}
+        className={`text-body-lg font-semibold leading-tight tabular-nums break-words ${tint ? '' : 'text-ink'}`}
         style={valueStyle}
       >
         {value}
@@ -106,11 +106,11 @@ export function ParamCard({
   );
 
   if (!effect && !explanation) {
-    return <div className="param-row row-tint px-3.5 py-3">{face}</div>;
+    return <div className="param-row row-tint px-3 py-2">{face}</div>;
   }
 
   return (
-    <div className="param-row param-card row-tint relative px-3.5 py-3 pr-11" style={anchor}>
+    <div className="param-row param-card row-tint relative px-3 py-2 pr-9" style={anchor}>
       {face}
       {/* `pointer-coarse:` lifts the button to the 44px floor on a touch screen
           without widening it under a mouse. */}
@@ -160,9 +160,9 @@ function InfoGlyph({ className = '' }: { className?: string }) {
 /** One group of cards on its own panel: "Picture Profile", "Color Depth", "Detail". */
 export function ParamPanel({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="surface p-4 sm:p-5">
+    <section className="surface p-3 sm:p-4">
       {/* h3: these sit under the page's "Camera settings" h2. */}
-      <h3 className="label mb-3">{title}</h3>
+      <h3 className="label mb-2">{title}</h3>
       <div className={CARD_GRID}>{children}</div>
     </section>
   );
@@ -265,13 +265,20 @@ export function WbPanel({ recipe, locale }: { recipe: RecipeView; locale: Locale
   const t = useTranslations('recipe');
   const wb: WhiteBalance = recipe.whiteBalance;
   const { net, interplay } = wbSummary(wb);
+  /* The overview opens from the card's corner like every card's help, so the
+     first-screen gate counts it as content (`.param-row > button[popovertarget]`). */
+  const popId = `pop${useId().replace(/[^A-Za-z0-9_-]/g, '')}`;
+  const anchor = { '--pa': `--${popId}` } as CSSProperties;
 
   return (
-    <section className="surface p-4 sm:p-5">
-      <h3 className="label mb-3">White Balance Shift</h3>
+    <section className="surface p-3 sm:p-4">
+      <h3 className="label mb-2">White Balance Shift</h3>
       <div className={CARD_GRID}>
-        <div className="row-tint col-span-2 sm:col-span-3 lg:col-span-2 xl:col-span-3 2xl:col-span-4 flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:gap-6">
-          <div className="w-40 shrink-0 self-center sm:w-44">
+        <div
+          className="param-row param-card row-tint relative col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-3 xl:col-span-4 2xl:col-span-5 flex flex-col gap-3 p-3 pr-11 sm:flex-row sm:items-center sm:gap-5"
+          style={anchor}
+        >
+          <div className="w-32 shrink-0 self-center sm:w-36">
             <WbShiftPlane recipes={[recipe]} />
           </div>
           <div className="min-w-0 flex flex-col gap-1.5">
@@ -279,19 +286,24 @@ export function WbPanel({ recipe, locale }: { recipe: RecipeView; locale: Locale
             <span className="label mt-2">{t('wbNet')}</span>
             <p className="text-body-sm leading-relaxed text-ink-muted">{net[locale]}</p>
             {interplay ? <p className="meta leading-relaxed">{interplay[locale]}</p> : null}
-            <details className="group mt-1">
-              <summary className="flex cursor-pointer items-center gap-1.5 list-none marker:content-none text-meta text-ink-muted transition-colors hover:text-ink">
-                {t('wbOverview')}
-                <InfoGlyph />
-              </summary>
-              <div className="mt-2 flex max-w-prose flex-col gap-2">
-                {WB_OVERVIEW[locale].map((paragraph) => (
-                  <p key={paragraph} className="meta leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </details>
+          </div>
+          <button
+            type="button"
+            popoverTarget={popId}
+            aria-label={t('wbOverview')}
+            className="param-info absolute top-1 right-1 flex h-8 w-8 pointer-coarse:h-11 pointer-coarse:w-11 cursor-pointer items-center justify-center rounded-sm text-ink-faint transition-colors hover:text-ink"
+          >
+            <InfoGlyph />
+          </button>
+          <div id={popId} popover="auto" className="param-pop" style={anchor}>
+            <div className="surface-raised animate-fade-in flex flex-col gap-2 p-4">
+              <span className="label">{t('wbOverview')}</span>
+              {WB_OVERVIEW[locale].map((paragraph) => (
+                <p key={paragraph} className="meta leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -353,7 +365,7 @@ export function WbReadout({ wb }: { wb: WhiteBalance }) {
   const ab = wb.shift?.ab;
   const gm = wb.shift?.gm;
   return (
-    <span className="inline-flex flex-wrap items-baseline gap-x-1.5 text-title-2 font-extrabold tracking-[-0.02em] tabular-nums">
+    <span className="inline-flex flex-wrap items-baseline gap-x-1.5 text-title-3 font-extrabold tracking-[-0.02em] tabular-nums">
       <span style={{ color: wb.mode === 'kelvin' ? getKelvinHexColor(wb.kelvin) : 'var(--color-ink)' }}>
         {wbHeadLabel(wb)}
       </span>
