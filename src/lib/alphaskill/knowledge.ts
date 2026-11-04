@@ -16,7 +16,7 @@ import {
 } from './parse'
 
 export type { AlphaNote }
-export { fold, findNoteByTitle, notesLinkingTo }
+export { fold, findNoteByTitle, notesLinkingTo, sortNotes }
 export { flattenTree } from './parse'
 
 export const ALPHASKILL_TAG = 'alphaskill-knowledge'

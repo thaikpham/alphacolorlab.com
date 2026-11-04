@@ -4,8 +4,10 @@ import { getSonyAudio } from '@/lib/audio/data'
 import { getSonyCameras } from '@/lib/cameras/data'
 import { getPublishedArticles, getPublishedKnowledge } from '@/lib/lab/data'
 import { listRecipes } from '@/lib/recipes/source'
+import { listNotes } from '@/lib/alphaskill/knowledge'
 import {
   articleDoc,
+  noteDoc,
   glossaryDocs,
   productDoc,
   recipeDoc,
@@ -58,6 +60,7 @@ const ADAPTERS: Readonly<Record<SearchKind, Adapter>> = {
      than served half — a glossary hit beside a silent gap reads as complete. */
   knowledge: async (locale) => [
     ...(await getPublishedKnowledge()).map(articleDoc),
+    ...(await listNotes()).map(noteDoc),
     ...glossaryDocs(locale),
   ],
 }

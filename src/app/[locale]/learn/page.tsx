@@ -10,6 +10,8 @@ import { ARTICLE_LANG } from '@/lib/lab/articles'
 import { getPublishedKnowledge } from '@/lib/lab/data'
 import { KNOWLEDGE_SECTIONS } from '@/lib/lab/meta'
 import { buildGlossary } from '@/lib/learn/glossary'
+import { listNotes } from '@/lib/alphaskill/knowledge'
+import { slugify } from '@/lib/lab/parse'
 
 /* The paper room's ground for the browser chrome — the same exemption and
    the same value as `/blog`. Keep it in step with `:root:has(.theme-paper)`. */
@@ -41,15 +43,18 @@ export async function generateMetadata({
  * shows an empty heading. The glossary is always here: it is generated from
  * the parameter explanations the recipe tables already carry, so the hub has
  * at least one complete group from the day it ships.
+ *
+ * Alphaskill notes are listed by section, after authored pages but before glossary.
  */
 export default async function LearnPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params
   setRequestLocale(locale)
 
-  const [t, tl, pages] = await Promise.all([
+  const [t, tl, pages, allNotes] = await Promise.all([
     getTranslations('learn'),
     getTranslations('lab'),
     getPublishedKnowledge(),
+    listNotes(),
   ])
   const glossary = buildGlossary(locale)
   const glossaryCount = glossary.reduce((n, g) => n + g.entries.length, 0)
@@ -65,6 +70,14 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
       ),
   })).filter((s) => s.pages.length > 0)
 
+  // Group all notes by section, preserving order of first appearance
+  const noteSectionOrder: string[] = []
+  for (const note of allNotes) {
+    if (!noteSectionOrder.includes(note.section)) {
+      noteSectionOrder.push(note.section)
+    }
+  }
+
   return (
     <div className="theme-paper contents">
       {/* See `/blog/[id]`: the header reads the URL, and on a statically
@@ -79,6 +92,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
         </h1>
 
         <div className="mt-10 flex flex-col gap-12">
+          {/* Authored knowledge pages */}
           {sections.map(({ section, pages: list }) => (
             <section key={section} id={section} aria-labelledby={`h-${section}`} className="scroll-mt-24">
               <h2
@@ -110,6 +124,48 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             </section>
           ))}
 
+          {/* Alphaskill note sections */}
+          {noteSectionOrder.map((section) => {
+            const sectionNotes = allNotes.filter((n) => n.section === section)
+            if (sectionNotes.length === 0) return null
+            return (
+              <section
+                key={`note-${section}`}
+                id={`note-${slugify(section)}`}
+                aria-labelledby={`h-note-${slugify(section)}`}
+                className="scroll-mt-24"
+              >
+                <h2
+                  id={`h-note-${slugify(section)}`}
+                  className="flex items-baseline gap-3 text-title-2 font-semibold tracking-[-0.02em] text-ink"
+                >
+                  <span>{section}</span>
+                  <span className="meta font-normal tracking-normal">
+                    {t('pageCount', { count: sectionNotes.length })}
+                  </span>
+                </h2>
+                <ul className="mt-4 grid gap-x-[clamp(2rem,3vw,3.5rem)] lg:grid-cols-2">
+                  {sectionNotes.map((note) => (
+                    <li key={note.slug}>
+                      <hr className="seam" />
+                      <Link href={`/learn/${note.slug}`} className="group block py-5" lang={ARTICLE_LANG}>
+                        <h3 className="text-title-3 font-semibold tracking-[-0.02em] leading-[1.3] text-ink transition-colors group-hover:text-accent-400 [text-wrap:pretty]">
+                          {note.title}
+                        </h3>
+                        {note.summary ? (
+                          <p className="mt-2 max-w-[70ch] text-body text-ink-muted [text-wrap:pretty]">
+                            {note.summary}
+                          </p>
+                        ) : null}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )
+          })}
+
+          {/* Glossary */}
           <section id="glossary" aria-labelledby="h-glossary" className="scroll-mt-24">
             <h2
               id="h-glossary"

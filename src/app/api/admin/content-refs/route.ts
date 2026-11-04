@@ -7,6 +7,7 @@ import { listArticleRecords } from '@/lib/lab/admin-store'
 import { isDevStore } from '@/lib/lab/dev-store'
 import { listRecipeRecords } from '@/lib/recipes/admin-store'
 import { hasContentConfig } from '@/lib/supabase/server'
+import { listNotes } from '@/lib/alphaskill/knowledge'
 
 /**
  * The ids the article editor's link picker may offer.
@@ -28,11 +29,12 @@ export async function GET(request: Request) {
   }
 
   try {
-    const [recipes, cameras, audio, pages] = await Promise.all([
+    const [recipes, cameras, audio, pages, notes] = await Promise.all([
       listRecipeRecords(),
       getSonyCameras(),
       getSonyAudio(),
       listArticleRecords(),
+      listNotes().catch(() => []),
     ])
 
     /* Only what the picker reads. `kind` is the one field past a name: it is
@@ -44,7 +46,10 @@ export async function GET(request: Request) {
         name: p.name,
         code: modelCode(p.sku),
       })),
-      pages: pages.map((p) => ({ id: p.id, title: p.title, kind: p.kind })),
+      pages: [
+        ...pages.map((p) => ({ id: p.id, title: p.title, kind: p.kind })),
+        ...notes.map((n) => ({ id: n.slug, title: n.title, kind: 'knowledge' as const })),
+      ],
     })
   } catch (err) {
     console.error('[admin/content-refs] load failed:', err instanceof Error ? err.message : err)

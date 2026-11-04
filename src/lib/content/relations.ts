@@ -13,6 +13,8 @@ import type { ConceptKey } from './concepts'
 import type { Article, ArticleMeta, ContentRef, ContentRefKind } from '@/lib/lab/types'
 import { modelCode } from '@/lib/cameras/aliases'
 import { recipeIdKey } from '@/lib/recipes/recipe-id'
+import type { AlphaNote } from '@/lib/alphaskill/parse'
+
 
 /** A link a page can render. `href` is locale-free; the caller's `Link` adds it. */
 export type LinkTarget = {
@@ -41,6 +43,8 @@ export type ProductSummary = {
   readonly sku: string
   readonly category: string
 }
+
+export type NoteSummary = Pick<AlphaNote, 'slug' | 'title' | 'section'>
 
 export type Universe = {
   /** A ref, if its target is currently readable. */
@@ -89,17 +93,40 @@ export function pageTarget(a: Pick<Article, 'id' | 'kind' | 'title'>): LinkTarge
   }
 }
 
+export function noteTarget(n: NoteSummary): LinkTarget {
+  return {
+    kind: 'knowledge',
+    id: n.slug,
+    title: n.title,
+    href: `/learn/${n.slug}`,
+    ...(n.section ? { subtitle: n.section } : {}),
+  }
+}
+
 export function buildUniverse(input: {
   readonly entries: readonly Article[]
   readonly recipes: readonly RecipeSummary[]
   readonly products: readonly ProductSummary[]
+  readonly notes?: readonly NoteSummary[]
 }): Universe {
   /* Recipe ids compare through `recipeIdKey`: article meta and the catalogue
      sit in caches with different lifetimes, so across the SCL- rename one can
      hold `SCL-PP-001` while the other already reads `PP-001`. */
   const recipes = new Map(input.recipes.map((r) => [recipeIdKey(r.id), recipeTarget(r)]))
   const products = new Map(input.products.map((p) => [p.id, productTarget(p)]))
-  const pages = new Map(input.entries.map((a) => [a.id, pageTarget(a)]))
+  const pages = new Map<string, LinkTarget>()
+  
+  /* Register alphaskill notes first, so authored pages take precedence on slug clash. */
+  if (input.notes) {
+    for (const n of input.notes) {
+      pages.set(n.slug, noteTarget(n))
+    }
+  }
+  
+  /* Authored pages overwrite note entries if they clash. */
+  for (const a of input.entries) {
+    pages.set(a.id, pageTarget(a))
+  }
 
   return {
     get(ref) {

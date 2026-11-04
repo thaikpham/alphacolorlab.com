@@ -5,6 +5,7 @@ import { getSonyCameras } from '@/lib/cameras/data'
 import { getPublishedEntries } from '@/lib/lab/data'
 import type { Article } from '@/lib/lab/types'
 import { listRecipes, type Locale } from '@/lib/recipes/source'
+import { listNotes, type AlphaNote } from '@/lib/alphaskill/knowledge'
 import {
   buildUniverse,
   type ProductSummary,
@@ -15,9 +16,9 @@ import {
 /**
  * Everything a related-content section can link to, for one render.
  *
- * Four cached reads — published pages, published recipes, the camera
- * catalogue, the audio catalogue — each the same function its own pages use,
- * so a link appears exactly when its target's page would answer 200.
+ * Five cached reads — published pages, alphaskill notes, published recipes, 
+ * the camera catalogue, the audio catalogue — each the same function its own 
+ * pages use, so a link appears exactly when its target's page would answer 200.
  *
  * The reads are settled independently. A related section is supplementary to
  * the page it sits on: an outage of the product catalogue must not take an
@@ -30,21 +31,24 @@ import {
 export type LoadedUniverse = {
   readonly universe: Universe
   readonly entries: readonly Article[]
-  readonly unavailable: readonly ('pages' | 'recipes' | 'products')[]
+  readonly notes: readonly AlphaNote[]
+  readonly unavailable: readonly ('pages' | 'recipes' | 'products' | 'notes')[]
 }
 
 async function load(locale: Locale): Promise<LoadedUniverse> {
-  const [entries, recipes, cameras, audio] = await Promise.allSettled([
+  const [entries, recipes, cameras, audio, notes] = await Promise.allSettled([
     getPublishedEntries(),
     listRecipes(locale),
     getSonyCameras(),
     getSonyAudio(),
+    listNotes(),
   ])
 
   const unavailable: LoadedUniverse['unavailable'][number][] = []
   if (entries.status === 'rejected') unavailable.push('pages')
   if (recipes.status === 'rejected') unavailable.push('recipes')
   if (cameras.status === 'rejected' || audio.status === 'rejected') unavailable.push('products')
+  if (notes.status === 'rejected') unavailable.push('notes')
 
   const pageList = entries.status === 'fulfilled' ? entries.value : []
   const recipeList: RecipeSummary[] =
@@ -62,10 +66,12 @@ async function load(locale: Locale): Promise<LoadedUniverse> {
     ...(cameras.status === 'fulfilled' ? cameras.value : []),
     ...(audio.status === 'fulfilled' ? audio.value : []),
   ].map((p) => ({ id: p.id, name: p.name, fullName: p.fullName, sku: p.sku, category: p.category }))
+  const notesList = notes.status === 'fulfilled' ? notes.value : []
 
   return {
-    universe: buildUniverse({ entries: pageList, recipes: recipeList, products: productList }),
+    universe: buildUniverse({ entries: pageList, recipes: recipeList, products: productList, notes: notesList }),
     entries: pageList,
+    notes: notesList,
     unavailable,
   }
 }

@@ -32,6 +32,11 @@ vi.mock('@/lib/lab/admin-store', () => ({
     { id: 'white-balance-shift', title: 'White Balance Shift', kind: 'knowledge', status: 'draft', blocks: [] },
   ],
 }))
+vi.mock('@/lib/alphaskill/knowledge', () => ({
+  listNotes: async () => [
+    { slug: 'can-bang-trang-va-nhiet-do-mau', title: 'Cân bằng trắng và nhiệt độ màu', section: 'Khái niệm cơ bản', kind: 'knowledge', aliases: [] },
+  ],
+}))
 
 const { GET } = await import('./route')
 
@@ -45,7 +50,10 @@ describe('GET /api/admin/content-refs', () => {
         { id: 'a7-iv', name: 'Alpha 7 IV', code: 'ILCE-7M4' },
         { id: 'wh-1000xm6', name: 'WH-1000XM6', code: 'WH1000XM6' },
       ],
-      pages: [{ id: 'white-balance-shift', title: 'White Balance Shift', kind: 'knowledge' }],
+      pages: [
+        { id: 'white-balance-shift', title: 'White Balance Shift', kind: 'knowledge' },
+        { id: 'can-bang-trang-va-nhiet-do-mau', title: 'Cân bằng trắng và nhiệt độ màu', kind: 'knowledge' },
+      ],
     })
   })
 })

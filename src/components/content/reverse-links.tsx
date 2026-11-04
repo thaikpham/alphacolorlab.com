@@ -5,12 +5,14 @@ import { CONCEPT_GROUP_LABELS, conceptsForRecipe } from '@/lib/content/concepts'
 import {
   entriesReferencing,
   knowledgeExplaining,
+  noteTarget,
   pageTarget,
   type LinkTarget,
 } from '@/lib/content/relations'
 import { loadUniverse } from '@/lib/content/universe'
 import { ARTICLE_LANG } from '@/lib/lab/articles'
 import type { Locale } from '@/lib/recipes/source'
+import { notesForConcepts } from '@/lib/alphaskill/concepts'
 import { RelatedLinks } from './related-links'
 
 /**
@@ -48,11 +50,12 @@ export async function RecipeLearnMore({
   format: RecipeFormat
   locale: Locale
 }) {
-  const [t, { entries, unavailable }] = await Promise.all([
+  const [t, { entries, notes, unavailable }] = await Promise.all([
     getTranslations('learn'),
     loadUniverse(locale),
   ])
   const links = dedupe([
+    ...notesForConcepts(conceptsForRecipe(format), notes).map(noteTarget),
     ...knowledgeExplaining(conceptsForRecipe(format), entries)
       .slice(0, MAX_EXPLAINERS)
       .map(pageTarget),
@@ -78,7 +81,7 @@ export async function RecipeLearnMore({
       </ul>
       <RelatedLinks
         links={links}
-        unavailable={unavailable.includes('pages')}
+        unavailable={unavailable.includes('pages') || unavailable.includes('notes')}
         heading={t('related')}
         headingLevel={3}
         lang={ARTICLE_LANG}

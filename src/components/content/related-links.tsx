@@ -22,11 +22,11 @@ const ORDER: readonly ContentRefKind[] = ['knowledge', 'article', 'recipe', 'pro
 
 /* Which source of the universe each kind of link resolves from. A `Record`,
    so a kind added to `ContentRefKind` and not here fails to compile. */
-const SOURCE_OF: Record<ContentRefKind, LoadedUniverse['unavailable'][number]> = {
+const SOURCE_OF: Record<ContentRefKind, LoadedUniverse['unavailable'][number] | LoadedUniverse['unavailable'][number][]> = {
   recipe: 'recipes',
   product: 'products',
   article: 'pages',
-  knowledge: 'pages',
+  knowledge: ['pages', 'notes'],
 }
 
 /**
@@ -39,7 +39,11 @@ export function refsUnavailable(
   refs: readonly ContentRef[],
   unavailable: LoadedUniverse['unavailable'],
 ): boolean {
-  return refs.some((r) => unavailable.includes(SOURCE_OF[r.kind]))
+  return refs.some((r) => {
+    const sources = SOURCE_OF[r.kind]
+    const sourceList = Array.isArray(sources) ? sources : [sources]
+    return sourceList.some(s => unavailable.includes(s))
+  })
 }
 
 export async function RelatedLinks({
