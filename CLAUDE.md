@@ -98,7 +98,7 @@ ecosystem. Do not reuse it anywhere else — a spectrum applied twice is decorat
 ## Drawings are not surfaces
 
 The recipe mark (`recipe-mark.tsx`: a white cartridge or cinema reel with dark printed
-type, backed by a rounded gradient tile of that recipe's own swatches) and the situation
+type, standing on nothing but the ground under it) and the situation
 drawings (`situation-art.tsx`) are drawn objects; rules 3–5 describe the interface around
 them. Their colour is the recipe's swatches or the accent ramp, their type stays on the
 scale. Nowhere else.

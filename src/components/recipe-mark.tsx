@@ -1,6 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
 import {
-  markBackdrop,
   markBase,
   markCode,
   markInitials,
@@ -20,8 +19,7 @@ import {
  * The colour is on the film, never under the type. Each object's leader
  * shows three frames — the recipe's highlight, mid and shadow; the cartridge
  * wears a sticker of its six hues and the reel shows them through its six
- * windows; and behind both a rounded gradient backdrop of those hues mixed
- * into void, a calm dark-dominant field from this recipe's own swatches.
+ * windows. Nothing stands behind either object (owner, 2026-11-04).
  * All of it is `paletteFor`'s reading of the settings, never a preview.
  *
  * It is a drawn object, not a surface. That is why its body is white and its
@@ -335,30 +333,17 @@ export function RecipeMark({
   recipe,
   size = 'm',
   className = '',
-  backdrop = true,
 }: {
   recipe: MarkInput;
   size?: MarkSize;
   /** Placement and visibility only (`hidden sm:block`); the mark sizes itself. */
   className?: string;
-  /** Rounded tile backdrop filled with the recipe's gradient. Off only on the card slot. */
-  backdrop?: boolean;
 }) {
   const d = dims(size);
   const c = swatchCss(recipe.palette);
   const ink: Ink = { initials: markInitials(recipe.name), code: markCode(recipe.id), base: markBase(recipe) };
   return (
     <div aria-hidden="true" className={`relative shrink-0 ${className}`} style={{ width: d.w, height: d.h }}>
-      {backdrop ? (
-        <span
-          className="absolute inset-0 rounded-lg"
-          style={{
-            background: markBackdrop(recipe.palette),
-            zIndex: 0,
-            pointerEvents: 'none',
-          } as CSSProperties}
-        />
-      ) : null}
       {recipe.format === 'cl' ? <Cartridge d={d} c={c} ink={ink} /> : <Reel d={d} c={c} ink={ink} />}
     </div>
   );

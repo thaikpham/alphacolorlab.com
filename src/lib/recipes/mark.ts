@@ -58,19 +58,3 @@ export const swatchCss = (palette: Palette): Record<SwatchId, string> =>
 
 /** The six hues, in the palette's own order: what the sticker and the bokeh draw. */
 export const MARK_HUES: readonly SwatchId[] = ['red', 'skin', 'yellow', 'foliage', 'sky', 'blossom'];
-
-/**
- * Gradient backdrop behind a mark (owner, 2026-10-29 → 2026-11-04): the
- * recipe's six hues mixed into the void, read as a calm gradient, dark-dominant
- * and static. Mono recipes give neutral grey naturally. It is the palette read
- * as colour, not the launcher's spectrum reused: that stays the one multi-hue
- * gradient the interface itself draws, and the one that rotates. This one holds still.
- */
-export const markBackdrop = (palette: Palette): string => {
-  const css = swatchCss(palette);
-  const mixed = MARK_HUES.map((h) => `color-mix(in oklch, ${css[h]} 38%, var(--color-void))`);
-  // The radial lift is listed first: the first background layer paints on top.
-  const linear = `linear-gradient(135deg, ${mixed[0]}, ${mixed[1]}, ${mixed[2]}, ${mixed[3]}, ${mixed[4]}, ${mixed[5]})`;
-  const radial = `radial-gradient(circle at 40% 35%, color-mix(in oklch, ${css.mid} 28%, var(--color-void)), transparent 50%)`;
-  return `${radial}, ${linear}`;
-};

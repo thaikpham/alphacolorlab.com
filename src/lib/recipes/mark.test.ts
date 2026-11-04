@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import recipesSeed from '../../../data/recipes.seed.json';
 import { CREATIVE_LOOK_CODES, PP_GAMMA } from '@/lib/camera/constants';
 import type { Recipe } from '@/lib/camera/schema';
-import { markBackdrop, markBase, markCode, markInitials, MARK_HUES } from './mark';
+import { markBase, markCode, markInitials, MARK_HUES } from './mark';
 import { paletteFor } from '@/lib/camera/palette';
 
 const seed = recipesSeed as unknown as Recipe[];
@@ -56,27 +56,5 @@ describe('the code and the base', () => {
       if (r.format === 'cl') expect(CREATIVE_LOOK_CODES).toContain(base);
       else expect(PP_GAMMA as readonly string[]).toContain(base);
     }
-  });
-});
-
-describe('markBackdrop', () => {
-  it('contains all six hues mixed into void, as a CSS gradient', () => {
-    const r = seed[0];
-    const palette = paletteFor(r);
-    const backdrop = markBackdrop(palette);
-    expect(backdrop).toContain('linear-gradient');
-    expect(backdrop).toContain('radial-gradient');
-    expect(backdrop).toContain('color-mix');
-    for (const hue of MARK_HUES) {
-      expect(backdrop).toContain(palette.find((s) => s.id === hue)!.css);
-    }
-  });
-
-  it('renders grey for a monochrome recipe', () => {
-    const mono = seed.find((r) => r.format === 'cl' && r.settings.look === 'BW');
-    if (!mono) return;
-    const backdrop = markBackdrop(paletteFor(mono));
-    // All hues should have 0 chroma when mixed into void, revealing the void
-    expect(backdrop).toMatch(/oklch\([\d.]+% 0 /);
   });
 });

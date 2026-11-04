@@ -50,17 +50,9 @@ describe('RecipeMark', () => {
     expect(render(cl)).not.toContain('border-radius:50%');
   });
 
-  /* The backdrop: the recipe's own gradient behind the object, a rounded tile.
-     Off on request, for where the ground is painted separately. */
-  it('has a gradient backdrop and can be turned off', () => {
-    const html = render(cl);
-    expect(html).toContain('class="absolute inset-0 rounded-lg"');
-    expect(html).toContain('linear-gradient');
-    expect(html).toContain('radial-gradient');
-    for (const id of ['red', 'skin', 'yellow', 'foliage', 'sky', 'blossom']) {
-      expect(html).toContain(cl.palette.find((s) => s.id === id)!.css);
-    }
-    expect(renderToStaticMarkup(createElement(RecipeMark, { recipe: cl, backdrop: false }))).not.toContain('rounded-lg');
+  /* Nothing behind the object: no halo, no gradient tile (owner, 2026-11-04). */
+  it('draws no backdrop behind the object', () => {
+    for (const r of [cl, pp]) expect(render(r)).not.toMatch(/conic-gradient|mark-glow|absolute inset-0 rounded-lg/);
   });
 
   it('carries the six hues on its sticker', () => {

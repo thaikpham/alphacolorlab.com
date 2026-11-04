@@ -153,19 +153,18 @@ describe('the recipe card', () => {
     expect(card).toMatch(/<p className="meta line-clamp-1">\{situations\}<\/p>/);
   });
 
-  /* No recipe carries a photograph: the stage is the recipe’s mark on a
-     gradient backdrop of its own swatches (owner, 2026-10-29/2026-11-04), one
+  /* No recipe carries a photograph: the stage is the recipe’s mark on the
+     card's sunken ground, nothing behind it (owner, 2026-11-04), one
      image labelled with what its colours read as — never a photo component, the
      old accent wash or the nine bars. The card’s mark, or the small one in a
-     card under 12rem. The backdrop is off in the card slot (painted separately)
-     but on everywhere else. */
+     card under 12rem. */
   it("shows the recipe’s mark as its thumbnail", () => {
     expect(card).toMatch(/<div className="h-40 w-full overflow-hidden">\s*<MarkSlot recipe=\{recipe\} \/>/);
     expect(card).toMatch(/role="img"\s+aria-label=\{label\}/);
-    expect(card).toContain("markBackdrop(recipe.palette)");
+    expect(card).not.toMatch(/markBackdrop|gradient/);
     expect(card).not.toContain("RecipeBokeh");
-    expect(card).toContain("<RecipeMark recipe={recipe} size=\"sm\" className=\"hidden @min-[12rem]:block\" backdrop={false} />");
-    expect(card).toContain("<RecipeMark recipe={recipe} size=\"s\" className=\"@min-[12rem]:hidden\" backdrop={false} />");
+    expect(card).toContain("<RecipeMark recipe={recipe} size=\"sm\" className=\"hidden @min-[12rem]:block\" />");
+    expect(card).toContain("<RecipeMark recipe={recipe} size=\"s\" className=\"@min-[12rem]:hidden\" />");
     expect(card).toContain("@container");
     expect(card).not.toMatch(/RecipePalette|RecipePhoto|RecipeColorField|recipe\.images|<Image|<img/);
     expect(card).toContain("FORMAT_LABELS[recipe.format]");
