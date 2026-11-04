@@ -21,6 +21,7 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "seed:emit": "tsx scripts/emit-seed.ts",
+    "alphaskill:emit": "tsx scripts/alphaskill-emit.ts",
     "doctor": "tsx scripts/doctor.ts",
     "//check:supabase-env": "Deliberately not part of `verify`. The gate runs credential-free on purpose — that is what proves seed mode still works — so the topology check lives where the real values are: inside `vercel env run` at deploy time.",
     "check:supabase-env": "tsx scripts/check-supabase-env.ts",
