@@ -12,7 +12,15 @@ import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { COLOR_GROUPS, NAMESPACED_GROUPS, PAPER, PAPER_SELECTOR, type TokenGroup } from './tokens'
+import {
+  COLOR_GROUPS,
+  ELEVATION,
+  NAMESPACED_GROUPS,
+  PAPER,
+  PAPER_SELECTOR,
+  VOID_SELECTOR,
+  type TokenGroup,
+} from './tokens'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 
@@ -57,7 +65,28 @@ function sections(): string[] {
  */
 function paper(): string {
   const body = PAPER.map(({ namespace, group }) => block(group, namespace, '  ')).join('\n\n')
-  return `\n${PAPER_SELECTOR} {\n  color-scheme: light;\n\n${body}\n}\n`
+  return `\n${PAPER_SELECTOR} {\n  color-scheme: light;\n\n${body}\n}\n${voidRoom()}`
+}
+
+/**
+ * The dark room restated under VOID_SELECTOR, for an element portalled into a
+ * paper page. Exactly the names PAPER overrides, with their `:root` values.
+ */
+function voidRoom(): string {
+  const dark = new Map<string, string>()
+  for (const group of COLOR_GROUPS) {
+    for (const [name, value] of Object.entries(group.tokens)) dark.set(`--color-${name}`, value)
+  }
+  for (const [name, value] of Object.entries(ELEVATION.tokens)) dark.set(`--elevation-${name}`, value)
+  const declarations = PAPER.flatMap(({ namespace, group }) =>
+    Object.keys(group.tokens).map((name) => {
+      const prop = `--${namespace}-${name}`
+      const value = dark.get(prop)
+      if (value === undefined) throw new Error(`PAPER restates ${prop}, which the dark room never declares`)
+      return `  ${prop}: ${value};`
+    }),
+  )
+  return `\n${VOID_SELECTOR} {\n  color-scheme: dark;\n\n${declarations.join('\n')}\n}\n`
 }
 
 /**
@@ -65,14 +94,10 @@ function paper(): string {
  *
  * Two flavours of the same tokens, because the consumers differ:
  *
- *   theme.css   Tailwind v4 (`@theme static`). ColorLab and Sony Live SOP.
- *   tokens.css  plain `:root` custom properties. CheeseBooth, no Tailwind.
- *
- * Only ColorLab is in this repo now — the other two are their own projects and
- * take a token change by copying `dist/` across. Keep emitting both flavours
- * anyway: `dist/tokens.css` is what a no-Tailwind consumer reads, it is named in
- * this package's `exports`, and it is the only thing standing between CheeseBooth
- * and the hand-copied drift this package was built to end.
+ *   theme.css   Tailwind v4 (`@theme static`). What this app imports.
+ *   tokens.css  plain `:root` custom properties, for a consumer without
+ *               Tailwind. Nothing in this repo reads it; it is named in this
+ *               package's `exports` and costs nothing to keep emitting.
  *
  * `@theme static`, not a bare `@theme`: Tailwind only emits a theme variable it
  * has seen a utility use, and several of these are read solely through `var()`

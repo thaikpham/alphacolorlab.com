@@ -519,7 +519,8 @@ body {
    alpha — correct over black, invisible over paper.
 --------------------------------------------------------------------------- */
 
-:root:has(.theme-paper) {
+:root:has(.theme-paper),
+.theme-void {
   /* Restated, not inherited: `--accent` resolves against the ramp on the
      element that declares it, and the `:root` declaration above has already
      resolved to the dark room's 400. */
@@ -550,11 +551,11 @@ body {
   display: none;
 }
 
-:root:has(.theme-paper) .mark-on-dark {
+:root:has(.theme-paper) .mark-on-dark:not(.theme-void *) {
   display: none;
 }
 
-:root:has(.theme-paper) .mark-on-paper {
+:root:has(.theme-paper) .mark-on-paper:not(.theme-void *) {
   display: block;
 }
 
@@ -898,30 +899,6 @@ body {
     0 2px 4px oklch(0% 0 0 / 0.5),
     0 14px 32px -8px oklch(0% 0 0 / 0.7),
     inset 0 1px 0 oklch(100% 0 0 / 0.18);
-}
-
-/* Paper. The dark face is a hole punched in a light page, so on paper the face
-   turns to a white slab lifted by ink shadows — still opaque, so the spectrum
-   still reads as light escaping from behind it. Colour light blooms less on a
-   bright ground than on black, so both glow layers gain a little opacity to
-   keep the halo reading at the same strength. */
-:root:has(.theme-paper) .launcher-face {
-  background:
-    radial-gradient(120% 95% at 50% -12%, oklch(100% 0 0 / 0.95), transparent 60%),
-    linear-gradient(180deg, oklch(99.4% 0.002 270), oklch(95% 0.006 270));
-  box-shadow:
-    0 1px 2px oklch(21% 0.02 265 / 0.08),
-    0 14px 32px -10px oklch(21% 0.02 265 / 0.24),
-    inset 0 1px 0 oklch(100% 0 0 / 0.95),
-    inset 0 -1px 0 oklch(21% 0.02 265 / 0.06);
-}
-
-:root:has(.theme-paper) .launcher-glow {
-  opacity: 0.62;
-}
-
-:root:has(.theme-paper) .launcher-glow-rim {
-  opacity: 0.75;
 }
 
 .launcher-link {

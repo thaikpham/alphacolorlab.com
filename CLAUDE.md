@@ -2,7 +2,7 @@
 
 # CLAUDE.md — Sony Alpha ecosystem
 
-Applies to Alpha ColorLab, Sony Wiki (cameras + audio), CheeseBooth and Live SOP.
+Applies to Alpha ColorLab and Sony Wiki (cameras + audio).
 Read `DESIGN.md` for the reasoning; `packages/colorlab-tokens/src/tokens.ts` holds the
 values and is the only source of truth. Run `/design-sync` to audit the tree.
 

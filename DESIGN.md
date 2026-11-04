@@ -1,7 +1,7 @@
 # DESIGN.md — Sony Alpha ecosystem
 
-Read this before writing UI. It applies to Alpha ColorLab, Sony Wiki (cameras +
-audio), CheeseBooth and Live SOP. The values live in
+Read this before writing UI. It applies to Alpha ColorLab and Sony Wiki (cameras +
+audio). The values live in
 `packages/colorlab-tokens/src/tokens.ts`; this file is why they are what they
 are, and what to do when you are tempted otherwise.
 

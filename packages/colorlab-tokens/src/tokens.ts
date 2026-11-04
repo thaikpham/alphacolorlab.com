@@ -1,7 +1,6 @@
 /**
  * THE source of truth for every colour, radius, font stack and breakpoint
- * shared across the Sony Alpha ecosystem — Alpha ColorLab, Sony Wiki,
- * CheeseBooth and Sony Live SOP.
+ * shared across the Sony Alpha ecosystem — Alpha ColorLab and Sony Wiki.
  *
  * v2 — three things changed and nothing else is negotiable:
  *
@@ -273,6 +272,15 @@ export const NAMESPACED_GROUPS: ReadonlyArray<{
  * near-black in the other.
  */
 export const PAPER_SELECTOR = ':root:has(.theme-paper)'
+
+/**
+ * The way back out of paper from inside it. The ecosystem launcher is portalled
+ * to <body> and must look the same from /blog as from the other two apps, so
+ * its portal carries `.theme-void`: the dark values of every token PAPER
+ * restates, declared on the element and therefore winning over what `:root`
+ * hands down. Nothing else may use it.
+ */
+export const VOID_SELECTOR = '.theme-void'
 
 export const PAPER: ReadonlyArray<{
   readonly namespace: string

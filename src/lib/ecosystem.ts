@@ -11,13 +11,6 @@
  * "ColorLab 2.0" in both locales. That is why they are here and not in
  * `messages/*.json` — a name in a message catalogue is a name somebody will
  * eventually translate.
- *
- * `external` is per-app rather than inferred from the URL shape. Nothing in the
- * list carries it right now — both entries are in-app routes — but an entry
- * pointing at another origin is a separate project on its own repo and its own
- * Vercel deployment (Rule 6), which this app cannot render and must open at the
- * real origin. That is a property of the app, not something to re-derive from
- * the href.
  */
 
 export type EcosystemAppDef = {
@@ -37,8 +30,6 @@ export type EcosystemAppDef = {
   /** The paper version, shown instead of `icon` under `.theme-paper`. */
   iconLight: string;
   href: string;
-  /** Another origin → new tab. In-app routes navigate in place. */
-  external: boolean;
   /**
    * Padding inside the tile, per app. Unused by a `mark` tile, whose glyph is
    * centred by the face rather than inset.
@@ -67,7 +58,6 @@ export const ECOSYSTEM_APPS: readonly EcosystemAppDef[] = [
     icon: '/colorlab-icon.svg',
     iconLight: '/colorlab-icon-light.svg',
     href: '/colorlab',
-    external: false,
     iconInset: 'p-[13.5%]',
   },
   {
@@ -77,7 +67,6 @@ export const ECOSYSTEM_APPS: readonly EcosystemAppDef[] = [
     icon: '/sony-wiki-icon.svg',
     iconLight: '/sony-wiki-icon-light.svg',
     href: '/cameras',
-    external: false,
     iconInset: 'p-[13.5%]',
   },
   {
@@ -87,7 +76,6 @@ export const ECOSYSTEM_APPS: readonly EcosystemAppDef[] = [
     icon: '/alpha-tech-blogs-icon.svg',
     iconLight: '/alpha-tech-blogs-icon-light.svg',
     href: '/blog',
-    external: false,
     iconInset: 'p-[13.5%]',
   },
 ] as const;
