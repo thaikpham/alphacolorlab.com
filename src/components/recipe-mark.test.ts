@@ -50,20 +50,17 @@ describe('RecipeMark', () => {
     expect(render(cl)).not.toContain('border-radius:50%');
   });
 
-  /* The halo: the recipe's own six hues as one conic sweep behind the object,
-     its blur scaled to the mark. Off on request, for a light ground. */
-  it('glows in its own six hues, and can be lit off', () => {
+  /* The backdrop: the recipe's own gradient behind the object, a rounded tile.
+     Off on request, for where the ground is painted separately. */
+  it('has a gradient backdrop and can be turned off', () => {
     const html = render(cl);
-    expect(html).toContain('class="mark-glow-stage"');
-    expect(html).toContain('class="mark-glow"');
-    expect(html).toContain('class="mark-glow-rim"');
-    const spectrum = html.match(/--mark-spectrum:([^;]+);/)?.[1];
-    expect(spectrum?.split(', ')).toHaveLength(7);
+    expect(html).toContain('class="absolute inset-0 rounded-lg"');
+    expect(html).toContain('linear-gradient');
+    expect(html).toContain('radial-gradient');
     for (const id of ['red', 'skin', 'yellow', 'foliage', 'sky', 'blossom']) {
-      expect(spectrum).toContain(cl.palette.find((s) => s.id === id)!.css);
+      expect(html).toContain(cl.palette.find((s) => s.id === id)!.css);
     }
-    expect(html).toMatch(/--glow-blur:41px/);
-    expect(renderToStaticMarkup(createElement(RecipeMark, { recipe: cl, halo: false }))).not.toContain('mark-glow');
+    expect(renderToStaticMarkup(createElement(RecipeMark, { recipe: cl, backdrop: false }))).not.toContain('rounded-lg');
   });
 
   it('carries the six hues on its sticker', () => {

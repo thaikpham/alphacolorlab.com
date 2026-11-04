@@ -93,23 +93,22 @@ per component.
 The ecosystem launcher's squircle tiles (`--radius-squircle`, 22.4%) carry the rotating
 seven-colour spectral glow (`LAUNCHER_GLOW`). It is the only multi-hue gradient the
 interface itself draws, the only rotating animation, and the only off-scale radius in the
-ecosystem. Do not reuse it anywhere else — a spectrum applied twice is decoration. The
-recipe mark's halo (`.mark-glow`) borrows the construction, not the spectrum: its hues are
-that recipe's own six swatches, read from its settings, and it holds still.
+ecosystem. Do not reuse it anywhere else — a spectrum applied twice is decoration.
 
 ## Drawings are not surfaces
 
 The recipe mark (`recipe-mark.tsx`: a white cartridge or cinema reel with dark printed
-type, in its own halo) and the situation drawings (`situation-art.tsx`) are drawn
-objects; rules 3–5 describe the interface around them. Their colour is the recipe's
-swatches or the accent ramp, their type stays on the scale. Nowhere else.
+type, backed by a rounded gradient tile of that recipe's own swatches) and the situation
+drawings (`situation-art.tsx`) are drawn objects; rules 3–5 describe the interface around
+them. Their colour is the recipe's swatches or the accent ramp, their type stays on the
+scale. Nowhere else.
 
 ## Deleted — do not reintroduce
 
 `.glass` · `.glass-flat` · `.eyebrow` (now `.label`) · `--font-mono` · `--font-display` ·
 `--color-edge` · `.rule` · `.y2k-*` · `.holo-*` · `.water-*` · `.cyber-*` ·
 `.animate-radar-*` · `.app-glow` · `.rainbow-glow-bar` · `.y2k-3d-card-*` ·
-`.animate-float-gentle` · `vfx.css`.
+`.animate-float-gentle` · `.mark-glow*` · `vfx.css`.
 
 ## Before committing UI
 

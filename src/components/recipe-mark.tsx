@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 import {
-  haloSpectrum,
+  markBackdrop,
   markBase,
   markCode,
   markInitials,
@@ -11,8 +11,8 @@ import {
 } from '@/lib/recipes/mark';
 
 /**
- * The recipe mark (owner, 2026-10-28; canvas "Recipe chip marks"): a white
- * 35mm cartridge standing up for a Creative Look, a white cinema reel for a
+ * The recipe mark (owner, 2026-10-28; redesigned 2026-11-04): a white 35mm
+ * cartridge standing up for a Creative Look, a white cinema reel for a
  * Picture Profile (a clapperboard until 2026-10-29). It replaced the nine-swatch strip on the card, which
  * readers found hard to choose from: a silhouette says stills or cinema
  * before a word is read, and the initials give a recipe a handle.
@@ -20,9 +20,9 @@ import {
  * The colour is on the film, never under the type. Each object's leader
  * shows three frames — the recipe's highlight, mid and shadow; the cartridge
  * wears a sticker of its six hues and the reel shows them through its six
- * windows; and behind both a halo of those hues (`haloSpectrum`), lit the way
- * the launcher's tiles are, from this recipe's own swatches. All of it is
- * `paletteFor`'s reading of the settings, never a preview.
+ * windows; and behind both a rounded gradient backdrop of those hues mixed
+ * into void, a calm dark-dominant field from this recipe's own swatches.
+ * All of it is `paletteFor`'s reading of the settings, never a preview.
  *
  * It is a drawn object, not a surface. That is why its body is white and its
  * type dark — the paper room's ink, printed on the object — and why its
@@ -335,54 +335,31 @@ export function RecipeMark({
   recipe,
   size = 'm',
   className = '',
-  halo = true,
+  backdrop = true,
 }: {
   recipe: MarkInput;
   size?: MarkSize;
   /** Placement and visibility only (`hidden sm:block`); the mark sizes itself. */
   className?: string;
-  /** The recipe's halo behind the object. Off only where the ground is light. */
-  halo?: boolean;
+  /** Rounded tile backdrop filled with the recipe's gradient. Off only on the card slot. */
+  backdrop?: boolean;
 }) {
   const d = dims(size);
   const c = swatchCss(recipe.palette);
   const ink: Ink = { initials: markInitials(recipe.name), code: markCode(recipe.id), base: markBase(recipe) };
-  const box = haloBox(recipe.format, d);
   return (
     <div aria-hidden="true" className={`relative shrink-0 ${className}`} style={{ width: d.w, height: d.h }}>
-      {halo ? (
+      {backdrop ? (
         <span
-          className="mark-glow-stage"
+          className="absolute inset-0 rounded-lg"
           style={{
-            left: box.left,
-            top: box.top,
-            width: box.width,
-            height: box.height,
-            '--mark-spectrum': haloSpectrum(recipe.palette),
-            '--glow-blur': `${Math.round(d.w * 0.19)}px`,
-            '--rim-blur': `${Math.round(d.w * 0.06)}px`,
+            background: markBackdrop(recipe.palette),
+            zIndex: 0,
+            pointerEvents: 'none',
           } as CSSProperties}
-        >
-          <span className="mark-glow" />
-          <span className="mark-glow-rim" />
-        </span>
+        />
       ) : null}
       {recipe.format === 'cl' ? <Cartridge d={d} c={c} ink={ink} /> : <Reel d={d} c={c} ink={ink} />}
     </div>
   );
-}
-
-/** Where the halo sits: behind the cartridge's body, behind the reel's disc. */
-function haloBox(format: 'cl' | 'pp', d: Dims): { left: number; top: number; width: number; height: number } {
-  const px = scale(d);
-  if (format === 'pp') {
-    const D = REEL[d.size].d;
-    return { left: 0, top: d.h / 2 - D / 2, width: D, height: D };
-  }
-  const bodyW = d.size === 'xs' ? 44 : d.size === 's' ? 72 : d.size === 'sm' ? 84 : px(100);
-  const lip = Math.max(2, px(4));
-  const tongueW = d.size === 'xs' ? 16 : d.size === 's' ? 32 : d.size === 'sm' ? 34 : px(44);
-  const knobH = Math.max(4, px(10));
-  const x0 = Math.round((d.w - (bodyW + 2 * lip + tongueW)) / 2);
-  return { left: x0, top: knobH, width: bodyW + 2 * lip, height: d.h - knobH - 4 };
 }

@@ -724,37 +724,6 @@ body {
    that keeps its edge defined. One layer alone reads as a coloured drop shadow.
 --------------------------------------------------------------------------- */
 
-/* The recipe mark's halo (recipe-mark.tsx, owner 2026-10-29). The launcher's
-   two-layer construction — a wide blurred halation and a tight rim light —
-   with THIS recipe's six hues as `--mark-spectrum`, read from its palette,
-   never the launcher's spectrum: the palette as light, so a warm recipe glows
-   warm and a monochrome one grey. No rotation: that stays the launcher's. The
-   stage is the box behind the object; the object paints over it. */
-.mark-glow-stage {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.mark-glow,
-.mark-glow-rim {
-  position: absolute;
-  background: conic-gradient(from 210deg, var(--mark-spectrum));
-}
-
-.mark-glow {
-  inset: -14%;
-  border-radius: 30%;
-  filter: blur(var(--glow-blur)) saturate(1.15);
-  opacity: 0.55;
-}
-
-.mark-glow-rim {
-  inset: -2%;
-  border-radius: 26%;
-  filter: blur(var(--rim-blur)) saturate(1.25);
-  opacity: 0.6;
-}
 
 /* Landing-only stage. Flat `--color-void`, painted over the body's three
    ambient washes: the launcher is the one screen with nothing behind the

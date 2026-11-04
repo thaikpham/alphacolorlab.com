@@ -4,6 +4,7 @@ import { accentCss } from '@/lib/camera/color';
 import { FORMAT_LABELS } from '@/lib/camera/constants';
 import type { RecipeView } from '@/lib/recipes/source';
 import type { SituationId } from '@/lib/recipes/taxonomy';
+import { markBackdrop } from '@/lib/recipes/mark';
 import { recipeIdKey } from '@/lib/recipes/recipe-id';
 import { recipeMood } from '@/lib/recipes/title';
 import { RecipeMark } from './recipe-mark';
@@ -81,20 +82,25 @@ export function RecipeCard({
 }
 
 /**
- * The slot: sunken into the card, its mark standing in the middle in its own
- * halo. One labelled image, with the palette's own label — what the colours
- * read as — since the mark repeats the name written under it.
+ * The slot: the recipe's own gradient backdrop, its mark standing in the middle.
+ * One labelled image, with the palette's own label — what the colours read as —
+ * since the mark repeats the name written under it.
  */
 async function MarkSlot({ recipe }: { recipe: RecipeView }) {
   const [t, tBrowse] = await Promise.all([getTranslations('palette'), getTranslations('browse')]);
   const label = t('label', { tone: tBrowse(`tones.${recipe.tone}`), style: tBrowse(`styles.${recipe.style}`) });
   return (
-    <div role="img" aria-label={label} className="@container relative h-full w-full bg-sunken shadow-[var(--elevation-inset)]">
+    <div
+      role="img"
+      aria-label={label}
+      className="@container relative h-full w-full shadow-[var(--elevation-inset)]"
+      style={{ background: markBackdrop(recipe.palette) }}
+    >
       {/* The card's mark is 156px wide; a card narrower than 12rem — two to
           a row on a phone — takes the 120px one instead of cutting it off. */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <RecipeMark recipe={recipe} size="sm" className="hidden @min-[12rem]:block" />
-        <RecipeMark recipe={recipe} size="s" className="@min-[12rem]:hidden" />
+        <RecipeMark recipe={recipe} size="sm" className="hidden @min-[12rem]:block" backdrop={false} />
+        <RecipeMark recipe={recipe} size="s" className="@min-[12rem]:hidden" backdrop={false} />
       </div>
     </div>
   );

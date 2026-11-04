@@ -359,8 +359,8 @@ Do not write App Router code from memory. Read the relevant file first:
   card draws them on the recipe's mark (owner, 2026-10-28/29; `recipe-mark.tsx`):
   a cartridge for a Creative Look, a cinema reel for a Picture Profile, the
   ramp on the leader's three frames, the hues on the cartridge's sticker and
-  in the reel's six windows, and behind both a halo of those hues
-  (`haloSpectrum`), the initials, code and Sony base in print; the recipe page
+  in the reel's six windows, and behind both a gradient of those hues
+  (`markBackdrop`), the initials, code and Sony base in print; the recipe page
   carries the same mark beside its title, and no swatch strip. It is a reading of the settings, never
   a camera preview, and nothing may present it as one. Every
   magnitude is in `PALETTE_WEIGHTS`, neutral defaults to refit from an a7 IV

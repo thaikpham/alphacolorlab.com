@@ -149,8 +149,8 @@ relaxed, because a full spectrum belongs to no brand.
 
 It stays an exception by being rare. Reuse it on a card, a badge or a header and
 the launcher stops being the signature — at which point delete it there too.
-The recipe mark's halo is not a reuse: same two blurred layers, but the hues
-are the recipe's own palette and nothing turns.
+The recipe mark's backdrop is not a reuse: a still gradient of the recipe's own
+palette, mixed into the void, with no glow and nothing turning.
 
 ## Drawings are not surfaces
 
@@ -158,11 +158,11 @@ Two things on the catalogue are drawn objects, and the surface rules describe
 the interface around them, not them (owner, 2026-10-28):
 
 - **The recipe mark** (`recipe-mark.tsx`) — a white 35mm cartridge for a
-  Creative Look, a white cinema reel for a Picture Profile, each in a halo of
-  its own six hues (`.mark-glow`: the launcher's two-layer construction with
-  the recipe's palette as the spectrum, and no rotation). Its type is dark
+  Creative Look, a white cinema reel for a Picture Profile, each on a gradient
+  of its own six hues mixed into the void (`markBackdrop`, owner 2026-11-04:
+  the whole card slot, or a rounded tile behind the mark elsewhere). Its type is dark
   because it is printed on a white object (the paper room's ink); its corners
-  follow the object; its film, windows, sticker and halo are the recipe's own
+  follow the object; its film, windows, sticker and backdrop are the recipe's own
   swatches, which is content — the colour the recipe makes — not decoration.
   Type on it stays on the scale and never under 13px.
 - **The situation drawings** (`situation-art.tsx`) — ink at low opacity on the

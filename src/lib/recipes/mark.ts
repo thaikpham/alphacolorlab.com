@@ -60,15 +60,17 @@ export const swatchCss = (palette: Palette): Record<SwatchId, string> =>
 export const MARK_HUES: readonly SwatchId[] = ['red', 'skin', 'yellow', 'foliage', 'sky', 'blossom'];
 
 /**
- * The halo behind a mark (owner, 2026-10-29): the recipe's six hues as one
- * conic sweep, closed on the first, the way the launcher's tiles are lit —
- * but from THIS recipe's swatches, so a warm recipe glows warm and a
- * monochrome one grey. It is the palette read as light, not the launcher's
- * spectrum reused: that stays the one multi-hue gradient the interface itself
- * draws, and the one that rotates. This one holds still.
+ * Gradient backdrop behind a mark (owner, 2026-10-29 → 2026-11-04): the
+ * recipe's six hues mixed into the void, read as a calm gradient, dark-dominant
+ * and static. Mono recipes give neutral grey naturally. It is the palette read
+ * as colour, not the launcher's spectrum reused: that stays the one multi-hue
+ * gradient the interface itself draws, and the one that rotates. This one holds still.
  */
-export const haloSpectrum = (palette: Palette): string => {
+export const markBackdrop = (palette: Palette): string => {
   const css = swatchCss(palette);
-  const hues = MARK_HUES.map((h) => css[h]);
-  return [...hues, hues[0]].join(', ');
+  const mixed = MARK_HUES.map((h) => `color-mix(in oklch, ${css[h]} 38%, var(--color-void))`);
+  // The radial lift is listed first: the first background layer paints on top.
+  const linear = `linear-gradient(135deg, ${mixed[0]}, ${mixed[1]}, ${mixed[2]}, ${mixed[3]}, ${mixed[4]}, ${mixed[5]})`;
+  const radial = `radial-gradient(circle at 40% 35%, color-mix(in oklch, ${css.mid} 28%, var(--color-void)), transparent 50%)`;
+  return `${radial}, ${linear}`;
 };
