@@ -10,7 +10,7 @@ import { PILOT_DRAFTS } from '../pilot-drafts'
 import { RESERVED_IDS } from '../parse'
 import type { Article, Block } from '../types'
 import type { AlphaNote } from '@/lib/alphaskill/parse'
-import { PACK_NAME_RE, imageKeys, packProblems, type Known, type PackImage } from './check'
+import { PACK_LICENCES, PACK_NAME_RE, packProblems, type Known, type PackImage } from './check'
 import { PACKS } from './index'
 
 /**
@@ -102,23 +102,23 @@ const check = (p: readonly Article[]) => packProblems('probe', p, knownFor('prob
 
 describe('packProblems', () => {
   it('cho related trỏ tới note alphaskill', () => {
-    const p = { ...good, meta: { ...good.meta, related: [{ kind: 'knowledge', id: 'toc-do-man-trap' }] } }
+    const p = { ...good, meta: { ...good.meta, related: [{ kind: 'knowledge' as const, id: 'toc-do-man-trap' }] } }
     expect(check([p])).toEqual([])
   })
   it('đòi mỗi wikilink resolve và có trong related', () => {
     const blocks = [...good.blocks]
-    blocks[1] = { t: 'p', text: 'Xem [[Tốc độ màn trập]] và [[Không có]].' }
+    blocks[1] = { t: 'p' as const, text: 'Xem [[Tốc độ màn trập]] và [[Không có]].' }
     const p = { ...good, blocks }
     expect(check([p])).toContain('probe-page: unknownWikilink Không có')
     expect(check([p])).toContain('probe-page: wikilinkNotRelated toc-do-man-trap')
   })
   it('không cho wikilink ngoài p/callout', () => {
     const blocks = [...good.blocks]
-    blocks[2] = { t: 'h', text: 'Về [[ISO]]' }
+    blocks[2] = { t: 'h' as const, text: 'Về [[ISO]]' }
     expect(check([{ ...good, blocks }])).toContain('probe-page: wikilinkOutsideProse')
   })
   it('figure có ảnh sidecar thì qua, không có thì figureNeedsUpload', () => {
-    const blocks = [...good.blocks, { t: 'figure', caption: 'Ảnh: A · CC BY 4.0 · Wikimedia Commons' }]
+    const blocks = [...good.blocks, { t: 'figure' as const, caption: 'Ảnh: A · CC BY 4.0 · Wikimedia Commons' } as unknown as Block]
     const withFig = { ...good, blocks }
     expect(check([withFig])).toContain('probe-page: figureNeedsUpload')
     const known = { ...knownFor('probe', [withFig]), images: new Set([`probe-page#${blocks.length - 1}`]) }

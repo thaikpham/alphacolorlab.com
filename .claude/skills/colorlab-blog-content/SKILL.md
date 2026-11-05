@@ -75,8 +75,7 @@ House style, on top of those rules:
   article to two or three.
 - `menu` for an old/new menu pair; both paths start `MENU` and use ` → `.
 - An article closes with a `checklist`; a knowledge page needs none.
-- No `figure` blocks: a picture is an uploaded asset, added from the page's
-  Sửa. The report lists the picture each page needs and where.
+- `figure` blocks are allowed when they have sidecar images from Wikimedia Commons (licence in `PACK_LICENCES`, caption ends with credit). Otherwise a picture is an uploaded asset, added from the page's Sửa.
 - No emoji, no `!`, no `[CẦN BỔ SUNG` marker.
 - `meta`: `related` and `prerequisites` by real id (recipes and products from
   `data/*.seed.json`, pages from `ARTICLES`, `PILOT_DRAFTS` and the packs);
@@ -119,6 +118,7 @@ ticking "Không đổi giao diện". The owner merges.
 ## Lệnh đẩy bài
 npm run push:lab -- --target content --pack <name> --dry-run
 npm run push:lab -- --target content --pack <name>
+npm run push:lab -- --target content --pack <name> --replace <id>    # for edited pages nobody has touched
 ```
 
 Then one line: the pages arrive as drafts under "Bản nháp"; the owner publishes
