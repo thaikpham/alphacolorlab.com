@@ -59,6 +59,17 @@ and a trailing `## Liên quan` section that is just a list of wikilinks.
    invalid shape) throw; never fall back to the snapshot when the env var is
    set. The snapshot is refreshed by `npm run alphaskill:emit`.
 
+   **Amended 2026-11-05.** alphaskill 1.3.1 (`74d7d3a`) made the public API
+   serve `data-sample` — two notes — because the vault and the Sony
+   translation memory behind it are under NDA and `alphaskill-data` went
+   private. Production therefore runs **without** `ALPHASKILL_API_URL` and
+   serves the committed snapshot; the variable was set and removed the same
+   day, when `/learn` dropped from 29 pages to 2. `alphaskill:emit` refuses a
+   source whose `/v1` reports `is_sample_data`, so the snapshot can only be
+   refreshed from a server holding the full vault (a local install with
+   `SONY_VN_DATA`, or a future authenticated endpoint). Until one exists,
+   publishing a note means: emit locally, commit the snapshot, merge.
+
 2. **Slug = `slugify(title)`**, the same function as blog articles. A collision
    (two notes with the same slug) is refused with a clear error naming both
    titles, so renaming in Obsidian is immediate and detectable.

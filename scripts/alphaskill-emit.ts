@@ -20,6 +20,18 @@ async function main() {
   const baseUrl = process.env.ALPHASKILL_API_URL || 'https://api.alphacolorlab.com'
   const treeUrl = `${baseUrl.replace(/\/$/, '')}/v1/get_knowledge`
 
+  /* Since alphaskill 1.3.1 the public API serves `data-sample` (two notes);
+     the full vault is only behind a local install with SONY_VN_DATA. Writing
+     the sample over the committed snapshot would drop 27 pages from /learn
+     with no error anywhere, so a sample-data source is refused here. */
+  const info = (await (await fetch(`${baseUrl.replace(/\/$/, '')}/v1`, { signal: AbortSignal.timeout(8000) })).json()) as {
+    data?: { is_sample_data?: boolean; data_path?: string }
+  }
+  if (info.data?.is_sample_data) {
+    console.error(`✗ ${baseUrl} serves sample data (${info.data.data_path}); point ALPHASKILL_API_URL at a server with the full vault.`)
+    process.exit(1)
+  }
+
   console.log(`Fetching from ${treeUrl}...`)
 
   const treeRes = await fetch(treeUrl, {
