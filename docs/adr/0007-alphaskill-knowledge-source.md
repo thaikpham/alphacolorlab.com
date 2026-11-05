@@ -59,7 +59,7 @@ and a trailing `## Liên quan` section that is just a list of wikilinks.
    invalid shape) throw; never fall back to the snapshot when the env var is
    set. The snapshot is refreshed by `npm run alphaskill:emit`.
 
-   **Amended 2026-11-05.** alphaskill 1.3.1 (`74d7d3a`) made the public API
+   **Amended 2026-11-05 (morning).** alphaskill 1.3.1 (`74d7d3a`) made the public API
    serve `data-sample` — two notes — because the vault and the Sony
    translation memory behind it are under NDA and `alphaskill-data` went
    private. Production therefore runs **without** `ALPHASKILL_API_URL` and
@@ -69,6 +69,21 @@ and a trailing `## Liên quan` section that is just a list of wikilinks.
    refreshed from a server holding the full vault (a local install with
    `SONY_VN_DATA`, or a future authenticated endpoint). Until one exists,
    publishing a note means: emit locally, commit the snapshot, merge.
+
+   **Amended 2026-11-05 (evening).** alphaskill 1.4.0 exports `knowledge/`
+   whole into `data-sample/` (the export refuses any note carrying a Sony
+   S-number; the translation memory stays private), so the public API serves
+   the full vault again and production reads online with `ALPHASKILL_API_URL`
+   set. `POST /api/revalidate/alphaskill`, authenticated by the
+   `x-alphaskill-secret` header against `ALPHASKILL_REVALIDATE_SECRET`,
+   revalidates the tag and the `/learn` pages; the alphaskill publish
+   workflow calls it after each push. A note renamed in Obsidian keeps its
+   old address: the page matches `slugify(alias)` over `props.aliases`
+   (`findNoteBySlugAlias`) and redirects to the current slug. The emit
+   script's `is_sample_data` check is replaced by `shouldRefuseShrink()`: a
+   source with fewer notes than the committed snapshot is refused unless
+   `--allow-shrink` is passed, because a shrinking source is the failure mode
+   that emptied `/learn` the first time.
 
 2. **Slug = `slugify(title)`**, the same function as blog articles. A collision
    (two notes with the same slug) is refused with a clear error naming both
