@@ -1,5 +1,6 @@
 /**
- * Pushes the three authored articles into `lab_articles`.
+ * Pushes the three authored articles into `lab_articles`, with support for
+ * replacing published articles that haven't been edited.
  *
  * Run once, after migration 0013 has been applied:
  *
@@ -12,15 +13,16 @@
  * script is what closes that gap: the seed becomes real rows, and the editor
  * can open all three in the admin.
  *
- * Idempotent, and deliberately NOT an upsert. An article edited through the
- * admin must not be silently reverted to the compiled version by someone
- * re-running a seed script — that is a day of editorial work gone with no
- * error. Rows that already exist are counted and skipped.
+ * Idempotent. An article edited through the admin will not be silently
+ * reverted unless explicitly requested with `--replace <id>`.
  */
 
-import { adminClient } from './lib/db';
-import { requireTarget } from './supabase/args';
-import { labCandidates } from './lib/lab-candidates';
+import { readFileSync } from 'node:fs'
+import { adminClient } from './lib/db'
+import { processLabImage } from '../src/lib/lab/image-process'
+import { uploadDraftAsset } from '../src/lib/lab/asset-store'
+import { requireTarget } from './supabase/args'
+import { labCandidates, replaceable, withAssetIds } from './lib/lab-candidates'
 
 /**
  * `--with-pilot-drafts` also inserts the nine pilot pages from
@@ -31,63 +33,66 @@ import { labCandidates } from './lib/lab-candidates';
  *
  * `--pack <name>` also inserts a content pack (`src/lib/lab/packs/<name>.ts`,
  * written by the blog-content skill), as drafts, by the same insert-only path:
- * a page already in the table is skipped, never overwritten. Run it with
- * `--dry-run` first. An unknown pack stops the script before it connects.
+ * a page already in the table is skipped, never overwritten unless explicitly
+ * requested with `--replace <id>`. Run it with `--dry-run` first.
+ *
+ * `--replace <id>` rewrites an article that has not been edited in the admin
+ * (updated_by IS NULL). Can be given multiple times.
  */
 async function main() {
   const { args, target } = requireTarget(process.argv.slice(2), [
     '--with-pilot-drafts',
     '--pack',
     '--dry-run',
-  ]);
+    '--replace',
+  ])
   if (target !== 'content') {
-    throw new Error('This script seeds content tables. Pass --target content.');
+    throw new Error('This script seeds content tables. Pass --target content.')
   }
-  const dryRun = args.dryRun;
-  /* Before the client: an unknown pack fails without touching the network. */
-  const candidates = labCandidates({ withPilotDrafts: args.withPilotDrafts, pack: args.pack });
-  const db = adminClient(target);
+  const candidates = labCandidates({ withPilotDrafts: args.withPilotDrafts, pack: args.pack })
+  const db = adminClient(target)
+  const { data: existing, error: readError } = await db.from('lab_articles').select('id, updated_by, updated_at')
+  if (readError) throw new Error(`read lab_articles: ${readError.message}`)
+  const rows = new Map((existing ?? []).map((r) => [r.id as string, r as { id: string; updated_by: string | null; updated_at: string }]))
 
-  const { data: existing, error: readError } = await db.from('lab_articles').select('id');
-  if (readError) throw new Error(`read lab_articles: ${readError.message}`);
-
-  const have = new Set((existing ?? []).map((r) => r.id as string));
-  const missing = candidates.filter((c) => !have.has(c.article.id));
-
-  if (missing.length === 0) {
-    console.log(`✓ all ${candidates.length} pages are already in Supabase`);
-    return;
+  const toInsert = candidates.filter((c) => !rows.has(c.article.id))
+  const toReplace = candidates.filter((c) => rows.has(c.article.id) && args.replace.includes(c.article.id))
+  for (const c of toReplace) {
+    const row = rows.get(c.article.id)!
+    if (!replaceable(row)) console.log(`✗ ${c.article.id} đã được ${row.updated_by} sửa lúc ${row.updated_at} — sửa tay trong /blog/${c.article.id}/edit`)
   }
+  const replacing = toReplace.filter((c) => replaceable(rows.get(c.article.id)!))
 
-  if (dryRun) {
-    for (const c of missing) console.log(`  would insert ${c.status.padEnd(9)} ${c.article.kind.padEnd(9)} ${c.article.id}`);
-    console.log(`  (dry run — nothing written; ${have.size} row(s) already present)`);
-    return;
+  if (args.dryRun) {
+    for (const c of toInsert) console.log(`  would insert  ${c.status.padEnd(9)} ${c.article.kind.padEnd(9)} ${c.article.id}  (${c.images.length} ảnh)`)
+    for (const c of replacing) console.log(`  would replace ${c.status.padEnd(9)} ${c.article.kind.padEnd(9)} ${c.article.id}  (${c.images.length} ảnh)`)
+    return
   }
-
-  const now = new Date().toISOString();
-  const rows = missing.map(({ article: a, status }) => ({
-    id: a.id,
-    status,
-    kind: a.kind,
-    topic: a.topic,
-    level: a.level,
-    archetype: a.archetype,
-    read: a.read,
-    title: a.title,
-    dek: a.dek,
-    blocks: a.blocks,
-    meta: a.meta,
-    created_at: now,
-    updated_at: now,
-    updated_by: null,
-  }));
-
-  const { error } = await db.from('lab_articles').insert(rows);
-  if (error) throw new Error(`insert lab_articles: ${error.message}`);
-
-  console.log(`✓ ${rows.length} page(s) inserted: ${missing.map((c) => `${c.article.id} (${c.status})`).join(', ')}`);
-  if (have.size > 0) console.log(`  ${have.size} already present, left untouched`);
+  const now = new Date().toISOString()
+  const rowOf = ({ article: a, status }: typeof toInsert[0]) => ({ id: a.id, status, kind: a.kind, topic: a.topic, level: a.level, archetype: a.archetype, read: a.read, title: a.title, dek: a.dek, blocks: a.blocks, meta: a.meta, updated_at: now, updated_by: null })
+  if (toInsert.length) {
+    const { error } = await db.from('lab_articles').insert(toInsert.map((c) => ({ ...rowOf(c), created_at: now })))
+    if (error) throw new Error(`insert lab_articles: ${error.message}`)
+  }
+  for (const c of replacing) {
+    const { error } = await db.from('lab_articles').update(rowOf(c)).eq('id', c.article.id).is('updated_by', null)
+    if (error) throw new Error(`replace ${c.article.id}: ${error.message}`)
+  }
+  /* Ảnh sau khi dòng đã có: uploadDraftAsset đòi articleExists. */
+  for (const c of [...toInsert, ...replacing]) {
+    if (c.images.length === 0) continue
+    const ids = new Map<number, string>()
+    for (const img of c.images) {
+      const processed = await processLabImage(new Uint8Array(readFileSync(img.path)))
+      if (!processed.ok) throw new Error(`${c.article.id} ảnh ${img.path}: ${processed.error}`)
+      const up = await uploadDraftAsset(c.article.id, processed.image, 'push:lab')
+      if (!up.ok) throw new Error(`${c.article.id} ảnh ${img.path}: ${up.error}`)
+      ids.set(img.blockIndex, up.asset.assetId)
+    }
+    const { error } = await db.from('lab_articles').update({ blocks: withAssetIds(c.article, ids).blocks }).eq('id', c.article.id)
+    if (error) throw new Error(`assets ${c.article.id}: ${error.message}`)
+  }
+  console.log(`✓ ${toInsert.length} inserted, ${replacing.length} replaced`)
 }
 
 main().catch((e: unknown) => {
