@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import type { Metadata, Viewport } from 'next'
 import { notFound } from 'next/navigation'
+import { redirect } from '@/i18n/navigation'
 import { setRequestLocale } from 'next-intl/server'
 import { ArticleView } from '@/components/lab/article-view'
 import { NoteView } from '@/components/alphaskill/note-view'
@@ -8,7 +9,8 @@ import { SiteHeader } from '@/components/site-header'
 import { ArticleStructuredData } from '@/components/structured-data'
 import { ARTICLE_LANG } from '@/lib/lab/articles'
 import { getPublishedKnowledge, getPublishedKnowledgePage } from '@/lib/lab/data'
-import { getNote, listNotes } from '@/lib/alphaskill/knowledge'
+import { getNote, listNotes, noteHref } from '@/lib/alphaskill/knowledge'
+import { findNoteBySlugAlias } from '@/lib/alphaskill/parse'
 import { routing, type Locale } from '@/i18n/routing'
 
 /* The paper room, as on `/blog/[id]`. */
@@ -96,6 +98,11 @@ export default async function KnowledgePage({
       </div>
     )
   }
+
+  /* A note renamed in the vault keeps its old address through `aliases`;
+     the link lands on the current slug. */
+  const aliasNote = findNoteBySlugAlias(id, await listNotes())
+  if (aliasNote) redirect({ href: noteHref(aliasNote.slug), locale })
 
   notFound()
 }

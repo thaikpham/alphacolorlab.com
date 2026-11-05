@@ -289,3 +289,33 @@ export function checkSlugCollisions(notes: AlphaNote[]): void {
     slugMap.set(note.slug, note.title)
   }
 }
+
+/**
+ * Refuse to overwrite if the new collection is smaller than the previous one.
+ * Prevents accidental data loss when a source shrinks.
+ */
+export function shouldRefuseShrink(
+  nextCount: number,
+  prevCount: number,
+  allowShrink: boolean,
+): boolean {
+  return nextCount < prevCount && !allowShrink
+}
+
+/**
+ * Find a note by slug alias (former title), returning undefined if not found.
+ * Aliases are slugified and compared exactly; the note's own slug is never an alias.
+ */
+export function findNoteBySlugAlias(
+  slug: string,
+  notes: readonly AlphaNote[],
+): AlphaNote | undefined {
+  for (const note of notes) {
+    for (const alias of note.aliases) {
+      if (slugify(alias) === slug) {
+        return note
+      }
+    }
+  }
+  return undefined
+}

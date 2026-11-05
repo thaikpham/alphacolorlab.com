@@ -32,6 +32,13 @@ describe('the reference shelf', () => {
     expect(src).not.toMatch(/\bARTICLES\b|getPublishedArticle/);
   });
 
+  it('redirects to the canonical slug when a note is accessed by an alias', () => {
+    const src = read(LEARN_PAGE);
+    expect(src).toContain('findNoteBySlugAlias');
+    expect(src).toContain("redirect({ href: noteHref")
+    expect(src).toContain("from '@/i18n/navigation'");
+  });
+
   it('lists only knowledge pages and notes on the index', () => {
     const src = read(LEARN_INDEX);
     expect(src).toContain('getPublishedKnowledge()');
