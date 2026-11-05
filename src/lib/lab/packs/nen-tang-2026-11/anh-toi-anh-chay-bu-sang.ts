@@ -24,7 +24,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Bánh xoay EV ở thân máy: quay về + để sáng hơn, − để tối đi. Ảnh: Markus Spiske · CC BY-SA 2.0 · Wikimedia Commons',
+      caption: 'Double Exposure - Size Difference Between Skylab (SL)-1 and SL-2. Ảnh: NASA Johnson Space Center · Public domain · Wikimedia Commons',
     },
     { t: 'h', text: 'Xoay bù sáng' },
     {
@@ -81,8 +81,14 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640786.html',
-        title: 'Sony Help Guide: Exposure Compensation',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640168.html',
+        title: 'Sony Help Guide: Exposure Comp.',
+        checkedAt: '2026-11-05',
+        scope: 'a7 IV, a6700',
+      },
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000657946.html',
+        title: 'Sony Help Guide: Histogram Display',
         checkedAt: '2026-11-05',
         scope: 'a7 IV, a6700',
       },
