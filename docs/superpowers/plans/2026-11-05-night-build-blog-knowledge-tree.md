@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Một PR chứa 12 bài `/blog` mới cho người mới cầm Sony, bám 24 note alphaskill ở `/learn`, có `[[wikilink]]` inline, ảnh Wikimedia Commons đi kèm pack, 3 bài live viết lại, 6 nháp pilot dọn lại, và `push:lab` biết upload ảnh và thay bài chưa ai sửa.
+**Goal:** Một PR chứa 24 bài `/blog` mới cho người mới cầm Sony, bám 24 note alphaskill ở `/learn`, có `[[wikilink]]` inline, ảnh Wikimedia Commons đi kèm pack, 3 bài live viết lại, 6 nháp pilot dọn lại, và `push:lab` biết upload ảnh và thay bài chưa ai sửa.
 
 **Architecture:** Pillar = note alphaskill (đã live). Cluster = `Article` trong content pack `nen-tang-2026-11`, một file mỗi bài, gộp bởi `packs/nen-tang-2026-11.ts`. Wikilink resolve ở server (`ArticleView` → `wikiHrefs`) và được render bởi `Paragraph`/`Callout` qua một map `title → href` thuần, nên `blocks.tsx` không kéo zod vào client. Ảnh là sidecar `packs/<pack>.images/<page-id>/` với `manifest.json`; `push:lab` upload qua `uploadDraftAsset` rồi điền `assetId`.
 
@@ -689,7 +689,7 @@ console.log(`✓ ${toInsert.length} inserted, ${replacing.length} replaced`)
 
 ---
 
-## Phase B — Nội dung (4 agent writer song song + 1 agent bài cũ, ~4h)
+## Phase B — Nội dung (6 agent writer song song + 1 agent bài cũ, ~5h)
 
 ### Task 7: Khung pack và quy trình một bài (đọc trước khi viết)
 
@@ -755,45 +755,71 @@ export const page: Article = {
 
 (Ví dụ ảnh ở trên là hit thật của Commons ngày 2026-11-05; mỗi writer vẫn phải chạy lại `commons.ts` và ghi manifest từ kết quả của mình.)
 
-### Task 8: Writer 1 — Phơi sáng + Lấy nét (3 bài)
+### Task 8: Writer 1 — Phơi sáng A (4 bài)
 
 | id | câu hỏi bài trả lời | pillar (`prerequisites`) | `related` gợi ý | ảnh Commons (query) |
 |---|---|---|---|---|
 | `che-do-a-cho-ngay-dau` | Ngày đầu cầm Sony, xoay về A và cài gì để chụp được ngay? | `che-do-chup-p-a-s-m` | `khau-do`, `iso`, `cai-dat-nhanh-truoc-buoi-chup` | "camera mode dial aperture priority" |
 | `anh-toi-anh-chay-bu-sang` | Ảnh tối hoặc cháy, xoay bù sáng thế nào và đọc histogram ra sao? | `bu-sang` | `do-sang`, `tam-giac-phoi-sang`, `stop-va-ev` | "underexposed overexposed comparison photography" |
-| `af-c-tracking-eye-af` | Ba cài đặt để máy tự bám mắt người | `lay-net` | `do-sau-truong-anh-va-xoa-phong`, `cai-dat-nhanh-truoc-buoi-chup`, `back-button-af` (article) | "portrait eye focus photography" |
+| `che-do-m-ba-buoc` | Chế độ M: ba bước đặt khẩu, tốc, ISO theo thanh đo sáng | `tam-giac-phoi-sang` | `che-do-chup-p-a-s-m`, `do-sang`, `stop-va-ev` | "camera manual mode dial" |
+| `xoay-1-3-stop-tren-sony` | Một nấc bánh xe là 1/3 stop: đọc EV trên màn hình | `stop-va-ev` | `tam-giac-phoi-sang`, `bu-sang`, `khau-do` | "camera control dial close up" |
 
-Mỗi bài theo Task 7. Sony: trang Help Guide a7 IV cho `Exposure Comp.`, `Histogram`/`Display`, `Focus Mode`, `Focus Area`, `Face/Eye AF Set.`/`Subject Recognition`, `Shoot Mode`. Tên mục như trang in, không dịch.
+Sony: `Shoot Mode`, `Exposure Comp.`, `Histogram`/`Display`, `Exposure Step`. Tên mục như trang in, không dịch.
 
-### Task 9: Writer 2 — Màu sắc (3 bài)
+### Task 9: Writer 2 — Phơi sáng B (4 bài)
 
 | id | câu hỏi | pillar | related | ảnh |
 |---|---|---|---|---|
-| `creative-look-cho-ngay-dau` | Chọn Look nào cho ngày đầu, chỉnh gì trong 8 thông số | `creative-look` | `can-bang-trang-va-nhiet-do-mau`, `raw-jpeg-va-heif`, một recipe `CL-…` từ `data/recipes.seed.json` (`kind: 'recipe'`) | "Sony a7 IV camera back screen" hoặc ảnh phố màu "street color photography" |
+| `anh-mo-vi-rung-tay` | Ảnh mờ vì rung: tốc độ tối thiểu theo tiêu cự, SteadyShot | `toc-do-man-trap` | `iso`, `cai-dat-nhanh-truoc-buoi-chup`, `iso-auto-min-ss` (article) | "camera shake blur photo" |
+| `so-f-tren-ong-kit` | f/3.5–5.6 trên ống kit nghĩa là gì, mở hết khẩu được không | `khau-do` | `do-sau-truong-anh-va-xoa-phong`, `tam-giac-phoi-sang`, `stop-va-ev` | "kit lens aperture f-number" |
+| `chon-metering-mode` | Multi, Center, Spot: chọn khi nào | `do-sang` | `bu-sang`, `silhouette`, `tam-giac-phoi-sang` | "spot metering backlight portrait" |
+| `chup-dem-cam-tay-iso-cao` | Chụp đêm cầm tay: ISO lên bao nhiêu, tốc tối thiểu, Creative Look nào | `iso` | `toc-do-man-trap`, `creative-look`, `raw-jpeg-va-heif` | "night street handheld photography" |
+
+Sony: `SteadyShot`, `Metering Mode`, `ISO`, `ISO AUTO Min. SS`. Không nêu con số nhiễu "chấp nhận được" nào không có trang Sony.
+
+### Task 10: Writer 3 — Lấy nét (4 bài)
+
+| id | câu hỏi | pillar | related | ảnh |
+|---|---|---|---|---|
+| `af-c-tracking-eye-af` | Ba cài đặt để máy tự bám mắt người | `lay-net` | `do-sau-truong-anh-va-xoa-phong`, `cai-dat-nhanh-truoc-buoi-chup`, `back-button-af` (article) | "portrait eye focus photography" |
+| `af-s-af-c-dmf-chon-mot` | Focus Mode: chọn AF-S, AF-C hay DMF cho tình huống nào | `lay-net` | `do-sau-truong-anh-va-xoa-phong`, `panning`, `cai-dat-nhanh-truoc-buoi-chup` | "manual focus ring lens" |
+| `xoa-phong-voi-ong-kit` | Ba cách xóa phông không mua ống mới | `do-sau-truong-anh-va-xoa-phong` | `khau-do`, `lay-net`, `chu-the-chinh` | "shallow depth of field bokeh portrait" |
+| `khung-trong-khung-tien-canh` | Khung trong khung: tiền cảnh, lấy nét vào đâu, khẩu nào | `khung-trong-khung` | `bo-cuc`, `do-sau-truong-anh-va-xoa-phong`, `lay-net` | "frame within a frame photography doorway" |
+
+Sony: `Focus Mode`, `Focus Area`, `Face/Eye AF Set.` hoặc `Subject Recognition` (đúng tên trang), `AF w/ Shutter`.
+
+### Task 11a: Writer 4 — Màu sắc + Quy trình (4 bài)
+
+| id | câu hỏi | pillar | related | ảnh |
+|---|---|---|---|---|
+| `creative-look-cho-ngay-dau` | Chọn Look nào cho ngày đầu, chỉnh gì trong 8 thông số | `creative-look` | `can-bang-trang-va-nhiet-do-mau`, `raw-jpeg-va-heif`, một recipe `CL-…` published từ `data/recipes.seed.json` (`kind: 'recipe'`) | "street color photography" |
 | `khi-nao-roi-awb` | Ba tình huống AWB sai và chọn preset/Kelvin nào | `can-bang-trang-va-nhiet-do-mau` | `creative-look`, `raw-jpeg-va-heif`, `silhouette` | "white balance comparison tungsten daylight" |
 | `raw-hay-jpeg-cho-nguoi-moi` | Người mới nên RAW, JPEG hay cả hai | `raw-jpeg-va-heif` | `dat-ten-va-loc-anh`, `creative-look`, `can-bang-trang-va-nhiet-do-mau` | "memory card SD camera" |
+| `loc-anh-sau-buoi-chup` | Rating trên máy, lọc trong Lightroom, đặt tên thư mục | `dat-ten-va-loc-anh` | `raw-jpeg-va-heif`, `cai-dat-nhanh-truoc-buoi-chup`, `8-bai-thuc-hanh` | "photographer culling photos laptop" |
 
-Tên Look, khoảng 8 thông số, `WB_PRESETS`, `WB_AUTO_MODES` **chỉ** từ `constants.ts` (Saturation Creative Look là −9…+9, không phải PP). Recipe trong `related` phải `published: true` trong seed.
+Tên Look, khoảng 8 thông số, `WB_PRESETS`, `WB_AUTO_MODES` **chỉ** từ `constants.ts` (Saturation Creative Look là −9…+9). Sony: `Creative Look`, `White Balance`, `File Format`, `Rating`.
 
-### Task 10: Writer 3 — Bố cục + Kỹ thuật (3 bài)
+### Task 11b: Writer 5 — Bố cục (4 bài)
 
 | id | câu hỏi | pillar | related | ảnh |
 |---|---|---|---|---|
 | `bat-luoi-1-3-va-bon-bo-cuc` | Bật Grid Line và bốn bố cục dùng được ngay | `bo-cuc` | `chu-the-chinh`, `goc-may-va-khung-hinh`, `khung-trong-khung` | "rule of thirds photography example" |
 | `mot-chu-the-ba-goc-may` | Bài tập 10 phút: một chủ thể, ngang mắt / cao / thấp | `chu-the-chinh` | `goc-may-va-khung-hinh`, `bo-cuc`, `8-bai-thuc-hanh` | "low angle photography street" |
-| `chup-silhouette-tren-sony` | Đo sáng điểm, bù sáng âm, WB cho silhouette | `silhouette` | `do-sang`, `bu-sang`, `can-bang-trang-va-nhiet-do-mau` | "silhouette sunset photography" |
+| `khung-doc-hay-ngang` | Khung dọc hay ngang: quyết trước khi bấm, và cho mạng xã hội | `goc-may-va-khung-hinh` | `bo-cuc`, `chu-the-chinh`, `cai-dat-nhanh-truoc-buoi-chup` | "vertical portrait orientation photography" |
+| `san-mau-va-lop-canh-30-phut` | Bài đi bộ 30 phút săn một màu và xếp ba lớp cảnh | `san-mau-phoi-mau-va-lop-canh` | `bo-cuc`, `creative-look`, `8-bai-thuc-hanh` | "colorful street wall layered composition" |
 
-Sony: `Grid Line`, `Metering Mode`, `Exposure Comp.`, `White Balance`.
+Sony: `Grid Line`, `Aspect Ratio`, `Creative Look` (chỉ tên).
 
-### Task 11: Writer 4 — Kỹ thuật + Quy trình (3 bài)
+### Task 11c: Writer 6 — Kỹ thuật (4 bài)
 
 | id | câu hỏi | pillar | related | ảnh |
 |---|---|---|---|---|
+| `chup-silhouette-tren-sony` | Đo sáng điểm, bù sáng âm, WB cho silhouette | `silhouette` | `do-sang`, `bu-sang`, `can-bang-trang-va-nhiet-do-mau` | "silhouette sunset photography" |
 | `panning-tren-sony` | Chế độ S, tốc độ, SteadyShot, AF-C cho panning | `panning` | `toc-do-man-trap`, `lay-net`, `8-bai-thuc-hanh` | "panning photography motorcycle" |
-| `xoa-phong-voi-ong-kit` | Ba cách xóa phông không mua ống mới | `do-sau-truong-anh-va-xoa-phong` | `khau-do`, `lay-net`, `chu-the-chinh` | "shallow depth of field bokeh portrait" |
-| `loc-anh-sau-buoi-chup` | Rating trên máy, lọc trong Lightroom, đặt tên thư mục | `dat-ten-va-loc-anh` | `raw-jpeg-va-heif`, `cai-dat-nhanh-truoc-buoi-chup`, `8-bai-thuc-hanh` | "photographer culling photos laptop" |
+| `phoi-sang-dai-tren-sony` | Phơi sáng dài: tripod, 30s/BULB, ISO thấp, SteadyShot (đọc trang) | `phoi-sang-dai` | `toc-do-man-trap`, `che-do-chup-p-a-s-m`, `8-bai-thuc-hanh` | "long exposure light trails city" |
+| `dong-bo-man-sau-voi-flash` | Flash Mode Rear Sync: khi nào và cài ở đâu | `dong-bo-man-sau` | `toc-do-man-trap`, `can-bang-trang-va-nhiet-do-mau`, `cai-dat-nhanh-truoc-buoi-chup` | "rear curtain sync flash motion" |
 
-Sony: `SteadyShot`/`SteadyShot Adjust.` (đọc trang thật; chế độ trên ống là công tắc OSS, trên thân là mục menu — viết đúng cái trang nói), `Rating`, `Shoot Mode` S.
+Sony: `SteadyShot`, `Flash Mode`, `Shoot Mode` S/M, `Bulb`. Chế độ trên ống là công tắc OSS, trên thân là mục menu — viết đúng cái trang nói.
 
 ### Task 12: Agent bài cũ — 3 bài live viết lại, 6 nháp pilot dọn
 
@@ -830,7 +856,7 @@ Nháp pilot (6 trang knowledge, giữ `kind`, `section`, `order`, id): thêm tro
 
 ```
 ## Đã viết
-<id> · article · <tiêu đề>                      (12 dòng + 3 bài live)
+<id> · article · <tiêu đề>                      (24 dòng + 3 bài live)
 ## Đã sửa từ tài liệu
 <tiêu đề đề xuất đổi vì nguồn Sony nói khác, nháp pilot đã thêm gì>
 ## Bỏ ra và lý do
@@ -855,14 +881,14 @@ Một dòng cuối: bài về dưới "Bản nháp"; chủ sở hữu xuất b�
 | Giờ | Việc | Ai |
 |---|---|---|
 | 22:00 | Task 1–6 | 1 developer (worktree) |
-| 00:00 | Task 8–11 song song, Task 12 song song | 4 writer + 1 bài cũ (worktree mỗi agent) |
+| 00:00 | Task 8–11c song song, Task 12 song song | 6 writer + 1 bài cũ (worktree mỗi agent) |
 | 04:00 | Task 13 | orchestrator |
 | 05:30 | Task 14 | orchestrator |
 
 Khởi động (một phiên Claude Code tại repo, nhánh `main` đã `git pull`):
 
 ```
-Thực hiện docs/superpowers/plans/2026-11-05-night-build-blog-knowledge-tree.md bằng superpowers:subagent-driven-development. Phase A một agent developer. Phase B năm agent song song, mỗi agent isolation worktree, mỗi agent đọc .claude/skills/colorlab-blog-content/SKILL.md và Task 7 trước khi viết. Không chạy push:*, không đụng .env.local. Kết thúc bằng PR và báo cáo tiếng Việt.
+Thực hiện docs/superpowers/plans/2026-11-05-night-build-blog-knowledge-tree.md bằng superpowers:subagent-driven-development. Phase A một agent developer. Phase B bảy agent song song, mỗi agent isolation worktree, mỗi agent đọc .claude/skills/colorlab-blog-content/SKILL.md và Task 7 trước khi viết. Không chạy push:*, không đụng .env.local. Kết thúc bằng PR và báo cáo tiếng Việt.
 ```
 
 ## Bỏ qua có chủ ý
@@ -871,3 +897,13 @@ Thực hiện docs/superpowers/plans/2026-11-05-night-build-blog-knowledge-tree.
 - 3 nháp thử nghiệm (`thu-nghiem-*`, `so-sanh-hai-cau-hinh-cung-canh`) cần ảnh chủ sở hữu tự chụp.
 - Không viết note mới vào vault Obsidian; 5 lỗ hổng cho người mới (tiêu cự/ống kính, histogram, chống rung, drive mode, flash cơ bản) ghi ở báo cáo cho đêm sau.
 - `.md` twin và JSON-LD (PR #31 chưa merge) — ghi chú trong PR.
+
+## Phase D — Layout blog (sau Phase C, PR riêng `claude/blog-layout`)
+
+Chủ sở hữu yêu cầu 2026-11-05: "design layout blogs và all blogs đẹp và logic".
+Thực hiện bằng skill `impeccable` (audit → hướng → build → `impeccable-finish-reviewer`),
+trong sáu quy tắc của `CLAUDE.md`/`DESIGN.md` và `.theme-paper` của `/blog`.
+Phạm vi: trang `/blog` (index: thẻ bài, nhóm theo thư mục kiến thức/level, bài ghim),
+trang `/blog/[id]` (ảnh dẫn, rail mục lục, "đọc tiếp", nguồn), và `/learn` hub nếu
+audit thấy cần. Gate: `npm run test:screens`, `floor.baseline.json` chỉ giảm,
+nhãn `visual-ok` cho diff có chủ ý. Chi tiết do skill `impeccable` sinh ra khi chạy.
