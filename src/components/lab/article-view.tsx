@@ -4,9 +4,11 @@ import { RelatedLinks, refsUnavailable } from '@/components/content/related-link
 import { SourceList, formatIsoDay } from '@/components/content/source-list'
 import { resolvePrerequisites, resolveRefs } from '@/lib/content/relations'
 import { loadUniverse } from '@/lib/content/universe'
+import { listNotes } from '@/lib/alphaskill/knowledge'
 import { buildOutline } from '@/lib/lab/outline'
 import { ARTICLE_LANG } from '@/lib/lab/articles'
 import { checklistOrdinals } from '@/lib/lab/storage'
+import { wikiHrefs } from '@/lib/lab/wiki'
 import type { Article, Block } from '@/lib/lab/types'
 import type { Locale } from '@/lib/recipes/source'
 import {
@@ -47,6 +49,7 @@ function renderBlock(
   articleId: string,
   labels: BlockLabels,
   checklistOrdinal: number,
+  hrefs?: Awaited<ReturnType<typeof wikiHrefs>>,
 ) {
   const menuLabels = labels.menu
   switch (block.t) {
@@ -55,13 +58,13 @@ function renderBlock(
     case 'h':
       return <Heading key={i} block={block} index={i} />
     case 'p':
-      return <Paragraph key={i} block={block} />
+      return <Paragraph key={i} block={block} hrefs={hrefs} />
     case 'menu':
       return <MenuPair key={i} block={block} labels={menuLabels} />
     case 'table':
       return <ComparisonTable key={i} block={block} />
     case 'callout':
-      return <Callout key={i} block={block} />
+      return <Callout key={i} block={block} hrefs={hrefs} />
     case 'compare':
       return <CompareSlider key={i} block={block} articleId={articleId} />
     case 'checklist':
@@ -112,6 +115,8 @@ export async function ArticleView({ article }: { article: Article }) {
   const labels = { menu: { old: t('menuOld'), new: t('menuNew') }, tldr: t('summary') }
   const outline = buildOutline(article.blocks)
   const ordinals = checklistOrdinals(article.blocks)
+  const notes = await listNotes().catch(() => [])
+  const hrefs = wikiHrefs(article.blocks, notes)
   const { universe, unavailable } = await loadUniverse(locale as Locale)
   const prerequisites = resolvePrerequisites(article.meta.prerequisites, universe)
   const related = resolveRefs(article.meta.related, universe)
@@ -221,7 +226,7 @@ export async function ArticleView({ article }: { article: Article }) {
           ) : null}
           <hr className="seam mt-8 mb-8" />
 
-          {article.blocks.map((block, i) => renderBlock(block, i, article.id, labels, ordinals[i]))}
+          {article.blocks.map((block, i) => renderBlock(block, i, article.id, labels, ordinals[i], hrefs))}
         </div>
 
         <footer className="mt-12 pt-8 flex flex-col gap-6">

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { isSonyHost, parseOembed, readUrls, sourceFromHtml, todayUtc } from './lib'
+import { isSonyHost, parseOembed, pickCommons, readUrls, sourceFromHtml, todayUtc } from './lib'
+import { PACK_LICENCES } from '../../src/lib/lab/packs/check'
 
 describe('readUrls', () => {
   it('takes one URL per line or space, skips blanks and comments, keeps order, drops repeats', () => {
@@ -62,5 +63,17 @@ describe('isSonyHost', () => {
 describe('todayUtc', () => {
   it('is the UTC calendar day', () => {
     expect(todayUtc(new Date('2026-10-28T23:30:00-05:00'))).toBe('2026-10-29')
+  })
+})
+
+describe('pickCommons', () => {
+  it('pickCommons đọc extmetadata và đánh dấu giấy phép được phép', () => {
+    const json = { query: { pages: { 1: { title: 'File:A.jpg', imageinfo: [{ width: 2000, height: 1500, thumburl: 'https://t/a.jpg', descriptionurl: 'https://commons.wikimedia.org/wiki/File:A.jpg', extmetadata: { LicenseShortName: { value: 'CC BY-SA 4.0' }, Artist: { value: '<a href="x">Ng. A</a>' } } }] },
+      2: { title: 'File:B.jpg', imageinfo: [{ width: 800, height: 600, thumburl: 'https://t/b.jpg', descriptionurl: 'https://commons.wikimedia.org/wiki/File:B.jpg', extmetadata: { LicenseShortName: { value: 'Fair use' }, Artist: { value: 'B' } } }] } } } }
+    const hits = pickCommons(json, PACK_LICENCES)
+    expect(hits).toEqual([
+      { file: 'File:A.jpg', width: 2000, height: 1500, thumb: 'https://t/a.jpg', page: 'https://commons.wikimedia.org/wiki/File:A.jpg', licence: 'CC BY-SA 4.0', artist: 'Ng. A', allowed: true },
+      { file: 'File:B.jpg', width: 800, height: 600, thumb: 'https://t/b.jpg', page: 'https://commons.wikimedia.org/wiki/File:B.jpg', licence: 'Fair use', artist: 'B', allowed: false },
+    ])
   })
 })
