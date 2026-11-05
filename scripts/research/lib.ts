@@ -20,7 +20,7 @@ export function parseOembed(id: string, json: unknown) {
 
 const decode = (s: string) =>
   s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-const text = (s: string) => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim()
+export const text = (s: string) => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim()
 
 /**
  * A dated source from a Sony page: the Help Guide's topic heading
@@ -46,4 +46,23 @@ export function isSonyHost(url: string): boolean {
 /** `YYYY-MM-DD` in UTC — what `checkedAt` stores. */
 export function todayUtc(now: Date = new Date()): string {
   return now.toISOString().slice(0, 10)
+}
+
+export type CommonsHit = { file: string; width: number; height: number; thumb: string; page: string; licence: string; artist: string; allowed: boolean }
+
+export function pickCommons(json: unknown, allowed: readonly string[]): CommonsHit[] {
+  const pages = (json as { query?: { pages?: Record<string, unknown> } })?.query?.pages ?? {}
+  const out: CommonsHit[] = []
+  for (const p of Object.values(pages) as Array<{ title: string; imageinfo?: Array<Record<string, unknown>> }>) {
+    const ii = p.imageinfo?.[0]
+    if (!ii) continue
+    const meta = (ii.extmetadata ?? {}) as Record<string, { value?: string }>
+    const licence = text(meta.LicenseShortName?.value ?? '')
+    out.push({
+      file: p.title, width: Number(ii.width), height: Number(ii.height),
+      thumb: String(ii.thumburl ?? ''), page: String(ii.descriptionurl ?? ''),
+      licence, artist: text(meta.Artist?.value ?? '').slice(0, 80), allowed: allowed.includes(licence),
+    })
+  }
+  return out
 }

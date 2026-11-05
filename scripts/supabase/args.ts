@@ -49,6 +49,11 @@ export type ParsedArgs = {
    * (`src/lib/lab/packs/`), as drafts. A slug, given at most once.
    */
   pack?: string;
+  /**
+   * `push:lab --replace <id>` rewrites a live page that nobody has edited.
+   * Can be given multiple times.
+   */
+  replace: string[];
 };
 
 export class ArgumentError extends Error {
@@ -95,6 +100,7 @@ export function parseArgs(argv: readonly string[]): ParsedArgs {
     rollback: false,
     overwrite: false,
     withPilotDrafts: false,
+    replace: [],
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -114,6 +120,16 @@ export function parseArgs(argv: readonly string[]): ParsedArgs {
       }
       if (parsed.pack !== undefined) throw new ArgumentError(`--pack is given twice, as ${parsed.pack} and ${value}.`);
       parsed.pack = value;
+      continue;
+    }
+
+    if (flag === '--replace') {
+      const value = argv[i + 1];
+      i += 1;
+      if (!value) {
+        throw new ArgumentError('--replace must be given an id.');
+      }
+      parsed.replace.push(value);
       continue;
     }
 
@@ -174,7 +190,7 @@ function refuseUnimplemented(
 ): void {
   for (let i = 0; i < argv.length; i += 1) {
     const flag = argv[i];
-    if (VALUE_FLAGS.has(flag) || flag === '--pack') i += 1;
+    if (VALUE_FLAGS.has(flag) || flag === '--pack' || flag === '--replace') i += 1;
     if (!required.includes(flag) && !allow.includes(flag)) {
       throw new ArgumentError(`${flag} is not supported by this script.`);
     }

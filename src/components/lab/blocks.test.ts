@@ -12,7 +12,7 @@ import type { Block } from '@/lib/lab/types';
  * a `.ts` the suite actually runs.
  */
 
-const { Callout, ComparisonTable, TldrCard } = await import('./blocks');
+const { Callout, ComparisonTable, TldrCard, Paragraph } = await import('./blocks');
 const { Checklist } = await import('./checklist');
 
 /** The class list on the first element that holds exactly `text`. */
@@ -118,6 +118,25 @@ describe('checklist ticks', () => {
     expect(view).toMatch(/checklistOrdinals\(article\.blocks\)/);
     expect(view).toMatch(/<Checklist key=\{i\} block=\{block\} articleId=\{articleId\} ordinal=\{/);
     expect(view).not.toMatch(/blockIndex/);
+  });
+});
+
+describe('wikilinks trong đoạn văn', () => {
+  it('đích có href thành link gạch chân, đích lạ thành chữ', () => {
+    const html = renderToStaticMarkup(
+      createElement(Paragraph, {
+        block: { t: 'p', text: 'Xem [[Tốc độ màn trập|tốc độ]] và [[Lạ]].' },
+        hrefs: { 'Tốc độ màn trập': '/learn/toc-do-man-trap' },
+      }),
+    );
+    expect(html).toContain('href="/learn/toc-do-man-trap"');
+    expect(html).toMatch(/<a [^>]*class="[^"]*underline[^"]*"[^>]*>tốc độ<\/a>/);
+    expect(html).toContain(' và Lạ.');
+    expect(html).not.toContain('[[');
+  });
+  it('không có hrefs thì chữ thuần', () => {
+    const html = renderToStaticMarkup(createElement(Paragraph, { block: { t: 'p', text: 'A [[B]] C' } }));
+    expect(html).toContain('A B C');
   });
 });
 

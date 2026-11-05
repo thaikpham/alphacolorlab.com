@@ -36,13 +36,15 @@ export function BlockPreview({
     case 'h':
       return block.text.trim() ? <Heading block={block} index={index} /> : empty
     case 'p':
-      return block.text.trim() ? <Paragraph block={block} /> : empty
+      /* Editor preview shows plain text — no server call for note resolution. */
+      return block.text.trim() ? <Paragraph block={block} hrefs={{}} /> : empty
     case 'menu':
       return <MenuPair block={block} labels={{ old: t('menuOld'), new: t('menuNew') }} />
     case 'table':
       return <ComparisonTable block={block} />
     case 'callout':
-      return block.text.trim() ? <Callout block={block} /> : empty
+      /* Editor preview shows plain text — no server call for note resolution. */
+      return block.text.trim() ? <Callout block={block} hrefs={{}} /> : empty
     case 'embed':
       return block.id ? <ArticleEmbed block={block} /> : empty
     case 'figure': {

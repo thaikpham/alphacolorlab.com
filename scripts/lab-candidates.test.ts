@@ -5,17 +5,17 @@ import { labCandidates } from './lib/lab-candidates'
 
 describe('labCandidates', () => {
   it('is exactly what push:lab inserted before packs existed', () => {
-    expect(labCandidates({ withPilotDrafts: false })).toEqual(ARTICLES.map((article) => ({ article, status: 'published' })))
+    expect(labCandidates({ withPilotDrafts: false })).toEqual(ARTICLES.map((article) => ({ article, status: 'published', images: [] })))
     expect(labCandidates({ withPilotDrafts: true })).toEqual([
-      ...ARTICLES.map((article) => ({ article, status: 'published' })),
-      ...PILOT_DRAFTS.map((article) => ({ article, status: 'draft' })),
+      ...ARTICLES.map((article) => ({ article, status: 'published', images: [] })),
+      ...PILOT_DRAFTS.map((article) => ({ article, status: 'draft', images: [] })),
     ])
   })
 
   it('adds a pack as drafts, never as published', () => {
     const page = { ...ARTICLES[0], id: 'probe-page' }
     const got = labCandidates({ withPilotDrafts: false, pack: 'probe' }, { probe: [page] })
-    expect(got.at(-1)).toEqual({ article: page, status: 'draft' })
+    expect(got.at(-1)).toEqual({ article: page, status: 'draft', images: [] })
   })
 
   it('refuses a pack that does not exist, naming the ones that do', () => {
