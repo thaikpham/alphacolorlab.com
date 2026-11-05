@@ -13,14 +13,14 @@ export const page: Article = {
     {
       t: 'tldr',
       items: [
-        'Đặt [[ISO]] AUTO 100–6400, rồi đặt ISO AUTO Min. SS là 1/125.',
+        'Đặt ISO AUTO 100–6400, rồi đặt ISO AUTO Min. SS là 1/125.',
         'Không có Min. SS, máy ưu tiên ISO thấp và hạ tốc xuống 1/30 — ảnh sạch nhiễu nhưng nhoè.',
         'Ảnh nhiễu còn cứu được ở hậu kỳ, ảnh nhoè thì không.',
       ],
     },
     {
       t: 'p',
-      text: 'Khi để [[ISO Auto]], máy phải chọn giữa hai cái xấu: nâng ISO cho nhiễu lên, hay hạ tốc [[màn trập]] cho ảnh có nguy cơ nhoè. Mặc định máy nghiêng về ISO thấp — nghe hợp lý, nhưng đó là lý do rất nhiều ảnh trong nhà của người mới bị nhoè ở ISO chỉ 400.',
+      text: 'Khi để ISO Auto, máy phải chọn giữa hai cái xấu: nâng ISO cho nhiễu lên, hay hạ tốc màn trập cho ảnh có nguy cơ nhoè. Mặc định máy nghiêng về ISO thấp — nghe hợp lý, nhưng đó là lý do rất nhiều ảnh trong nhà của người mới bị nhoè ở ISO chỉ 400.',
     },
     {
       t: 'menu',
