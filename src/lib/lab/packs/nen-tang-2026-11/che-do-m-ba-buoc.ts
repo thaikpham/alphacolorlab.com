@@ -24,7 +24,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Thanh đo sáng ở M: mũi ở 0 là máy tính toán "đúng", lệch + hay − là máy báo "sáng" hay "tối" hơn. Ảnh: Markus Spiske · CC BY-SA 2.0 · Wikimedia Commons',
+      caption: 'Sony Alpha 7R IV elevated front view of camera body. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
     },
     { t: 'h', text: 'Bước 1: Khẩu độ' },
     {
@@ -82,8 +82,8 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640841.html',
-        title: 'Sony Help Guide: Manual Exposure Mode (M)',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640136.html',
+        title: 'Sony Help Guide: Manual Exposure',
         checkedAt: '2026-11-05',
         scope: 'a7 IV, a6700',
       },
