@@ -44,13 +44,13 @@ export const page: Article = {
     },
     {
       t: 'table',
-      head: ['Tình huống đêm', 'Tốc độ tối thiểu (SteadyShot On)', 'Khẩu độ', 'ISO kỳ vọng'],
+      head: ['Tình huống đêm', 'Tốc độ + Khẩu (SteadyShot On)', 'ISO kỳ vọng'],
       caption: 'Quy tắc tính ISO cho đêm: tốc độ + khẩu cố định → máy chọn ISO để sáng.',
       rows: [
-        ['Phố có đèn đường', '1/60s (50mm)', 'f/2.8 (ống nhanh)', 'ISO 3.200–6.400'],
-        ['Phố có đèn đường', '1/60s (50mm)', 'f/5.6 (ống kit)', 'ISO 12.800–25.600'],
-        ['Quán cà phê chiều sáng', '1/30s (góc rộng)', 'f/1.8 (prime)', 'ISO 1.600–3.200'],
-        ['Rạp chiếu phim sân khấu', '1/30s (góc rộng)', 'f/2.8', 'ISO 6.400'],
+        ['Phố có đèn đường (ống nhanh)', '1/60s (50mm) + f/2.8', 'ISO 3.200–6.400'],
+        ['Phố có đèn đường (ống kit)', '1/60s (50mm) + f/5.6', 'ISO 12.800–25.600'],
+        ['Quán cà phê chiều sáng', '1/30s (góc rộng) + f/1.8', 'ISO 1.600–3.200'],
+        ['Rạp chiếu phim sân khấu', '1/30s (góc rộng) + f/2.8', 'ISO 6.400'],
       ],
     },
     { t: 'h', text: 'Creative Look: chọn Neutral để tránh thêm vấn đề' },

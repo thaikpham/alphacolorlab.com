@@ -16,7 +16,7 @@ export const page: Article = {
       items: [
         '**Multi**: máy nhìn toàn khung, ưu tiên vùng lấy nét, thích hợp chụp thường ngày 80% trường hợp.',
         '**Center**: đo vùng giữa khung, bỏ qua viền → hữu ích khi chủ thể giữa khung và nền sáng/tối lệch nhiều.',
-        '**Spot**: đo một điểm nhỏ → dùng khi chủ thể nhỏ hay áp sát viền, hoặc chụp [[Silhouette]].',
+        '**Spot**: đo một điểm nhỏ → dùng khi chủ thể nhỏ hay áp sát viền, hoặc chụp ngược sáng.',
       ],
     },
     {
