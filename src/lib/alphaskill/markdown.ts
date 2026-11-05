@@ -68,10 +68,12 @@ function parseInline(text: string): Inline[] {
       result.push({ t: 'text', text: text.slice(pos) })
       break
     }
-    if (nextSpecial > 0) {
-      result.push({ t: 'text', text: text.slice(pos, pos + nextSpecial) })
-    }
-    pos += nextSpecial
+    /* A `[` or `*` that opened nothing (a `- [ ]` task box, a lone
+       asterisk) is literal text; without the one-char step the loop never
+       advanced, and the build hung on the first note with a checklist. */
+    const step = nextSpecial === 0 ? 1 : nextSpecial
+    result.push({ t: 'text', text: text.slice(pos, pos + step) })
+    pos += step
   }
 
   return result.length === 0 ? [{ t: 'text', text: '' }] : result

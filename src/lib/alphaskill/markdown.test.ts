@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
 import { parseMarkdown } from './markdown'
 
 describe('parseMarkdown', () => {
@@ -130,5 +131,21 @@ describe('parseMarkdown', () => {
       }
     }
     walkBlocks(blocks)
+  })
+
+  it('treats a task box or a lone asterisk as text and keeps advancing', () => {
+    /* `- [ ]` once looped forever: `[` opened nothing, the cursor stayed. */
+    const [ul] = parseMarkdown('- [ ] **Số f:** sửa chiều\n- [x] xong * rồi')
+    expect(ul.t).toBe('ul')
+    if (ul.t !== 'ul') return
+    const strongAt = ul.items[0].findIndex((n) => n.t === 'strong')
+    expect(ul.items[0].slice(0, strongAt).map((n) => ('text' in n ? n.text : '')).join('')).toBe('[ ] ')
+    expect(ul.items[0][strongAt]).toEqual({ t: 'strong', text: 'Số f:' })
+    expect(ul.items[1].map((n) => ('text' in n ? n.text : '')).join('')).toBe('[x] xong * rồi')
+  })
+
+  it('parses every note in the snapshot', () => {
+    const notes = JSON.parse(readFileSync('data/alphaskill-knowledge.seed.json', 'utf8')) as { slug: string; body: string }[]
+    for (const n of notes) expect(parseMarkdown(n.body).length, n.slug).toBeGreaterThan(0)
   })
 })
