@@ -24,7 +24,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Xoay bánh ISO trên a7 IV: 3 nấc nhỏ = 1 stop = gấp đôi ISO = +1 EV. Ảnh: Markus Spiske · CC BY-SA 2.0 · Wikimedia Commons',
+      caption: 'Camera on stack of books. Ảnh: Markus Spiske markusspiske · CC0 · Wikimedia Commons',
     },
     { t: 'h', text: 'Sony dùng 1/3 stop làm bước nhỏ nhất' },
     {
@@ -43,13 +43,13 @@ export const page: Article = {
     },
     {
       t: 'table',
-      head: ['Xoay bánh', 'Stop', 'EV', 'Ánh sáng'],
+      head: ['Xoay bánh', 'Stop', 'EV'],
       caption: 'Từng nấc bánh = 1/3 stop = 1/3 EV = gấp ~1.26 lần.',
       rows: [
-        ['0 nấc', '0 stop', '0 EV', 'Điểm xuất phát'],
-        ['3 nấc', '1 stop', '1 EV', 'Gấp đôi'],
-        ['6 nấc', '2 stop', '2 EV', 'Gấp 4 lần'],
-        ['−3 nấc', '−1 stop', '−1 EV', 'Giảm một nửa'],
+        ['0 nấc', '0 stop', '0 EV'],
+        ['3 nấc', '1 stop', '1 EV'],
+        ['6 nấc', '2 stop', '2 EV'],
+        ['−3 nấc', '−1 stop', '−1 EV'],
       ],
     },
     {
@@ -82,7 +82,7 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640770.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000616634.html',
         title: 'Sony Help Guide: Exposure Step',
         checkedAt: '2026-11-05',
         scope: 'a7 IV, a6700',
