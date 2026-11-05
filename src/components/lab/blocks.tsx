@@ -1,6 +1,8 @@
 import Image from 'next/image'
+import { splitWiki } from '@/lib/alphaskill/markdown'
 import { assetUrl } from '@/lib/lab/media'
 import { headingId } from '@/lib/lab/outline'
+import type { WikiHrefs } from '@/lib/lab/wiki'
 import type {
   CalloutBlock,
   EmbedBlock,
@@ -29,6 +31,24 @@ import type {
 
 /** Every block sits in the same 28px rhythm. One place to change it. */
 export const BLOCK_GAP = 'mb-7'
+
+/* Cùng lớp link với note-view (`src/components/alphaskill/note-view.tsx:230`):
+   gạch chân là gate axe link-in-text-block. */
+const WIKI_LINK = 'text-accent-400 underline decoration-1 underline-offset-4 transition-colors hover:text-accent-500'
+
+function Prose({ text, hrefs = {} }: { text: string; hrefs?: WikiHrefs }) {
+  return splitWiki(text).map((s, i) =>
+    s.t === 'wiki' && hrefs[s.title] ? (
+      <a key={i} href={hrefs[s.title]} className={WIKI_LINK}>
+        {s.display}
+      </a>
+    ) : s.t === 'wiki' ? (
+      s.display
+    ) : (
+      s.text
+    ),
+  )
+}
 
 /**
  * The article's abstract. The label arrives translated from the server parent,
@@ -71,13 +91,13 @@ export function Heading({ block, index }: { block: HeadingBlock; index: number }
   )
 }
 
-export function Paragraph({ block }: { block: ParagraphBlock }) {
+export function Paragraph({ block, hrefs }: { block: ParagraphBlock; hrefs?: WikiHrefs }) {
   return (
     /* 18px at 1.75 on paper. Long-form Vietnamese carries a diacritic above
        or below most syllables, and at the 15px catalogue default a paragraph
        of it set close became a texture rather than lines. */
     <p className={`${BLOCK_GAP} text-body-lg leading-[1.75] text-ink [text-wrap:pretty]`}>
-      {block.text}
+      <Prose text={block.text} hrefs={hrefs} />
     </p>
   )
 }
@@ -172,11 +192,13 @@ export function ComparisonTable({ block }: { block: TableBlock }) {
  * An exception or a boundary condition. Its label is the condition itself —
  * a sentence, so not `.label`, whose uppercase is capped at three words.
  */
-export function Callout({ block }: { block: CalloutBlock }) {
+export function Callout({ block, hrefs }: { block: CalloutBlock; hrefs?: WikiHrefs }) {
   return (
     <aside className={`${BLOCK_GAP} surface-raised px-[22px] py-5`}>
       <p className="text-body-sm font-semibold text-accent-400">{block.label}</p>
-      <p className="mt-1.5 text-body text-ink [text-wrap:pretty]">{block.text}</p>
+      <p className="mt-1.5 text-body text-ink [text-wrap:pretty]">
+        <Prose text={block.text} hrefs={hrefs} />
+      </p>
     </aside>
   )
 }
