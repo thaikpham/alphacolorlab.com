@@ -84,7 +84,7 @@ export async function NoteView({
           <li>
             <Link
               href="/learn"
-              className="inline-flex min-h-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
+              className="inline-flex min-h-[var(--layout-touch-target)] min-w-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
             >
               {tl('title')}
             </Link>
@@ -96,7 +96,7 @@ export async function NoteView({
               </span>
               <Link
                 href={`/learn#note-${slugify(note.section)}`}
-                className="inline-flex min-h-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
+                className="inline-flex min-h-[var(--layout-touch-target)] min-w-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
               >
                 {note.section}
               </Link>
@@ -214,7 +214,7 @@ function renderInline(inline: Inline, key: React.Key, notes: readonly AlphaNote[
         key={key}
         href={inline.href}
         rel="noopener"
-        className="text-accent-400 transition-colors hover:text-accent-500"
+        className="text-accent-400 underline decoration-1 underline-offset-4 transition-colors hover:text-accent-500"
       >
         {inline.text}
       </a>
@@ -227,7 +227,7 @@ function renderInline(inline: Inline, key: React.Key, notes: readonly AlphaNote[
         <Link
           key={key}
           href={noteHref(linked.slug)}
-          className="text-accent-400 transition-colors hover:text-accent-500"
+          className="text-accent-400 underline decoration-1 underline-offset-4 transition-colors hover:text-accent-500"
         >
           {inline.display}
         </Link>
