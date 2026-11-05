@@ -20,7 +20,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tấm đầu: mặt đẹp, background cháy trắng. Kéo [[sáng]] xuống chụp lại thì tấm sau background đúng ý, mặt tối thui. Vấn đề không nằm ở đèn. Một tấm ảnh có flash là hai lớp sáng chồng lên nhau, và máy Sony cho bạn một thanh [[bù sáng]] riêng cho từng lớp — đa số người dùng chỉ đụng tới một trong hai.',
+      text: 'Tấm đầu: mặt đẹp, background cháy trắng. Kéo sáng xuống chụp lại thì tấm sau background đúng ý, mặt tối thui. Vấn đề không nằm ở đèn. Một tấm ảnh có flash là hai lớp sáng chồng lên nhau, và máy Sony cho bạn một thanh bù sáng riêng cho từng lớp — đa số người dùng chỉ đụng tới một trong hai.',
     },
     { t: 'h', text: 'Vì sao hai thanh tách được nhau' },
     {

@@ -20,7 +20,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Ở cách bấm mặc định, [[nửa cò]] làm hai việc cùng lúc: lấy nét và chờ chụp. Hệ quả là bạn luôn phải chọn giữa giữ nét và bấm chụp — và trong lúc do dự thì khoảnh khắc đã qua. Chuyển nét sang một nút riêng cho [[ngón tay cái]] là cách gỡ đúng cái xung đột đó.',
+      text: 'Ở cách bấm mặc định, nửa cò làm hai việc cùng lúc: lấy nét và chờ chụp. Hệ quả là bạn luôn phải chọn giữa giữ nét và bấm chụp — và trong lúc do dự thì khoảnh khắc đã qua. Chuyển nét sang một nút riêng cho ngón tay cái là cách gỡ đúng cái xung đột đó.',
     },
     { t: 'h', text: 'Ba thay đổi trong menu' },
     {
