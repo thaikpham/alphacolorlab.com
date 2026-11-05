@@ -21,7 +21,11 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bố cục là cách sắp xếp các yếu tố trong khung cố định. [[Bố cục]] nói rằng mắt người xem dừa lâu ở bốn giao điểm của lưới 1/3, chứ không phải ở giữa. Grid Line là công cụ máy ảnh giúp bạn thấy lưới đó ngay trong kính ngắm, thay vì phải tưởng tượng.',
+      text: 'Bố cục là cách sắp xếp các yếu tố trong khung cố định. Nguyên tắc bố cục nói rằng mắt người xem dừa lâu ở bốn giao điểm của lưới 1/3, chứ không phải ở giữa. Grid Line là công cụ máy ảnh giúp bạn thấy lưới đó ngay trong kính ngắm, thay vì phải tưởng tượng.',
+    },
+    {
+      t: 'figure',
+      caption: 'Lưới 1/3 giúp bạn nhìn thấy bốn giao điểm—những nơi mắt người xem dừa lâu. Ảnh: Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',
