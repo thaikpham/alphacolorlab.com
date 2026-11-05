@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Silhouette là đo sáng theo nền trời sáng để chủ thể thành một khối đen tuyền; ảnh sống nhờ hình dáng, không nhờ chi tiết. Đây là một trong những cách nhanh nhất để tạo ảnh có ảnh hưởng mà người mới cầm máy có thể học trong một buổi chiều.',
+      text: '[[Silhouette]] là [[đo sáng]] theo nền trời sáng để chủ thể thành một khối đen tuyền; ảnh sống nhờ hình dáng, không nhờ chi tiết. [[Bù sáng]] âm là khoá để đạt hiệu ứng này. Đây là một trong những cách nhanh nhất để tạo ảnh có ảnh hưởng mà người mới cầm máy có thể học trong một buổi chiều.',
     },
     {
       t: 'figure',
@@ -112,6 +112,7 @@ export const page: Article = {
       },
     ],
     related: [
+      { kind: 'knowledge', id: 'silhouette' },
       { kind: 'knowledge', id: 'do-sang' },
       { kind: 'knowledge', id: 'bu-sang' },
       { kind: 'knowledge', id: 'can-bang-trang-va-nhiet-do-mau' },

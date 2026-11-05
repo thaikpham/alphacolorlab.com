@@ -8,7 +8,7 @@ export const page: Article = {
   archetype: 'technique',
   read: '6 phút đọc',
   title: 'Đồng bộ màn sau với flash: khi nào, cài ở đâu',
-  dek: 'Đồng bộ màn sau là cho đèn flash nổ ở cuối lúc phơi sáng. Vệt sáng nằm phía sau chủ thể, đúng chiều di chuyển.',
+  dek: '[[Đồng bộ màn sau]] là cho đèn flash nổ ở cuối lúc phơi sáng. Vệt sáng nằm phía sau chủ thể, đúng chiều di chuyển.',
 
   blocks: [
     {
@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Đồng bộ màn sau là cho đèn flash nổ ở cuối thời gian phơi sáng thay vì đầu: vệt sáng chuyển động nằm phía sau chủ thể, đúng chiều chuyển động. Mặc định (đồng bộ màn trước), flash nổ ngay đầu nên vệt mờ nằm phía trước, trông như đang đi lùi.',
+      text: '[[Đồng bộ màn sau]] là cho đèn flash nổ ở cuối thời gian phơi sáng thay vì đầu: vệt sáng chuyển động nằm phía sau chủ thể, đúng chiều chuyển động. Mặc định (đồng bộ màn trước), flash nổ ngay đầu nên vệt mờ nằm phía trước, trông như đang đi lùi.',
     },
     {
       t: 'figure',
@@ -111,6 +111,7 @@ export const page: Article = {
       },
     ],
     related: [
+      { kind: 'knowledge', id: 'dong-bo-man-sau' },
       { kind: 'knowledge', id: 'toc-do-man-trap' },
       { kind: 'knowledge', id: 'can-bang-trang-va-nhiet-do-mau' },
       { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },

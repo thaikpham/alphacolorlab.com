@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Phơi sáng dài là mở màn trập nhiều giây để ghi chuyển động thành vệt mượt: nước như sương, mây kéo dài, đèn xe thành dải sáng, người qua lại biến mất. Kỹ thuật này yêu cầu chân máy vững chắc nhưng kết quả rất ấn tượng.',
+      text: '[[Phơi sáng dài]] là mở màn trập nhiều giây để ghi chuyển động thành vệt mượt: nước như sương, mây kéo dài, đèn xe thành dải sáng, người qua lại biến mất. Kỹ thuật này yêu cầu chân máy vững chắc nhưng kết quả rất ấn tượng.',
     },
     {
       t: 'figure',
@@ -97,6 +97,7 @@ export const page: Article = {
       },
     ],
     related: [
+      { kind: 'knowledge', id: 'phoi-sang-dai' },
       { kind: 'knowledge', id: 'toc-do-man-trap' },
       { kind: 'knowledge', id: 'che-do-chup-p-a-s-m' },
       { kind: 'knowledge', id: '8-bai-thuc-hanh' },
