@@ -70,6 +70,7 @@ describe('parseArgs', () => {
       overwrite: false,
       /* `push:lab` adds the pilot pages — as drafts — only when asked. */
       withPilotDrafts: false,
+      replace: [],
     });
   });
 
@@ -88,6 +89,11 @@ describe('parseArgs', () => {
     expect(() => parseArgs(['--pack', 'Not A Slug'])).toThrow(ArgumentError);
     expect(() => parseArgs(['--pack'])).toThrow(ArgumentError);
     expect(() => parseArgs(['--pack', 'a', '--pack', 'b'])).toThrow(ArgumentError);
+  });
+
+  it('reads --replace as an id, can be repeated', () => {
+    expect(parseArgs(['--target', 'content', '--replace', 'a', '--replace', 'b']).replace).toEqual(['a', 'b']);
+    expect(() => parseArgs(['--replace'])).toThrow(ArgumentError);
   });
 
   it('rejects --dry-run with --apply', () => {
@@ -147,6 +153,14 @@ describe('requireTarget', () => {
     const { args } = requireTarget(['--target', 'content', '--pack', 'iso-co-ban', '--dry-run'], ['--pack', '--dry-run']);
     expect(args.pack).toBe('iso-co-ban');
     expect(() => requireTarget(['--target', 'content', '--pack', 'iso-co-ban'])).toThrow(/--pack/);
+  });
+
+  /* `--replace` takes values (can repeat), so its values must not be read as flags the
+     script does not implement. */
+  it('passes --replace and its values to a script that implements it', () => {
+    const { args } = requireTarget(['--target', 'content', '--replace', 'a', '--replace', 'b'], ['--replace']);
+    expect(args.replace).toEqual(['a', 'b']);
+    expect(() => requireTarget(['--target', 'content', '--replace', 'a'])).toThrow(/--replace/);
   });
 });
 
