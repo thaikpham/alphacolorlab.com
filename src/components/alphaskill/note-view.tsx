@@ -28,7 +28,14 @@ export async function NoteView({
     getTranslations('learn'),
   ])
 
-  const blocks = parseMarkdown(note.body)
+  /* The vault opens every note with its summary in bold, and the page already
+     prints the summary as the dek: drop the opening paragraph when it is that
+     sentence, so the reader does not meet it twice in a row. */
+  const parsed = parseMarkdown(note.body)
+  const opening = parsed[0]
+  const openingText =
+    opening?.t === 'p' ? opening.inline.map((n) => ('text' in n ? n.text : n.display)).join('') : ''
+  const blocks = openingText.trim() === note.summary.trim() ? parsed.slice(1) : parsed
 
   // Build related links: (1) forward links, (2) backlinks, deduped by slug
   const relatedSlugs = new Set<string>()
