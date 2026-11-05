@@ -25,16 +25,17 @@ describe('the reference shelf', () => {
     expect(read(path)).toMatch(/themeColor: '#F9F8F5'/);
   });
 
-  it('serves knowledge pages only, from the published read', () => {
+  it('serves knowledge pages first, then notes, 404ing only when both are empty', () => {
     const src = read(LEARN_PAGE);
     expect(src).toContain('getPublishedKnowledgePage(id)');
-    expect(src).toMatch(/if \(!page\) notFound\(\)/);
+    expect(src).toContain('getNote(id)');
     expect(src).not.toMatch(/\bARTICLES\b|getPublishedArticle/);
   });
 
-  it('lists only knowledge pages on the index', () => {
+  it('lists only knowledge pages and notes on the index', () => {
     const src = read(LEARN_INDEX);
     expect(src).toContain('getPublishedKnowledge()');
+    expect(src).toContain('listNotes()');
     expect(src).not.toMatch(/getPublishedArticles|getPublishedEntries/);
   });
 

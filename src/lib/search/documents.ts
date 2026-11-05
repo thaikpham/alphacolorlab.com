@@ -279,3 +279,40 @@ export function snippetFor(doc: SearchDoc): string | undefined {
   if (doc.snippetText !== undefined) return snippetOf(doc.snippetText)
   return doc.kind === 'recipe' || doc.kind === 'knowledge' ? snippetOf(doc.summary) : snippetOf(doc.summary || doc.body)
 }
+
+/* --------------------------------------------------------------------- */
+/* Alphaskill notes                                                       */
+/* --------------------------------------------------------------------- */
+
+export type NoteForSearch = {
+  readonly slug: string
+  readonly title: string
+  readonly summary: string
+  readonly section: string
+  readonly kind: 'knowledge' | 'lesson'
+  readonly aliases: readonly string[]
+  readonly level?: string
+  readonly headings: readonly string[]
+  readonly body: string
+}
+
+export function noteDoc(n: NoteForSearch): SearchDoc {
+  const tags = [n.section, n.level ?? '', n.kind === 'lesson' ? 'giáo án' : ''].filter(Boolean)
+  
+  return {
+    kind: 'knowledge',
+    id: n.slug,
+    title: n.title,
+    url: `/learn/${n.slug}`,
+    contentLanguage: ARTICLE_LANG,
+    exact: [squash(n.title), ...n.aliases.map(squash)],
+    aliases: [],
+    titleText: n.title,
+    summary: n.summary,
+    tags,
+    headings: n.headings,
+    body: n.body,
+    boost: 1,
+    display: { subtitle: n.section ? snippetOf(n.section) : undefined },
+  }
+}

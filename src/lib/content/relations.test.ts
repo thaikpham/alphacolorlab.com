@@ -5,6 +5,7 @@ import {
   buildUniverse,
   entriesReferencing,
   knowledgeExplaining,
+  noteTarget,
   resolvePrerequisites,
   resolveRefs,
   unknownRefs,
@@ -156,5 +157,42 @@ describe('unknownRefs', () => {
       { kind: 'article', id: 'draft-page' },
       { kind: 'article', id: 'missing' },
     ])
+  })
+})
+
+describe('noteTarget', () => {
+  it('creates a link target for alphaskill notes', () => {
+    const link = noteTarget({ slug: 'can-bang-trang-va-nhiet-do-mau', title: 'Cân bằng trắng và nhiệt độ màu', section: 'Khái niệm cơ bản' })
+    expect(link).toEqual({
+      kind: 'knowledge',
+      id: 'can-bang-trang-va-nhiet-do-mau',
+      title: 'Cân bằng trắng và nhiệt độ màu',
+      href: '/learn/can-bang-trang-va-nhiet-do-mau',
+      subtitle: 'Khái niệm cơ bản',
+    })
+  })
+})
+
+describe('buildUniverse with notes', () => {
+  const notes = [
+    { slug: 'test-note', title: 'Test Note', section: 'Test Section' },
+  ]
+
+  it('registers notes as knowledge targets', () => {
+    const universe = buildUniverse({ entries: [], recipes: [], products: [], notes })
+    const target = universe.get({ kind: 'knowledge', id: 'test-note' })
+    expect(target).toBeDefined()
+    expect(target?.title).toBe('Test Note')
+    expect(target?.href).toBe('/learn/test-note')
+    expect(target?.subtitle).toBe('Test Section')
+  })
+
+  it('allows authored pages to overwrite notes with matching ids', () => {
+    const authored = page('test-note', 'knowledge', {})
+    const universe = buildUniverse({ entries: [authored], recipes: [], products: [], notes })
+    const target = universe.get({ kind: 'knowledge', id: 'test-note' })
+    expect(target?.title).toBe('Title test-note')
+    expect(target?.href).toBe('/learn/test-note')
+    expect(target?.subtitle).toBeUndefined()
   })
 })

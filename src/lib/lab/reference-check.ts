@@ -3,6 +3,7 @@ import { getSonyAudio } from '@/lib/audio/data'
 import { getSonyCameras } from '@/lib/cameras/data'
 import { unknownRefs } from '@/lib/content/relations'
 import { listRecipeRecords } from '@/lib/recipes/admin-store'
+import { listNotes } from '@/lib/alphaskill/knowledge'
 import { listArticleRecords } from './admin-store'
 import type { ArticleMeta, ContentRef } from './types'
 
@@ -28,17 +29,23 @@ export async function findUnknownReferences(
     const needsRecipes = meta.related.some((r) => r.kind === 'recipe')
     const needsProducts = meta.related.some((r) => r.kind === 'product')
 
-    const [recipes, cameras, audio, pages] = await Promise.all([
+    const [recipes, cameras, audio, pages, notes] = await Promise.all([
       needsRecipes ? listRecipeRecords() : Promise.resolve([]),
       needsProducts ? getSonyCameras() : Promise.resolve([]),
       needsProducts ? getSonyAudio() : Promise.resolve([]),
       listArticleRecords(),
+      listNotes().catch(() => []),
     ])
+
+    const pageIds = new Map(pages.map((p) => [p.id, p.kind]))
+    for (const n of notes) {
+      pageIds.set(n.slug, 'knowledge')
+    }
 
     return unknownRefs(meta, {
       recipes: new Set(recipes.map((r) => r.recipe.id)),
       products: new Set([...cameras, ...audio].map((p) => p.id)),
-      pages: new Map(pages.map((p) => [p.id, p.kind])),
+      pages: pageIds,
     })
   } catch (err) {
     console.error('[lab] reference check failed:', err instanceof Error ? err.message : err)

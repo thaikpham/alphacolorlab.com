@@ -74,3 +74,6 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /e2e/**/*-snapshots/
+
+# arena tournament runs (local only)
+.arena/

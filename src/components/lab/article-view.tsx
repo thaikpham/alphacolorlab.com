@@ -138,7 +138,7 @@ export async function ArticleView({ article }: { article: Article }) {
               <li>
                 <Link
                   href="/learn"
-                  className="inline-flex min-h-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
+                  className="inline-flex min-h-[var(--layout-touch-target)] min-w-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
                 >
                   {tl('title')}
                 </Link>
@@ -148,7 +148,7 @@ export async function ArticleView({ article }: { article: Article }) {
                   <span aria-hidden className="text-ink-faint">›</span>
                   <Link
                     href={`/learn#${section}`}
-                    className="inline-flex min-h-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
+                    className="inline-flex min-h-[var(--layout-touch-target)] min-w-[var(--layout-touch-target)] items-center transition-colors hover:text-accent-400"
                   >
                     {tl(`sections.${section}`)}
                   </Link>

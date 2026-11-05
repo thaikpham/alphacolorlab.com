@@ -20,9 +20,11 @@ import { taxonomyFor } from '@/lib/recipes/taxonomy-assign'
 import {
   articleDoc,
   glossaryDocs,
+  noteDoc,
   productDoc,
   recipeDoc,
   type SearchDoc,
+  type NoteForSearch,
 } from '../documents'
 
 const json = <T>(file: string): T =>
@@ -52,6 +54,7 @@ export function seedCorpus(
     ...json<SonyCamera[]>('sony-cameras.seed.json'),
     ...json<SonyCamera[]>('sony-audio.seed.json'),
   ]
+  const notes = json<NoteForSearch[]>('alphaskill-knowledge.seed.json')
 
   return [
     ...recipes
@@ -67,6 +70,7 @@ export function seedCorpus(
       ),
     ...products.map((p) => productDoc(p, locale, t)),
     ...[...ARTICLES, ...extraPages].map(articleDoc),
+    ...notes.map(noteDoc),
     ...glossaryDocs(locale),
   ]
 }
