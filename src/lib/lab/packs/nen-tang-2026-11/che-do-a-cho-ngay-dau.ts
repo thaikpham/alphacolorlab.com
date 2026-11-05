@@ -79,8 +79,8 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640839.html',
-        title: 'Sony Help Guide: Shoot Mode',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640137.html',
+        title: 'Sony Help Guide: Aperture Priority',
         checkedAt: '2026-11-05',
         scope: 'a7 IV, a6700',
       },
