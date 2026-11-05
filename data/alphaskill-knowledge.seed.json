@@ -109,177 +109,6 @@
     ]
   },
   {
-    "slug": "8-bai-thuc-hanh",
-    "path": "2 Giáo án/8 bài thực hành.md",
-    "title": "8 bài thực hành",
-    "summary": "Tám bài tập rèn tư duy hình ảnh về ánh sáng, bố cục và màu cho người mới; năm bài đầu thuộc nhóm \"Light Composer\", sáng tạo với ánh sáng.",
-    "section": "Giáo án",
-    "kind": "lesson",
-    "aliases": [
-      "bài tập nhiếp ảnh",
-      "Light Composer",
-      "thực hành",
-      "workshop"
-    ],
-    "level": "cơ bản",
-    "headings": [
-      "Tổ chức buổi thực hành"
-    ],
-    "body": "**Tám bài tập rèn tư duy hình ảnh về ánh sáng, bố cục và màu cho người mới; năm bài đầu thuộc nhóm \"Light Composer\", sáng tạo với ánh sáng.**\n\n| # | Bài | Mục tiêu | Thiết lập chính | Note |\n|---|---|---|---|---|\n| 1 | Panning | Cảm giác tốc độ | S, 1/30–1/125s, AF-C Vùng, chụp liên tục | [[Panning]] |\n| 2 | Khung trong khung | Dẫn mắt, chiều sâu | A, F5.6–F8, AF-S Điểm, đường lưới | [[Khung trong khung]] |\n| 3 | Phơi sáng dài | Ghi chuyển động thành vệt | M, ISO 100, F8–F11, 5s–BULB, chân máy, ND | [[Phơi sáng dài]] |\n| 4 | Silhouette | Kể bằng hình dáng | M hoặc A −1.5 đến −2.5 EV, đo sáng Điểm | [[Silhouette]] |\n| 5 | Chồng ảnh | Ghép ý nghĩa hai lớp | M, RAW, −1 EV mỗi khung, ghép Screen/Multiply | [[Chồng ảnh]] |\n| 6 | Đồng bộ màn sau | Vệt sáng đúng chiều | M/S, 1/15–1/4s, flash Đồng bộ sau, bù flash −1 | [[Đồng bộ màn sau]] |\n| 7 | Săn màu + phối màu | Quan sát màu | Creative Look, cân bằng trắng | [[Săn màu, phối màu và lớp cảnh]] |\n| 8 | Lớp cảnh | Tiền–trung–hậu cảnh | A, F5.6–F11 hoặc khẩu lớn cho tiền cảnh mờ | [[Săn màu, phối màu và lớp cảnh]] |\n\n## Tổ chức buổi thực hành\n- Chia nhóm 3–4 người, mỗi nhóm 2–3 bài phù hợp địa điểm và giờ (phơi sáng dài, đồng bộ màn sau cần trời tối; silhouette cần ngược sáng mạnh).\n- Mỗi bài: trainer demo 1 tấm → học viên chụp 15–20 phút → chọn 1 tấm, chấm theo **tiêu chí đạt** trong từng note.\n- Nhắc: Panning tỷ lệ đạt chỉ khoảng 1–2/10. Chụp nhiều là một phần của bài.",
-    "links": [
-      "Panning",
-      "Khung trong khung",
-      "Phơi sáng dài",
-      "Silhouette",
-      "Chồng ảnh",
-      "Đồng bộ màn sau",
-      "Săn màu, phối màu và lớp cảnh",
-      "Khóa Essential Photography",
-      "Cài đặt nhanh trước buổi chụp"
-    ]
-  },
-  {
-    "slug": "cai-dat-nhanh-truoc-buoi-chup",
-    "path": "2 Giáo án/Cài đặt nhanh trước buổi chụp.md",
-    "title": "Cài đặt nhanh trước buổi chụp",
-    "summary": "Cấu hình khởi đầu cho người mới dùng Sony Alpha: chế độ A + ISO AUTO + AF-C bám chủ thể; đủ để chụp người, du lịch, sự kiện mà không phải nghĩ về menu.",
-    "section": "Giáo án",
-    "kind": "lesson",
-    "aliases": [
-      "10 cài đặt",
-      "tối ưu menu",
-      "setup",
-      "cấu hình khởi đầu",
-      "menu setup Sony",
-      "4 bước tối ưu menu"
-    ],
-    "level": "cơ bản",
-    "headings": [
-      "10 cài đặt cần kiểm tra",
-      "Tối ưu menu Sony Alpha, 4 bước",
-      "Ví dụ cấu hình trên slide",
-      "Giảng thế nào"
-    ],
-    "body": "**Cấu hình khởi đầu cho người mới dùng Sony Alpha: chế độ A + ISO AUTO + AF-C bám chủ thể; đủ để chụp người, du lịch, sự kiện mà không phải nghĩ về menu.**\n\n## 10 cài đặt cần kiểm tra\n1. Chế độ **A** (Ưu tiên khẩu độ): tự chọn độ xóa phông, chỉnh sáng bằng **bù sáng**.\n2. **ISO AUTO 100–6400**: máy tự cân bằng giữa độ sáng và nhiễu.\n3. **Tốc độ tối thiểu của ISO AUTO** (ISO AUTO Min. SS) **1/125s** (hoặc \"nhanh hơn\" một nấc): hạn chế nhòe khi chụp người.\n4. **AF-C** (lấy nét liên tục) cho chủ thể hoặc người chụp di chuyển.\n5. Vùng lấy nét **Theo dõi: Vùng** (Tracking: Zone): máy bám nét ổn định.\n6. Tùy chọn: gán **AF-ON** và tắt lấy nét theo nút chụp (AF w/ shutter: Off) → [[Lấy nét]].\n7. Đo sáng **Đa điểm** + **Ưu tiên mặt khi đo đa điểm: Bật** → [[Đo sáng]].\n8. Creative Look **ST** cho JPEG trung tính, hoặc **PT** khi chụp chân dung → [[Creative Look]].\n9. **Độ sáng màn hình: Sunny Weather** (trời nắng) để dễ nhìn ngoài trời.\n10. **Chất lượng hiển thị: Cao** (High) để xem chi tiết, kiểm tra nét.\n\n## Tối ưu menu Sony Alpha, 4 bước\n**Bước 1 — Phong cách chụp, chất lượng ảnh:** chế độ A, EV 0 · khẩu độ tự chọn · tốc độ Auto · ISO 100–6400, tốc độ tối thiểu 1/125s · ảnh JPEG 24M · Không gian màu sRGB.\n\n**Bước 2 — Đo sáng và màu:** ISO AUTO 100–6400, tốc độ tối thiểu \"nhanh hơn 1/125\" · Làm mịn da: Bật – Thấp · Creative Look PT (Contrast +1, Highlights −6, Shadows +3, Fade +1, Saturation 0, Sharpness 0, Sharpness Range 1, Clarity 0) · Cân bằng trắng AWB, chỉnh tinh A 3.5 / G 3 (xem [[Đính chính slide]]) · Đo sáng Đa điểm · Ưu tiên mặt khi đo đa điểm: Bật.\n\n**Bước 3 — Lấy nét chuyên nghiệp:** Vùng lấy nét Vùng (Theo dõi) · AF-C · Nhận dạng chủ thể: Bật – Người · Nút tùy chỉnh: gán AF-ON.\n\n**Bước 4 — Hiển thị:** Chất lượng hiển thị Cao · Độ sáng màn hình Sunny Weather.\n\n## Ví dụ cấu hình trên slide\n- Chân dung ngoài trời: Mode A · F3.5 · tốc độ Auto · ISO 100–6400 · tốc độ tối thiểu 1/125s.\n- Thêm flash: flash TTL, đồng bộ **REAR** (xem [[Đồng bộ màn sau]]), gán xem trước hiệu ứng phơi sáng vào một nút tùy chỉnh.\n\n## Giảng thế nào\n- Làm \"cầm tay chỉ việc\" trên máy của học viên, theo đúng thứ tự 4 bước; mỗi bước nói lý do một câu.\n- Tên mục và vị trí menu khác nhau giữa các model. Khi dạy máy để menu tiếng Việt, dùng tên trong ngoặc ở đây (theo bộ nhớ dịch ILDC); máy tiếng Anh thì dùng tên tiếng Anh.\n- Bài viết chi tiết: sonycolorlab.app/vi/blog/setup.",
-    "links": [
-      "Lấy nét",
-      "Đo sáng",
-      "Creative Look",
-      "Đính chính slide",
-      "Đồng bộ màn sau",
-      "Khóa Essential Photography",
-      "Chế độ chụp P-A-S-M",
-      "ISO"
-    ]
-  },
-  {
-    "slug": "dinh-chinh-slide",
-    "path": "2 Giáo án/Đính chính slide.md",
-    "title": "Đính chính slide",
-    "summary": "Danh sách điểm cần sửa hoặc nói rõ thêm khi dùng hai bộ slide; rà ngày 03/11/2026. Sửa slide xong thì đánh dấu [x].",
-    "section": "Giáo án",
-    "kind": "lesson",
-    "aliases": [
-      "lỗi slide",
-      "errata",
-      "sửa slide",
-      "kiểm tra slide"
-    ],
-    "level": "cơ bản",
-    "headings": [
-      "ESSENTIAL PHOTO",
-      "Sony GTP Photo Basic v2.1"
-    ],
-    "body": "**Danh sách điểm cần sửa hoặc nói rõ thêm khi dùng hai bộ slide; rà ngày 03/11/2026. Sửa slide xong thì đánh dấu [x].**\n\n## ESSENTIAL PHOTO\n- [ ] **Số f (slide khẩu độ):** câu \"Mỗi lần gấp đôi số khẩu, lượng sáng (F-Stop) tăng gấp x4\" bị **ngược chiều**. Đúng là: gấp đôi số f (F2.8 → F5.6) thì ánh sáng **giảm còn 1/4** (−2 stop); mỗi bước ×1,4 (√2) là −1 stop. → [[Khẩu độ]]\n- [ ] **Bước 4 menu:** tiêu đề lặp lại \"Cách lấy nét chuyên nghiệp\"; nội dung là hiển thị → đổi thành \"Hiển thị\".\n- [ ] **RAW:** slide ghi \".ARW / .DNG\" như hai định dạng của máy. Sony Alpha ghi **ARW**; DNG chỉ có khi chuyển đổi bằng phần mềm. → [[RAW, JPEG và HEIF]]\n- [ ] **Phơi sáng dài:** \"Imaging Edge Mobile\". Máy đời mới dùng **Creators' App** (menu ILDC có thông báo chuyển sang Creators' App). Nên ghi cả hai.\n- [ ] **Long Exposure NR:** slide ghi \"bật nếu phơi trên 1 phút\". Chức năng tác động từ khoảng 1 giây trở lên; \"trên 1 phút\" là khuyến nghị để đỡ chờ. Nên nói rõ khi giảng.\n- [ ] **AWB \"A:3.5 / G:3\"** ở bước 2: kiểm lại trên máy là G (xanh lá) hay M (đỏ tím). Da người thường cần nghiêng về M; nếu đúng là G thì ghi lý do.\n- [ ] **\"Exp. Effect Sellect\"** (slide cấu hình flash): sai chính tả; ghi đúng tên mục trên model đang dạy (xem trước hiệu ứng phơi sáng gán vào nút tùy chỉnh).\n- [ ] **Bảng chế độ chụp:** ô ISO ở dòng P ghi \"Auto 100–6400\". Ở P người chụp vẫn chỉnh được ISO; \"Auto\" chỉ là cấu hình gợi ý. Hai bản sao của bảng có ô gõ thiếu \"es\" thay vì \"Yes\".\n- [ ] Chồng ảnh: nhận định \"Sony Alpha không có chồng ảnh trong máy\" khớp với dữ liệu menu ILDC hiện có; kiểm lại khi có model mới.\n\n## Sony GTP Photo Basic v2.1\n- [ ] \"Fasten shutter speed\" → nghĩa là **tăng tốc độ màn trập** (faster). Dịch đúng ý khi giảng tiếng Việt.\n- [ ] Bảng \"3 yếu tố xóa phông\" thực ra liệt kê 4 (thêm khoảng cách tới hậu cảnh). Nên dạy là 4. → [[Độ sâu trường ảnh và xóa phông]]\n- [ ] Mốc K của mức đặt sẵn \"Daylight 5000K\" trong slide là số tròn; đối chiếu với model đang dạy trước khi khẳng định. → [[Cân bằng trắng và nhiệt độ màu]]\n- [ ] Ảnh mẫu là ảnh của Sony Nhật (NEX-7, Xperia Arc, đời 2010): giáo trình dặn thay bằng ảnh của trainer, nên cập nhật sang máy hiện hành.",
-    "links": [
-      "Khẩu độ",
-      "RAW, JPEG và HEIF",
-      "Độ sâu trường ảnh và xóa phông",
-      "Cân bằng trắng và nhiệt độ màu",
-      "Khóa Essential Photography",
-      "Khóa Photo Basic 3 giờ"
-    ]
-  },
-  {
-    "slug": "khoa-essential-photography",
-    "path": "2 Giáo án/Khóa Essential Photography.md",
-    "title": "Khóa Essential Photography",
-    "summary": "Bài giảng nhiếp ảnh căn bản của Sony Alpha Vietnam (@thaikpham): đi từ góc nhìn và bố cục, qua 8 bài thực hành sáng tạo, tới phơi sáng, màu sắc, quy trình hậu kỳ và tối ưu menu máy Sony.",
-    "section": "Giáo án",
-    "kind": "lesson",
-    "aliases": [
-      "Essential Photography",
-      "ESSENTIAL PHOTO",
-      "Sony Alpha Vietnam",
-      "buổi nhiếp ảnh căn bản"
-    ],
-    "level": "cơ bản",
-    "headings": [
-      "Mạch bài giảng",
-      "Gợi ý phân bổ (buổi 3 giờ)",
-      "Ghi chú cho trainer"
-    ],
-    "body": "**Bài giảng nhiếp ảnh căn bản của Sony Alpha Vietnam (@thaikpham): đi từ góc nhìn và bố cục, qua 8 bài thực hành sáng tạo, tới phơi sáng, màu sắc, quy trình hậu kỳ và tối ưu menu máy Sony.**\n\n## Mạch bài giảng\n1. **Mở bài, \"Bạn đã từng…?\"**: chuỗi ảnh hỏng quen thuộc → \"Chúng tôi cũng vậy!\" → câu của Cartier-Bresson về 10.000 tấm đầu tiên → \"Hãy chụp thêm, ngay cả khi bạn đã thấy đủ.\" → [[Chủ thể chính]]\n2. **Chủ thể và góc máy**: ngang tầm mắt, góc cao, góc thấp → [[Góc máy và khung hình]]\n3. **Bố cục**: định nghĩa (sắp xếp thành phần trong một khung cố định) · trung tâm · 1/3 · đường dẫn · họa tiết và nhịp điệu · phản chiếu · khung trong khung · cắt hay không cắt → [[Bố cục]]\n4. **8 bài thực hành**: rèn tư duy hình ảnh về ánh sáng, bố cục, màu → [[8 bài thực hành]]\n5. **Chụp đúng sáng**: thiếu / đúng / thừa · khẩu độ, tốc độ, ISO · 3 cách xóa phông · tốc độ nhanh bắt dính, chậm tạo chuyển động · bảng chế độ P/A/S/M → [[Tam giác phơi sáng]], [[Khẩu độ]], [[Tốc độ màn trập]], [[ISO]], [[Chế độ chụp P-A-S-M]]\n6. **10 cài đặt cần kiểm tra trước khi chụp** + ví dụ chế độ A (F3.5, ISO 100–6400, tốc độ tối thiểu 1/125s) và flash TTL đồng bộ sau → [[Cài đặt nhanh trước buổi chụp]]\n7. **RAW và ảnh nén** → [[RAW, JPEG và HEIF]]\n8. **Màu cá nhân hóa**: Creative Look, 8 thông số, sonycolorlab.app → [[Creative Look]]\n9. **Quy trình sau chụp**: đặt tên thư mục, lọc ảnh → [[Đặt tên và lọc ảnh]]\n10. **Tối ưu menu Sony Alpha, 4 bước** → [[Cài đặt nhanh trước buổi chụp]]\n11. Kết: \"Tụi em cảm ơn!\"\n\n## Gợi ý phân bổ (buổi 3 giờ)\nMở bài + bố cục 40' · thực hành ngoài trời 60' · phơi sáng + màu 45' · cài đặt menu cầm tay 25' · chia sẻ ảnh 10'. Đây là gợi ý, chỉnh theo lớp.\n\n## Ghi chú cho trainer\n- Xem [[Đính chính slide]] trước khi đứng lớp: slide có một câu ghi ngược chiều về số f và một tiêu đề bị trùng.\n- Bài viết chi tiết về cài đặt: sonycolorlab.app/vi/blog/setup.",
-    "links": [
-      "Chủ thể chính",
-      "Góc máy và khung hình",
-      "Bố cục",
-      "8 bài thực hành",
-      "Tam giác phơi sáng",
-      "Khẩu độ",
-      "Tốc độ màn trập",
-      "ISO",
-      "Chế độ chụp P-A-S-M",
-      "Cài đặt nhanh trước buổi chụp",
-      "RAW, JPEG và HEIF",
-      "Creative Look",
-      "Đặt tên và lọc ảnh",
-      "Đính chính slide",
-      "Khóa Photo Basic 3 giờ"
-    ]
-  },
-  {
-    "slug": "khoa-photo-basic-3-gio",
-    "path": "2 Giáo án/Khóa Photo Basic 3 giờ.md",
-    "title": "Khóa Photo Basic 3 giờ",
-    "summary": "Khóa nhập môn chuẩn của Sony Global Training Program: học viên rời lớp biết cân nhắc gì khi chụp, tự chụp ở chế độ A theo ý mình (không dùng Auto nữa), và hiểu vì sao máy hoạt động như vậy.",
-    "section": "Giáo án",
-    "kind": "lesson",
-    "aliases": [
-      "Photo Basic",
-      "Global Training Program",
-      "GTP",
-      "giáo trình Sony",
-      "3 kỹ năng 3 thiết lập"
-    ],
-    "level": "cơ bản",
-    "headings": [
-      "Mục tiêu",
-      "Phần 1 — Bài giảng (1 giờ)",
-      "Phần 2 — Đào sâu (1 giờ)",
-      "Phần 3 — Workshop chụp (1 giờ)",
-      "Ghi chú cho trainer"
-    ],
-    "body": "**Khóa nhập môn chuẩn của Sony Global Training Program: học viên rời lớp biết cân nhắc gì khi chụp, tự chụp ở chế độ A theo ý mình (không dùng Auto nữa), và hiểu vì sao máy hoạt động như vậy.**\n\n## Mục tiêu\n1. Biết những điều cần cân nhắc khi chụp: **3 kỹ năng cơ bản**.\n2. Tự tin chụp ở **chế độ A** với cách diễn đạt riêng: **3 thiết lập cơ bản**.\n3. Hiểu máy ảnh hoạt động thế nào và vì sao.\n\n## Phần 1 — Bài giảng (1 giờ)\n1. **Giới thiệu** (5'): trainer giới thiệu bằng ảnh của chính mình, nói về chủ đề yêu thích. Học viên kể: máy đang dùng, phong cách/chủ đề thích, đang chụp ở chế độ nào (Auto, A…).\n2. **Khái niệm** (10'): hai loại ảnh, ghi lại và truyền cảm xúc → [[Chủ thể chính]]. Ví dụ so sánh ảnh điện thoại với ảnh máy ảnh + ống một tiêu cự khẩu lớn. Ảnh chụp Auto + flash so với ảnh đổi ánh sáng, góc nhìn, bố cục, độ sáng. Hai yếu tố quan trọng nhất: **khung hình và phơi sáng**.\n3. **3 kỹ năng cơ bản** (20'): ① chủ thể chính → [[Chủ thể chính]] · ② bố cục: đối xứng, 1/3, đường chéo, bật đường lưới, mẹo chân dung → [[Bố cục]] · ③ góc nhìn: ngang/dọc, cận cảnh, góc thấp, cách cầm máy → [[Góc máy và khung hình]].\n4. **3 thiết lập cơ bản** (25'): muốn chỉnh gì → gọi trên máy là gì:\n   - Độ mờ hậu cảnh → **khẩu độ ở chế độ A** → [[Lấy nét]], [[Độ sâu trường ảnh và xóa phông]]\n   - Độ sáng → **bù sáng** → [[Bù sáng]]\n   - Tông màu → **cân bằng trắng** → [[Cân bằng trắng và nhiệt độ màu]]\n   Chốt: \"Auto → mờ hơn → sáng hơn → chỉnh màu\".\n\n## Phần 2 — Đào sâu (1 giờ)\n1. Độ sâu trường ảnh: 4 yếu tố, tiền cảnh/hậu cảnh mờ → [[Độ sâu trường ảnh và xóa phông]]\n2. Bù sáng: vì sao máy đo sai, high-key/low-key → [[Bù sáng]]\n3. Cân bằng trắng: nhiệt độ màu, mức đặt sẵn, dùng màu để diễn đạt → [[Cân bằng trắng và nhiệt độ màu]]\n4. Nền tảng phơi sáng: khẩu độ, màn trập, ví dụ vòi nước, stop/EV, chế độ P/A/S/M → [[Tam giác phơi sáng]], [[Stop và EV]], [[Chế độ chụp P-A-S-M]]\n5. ISO → [[ISO]]\n6. **Demo thao tác**: S + ISO cố định → M + ISO cố định → M + ISO AUTO + bù sáng.\n\n## Phần 3 — Workshop chụp (1 giờ)\n- Chụp ở **chế độ A**, mỗi tấm cân nhắc **3 thiết lập** (nét và độ mờ, độ sáng, màu) và **3 kỹ năng** (chủ thể và hậu cảnh, bố cục, khung và góc).\n- Sau khi chụp: mỗi người **chọn 1 tấm đẹp nhất** → chia sẻ kèm giải thích. Trainer nhận xét theo đúng 6 điểm trên.\n\n## Ghi chú cho trainer\n- Giáo trình gốc dặn **thay ảnh mẫu bằng ảnh của chính trainer**.\n- Các mốc thời gian trong phần 1 là gợi ý chia nhỏ; giáo trình chỉ quy định mỗi phần 1 giờ.\n- Slide gốc có lỗi chính tả nhỏ (ví dụ \"Fasten shutter speed\" nghĩa là tăng tốc độ màn trập). Xem [[Đính chính slide]].",
-    "links": [
-      "Chủ thể chính",
-      "Bố cục",
-      "Góc máy và khung hình",
-      "Lấy nét",
-      "Độ sâu trường ảnh và xóa phông",
-      "Bù sáng",
-      "Cân bằng trắng và nhiệt độ màu",
-      "Tam giác phơi sáng",
-      "Stop và EV",
-      "Chế độ chụp P-A-S-M",
-      "ISO",
-      "Đính chính slide",
-      "Khóa Essential Photography",
-      "8 bài thực hành",
-      "Cài đặt nhanh trước buổi chụp"
-    ]
-  },
-  {
     "slug": "chong-anh",
     "path": "1 Kiến thức/Kỹ thuật sáng tạo/Chồng ảnh.md",
     "title": "Chồng ảnh",
@@ -951,6 +780,177 @@
     "links": [
       "RAW, JPEG và HEIF",
       "Khóa Photo Basic 3 giờ"
+    ]
+  },
+  {
+    "slug": "8-bai-thuc-hanh",
+    "path": "2 Giáo án/8 bài thực hành.md",
+    "title": "8 bài thực hành",
+    "summary": "Tám bài tập rèn tư duy hình ảnh về ánh sáng, bố cục và màu cho người mới; năm bài đầu thuộc nhóm \"Light Composer\", sáng tạo với ánh sáng.",
+    "section": "Giáo án",
+    "kind": "lesson",
+    "aliases": [
+      "bài tập nhiếp ảnh",
+      "Light Composer",
+      "thực hành",
+      "workshop"
+    ],
+    "level": "cơ bản",
+    "headings": [
+      "Tổ chức buổi thực hành"
+    ],
+    "body": "**Tám bài tập rèn tư duy hình ảnh về ánh sáng, bố cục và màu cho người mới; năm bài đầu thuộc nhóm \"Light Composer\", sáng tạo với ánh sáng.**\n\n| # | Bài | Mục tiêu | Thiết lập chính | Note |\n|---|---|---|---|---|\n| 1 | Panning | Cảm giác tốc độ | S, 1/30–1/125s, AF-C Vùng, chụp liên tục | [[Panning]] |\n| 2 | Khung trong khung | Dẫn mắt, chiều sâu | A, F5.6–F8, AF-S Điểm, đường lưới | [[Khung trong khung]] |\n| 3 | Phơi sáng dài | Ghi chuyển động thành vệt | M, ISO 100, F8–F11, 5s–BULB, chân máy, ND | [[Phơi sáng dài]] |\n| 4 | Silhouette | Kể bằng hình dáng | M hoặc A −1.5 đến −2.5 EV, đo sáng Điểm | [[Silhouette]] |\n| 5 | Chồng ảnh | Ghép ý nghĩa hai lớp | M, RAW, −1 EV mỗi khung, ghép Screen/Multiply | [[Chồng ảnh]] |\n| 6 | Đồng bộ màn sau | Vệt sáng đúng chiều | M/S, 1/15–1/4s, flash Đồng bộ sau, bù flash −1 | [[Đồng bộ màn sau]] |\n| 7 | Săn màu + phối màu | Quan sát màu | Creative Look, cân bằng trắng | [[Săn màu, phối màu và lớp cảnh]] |\n| 8 | Lớp cảnh | Tiền–trung–hậu cảnh | A, F5.6–F11 hoặc khẩu lớn cho tiền cảnh mờ | [[Săn màu, phối màu và lớp cảnh]] |\n\n## Tổ chức buổi thực hành\n- Chia nhóm 3–4 người, mỗi nhóm 2–3 bài phù hợp địa điểm và giờ (phơi sáng dài, đồng bộ màn sau cần trời tối; silhouette cần ngược sáng mạnh).\n- Mỗi bài: trainer demo 1 tấm → học viên chụp 15–20 phút → chọn 1 tấm, chấm theo **tiêu chí đạt** trong từng note.\n- Nhắc: Panning tỷ lệ đạt chỉ khoảng 1–2/10. Chụp nhiều là một phần của bài.",
+    "links": [
+      "Panning",
+      "Khung trong khung",
+      "Phơi sáng dài",
+      "Silhouette",
+      "Chồng ảnh",
+      "Đồng bộ màn sau",
+      "Săn màu, phối màu và lớp cảnh",
+      "Khóa Essential Photography",
+      "Cài đặt nhanh trước buổi chụp"
+    ]
+  },
+  {
+    "slug": "cai-dat-nhanh-truoc-buoi-chup",
+    "path": "2 Giáo án/Cài đặt nhanh trước buổi chụp.md",
+    "title": "Cài đặt nhanh trước buổi chụp",
+    "summary": "Cấu hình khởi đầu cho người mới dùng Sony Alpha: chế độ A + ISO AUTO + AF-C bám chủ thể; đủ để chụp người, du lịch, sự kiện mà không phải nghĩ về menu.",
+    "section": "Giáo án",
+    "kind": "lesson",
+    "aliases": [
+      "10 cài đặt",
+      "tối ưu menu",
+      "setup",
+      "cấu hình khởi đầu",
+      "menu setup Sony",
+      "4 bước tối ưu menu"
+    ],
+    "level": "cơ bản",
+    "headings": [
+      "10 cài đặt cần kiểm tra",
+      "Tối ưu menu Sony Alpha, 4 bước",
+      "Ví dụ cấu hình trên slide",
+      "Giảng thế nào"
+    ],
+    "body": "**Cấu hình khởi đầu cho người mới dùng Sony Alpha: chế độ A + ISO AUTO + AF-C bám chủ thể; đủ để chụp người, du lịch, sự kiện mà không phải nghĩ về menu.**\n\n## 10 cài đặt cần kiểm tra\n1. Chế độ **A** (Ưu tiên khẩu độ): tự chọn độ xóa phông, chỉnh sáng bằng **bù sáng**.\n2. **ISO AUTO 100–6400**: máy tự cân bằng giữa độ sáng và nhiễu.\n3. **Tốc độ tối thiểu của ISO AUTO** (ISO AUTO Min. SS) **1/125s** (hoặc \"nhanh hơn\" một nấc): hạn chế nhòe khi chụp người.\n4. **AF-C** (lấy nét liên tục) cho chủ thể hoặc người chụp di chuyển.\n5. Vùng lấy nét **Theo dõi: Vùng** (Tracking: Zone): máy bám nét ổn định.\n6. Tùy chọn: gán **AF-ON** và tắt lấy nét theo nút chụp (AF w/ shutter: Off) → [[Lấy nét]].\n7. Đo sáng **Đa điểm** + **Ưu tiên mặt khi đo đa điểm: Bật** → [[Đo sáng]].\n8. Creative Look **ST** cho JPEG trung tính, hoặc **PT** khi chụp chân dung → [[Creative Look]].\n9. **Độ sáng màn hình: Sunny Weather** (trời nắng) để dễ nhìn ngoài trời.\n10. **Chất lượng hiển thị: Cao** (High) để xem chi tiết, kiểm tra nét.\n\n## Tối ưu menu Sony Alpha, 4 bước\n**Bước 1 — Phong cách chụp, chất lượng ảnh:** chế độ A, EV 0 · khẩu độ tự chọn · tốc độ Auto · ISO 100–6400, tốc độ tối thiểu 1/125s · ảnh JPEG 24M · Không gian màu sRGB.\n\n**Bước 2 — Đo sáng và màu:** ISO AUTO 100–6400, tốc độ tối thiểu \"nhanh hơn 1/125\" · Làm mịn da: Bật – Thấp · Creative Look PT (Contrast +1, Highlights −6, Shadows +3, Fade +1, Saturation 0, Sharpness 0, Sharpness Range 1, Clarity 0) · Cân bằng trắng AWB, chỉnh tinh A 3.5 / G 3 (xem [[Đính chính slide]]) · Đo sáng Đa điểm · Ưu tiên mặt khi đo đa điểm: Bật.\n\n**Bước 3 — Lấy nét chuyên nghiệp:** Vùng lấy nét Vùng (Theo dõi) · AF-C · Nhận dạng chủ thể: Bật – Người · Nút tùy chỉnh: gán AF-ON.\n\n**Bước 4 — Hiển thị:** Chất lượng hiển thị Cao · Độ sáng màn hình Sunny Weather.\n\n## Ví dụ cấu hình trên slide\n- Chân dung ngoài trời: Mode A · F3.5 · tốc độ Auto · ISO 100–6400 · tốc độ tối thiểu 1/125s.\n- Thêm flash: flash TTL, đồng bộ **REAR** (xem [[Đồng bộ màn sau]]), gán xem trước hiệu ứng phơi sáng vào một nút tùy chỉnh.\n\n## Giảng thế nào\n- Làm \"cầm tay chỉ việc\" trên máy của học viên, theo đúng thứ tự 4 bước; mỗi bước nói lý do một câu.\n- Tên mục và vị trí menu khác nhau giữa các model. Khi dạy máy để menu tiếng Việt, dùng tên trong ngoặc ở đây (theo bộ nhớ dịch ILDC); máy tiếng Anh thì dùng tên tiếng Anh.\n- Bài viết chi tiết: sonycolorlab.app/vi/blog/setup.",
+    "links": [
+      "Lấy nét",
+      "Đo sáng",
+      "Creative Look",
+      "Đính chính slide",
+      "Đồng bộ màn sau",
+      "Khóa Essential Photography",
+      "Chế độ chụp P-A-S-M",
+      "ISO"
+    ]
+  },
+  {
+    "slug": "dinh-chinh-slide",
+    "path": "2 Giáo án/Đính chính slide.md",
+    "title": "Đính chính slide",
+    "summary": "Danh sách điểm cần sửa hoặc nói rõ thêm khi dùng hai bộ slide; rà ngày 03/11/2026. Sửa slide xong thì đánh dấu [x].",
+    "section": "Giáo án",
+    "kind": "lesson",
+    "aliases": [
+      "lỗi slide",
+      "errata",
+      "sửa slide",
+      "kiểm tra slide"
+    ],
+    "level": "cơ bản",
+    "headings": [
+      "ESSENTIAL PHOTO",
+      "Sony GTP Photo Basic v2.1"
+    ],
+    "body": "**Danh sách điểm cần sửa hoặc nói rõ thêm khi dùng hai bộ slide; rà ngày 03/11/2026. Sửa slide xong thì đánh dấu [x].**\n\n## ESSENTIAL PHOTO\n- [ ] **Số f (slide khẩu độ):** câu \"Mỗi lần gấp đôi số khẩu, lượng sáng (F-Stop) tăng gấp x4\" bị **ngược chiều**. Đúng là: gấp đôi số f (F2.8 → F5.6) thì ánh sáng **giảm còn 1/4** (−2 stop); mỗi bước ×1,4 (√2) là −1 stop. → [[Khẩu độ]]\n- [ ] **Bước 4 menu:** tiêu đề lặp lại \"Cách lấy nét chuyên nghiệp\"; nội dung là hiển thị → đổi thành \"Hiển thị\".\n- [ ] **RAW:** slide ghi \".ARW / .DNG\" như hai định dạng của máy. Sony Alpha ghi **ARW**; DNG chỉ có khi chuyển đổi bằng phần mềm. → [[RAW, JPEG và HEIF]]\n- [ ] **Phơi sáng dài:** \"Imaging Edge Mobile\". Máy đời mới dùng **Creators' App** (menu ILDC có thông báo chuyển sang Creators' App). Nên ghi cả hai.\n- [ ] **Long Exposure NR:** slide ghi \"bật nếu phơi trên 1 phút\". Chức năng tác động từ khoảng 1 giây trở lên; \"trên 1 phút\" là khuyến nghị để đỡ chờ. Nên nói rõ khi giảng.\n- [ ] **AWB \"A:3.5 / G:3\"** ở bước 2: kiểm lại trên máy là G (xanh lá) hay M (đỏ tím). Da người thường cần nghiêng về M; nếu đúng là G thì ghi lý do.\n- [ ] **\"Exp. Effect Sellect\"** (slide cấu hình flash): sai chính tả; ghi đúng tên mục trên model đang dạy (xem trước hiệu ứng phơi sáng gán vào nút tùy chỉnh).\n- [ ] **Bảng chế độ chụp:** ô ISO ở dòng P ghi \"Auto 100–6400\". Ở P người chụp vẫn chỉnh được ISO; \"Auto\" chỉ là cấu hình gợi ý. Hai bản sao của bảng có ô gõ thiếu \"es\" thay vì \"Yes\".\n- [ ] Chồng ảnh: nhận định \"Sony Alpha không có chồng ảnh trong máy\" khớp với dữ liệu menu ILDC hiện có; kiểm lại khi có model mới.\n\n## Sony GTP Photo Basic v2.1\n- [ ] \"Fasten shutter speed\" → nghĩa là **tăng tốc độ màn trập** (faster). Dịch đúng ý khi giảng tiếng Việt.\n- [ ] Bảng \"3 yếu tố xóa phông\" thực ra liệt kê 4 (thêm khoảng cách tới hậu cảnh). Nên dạy là 4. → [[Độ sâu trường ảnh và xóa phông]]\n- [ ] Mốc K của mức đặt sẵn \"Daylight 5000K\" trong slide là số tròn; đối chiếu với model đang dạy trước khi khẳng định. → [[Cân bằng trắng và nhiệt độ màu]]\n- [ ] Ảnh mẫu là ảnh của Sony Nhật (NEX-7, Xperia Arc, đời 2010): giáo trình dặn thay bằng ảnh của trainer, nên cập nhật sang máy hiện hành.",
+    "links": [
+      "Khẩu độ",
+      "RAW, JPEG và HEIF",
+      "Độ sâu trường ảnh và xóa phông",
+      "Cân bằng trắng và nhiệt độ màu",
+      "Khóa Essential Photography",
+      "Khóa Photo Basic 3 giờ"
+    ]
+  },
+  {
+    "slug": "khoa-essential-photography",
+    "path": "2 Giáo án/Khóa Essential Photography.md",
+    "title": "Khóa Essential Photography",
+    "summary": "Bài giảng nhiếp ảnh căn bản của Sony Alpha Vietnam (@thaikpham): đi từ góc nhìn và bố cục, qua 8 bài thực hành sáng tạo, tới phơi sáng, màu sắc, quy trình hậu kỳ và tối ưu menu máy Sony.",
+    "section": "Giáo án",
+    "kind": "lesson",
+    "aliases": [
+      "Essential Photography",
+      "ESSENTIAL PHOTO",
+      "Sony Alpha Vietnam",
+      "buổi nhiếp ảnh căn bản"
+    ],
+    "level": "cơ bản",
+    "headings": [
+      "Mạch bài giảng",
+      "Gợi ý phân bổ (buổi 3 giờ)",
+      "Ghi chú cho trainer"
+    ],
+    "body": "**Bài giảng nhiếp ảnh căn bản của Sony Alpha Vietnam (@thaikpham): đi từ góc nhìn và bố cục, qua 8 bài thực hành sáng tạo, tới phơi sáng, màu sắc, quy trình hậu kỳ và tối ưu menu máy Sony.**\n\n## Mạch bài giảng\n1. **Mở bài, \"Bạn đã từng…?\"**: chuỗi ảnh hỏng quen thuộc → \"Chúng tôi cũng vậy!\" → câu của Cartier-Bresson về 10.000 tấm đầu tiên → \"Hãy chụp thêm, ngay cả khi bạn đã thấy đủ.\" → [[Chủ thể chính]]\n2. **Chủ thể và góc máy**: ngang tầm mắt, góc cao, góc thấp → [[Góc máy và khung hình]]\n3. **Bố cục**: định nghĩa (sắp xếp thành phần trong một khung cố định) · trung tâm · 1/3 · đường dẫn · họa tiết và nhịp điệu · phản chiếu · khung trong khung · cắt hay không cắt → [[Bố cục]]\n4. **8 bài thực hành**: rèn tư duy hình ảnh về ánh sáng, bố cục, màu → [[8 bài thực hành]]\n5. **Chụp đúng sáng**: thiếu / đúng / thừa · khẩu độ, tốc độ, ISO · 3 cách xóa phông · tốc độ nhanh bắt dính, chậm tạo chuyển động · bảng chế độ P/A/S/M → [[Tam giác phơi sáng]], [[Khẩu độ]], [[Tốc độ màn trập]], [[ISO]], [[Chế độ chụp P-A-S-M]]\n6. **10 cài đặt cần kiểm tra trước khi chụp** + ví dụ chế độ A (F3.5, ISO 100–6400, tốc độ tối thiểu 1/125s) và flash TTL đồng bộ sau → [[Cài đặt nhanh trước buổi chụp]]\n7. **RAW và ảnh nén** → [[RAW, JPEG và HEIF]]\n8. **Màu cá nhân hóa**: Creative Look, 8 thông số, sonycolorlab.app → [[Creative Look]]\n9. **Quy trình sau chụp**: đặt tên thư mục, lọc ảnh → [[Đặt tên và lọc ảnh]]\n10. **Tối ưu menu Sony Alpha, 4 bước** → [[Cài đặt nhanh trước buổi chụp]]\n11. Kết: \"Tụi em cảm ơn!\"\n\n## Gợi ý phân bổ (buổi 3 giờ)\nMở bài + bố cục 40' · thực hành ngoài trời 60' · phơi sáng + màu 45' · cài đặt menu cầm tay 25' · chia sẻ ảnh 10'. Đây là gợi ý, chỉnh theo lớp.\n\n## Ghi chú cho trainer\n- Xem [[Đính chính slide]] trước khi đứng lớp: slide có một câu ghi ngược chiều về số f và một tiêu đề bị trùng.\n- Bài viết chi tiết về cài đặt: sonycolorlab.app/vi/blog/setup.",
+    "links": [
+      "Chủ thể chính",
+      "Góc máy và khung hình",
+      "Bố cục",
+      "8 bài thực hành",
+      "Tam giác phơi sáng",
+      "Khẩu độ",
+      "Tốc độ màn trập",
+      "ISO",
+      "Chế độ chụp P-A-S-M",
+      "Cài đặt nhanh trước buổi chụp",
+      "RAW, JPEG và HEIF",
+      "Creative Look",
+      "Đặt tên và lọc ảnh",
+      "Đính chính slide",
+      "Khóa Photo Basic 3 giờ"
+    ]
+  },
+  {
+    "slug": "khoa-photo-basic-3-gio",
+    "path": "2 Giáo án/Khóa Photo Basic 3 giờ.md",
+    "title": "Khóa Photo Basic 3 giờ",
+    "summary": "Khóa nhập môn chuẩn của Sony Global Training Program: học viên rời lớp biết cân nhắc gì khi chụp, tự chụp ở chế độ A theo ý mình (không dùng Auto nữa), và hiểu vì sao máy hoạt động như vậy.",
+    "section": "Giáo án",
+    "kind": "lesson",
+    "aliases": [
+      "Photo Basic",
+      "Global Training Program",
+      "GTP",
+      "giáo trình Sony",
+      "3 kỹ năng 3 thiết lập"
+    ],
+    "level": "cơ bản",
+    "headings": [
+      "Mục tiêu",
+      "Phần 1 — Bài giảng (1 giờ)",
+      "Phần 2 — Đào sâu (1 giờ)",
+      "Phần 3 — Workshop chụp (1 giờ)",
+      "Ghi chú cho trainer"
+    ],
+    "body": "**Khóa nhập môn chuẩn của Sony Global Training Program: học viên rời lớp biết cân nhắc gì khi chụp, tự chụp ở chế độ A theo ý mình (không dùng Auto nữa), và hiểu vì sao máy hoạt động như vậy.**\n\n## Mục tiêu\n1. Biết những điều cần cân nhắc khi chụp: **3 kỹ năng cơ bản**.\n2. Tự tin chụp ở **chế độ A** với cách diễn đạt riêng: **3 thiết lập cơ bản**.\n3. Hiểu máy ảnh hoạt động thế nào và vì sao.\n\n## Phần 1 — Bài giảng (1 giờ)\n1. **Giới thiệu** (5'): trainer giới thiệu bằng ảnh của chính mình, nói về chủ đề yêu thích. Học viên kể: máy đang dùng, phong cách/chủ đề thích, đang chụp ở chế độ nào (Auto, A…).\n2. **Khái niệm** (10'): hai loại ảnh, ghi lại và truyền cảm xúc → [[Chủ thể chính]]. Ví dụ so sánh ảnh điện thoại với ảnh máy ảnh + ống một tiêu cự khẩu lớn. Ảnh chụp Auto + flash so với ảnh đổi ánh sáng, góc nhìn, bố cục, độ sáng. Hai yếu tố quan trọng nhất: **khung hình và phơi sáng**.\n3. **3 kỹ năng cơ bản** (20'): ① chủ thể chính → [[Chủ thể chính]] · ② bố cục: đối xứng, 1/3, đường chéo, bật đường lưới, mẹo chân dung → [[Bố cục]] · ③ góc nhìn: ngang/dọc, cận cảnh, góc thấp, cách cầm máy → [[Góc máy và khung hình]].\n4. **3 thiết lập cơ bản** (25'): muốn chỉnh gì → gọi trên máy là gì:\n   - Độ mờ hậu cảnh → **khẩu độ ở chế độ A** → [[Lấy nét]], [[Độ sâu trường ảnh và xóa phông]]\n   - Độ sáng → **bù sáng** → [[Bù sáng]]\n   - Tông màu → **cân bằng trắng** → [[Cân bằng trắng và nhiệt độ màu]]\n   Chốt: \"Auto → mờ hơn → sáng hơn → chỉnh màu\".\n\n## Phần 2 — Đào sâu (1 giờ)\n1. Độ sâu trường ảnh: 4 yếu tố, tiền cảnh/hậu cảnh mờ → [[Độ sâu trường ảnh và xóa phông]]\n2. Bù sáng: vì sao máy đo sai, high-key/low-key → [[Bù sáng]]\n3. Cân bằng trắng: nhiệt độ màu, mức đặt sẵn, dùng màu để diễn đạt → [[Cân bằng trắng và nhiệt độ màu]]\n4. Nền tảng phơi sáng: khẩu độ, màn trập, ví dụ vòi nước, stop/EV, chế độ P/A/S/M → [[Tam giác phơi sáng]], [[Stop và EV]], [[Chế độ chụp P-A-S-M]]\n5. ISO → [[ISO]]\n6. **Demo thao tác**: S + ISO cố định → M + ISO cố định → M + ISO AUTO + bù sáng.\n\n## Phần 3 — Workshop chụp (1 giờ)\n- Chụp ở **chế độ A**, mỗi tấm cân nhắc **3 thiết lập** (nét và độ mờ, độ sáng, màu) và **3 kỹ năng** (chủ thể và hậu cảnh, bố cục, khung và góc).\n- Sau khi chụp: mỗi người **chọn 1 tấm đẹp nhất** → chia sẻ kèm giải thích. Trainer nhận xét theo đúng 6 điểm trên.\n\n## Ghi chú cho trainer\n- Giáo trình gốc dặn **thay ảnh mẫu bằng ảnh của chính trainer**.\n- Các mốc thời gian trong phần 1 là gợi ý chia nhỏ; giáo trình chỉ quy định mỗi phần 1 giờ.\n- Slide gốc có lỗi chính tả nhỏ (ví dụ \"Fasten shutter speed\" nghĩa là tăng tốc độ màn trập). Xem [[Đính chính slide]].",
+    "links": [
+      "Chủ thể chính",
+      "Bố cục",
+      "Góc máy và khung hình",
+      "Lấy nét",
+      "Độ sâu trường ảnh và xóa phông",
+      "Bù sáng",
+      "Cân bằng trắng và nhiệt độ màu",
+      "Tam giác phơi sáng",
+      "Stop và EV",
+      "Chế độ chụp P-A-S-M",
+      "ISO",
+      "Đính chính slide",
+      "Khóa Essential Photography",
+      "8 bài thực hành",
+      "Cài đặt nhanh trước buổi chụp"
     ]
   }
 ]

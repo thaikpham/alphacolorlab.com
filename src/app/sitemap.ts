@@ -7,6 +7,7 @@ import { getSonyAudio } from '@/lib/audio/data';
 import { getSonyCameras } from '@/lib/cameras/data';
 import { ARTICLE_LANG } from '@/lib/lab/articles';
 import { getPublishedArticles, getPublishedKnowledge } from '@/lib/lab/data';
+import { listNotes, noteHref } from '@/lib/alphaskill/knowledge';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
@@ -33,7 +34,7 @@ const path = (locale: string, rest: string) => bilingualAlternates(locale, rest)
  * article under English chrome, not a translation of it.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [slugs, recipes, audio, cameras, articles, knowledge] = await Promise.all([
+  const [slugs, recipes, audio, cameras, articles, knowledge, notes] = await Promise.all([
     listSlugs(),
     /* For the situation pages: only a situation with enough published recipes
        to be worth a tile is listed, and that is counted at render, not typed. */
@@ -45,6 +46,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // a URL that now 404s.
     getPublishedArticles(),
     getPublishedKnowledge(),
+    /* The vault's notes publish at /learn/<slug> beside the authored pages
+       (ADR 0007); an authored page with the same id wins, so list it once. */
+    listNotes(),
   ]);
 
   // Each bilingual URL declares its counterparts via `alternates.languages`,
@@ -112,5 +116,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...bilingual('/learn', 'weekly', 0.8),
     ...bilingual('/learn/glossary', 'monthly', 0.8),
     ...knowledge.map((k) => vietnamese(`/learn/${k.id}`, 'monthly', 0.8)),
+    ...notes
+      .filter((n) => !knowledge.some((k) => k.id === n.slug))
+      .map((n) => vietnamese(noteHref(n.slug), 'monthly', 0.8)),
   ];
 }

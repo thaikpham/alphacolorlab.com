@@ -262,10 +262,13 @@ export function notesLinkingTo(slug: string, notes: readonly AlphaNote[]): Alpha
 }
 
 /**
- * Sort notes by section then title with Vietnamese locale.
+ * Sort notes: knowledge before lessons (a course plan is not a topic and
+ * should not sit between two of them), then section, then title, in
+ * Vietnamese order.
  */
 export function sortNotes(notes: AlphaNote[]): AlphaNote[] {
   return [...notes].sort((a, b) => {
+    if (a.kind !== b.kind) return a.kind === 'knowledge' ? -1 : 1
     const sectionCmp = a.section.localeCompare(b.section, 'vi')
     if (sectionCmp !== 0) return sectionCmp
     return a.title.localeCompare(b.title, 'vi')
