@@ -5,131 +5,90 @@ export const page: Article = {
   kind: 'article',
   topic: 'gear',
   level: 'newbie',
-  archetype: 'reference',
-  read: '8 phút',
+  archetype: 'versus',
+  read: '5 phút',
   title: 'Người mới nên chụp RAW, JPEG hay cả hai?',
-  dek: 'RAW giữ toàn bộ dữ liệu để chỉnh sau; JPEG tô xong và bằng máy ngay. Lựa chọn phụ thuộc vào thời gian bạn có và mục đích ảnh.',
+  dek: 'RAW giữ toàn bộ dữ liệu để chỉnh sau; JPEG tô xong ngay. Lựa chọn phụ thuộc vào thời gian chỉnh ảnh của bạn.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
-        'RAW là tất cả dữ liệu thô từ cảm biến; JPEG là ảnh đã xử lý và nén của máy theo [[Creative Look]] hoặc Picture Profile.',
-        'RAW cho phép chỉnh toàn bộ (màu, sáng, cân bằng trắng, gamma) sau với ít mất mát; JPEG là ảnh cuối cùng, khó sửa lại.',
-        'Người mới nên chụp RAW nếu có thời gian chỉnh ảnh; nếu không, JPEG là hoàn thành và dùng được ngay.',
+        'RAW là dữ liệu thô từ cảm biến; JPEG là ảnh đã xử lý và nén bởi máy.',
+        'RAW cho phép chỉnh toàn bộ (màu, sáng, cân bằng trắng) sau; JPEG là ảnh hoàn thành, khó sửa.',
+        'Người mới nên chụp JPEG nếu không có thời gian chỉnh; RAW nếu muốn toàn quyền kiểm soát.',
       ],
     },
     {
       t: 'p',
-      text: '[[RAW, JPEG và HEIF]] là ba định dạng Sony Alpha hỗ trợ. Khi bạn chụp, máy ghi dữ liệu từ cảm biến vào file. Tuỳ vào chế độ, file đó là RAW (dữ liệu thô), JPEG (ảnh đã xử lý), hoặc HEIF (ảnh nén mới). Chọn cái nào phụ thuộc vào dòng quy trình của bạn.',
+      text: '[[RAW, JPEG và HEIF]] là ba định dạng Sony Alpha hỗ trợ. Khi bạn chụp, máy ghi dữ liệu từ cảm biến vào file: dữ liệu thô (RAW), ảnh đã xử lý (JPEG), hoặc ảnh nén mới (HEIF). Lựa chọn nào phụ thuộc vào quy trình chỉnh ảnh của bạn: RAW nếu có thời gian, JPEG nếu muốn hoàn thành ngay.',
     },
     {
       t: 'figure',
-      caption: 'Bộ nhớ SD có đủ chỗ cho cả RAW và JPEG: máy Sony hỗ trợ quay số song song, lưu cả hai định dạng cùng lúc. Ảnh: Unknown Artist · CC0 1.0 · Wikimedia Commons',
+      caption: 'Bộ nhớ SD có đủ chỗ cho cả RAW và JPEG: máy Sony hỗ trợ chế độ RAW+JPEG để lưu cả hai cùng lúc. Ảnh: Unknown Artist · CC0 1.0 · Wikimedia Commons',
     },
     {
       t: 'h',
-      text: 'RAW: dữ liệu thô, toàn quyền chỉnh sau',
+      text: 'RAW: dữ liệu thô, toàn quyền chỉnh',
     },
     {
       t: 'p',
-      text: 'RAW là dữ liệu gốc từ cảm biến mà máy chưa xử lý. Khi bạn chụp ở chế độ RAW, máy lưu tất cả thông tin sáng từng pixel, rồi bạn chỉnh trong Lightroom, Capture One, hoặc Imaging Edge. Điểm tốt: bạn có toàn bộ tự do chỉnh White Balance, Exposure, Tone, Shadows—Highlights mà không mất chi tiết. Điểm xấu: mỗi tấm RAW lớn khoảng 50 MB trên máy Sony, cần software chuyên dụng để mở, và bạn phải chỉnh từng ảnh.',
-    },
-    {
-      t: 'callout',
-      label: 'Định dạng RAW của Sony',
-      text: 'Sony Alpha lưu RAW dưới dạng ARW (hoặc ARQ nếu máy mới). Khi bạn chuyển đổi sang định dạng quốc tế, nó là DNG. Phần mềm như Lightroom, Adobe Bridge, Capture One đều hỗ trợ ARW mà không cần chuyển đổi.',
+      text: 'RAW là dữ liệu gốc từ cảm biến mà máy chưa xử lý. Bạn chỉnh trong Lightroom, Capture One, hoặc Imaging Edge (miễn phí). Điểm tốt: toàn bộ tự do chỉnh White Balance, Exposure, Shadows–Highlights mà không mất chi tiết. Điểm xấu: mỗi tấm khoảng 50 MB, cần phần mềm chuyên dụng, và bạn phải chỉnh từng ảnh.',
     },
     {
       t: 'h',
-      text: 'JPEG: ảnh tô xong, dùng được ngay',
+      text: 'JPEG: ảnh hoàn thành, dùng ngay',
     },
     {
       t: 'p',
-      text: 'JPEG là ảnh đã được máy xử lý theo [[Creative Look]], Picture Profile, hoặc cấu hình mặc định của máy. Bạn nhấn chụp, máy xử lý ngay lập tức và lưu file khoảng 8–12 MB. Ảnh có thể dùng ngay trên điện thoại, in ra, hoặc đăng lên mạng mà không cần chỉnh sau. Điểm tốt: nhỏ gọn, nhanh, hoàn thành. Điểm xấu: nếu bạn chụp sai màu hoặc sáng, khó sửa lại vì máy đã nén và xóa mất dữ liệu.',
-    },
-    {
-      t: 'h',
-      text: 'HEIF: ảnh nén mới, nhỏ và tốt',
-    },
-    {
-      t: 'p',
-      text: 'HEIF (High Efficiency Image Format) là định dạng nén mới hơn JPEG. Tệp nhỏ hơn JPEG cùng chất lượng (khoảng 6–9 MB), nhưng không phải phần mềm nào cũng hỗ trợ. Một số điện thoại và phần mềm chỉnh ảnh bắt đầu hỗ trợ, nhưng đó là tương lai. Hiện tại, nếu bạn muốn ảnh nhỏ mà vẫn tốt, HEIF là lựa chọn; nếu cần mở ở bất kỳ máy tính nào, vẫn JPEG.',
-    },
-    {
-      t: 'h',
-      text: 'Bảng so sánh ba định dạng',
+      text: 'JPEG là ảnh đã được máy xử lý theo Creative Look hoặc Picture Profile. Tệp nhỏ (8–12 MB), dùng được ngay trên điện thoại, máy tính hay in ra. Điểm tốt: nhỏ gọn, hoàn thành. Điểm xấu: nếu chụp sai màu hoặc sáng, khó sửa lại vì máy đã nén và xóa dữ liệu.',
     },
     {
       t: 'table',
-      caption: 'Đặc điểm từng định dạng',
-      head: ['Yếu tố', 'RAW', 'JPEG', 'HEIF'],
+      caption: 'So sánh RAW và JPEG',
+      head: ['Tiêu chí', 'RAW', 'JPEG'],
       rows: [
-        ['Dung lượng trên thẻ', '40–60 MB/tấm', '8–12 MB/tấm', '6–9 MB/tấm'],
-        ['Chỉnh được những gì', 'Tất cả: sáng, màu, gamma, gamma, shadow–highlight', 'Màu, độ sáng giới hạn; không thể lấy lại dữ liệu mất', 'Giống JPEG, không khai thác hết vì nén'],
-        ['Thời gian chỉnh', '5–15 phút/tấm trong Lightroom', 'Hầu hết dùng được ngay', 'Hầu hết dùng được ngay'],
-        ['Hỗ trợ phần mềm', 'Lightroom, Capture One, Imaging Edge, Photoshop', 'Mọi phần mềm, mọi điện thoại', 'Một số phần mềm (macOS, iOS, một số Android)'],
-        ['Chất lượng in', 'Tốt nhất (chỉnh từ dữ liệu gốc)', 'Tốt (tuỳ vào cấu hình Creative Look)', 'Tốt (gần bằng JPEG)'],
+        ['Dung lượng', '40–60 MB/tấm', '8–12 MB/tấm'],
+        ['Chỉnh được', 'Tất cả: sáng, màu, gamma', 'Giới hạn; không lấy lại dữ liệu'],
+        ['Thời gian', '5–15 phút/tấm', 'Dùng ngay'],
+        ['Hỗ trợ phần mềm', 'Lightroom, Capture One, Imaging Edge', 'Mọi phần mềm, mọi thiết bị'],
       ],
     },
     {
       t: 'h',
-      text: 'Đề xuất cho từng loại người chụp',
+      text: 'Lựa chọn cho người mới',
     },
     {
       t: 'p',
-      text: 'Người mới chụp lần đầu: Chọn JPEG hoặc HEIF, để [[Creative Look]] là Portrait rồi chụp thử. Ảnh ra ngay, dùng được, không phải lo phần mềm hay quy trình phức tạp. Nếu bạn có tôi bắt đầu yêu thích nhiếp ảnh, hãy chuyển sang RAW.',
-    },
-    {
-      t: 'p',
-      text: 'Người chụp chuyên hoặc muốn full kiểm soát: Chọn RAW + JPEG song song (máy Sony gọi là \"RAW+JPEG\" trong menu). Bạn lưu cả RAW để chỉnh chi tiết sau, và JPEG để kiểm tra nhanh hoặc dùng khi chưa có thời gian chỉnh.',
+      text: 'Nếu bạn vừa bắt đầu: chọn JPEG với Creative Look là Portrait, chụp thử, ảnh ra ngay, dùng được. Khi bạn yêu thích nhiếp ảnh và muốn kiểm soát toàn bộ: chuyển RAW. Mẹo: máy Sony có chế độ RAW+JPEG (chụp cả hai cùng lúc)—bạn có RAW để chỉnh chi tiết sau, và JPEG để kiểm tra nhanh.',
     },
     {
       t: 'h',
-      text: 'FAQ',
-    },
-    {
-      t: 'h',
-      text: 'Tôi có bao nhiêu ảnh trong thẻ nhớ 64 GB?',
+      text: 'Câu hỏi thường gặp',
     },
     {
       t: 'p',
-      text: 'Thẻ 64 GB có khoảng 60 GB dùng được. Nếu chụp JPEG: khoảng 6000–7000 tấm. HEIF: 7000–8000 tấm. RAW: 1000–1200 tấm. RAW+JPEG: 800–900 tấm (vì lưu cả hai).',
-    },
-    {
-      t: 'h',
-      text: 'Tôi phải mua thẻ nhớ nhanh loại nào?',
-    },
-    {
-      t: 'p',
-      text: 'Sony Alpha hỗ trợ UHS-II. Tìm thẻ có V60 hoặc V90 (Video Speed Class) để chụp video không lag. Cho chụp tĩnh JPEG/HEIF, V30 là đủ. Nếu chụp RAW liên tục (burst), V60 sẽ an toàn hơn.',
-    },
-    {
-      t: 'h',
-      text: 'Làm sao để chuyển toàn bộ RAW sang JPEG khi không có Lightroom?',
-    },
-    {
-      t: 'p',
-      text: 'Sony Imaging Edge là phần mềm miễn phí của Sony. Tải từ site Sony, mở RAW trong đó, chỉnh bằng giao diện đơn giản, rồi Export sang JPEG. Hoặc dùng lựa chọn chụp RAW+JPEG song song từ đầu; máy sẽ lưu cả hai, vậy bạn có JPEG ngay mà không cần chuyển đổi sau.',
+      text: 'Thẻ 64 GB lưu được bao nhiêu ảnh? JPEG: 6000–7000 tấm. HEIF: 7000–8000 tấm. RAW: 1000–1200 tấm. RAW+JPEG: 800–900 tấm. Thẻ nào nhanh đủ? V60 hoặc V90 để an toàn; V30 là đủ cho JPEG. Chuyển RAW sang JPEG bằng cách nào? Dùng Sony Imaging Edge (miễn phí) hoặc Lightroom—mở RAW, chỉnh, Export JPEG.',
     },
     {
       t: 'checklist',
+      label: 'Lựa chọn định dạng phù hợp',
       items: [
-        'Vào MENU → Chế độ quay số → chọn RAW, JPEG, HEIF hoặc RAW+JPEG.',
-        'Nếu chọn JPEG, bật Creative Look (Standard hoặc Portrait) để ảnh có tô màu.',
-        'Chụp một tấm, kiểm tra LCD để xem ảnh ra thế nào.',
-        'Nếu hài lòng ảnh, cứ JPEG; nếu muốn chỉnh sau, chuyển sang RAW hoặc RAW+JPEG.',
-        'Khi chụp RAW, cài đặt Lightroom để chỉnh sau (bạn có thể chỉnh toàn bộ mà không mất chi tiết).',
+        'Vào MENU → File Format → chọn JPEG, RAW hoặc RAW+JPEG.',
+        'Nếu chọn JPEG, bật Creative Look để ảnh có tô màu.',
+        'Chụp một tấm, kiểm tra LCD để xem kết quả.',
+        'Nếu hài lòng, cứ JPEG; muốn chỉnh sau thì đổi RAW.',
+        'Cài đặt Lightroom hoặc Imaging Edge để chỉnh RAW khi cần.',
       ],
     },
   ],
   meta: {
     related: [
+      { kind: 'knowledge', id: 'raw-jpeg-va-heif' },
       { kind: 'knowledge', id: 'dat-ten-va-loc-anh' },
       { kind: 'knowledge', id: 'creative-look' },
-      { kind: 'knowledge', id: 'can-bang-trang-va-nhiet-do-mau' },
     ],
-    prerequisites: [],
+    prerequisites: ['raw-jpeg-va-heif'],
     concepts: [],
     sources: [
       {
