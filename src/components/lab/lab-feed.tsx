@@ -79,7 +79,7 @@ function ArticleRow({
   return (
     <li>
       <hr className="seam" />
-      <Link href={`/blog/${article.id}`} className="group block py-6">
+      <Link href={`/blog/${article.id}`} className="group block py-5 px-4 rounded-md -mx-4 transition-colors hover:bg-glass">
         <p className={CONTEXT_LINE}>
           <span className="text-accent-400">{t(`topics.${article.topic}`)}</span>
           {/* Both guarded, as the article page guards them: a row saved
@@ -258,7 +258,7 @@ export async function LabFeed({
               </h2>
               <ul
                 className={
-                  'grid gap-x-[clamp(2rem,3vw,3.5rem)] xl:grid-cols-2 3xl:grid-cols-3 ' +
+                  'grid gap-x-[clamp(2rem,3vw,3.5rem)] gap-y-0 xl:grid-cols-2 3xl:grid-cols-3 ' +
                   (stageIndex >= 0 ? '' : 'mt-4')
                 }
               >
@@ -318,9 +318,9 @@ function PathRail({
       aria-label={t('pathLabel')}
       className="flex grow basis-[clamp(18rem,25vw,23rem)] flex-col self-start lg:sticky lg:top-0 lg:py-4 lg:grow-0"
     >
-      <p className="label">{t('pathLabel')}</p>
+      <p className="label text-ink-muted">{t('pathLabel')}</p>
 
-      <ol className="mt-4 flex flex-col gap-2">
+      <ol className="mt-3 flex flex-col gap-1.5">
         {LEVELS.map((level, i) => {
           const open = filter.level === level.id
           const total = count(level.id, 'all')
@@ -388,7 +388,7 @@ function StageSkills({
        two checkpoints a line and one. The open stage's tint above is what
        ties them to it. */
     <div className="animate-fade-in px-3 pb-2">
-      <p className="label mt-3">{t('skillsLabel')}</p>
+      <p className="label mt-3 text-ink-muted">{t('skillsLabel')}</p>
       {/* Checkpoints, not rows. A stage opened as a list of name + focus
           line was eight to ten two-line rows — taller than the viewport, so
           the sticky rail grew its own scrollbar beside the page's. As chips
