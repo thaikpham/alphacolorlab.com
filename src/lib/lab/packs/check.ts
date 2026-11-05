@@ -1,13 +1,31 @@
+import { findNoteByTitle, fold, wikilinkTargets, type AlphaNote } from '@/lib/alphaskill/parse'
 import { validateForPublish } from '../parse'
 import type { Article, ContentRefKind } from '../types'
 
 export const PACK_NAME_RE = /^[a-z0-9-]+$/
+export const PACK_LICENCES = ['CC0', 'Public domain', 'CC BY 2.0', 'CC BY 3.0', 'CC BY 4.0', 'CC BY-SA 2.0', 'CC BY-SA 3.0', 'CC BY-SA 4.0'] as const
 
-/** What a pack may link to and which ids it may not take. Built by the caller
-    from the seeds and the other page lists, so this stays pure. */
+export type PackImage = {
+  readonly blockIndex: number
+  readonly file: string
+  readonly title: string
+  readonly author: string
+  readonly licence: (typeof PACK_LICENCES)[number]
+  readonly sourceUrl: string
+}
+
 export type Known = {
   readonly takenIds: ReadonlySet<string>
   readonly refIds: Readonly<Record<ContentRefKind, ReadonlySet<string>>>
+  readonly notes: readonly AlphaNote[]
+  /** `"<pageId>#<blockIndex>"` của mỗi figure có ảnh sidecar. */
+  readonly images: ReadonlySet<string>
+}
+
+export const imageKeys = (pageId: string, manifest: readonly PackImage[]) => manifest.map((m) => `${pageId}#${m.blockIndex}`)
+
+function noteFor(title: string, notes: readonly AlphaNote[]): AlphaNote | undefined {
+  return findNoteByTitle(title, notes) ?? notes.find((n) => n.aliases.some((a) => fold(a) === fold(title)))
 }
 
 /** Every reason this pack cannot be pushed, `<page id>: <code>`; empty when it can. */
@@ -29,7 +47,18 @@ export function packProblems(name: string, pages: readonly Article[], known: Kno
     }
     if (page.meta.sources.length === 0) at('noSource')
     if (page.meta.sources.some((s) => !s.checkedAt)) at('sourceNeedsDate')
-    if (page.blocks.some((b) => b.t === 'figure')) at('figureNeedsUpload')
+    const related = new Set(page.meta.related.filter((r) => r.kind === 'knowledge').map((r) => r.id))
+    page.blocks.forEach((b, i) => {
+      if (b.t === 'figure' && !b.assetId && !known.images.has(`${page.id}#${i}`)) at('figureNeedsUpload')
+      const text = 'text' in b ? b.text : b.t === 'tldr' ? b.items.join(' ') : b.t === 'table' ? b.caption : b.t === 'checklist' ? b.items.join(' ') : ''
+      const targets = wikilinkTargets(text)
+      if (targets.length && b.t !== 'p' && b.t !== 'callout') at('wikilinkOutsideProse')
+      for (const t of targets) {
+        const note = noteFor(t, known.notes)
+        if (!note) at(`unknownWikilink ${t}`)
+        else if (!related.has(note.slug)) at(`wikilinkNotRelated ${note.slug}`)
+      }
+    })
   }
   return problems
 }
