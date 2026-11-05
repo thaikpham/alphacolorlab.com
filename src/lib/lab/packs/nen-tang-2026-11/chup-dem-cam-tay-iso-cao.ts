@@ -40,7 +40,7 @@ export const page: Article = {
     { t: 'h', text: 'Cân bằng ba yếu tố: ưu tiên nét trước' },
     {
       t: 'p',
-      text: 'Quy tắc nên nhớ: **ảnh nhoè không cứu được, ảnh nhiễu hơi sửa được**. Vì vậy bước 1 là **chọn tốc độ tối thiểu để ảnh nét**, dùng công thức 1/(tiêu cự × 1.5). Ống 50mm cần 1/80s trở lên; ống góc rộng 24mm cần 1/40s. SteadyShot On giúp chậm xuống được, nhưng không dùng nó là an toàn nhất lúc đêm.',
+      text: 'Quy tắc nên nhớ: **ảnh nhoè không cứu được, ảnh nhiễu hơi sửa được**. Vì vậy bước 1 là **chọn [[Tốc độ màn trập|tốc độ tối thiểu để ảnh nét]]**, dùng công thức 1/(tiêu cự × 1.5). Ống 50mm cần 1/80s trở lên; ống góc rộng 24mm cần 1/40s. SteadyShot On giúp chậm xuống được, nhưng không dùng nó là an toàn nhất lúc đêm.',
     },
     {
       t: 'table',
@@ -56,7 +56,7 @@ export const page: Article = {
     { t: 'h', text: 'Creative Look: chọn Neutral để tránh thêm vấn đề' },
     {
       t: 'p',
-      text: '**Đêm trong nhà** ánh sáng thường là hỗn hợp: đèn vàng (2.700K) + điện thoại xanh (6.500K) + neon cam. Cân bằng trắng sẽ bối rối. Creative Look **Vivid** hoặc **Film** sẽ làm vấn đề tệ hơn bằng cách tăng độ bão hòa của màu lạc. Dùng **NT** (Neutral) — dòng ngàn, buồn nhưng đúng — và để hậu kỳ sửa màu nếu cần.',
+      text: '**Đêm trong nhà** ánh sáng thường là hỗn hợp: đèn vàng (2.700K) + điện thoại xanh (6.500K) + neon cam. Cân bằng trắng sẽ bối rối. [[Creative Look|Creative Look]] **Vivid** hoặc **Film** sẽ làm vấn đề tệ hơn bằng cách tăng độ bão hòa của màu lạc. Dùng **NT** (Neutral) — dòng ngàn, buồn nhưng đúng — và để hậu kỳ sửa màu nếu cần. Luôn chụp [[RAW, JPEG và HEIF|RAW]] để có cơ hội sửa cân bằng trắng và xử lý nhiễu tốt hơn so với JPEG.',
     },
     {
       t: 'callout',
@@ -87,6 +87,7 @@ export const page: Article = {
       { kind: 'knowledge', id: 'iso' },
       { kind: 'knowledge', id: 'toc-do-man-trap' },
       { kind: 'knowledge', id: 'creative-look' },
+      { kind: 'knowledge', id: 'raw-jpeg-va-heif' },
     ],
     prerequisites: ['iso'],
     concepts: [],

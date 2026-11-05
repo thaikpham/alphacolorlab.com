@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Rung tay là lý do #1 ảnh nhòe ở người mới. Không phải máy xấu, không phải ống kính—tay mình. Khi cầm máy lâu, bế tbreath, hoặc sợ bấm sai nút, tay bạn sẽ rung, từ vài pixel đến toàn khung nhòe. [[Tốc độ màn trập]] chính là cách phòng chữa đầu tiên.',
+      text: 'Rung tay là lý do #1 ảnh nhòe ở người mới. Không phải máy xấu, không phải ống kính—tay mình. Khi cầm máy lâu, bế thở, hoặc sợ bấm sai nút, tay bạn sẽ rung, từ vài pixel đến toàn khung nhòe. [[Tốc độ màn trập]] chính là cách phòng chữa đầu tiên. [[ISO]] là cách thứ hai khi bạn không thể làm chậm tốc độ hơn được. Bạn cũng nên xem [[Cài đặt nhanh trước buổi chụp]] để tối ưu máy từ lúc cầm lấy.',
     },
     {
       t: 'figure',
@@ -81,6 +81,7 @@ export const page: Article = {
     related: [
       { kind: 'knowledge', id: 'toc-do-man-trap' },
       { kind: 'knowledge', id: 'iso' },
+      { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },
       { kind: 'article', id: 'iso-auto-min-ss' },
     ],
     prerequisites: ['toc-do-man-trap'],

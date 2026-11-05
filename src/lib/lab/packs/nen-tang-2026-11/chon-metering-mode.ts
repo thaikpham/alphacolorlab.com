@@ -64,15 +64,10 @@ export const page: Article = {
         ['Chụp silhouette hoàng hôn', 'Spot (trời)', 'Spot vào bầu trời → nền sáng từng màu, người thành bóng đen'],
       ],
     },
-    { t: 'h', text: 'Kết hợp đó: Metering Mode + lấy nét' },
-    {
-      t: 'p',
-      text: 'Sony liên kết Metering Mode với **Focus Area** (vùng lấy nét): khi dùng Multi, nó sẽ ưu tiên vùng được lấy nét. Khi dùng Spot, vùng đo sáng và vùng lấy nét sẽ cùng một điểm — rất hữu ích khi chủ thể ở viền khung.',
-    },
     {
       t: 'callout',
       label: 'Khi nào dùng bù sáng (Exposure Compensation)?',
-      text: 'Bù sáng là lệnh "máy ơi, làm ảnh sáng hơn/tối hơn +/-1 EV" chứ không phải đo lại. Bạn vẫn dùng nó, nhưng lựa chọn Metering Mode đúng sẽ giảm tần suất bù sáng từ 50% trường hợp xuống 10%.',
+      text: 'Bù sáng là lệnh "máy ơi, làm ảnh sáng hơn/tối hơn +/-1 EV" chứ không phải đo lại. Bạn vẫn dùng nó, nhưng lựa chọn [[Metering Mode]] đúng sẽ giảm tần suất bù sáng từ 50% trường hợp xuống 10%. Sony liên kết Metering Mode với **Focus Area** (vùng lấy nét): khi dùng Multi, nó sẽ ưu tiên vùng được lấy nét. Khi dùng Spot, vùng đo sáng và vùng lấy nét sẽ cùng một điểm. Hiểu mối liên kết này giúp bạn nhận ra tại sao bộ ba [[Đo sáng|đo sáng]], [[Bù sáng]], và lấy nét phải làm việc cùng nhau. Xem thêm [[Silhouette|kỹ thuật chụp silhouette]] khi bạn muốn đảo ngược logic sáng.',
     },
     {
       t: 'checklist',

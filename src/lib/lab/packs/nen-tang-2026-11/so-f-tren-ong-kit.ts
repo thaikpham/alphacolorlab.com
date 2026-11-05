@@ -43,7 +43,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khẩu độ f/3.5 so với ống chuyên dụng f/2.8 thì kém **1 nấc sáng** (gọi là 1 "Stop"). Ngoài trời ban ngày không sao, nhưng **ở trong nhà bằng đèn điện** (2.700K, tương đương 300 lux), khẩu f/3.5 mở hết và đo sáng đầy thì máy sẽ:\n\n- Chế độ A (máy chọn tốc độ): tốc độ xuống 1/5s → cần chân máy, rung ảnh.\n- Chế độ S (bạn chọn tốc độ 1/125s để giữ nét cầm tay): máy buộc nâng ISO từ 100 lên 1.600–3.200 → ảnh nhiễu.',
+      text: 'Khẩu độ f/3.5 so với ống chuyên dụng f/2.8 thì kém **1 nấc sáng** (gọi là 1 [[Stop và EV|Stop]]). Ngoài trời ban ngày không sao, nhưng **ở trong nhà bằng đèn điện** (2.700K, tương đương 300 lux), khẩu f/3.5 mở hết và đo sáng đầy thì máy sẽ:\n\n- Chế độ A (máy chọn tốc độ): tốc độ xuống 1/5s → cần chân máy, rung ảnh.\n- Chế độ S (bạn chọn tốc độ 1/125s để giữ nét cầm tay): máy buộc nâng ISO từ 100 lên 1.600–3.200 → ảnh nhiễu.\n\nBa yếu tố này tạo thành [[Tam giác phơi sáng|tam giác phơi sáng]]—thay đổi khẩu không chỉ ảnh hưởng độ sáng mà còn [[Độ sâu trường ảnh và xóa phông|độ sâu trường ảnh]].',
     },
     {
       t: 'table',
@@ -81,6 +81,7 @@ export const page: Article = {
       { kind: 'knowledge', id: 'khau-do' },
       { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
       { kind: 'knowledge', id: 'tam-giac-phoi-sang' },
+      { kind: 'knowledge', id: 'stop-va-ev' },
     ],
     prerequisites: ['khau-do'],
     concepts: [],
