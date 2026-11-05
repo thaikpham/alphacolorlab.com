@@ -21,7 +21,11 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '[[Góc máy và khung hình]] bao gồm cả chiều của khung. Khung dọc hoặc ngang không chỉ là sở thích — nó quyết định mắt người xem nhìn ảnh theo chiều nào, và đó là một phần của câu chuyện.',
+      text: 'Góc máy và khung hình bao gồm cả chiều của khung. Khung dọc hoặc ngang không chỉ là sở thích — nó quyết định mắt người xem nhìn ảnh theo chiều nào, và đó là một phần của câu chuyện.',
+    },
+    {
+      t: 'figure',
+      caption: 'Khung dọc buộc phải cắt bối cảnh bên cạnh, để chủ thể nổi bật. Ảnh: Lenny K Photography · CC BY 2.0 · Wikimedia Commons',
     },
     {
       t: 'h',
@@ -75,14 +79,6 @@ export const page: Article = {
     {
       t: 'p',
       text: 'Đến một địa điểm có nhiều thứ để chụp. Chụp năm lần khung ngang, năm lần khung dọc. Xem lại: khung nào kể câu chuyện tốt hơn cho từng cảnh? Bạn thích khung nào hơn — theo tự nhiên hay bạn phải học?',
-    },
-    {
-      t: 'h',
-      text: 'Mạng xã hội và hình vuông (1:1)',
-    },
-    {
-      t: 'p',
-      text: 'Nếu bạn lên ảnh lên Instagram hay TikTok, hãy chụp ở Aspect Ratio 1:1 (hình vuông) từ đầu. Cách này tránh bị cắt tình cờ, và ảnh sẽ chiếm hết không gian feed. Hình vuông còn buộc bố cục cô đặc — mắt không có chỗ phân tán.',
     },
     {
       t: 'checklist',
