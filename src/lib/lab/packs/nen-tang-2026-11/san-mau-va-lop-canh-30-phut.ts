@@ -21,7 +21,11 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Săn màu và lớp cảnh là hai bài tập rèn mắt cơ bản. Trong [[Săn màu, phối màu và lớp cảnh]], bạn học rằng một tông màu chủ đạo khiến ảnh có nhân cách, và ba lớp cảnh (tiền, trung, hậu) tạo chiều sâu 3D trên một bề mặt 2D. Bài tập này gộp cả hai: đi bộ 30 phút để tìm một màu trong ba lớp.',
+      text: 'Săn màu và lớp cảnh là hai bài tập rèn mắt cơ bản. Một tông màu chủ đạo khiến ảnh có nhân cách, và ba lớp cảnh (tiền, trung, hậu) tạo chiều sâu 3D trên một bề mặt 2D. Bài tập này gộp cả hai: đi bộ 30 phút để tìm một màu trong ba lớp.',
+    },
+    {
+      t: 'figure',
+      caption: 'Tiền cảnh (gần máy, mờ), trung cảnh (chủ đề, nét, màu), hậu cảnh (xa, mờ) tạo ba lớp sâu. Ảnh: Fons Heijnsbroek · CC0 · Wikimedia Commons',
     },
     {
       t: 'h',
@@ -77,14 +81,6 @@ export const page: Article = {
     {
       t: 'p',
       text: 'Khi bạn tập "săn" một màu, bạn học cách thấy. Khi bạn xếp ba lớp cảnh, bạn học cách tạo chiều sâu. Gộp cả hai, bạn không chỉ chụp cảnh mà kể một câu chuyện: đây là ảnh về màu xanh, được đặt thành ba bước để mắt người xem lần lượt thấy tiền, trung, hậu.',
-    },
-    {
-      t: 'h',
-      text: 'Mở rộng: White Balance cho mỗi bối cảnh',
-    },
-    {
-      t: 'p',
-      text: 'Trong [[White Balance (still image/movie)]] từ Sony Help Guide, có ba bối cảnh ánh sáng chính: Daylight (nắng), Cloudy (mây), Tungsten (đèn điện). Khi bạn chụp ba lớp cảnh trong cùng 30 phút, ánh sáng có thể đổi — từ nắng sang mây. Hãy thử thay đổi White Balance giữa các lần chụp để khám phá cảm nhận khác.',
     },
     {
       t: 'checklist',
