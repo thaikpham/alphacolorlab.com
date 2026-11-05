@@ -209,7 +209,7 @@ export async function ArticleView({ article }: { article: Article }) {
               outline folded behind its label. Navigation in the reader's UI
               language, so `lang` goes back to the page's. */}
           {prerequisites.length > 0 || outline.length > 0 ? (
-            <nav aria-label={t('railLabel')} lang={locale} className="mt-8 flex flex-col gap-5 lg:hidden rounded-md bg-glass p-4">
+            <nav aria-label={t('railLabel')} lang={locale} className="mt-8 flex flex-col gap-5 lg:hidden">
               {prerequisites.length > 0 ? (
                 <RelatedLinks links={prerequisites} heading={tl('readFirst')} lang={ARTICLE_LANG} />
               ) : null}
@@ -271,7 +271,7 @@ export async function ArticleView({ article }: { article: Article }) {
         ) : null}
 
         {outline.length > 0 ? (
-          <div className="rounded-md bg-glass p-3">
+          <div>
             <p className="label text-ink">{knowledge ? tl('inThisPage') : t('inThisArticle')}</p>
             <OutlineList outline={outline} />
           </div>

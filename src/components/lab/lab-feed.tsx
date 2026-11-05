@@ -337,7 +337,7 @@ function PathRail({
                 <span
                   className={
                     'flex h-11 w-11 shrink-0 items-center justify-center rounded-sm text-body font-extrabold tabular-nums ' +
-                    (open ? 'bg-accent-500 text-white' : 'bg-accent-900 text-accent-300')
+                    (open ? 'bg-accent-500 text-ink' : 'bg-accent-900 text-accent-300')
                   }
                 >
                   {stageNumber(i)}
