@@ -79,6 +79,17 @@ describe('buildOutline', () => {
   })
 })
 
+describe('precise wikilink handling', () => {
+  it('précis không mang ngoặc wikilink', () => {
+    const o = buildOutline([
+      h('Mục'),
+      p('Đọc [[Tốc độ màn trập|tốc độ]] trước.'),
+    ])
+    expect(JSON.stringify(o)).toContain('Đọc tốc độ trước.')
+    expect(JSON.stringify(o)).not.toContain('[[')
+  })
+})
+
 describe('every published article', () => {
   it.each(ARTICLES.map((a) => [a.id, a] as const))('%s renders a rail', (_id, article) => {
     // A published article with no headings has no contents list, which is a

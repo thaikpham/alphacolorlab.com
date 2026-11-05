@@ -13,6 +13,7 @@
  * client boundary.
  */
 
+import { stripWiki } from '@/lib/alphaskill/markdown'
 import type { Block } from './types'
 
 /** The handoff's number. Long enough for a clause, short enough for the rail. */
@@ -60,10 +61,10 @@ export function truncateOnWord(text: string, max: number = PRECIS_MAX): string {
  */
 function precisSource(section: readonly Block[]): string {
   for (const b of section) {
-    if (b.t === 'p') return b.text
+    if (b.t === 'p') return stripWiki(b.text)
   }
   for (const b of section) {
-    if (b.t === 'callout') return b.text
+    if (b.t === 'callout') return stripWiki(b.text)
     if (b.t === 'figure') return b.caption
     if (b.t === 'table') return b.caption
     /* An `embed` caption counts for the same reason a figure's does: a section

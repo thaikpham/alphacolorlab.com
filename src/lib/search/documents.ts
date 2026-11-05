@@ -11,6 +11,7 @@
  * production ranking over the seed corpus in a unit test.
  */
 
+import { stripWiki } from '@/lib/alphaskill/markdown'
 import { accentHex, type Accent } from '@/lib/camera/color'
 import { CREATIVE_LOOKS } from '@/lib/camera/constants'
 import type { Locale } from '@/lib/camera/explanations'
@@ -160,13 +161,13 @@ function blockText(b: Block): string[] {
     case 'h':
       return []
     case 'p':
-      return [b.text]
+      return [stripWiki(b.text)]
     case 'menu':
       return [b.old, b.new]
     case 'table':
       return [b.caption, ...b.head, ...b.rows.flat()]
     case 'callout':
-      return [b.label, b.text]
+      return [b.label, stripWiki(b.text)]
     case 'compare':
       return [b.beforeLabel, b.afterLabel, b.caption]
     case 'checklist':

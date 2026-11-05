@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { parseMarkdown } from './markdown'
+import { parseMarkdown, splitWiki, stripWiki } from './markdown'
 
 describe('parseMarkdown', () => {
   it('parses h2 and h3 headings', () => {
@@ -147,5 +147,29 @@ describe('parseMarkdown', () => {
   it('parses every note in the snapshot', () => {
     const notes = JSON.parse(readFileSync('data/alphaskill-knowledge.seed.json', 'utf8')) as { slug: string; body: string }[]
     for (const n of notes) expect(parseMarkdown(n.body).length, n.slug).toBeGreaterThan(0)
+  })
+})
+
+describe('splitWiki', () => {
+  it('cắt wikilink ra khỏi chữ thường, giữ display', () => {
+    expect(splitWiki('Xem [[Tốc độ màn trập|tốc độ]] và [[ISO]].')).toEqual([
+      { t: 'text', text: 'Xem ' },
+      { t: 'wiki', title: 'Tốc độ màn trập', display: 'tốc độ' },
+      { t: 'text', text: ' và ' },
+      { t: 'wiki', title: 'ISO', display: 'ISO' },
+      { t: 'text', text: '.' },
+    ])
+  })
+  it('bỏ fragment, trim title', () => {
+    expect(splitWiki('[[ Khẩu độ #Trên máy Sony]]')).toEqual([{ t: 'wiki', title: 'Khẩu độ', display: 'Khẩu độ' }])
+  })
+  it('không đụng markdown khác', () => {
+    expect(splitWiki('**đậm** [a](b)')).toEqual([{ t: 'text', text: '**đậm** [a](b)' }])
+  })
+})
+
+describe('stripWiki', () => {
+  it('chỉ còn chữ hiển thị', () => {
+    expect(stripWiki('Xem [[Tốc độ màn trập|tốc độ]] và [[ISO]].')).toBe('Xem tốc độ và ISO.')
   })
 })
