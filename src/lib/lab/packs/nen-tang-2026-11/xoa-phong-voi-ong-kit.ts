@@ -16,12 +16,12 @@ export const page: Article = {
       items: [
         'Kéo máy lùi, để chủ thể xa nền — khoảng cách vật thể đến camera quyết định độ xóa phông.',
         'Zoom tới cực hạn (55mm): độ xóa phông tăng khi tiêu cự dài hơn.',
-        'Nền xa và [[khẩu độ]] rộng nhất (f/5.6 ở 55mm): ba yếu tố cộng lại là xóa phông đáng kể.',
+        'Nền xa và khẩu độ rộng nhất (f/5.6 ở 55mm): ba yếu tố cộng lại là xóa phông đáng kể.',
       ],
     },
     {
       t: 'p',
-      text: 'Xóa phông không phải là thuộc tính của ống kính — nó là kết quả của ba yếu tố: [[do-sau-truong-anh-va-xoa-phong]] (độ sâu trường), khoảng cách từ máy tới chủ thể, và khoảng cách từ chủ thể tới nền. Ống kit 18–55mm f/3.5–5.6 không khẩu lớn như 50mm f/1.8, nhưng nếu bạn chọn ba cái khác một cách thông minh, kết quả sẽ gần giống.',
+      text: 'Xóa phông không phải là thuộc tính của ống kính — nó là kết quả của ba yếu tố: [[Độ sâu trường ảnh và xóa phông]] (độ sâu trường), khoảng cách từ máy tới chủ thể, và khoảng cách từ chủ thể tới nền. Ống kit 18–55mm f/3.5–5.6 không khẩu lớn như 50mm f/1.8, nhưng nếu bạn chọn ba cái khác một cách thông minh, kết quả sẽ gần giống.',
     },
     {
       t: 'figure',
@@ -53,12 +53,12 @@ export const page: Article = {
     },
     {
       t: 'table',
-      head: ['Bạn muốn', 'Zoom', 'Khoảng cách', 'Nền'],
+      head: ['Kết quả muốn có', 'Zoom + Khoảng cách', 'Nền'],
       caption: 'Ba cái kết hợp làm xóa phông tệ hay tốt, không phải khẩu độ một mình.',
       rows: [
-        ['Nền sắc nét (toàn cảnh)', '18–35mm', 'Gần', 'Gần chủ thể'],
-        ['Nền lơ mơ (chân dung)', '35–55mm', '0.8–1.5m', '1–2m sau chủ thể'],
-        ['Nền hoàn toàn mờ (close-up)', '55mm', '0.5–0.7m', '> 2m sau chủ thể'],
+        ['Nền sắc nét (toàn cảnh)', '18–35mm, gần', 'Gần chủ thể'],
+        ['Nền lơ mơ (chân dung)', '35–55mm, 0.8–1.5m', '1–2m sau chủ thể'],
+        ['Nền hoàn toàn mờ (close-up)', '55mm, 0.5–0.7m', '> 2m sau chủ thể'],
       ],
     },
     {
@@ -73,15 +73,15 @@ export const page: Article = {
   ],
   meta: {
     related: [
+      { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
       { kind: 'knowledge', id: 'khau-do' },
-      { kind: 'knowledge', id: 'lay-net' },
       { kind: 'knowledge', id: 'chu-the-chinh' },
     ],
     prerequisites: ['do-sau-truong-anh-va-xoa-phong'],
     concepts: [],
     sources: [
       {
-        final: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640830_01_01.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640830_01_01.html',
         title: 'a7 IV Depth of Field',
         publisher: 'Sony',
         checkedAt: '2026-11-05',

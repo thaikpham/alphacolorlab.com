@@ -41,7 +41,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Nếu để khẩu f/1.8, tiền cảnh gần như vô hình, người xem không hiểu nó là cửa hay là gì. Nếu để khẩu f/8, tiền cảnh lại quá nét, chiếm hết chú ý. Khẩu f/2.8–f/4 (tầm giữa) khiến tiền cảnh mờ nhưng nhìn thấy được form dáng của nó (hình chữ nhật của cửa, những vệt lá cây). Đó là chỗ [[do-sau-truong-anh-va-xoa-phong]] phát huy: nó vừa đủ để tạo chiều sâu.',
+      text: 'Nếu để khẩu f/1.8, tiền cảnh gần như vô hình, người xem không hiểu nó là cửa hay là gì. Nếu để khẩu f/8, tiền cảnh lại quá nét, chiếm hết chú ý. Khẩu f/2.8–f/4 (tầm giữa) khiến tiền cảnh mờ nhưng nhìn thấy được form dáng của nó (hình chữ nhật của cửa, những vệt lá cây). Đó là chỗ [[Độ sâu trường ảnh và xóa phông]] phát huy: nó vừa đủ để tạo chiều sâu.',
     },
     {
       t: 'h',
@@ -53,12 +53,12 @@ export const page: Article = {
     },
     {
       t: 'table',
-      head: ['Yếu tố', 'Quá gần', 'Quá xa', 'Đúng'],
+      head: ['Yếu tố', 'Khoảng cách sai', 'Khoảng cách đúng'],
       caption: 'Ba khoảng cách kết hợp với khẩu độ đúng thành khung trong khung.',
       rows: [
-        ['Tiền cảnh', '< 20cm (quá gần, bị cắt)', '> 1m (mọi cái nét)', '30–50cm'],
-        ['Chủ thể', '< 50cm (tiền cảnh mờ)', '> 5m (ba tầng nhoè)', '1–2m'],
-        ['Nền', 'Gần chủ thể (nông)', 'Quá xa không cần', '3m+'],
+        ['Tiền cảnh', '< 20cm hoặc > 1m', '30–50cm'],
+        ['Chủ thể', '< 50cm hoặc > 5m', '1–2m'],
+        ['Nền', 'Gần chủ thể (nông)', '3m+'],
       ],
     },
     {
@@ -74,6 +74,7 @@ export const page: Article = {
   ],
   meta: {
     related: [
+      { kind: 'knowledge', id: 'khung-trong-khung' },
       { kind: 'knowledge', id: 'bo-cuc' },
       { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
       { kind: 'knowledge', id: 'lay-net' },
@@ -82,13 +83,13 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        final: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640830_01_01.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640830_01_01.html',
         title: 'a7 IV Depth of Field',
         publisher: 'Sony',
         checkedAt: '2026-11-05',
       },
       {
-        final: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
         title: 'a7 IV Focus Mode',
         publisher: 'Sony',
         checkedAt: '2026-11-05',

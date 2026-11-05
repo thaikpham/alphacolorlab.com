@@ -15,7 +15,7 @@ export const page: Article = {
       t: 'tldr',
       items: [
         'AF-S (Single AF): lấy nét một lần, không bao giờ thay đổi. Chân dung, phong cảnh, khi chủ thể yên tĩnh.',
-        'AF-C (Continuous AF): bám liên tục, thay đổi nút lấy nét mỗi millisecond. Chủ thể di chuyển, [[panning]], thể thao.',
+        'AF-C (Continuous AF): bám liên tục, thay đổi nút lấy nét mỗi millisecond. Chủ thể di chuyển, thể thao, hoặc panning.',
         'DMF (Direct Manual Focus): giữ auto-focus nhưng bạn có thể tay xoay vòng kính để sửa nét nhanh mà không chuyển sang chế độ thủ công.',
       ],
     },
@@ -78,6 +78,7 @@ export const page: Article = {
   ],
   meta: {
     related: [
+      { kind: 'knowledge', id: 'lay-net' },
       { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
       { kind: 'knowledge', id: 'panning' },
       { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },
@@ -86,7 +87,7 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        final: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
         title: 'a7 IV Focus Mode',
         publisher: 'Sony',
         checkedAt: '2026-11-05',

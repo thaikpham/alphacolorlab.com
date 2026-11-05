@@ -85,6 +85,7 @@ export const page: Article = {
   ],
   meta: {
     related: [
+      { kind: 'knowledge', id: 'lay-net' },
       { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
       { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },
       { kind: 'article', id: 'back-button-af' },
@@ -93,19 +94,19 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        final: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
         title: 'a7 IV Focus Mode',
         publisher: 'Sony',
         checkedAt: '2026-11-05',
       },
       {
-        final: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640841_01_01.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640841_01_01.html',
         title: 'a7 IV Focus Area',
         publisher: 'Sony',
         checkedAt: '2026-11-05',
       },
       {
-        final: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000641011_01_01.html',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000641011_01_01.html',
         title: 'a7 IV Eye AF',
         publisher: 'Sony',
         checkedAt: '2026-11-05',
