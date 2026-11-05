@@ -24,6 +24,10 @@ export const page: Article = {
       text: '[[Lấy nét]] là công việc chọn khoảng cách mà máy sẽ để nét. Máy có ba cách để làm: cố định nó khi bạn bấm nút (AF-S), tiếp tục điều chỉnh trong lúc chụp (AF-C), hoặc cho phép bạn can thiệp bằng tay vào khoảng cách đó khi máy đã bắt được (DMF). Mỗi cách là cho một tình huống khác.',
     },
     {
+      t: 'figure',
+      caption: 'Comparison of three focus modes',
+    },
+    {
       t: 'h',
       text: 'AF-S: lấy nét và khóa'
     },
