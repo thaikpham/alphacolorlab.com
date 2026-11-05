@@ -24,12 +24,16 @@ export const page: Article = {
       text: '[[Góc máy và khung hình]] nói rằng đổi chỗ đứng, độ cao máy, và chiều khung là cách rẻ nhất để ảnh khác người khác. Bài tập này tập ba góc cơ bản: ngang tầm mắt, cao trên đầu, thấp dưới chân — và cảm xúc mỗi góc mang lại.',
     },
     {
+      t: 'figure',
+      caption: 'Góc thấp (Low Angle): nhìn lên khiến chủ thể trông mạnh và uy quyền. Ảnh: Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons',
+    },
+    {
       t: 'h',
       text: 'Góc ngang mắt: bình thường nhưng mạnh',
     },
     {
       t: 'p',
-      text: 'Đặt máy ngang với đôi mắt của chủ thể. Đây là góc tự nhiên nhất — cách bạn nhìn một người nói chuyện mỗi ngày. Nó tạo cảm giác thân thuộc và trực tiếp. Trong [[Grid Line Display]] hoặc Focus Area, hãy căn chủ thể ở giữa hoặc giao điểm.',
+      text: 'Đặt máy ngang với đôi mắt của chủ thể. Đây là góc tự nhiên nhất — cách bạn nhìn một người nói chuyện mỗi ngày. Nó tạo cảm giác thân thuộc và trực tiếp. Trong Grid Line Display hoặc Focus Area, hãy căn chủ thể ở giữa hoặc giao điểm.',
     },
     {
       t: 'h',
@@ -66,15 +70,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Xem ba ảnh cạnh nhau. Ảnh nào khiến bạn cảm thấy gần gũi? Ảnh nào khiến bạn cảm thấy sợ hay kinh ngạc? Ba góc kể ba câu chuyện khác nhau của cùng một khoảnh khắc.',
-    },
-    {
-      t: 'h',
-      text: 'Kết hợp ba góc vào một bài tập',
-    },
-    {
-      t: 'p',
-      text: 'Khi bạn tìm một chủ đề hay, hãy chụp cả ba góc. Sau đó, chọn góc nào kể câu chuyện tốt nhất cho tình huống đó. Kỹ năng chọn góc đúng là kỹ năng chụp ảnh lõi.',
+      text: 'Xem ba ảnh cạnh nhau. Ảnh nào khiến bạn cảm thấy gần gũi? Ảnh nào khiến bạn cảm thấy sợ hay kinh ngạc? Ba góc kể ba câu chuyện khác nhau của cùng một khoảnh khắc. Kỹ năng chọn góc đúng là kỹ năng chụp ảnh lõi.',
     },
     {
       t: 'checklist',
