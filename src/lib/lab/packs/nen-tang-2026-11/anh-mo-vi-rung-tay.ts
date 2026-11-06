@@ -30,11 +30,11 @@ export const page: Article = {
     { t: 'h', text: 'Quy tắc vàng: 1/(tiêu cự × 1.5)' },
     {
       t: 'p',
-      text: 'Tốc độ tối thiểu để ảnh nét cầm tay là: **1 / (tiêu cự × 1.5)**. Ống 24mm ≈ 1/40s; ống 50mm ≈ 1/80s; ống 100mm ≈ 1/150s. Số này là trung bình cho photographer bình thường. Ở chế độ A với ISO AUTO, để ISO AUTO Min. SS ở Standard là máy tự đặt sàn tốc độ theo tiêu cự ống kính; tay bạn rung thì chọn Fast hoặc Faster.',
+      text: 'Tốc độ tối thiểu để ảnh nét cầm tay là: **1 / (tiêu cự × 1.5)**. Ống 24mm ≈ 1/40s; ống 50mm ≈ 1/80s; ống 100mm ≈ 1/150s. Số này là trung bình cho photographer bình thường. Ở chế độ A với ISO AUTO, để ISO AUTO Min. SS ở Standard là máy tự đặt sàn tốc độ theo tiêu cự ống kính; tay bạn rung thì chọn Fast hoặc Faster. ZV-E10 không có mục này: nhìn tốc độ trên màn hình và nâng ISO tay khi nó tụt dưới công thức.',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → Standard',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → Standard (a6400; ZV-E10 không có mục này)',
       new: 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS → Standard',
     },
     {

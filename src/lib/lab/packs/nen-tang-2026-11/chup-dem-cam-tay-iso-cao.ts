@@ -34,7 +34,7 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO Setting → ISO (chế độ M hoặc A)',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO (ZV-E10: Camera Settings1 → ISO)',
       new: 'MENU → Exposure/Color → Exposure → ISO (chế độ M hoặc A)',
     },
     { t: 'h', text: 'Cân bằng ba yếu tố: ưu tiên nét trước' },

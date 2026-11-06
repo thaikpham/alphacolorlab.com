@@ -34,16 +34,16 @@ export const page: Article = {
     { t: 'h', text: 'Hai cài đặt để ảnh nét hơn' },
     {
       t: 'p',
-      text: 'Về nhà, vào menu và cài ISO AUTO từ 100 đến 6400, rồi cài ISO AUTO Min. SS thành 1/125. Hai cài này bảo máy: "nâng ISO trước khi hạ tốc" — vì ảnh nhoè thì không cứu được, nhưng nhiễu thì cứu được ở hậu kỳ.',
+      text: 'Về nhà, vào menu và cài ISO AUTO từ 100 đến 6400, rồi cài ISO AUTO Min. SS thành 1/125. Hai cài này bảo máy: "nâng ISO trước khi hạ tốc" — vì ảnh nhoè thì không cứu được, nhưng nhiễu thì cứu được ở hậu kỳ. ZV-E10 không có ISO AUTO Min. SS: trên máy đó, nhìn tốc độ trên màn hình và nâng ISO tay khi nó tụt dưới 1/125.',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO (Maximum 6400, Minimum 100)',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO (Maximum 6400, Minimum 100; ZV-E10: Camera Settings1 → ISO)',
       new: 'MENU → Exposure/Color → Exposure → ISO → ISO AUTO (Maximum 6400, Minimum 100)',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → 1/125',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → 1/125 (a6400; ZV-E10 không có mục này)',
       new: 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS → 1/125',
     },
     {

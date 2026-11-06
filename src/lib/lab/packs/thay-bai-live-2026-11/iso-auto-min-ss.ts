@@ -28,18 +28,18 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO (Min 100 / Max 6400)',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO (Min 100 / Max 6400; ZV-E10: Camera Settings1 → ISO)',
       new: 'MENU → Exposure/Color → Exposure → ISO → ISO AUTO (Min 100 / Max 6400)',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → 1/125',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → 1/125 (a6400; ZV-E10 không có mục này)',
       new: 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS → 1/125',
     },
     { t: 'h', text: 'Chọn con số nào' },
     {
       t: 'p',
-      text: 'Min. SS là sàn [[Tốc độ màn trập|tốc độ màn trập]]: máy sẽ nâng ISO trước và chỉ đi chậm hơn con số này khi ISO đã chạm trần. Chọn nó theo chủ thể bạn chụp, không theo tiêu cự ống kính — người cử động nhanh hơn tay bạn rung.',
+      text: 'Min. SS là sàn [[Tốc độ màn trập|tốc độ màn trập]]: máy sẽ nâng ISO trước và chỉ đi chậm hơn con số này khi ISO đã chạm trần. Chọn nó theo chủ thể bạn chụp, không theo tiêu cự ống kính — người cử động nhanh hơn tay bạn rung. ZV-E10 không có mục ISO AUTO Min. SS; trên máy đó, dùng chế độ S với ISO AUTO để tự đặt sàn tốc.',
     },
     {
       t: 'table',
