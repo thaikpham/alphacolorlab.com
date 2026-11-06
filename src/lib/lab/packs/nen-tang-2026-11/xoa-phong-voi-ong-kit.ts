@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Xóa phông không phải là thuộc tính của ống kính — nó là kết quả của ba yếu tố: [[Độ sâu trường ảnh và xóa phông]] (độ sâu trường), khoảng cách từ máy tới chủ thể, và khoảng cách từ chủ thể tới nền. Ống kit 18–55mm f/3.5–5.6 không khẩu lớn như 50mm f/1.8, nhưng nếu bạn chọn ba cái khác một cách thông minh, kết quả sẽ gần giống.',
+      text: 'Xóa phông không phải là thuộc tính của ống kính — nó là kết quả của ba yếu tố: [[Độ sâu trường ảnh và xóa phông]] (độ sâu trường), khoảng cách từ máy tới chủ thể, và khoảng cách từ [[chủ thể chính]] tới nền. Ống kit 18–55mm f/3.5–5.6 không có [[khẩu độ]] lớn như 50mm f/1.8, nhưng nếu bạn chọn ba cái khác một cách thông minh, kết quả sẽ gần giống.',
     },
     {
       t: 'figure',

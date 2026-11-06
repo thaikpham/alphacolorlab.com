@@ -74,7 +74,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Chụp JPEG hoặc HEIF thì Look quyết định màu. Chụp RAW thì Look chỉ lưu vào metadata làm tham khảo; phần mềm như Lightroom dùng nó làm gợi ý khi chỉnh sau.',
+      text: 'Chụp [[JPEG]] hoặc [[HEIF]] thì Look quyết định màu. Chụp RAW thì Look chỉ lưu vào metadata làm tham khảo; phần mềm như Lightroom dùng nó làm gợi ý khi chỉnh sau. Ngoài ra, [[Cân bằng trắng và nhiệt độ màu]] cũng ảnh hưởng tới màu ảnh, và kết hợp với Creative Look sẽ tạo ra hiệu ứng hoàn chỉnh.',
     },
     {
       t: 'checklist',

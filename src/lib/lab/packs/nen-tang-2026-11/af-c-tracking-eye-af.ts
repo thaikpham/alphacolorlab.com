@@ -46,32 +46,26 @@ export const page: Article = {
     {
       t: 'table',
       head: ['Vùng nét', 'Chủ thể ở đâu', 'Khi nào dùng'],
-      caption: 'Tracking phù hợp nhất cho chân dung vì bạn quyết định ai là chủ thể, không phải máy.',
+      caption: 'Tracking phù hợp nhất cho chân dung. Để chọn Focus Area, vào MENU → Camera Settings1 → Focus Area (cũ) hoặc MENU → Focus → AF/MF → Focus Area (mới).',
       rows: [
         ['Tracking', 'Bạn chỉ định, máy bám', 'Chân dung, chân dung gia đình, chụp sự kiện'],
         ['Wide', 'Toàn cảnh, máy chọn', 'Không rõ chủ thể nào là chính, phong cảnh có người'],
         ['Zone', 'Một khu vực mà máy tự chọn', 'Thể thao nhanh, vật chuyển động ngoài dự kiến'],
       ],
     },
-    {
-      t: 'menu',
-      old: 'MENU → Camera Settings1 → Focus Area → Tracking: Zone',
-      new: 'MENU → Focus → AF/MF → Focus Area → Tracking: Zone',
-    },
     { t: 'h', text: 'Face/Eye AF Set.: bật Eye AF' },
     {
       t: 'p',
-      text: 'Menu này có tên khác nhau tuỳ máy (Face/Eye AF Set. trên a6400, Subject Recognition trên a7 IV): MENU → Camera Settings2 → Face/Eye AF Set. → Eye AF (cũ) hoặc MENU → Focus → Subject Recognition → Eye AF (mới). Khi bật Eye AF, máy tự phát hiện mắt người và ưu tiên lấy nét vào đó. Nếu có hai người, bạn có thể chỉ định mắt nào qua phím điều hướng khi chụp.',
+      text: 'Menu này có tên khác nhau tuỳ máy (Face/Eye AF Set. trên a6400, Subject Recognition trên a7 IV): MENU → Camera Settings2 → Face/Eye AF Set. → Eye AF (cũ) hoặc MENU → Focus → Subject Recognition → Eye AF (mới). Khi bật Eye AF, máy tự phát hiện mắt người và ưu tiên [[lấy nét]] vào đó. Nếu có hai người, bạn có thể chỉ định mắt nào qua phím điều hướng khi chụp.',
     },
     {
       t: 'callout',
       label: 'Eye AF tìm mắt, còn bạn chỉ định người',
-      text: 'Eye AF tự động phát hiện mắt nhưng nếu có cặp đôi, máy có thể lúng túng. Nhấn phím ← → ↑ ↓ khi chụp để máy biết lấy nét vào mắt ai.',
+      text: 'Eye AF tự động phát hiện mắt nhưng nếu có cặp đôi, máy có thể lúng túng. Nhấn phím ← → ↑ ↓ khi chụp để máy biết [[lấy nét]] vào mắt ai.',
     },
-    { t: 'h', text: 'Bấm chụp' },
     {
       t: 'p',
-      text: 'Đặt máy ở chế độ A, ISO Auto, shutter không chậm hơn 1/125. Đưa vùng nét lên mắt người, giữ nút để máy bắt nét. Thả nút lúc máy rung nhỏ (nét bám). Bây giờ tự do bố cục và bấm chụp — máy bám mắt khi chủ thể không di chuyển quá nhanh.',
+      text: 'Đặt máy ở chế độ A, ISO Auto, shutter không chậm hơn 1/125. Đưa vùng nét lên mắt người, giữ nút để máy bắt nét. Thả nút lúc máy rung nhỏ (nét bám). Bây giờ tự do [[bố cục]] và bấm chụp — máy bám mắt khi chủ thể không di chuyển quá nhanh.',
     },
     {
       t: 'checklist',
@@ -86,9 +80,8 @@ export const page: Article = {
   meta: {
     related: [
       { kind: 'knowledge', id: 'lay-net' },
+      { kind: 'knowledge', id: 'bo-cuc' },
       { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
-      { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },
-      { kind: 'article', id: 'back-button-af' },
     ],
     prerequisites: ['lay-net'],
     concepts: [],

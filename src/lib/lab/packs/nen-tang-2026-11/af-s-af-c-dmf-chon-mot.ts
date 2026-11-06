@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bạn bấm nút lấy nét, máy bắt được khoảng cách, xong — nét sẽ không thay đổi dù chủ thể di chuyển hay bạn xoay máy. Đó là lý do nó gọi là Single AF. Dùng lúc chủ thể đứng yên: chân dung, gia đình đứng theo dàn, phong cảnh, hay khi bạn muốn bố cục xong rồi mới bấm chụp (vì nêu bạn thay đổi vị trí máy, nét sẽ trượt).',
+      text: 'Bạn bấm nút lấy nét, máy bắt được khoảng cách, xong — nét sẽ không thay đổi dù chủ thể di chuyển hay bạn xoay máy. Đó là lý do nó gọi là Single AF. Dùng lúc chủ thể đứng yên: chân dung, gia đình đứng theo dàn, phong cảnh, hay khi bạn muốn [[bố cục]] xong rồi mới bấm chụp (vì nếu bạn thay đổi vị trí máy, nét sẽ trượt).',
     },
     {
       t: 'h',
@@ -79,9 +79,8 @@ export const page: Article = {
   meta: {
     related: [
       { kind: 'knowledge', id: 'lay-net' },
-      { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
+      { kind: 'knowledge', id: 'bo-cuc' },
       { kind: 'knowledge', id: 'panning' },
-      { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },
     ],
     prerequisites: ['lay-net'],
     concepts: [],

@@ -59,11 +59,11 @@ export const page: Article = {
     },
     {
       t: 'h',
-      text: 'RAW thì sao?',
+      text: 'RAW và Creative Look',
     },
     {
       t: 'p',
-      text: 'RAW lưu dữ liệu gốc mà không áp dụng White Balance khi chụp. Bạn chỉnh màu sau trong Lightroom hay Imaging Edge khi thấy đầy đủ dữ liệu và dễ khôi phục hơn. White Balance chỉ là tham khảo trong metadata.',
+      text: '[[RAW]] lưu dữ liệu gốc mà không áp dụng White Balance khi chụp. Bạn chỉnh màu sau trong Lightroom hay Imaging Edge khi thấy đầy đủ dữ liệu và dễ khôi phục hơn. White Balance chỉ là tham khảo trong metadata. Ngược lại, [[Creative Look]] áp dụng trực tiếp trên JPEG nên White Balance sẽ ảnh hưởng tới màu sắc cuối cùng.',
     },
     {
       t: 'checklist',

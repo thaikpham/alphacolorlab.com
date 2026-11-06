@@ -49,7 +49,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tiền cảnh (cửa): 0.3–0.5 mét từ ống kính. Chủ thể (người): 1–2 mét phía sau. Nền: 3 mét trở lên. Nếu chủ thể gần tiền cảnh (< 30 cm), sâu trường nhỏ và chủ thể sẽ mờ một phần. Nếu chủ thể ở quá xa (> 5 mét), ba tầng trở thành một dãy mờ nhạt. Khoảng cách 1–2 mét giữa tiền cảnh và chủ thể là lý tưởng.',
+      text: 'Tiền cảnh (cửa): 0.3–0.5 mét từ ống kính. Chủ thể (người): 1–2 mét phía sau. Nền: 3 mét trở lên. Nếu chủ thể gần tiền cảnh (< 30 cm), sâu trường nhỏ và chủ thể sẽ mờ một phần. Nếu chủ thể ở quá xa (> 5 mét), ba tầng trở thành một dãy mờ nhạt. Khoảng cách 1–2 mét giữa tiền cảnh và chủ thể là lý tưởng — đó là cơ sở của [[bố cục]] khung trong khung.',
     },
     {
       t: 'table',
