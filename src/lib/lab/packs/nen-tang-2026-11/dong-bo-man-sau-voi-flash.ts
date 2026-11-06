@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Hành động chụp là: màn trập mở → chủ thể di chuyển (ghi vệt sáng từ nền) → flash nổ → màn trập đóng. Với đồng bộ màn trước, flash nổ lúc mở màn, "đóng băng" chủ thể ở vị trí đầu, vệt sáng ghi sau nó → vệt phía trước. Với đồng bộ màn sau, vệt ghi trước, flash nổ lúc đóng màn → chủ thể "đóng băng" ở vị trí cuối → vệt nằm phía sau, như đang lao tới.',
+      text: 'Hành động chụp là: màn trập mở → chủ thể di chuyển (ghi vệt sáng từ nền) → flash nổ → [[tốc độ màn trập]] đóng. Với đồng bộ màn trước, flash nổ lúc mở màn, "đóng băng" chủ thể ở vị trí đầu, vệt sáng ghi sau nó → vệt phía trước. Với [[đồng bộ màn sau]], vệt ghi trước, flash nổ lúc đóng màn → chủ thể "đóng băng" ở vị trí cuối → vệt nằm phía sau, như đang lao tới với [[Cân bằng trắng và nhiệt độ màu]].',
     },
     {
       t: 'h',

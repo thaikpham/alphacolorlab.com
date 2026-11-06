@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '[[Panning]] là lia máy bám theo chủ thể đang chạy ở tốc độ màn trập chậm: chủ thể nét, hậu cảnh nhòe thành vệt ngang, tạo cảm giác tốc độ. Đây là bài tập phổ biến nhất ở lớp nâng cao, vì nó kết hợp ba yếu tố: lấy nét AF-C, tốc độ chậm để ghi chuyển động, và kỹ năng thực hành rõ ràng.',
+      text: '[[Panning]] là lia máy bám theo chủ thể đang chạy ở [[tốc độ màn trập]] chậm: chủ thể nét, hậu cảnh nhòe thành vệt ngang, tạo cảm giác tốc độ. Đây là bài tập phổ biến nhất ở lớp nâng cao, vì nó kết hợp ba yếu tố: [[lấy nét]] AF-C, tốc độ chậm để ghi chuyển động, và [[bố cục]] rõ ràng.',
     },
     {
       t: 'figure',
@@ -105,7 +105,7 @@ export const page: Article = {
       { kind: 'knowledge', id: 'panning' },
       { kind: 'knowledge', id: 'toc-do-man-trap' },
       { kind: 'knowledge', id: 'lay-net' },
-      { kind: 'knowledge', id: '8-bai-thuc-hanh' },
+      { kind: 'knowledge', id: 'bo-cuc' },
     ],
     prerequisites: [],
     concepts: [],
