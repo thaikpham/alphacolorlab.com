@@ -70,17 +70,16 @@ export async function RelatedLinks({
 
   return (
     <section aria-label={heading ?? t('related')} className="flex flex-col gap-4">
-      <H className="label">{heading ?? t('related')}</H>
+      <H className="label text-ink">{heading ?? t('related')}</H>
       {groups.map((g) => (
         <div key={g.kind}>
-          <p className="meta">{t(`relatedKinds.${g.kind}`)}</p>
-          <ul className="mt-1">
+          <p className="meta text-ink-muted">{t(`relatedKinds.${g.kind}`)}</p>
+          <ul className="mt-2 space-y-0.5">
             {g.items.map((l) => (
               <li key={`${l.kind}:${l.id}`}>
-                <hr className="seam" />
                 <Link
                   href={l.href}
-                  className="group flex min-h-[var(--layout-touch-target)] flex-col justify-center gap-0.5 rounded-sm px-2 py-2.5 transition-colors hover:bg-glass"
+                  className="group flex min-h-[var(--layout-touch-target)] flex-col justify-center gap-0.5 rounded-md px-3 py-2 transition-colors hover:bg-glass"
                 >
                   <span
                     lang={l.kind === 'article' || l.kind === 'knowledge' ? lang : undefined}
@@ -88,7 +87,7 @@ export async function RelatedLinks({
                   >
                     {l.title}
                   </span>
-                  {l.subtitle ? <span className="meta">{l.subtitle}</span> : null}
+                  {l.subtitle ? <span className="meta text-ink-muted">{l.subtitle}</span> : null}
                 </Link>
               </li>
             ))}

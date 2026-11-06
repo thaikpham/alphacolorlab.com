@@ -87,18 +87,17 @@ function renderBlock(
     from lg up, the folded list under the dek below it. */
 function OutlineList({ outline }: { outline: ReturnType<typeof buildOutline> }) {
   return (
-    <ul lang={ARTICLE_LANG} className="mt-1">
+    <ul lang={ARTICLE_LANG} className="mt-2 space-y-0.5">
       {outline.map((entry) => (
         <li key={entry.id}>
-          <hr className="seam" />
           <a
             href={`#${entry.id}`}
-            className="flex min-h-[var(--layout-touch-target)] gap-2.5 rounded-sm px-2 py-3 transition-colors hover:bg-glass"
+            className="flex min-h-[var(--layout-touch-target)] gap-2.5 rounded-md px-3 py-2.5 transition-colors hover:bg-glass"
           >
-            <span className="text-label font-bold tabular-nums text-accent-400">{entry.n}</span>
+            <span className="text-label font-bold tabular-nums text-accent-400 shrink-0">{entry.n}</span>
             <span className="min-w-0">
               <span className="block text-body-sm font-semibold leading-[1.35] text-ink">{entry.text}</span>
-              {entry.precis ? <span className="meta mt-1 block leading-[1.45]">{entry.precis}</span> : null}
+              {entry.precis ? <span className="meta mt-0.5 block leading-[1.45] text-ink-muted">{entry.precis}</span> : null}
             </span>
           </a>
         </li>
@@ -216,7 +215,7 @@ export async function ArticleView({ article }: { article: Article }) {
               ) : null}
               {outline.length > 0 ? (
                 <details className="group">
-                  <summary className="label flex min-h-[var(--layout-touch-target)] cursor-pointer list-none items-center justify-between gap-2 [&::-webkit-details-marker]:hidden">
+                  <summary className="label flex min-h-[var(--layout-touch-target)] cursor-pointer list-none items-center justify-between gap-2 [&::-webkit-details-marker]:hidden text-ink">
                     {knowledge ? tl('inThisPage') : t('inThisArticle')}
                     <span aria-hidden className="text-ink-faint group-open:rotate-180">▾</span>
                   </summary>
@@ -230,21 +229,24 @@ export async function ArticleView({ article }: { article: Article }) {
           {article.blocks.map((block, i) => renderBlock(block, i, article.id, labels, ordinals[i], hrefs))}
         </div>
 
-        <footer className="mt-3 flex flex-col gap-6 pt-5">
+        <footer className="mt-12 pt-8 flex flex-col gap-6">
           <hr className="seam" />
-          <SourceList sources={article.meta.sources} lang={ARTICLE_LANG} />
-          {article.meta.reviewedAt || article.meta.authorName ? (
-            <p className="meta">
-              {article.meta.authorName ? (
-                <span lang={ARTICLE_LANG}>{tl('byAuthor', { name: article.meta.authorName })}</span>
-              ) : null}
-              {article.meta.authorName && article.meta.reviewedAt ? ' · ' : null}
-              {article.meta.reviewedAt
-                ? tl('reviewedOn', { date: formatIsoDay(article.meta.reviewedAt, locale) })
-                : null}
-            </p>
-          ) : null}
-          <p className="meta">{t('firmwareDisclaimer')}</p>
+          <div>
+            <SourceList sources={article.meta.sources} lang={ARTICLE_LANG} />
+            {article.meta.reviewedAt || article.meta.authorName ? (
+              <p className="meta mt-4">
+                {article.meta.authorName ? (
+                  <span lang={ARTICLE_LANG}>{tl('byAuthor', { name: article.meta.authorName })}</span>
+                ) : null}
+                {article.meta.authorName && article.meta.reviewedAt ? ' · ' : null}
+                {article.meta.reviewedAt
+                  ? tl('reviewedOn', { date: formatIsoDay(article.meta.reviewedAt, locale) })
+                  : null}
+              </p>
+            ) : null}
+            <p className="meta mt-2">{t('firmwareDisclaimer')}</p>
+          </div>
+          <hr className="seam" />
           <RelatedLinks
             links={related}
             unavailable={refsUnavailable(article.meta.related, unavailable)}
@@ -259,7 +261,7 @@ export async function ArticleView({ article }: { article: Article }) {
           a gap below it. */}
       <nav
         aria-label={t('railLabel')}
-        className="hidden lg:flex lg:sticky lg:top-6 shrink-0 basis-[clamp(15rem,19vw,20rem)] flex-col gap-5"
+        className="hidden lg:flex lg:sticky lg:top-6 shrink-0 basis-[clamp(15rem,19vw,20rem)] flex-col gap-6"
       >
         {/* In the rail, above the contents: it is navigation, not part of
             what the author wrote. The rail is the lg+ home of "read first";
@@ -270,7 +272,7 @@ export async function ArticleView({ article }: { article: Article }) {
 
         {outline.length > 0 ? (
           <div>
-            <p className="label">{knowledge ? tl('inThisPage') : t('inThisArticle')}</p>
+            <p className="label text-ink">{knowledge ? tl('inThisPage') : t('inThisArticle')}</p>
             <OutlineList outline={outline} />
           </div>
         ) : null}
