@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bố cục là cách sắp xếp các yếu tố trong khung cố định. Nguyên tắc bố cục nói rằng mắt người xem dừa lâu ở bốn giao điểm của lưới 1/3, chứ không phải ở giữa. Grid Line là công cụ máy ảnh giúp bạn thấy lưới đó ngay trong kính ngắm, thay vì phải tưởng tượng.',
+      text: '[[Bố cục]] là cách sắp xếp các yếu tố trong khung cố định. Nguyên tắc bố cục nói rằng mắt người xem dừa lâu ở bốn giao điểm của lưới 1/3, chứ không phải ở giữa. Grid Line là công cụ máy ảnh giúp bạn thấy lưới đó ngay trong kính ngắm, thay vì phải tưởng tượng.',
     },
     {
       t: 'figure',
@@ -46,7 +46,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khi bạn thấy lưới 1/3, bạn thấy chín ô bằng nhau và bốn giao điểm — chỗ hai đường cắt nhau. Đó là bốn "điểm nóng". Đặt chủ thể tại một điểm nóng thay vì giữa khiến ảnh cân bằng và có không gian để bối cảnh kể chuyện.',
+      text: 'Khi bạn thấy lưới 1/3, bạn thấy chín ô bằng nhau và bốn giao điểm — chỗ hai đường cắt nhau. Đó là bốn "điểm nóng". Đặt [[chủ thể chính]] tại một điểm nóng thay vì giữa khiến ảnh cân bằng và có không gian để bối cảnh kể chuyện.',
     },
     {
       t: 'callout',
@@ -59,7 +59,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khi chụp quang cảnh với đường chân trời, hãy căn chân trời vào một trong hai đường ngang của lưới, không phải giữa. Bối cảnh phía trên hoặc dưới sẽ có tỷ lệ 2:1 thay vì 1:1, khiến ảnh động hơn.',
+      text: 'Khi chụp quang cảnh với đường chân trời, hãy căn chân trời vào một trong hai đường ngang của lưới, không phải giữa. Bối cảnh phía trên hoặc dưới sẽ có tỷ lệ 2:1 thay vì 1:1, khiến ảnh động hơn. Kỹ thuật này gọi là [[khung trong khung]] khi cảnh ngoài có khung tự nhiên.',
     },
     {
       t: 'h',
@@ -68,14 +68,6 @@ export const page: Article = {
     {
       t: 'p',
       text: 'Bật Grid Line, đi đến một địa điểm có nhiều yếu tố (con phố, sân công viên). Chụp năm khung hình, mỗi khung đặt một yếu tố khác nhau tại bốn giao điểm. Ví dụ: một tòa nhà ở giao điểm trên trái, một người ở giao điểm dưới phải, mặt trời ở giao điểm trên phải.',
-    },
-    {
-      t: 'h',
-      text: 'Xem lại và so sánh',
-    },
-    {
-      t: 'p',
-      text: 'Sau bài tập, xem lại năm ảnh. Khung nào cân bằng nhất? Khung nào kể câu chuyện tốt nhất? So sánh với cách bạn thường chụp (thường là để chủ thể ở giữa). Bạn sẽ thấy sự khác biệt — lưới 1/3 kéo dãn không gian và tạo nhịp.',
     },
     {
       t: 'checklist',
@@ -89,6 +81,7 @@ export const page: Article = {
   ],
   meta: {
     related: [
+      { kind: 'knowledge', id: 'bo-cuc' },
       { kind: 'knowledge', id: 'chu-the-chinh' },
       { kind: 'knowledge', id: 'goc-may-va-khung-hinh' },
       { kind: 'knowledge', id: 'khung-trong-khung' },
