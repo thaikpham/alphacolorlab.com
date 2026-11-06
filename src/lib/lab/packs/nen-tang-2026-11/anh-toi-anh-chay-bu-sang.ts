@@ -57,7 +57,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Sao lại 1/3 stop? Vì ISO có bước 1 stop, nên Sony chọn 1/3 stop làm đơn vị chính — đủ nhỏ tinh chỉnh mà không quay liên tục. Nếu xoay bù +3 mà vẫn tối? Nguyên nhân không bù sáng — đó cảnh quá tối. Nâng ISO, mở khẩu lớn hơn, hoặc hạ tốc — ba yếu tố của [[Tam giác phơi sáng]]. Bạn đã ở trần bù sáng (phạm vi ±2 hoặc ±3 tùy máy); máy không thể sáng hơn được.',
+      text: 'Sao lại 1/3 stop? Vì ISO có bước 1 stop, nên Sony chọn 1/3 stop làm đơn vị chính — đủ nhỏ tinh chỉnh mà không quay liên tục. Nếu xoay bù +3 mà vẫn tối? Nguyên nhân không bù sáng — đó cảnh quá tối. Nâng ISO, mở khẩu lớn hơn, hoặc hạ tốc — ba yếu tố của [[Tam giác phơi sáng|tam giác phơi sáng]]. Bạn đã ở trần bù sáng (phạm vi ±2 hoặc ±3 tùy máy); máy không thể sáng hơn được.',
     },
     {
       t: 'checklist',

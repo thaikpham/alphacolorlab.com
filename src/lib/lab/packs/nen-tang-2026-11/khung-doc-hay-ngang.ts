@@ -29,7 +29,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '**Khung ngang** (Landscape): chiều rộng lớn hơn chiều cao — là chế độ mặc định của máy ảnh. Nó tốt cho cảnh rộng, bầu trời, đường chân trời, nhóm người, hay bất cứ thứ gì yêu cầu không gian ngang. Mắt người xem quét từ trái sang phải, kéo dàn thời gian. **Khung dọc** (Portrait): chiều cao lớn hơn chiều rộng — buộc phải cắt bối cảnh bên cạnh. Nó tốt cho [[Chủ thể chính]] như chân dung, tòa nhà cao, bất cứ chủ thể dọc nào, hoặc khi bạn muốn bối cảnh không chiếm chỗ. Mắt người xem cô đặc và tập trung hơn.',
+      text: '**Khung ngang** (Landscape): chiều rộng lớn hơn chiều cao — là chế độ mặc định của máy ảnh. Nó tốt cho cảnh rộng, bầu trời, đường chân trời, nhóm người, hay bất cứ thứ gì yêu cầu không gian ngang. Mắt người xem quét từ trái sang phải, kéo dàn thời gian. **Khung dọc** (Portrait): chiều cao lớn hơn chiều rộng — buộc phải cắt bối cảnh bên cạnh. Nó tốt cho [[Chủ thể chính|chủ thể chính]] như chân dung, tòa nhà cao, bất cứ chủ thể dọc nào, hoặc khi bạn muốn bối cảnh không chiếm chỗ. Mắt người xem cô đặc và tập trung hơn.',
     },
     {
       t: 'h',

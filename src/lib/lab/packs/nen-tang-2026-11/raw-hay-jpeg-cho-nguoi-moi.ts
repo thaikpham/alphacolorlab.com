@@ -60,7 +60,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Nếu bạn vừa bắt đầu: chọn JPEG với [[Creative Look]] là Portrait, chụp thử, ảnh ra ngay, dùng được. Khi bạn yêu thích nhiếp ảnh và muốn kiểm soát toàn bộ: chuyển RAW. Mẹo: máy Sony có chế độ RAW+JPEG (chụp cả hai cùng lúc)—bạn có RAW để chỉnh chi tiết sau, và JPEG để [[Đặt tên và lọc ảnh]] sau đó kiểm tra nhanh.',
+      text: 'Nếu bạn vừa bắt đầu: chọn JPEG với [[Creative Look]] là Portrait, chụp thử, ảnh ra ngay, dùng được. Khi bạn yêu thích nhiếp ảnh và muốn kiểm soát toàn bộ: chuyển RAW. Mẹo: máy Sony có chế độ RAW+JPEG (chụp cả hai cùng lúc)—bạn có RAW để chỉnh chi tiết sau, và JPEG để [[Đặt tên và lọc ảnh|đặt tên và lọc ảnh]] sau đó kiểm tra nhanh.',
     },
     {
       t: 'h',

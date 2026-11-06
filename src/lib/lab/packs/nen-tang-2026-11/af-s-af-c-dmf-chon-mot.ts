@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Ba chế độ lấy nét: AF-S khóa nét tại thời điểm bấm, AF-C bám liên tục, DMF cho phép sửa nét thủ công. Ảnh: Wikimedia · CC BY-SA 4.0 · Wikimedia Commons',
+      caption: 'Ba chế độ lấy nét: AF-S khóa nét tại thời điểm bấm, AF-C bám liên tục, DMF cho phép sửa nét thủ công. Ảnh: Phiarc · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',

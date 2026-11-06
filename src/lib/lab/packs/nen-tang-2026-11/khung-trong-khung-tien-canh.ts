@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Người trong cửa sổ hình chữ nhật, cửa nét vừa đủ để nhìn thấy khung, ánh sáng dồn vào mặt người. Ảnh: Wikimedia · CC BY-SA 4.0 · Wikimedia Commons',
+      caption: 'Cảnh quan được khung bởi lối vào cầu thang, với tầm nhìn sâu vào cảnh ngoài. Ảnh: Jules Verne Times Two · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',
@@ -41,7 +41,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Nếu để khẩu f/1.8, tiền cảnh gần như vô hình, người xem không hiểu nó là cửa hay là gì. Nếu để khẩu f/8, tiền cảnh lại quá nét, chiếm hết chú ý. Khẩu f/2.8–f/4 (tầm giữa) khiến tiền cảnh mờ nhưng nhìn thấy được form dáng của nó (hình chữ nhật của cửa, những vệt lá cây). Đó là chỗ [[Độ sâu trường ảnh và xóa phông]] phát huy: nó vừa đủ để tạo chiều sâu.',
+      text: 'Nếu để khẩu f/1.8, tiền cảnh gần như vô hình, người xem không hiểu nó là cửa hay là gì. Nếu để khẩu f/8, tiền cảnh lại quá nét, chiếm hết chú ý. Khẩu f/2.8–f/4 (tầm giữa) khiến tiền cảnh mờ nhưng nhìn thấy được form dáng của nó (hình chữ nhật của cửa, những vệt lá cây). Đó là chỗ [[Độ sâu trường ảnh và xóa phông|độ sâu trường ảnh và xóa phông]] phát huy: nó vừa đủ để tạo chiều sâu.',
     },
     {
       t: 'h',
