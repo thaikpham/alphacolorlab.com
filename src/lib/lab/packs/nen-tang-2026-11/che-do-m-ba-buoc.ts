@@ -20,7 +20,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Chế độ M là chế độ duy nhất bạn hoàn toàn kiểm soát. Khó nhất nhưng linh hoạt nhất — khi cảnh sáng cố định thì M đảm bảo tất cả tấm cùng độ sáng. Quy trình ba bước lặp lại trước mỗi chụp, hoặc sau vài tấm khi ánh sáng đổi.',
+      text: '[[Chế độ chụp P-A-S-M]] bao gồm M — chế độ duy nhất bạn hoàn toàn kiểm soát. Ở M, bạn lập cả [[khẩu độ]], [[tốc độ màn trập]], và [[ISO]] — khó nhất nhưng linh hoạt nhất. Khi cảnh sáng cố định (studio, pháo hoa, trăng) thì M đảm bảo tất cả tấm cùng độ sáng. Quy trình ba bước lặp lại trước mỗi chụp, hoặc sau vài tấm khi ánh sáng đổi.',
     },
     {
       t: 'figure',
@@ -74,8 +74,11 @@ export const page: Article = {
   ],
   meta: {
     related: [
-      { kind: 'knowledge', id: 'tam-giac-phoi-sang' },
       { kind: 'knowledge', id: 'che-do-chup-p-a-s-m' },
+      { kind: 'knowledge', id: 'khau-do' },
+      { kind: 'knowledge', id: 'toc-do-man-trap' },
+      { kind: 'knowledge', id: 'iso' },
+      { kind: 'knowledge', id: 'tam-giac-phoi-sang' },
       { kind: 'knowledge', id: 'do-sang' },
     ],
     prerequisites: ['tam-giac-phoi-sang'],

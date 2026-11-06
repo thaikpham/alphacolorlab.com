@@ -20,7 +20,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bù sáng là lệnh bảo máy chụp sáng hơn hoặc tối hơn so với mục tiêu của máy. Máy tính toán một mức trung bình, nhưng cảnh thực tế khác — cảnh trắng cần bù +, cảnh đen cần bù −. Bù sáng không phải sửa sau — nó chỉnh máy lúc chụp để ảnh ra từ máy đã gần đúng.',
+      text: '[[Bù sáng]] là lệnh bảo máy chụp sáng hơn hoặc tối hơn so với mục tiêu của [[đo sáng]]. Máy tính toán một mức trung bình, nhưng cảnh thực tế khác — cảnh trắng cần bù +, cảnh đen cần bù −. Bù sáng không phải sửa sau — nó chỉnh máy lúc chụp để ảnh ra từ máy đã gần đúng.',
     },
     {
       t: 'figure',

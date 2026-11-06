@@ -59,11 +59,6 @@ export const page: Article = {
       text: '**Đêm trong nhà** ánh sáng thường là hỗn hợp: đèn vàng (2.700K) + điện thoại xanh (6.500K) + neon cam. Cân bằng trắng sẽ bối rối. [[Creative Look|Creative Look]] **Vivid** hoặc **Film** sẽ làm vấn đề tệ hơn bằng cách tăng độ bão hòa của màu lạc. Dùng **NT** (Neutral) — dòng ngàn, buồn nhưng đúng — và để hậu kỳ sửa màu nếu cần. Luôn chụp [[RAW, JPEG và HEIF|RAW]] để có cơ hội sửa cân bằng trắng và xử lý nhiễu tốt hơn so với JPEG.',
     },
     {
-      t: 'callout',
-      label: 'Chụp RAW vs JPEG+RAW',
-      text: 'Đêm nên chụp **RAW+JPEG**. JPEG mau cho xem ngay trên điện thoại; RAW lưu dữ liệu chân thực, khuôn sáng để bạn bù sáng, xoay cân bằng trắng, sửa nhiễu mà không mất chi tiết. JPEG giảm nhiễu máy làm sạch ảnh nhưng làm mất chi tiết micro.',
-    },
-    {
       t: 'h',
       text: 'Ba cách giảm nhiễu: ngay khi chụp, hậu kỳ, hoặc tấm',
     },

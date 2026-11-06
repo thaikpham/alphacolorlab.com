@@ -20,7 +20,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Chế độ A là "tự động có mục đích": bạn kiểm soát khẩu độ (để xóa phông hay nét sâu), máy làm phần còn lại. Giáo trình Sony khuyên mọi người mới dùng A làm chế độ mặc định — nó đơn giản hơn M nhưng linh hoạt hơn P, vừa đủ kiểm soát để bạn học một cách bấm mới mà không phải học ba thứ cùng một lúc.',
+      text: 'Chế độ A là "tự động có mục đích": bạn kiểm soát [[khẩu độ]] (để xóa phông hay nét sâu), máy chọn [[tốc độ màn trập]] để đúng sáng. Giáo trình Sony khuyên mọi người mới dùng A làm chế độ mặc định — nó đơn giản hơn M nhưng linh hoạt hơn P, vừa đủ kiểm soát để bạn học một cách bấm mới mà không phải học ba thứ cùng một lúc. Ba yếu tố khẩu độ, tốc độ và [[ISO]] tạo nên [[tam giác phơi sáng]] — độc lập thay đổi một, máy hay chúng ta sẽ thiết lập hai cái khác.',
     },
     {
       t: 'figure',
@@ -73,7 +73,9 @@ export const page: Article = {
     related: [
       { kind: 'knowledge', id: 'che-do-chup-p-a-s-m' },
       { kind: 'knowledge', id: 'khau-do' },
+      { kind: 'knowledge', id: 'toc-do-man-trap' },
       { kind: 'knowledge', id: 'iso' },
+      { kind: 'knowledge', id: 'tam-giac-phoi-sang' },
     ],
     prerequisites: ['che-do-chup-p-a-s-m'],
     concepts: [],

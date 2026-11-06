@@ -20,7 +20,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Stop là khái niệm trừu tượng để so sánh ánh sáng qua ba yếu tố khác nhau (khẩu, tốc, ISO). Chúng dùng đơn vị khác nhau nên người ta định nghĩa stop: +1 stop = gấp đôi ánh sáng, −1 stop = giảm một nửa, dù bạn thay khẩu, tốc hay ISO. [[Stop và EV]] giải thích chi tiết; bài này giúp bạn đọc trên Sony.',
+      text: '[[Stop và EV]] là khái niệm trừu tượng để so sánh ánh sáng qua ba yếu tố khác nhau: [[khẩu độ]], [[tốc độ màn trập]], và [[ISO]]. Chúng dùng đơn vị khác nhau nên người ta định nghĩa stop: +1 stop = gấp đôi ánh sáng, −1 stop = giảm một nửa, dù bạn thay khẩu, tốc hay ISO. Bài này giúp bạn đọc trên Sony.',
     },
     {
       t: 'figure',
@@ -75,6 +75,9 @@ export const page: Article = {
   meta: {
     related: [
       { kind: 'knowledge', id: 'stop-va-ev' },
+      { kind: 'knowledge', id: 'khau-do' },
+      { kind: 'knowledge', id: 'toc-do-man-trap' },
+      { kind: 'knowledge', id: 'iso' },
       { kind: 'knowledge', id: 'tam-giac-phoi-sang' },
       { kind: 'knowledge', id: 'bu-sang' },
     ],
