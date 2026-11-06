@@ -1,0 +1,103 @@
+import type { Article } from '../../types'
+
+export const page: Article = {
+  id: 'khung-trong-khung-tien-canh',
+  kind: 'article',
+  topic: 'composition',
+  level: 'mid',
+  archetype: 'technique',
+  read: '6 phút đọc',
+  title: 'Khung trong khung: tiền cảnh, lấy nét vào đâu, khẩu nào',
+  dek: 'Khung một chủ thể bằng cửa, cầu thang, lá cây — ba điều khó: tiền cảnh mờ đúng mức, nét vào đâu, khẩu bao nhiêu.',
+  updatedAt: '2026-11-06',
+  blocks: [
+    {
+      t: 'tldr',
+      items: [
+        'Lấy nét vào chủ thể, không vào tiền cảnh — AF-C, Focus Area Tracking là đúng.',
+        'Khẩu f/2.8–f/4 để tiền cảnh mờ nhưng vẫn nhìn rõ được là nó là gì.',
+        'Tiền cảnh ít nhất 30 cm từ ống kính; chủ thể ít nhất 1 mét phía sau; ánh sáng từ chủ thể, không từ tiền cảnh.',
+      ],
+    },
+    {
+      t: 'p',
+      text: '[[Khung trong khung]] là kỹ thuật đặt một hình dạng (cửa, cầu thang, cây) ở trước chủ thể để tạo chiều sâu. Nó tìm chủ đề nhưng khó: nếu tiền cảnh quá nét, người xem cứ nhìn vào đó thay vì chủ thể; nếu quá mờ, người xem không hiểu nó là gì. Nó phải nằm giữa.',
+    },
+    {
+      t: 'figure',
+      caption: 'Người trong cửa sổ hình chữ nhật, cửa nét vừa đủ để nhìn thấy khung, ánh sáng dồn vào mặt người. Ảnh: example Wikimedia Commons',
+    },
+    {
+      t: 'h',
+      text: 'Lấy nét vào chủ thể',
+    },
+    {
+      t: 'p',
+      text: 'Tiền cảnh ở trước, chủ thể ở giữa, nền ở phía sau — ba tầng. Máy sẽ bám vào layer gần nhất (tiền cảnh) nếu bạn dùng Wide focus area, nên phải dùng AF-C + Focus Area Tracking: bạn chỉ định chủ thể (giữa tầng), máy bám vào đó mà bỏ qua tiền cảnh ở trước. Khi bạn bấm nửa cò hoặc nút AF-ON, máy sẽ khóa vào mặt/cơ thể người, không phải cửa.',
+    },
+    {
+      t: 'h',
+      text: 'Khẩu f/2.8–f/4: vừa phải',
+    },
+    {
+      t: 'p',
+      text: 'Nếu để khẩu f/1.8, tiền cảnh gần như vô hình, người xem không hiểu nó là cửa hay là gì. Nếu để khẩu f/8, tiền cảnh lại quá nét, chiếm hết chú ý. Khẩu f/2.8–f/4 (tầm giữa) khiến tiền cảnh mờ nhưng nhìn thấy được form dáng của nó (hình chữ nhật của cửa, những vệt lá cây). Đó là chỗ [[Độ sâu trường ảnh và xóa phông]] phát huy: nó vừa đủ để tạo chiều sâu.',
+    },
+    {
+      t: 'h',
+      text: 'Ba khoảng cách',
+    },
+    {
+      t: 'p',
+      text: 'Tiền cảnh (cửa): 0.3–0.5 mét từ ống kính. Chủ thể (người): 1–2 mét phía sau. Nền: 3 mét trở lên. Nếu chủ thể gần tiền cảnh (< 30 cm), sâu trường nhỏ và chủ thể sẽ mờ một phần. Nếu chủ thể ở quá xa (> 5 mét), ba tầng trở thành một dãy mờ nhạt. Khoảng cách 1–2 mét giữa tiền cảnh và chủ thể là lý tưởng.',
+    },
+    {
+      t: 'table',
+      head: ['Yếu tố', 'Khoảng cách sai', 'Khoảng cách đúng'],
+      caption: 'Ba khoảng cách kết hợp với khẩu độ đúng thành khung trong khung.',
+      rows: [
+        ['Tiền cảnh', '< 20cm hoặc > 1m', '30–50cm'],
+        ['Chủ thể', '< 50cm hoặc > 5m', '1–2m'],
+        ['Nền', 'Gần chủ thể (nông)', '3m+'],
+      ],
+    },
+    {
+      t: 'checklist',
+      label: 'Bốn bước',
+      items: [
+        'Focus Mode: AF-C, Focus Area: Tracking lên chủ thể',
+        'Khẩu f/2.8–f/4, ISO Auto',
+        'Tiền cảnh 30–50cm, chủ thể 1–2m phía sau',
+        'Ánh sáng chủ yếu chiếu lên chủ thể, tiền cảnh phụ',
+      ],
+    },
+  ],
+  meta: {
+    related: [
+      { kind: 'knowledge', id: 'khung-trong-khung' },
+      { kind: 'knowledge', id: 'bo-cuc' },
+      { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
+      { kind: 'knowledge', id: 'lay-net' },
+    ],
+    prerequisites: ['khung-trong-khung'],
+    concepts: [],
+    sources: [
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640830_01_01.html',
+        title: 'a7 IV Depth of Field',
+        publisher: 'Sony',
+        checkedAt: '2026-11-05',
+      },
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
+        title: 'a7 IV Focus Mode',
+        publisher: 'Sony',
+        checkedAt: '2026-11-05',
+      },
+    ],
+    authorName: null,
+    reviewedAt: null,
+    section: null,
+    order: null,
+  },
+}

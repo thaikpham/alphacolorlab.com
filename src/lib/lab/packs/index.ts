@@ -7,4 +7,5 @@ import type { Article } from '../types'
  * pack's pages as drafts and never overwrites a row; `packs.test.ts` is the
  * gate every pack passes before it can be merged.
  */
-export const PACKS: Readonly<Record<string, readonly Article[]>> = {}
+export const PACKS: Readonly<Record<string, readonly Article[]>> = {
+}

@@ -1,0 +1,120 @@
+import type { Article } from '../../types'
+
+export const page: Article = {
+  id: 'af-c-tracking-eye-af',
+  kind: 'article',
+  topic: 'af',
+  level: 'newbie',
+  archetype: 'setup-guide',
+  read: '6 phút đọc',
+  title: 'Ba cài đặt để máy tự bám mắt người',
+  dek: 'AF-C, Focus Area Tracking và Face/Eye AF Set. — ba dòng trong menu là công thức để máy tự khóa vào mắt chủ thể khi bạn chỉ cần bấm chụp.',
+  updatedAt: '2026-11-06',
+  blocks: [
+    {
+      t: 'tldr',
+      items: [
+        'Focus Mode: AF-C (bám liên tục), Focus Area: Tracking (vùng nét bám theo chuyển động).',
+        'Face/Eye AF Set.: tích Eye AF để máy ưu tiên mắt người trong khung.',
+        'Một buổi tập: đưa vùng nét lên mắt trái của chủ thể, giữ chứng được máy bắt, rồi tự do bố cục lại.',
+      ],
+    },
+    {
+      t: 'p',
+      text: '[[Lấy nét]] bằng nửa cò trong chế độ mặc định là một công việc: máy lấy nét rồi bạn phải lựa chọn giữa cân bằng tầm tròn để chụp hay hạ xuống để lấy nét lại khi chủ thể di chuyển. Ba cài đặt này tách công việc thành hai: máy tự bám mắt, bạn chỉ bấm chụp.',
+    },
+    {
+      t: 'figure',
+      caption:
+        'Chân dung ở điểm snaps không hoàn hảo: mắt người vẫn nét vì máy bám theo AF-C + Tracking + Eye AF. Ảnh: example Wikimedia Commons',
+    },
+    { t: 'h', text: 'AF-C: bám liên tục' },
+    {
+      t: 'p',
+      text: 'Chế độ này tên là Continuous AF — lấy nét mà không bao giờ ngừng, chỉ khi nào bạn nhả nút. Trong khi chủ thể đi lại, máy liên tục điều chỉnh tiêu cự để giữ nét. Điểm yếu: nếu một cô gái đi ngang trước hay vật cản bất ngờ, máy sẽ bị lệch nét sang vật cản kia vì nó chỉ biết lấy nét vào phần gần nhất. Đó là lý do cần Focus Area Tracking để dễ nắm bắt hơn.',
+    },
+    {
+      t: 'menu',
+      old: 'MENU → Camera Settings1 → Focus Mode → AF-C',
+      new: 'MENU → Focus → AF/MF → Focus Mode → AF-C',
+    },
+    { t: 'h', text: 'Focus Area: Tracking, không Wide' },
+    {
+      t: 'p',
+      text: 'Vùng nét Wide lấy nét toàn cảnh nhưng không biết đặc biệt ưu tiên cái gì. Tracking là vùng nét hình vuông nhỏ — bạn đặt nó lên mắt người lần đầu, rồi máy bám theo chuyển động của chủ thể khi bạn giữ nút. Nếu chủ thể quay đi, vùng nét vẫn theo nó; nếu ai khác bước vào, vùng nét không tự đổi sang người đó — nó chỉ bám người mà bạn chỉ định lúc đầu. Đó là sức mạnh của Tracking: bạn có quyền kiểm soát, không phải máy quyết định.',
+    },
+    {
+      t: 'table',
+      head: ['Vùng nét', 'Chủ thể ở đâu', 'Khi nào dùng'],
+      caption: 'Tracking phù hợp nhất cho chân dung vì bạn quyết định ai là chủ thể, không phải máy.',
+      rows: [
+        ['Tracking', 'Bạn chỉ định, máy bám', 'Chân dung, chân dung gia đình, chụp sự kiện'],
+        ['Wide', 'Toàn cảnh, máy chọn', 'Không rõ chủ thể nào là chính, phong cảnh có người'],
+        ['Zone', 'Một khu vực mà máy tự chọn', 'Thể thao nhanh, vật chuyển động ngoài dự kiến'],
+      ],
+    },
+    {
+      t: 'menu',
+      old: 'MENU → Camera Settings1 → Focus Area → Tracking: Zone',
+      new: 'MENU → Focus → AF/MF → Focus Area → Tracking: Zone',
+    },
+    { t: 'h', text: 'Face/Eye AF Set.: bật Eye AF' },
+    {
+      t: 'p',
+      text: 'Menu này có tên khác nhau tuỳ máy (Face/Eye AF Set. trên a6400, Subject Recognition trên a7 IV): MENU → Camera Settings2 → Face/Eye AF Set. → Eye AF (cũ) hoặc MENU → Focus → Subject Recognition → Eye AF (mới). Khi bật Eye AF, máy tự phát hiện mắt người và ưu tiên lấy nét vào đó. Nếu có hai người, bạn có thể chỉ định mắt nào qua phím điều hướng khi chụp.',
+    },
+    {
+      t: 'callout',
+      label: 'Eye AF tìm mắt, còn bạn chỉ định người',
+      text: 'Eye AF tự động phát hiện mắt nhưng nếu có cặp đôi, máy có thể lúng túng. Nhấn phím ← → ↑ ↓ khi chụp để máy biết lấy nét vào mắt ai.',
+    },
+    { t: 'h', text: 'Bấm chụp' },
+    {
+      t: 'p',
+      text: 'Đặt máy ở chế độ A, ISO Auto, shutter không chậm hơn 1/125. Đưa vùng nét lên mắt người, giữ nút để máy bắt nét. Thả nút lúc máy rung nhỏ (nét bám). Bây giờ tự do bố cục và bấm chụp — máy bám mắt khi chủ thể không di chuyển quá nhanh.',
+    },
+    {
+      t: 'checklist',
+      label: 'Ba dòng phải đúng',
+      items: [
+        'Focus Mode: AF-C, Focus Area: Tracking: Zone',
+        'Eye AF hoặc Face/Eye AF Set.: On',
+        'Ánh sáng từ trước để máy dễ phát hiện khuôn mặt',
+      ],
+    },
+  ],
+  meta: {
+    related: [
+      { kind: 'knowledge', id: 'lay-net' },
+      { kind: 'knowledge', id: 'do-sau-truong-anh-va-xoa-phong' },
+      { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },
+      { kind: 'article', id: 'back-button-af' },
+    ],
+    prerequisites: ['lay-net'],
+    concepts: [],
+    sources: [
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
+        title: 'a7 IV Focus Mode',
+        publisher: 'Sony',
+        checkedAt: '2026-11-05',
+      },
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640841_01_01.html',
+        title: 'a7 IV Focus Area',
+        publisher: 'Sony',
+        checkedAt: '2026-11-05',
+      },
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000641011_01_01.html',
+        title: 'a7 IV Eye AF',
+        publisher: 'Sony',
+        checkedAt: '2026-11-05',
+      },
+    ],
+    authorName: null,
+    reviewedAt: null,
+    section: null,
+    order: null,
+  },
+}
