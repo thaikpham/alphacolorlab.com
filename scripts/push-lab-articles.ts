@@ -75,7 +75,9 @@ async function main() {
     if (error) throw new Error(`insert lab_articles: ${error.message}`)
   }
   for (const c of replacing) {
-    const { error } = await db.from('lab_articles').update(rowOf(c)).eq('id', c.article.id).is('updated_by', null)
+    /* Giữ nguyên status: thay nội dung một bài đang live không được gỡ nó xuống nháp. */
+    const { status: _status, ...body } = rowOf(c)
+    const { error } = await db.from('lab_articles').update(body).eq('id', c.article.id).is('updated_by', null)
     if (error) throw new Error(`replace ${c.article.id}: ${error.message}`)
   }
   /* Ảnh sau khi dòng đã có: lab_assets.article_id trỏ vào dòng vừa ghi. */
