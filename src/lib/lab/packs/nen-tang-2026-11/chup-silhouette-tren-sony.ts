@@ -8,20 +8,20 @@ export const page: Article = {
   archetype: 'technique',
   read: '6 phút đọc',
   title: 'Chụp silhouette trên Sony: đo sáng điểm và bù sáng âm',
-  dek: 'Silhouette là chủ thể đen tuyền trước nền trời sáng. Ba cài đặt Sony và kỹ thuật đo sáng sẽ giúp bạn tạo ảnh.',
+  dek: 'Silhouette là chủ thể đen tuyền trước nền trời sáng. Một cài đặt đo sáng và vài bước thực hành.',
 
   blocks: [
     {
       t: 'tldr',
       items: [
-        'Đo sáng Điểm vào vùng trời sáng nhất, cài bù −1.5 đến −2.5 EV.',
+        'Đo sáng Spot vào vùng trời sáng nhất, cài bù −1.5 đến −2.5 EV.',
         'Chủ thể phải nằm trọn trên nền trời, không dính vào cây hay nhà phía sau.',
         'Chọn dáng có đường viền rõ: tay giơ, chân bước, mặt profile — không ép sát thân.',
       ],
     },
     {
       t: 'p',
-      text: '[[Silhouette]] là [[đo sáng]] theo nền trời sáng để chủ thể thành một khối đen tuyền; ảnh sống nhờ hình dáng, không nhờ chi tiết. [[Bù sáng]] âm là khoá để đạt hiệu ứng này. Đây là một trong những cách nhanh nhất để tạo ảnh có ảnh hưởng mà người mới cầm máy có thể học trong một buổi chiều.',
+      text: '[[Silhouette]] là [[đo sáng]] theo nền trời sáng để chủ thể thành một khối đen tuyền; ảnh sống nhờ hình dáng, không nhờ chi tiết. [[Bù sáng]] âm là khoá để đạt hiệu ứng này. Đây là một trong những cách nhanh nhất để tạo ảnh gây ấn tượng mà người mới cầm máy có thể học trong một buổi chiều.',
     },
     {
       t: 'figure',
@@ -33,13 +33,13 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → Exposure → Metering Mode → Spot',
-      new: 'MENU → Exposure → Metering → Spot: Standard',
+      old: 'MENU → Camera Settings1 → Metering Mode → Spot: Standard',
+      new: 'MENU → Exposure/Color → Metering → Metering Mode → Spot: Standard',
     },
     {
       t: 'callout',
       label: 'Nếu máy bạn có Creative Look',
-      text: 'Chọn Creative Look VV (Vivid) để trời rực màu hơn. Điều chỉnh cân bằng trắng sang Trời nhiều mây hoặc Bóng râm để trời ngả vàng cam — không nên để Auto vì khó kiểm soát.',
+      text: 'Chọn Creative Look VV (Vivid) để trời rực màu hơn. Đặt White Balance sang Cloudy hoặc Shade để trời ngả vàng cam — không nên để Auto vì khó kiểm soát.',
     },
     {
       t: 'h',
@@ -51,12 +51,12 @@ export const page: Article = {
       items: [
         'Tắt đèn flash và tắt DRO/Auto HDR (chúng sẽ kéo sáng chủ thể lên)',
         'Đặt máy ở chế độ M hoặc A với bù sáng −1.5 đến −2.5 EV',
-        'Chế độ lấy nét AF-S + Điểm; nếu máy khó bắt nét thì chuyển sang MF (lấy nét bằng tay)',
+        'Focus Mode AF-S, Focus Area Spot; nếu máy khó bắt nét thì chuyển sang MF (lấy nét bằng tay)',
       ],
     },
     {
       t: 'p',
-      text: 'Bước 1: Đặt chủ thể giữa mình và nguồn sáng — mặt trời, cửa sổ sáng, hay đèn sân khấu. Hạ máy xuống thấp, hướng lên để chủ thể nằm trọn trên nền trời, không có cây cối hay nhà cửa phía sau. Bước 2: Hướng khẩu kính lên vùng trời sáng nhất gần đầu chủ thể (không chấm vào mặt trời trực tiếp). Bấm nửa cò để đo sáng. Trên a7 IV, cài Spot: Standard; máy thế hệ menu cũ chỉ có Spot. Bước 3: Chọn dáng có đường viền rõ ràng: tay người mẫu giơ, chân bước, mặt nhìn sang hông (profile). Tránh ép tay sát thân vì sẽ biến thành một khối đen khó đọc.',
+      text: 'Bước 1: Đặt chủ thể giữa mình và nguồn sáng — mặt trời, cửa sổ sáng, hay đèn sân khấu. Hạ máy xuống thấp, hướng lên để chủ thể nằm trọn trên nền trời, không có cây cối hay nhà cửa phía sau. Bước 2: Hướng máy lên vùng trời sáng nhất gần đầu chủ thể (không chấm vào mặt trời trực tiếp). Bấm nửa cò để đo sáng. Cả hai thế hệ menu đều có Spot: Standard và Spot: Large; chọn Standard. Bước 3: Chọn dáng có đường viền rõ ràng: tay người mẫu giơ, chân bước, mặt nhìn sang hông (profile). Tránh ép tay sát thân vì sẽ biến thành một khối đen khó đọc.',
     },
     {
       t: 'table',

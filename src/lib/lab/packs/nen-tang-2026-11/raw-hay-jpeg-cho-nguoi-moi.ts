@@ -68,13 +68,13 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Thẻ 64 GB lưu được bao nhiêu ảnh? JPEG: 6000–7000 tấm. HEIF: 7000–8000 tấm. RAW: 1000–1200 tấm. RAW+JPEG: 800–900 tấm. Thẻ nào nhanh đủ? V60 hoặc V90 để an toàn; V30 là đủ cho JPEG. Chuyển RAW sang JPEG bằng cách nào? Dùng Sony Imaging Edge (miễn phí) hoặc Lightroom—mở RAW, chỉnh, Export JPEG.',
+      text: 'Thẻ lưu được bao nhiêu ảnh? RAW nặng gấp nhiều lần JPEG; số tấm còn lại máy hiện ngay trên màn hình, tùy thẻ và độ phân giải. Thẻ nào nhanh đủ? Chụp đơn thì thẻ nào máy hỗ trợ cũng được; chụp liên tục RAW nhiều thì thẻ nhanh hơn giúp máy không nghẽn. Chuyển RAW sang JPEG bằng cách nào? Dùng Sony Imaging Edge (miễn phí) hoặc Lightroom—mở RAW, chỉnh, Export JPEG.',
     },
     {
       t: 'checklist',
       label: 'Lựa chọn định dạng phù hợp',
       items: [
-        'Vào MENU → File Format → chọn JPEG, RAW hoặc RAW+JPEG.',
+        'Vào MENU → Shooting → Image Quality → Image Quality Settings → File Format → chọn JPEG, RAW hoặc RAW & JPEG.',
         'Nếu chọn JPEG, bật Creative Look để ảnh có tô màu.',
         'Chụp một tấm, kiểm tra LCD để xem kết quả.',
         'Nếu hài lòng, cứ JPEG; muốn chỉnh sau thì đổi RAW.',

@@ -8,19 +8,19 @@ export const page: Article = {
   archetype: 'setup-guide',
   read: '4 phút đọc',
   title: 'Chế độ A cho ngày đầu: xoay rồi chụp ngay',
-  dek: 'Xoay về A, cài ba cái trong menu, rồi chụp được ngay — máy lo tốc độ, bạn chỉ chọn khẩu độ.',
+  dek: 'Xoay về A, cài hai mục trong menu, rồi chụp được ngay — máy lo tốc độ, bạn chỉ chọn khẩu độ.',
   blocks: [
     {
       t: 'tldr',
       items: [
         'Chế độ A: bạn chọn khẩu độ, máy tự chọn tốc độ để đúng sáng.',
         'Cài ISO AUTO 100–6400 + Min. SS 1/125 — ảnh sạch mà vẫn nét trong nhà.',
-        'Xoay lên A bất cứ lúc nào; ba cài đặt trong menu làm sau khi về nhà.',
+        'Xoay lên A bất cứ lúc nào; hai cài đặt trong menu làm sau khi về nhà.',
       ],
     },
     {
       t: 'p',
-      text: 'Chế độ A là "tự động có mục đích": bạn kiểm soát [[khẩu độ]] (để xóa phông hay nét sâu), máy chọn [[tốc độ màn trập]] để đúng sáng. Giáo trình Sony khuyên mọi người mới dùng A làm chế độ mặc định — nó đơn giản hơn M nhưng linh hoạt hơn P, vừa đủ kiểm soát để bạn học một cách bấm mới mà không phải học ba thứ cùng một lúc. Ba yếu tố khẩu độ, tốc độ và [[ISO]] tạo nên [[tam giác phơi sáng]] — độc lập thay đổi một, máy hay chúng ta sẽ thiết lập hai cái khác.',
+      text: 'Chế độ A là "tự động có mục đích": bạn kiểm soát [[khẩu độ]] (để xóa phông hay nét sâu), máy chọn [[tốc độ màn trập]] để đúng sáng. A là chỗ nên bắt đầu — đơn giản hơn M nhưng linh hoạt hơn P. Vừa đủ kiểm soát để bạn học một cách bấm mới mà không phải học ba thứ cùng một lúc. Ba yếu tố khẩu độ, tốc độ và [[ISO]] tạo nên [[tam giác phơi sáng]] — bạn đổi một, máy lo hai cái còn lại.',
     },
     {
       t: 'figure',
@@ -29,17 +29,22 @@ export const page: Article = {
     { t: 'h', text: 'Xoay về A lần đầu' },
     {
       t: 'p',
-      text: 'Quay bánh chế độ ở thân máy về A. Đó thôi. Bây giờ bạn có thể chụp — máy sẽ tự đo sáng và chọn tốc độ phù hợp với khẩu độ bạn chọn. Ảnh có thể sáng hay tối tùy cảnh, nhưng chưa bao giờ nhoè vô tính vì máy bảo vệ tốc độ bằng nâng ISO khi cần.',
+      text: 'Quay bánh chế độ ở thân máy về A. Đó thôi. Bây giờ bạn có thể chụp — máy sẽ tự đo sáng và chọn tốc độ phù hợp với khẩu độ bạn chọn. Ảnh có thể sáng hay tối tùy cảnh, nhưng ít khi nhoè vô cớ vì máy bảo vệ tốc độ bằng nâng ISO khi cần.',
     },
-    { t: 'h', text: 'Ba cài đặt để ảnh nét hơn' },
+    { t: 'h', text: 'Hai cài đặt để ảnh nét hơn' },
     {
       t: 'p',
-      text: 'Về nhà, vào menu và cài ISO AUTO từ 100 đến 6400, rồi cài ISO AUTO Min. SS thành 1/125. Ba cài này bảo máy: "nâng ISO trước khi hạ tốc" — vì ảnh nhoè thì không cứu được, nhưng nhiễu thì cứu được ở hậu kỳ.',
+      text: 'Về nhà, vào menu và cài ISO AUTO từ 100 đến 6400, rồi cài ISO AUTO Min. SS thành 1/125. Hai cài này bảo máy: "nâng ISO trước khi hạ tốc" — vì ảnh nhoè thì không cứu được, nhưng nhiễu thì cứu được ở hậu kỳ.',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO AUTO: Min 100 / Max 6400; ISO AUTO Min. SS: 1/125',
-      new: 'MENU → Exposure/Color → Exposure → ISO AUTO: Min 100 / Max 6400; ISO AUTO Min. SS: 1/125',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO (Maximum 6400, Minimum 100)',
+      new: 'MENU → Exposure/Color → Exposure → ISO → ISO AUTO (Maximum 6400, Minimum 100)',
+    },
+    {
+      t: 'menu',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → 1/125',
+      new: 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS → 1/125',
     },
     {
       t: 'table',

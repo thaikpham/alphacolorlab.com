@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '[[Phơi sáng dài]] là mở [[tốc độ màn trập]] nhiều giây để ghi chuyển động thành vệt mượt: nước như sương, mây kéo dài, đèn xe thành dải sáng, người qua lại biến mất. [[Chế độ chụp P-A-S-M]] M cho kiểm soát đầy đủ. Kỹ thuật này yêu cầu chân máy vững chắc nhưng kết quả rất ấn tượng.',
+      text: '[[Phơi sáng dài]] là mở [[tốc độ màn trập]] nhiều giây để ghi chuyển động thành vệt mượt: nước như sương, mây kéo dài, đèn xe thành dải sáng, người qua lại biến mất. [[Chế độ chụp P-A-S-M|Chế độ M]] cho kiểm soát đầy đủ. Kỹ thuật này yêu cầu chân máy vững chắc nhưng kết quả rất ấn tượng.',
     },
     {
       t: 'figure',
@@ -33,13 +33,18 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → Exposure → Mode → M',
-      new: 'MENU → Exposure → Exposure Mode → M (Manual)',
+      old: 'MENU → Camera Settings2 → SteadyShot → Off',
+      new: 'MENU → Shooting → Image Stabilization → SteadyShot → Off',
+    },
+    {
+      t: 'menu',
+      old: 'MENU → Camera Settings1 → Long Exposure NR → On',
+      new: 'MENU → Shooting → Image Quality → Long Exposure NR → On',
     },
     {
       t: 'callout',
       label: 'Tắt SteadyShot khi sử dụng chân máy',
-      text: 'Với chân máy vững chắc, công nghệ chống rung có thể làm hư tấm ảnh. Tắt SteadyShot trong menu Focus hoặc bằng công tắc trên ống kính trước khi bấm chụp.',
+      text: 'Với chân máy vững chắc, chống rung có thể tự gây rung. Tắt SteadyShot trong menu hoặc bằng công tắc trên ống kính; ống có công tắc thì chỉ công tắc có tác dụng.',
     },
     {
       t: 'h',
@@ -65,7 +70,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Giờ xanh (khoảng 20–30 phút sau hoàng hôn) là thời điểm dễ nhất: đủ sáng để không cần ND, đủ tối để phơi 10–30s. Kiểm tra biểu đồ sau mỗi tấm để tránh cháy vùng đèn. Dùng chế độ Giảm nhiễu phơi sáng dài (Long Exposure NR) để trừ nhiễu từ sensor — chức năng này sẽ mất thêm thời gian bằng thời gian phơi (nếu phơi 30s thì mất thêm 30s để xử lý).',
+      text: 'Giờ xanh (khoảng 20–30 phút sau hoàng hôn) là thời điểm dễ nhất: đủ sáng để không cần ND, đủ tối để phơi 10–30s. Kiểm tra biểu đồ sau mỗi tấm để tránh cháy vùng đèn. Để Long Exposure NR ở On để máy trừ nhiễu của cảm biến. Chức năng này mất thêm thời gian đúng bằng thời gian phơi: phơi 30s thì chờ thêm 30s.',
     },
     {
       t: 'checklist',

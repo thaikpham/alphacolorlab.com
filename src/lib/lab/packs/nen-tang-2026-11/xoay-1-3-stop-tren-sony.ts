@@ -7,39 +7,39 @@ export const page: Article = {
   level: 'mid',
   archetype: 'explainer',
   read: '5 phút đọc',
-  title: 'Xoay một nấc bánh = 1/3 stop: đọc EV trên Sony',
-  dek: 'Trên Sony, một nấc bánh = 1/3 stop = gấp ~1.26 lần ánh sáng. Ba nấc = 1 stop = gấp đôi. Đọc con số EV để biết bạn xoay bao nhiêu.',
+  title: 'Xoay một nấc bánh = 1/3 stop: đọc M.M. trên Sony',
+  dek: 'Trên Sony, một nấc bánh = 1/3 stop = gấp ~1.26 lần ánh sáng. Ba nấc = 1 stop = gấp đôi. Đọc M.M. ở chế độ M để biết bạn xoay bao nhiêu.',
   blocks: [
     {
       t: 'tldr',
       items: [
         'Stop là đơn vị chung: 1 stop = gấp đôi hoặc giảm một nửa ánh sáng.',
         '1/3 stop là bước mặc định Sony — xoay 3 nấc = 1 stop = gấp đôi ánh sáng.',
-        'EV (Exposure Value) trên màn hình mô tả độ sáng của cặp khẩu–tốc; số cao hơn = sáng hơn.',
+        'M.M. ở chế độ M cho biết bạn đang lệch bao nhiêu stop so với mức máy đo.',
       ],
     },
     {
       t: 'p',
-      text: '[[Stop và EV]] là khái niệm trừu tượng để so sánh ánh sáng qua ba yếu tố khác nhau: [[khẩu độ]], [[tốc độ màn trập]], và [[ISO]]. Chúng dùng đơn vị khác nhau nên người ta định nghĩa stop: +1 stop = gấp đôi ánh sáng, −1 stop = giảm một nửa, dù bạn thay khẩu, tốc hay ISO. Bài này giúp bạn đọc trên Sony.',
+      text: '[[Stop và EV]] là khái niệm trừu tượng để so sánh ánh sáng qua ba yếu tố khác nhau: [[khẩu độ]], [[tốc độ màn trập]], và [[ISO]]. Chúng dùng đơn vị khác nhau nên người ta định nghĩa stop: +1 stop = gấp đôi ánh sáng, −1 stop = giảm một nửa, dù bạn thay khẩu, tốc hay ISO. Bài này chỉ cách đọc nó trên Sony.',
     },
     {
       t: 'figure',
-      caption: 'Sony Alpha 7R IV top view shows controls — exposure dial and buttons for precise adjustment. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
+      caption: 'Mặt trên a7R IV: bánh xe bù sáng và các bánh xe chỉnh khẩu, tốc. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
     },
     { t: 'h', text: 'Sony dùng 1/3 stop làm bước nhỏ nhất' },
     {
       t: 'p',
-      text: 'Khẩu trên Sony: F2, F2.8, F4, F5.6, F8... — cách ra đều. Nhưng giữa mỗi con số có 2 giá trị trung gian: F2 → F2.2 → F2.5 → F2.8 — ba bước = 1 stop. Tương tự với tốc độ và ISO. Bạn xoay bánh và cảm nhận 3 "nấc" nhỏ cho mỗi step lớn — đó là 1/3 stop. Tại sao? Vì ISO có bước 1 stop sẵn, nên để khẩu, tốc, ISO hợp nhất, Sony chọn 1/3 stop — đủ nhỏ tinh chỉnh, không quay liên tục.',
+      text: 'Khẩu trên Sony: F2, F2.8, F4, F5.6, F8... — cách ra đều. Nhưng giữa mỗi con số có 2 giá trị trung gian: F2 → F2.2 → F2.5 → F2.8 — ba bước = 1 stop. Tương tự với tốc độ và ISO. Bạn xoay bánh và cảm nhận 3 "nấc" nhỏ cho mỗi step lớn — đó là 1/3 stop. Ba đại lượng cùng một nấc 1/3 stop, nên đổi một nấc khẩu lấy một nấc tốc là vừa khít.',
     },
-    { t: 'h', text: 'Đọc EV trên màn hình' },
+    { t: 'h', text: 'Đọc M.M. trên màn hình ở chế độ M' },
     {
       t: 'p',
-      text: 'EV (Exposure Value) là con số duy nhất mô tả độ sáng của cặp khẩu–tốc ở ISO cố định. Ở chế độ M, nhìn thanh đo sáng — bên cạnh mũi có con số EV (ví dụ "EV 12.5"). Khi bạn xoay bánh: xoay 3 nấc ISO → EV tăng 1 số (từ 12 lên 13); xoay tốc từ 1/125 sang 1/100 (1 nấc) → EV tăng 1/3. Hai cấu hình EV nhau = cùng độ sáng.',
+      text: 'Ở chế độ M với ISO cố định, Sony hiện M.M. (Metered Manual): số lệch giữa cặp khẩu–tốc–ISO bạn đặt và mức máy đo. 0 là đúng sáng theo máy, về phía + là sáng hơn, về phía − là tối hơn. Xoay ISO 3 nấc, M.M. nhảy đúng 1.0; xoay tốc từ 1/125 sang 1/100 (1 nấc), M.M. nhích 0.3. Hai cấu hình cùng M.M. thì cùng độ sáng.',
     },
     {
       t: 'callout',
-      label: 'EV trên máy vs. "+EV" khi bù sáng',
-      text: 'Trên màn hình "EV 14" = độ sáng cụ thể (F5.6–1/500 ở ISO 100). Khi bù sáng "+1 EV" = sáng hơn 1 stop so với mục tiêu của máy. Hai dùng từ "EV" nhưng ý khác — chỉ cần nhớ: trên máy xem được con số EV (độ sáng hiện tại); bù sáng là lệch so với máy tính toán.',
+      label: 'M.M. ở chế độ M và +EV khi bù sáng',
+      text: 'M.M. +1.0 ở chế độ M và bù sáng +1 EV ở chế độ A đều nghĩa là sáng hơn mức máy đo một stop. Khác nhau ở chỗ ai chỉnh: ở M bạn tự xoay khẩu, tốc, ISO cho lệch đi; ở A bạn xoay bánh bù sáng và máy tự đổi tốc.',
     },
     {
       t: 'table',
@@ -58,17 +58,16 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tại sao phải biết EV? Khi chụp phim trong studio (cảnh sáng cố định), bạn muốn tất cả tấm cùng EV, không chỉ "thanh đo ở 0" — nó giúp kiểm tra nhanh. Xoay 3 nấc = 1 stop = gấp 2? Đúng. Ba nấc nhân 1/3 stop = 1 stop. 1 stop = log₂(2) = gấp đúng 2. 1/3 stop = gấp 2^(1/3) ≈ 1.26 — không cần nhớ công thức, chỉ biết 3 nấc = gấp 2 là đủ.',
+      text: 'Tại sao phải biết EV? Khi chụp phim trong studio (cảnh sáng cố định), bạn muốn tất cả tấm cùng cặp khẩu–tốc–ISO; M.M. cho biết ngay cảnh đã đổi sáng chưa. Xoay 3 nấc = 1 stop = gấp 2? Đúng. Ba nấc nhân 1/3 stop = 1 stop. 1 stop = log₂(2) = gấp đúng 2. 1/3 stop = gấp 2^(1/3) ≈ 1.26 — không cần nhớ công thức, chỉ biết 3 nấc = gấp 2 là đủ.',
     },
     {
       t: 'checklist',
       label: 'Thực hành trên máy',
       items: [
-        'Menu Setup → Exposure Step → tính 1/3 EV (nếu chưa)',
-        'Chế độ M, xem thanh đo sáng — tìm con số EV',
-        'Xoay ISO đúng 3 nấc — kiểm tra EV tăng 1 số',
-        'Xoay ISO lại 3 nấc — kiểm tra EV tăng thêm 1',
-        'Thử với khẩu: xoay từ F8 sang F5.6 (3 nấc) — EV tăng 1',
+        'Chế độ M, ISO cố định, xem M.M. trên màn hình',
+        'Xoay ISO đúng 3 nấc — M.M. tăng 1.0',
+        'Xoay ISO lại 3 nấc — M.M. tăng thêm 1.0',
+        'Thử với khẩu: xoay từ F8 sang F5.6 (3 nấc) — M.M. tăng 1.0',
       ],
     },
   ],

@@ -8,14 +8,14 @@ export const page: Article = {
   archetype: 'explainer',
   read: '6 phút đọc',
   title: 'Multi, Center, Spot: chọn metering mode khi nào',
-  dek: 'Máy Sony có 3 cách đo sáng. Chọn đúng và bạn sẽ hiếm khi cần bù sáng, ảnh sáng bình ổn dù ánh sáng có trắc trở.',
+  dek: 'Ba cách đo sáng hay dùng trên Sony. Chọn đúng và bạn sẽ hiếm khi cần bù sáng, ảnh sáng bình ổn dù ánh sáng có trắc trở.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
-        '**Multi**: máy nhìn toàn khung, ưu tiên vùng lấy nét, thích hợp chụp thường ngày 80% trường hợp.',
-        '**Center**: đo vùng giữa khung, bỏ qua viền → hữu ích khi chủ thể giữa khung và nền sáng/tối lệch nhiều.',
+        '**Multi**: đo nhiều vùng rồi tính cho cả khung — mặc định cho chụp thường ngày.',
+        '**Center**: trung bình cả khung, nặng về giữa → hữu ích khi chủ thể giữa khung và nền sáng/tối lệch nhiều.',
         '**Spot**: đo một điểm nhỏ → dùng khi chủ thể nhỏ hay áp sát viền, hoặc chụp ngược sáng.',
       ],
     },
@@ -30,12 +30,12 @@ export const page: Article = {
     { t: 'h', text: 'Multi (đo toàn khung): mặc định tốt nhất' },
     {
       t: 'p',
-      text: '**Multi** (gọi cũng là Evaluative Metering trên Canon) nhìn toàn khung, chia làm 1.200 điểm, so sánh với cơ sở dữ liệu của Sony, và ưu tiên vùng lấy nét. Bạn chụp người với nền trời sáng → nên dùng Multi, máy sẽ cân bằng để người nét sáng.',
+      text: '**Multi** chia khung thành nhiều vùng, đo từng vùng rồi tính phơi sáng cho cả khung. Bạn chụp người với nền trời sáng → nên dùng Multi, máy sẽ cân bằng để người nét sáng.',
     },
     {
       t: 'menu',
       old: 'MENU → Camera Settings1 → Metering Mode → Multi',
-      new: 'MENU → Exposure/Color → Exposure → Metering Mode → Multi',
+      new: 'MENU → Exposure/Color → Metering → Metering Mode → Multi',
     },
     {
       t: 'h',
@@ -43,7 +43,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khi chủ thể ở **chính giữa khung** và nền quanh có màu sáng hoặc tối lệch: **chân dung trước tường trắng**, **chụp nước có bầu trời sáng**. Multi sẽ bị cân bằng quá khó. Dùng Center, máy chỉ nhìn vùng 40% giữa → người ra sáng đúng, nền có thể cháy hoặc tối là thứ yếu.',
+      text: 'Khi chủ thể ở **chính giữa khung** và nền quanh có màu sáng hoặc tối lệch: **chân dung trước tường trắng**, **chụp nước có bầu trời sáng**. Multi dễ bị nền kéo lệch. Dùng Center, máy lấy trung bình cả khung nhưng nặng về vùng giữa → người ra sáng đúng, nền có thể cháy hoặc tối là thứ yếu.',
     },
     {
       t: 'h',
@@ -51,7 +51,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khi **chủ thể nhỏ** (một chỉ chim bay trên trời) hoặc **quay ở một góc viền** (chân dung profile nằm lệch trái khung), Spot đo chỉ 5% giữa → máy cân bằng cho chủ thể đúng, bỏ qua toàn bộ nền.',
+      text: 'Khi **chủ thể nhỏ** (một con chim trên trời) hoặc **nằm sát viền** (chân dung profile lệch trái khung), Spot chỉ đo bên trong vòng tròn đo sáng nhỏ. Máy cân bằng cho chủ thể đúng, bỏ qua toàn bộ nền.',
     },
     {
       t: 'table',
@@ -67,7 +67,7 @@ export const page: Article = {
     {
       t: 'callout',
       label: 'Khi nào dùng bù sáng (Exposure Compensation)?',
-      text: 'Bù sáng là lệnh "máy ơi, làm ảnh sáng hơn/tối hơn +/-1 EV" chứ không phải đo lại. Bạn vẫn dùng nó, nhưng lựa chọn [[Metering Mode]] đúng sẽ giảm tần suất bù sáng từ 50% trường hợp xuống 10%. Sony liên kết Metering Mode với **Focus Area** (vùng lấy nét): khi dùng Multi, nó sẽ ưu tiên vùng được lấy nét. Khi dùng Spot, vùng đo sáng và vùng lấy nét sẽ cùng một điểm. Hiểu mối liên kết này giúp bạn nhận ra tại sao bộ ba [[Đo sáng|đo sáng]], [[Bù sáng|bù sáng]] và lấy nét phải làm việc cùng nhau. Xem thêm [[Silhouette|kỹ thuật chụp silhouette]] khi bạn muốn đảo ngược logic sáng.',
+      text: 'Bù sáng là lệnh "máy ơi, làm ảnh sáng hơn/tối hơn +/-1 EV" chứ không phải đo lại. Bạn vẫn dùng nó, nhưng lựa chọn [[Metering Mode]] đúng sẽ giảm hẳn số lần phải bù sáng. Sony cho vòng Spot đi theo điểm lấy nét bằng Spot Metering Point → Focus Point Link, nên với Spot, chỗ bạn lấy nét cũng là chỗ máy đo sáng. Hiểu mối liên kết này giúp bạn nhận ra tại sao bộ ba [[Đo sáng|đo sáng]], [[Bù sáng|bù sáng]] và lấy nét phải làm việc cùng nhau. Xem thêm [[Silhouette|kỹ thuật chụp silhouette]] khi bạn muốn đảo ngược logic sáng.',
     },
     {
       t: 'checklist',

@@ -8,15 +8,15 @@ export const page: Article = {
   archetype: 'explainer',
   read: '6 phút đọc',
   title: 'f/3.5–5.6 trên ống kit: tại sao khẩu hẹp, có được mở hết không',
-  dek: 'Ống kit Sony ghi "f/3.5–5.6 E PZ 18–55mm": ba con số này có nghĩa gì, và tại sao bạn không thể mở khẩu lớn hơn.',
+  dek: 'Ống kit Sony ghi F3.5–5.6 (16–50mm trên a6400 và ZV-E10, 28–70mm trên dòng a7): con số này có nghĩa gì, và tại sao bạn không thể mở khẩu lớn hơn.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
-        'f/3.5–5.6 = khẩu thay đổi theo tiêu cự: 18mm mở được f/3.5, 55mm mở được f/5.6.',
+        'f/3.5–5.6 = khẩu thay đổi theo tiêu cự: đầu rộng mở được f/3.5, đầu tele chỉ f/5.6.',
         'Khẩu hẹp (số f lớn) = ít sáng vào cảm biến → ảnh tối ở nhà, buộc phải nâng ISO.',
-        'Ống ngàm E (E PZ) không thể đổi khẩu bằng vòng trên ống; máy quản lý tất cả qua menu.',
+        'Ống kit không có vòng khẩu; chỉnh bằng bánh xe trên thân ở chế độ A hoặc M.',
       ],
     },
     {
@@ -25,17 +25,12 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Sony FE 28-70mm F3.5-5.6 OSS kit lens — f-number changes as you zoom. Ảnh: Roman Eisele · CC BY-SA 4.0 · Wikimedia Commons',
+      caption: 'FE 28–70mm F3.5–5.6 OSS, ống kit của dòng a7: số f đổi theo tiêu cự zoom. Ảnh: Roman Eisele · CC BY-SA 4.0 · Wikimedia Commons',
     },
     { t: 'h', text: 'f/3.5–5.6: khẩu thay đổi theo zoom' },
     {
       t: 'p',
-      text: '**f/3.5** là khẩu mở được ở **18mm** (góc rộng). **f/5.6** là khẩu mở được ở **55mm** (tele). Khi zoom từ 18 tới 55mm, khẩu độ sẽ **co lại từ f/3.5 thành f/5.6** liên tục. Con số giữa (chẳng hạn 24mm) sẽ là f/4.5 khoảng đó. Đó là hạn chế của thiết kế quang học này.',
-    },
-    {
-      t: 'menu',
-      old: 'MENU → Camera Settings1 → Aperture (chế độ A hoặc M)',
-      new: 'MENU → Exposure/Color → Exposure → Aperture (chế độ A hoặc M)',
+      text: '**f/3.5** là khẩu mở được ở đầu rộng (16mm hay 28mm). **f/5.6** là khẩu mở được ở đầu tele (50mm hay 70mm). Khi zoom ra xa, khẩu lớn nhất **co dần từ f/3.5 về f/5.6**; ở tiêu cự giữa, máy hiện một số ở giữa. Đó là hạn chế của thiết kế quang học này.',
     },
     {
       t: 'h',
@@ -43,7 +38,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khẩu độ f/3.5 so với ống chuyên dụng f/2.8 thì kém **1 nấc sáng** (gọi là 1 [[Stop và EV|Stop]]). Ngoài trời ban ngày không sao, nhưng **ở trong nhà bằng đèn điện** (2.700K, tương đương 300 lux), khẩu f/3.5 mở hết và đo sáng đầy thì máy sẽ:\n\n- Chế độ A (máy chọn tốc độ): tốc độ xuống 1/5s → cần chân máy, rung ảnh.\n- Chế độ S (bạn chọn tốc độ 1/125s để giữ nét cầm tay): máy buộc nâng ISO từ 100 lên 1.600–3.200 → ảnh nhiễu.\n\nBa yếu tố này tạo thành [[Tam giác phơi sáng|tam giác phơi sáng]]—thay đổi khẩu không chỉ ảnh hưởng độ sáng mà còn [[Độ sâu trường ảnh và xóa phông|độ sâu trường ảnh]].',
+      text: 'f/3.5 so với ống f/2.8 kém hai phần ba [[Stop và EV|stop]]; f/5.6 ở đầu tele kém tới hai stop. Ngoài trời ban ngày không sao. **Trong nhà dưới đèn điện**, khẩu đã mở hết mà vẫn thiếu sáng thì máy chỉ còn hai đường. Ở chế độ A, nó hạ tốc xuống mức dễ rung tay; ở chế độ S với tốc 1/125s, nó nâng ISO lên cao và ảnh nhiễu. Đó là [[Tam giác phơi sáng|tam giác phơi sáng]] — đổi khẩu không chỉ đổi độ sáng mà cả [[Độ sâu trường ảnh và xóa phông|độ sâu trường ảnh]].',
     },
     {
       t: 'table',
@@ -58,12 +53,12 @@ export const page: Article = {
     { t: 'h', text: 'Mở khẩu bằng cách nào?' },
     {
       t: 'p',
-      text: 'Ống kit **E PZ** (E Power Zoom) không có vòng khẩu trên ống—**máy quản lý khẩu số**. Bạn dùng nút cộng/trừ hoặc quay nút quay để điều chỉnh, hoặc chế độ A (máy quản lý tự động). Không có nút riêng để "mở khẩu hết".',
+      text: 'Ống kit không có vòng khẩu trên ống: bạn chỉnh khẩu bằng bánh xe trên thân ở chế độ A hoặc M. Xoay về số f nhỏ nhất là mở hết; không có nút riêng cho việc đó.',
     },
     {
       t: 'callout',
       label: 'Tại sao Sony không làm ống f/2.8 mọi tiêu cự?',
-      text: 'Ống f/2.8 hằng định (constant aperture) sẽ dày, nặng, đắt gấp 3–5 lần. Sony bán riêng **FE 24-70mm f/2.8 GM II** (~$1.500) cho ai cần. Ống kit ~$500 phục vụ người mới muốn rẻ và nhẹ.',
+      text: 'Ống f/2.8 cố định phải to, nặng và đắt hơn nhiều. Sony bán riêng FE 24–70mm F2.8 GM II cho ai cần; ống kit dành cho người mới cần rẻ và nhẹ.',
     },
     {
       t: 'checklist',

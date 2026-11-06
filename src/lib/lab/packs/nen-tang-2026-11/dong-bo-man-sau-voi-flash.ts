@@ -8,15 +8,15 @@ export const page: Article = {
   archetype: 'technique',
   read: '6 phút đọc',
   title: 'Đồng bộ màn sau với flash: khi nào, cài ở đâu',
-  dek: '[[Đồng bộ màn sau]] là cho đèn flash nổ ở cuối lúc phơi sáng. Vệt sáng nằm phía sau chủ thể, đúng chiều di chuyển.',
+  dek: 'Đồng bộ màn sau là cho đèn flash nổ ở cuối lúc phơi sáng. Vệt sáng nằm phía sau chủ thể, đúng chiều di chuyển.',
 
   blocks: [
     {
       t: 'tldr',
       items: [
         'Đồng bộ màn sau (Rear Sync) để flash nổ ở cuối phơi, vệt sáng phía sau chủ thể.',
-        'Dùng flash rời (HVL-F46RM, HVL-F60RM hoặc Godox), tốc độ 1/15–1/4s, khẩu F5.6–F8.',
-        'Bù flash −1 EV để không bị "dán" lên nền tối; cân bằng trắng ~3.200K để vệt đèn ngả xanh lạnh.',
+        'Tốc độ 1/15–1/4s, khẩu F5.6–F8, flash gắn sẵn hoặc flash rời.',
+        'Bù flash −1 EV để không bị "dán" lên nền tối.',
       ],
     },
     {
@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Motion ghi trước, flash "đóng băng" chủ thể ở cuối: vệt phía sau. Ảnh: Takashi Hososhima · CC BY-SA 2.0 · Wikimedia Commons',
+      caption: 'Vệt ghi trước, flash "đóng băng" chủ thể ở cuối: vệt phía sau. Ảnh: Takashi Hososhima · CC BY-SA 2.0 · Wikimedia Commons',
     },
     {
       t: 'h',
@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Hành động chụp là: màn trập mở → chủ thể di chuyển (ghi vệt sáng từ nền) → flash nổ → [[tốc độ màn trập]] đóng. Với đồng bộ màn trước, flash nổ lúc mở màn, "đóng băng" chủ thể ở vị trí đầu, vệt sáng ghi sau nó → vệt phía trước. Với [[đồng bộ màn sau]], vệt ghi trước, flash nổ lúc đóng màn → chủ thể "đóng băng" ở vị trí cuối → vệt nằm phía sau, như đang lao tới với [[Cân bằng trắng và nhiệt độ màu]].',
+      text: 'Hành động chụp là: màn trập mở → chủ thể di chuyển (ghi vệt sáng từ nền) → flash nổ → [[tốc độ màn trập]] đóng. Với đồng bộ màn trước, flash nổ lúc mở màn, "đóng băng" chủ thể ở vị trí đầu, vệt sáng ghi sau nó → vệt phía trước. Với [[đồng bộ màn sau]], vệt ghi trước, flash nổ lúc đóng màn → chủ thể "đóng băng" ở vị trí cuối → vệt nằm phía sau, như đang lao tới.',
     },
     {
       t: 'h',
@@ -41,13 +41,13 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings2 → Flash Mode → Rear Sync',
-      new: 'MENU → Flash → Flash Mode → Rear Sync (hoặc Rear 1 + 2)',
+      old: 'MENU → Camera Settings1 → Flash Mode → Rear Sync.',
+      new: 'MENU → Exposure/Color → Flash → Flash Mode → Rear Sync.',
     },
     {
       t: 'callout',
-      label: 'Flash rời vs Flash trên máy',
-      text: 'Chỉ flash rời (HVL-F46RM, HVL-F60RM hoặc Godox TT685S/V860S) hỗ trợ Rear Sync. Flash trên máy không hỗ trợ. Gắn flash vào hotshoe trước khi bấm chụp.',
+      label: 'Flash nào dùng được',
+      text: 'Rear Sync. là một mục trong Flash Mode của máy, nên flash gắn sẵn của a6400 và ZV-E10 dùng được; a7 IV không có flash gắn sẵn nên cần flash rời gắn hotshoe. Gắn và bật flash trước khi vào menu.',
     },
     {
       t: 'h',
@@ -75,7 +75,7 @@ export const page: Article = {
     },
     {
       t: 'h',
-      text: 'Mẹo khi dạy hoặc tập Rear Sync',
+      text: 'Mẹo khi tập Rear Sync',
     },
     {
       t: 'p',

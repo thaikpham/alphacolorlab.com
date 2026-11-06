@@ -8,39 +8,39 @@ export const page: Article = {
   archetype: 'technique',
   read: '7 phút đọc',
   title: 'Chụp đêm cầm tay: ISO lên bao nhiêu, tốc độ tối thiểu, Creative Look nào',
-  dek: 'Ánh sáng đêm có vài trăm lux, nâng ISO thành 6.400 hay 25.600 là thường. Quy tắc để cân bằng nét, sáng và nhiễu — và Creative Look thích hợp.',
+  dek: 'Đêm xuống, nâng ISO lên 6.400 hay 25.600 là chuyện thường. Quy tắc để cân bằng nét, sáng và nhiễu — và Creative Look thích hợp.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
-        'Đêm phố ~50–100 lux: ISO 6.400–12.800, tốc độ 1/60–1/30s (theo quy tắc 1/(tiêu cự × 1.5)).',
-        'Nhiễu cao không bị cứu được ở hậu kỳ; ảnh nhoè thì hơi sửa được. Chọn ISO cao để nét, rồi giảm nhiễu sau.',
+        'Đêm phố: điểm xuất phát ISO 6.400–12.800, tốc độ theo quy tắc 1/(tiêu cự × 1.5).',
+        'Ảnh nhoè không cứu được; nhiễu thì giảm được ở hậu kỳ. Chọn ISO cao để nét, rồi giảm nhiễu sau.',
         'Creative Look **NT** (Neutral) hoặc **ST** (Standard) khi ánh sáng lạc màu; từ chối bất kỳ Look "đẹp" nào.',
       ],
     },
     {
       t: 'p',
-      text: 'Chụp đêm cầm tay (không chân máy) là bài toán ba cạnh: **nét** (tốc độ tối thiểu), **sáng** (exposure), **nhiễu** (ISO). Ba cái đều muốn tối ưu, nhưng camera không thể cho ba cái cùng lúc. Hiểu vấn đề và ưu tiên đúng là bí quyết. [[ISO]] là yếu tố chính nên chiều ở đây.',
+      text: 'Chụp đêm cầm tay (không chân máy) là bài toán ba cạnh: **nét** (tốc độ tối thiểu), **sáng** (exposure), **nhiễu** (ISO). Ba cái đều muốn tối ưu, nhưng camera không thể cho ba cái cùng lúc. Hiểu vấn đề và ưu tiên đúng là bí quyết. [[ISO]] là yếu tố chính ở đây.',
     },
     {
       t: 'figure',
       caption: 'Ánh sáng đêm đặt thử thách cho phơi sáng cầm tay. Ảnh: Archangel12 · CC BY 2.0 · Wikimedia Commons',
     },
-    { t: 'h', text: 'Ba loại ánh sáng đêm: độ sáng ước tính' },
+    { t: 'h', text: 'Ba kiểu ánh sáng đêm' },
     {
       t: 'p',
-      text: '**Đêm trong nhà** (đèn điện, chưa tắt hết): 50–200 lux. **Đêm phố** (đèn đường, neon, nhà hàng sáng): 100–500 lux. **Đêm quốc lộ** (đèn sân khấu, bảng quảng cáo): 500+ lux. Mỗi loại cần cách xử lý khác.',
+      text: '**Trong nhà** có đèn điện: tối nhất, ISO phải lên cao nhất. **Phố** có đèn đường, biển hiệu, quán sáng: sáng hơn nhưng loang lổ. **Sân khấu, bảng quảng cáo**: sáng nhất nhưng tương phản rất gắt. Mỗi kiểu cần một cách xử lý.',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO (chế độ M hoặc A)',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO (chế độ M hoặc A)',
       new: 'MENU → Exposure/Color → Exposure → ISO (chế độ M hoặc A)',
     },
     { t: 'h', text: 'Cân bằng ba yếu tố: ưu tiên nét trước' },
     {
       t: 'p',
-      text: 'Quy tắc nên nhớ: **ảnh nhoè không cứu được, ảnh nhiễu hơi sửa được**. Vì vậy bước 1 là **chọn [[Tốc độ màn trập|tốc độ tối thiểu để ảnh nét]]**, dùng công thức 1/(tiêu cự × 1.5). Ống 50mm cần 1/80s trở lên; ống góc rộng 24mm cần 1/40s. SteadyShot On giúp chậm xuống được, nhưng không dùng nó là an toàn nhất lúc đêm.',
+      text: 'Quy tắc nên nhớ: **ảnh nhoè không cứu được, ảnh nhiễu hơi sửa được**. Vì vậy bước 1 là **chọn [[Tốc độ màn trập|tốc độ tối thiểu để ảnh nét]]**, dùng công thức 1/(tiêu cự × 1.5). Ống 50mm cần 1/80s trở lên; ống góc rộng 24mm cần 1/40s. SteadyShot On giúp chậm xuống được một chút, nhưng đừng trông vào nó lúc đêm.',
     },
     {
       t: 'table',
@@ -56,7 +56,7 @@ export const page: Article = {
     { t: 'h', text: 'Creative Look: chọn Neutral để tránh thêm vấn đề' },
     {
       t: 'p',
-      text: '**Đêm trong nhà** ánh sáng thường là hỗn hợp: đèn vàng (2.700K) + điện thoại xanh (6.500K) + neon cam. Cân bằng trắng sẽ bối rối. [[Creative Look|Creative Look]] **Vivid** hoặc **Film** sẽ làm vấn đề tệ hơn bằng cách tăng độ bão hòa của màu lạc. Dùng **NT** (Neutral) — dòng ngàn, buồn nhưng đúng — và để hậu kỳ sửa màu nếu cần. Luôn chụp [[RAW, JPEG và HEIF|RAW]] để có cơ hội sửa cân bằng trắng và xử lý nhiễu tốt hơn so với JPEG.',
+      text: '**Đêm trong nhà** ánh sáng thường là hỗn hợp: đèn vàng ấm + màn hình điện thoại xanh lạnh + neon cam. Cân bằng trắng sẽ bối rối. [[Creative Look|Creative Look]] **VV** (Vivid) hoặc **FL** (Film) sẽ làm vấn đề tệ hơn bằng cách tăng độ bão hòa của màu lạc. Dùng **NT** (Neutral) — nhạt nhưng trung thực — và để hậu kỳ sửa màu nếu cần. Luôn chụp [[RAW, JPEG và HEIF|RAW]] để có cơ hội sửa cân bằng trắng và xử lý nhiễu tốt hơn so với JPEG.',
     },
     {
       t: 'h',
@@ -64,15 +64,15 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '1. **Ngay khi chụp**: tắt chế độ giảm nhiễu phơi sáng dài (Long Exposure NR) nếu tốc độ < 1 giây — nó mất thời gian bằng thời gian phơi, làm không còn lợi. Dùng ISO Auto Min SS để máy chọn tốc độ nhanh hơn nếu được.\n\n2. **Hậu kỳ**: Lightroom (Noise Reduction trong Develop), Topaz Denoise, hoặc plugin DXO Denoise. Lưu ý: chúng sẽ mịn ảnh hơi nhạt nếu dùng quá.\n\n3. **Chụp nhiều tấm**: stacking nhiều tấm underexposed trong Photoshop (Stack Mode: Mean) → ảnh sáng sạch hơn một tấm overexposed đơn lẻ.',
+      text: '**Ngay khi chụp**: đặt ISO AUTO Min. SS để máy giữ tốc đủ nhanh thay vì hạ tốc; Long Exposure NR chỉ chạy khi phơi từ 1 giây trở lên nên chụp đêm cầm tay không cần đụng tới nó. **Hậu kỳ**: giảm nhiễu trong Lightroom hoặc phần mềm chuyên giảm nhiễu, quá tay thì ảnh mịn như sáp. **Chụp nhiều tấm**: xếp chồng nhiều tấm trong Photoshop (Stack Mode: Mean) cho ảnh sạch hơn một tấm đơn.',
     },
     {
       t: 'checklist',
       label: 'Kiểm tra trước khi ra phố chụp đêm',
       items: [
         'Ống kính có SteadyShot? On hay Off — kiểm tra vòng trên ống hoặc menu.',
-        'Pin đầy? Đêm, WiFi, chụp liên tục ISO cao sẽ tiêu pin nhanh gấp đôi.',
-        'Thẻ nhớ còn trống? Chụp RAW mỗi tấm 50–80 MB; 16GB thẻ = ~300 tấm RAW.',
+        'Pin đầy? Màn hình sáng lâu và chụp liên tục tiêu pin nhanh.',
+        'Thẻ nhớ còn trống? RAW nặng gấp nhiều lần JPEG.',
         'Tốc độ tối thiểu đã tính công thức chưa? Viết tờ giấy: "ống 50mm = 1/80s".',
       ],
     },

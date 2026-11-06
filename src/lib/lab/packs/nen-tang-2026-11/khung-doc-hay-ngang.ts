@@ -8,7 +8,7 @@ export const page: Article = {
   archetype: 'technique',
   read: '5 phút đọc',
   title: 'Khung dọc hay ngang: quyết định trước khi bấm',
-  dek: 'Khung ngang (landscape) và khung dọc (portrait) kể hai câu chuyện khác nhau của cùng một chủ thể. Aspect Ratio trên máy giúp bạn nhìn trước kết quả.',
+  dek: 'Khung ngang (landscape) và khung dọc (portrait) kể hai câu chuyện khác nhau của cùng một chủ thể. Aspect Ratio trên máy cho bạn thử thêm khung vuông hay khung rộng.',
   updatedAt: '2026-11-06',
   blocks: [
     {
@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '[[Bố cục]] được tạo thành từ [[Góc máy và khung hình]] — chiều của khung không chỉ là sở thích — nó quyết định mắt người xem nhìn ảnh theo chiều nào, và đó là một phần của câu chuyện.',
+      text: '[[Bố cục]] bắt đầu từ [[Góc máy và khung hình]]. Chiều của khung không chỉ là sở thích: nó quyết định mắt người xem đi theo chiều nào, và đó là một phần của câu chuyện.',
     },
     {
       t: 'figure',
@@ -29,20 +29,20 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '**Khung ngang** (Landscape): chiều rộng lớn hơn chiều cao — là chế độ mặc định của máy ảnh. Nó tốt cho cảnh rộng, bầu trời, đường chân trời, nhóm người, hay bất cứ thứ gì yêu cầu không gian ngang. Mắt người xem quét từ trái sang phải, kéo dàn thời gian. **Khung dọc** (Portrait): chiều cao lớn hơn chiều rộng — buộc phải cắt bối cảnh bên cạnh. Nó tốt cho [[Chủ thể chính|chủ thể chính]] như chân dung, tòa nhà cao, bất cứ chủ thể dọc nào, hoặc khi bạn muốn bối cảnh không chiếm chỗ. Mắt người xem cô đặc và tập trung hơn.',
+      text: '**Khung ngang** (Landscape): chiều rộng lớn hơn chiều cao — là chế độ mặc định của máy ảnh. Nó tốt cho cảnh rộng, bầu trời, đường chân trời, nhóm người, hay bất cứ thứ gì yêu cầu không gian ngang. Mắt người xem quét từ trái sang phải, kéo dài thời gian nhìn. **Khung dọc** (Portrait): chiều cao lớn hơn chiều rộng — buộc phải cắt bối cảnh bên cạnh. Nó tốt cho [[Chủ thể chính|chủ thể chính]] như chân dung, tòa nhà cao, bất cứ chủ thể dọc nào, hoặc khi bạn muốn bối cảnh không chiếm chỗ. Mắt người xem cô đặc và tập trung hơn.',
     },
     {
       t: 'h',
-      text: 'Aspect Ratio: nhìn preview trước khi chụp',
+      text: 'Aspect Ratio: đổi tỷ lệ khung ngay trên máy',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → File Format → Aspect Ratio',
-      new: 'MENU → Setup → File Format → Aspect Ratio',
+      old: 'MENU → Camera Settings1 → Aspect Ratio',
+      new: 'MENU → Shooting → Image Quality → Aspect Ratio',
     },
     {
       t: 'p',
-      text: 'Khi bạn đặt Aspect Ratio, máy sẽ hiển thị trong kính ngắm hoặc live view cách khung hình sẽ trông như thế nào khi bạn chụp. Cái gì sẽ bị cắt, cái gì sẽ giữ lại. Đây là cách tốt nhất để tập lựa chọn khung trước khi bấm chụp.',
+      text: 'Aspect Ratio không xoay khung dọc hay ngang — đó là việc của tay bạn. Nó cho bạn chọn tỷ lệ 3:2, 4:3, 16:9 hay 1:1 và thấy ngay trong kính ngắm cái gì bị cắt. Đổi tỷ lệ vài lần trong một buổi là cách rẻ nhất để biết mình thích kể chuyện trong khung nào.',
     },
     {
       t: 'table',
@@ -57,8 +57,8 @@ export const page: Article = {
     },
     {
       t: 'callout',
-      label: 'Lưu ý: Aspect Ratio không cắt ảnh, chỉ thay đổi preview',
-      text: 'Khi bạn đặt Aspect Ratio rồi chụp, máy vẫn ghi toàn bộ cảnh — nó chỉ hiển thị preview theo tỷ lệ đó. Bạn có thể cắt lại khi hậu kỳ. Vậy nên đừng sợ thử các Aspect Ratio khác nhau để xem cái nào hợp.',
+      label: 'Ảnh được ghi đúng tỷ lệ đã chọn',
+      text: 'Ảnh JPEG được ghi đúng tỷ lệ bạn chọn, nên hãy chọn trước khi bấm chứ đừng trông vào hậu kỳ. Thử vài tỷ lệ trong một buổi để xem cái nào hợp với mắt mình.',
     },
     {
       t: 'h',

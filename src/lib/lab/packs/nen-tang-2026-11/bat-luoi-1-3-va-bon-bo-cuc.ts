@@ -8,24 +8,24 @@ export const page: Article = {
   archetype: 'technique',
   read: '6 phút đọc',
   title: 'Bật Grid Line và bốn ô bố cục: cách dùng lưới 1/3',
-  dek: 'Grid Line chia hình thành lưới chuẩn để giúp bạn đặt chủ thể theo quy tắc 1/3. Ba cài đặt trong máy, một bài tập 10 phút trong phố.',
+  dek: 'Grid Line chia hình thành lưới chuẩn để giúp bạn đặt chủ thể theo quy tắc 1/3. Một cài đặt trong máy, một bài tập 10 phút trong phố.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
-        'Bật Grid Line trong MENU → Setup → Screen Display Setting để nhìn lưới trong kính ngắm.',
-        'Bốn ô bố cục đặt chủ thể tại giao điểm, không phải giữa — đó là cách mắt người xem dừa lâu.',
+        'Bật Grid Line trong MENU → Shooting → Shooting Display (máy cũ: Camera Settings2 → Grid Line).',
+        'Bốn ô bố cục đặt chủ thể tại giao điểm, không phải giữa — đó là cách mắt người xem dừng lâu.',
         'Dùng lưới khi bố cục: toàn cảnh căn ở giao điểm, đường chân trời căn ở một đường ngang.',
       ],
     },
     {
       t: 'p',
-      text: '[[Bố cục]] là cách sắp xếp các yếu tố trong khung cố định. Nguyên tắc bố cục nói rằng mắt người xem dừa lâu ở bốn giao điểm của lưới 1/3, chứ không phải ở giữa. Grid Line là công cụ máy ảnh giúp bạn thấy lưới đó ngay trong kính ngắm, thay vì phải tưởng tượng.',
+      text: '[[Bố cục]] là cách sắp xếp các yếu tố trong khung cố định. Nguyên tắc bố cục nói rằng mắt người xem dừng lâu ở bốn giao điểm của lưới 1/3, chứ không phải ở giữa. Grid Line là công cụ máy ảnh giúp bạn thấy lưới đó ngay trong kính ngắm, thay vì phải tưởng tượng.',
     },
     {
       t: 'figure',
-      caption: 'Lưới 1/3 giúp bạn nhìn thấy bốn giao điểm—những nơi mắt người xem dừa lâu. Ảnh: Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons',
+      caption: 'Lưới 1/3 giúp bạn nhìn thấy bốn giao điểm—những nơi mắt người xem dừng lâu. Ảnh: Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',
@@ -33,12 +33,17 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → Screen Display Setting → Grid Line → Grid',
-      new: 'MENU → Setup → Screen Display Setting → Grid Line → Grid',
+      old: 'MENU → Camera Settings2 → Grid Line → Rule of 3rds Grid',
+      new: 'MENU → Shooting → Shooting Display → Grid Line Type → Rule of 3rds Grid',
+    },
+    {
+      t: 'menu',
+      old: 'MENU → Camera Settings2 → Grid Line → Rule of 3rds Grid',
+      new: 'MENU → Shooting → Shooting Display → Grid Line Display → On',
     },
     {
       t: 'p',
-      text: 'Lưới sẽ xuất hiện trong kính ngắm hoặc live view. Nếu muốn thay đổi độ sáng của lưới để dễ nhìn hơn, hãy tìm Brightness option gần đó.',
+      text: 'Lưới hiện trong kính ngắm và trên màn hình. Trên a7 IV có hai mục: Grid Line Type chọn kiểu lưới, Grid Line Display bật tắt; máy cũ gộp cả hai trong Grid Line.',
     },
     {
       t: 'h',
@@ -59,7 +64,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khi chụp quang cảnh với đường chân trời, hãy căn chân trời vào một trong hai đường ngang của lưới, không phải giữa. Bối cảnh phía trên hoặc dưới sẽ có tỷ lệ 2:1 thay vì 1:1, khiến ảnh động hơn. Kỹ thuật này gọi là [[khung trong khung]] khi cảnh ngoài có khung tự nhiên.',
+      text: 'Khi chụp quang cảnh với đường chân trời, hãy căn chân trời vào một trong hai đường ngang của lưới, không phải giữa. Bối cảnh phía trên hoặc dưới sẽ có tỷ lệ 2:1 thay vì 1:1, khiến ảnh động hơn. Khi cảnh có sẵn cửa hay vòm, xem thêm [[khung trong khung]].',
     },
     {
       t: 'h',

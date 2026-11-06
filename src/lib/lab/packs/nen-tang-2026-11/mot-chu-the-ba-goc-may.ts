@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Đặt máy ngang với đôi mắt của chủ thể. Đây là góc tự nhiên nhất — cách bạn nhìn một người nói chuyện mỗi ngày. Nó tạo cảm giác thân thuộc và trực tiếp. Trong Grid Line Display hoặc Focus Area, hãy căn chủ thể ở giữa hoặc giao điểm.',
+      text: 'Đặt máy ngang với đôi mắt của chủ thể. Đây là góc tự nhiên nhất — cách bạn nhìn một người nói chuyện mỗi ngày. Nó tạo cảm giác thân thuộc và trực tiếp. Bật Grid Line và căn chủ thể ở giữa hoặc ở một giao điểm.',
     },
     {
       t: 'h',
@@ -41,7 +41,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Cầm máy cao hơn so với đôi mắt của chủ thể, nhìn xuống. Cách này khiến chủ thể trông nhỏ hơn, khá yếu đuối, hay cô đơn — đặc biệt tốt cho ảnh về sự cô lập hoặc tâm trạng suy tư. Chủ thể sẽ bị kéo xuống bớt chi tiết của bối cảnh phía trên.',
+      text: 'Cầm máy cao hơn so với đôi mắt của chủ thể, nhìn xuống. Cách này khiến chủ thể trông nhỏ hơn, khá yếu đuối, hay cô đơn — đặc biệt tốt cho ảnh về sự cô lập hoặc tâm trạng suy tư. Mặt đất chiếm phần lớn khung, bối cảnh phía trên biến mất.',
     },
     {
       t: 'h',
@@ -58,7 +58,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Chọn một [[Chủ thể chính]] (người, vật, tòa nhà). Chụp ba lần: một lần góc ngang mắt, một lần góc cao, một lần góc thấp. Mỗi lần, cảm nhận cảm xúc khác — chủ thể thay đổi theo góc, dù settings máy giống nhau. Xem ba ảnh cạnh nhau. Ảnh nào khiến bạn cảm thấy gần gũi? Ảnh nào khiến bạn cảm thấy sợ hay kinh ngạc? Ba góc kể ba câu chuyện khác nhau của cùng một khoảnh khắc. [[Bố cục]] đúng là kỹ năng chụp ảnh lõi.',
+      text: 'Chọn một [[Chủ thể chính|chủ thể chính]] (người, vật, tòa nhà). Chụp ba lần: một lần góc ngang mắt, một lần góc cao, một lần góc thấp. Mỗi lần, cảm nhận cảm xúc khác — chủ thể thay đổi theo góc, dù settings máy giống nhau. Xem ba ảnh cạnh nhau. Ảnh nào khiến bạn cảm thấy gần gũi? Ảnh nào khiến bạn cảm thấy sợ hay kinh ngạc? Ba góc kể ba câu chuyện khác nhau của cùng một khoảnh khắc. [[Bố cục]] là kỹ năng lõi của chụp ảnh.',
     },
     {
       t: 'checklist',

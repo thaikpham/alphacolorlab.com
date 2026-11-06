@@ -8,7 +8,7 @@ export const page: Article = {
   archetype: 'technique',
   read: '7 phút đọc',
   title: 'Lấy nét bằng ngón tay cái: bỏ nửa cò, dùng AF-ON',
-  dek: 'Tách việc lấy nét ra khỏi nút chụp. Ba thay đổi trong menu, và một buổi tập để tay quen.',
+  dek: 'Tách việc lấy nét ra khỏi nút chụp. Hai thay đổi trong menu, và một buổi tập để tay quen.',
   blocks: [
     {
       t: 'tldr',
@@ -26,10 +26,10 @@ export const page: Article = {
       t: 'figure',
       caption: 'Mặt sau a7R IV: nút AF-ON nằm ngay dưới ngón cái, tách khỏi nút chụp. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
     },
-    { t: 'h', text: 'Ba thay đổi trong menu' },
+    { t: 'h', text: 'Hai thay đổi trong menu' },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings2 → Custom Key (Shoot) → AEL Button → AF ON',
+      old: 'MENU → Camera Settings2 → Custom Key → AEL Button → AF On',
       new: 'MENU → Setup → Operation Customize → Custom Key/Dial Set. → AEL Button → AF On',
     },
     {

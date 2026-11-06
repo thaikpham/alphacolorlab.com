@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: '[[Khung trong khung]] là kỹ thuật đặt một hình dạng (cửa, cầu thang, cây) ở trước chủ thể để tạo chiều sâu. Nó tìm chủ đề nhưng khó: nếu tiền cảnh quá nét, người xem cứ nhìn vào đó thay vì chủ thể; nếu quá mờ, người xem không hiểu nó là gì. Nó phải nằm giữa.',
+      text: '[[Khung trong khung]] là kỹ thuật đặt một hình dạng (cửa, cầu thang, cây) ở trước chủ thể để tạo chiều sâu. Nó tạo chiều sâu nhưng khó: nếu tiền cảnh quá nét, người xem cứ nhìn vào đó thay vì chủ thể; nếu quá mờ, người xem không hiểu nó là gì. Nó phải nằm giữa.',
     },
     {
       t: 'figure',
@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tiền cảnh ở trước, chủ thể ở giữa, nền ở phía sau — ba tầng. Máy sẽ bám vào layer gần nhất (tiền cảnh) nếu bạn dùng Wide focus area, nên phải dùng AF-C + Focus Area Tracking: bạn chỉ định chủ thể (giữa tầng), máy bám vào đó mà bỏ qua tiền cảnh ở trước. Khi bạn bấm nửa cò hoặc nút AF-ON, máy sẽ khóa vào mặt/cơ thể người, không phải cửa.',
+      text: 'Tiền cảnh ở trước, chủ thể ở giữa, nền ở phía sau — ba tầng. Máy sẽ bám vào lớp gần nhất (tiền cảnh) nếu bạn dùng Focus Area Wide. Dùng AF-C với Focus Area Tracking: bạn chỉ định chủ thể ở tầng giữa, máy bám vào đó và bỏ qua tiền cảnh. Khi bạn bấm nửa cò hoặc nút AF-ON, máy sẽ khóa vào mặt/cơ thể người, không phải cửa.',
     },
     {
       t: 'h',
@@ -49,7 +49,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tiền cảnh (cửa): 0.3–0.5 mét từ ống kính. Chủ thể (người): 1–2 mét phía sau. Nền: 3 mét trở lên. Nếu chủ thể gần tiền cảnh (< 30 cm), sâu trường nhỏ và chủ thể sẽ mờ một phần. Nếu chủ thể ở quá xa (> 5 mét), ba tầng trở thành một dãy mờ nhạt. Khoảng cách 1–2 mét giữa tiền cảnh và chủ thể là lý tưởng — đó là cơ sở của [[bố cục]] khung trong khung.',
+      text: 'Tiền cảnh (cửa): 0.3–0.5 mét từ ống kính. Chủ thể (người): 1–2 mét phía sau. Nền: 3 mét trở lên. Nếu chủ thể gần tiền cảnh (< 30 cm), độ sâu trường ảnh mỏng và chủ thể có thể mờ một phần. Nếu chủ thể ở quá xa (> 5 mét), ba tầng trở thành một dãy mờ nhạt. Khoảng cách 1–2 mét giữa tiền cảnh và chủ thể là lý tưởng — đó là cơ sở của [[bố cục]] khung trong khung.',
     },
     {
       t: 'table',

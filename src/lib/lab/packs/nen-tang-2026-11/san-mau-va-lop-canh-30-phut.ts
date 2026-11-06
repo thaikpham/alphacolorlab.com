@@ -16,12 +16,12 @@ export const page: Article = {
       items: [
         'Chọn một màu (xanh, đỏ, vàng): đi tìm ba cảnh loại đó trong 30 phút.',
         'Tiền cảnh ở gần máy, trung cảnh chủ thể, hậu cảnh phía sau để tạo chiều sâu.',
-        'Dùng aperture f/4–f/8 để tiền và hậu cảnh mờ vừa đủ, chủ thể nét.',
+        'Dùng khẩu f/4–f/8 để tiền và hậu cảnh mờ vừa đủ, chủ thể nét.',
       ],
     },
     {
       t: 'p',
-      text: '[[Bố cục]] là hai bài tập rèn mắt cơ bản. Một tông màu chủ đạo khiến ảnh có nhân cách, và ba lớp cảnh (tiền, trung, hậu) tạo chiều sâu 3D trên một bề mặt 2D. Bài tập này gộp cả hai: đi bộ 30 phút để tìm một màu trong ba lớp.',
+      text: 'Săn màu và xếp lớp cảnh là hai bài tập rèn mắt cơ bản của [[Bố cục|bố cục]]. Một tông màu chủ đạo khiến ảnh có nhân cách, và ba lớp cảnh (tiền, trung, hậu) tạo chiều sâu 3D trên một bề mặt 2D. Bài tập này gộp cả hai: đi bộ 30 phút để tìm một màu trong ba lớp.',
     },
     {
       t: 'figure',
@@ -54,7 +54,7 @@ export const page: Article = {
     {
       t: 'callout',
       label: 'Cách để tiền và hậu cảnh mờ',
-      text: 'Dùng Aperture Priority (chế độ A hoặc Av), đặt f/4 đến f/8. Máy tự điều chỉnh tốc độ mở cửa để phơi sáng đúng. Càng mở rộng aperture (f/2.8, f/1.8), tiền và hậu cảnh càng mờ — nhưng f/4-f/8 thường dễ làm việc hơn cho người mới.',
+      text: 'Dùng Aperture Priority (chế độ A), đặt f/4 đến f/8. Máy tự chọn tốc độ màn trập để đúng sáng. Càng mở rộng khẩu (f/2.8, f/1.8), tiền và hậu cảnh càng mờ — nhưng f/4-f/8 thường dễ làm việc hơn cho người mới.',
     },
     {
       t: 'table',
@@ -68,7 +68,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Sau 30 phút, xem lại ba ảnh bạn chụp. Cái nào có ba lớp cảnh rõ ràng nhất? Tông màu đó có thuyết phục bạn không? Màu có bị che khuất bởi các yếu tố khác hay nổi lên? Bài tập này giúp bạn phát triển "mắt thấy" sâu hơn. Khi bạn tập "[[Săn màu, phối màu và lớp cảnh]]" một màu, bạn học cách thấy. Khi bạn xếp ba lớp cảnh, bạn học cách tạo chiều sâu. Gộp cả hai, bạn không chỉ chụp cảnh mà kể một câu chuyện theo [[Bố cục]].',
+      text: 'Sau 30 phút, xem lại ba ảnh bạn chụp. Cái nào có ba lớp cảnh rõ ràng nhất? Tông màu đó có thuyết phục bạn không? Màu có bị che khuất bởi các yếu tố khác hay nổi lên? Bài tập này giúp bạn phát triển "mắt thấy" sâu hơn. Khi bạn tập [[Săn màu, phối màu và lớp cảnh|săn một màu]], bạn học cách thấy. Khi bạn xếp ba lớp cảnh, bạn học cách tạo chiều sâu. Gộp cả hai, bạn không chỉ chụp cảnh mà kể một câu chuyện theo [[Bố cục|bố cục]].',
     },
     {
       t: 'checklist',

@@ -14,13 +14,13 @@ export const page: Article = {
       t: 'tldr',
       items: [
         'Đặt ISO AUTO 100–6400, rồi đặt ISO AUTO Min. SS là 1/125.',
-        'Không có Min. SS, máy ưu tiên ISO thấp và hạ tốc xuống 1/30 — ảnh sạch nhiễu nhưng nhoè.',
+        'Không có Min. SS, máy ưu tiên ISO thấp và hạ tốc theo tiêu cự (Standard) — ảnh sạch nhiễu nhưng dễ nhoè với người đang cử động.',
         'Ảnh nhiễu còn cứu được ở hậu kỳ, ảnh nhoè thì không.',
       ],
     },
     {
       t: 'p',
-      text: 'Khi để [[ISO|ISO Auto]], máy phải chọn giữa hai cái xấu: nâng ISO cho nhiễu lên, hay hạ [[Tốc độ màn trập|tốc độ màn trập]] cho ảnh có nguy cơ nhoè, hai cạnh của cùng một [[Tam giác phơi sáng|tam giác phơi sáng]]. Mặc định máy nghiêng về ISO thấp — nghe hợp lý, nhưng đó là lý do rất nhiều ảnh trong nhà của người mới bị nhoè ở [[ISO]] chỉ 400.',
+      text: 'Khi để [[ISO|ISO Auto]], máy phải chọn giữa hai cái xấu: nâng ISO cho nhiễu lên, hay hạ [[Tốc độ màn trập|tốc độ màn trập]] cho ảnh có nguy cơ nhoè. Đó là hai cạnh của cùng một [[Tam giác phơi sáng|tam giác phơi sáng]]. Mặc định máy nghiêng về ISO thấp — nghe hợp lý, nhưng đó là lý do rất nhiều ảnh trong nhà của người mới bị nhoè ở [[ISO]] chỉ 400.',
     },
     {
       t: 'figure',
@@ -28,12 +28,12 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO → ISO AUTO (Min 100 / Max 6400)',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO (Min 100 / Max 6400)',
       new: 'MENU → Exposure/Color → Exposure → ISO → ISO AUTO (Min 100 / Max 6400)',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → ISO AUTO Min. SS → 1/125',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → 1/125',
       new: 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS → 1/125',
     },
     { t: 'h', text: 'Chọn con số nào' },

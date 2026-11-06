@@ -8,7 +8,7 @@ export const page: Article = {
   archetype: 'setup-guide',
   read: '5 phút',
   title: 'Lọc ảnh sau buổi chụp: Rating, thư mục, sao lưu',
-  dek: 'Ba bước từ thẻ nhớ tới máy tính: Rating trên máy, tổ chức thư mục theo ngày, và sao lưu dữ liệu gốc an toàn.',
+  dek: 'Bốn bước từ thẻ nhớ tới máy tính: Rating trên máy, tổ chức thư mục theo ngày, và sao lưu dữ liệu gốc an toàn.',
   updatedAt: '2026-11-06',
   blocks: [
     {
@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Sau buổi chụp, hàng trăm ảnh trong thẻ nhớ cần được lọc, sắp xếp và lưu trữ an toàn. [[Đặt tên và lọc ảnh]] là bước tiền chỉnh: loại bỏ ảnh hỏng, giữ lại ảnh tốt, tổ chức thư mục sao cho tháng sau bạn vẫn tìm được. Ba bước sau giúp bạn quy trình từ thẻ nhớ tới máy tính và sao lưu.',
+      text: 'Sau buổi chụp, hàng trăm ảnh trong thẻ nhớ cần được lọc, sắp xếp và lưu trữ an toàn. [[Đặt tên và lọc ảnh]] là bước tiền chỉnh: loại bỏ ảnh hỏng, giữ lại ảnh tốt, tổ chức thư mục sao cho tháng sau bạn vẫn tìm được. Bốn bước sau đưa ảnh từ thẻ nhớ tới máy tính và bản sao lưu.',
     },
     {
       t: 'figure',
@@ -33,8 +33,8 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Playback Settings → Rating, hoặc khi xem ảnh bấm MENU → Rate Image',
-      new: 'MENU → Playback → Playback Settings → Rating, hoặc bấm MENU khi xem ảnh',
+      old: 'MENU → Playback → Rating',
+      new: 'MENU → Playback → Selection/Memo → Rating',
     },
     {
       t: 'p',
@@ -46,7 +46,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tạo cấu trúc thư mục rõ ràng: Pictures → Năm (2026) → Tháng (2026-11) → Ngày-tên (20261110-lang-thang). Trong mỗi thư mục ngày-tên: subfolder [[RAW, JPEG và HEIF]] (chứa file ARW gốc), edited (ảnh đã chỉnh), export-1024 (ảnh xuất cho web). Cấu trúc này giúp bạn tìm nhanh theo năm, tháng, ngày, và tên buổi chụp.',
+      text: 'Tạo cấu trúc thư mục rõ ràng: Pictures → Năm (2026) → Tháng (2026-11) → Ngày-tên (20261110-lang-thang). Trong mỗi thư mục ngày-tên: subfolder [[RAW, JPEG và HEIF|RAW]] (file ARW gốc), edited (ảnh đã chỉnh), export-1024 (ảnh xuất cho web). Cấu trúc này giúp bạn tìm nhanh theo năm, tháng, ngày, và tên buổi chụp.',
     },
     {
       t: 'h',
@@ -54,7 +54,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Mở Lightroom → File → Import Photos → chọn thư mục ngày-tên. Lightroom scan hết ảnh, ở cột trái bật Filter → Flag để hiện chỉ ảnh 5 sao từ máy. Lọc tiếp nếu muốn, chọn những ảnh 5 sao để bắt đầu chỉnh và điều chỉnh [[cân bằng trắng và nhiệt độ màu]] nếu cần (save vào thư mục edited).',
+      text: 'Mở Lightroom → File → Import Photos → chọn thư mục ngày-tên. Lightroom scan hết ảnh, bật Filter → Rating để chỉ hiện ảnh 5 sao đã đánh trên máy. Lọc tiếp nếu muốn, chọn những ảnh 5 sao để bắt đầu chỉnh và điều chỉnh [[cân bằng trắng và nhiệt độ màu]] nếu cần (save vào thư mục edited).',
     },
     {
       t: 'h',

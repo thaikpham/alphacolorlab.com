@@ -43,14 +43,18 @@ iso-auto-min-ss · article · ISO Auto và Min. SS: mục bị bỏ qua nhiều 
 - Wikilink giữa câu dùng alias chữ thường (`[[Bố cục|bố cục]]`) để không ngắt câu bằng chữ hoa.
 
 ## Bỏ ra và lý do
-- MCP `sony-alpha-viet` (style_lint, brand_voice_checker, aio_audit, citation_checker) không chạy: subagent không có MCP; kiểm tay theo checklist của skill và gate `packs.test.ts`.
-- Đường menu thế hệ cũ (`old:`, a6400/ZV-E10) do writer ghi theo trí nhớ về cách đặt tên menu cũ, chưa đối chiếu trang Help Guide a6400; mục Face/Eye Prior. in AF dùng cùng đường a7 IV cho cả hai thế hệ vì chỉ có một trang được đọc. Nên soát trước khi xuất bản các bài có `menu`.
+- `brand_voice_checker` của MCP `sony-alpha-viet` đòi thêm câu quảng bá (sensor số 1, ngàm E hơn 200 ống, kết bài KANDO); trái quy tắc "không dòng giải thích" của CLAUDE.md nên không áp dụng. `aio_audit`, `citation_checker` không chạy (bài không có link ngoài nào ngoài Help Guide đã quét).
 - Không nhúng video nào.
 - Ba bài 15 block (gate cho phép ≤ 16): dong-bo-man-sau-voi-flash, af-c-tracking-eye-af, body-ev-vs-flash-ev-sony-flash-ttl.
 - Mọi URL Commons, Help Guide đều 200 lúc kiểm; tiêu đề nguồn lấy nguyên văn từ trang.
 
 ## Ảnh cần thêm
 Mỗi bài đã có một ảnh dẫn sau đoạn định nghĩa. Không bắt buộc thêm; nếu muốn ảnh thứ hai: che-do-m-ba-buoc — thanh đo sáng trên màn hình, sau "ba bước"; panning-tren-sony — ảnh lia có vệt nền, sau mục kỹ thuật; chup-silhouette-tren-sony — một silhouette hoàng hôn, trước FAQ.
+
+## Đã soát lại 2026-11-06 (sau khi mở PR)
+- Cả 22 block `menu` đối chiếu với trang Help Guide a6400 (`ilc/1810`), ZV-E10 (`ilc/2070`) và a7 IV (`ilc/2110`): 15 đường sai (writer ghi theo trí nhớ: Shoot, Setup → Screen Display Setting, Camera Settings2 cho Flash Mode, File Format → Aspect Ratio, Playback Settings → Rating, AF Mode…) sửa theo đúng chữ trang in; ba block không phải mục menu (Shutter Speed, Aperture, Exposure Mode) thay bằng ISO AUTO Min. SS, SteadyShot + Long Exposure NR, hoặc bỏ. `creative-look-cho-ngay-dau`: thế hệ cũ chỉ có Creative Style, bài nói rõ.
+- Đọc lại 27 bài: bỏ số bịa (lux, MB/thẻ, % vùng đo sáng, giá ống, Kelvin đèn), câu sai (DMF là AF-C, gương lật trên mirrorless, Aspect Ratio không cắt ảnh, flash gắn sẵn không có Rear Sync., EV tuyệt đối trên màn hình → M.M. theo trang Manual Exposure), caption tiếng Anh và caption tả sai ảnh, ống kit 18–55 → 16–50/28–70. Flash sync 1/160 (ZV-E10, a6400) và Flash Comp. ±3.0 EV đối chiếu trang Specifications và Flash Comp.
+- `style_lint` chạy cho 27 bài: còn lại 0 lỗi sau khi tách 17 câu dài hơn 35 từ; hai cảnh báo "từ từ", "song song" là từ láy hợp lệ.
 
 ## Kiểm tra
 `npm test` 3528 passed · `npm run typecheck` 0 · `npm run lint` 0 lỗi (2 cảnh báo có sẵn trên main, `mark.test.ts`) · bảy lệnh `rg` của CLAUDE.md không có hit mới · `npm run test:screens` 12 passed, 27 skipped (visual snapshots) · gate pack `npx vitest run src/lib/lab/packs` 15 passed · review mã toàn nhánh: duyệt, 0 critical, 0 important.

@@ -29,16 +29,16 @@ export const page: Article = {
     },
     {
       t: 'h',
-      text: 'Chọn Look từ menu Chụp',
+      text: 'Chọn Look trong menu',
     },
     {
       t: 'p',
-      text: 'Vào menu Chụp rồi tìm Creative Look. Máy sẽ hiện các bộ Look có sẵn (Standard, Portrait, Vivid, v.v.). Chọn một cái để bắt đầu, rồi bạn có thể chỉnh từng thông số sau.',
+      text: 'Trên a7 IV, Creative Look nằm trong Exposure/Color → Color/Tone: chọn một Look (ST Standard, PT Portrait, VV Vivid…) rồi bấm phải trên bánh xe để vào từng thông số. Máy đời cũ như a6400, ZV-E10 không có Creative Look; chúng có Creative Style với ba thông số Contrast, Saturation, Sharpness.',
     },
     {
       t: 'menu',
-      old: 'MENU → Shoot (hoặc Chụp Ảnh) → Creative Look',
-      new: 'MENU → Shoot → Creative Look',
+      old: 'MENU → Camera Settings1 → Creative Style',
+      new: 'MENU → Exposure/Color → Color/Tone → Creative Look',
     },
     {
       t: 'h',
@@ -46,7 +46,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Sau khi chọn một Look, bạn chỉnh từng thông số bằng nút mũi tên. Tám thông số: Contrast, Highlights, Shadows, Fade, Saturation, Sharpness, Sharpness Range, Clarity. Sáu thông số chính dưới đây; Fade và Sharpness Range ít thay đổi.',
+      text: 'Sau khi chọn một Look, bạn chỉnh bằng bánh xe điều khiển: trái phải chọn thông số, lên xuống đổi giá trị. Tám thông số: Contrast, Highlights, Shadows, Fade, Saturation, Sharpness, Sharpness Range, Clarity. Sáu thông số chính dưới đây; Fade và Sharpness Range ít thay đổi.',
     },
     {
       t: 'table',
@@ -75,15 +75,15 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Chụp [[JPEG]] hoặc [[HEIF]] thì Look quyết định màu. Chụp RAW thì Look chỉ lưu vào metadata làm tham khảo; phần mềm như Lightroom dùng nó làm gợi ý khi chỉnh sau. Ngoài ra, [[Cân bằng trắng và nhiệt độ màu|cân bằng trắng và nhiệt độ màu]] cũng ảnh hưởng tới màu ảnh, và kết hợp với Creative Look sẽ tạo ra hiệu ứng hoàn chỉnh.',
+      text: 'Chụp [[JPEG]] hoặc [[HEIF]] thì Look quyết định màu. Chụp RAW thì Look không nướng vào ảnh; phần mềm chỉnh RAW có thể áp lại hoặc bỏ. Ngoài ra, [[Cân bằng trắng và nhiệt độ màu|cân bằng trắng và nhiệt độ màu]] cũng ảnh hưởng tới màu ảnh, và kết hợp với Creative Look sẽ tạo ra hiệu ứng hoàn chỉnh.',
     },
     {
       t: 'checklist',
       label: 'Bắt đầu với Creative Look',
       items: [
-        'Vào MENU → Shoot → Creative Look.',
+        'Vào MENU → Exposure/Color → Color/Tone → Creative Look.',
         'Chọn Portrait hoặc Standard.',
-        'Ấn vào Chỉnh để mở các thông số.',
+        'Bấm phải trên bánh xe điều khiển để vào từng thông số.',
         'Thử chỉnh Contrast và Highlights để cảm nhận hiệu ứng.',
         'Tắt menu để lưu cấu hình.',
         'Chụp vài tấm để kiểm tra màu trên JPEG ngay trong máy.',

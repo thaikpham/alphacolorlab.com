@@ -8,20 +8,20 @@ export const page: Article = {
   archetype: 'fix',
   read: '5 phút đọc',
   title: 'Ảnh mờ vì rung tay: tốc độ tối thiểu theo tiêu cự',
-  dek: 'Tay bạn rung như thế nào, máy cần tốc độ bao nhanh để ảnh nét — và quy tắc vàng của nhiếp ảnh Sony.',
+  dek: 'Tay bạn rung như thế nào, máy cần tốc độ bao nhanh để ảnh nét — và quy tắc tốc độ tối thiểu theo tiêu cự.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
         'Tốc độ tối thiểu = 1/(tiêu cự × 1.5). Ống 24mm cần 1/40s; ống 100mm cần 1/150s.',
-        'Sony có SteadyShot: mỗi nước giảm rủi ro rung 2 nấc tốc độ (1/40 ≈ 1/10).',
+        'SteadyShot giúp cầm tay chậm hơn một chút, không thay được tốc độ đủ nhanh.',
         'Tay rung từ hơi thở, nhịp tim, sợ hãi bấm: cách bấm, kiểm soát hơi thở, tập luyện giảm được nửa.',
       ],
     },
     {
       t: 'p',
-      text: 'Rung tay là lý do #1 ảnh nhòe ở người mới. Không phải máy xấu, không phải ống kính—tay mình. Khi cầm máy lâu, bế thở, hoặc sợ bấm sai nút, tay bạn sẽ rung, từ vài pixel đến toàn khung nhòe. [[Tốc độ màn trập]] chính là cách phòng chữa đầu tiên. [[ISO]] là cách thứ hai khi bạn không thể làm chậm tốc độ hơn được. Bạn cũng nên xem [[Cài đặt nhanh trước buổi chụp]] để tối ưu máy từ lúc cầm lấy.',
+      text: 'Rung tay là lý do #1 ảnh nhòe ở người mới. Không phải máy xấu, không phải ống kính—tay mình. Khi cầm máy lâu, nín thở, hoặc sợ bấm sai nút, tay bạn sẽ rung, từ vài pixel đến toàn khung nhòe. [[Tốc độ màn trập]] chính là cách phòng chữa đầu tiên. [[ISO]] là cách thứ hai khi bạn không thể làm chậm tốc độ hơn được. Bạn cũng nên xem [[Cài đặt nhanh trước buổi chụp]] để tối ưu máy từ lúc cầm lấy.',
     },
     {
       t: 'figure',
@@ -30,25 +30,25 @@ export const page: Article = {
     { t: 'h', text: 'Quy tắc vàng: 1/(tiêu cự × 1.5)' },
     {
       t: 'p',
-      text: 'Tốc độ tối thiểu để ảnh nét cầm tay là: **1 / (tiêu cự × 1.5)**. Ống 24mm ≈ 1/40s; ống 50mm ≈ 1/80s; ống 100mm ≈ 1/150s. Số này là trung bình cho photographer bình thường. Tay chắc thì giảm được; tay rung thì phải tăng tốc độ (bù ISO).',
+      text: 'Tốc độ tối thiểu để ảnh nét cầm tay là: **1 / (tiêu cự × 1.5)**. Ống 24mm ≈ 1/40s; ống 50mm ≈ 1/80s; ống 100mm ≈ 1/150s. Số này là trung bình cho photographer bình thường. Ở chế độ A với ISO AUTO, để ISO AUTO Min. SS ở Standard là máy tự đặt sàn tốc độ theo tiêu cự ống kính; tay bạn rung thì chọn Fast hoặc Faster.',
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings1 → Shutter Speed (chế độ S)',
-      new: 'MENU → Exposure/Color → Exposure → Shutter Speed (chế độ S)',
+      old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → Standard',
+      new: 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS → Standard',
     },
     {
       t: 'h',
-      text: 'Sony SteadyShot: mỗi nước chống rung = 2 nấc tốc độ',
+      text: 'SteadyShot: bật khi cầm tay, tắt khi lên chân máy',
     },
     {
       t: 'p',
-      text: 'Ống kính Sony có **SteadyShot** (công tắc trên ống hoặc menu **Steadyshot**). Nó không chống rung 100%, nhưng mỗi bước On/Off giúp bạn chậm hơn ~2 nấc: 1/80 thành 1/20. Quy tắc vàng trên đã tính có SteadyShot. Tắt nó đi, bạn cần tăng tốc độ lên gấp 4.',
+      text: 'Ống kính OSS và thân máy có chống rung đều gọi là **SteadyShot**. Nó cho bạn đi chậm hơn công thức một chút, nhưng không thay được tốc độ đủ nhanh. Sony ghi rằng khi biểu tượng SteadyShot nhấp nháy trong tối thì hãy mở khẩu hoặc nâng ISO để tốc nhanh hơn. Ống có công tắc SteadyShot thì chỉ công tắc đó có tác dụng, menu không đổi được. Lên chân máy thì tắt.',
     },
     {
       t: 'table',
       head: ['Tiêu cự ống', 'Tốc độ tối thiểu (SteadyShot On)', 'Tốc độ tối thiểu (SteadyShot Off)'],
-      caption: 'Cùng một ống, SteadyShot Off bạn cần tốc độ nhanh hơn gấp 4 (2 nấc × 2).',
+      caption: 'Cùng một ống: SteadyShot On cầm tay được chậm hơn một chút; Off thì bám đúng công thức.',
       rows: [
         ['24mm', '1/40', '1/10'],
         ['50mm', '1/80', '1/20'],
@@ -58,12 +58,12 @@ export const page: Article = {
     { t: 'h', text: 'Cách bấm và kiểm soát rung' },
     {
       t: 'p',
-      text: 'Tay rung đến 50% là từ cách bấm nút chụp. **Bấm từ từ**, không tát. Hít thở sâu, tính đến 3, bấm ngay khi thở ra hoặc giữ nguyên (không nên bế). Nếu dùng **timer 2 giây** (Hẹn giờ), máy tự bấm khi tay bạn đã bỏ ra, toàn bộ rung từ cơ chế lấy gương biến mất.',
+      text: 'Phần lớn rung đến từ cách bấm nút chụp. **Bấm từ từ**, không tát. Hít thở sâu, tính đến 3, bấm ngay khi thở ra (không nín thở quá lâu). Nếu dùng **timer 2 giây** (Hẹn giờ), máy tự bấm khi tay bạn đã bỏ ra, rung do ngón tay bấm biến mất.',
     },
     {
       t: 'callout',
-      label: 'Nhầm lẫn: rung thẩu hay nhiễu?',
-      text: 'Ảnh rung (blurred) có đường viền mơ hồ. Ảnh nhiễu (noisy, grainy) là hạt màu ngẫu nhiên. Không phải một cảnh tối bị nhiễu → tính tốc độ bộ lâu nữa.',
+      label: 'Nhầm lẫn: rung tay hay nhiễu?',
+      text: 'Ảnh rung (blurred) có đường viền mơ hồ. Ảnh nhiễu (noisy, grainy) là hạt màu ngẫu nhiên. Ảnh nhiễu thì không cần tăng tốc độ; ảnh rung thì cần.',
     },
     {
       t: 'checklist',

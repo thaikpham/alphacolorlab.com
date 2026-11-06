@@ -24,12 +24,12 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Backlighting creates strong contrast — foreground darker than sky. Proper exposure compensation can reveal shadow detail. Ảnh: Staff Sgt. Daniel Love · Public domain · Wikimedia Commons',
+      caption: 'Ngược sáng: tiền cảnh tối hơn trời; bù sáng dương kéo lại chi tiết vùng tối. Ảnh: Staff Sgt. Daniel Love · Public domain · Wikimedia Commons',
     },
     { t: 'h', text: 'Xoay bù sáng' },
     {
       t: 'p',
-      text: 'Đa số máy Sony có bánh bù sáng riêng ở thân (a7 series). Xoay về + để sáng, − để tối. Mỗi nấc = 1/3 stop — nhỏ đủ tinh chỉnh, đủ lớn thấy ngay hiệu quả. Nếu không có bánh riêng, gán Exposure Comp. vào nút Custom để nhanh.',
+      text: 'Dòng a7 có bánh bù sáng riêng trên thân. Xoay về + để sáng, − để tối. Mỗi nấc = 1/3 stop — nhỏ đủ tinh chỉnh, đủ lớn thấy ngay hiệu quả. Nếu không có bánh riêng, gán Exposure Comp. vào nút Custom để nhanh.',
     },
     { t: 'h', text: 'Đọc biểu đồ' },
     {
@@ -57,7 +57,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Sao lại 1/3 stop? Vì ISO có bước 1 stop, nên Sony chọn 1/3 stop làm đơn vị chính — đủ nhỏ tinh chỉnh mà không quay liên tục. Nếu xoay bù +3 mà vẫn tối? Nguyên nhân không bù sáng — đó cảnh quá tối. Nâng ISO, mở khẩu lớn hơn, hoặc hạ tốc — ba yếu tố của [[Tam giác phơi sáng|tam giác phơi sáng]]. Bạn đã ở trần bù sáng (phạm vi ±2 hoặc ±3 tùy máy); máy không thể sáng hơn được.',
+      text: 'Sao lại 1/3 stop? Mỗi stop chia ba nấc: đủ nhỏ để tinh chỉnh, đủ lớn để thấy khác biệt ngay trên màn hình. Nếu xoay bù +3 mà vẫn tối? Nguyên nhân không ở bù sáng — cảnh quá tối. Nâng ISO, mở khẩu lớn hơn, hoặc hạ tốc — ba yếu tố của [[Tam giác phơi sáng|tam giác phơi sáng]]. Bạn đã ở trần bù sáng của máy; muốn sáng hơn phải đổi khẩu, tốc hoặc ISO.',
     },
     {
       t: 'checklist',

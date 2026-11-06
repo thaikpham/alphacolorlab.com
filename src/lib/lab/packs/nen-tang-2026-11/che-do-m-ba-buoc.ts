@@ -24,7 +24,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Sony Alpha 7R IV elevated front view of camera body. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
+      caption: 'Mặt trước a7R IV: bánh xe trước chỉnh khẩu, bánh xe sau chỉnh tốc ở chế độ M. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
     },
     { t: 'h', text: 'Bước 1: Khẩu độ' },
     {
@@ -34,7 +34,7 @@ export const page: Article = {
     { t: 'h', text: 'Bước 2: Tốc độ màn trập' },
     {
       t: 'p',
-      text: 'Xoay bánh tốc để chọn thời gian — 1/1000 bắt dính bạc đẽ, 1" làm nhòe dòng nước. Bạn quyết định tốc theo hiệu ứng, không phải đo sáng. Nếu xoay vào BULB, máy giữ màn trập mở miễn là bạn giữ nút — hữu ích phơi sáng dài.',
+      text: 'Xoay bánh tốc để chọn thời gian — 1/1000 bắt dính chuyển động, 1" làm nhòe dòng nước. Bạn quyết định tốc theo hiệu ứng, không phải đo sáng. Nếu xoay vào BULB, máy giữ màn trập mở miễn là bạn giữ nút — hữu ích phơi sáng dài.',
     },
     { t: 'h', text: 'Bước 3: ISO để mũi thanh đo ở 0' },
     {
@@ -44,7 +44,7 @@ export const page: Article = {
     {
       t: 'table',
       head: ['Bước', 'Chọn gì', 'Dựa trên'],
-      caption: 'Ba bước M theo thứ tự — không được lộn lẫn.',
+      caption: 'Ba bước M theo thứ tự — không đảo thứ tự.',
       rows: [
         ['1', 'Khẩu độ (F.)', 'Muốn xóa phông hay nét sâu'],
         ['2', 'Tốc độ (s)', 'Muốn bắt dính hay làm nhòe chuyển động'],

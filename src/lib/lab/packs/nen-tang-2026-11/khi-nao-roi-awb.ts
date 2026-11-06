@@ -16,7 +16,7 @@ export const page: Article = {
       items: [
         'AWB (Auto White Balance) chọn dựa trên trung bình ánh sáng khung; nó sai khi có một màu ánh sáng chiếm ưu thế.',
         'Ba tình huống: đèn huỳnh quang (xanh lạnh), lửa hay đèn sợi (cam nóng), hoặc vật quá sáng/tối làm nhiễu.',
-        'Ba công cụ sửa: Preset (Daylight, Fluor., Incandescent), Kelvin tay, hoặc Tuning (Shift A/B).',
+        'Ba công cụ sửa: preset (Daylight, Incandescent, bốn mức Fluor.), chọn Kelvin tay, hoặc chỉnh Shift A/B.',
       ],
     },
     {
@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Đèn huỳnh quang phát xanh lạnh (~4000–5500K) khiến ảnh bị đốm xanh. Lửa hay đèn sợi phát cam nóng (1800–3000K) khiến ảnh bị thêm xanh để cân bằng lại, mất tự nhiên. Khi ảnh có vật rất sáng (tường trắng) hoặc rất tối (nền đen), máy sẽ điều chỉnh cho nó thành trung tính, làm phần còn lại bị ảnh hưởng.',
+      text: 'Đèn huỳnh quang ám xanh lục khiến da người xỉn. Lửa hay đèn sợi đốt rất cam, máy bù xanh để cân lại và làm mất hơi ấm tự nhiên. Khi ảnh có vật rất sáng (tường trắng) hoặc rất tối (nền đen), máy sẽ điều chỉnh cho nó thành trung tính, làm phần còn lại bị ảnh hưởng.',
     },
     {
       t: 'h',
@@ -55,7 +55,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Gray Card là tờ giấy xám 18% thiết kế phản ánh ánh sáng đúng. Chụp Gray Card dưới ánh sáng bạn sắp dùng, rồi dùng ảnh đó để máy tính Kelvin qua Custom White Balance, hoặc chỉnh ảnh sau trong Lightroom. Nó là cách chính xác nhất khi ánh sáng không có Preset rõ ràng.',
+      text: 'Gray Card là tờ giấy xám 18% được làm để phản chiếu ánh sáng trung tính. Chụp Gray Card dưới ánh sáng bạn sắp dùng, rồi đo Custom White Balance từ tấm đó, hoặc chỉnh ảnh sau trong Lightroom. Nó là cách chính xác nhất khi ánh sáng không có Preset rõ ràng.',
     },
     {
       t: 'h',
@@ -70,10 +70,10 @@ export const page: Article = {
       label: 'Chọn White Balance tay',
       items: [
         'Chụp một tấm với AWB để thấy màu sắc hiện tại.',
-        'Nhận dạng ánh sáng: Daylight, Incandescent hay Fluor.',
+        'Nhận dạng ánh sáng: Daylight, Incandescent hay một mức Fluor.',
         'Chọn Preset trong menu White Balance.',
         'Chụp lại và so sánh với tấm AWB.',
-        'Nếu chưa tốt, dùng Tuning để Shift A/B thêm Amber hoặc Blue.',
+        'Nếu chưa tốt, chỉnh Shift A/B thêm Amber hoặc Blue.',
         'Tắt menu để lưu cấu hình.',
       ],
     },

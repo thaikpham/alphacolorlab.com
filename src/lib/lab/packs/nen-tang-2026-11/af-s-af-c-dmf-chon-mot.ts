@@ -15,13 +15,13 @@ export const page: Article = {
       t: 'tldr',
       items: [
         'AF-S (Single AF): lấy nét một lần, không bao giờ thay đổi. Chân dung, phong cảnh, khi chủ thể yên tĩnh.',
-        'AF-C (Continuous AF): bám liên tục, thay đổi nút lấy nét mỗi millisecond. Chủ thể di chuyển, thể thao, hoặc panning.',
-        'DMF (Direct Manual Focus): giữ auto-focus nhưng bạn có thể tay xoay vòng kính để sửa nét nhanh mà không chuyển sang chế độ thủ công.',
+        'AF-C (Continuous AF): bám liên tục khi còn giữ nửa cò. Chủ thể di chuyển, thể thao, hoặc panning.',
+        'DMF (Direct Manual Focus): máy lấy nét xong, bạn xoay vòng nét để tinh chỉnh mà không chuyển sang chế độ thủ công.',
       ],
     },
     {
       t: 'p',
-      text: '[[Lấy nét]] là công việc chọn khoảng cách mà máy sẽ để nét. Máy có ba cách để làm: cố định nó khi bạn bấm nút (AF-S), tiếp tục điều chỉnh trong lúc chụp (AF-C), hoặc cho phép bạn can thiệp bằng tay vào khoảng cách đó khi máy đã bắt được (DMF). Mỗi cách là cho một tình huống khác.',
+      text: '[[Lấy nét]] là công việc chọn khoảng cách mà máy sẽ để nét. Máy có ba cách làm. Cố định nó khi bạn bấm nút (AF-S), tiếp tục điều chỉnh trong lúc chụp (AF-C), hoặc để bạn chỉnh tay sau khi máy đã bắt được (DMF). Mỗi cách là cho một tình huống khác.',
     },
     {
       t: 'figure',
@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bạn bấm nút lấy nét, máy bắt được khoảng cách, xong — nét sẽ không thay đổi dù chủ thể di chuyển hay bạn xoay máy. Đó là lý do nó gọi là Single AF. Dùng lúc chủ thể đứng yên: chân dung, gia đình đứng theo dàn, phong cảnh, hay khi bạn muốn [[bố cục]] xong rồi mới bấm chụp (vì nếu bạn thay đổi vị trí máy, nét sẽ trượt).',
+      text: 'Bạn bấm nút lấy nét, máy bắt được khoảng cách, xong — nét sẽ không thay đổi dù chủ thể di chuyển hay bạn xoay máy. Đó là lý do nó gọi là Single AF. Dùng lúc chủ thể đứng yên: chân dung, gia đình đứng theo dàn, phong cảnh. Hợp cả khi bạn muốn [[bố cục]] xong rồi mới bấm, miễn là máy không tiến lùi, vì nét sẽ trượt.',
     },
     {
       t: 'h',
@@ -41,7 +41,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Máy không bao giờ dừng lấy nét. Nó tiếp tục điều chỉnh tiêu cự từng millisecond để bám theo chủ thể nếu chủ thể di chuyển hoặc nếu bạn xoay máy. Dùng khi chủ thể chuyển động: chạy, [[panning]] một chiếc xe, thể thao, hay bất kỳ lúc nào bạn không chắc chủ thể sẽ dừng đúng chỗ nào.',
+      text: 'Máy không bao giờ dừng lấy nét. Nó liên tục chỉnh lại khoảng nét để bám theo chủ thể nếu chủ thể di chuyển hoặc nếu bạn xoay máy. Dùng khi chủ thể chuyển động: chạy, [[panning]] một chiếc xe, thể thao, hay bất kỳ lúc nào bạn không chắc chủ thể sẽ dừng đúng chỗ nào.',
     },
     {
       t: 'table',
@@ -59,7 +59,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'DMF là Direct Manual Focus — máy bắt nét tự động (AF-C), nhưng bạn có thể xoay vòng kính (focus ring) để sửa nó nhanh mà không phải chuyển sang chế độ thủ công. Ví dụ: máy bắt nét vào mũi người nhưng bạn muốn nét vào mắt, xoay vòng kính một chút là xong. Điểm yếu: máy sẽ cơ bản chỉ bắt nét khi bạn bấm nút; nếu bạn xoay vòng kính quá nhiều, máy tư bỏ AF-C và cho phép bạn kiểm soát hoàn toàn.',
+      text: 'DMF là Direct Manual Focus — máy lấy nét tự động xong, bạn giữ nửa cò và xoay vòng nét trên ống để tinh chỉnh, không phải chuyển sang Manual Focus. Ví dụ: máy bắt nét vào mũi người nhưng bạn muốn nét vào mắt, xoay vòng kính một chút là xong. Điểm yếu: chỉ hợp với chủ thể đứng yên, vì phần tự động chạy một lần như AF-S.',
     },
     {
       t: 'menu',

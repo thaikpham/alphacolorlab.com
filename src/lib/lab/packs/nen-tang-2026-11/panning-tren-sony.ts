@@ -8,20 +8,20 @@ export const page: Article = {
   archetype: 'technique',
   read: '7 phút đọc',
   title: 'Panning trên Sony: lia máy, chế độ S và AF-C',
-  dek: '[[Panning]] là lia máy bám theo chủ thể di chuyển ở tốc độ chậm. Chủ thể nét, nền nhòe thành vệt ngang, tạo cảm giác tốc độ.',
+  dek: 'Panning là lia máy bám theo chủ thể di chuyển ở tốc độ chậm. Chủ thể nét, nền nhòe thành vệt ngang, tạo cảm giác tốc độ.',
 
   blocks: [
     {
       t: 'tldr',
       items: [
-        'Chế độ S, AF-C, Zone lấy nét, Continuous Hi kiểu chụp liên tục.',
-        'Ống kính có công tắc OSS Mode 1/2: chọn Mode 2 (chỉ chống rung dọc).',
+        'Chế độ S, AF-C, Focus Area Zone, Drive Mode Cont. Shooting.',
+        'Ống kính có công tắc OSS MODE 1/2: chọn MODE 2 khi lia máy.',
         'Lia từ hông (xoay thân), không xoay bằng tay; bám chủ thể trước khi bấm; lia tiếp sau khi chụp xong.',
       ],
     },
     {
       t: 'p',
-      text: '[[Panning]] là lia máy bám theo chủ thể đang chạy ở [[tốc độ màn trập]] chậm: chủ thể nét, hậu cảnh nhòe thành vệt ngang, tạo cảm giác tốc độ. Đây là bài tập phổ biến nhất ở lớp nâng cao, vì nó kết hợp ba yếu tố: [[lấy nét]] AF-C, tốc độ chậm để ghi chuyển động, và [[bố cục]] rõ ràng.',
+      text: '[[Panning]] là lia máy bám theo chủ thể đang chạy ở [[tốc độ màn trập]] chậm: chủ thể nét, hậu cảnh nhòe thành vệt ngang, tạo cảm giác tốc độ. Bài tập này kết hợp ba yếu tố: [[lấy nét]] AF-C, tốc độ chậm để ghi chuyển động, và [[bố cục]] rõ ràng.',
     },
     {
       t: 'figure',
@@ -33,18 +33,18 @@ export const page: Article = {
     },
     {
       t: 'menu',
-      old: 'MENU → Camera Settings2 → Focus Mode → AF-C',
-      new: 'MENU → Focus → AF/MF → AF Mode → AF-C',
+      old: 'MENU → Camera Settings1 → Focus Mode → AF-C',
+      new: 'MENU → Focus → AF/MF → Focus Mode → AF-C',
     },
     {
       t: 'menu',
       old: 'MENU → Camera Settings1 → Focus Area → Zone',
-      new: 'MENU → Focus → Focus Area → Zone',
+      new: 'MENU → Focus → Focus Area → Focus Area → Zone',
     },
     {
       t: 'callout',
       label: 'Kiểu chụp liên tục',
-      text: 'Đảm bảo Kiểu chụp đang là Continuous Hi (chụp nhanh) — nút Fn ở phía trước máy hoặc menu Shoot Mode → Continuous: Hi.',
+      text: 'Đặt Drive Mode là Cont. Shooting: bấm nút Drive Mode trên bánh xe điều khiển, hoặc MENU → Shooting → Drive Mode → Drive Mode (máy cũ: Camera Settings1 → Drive Mode).',
     },
     {
       t: 'h',
@@ -52,7 +52,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bước 1: Chọn hậu cảnh nhiều chi tiết (hàng cây, biển hiệu, hàng rào) để vệt nhòe rõ. Bước 2: Đứng vuông góc với hướng di chuyển, xoay từ hông (twist waist) chứ không xoay bằng tay — điều này giúp bạn lia mượt hơn. Bước 3: Bám chủ thể vào nguyên một vị trí trong khung *trước khi bấm chụp*. Bước 4: Bấm chụp (chụp liên tục), nhưng **lia tiếp sau khi chụp xong** — đừng dừng đột ngột. Thường cần 3–5 tấm liên tục để có 1 tấm đạt.',
+      text: 'Bước 1: Chọn hậu cảnh nhiều chi tiết (hàng cây, biển hiệu, hàng rào) để vệt nhòe rõ. Bước 2: Đứng vuông góc với hướng di chuyển, xoay từ hông chứ không xoay bằng tay — điều này giúp bạn lia mượt hơn. Bước 3: Bám chủ thể vào nguyên một vị trí trong khung *trước khi bấm chụp*. Bước 4: Bấm chụp (chụp liên tục), nhưng **lia tiếp sau khi chụp xong** — đừng dừng đột ngột. Thường cần 3–5 tấm liên tục để có 1 tấm đạt.',
     },
     {
       t: 'table',
@@ -70,7 +70,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bắt đầu với tốc độ 1/125s và giảm dần để hậu cảnh nhòe nhiều hơn. Tỷ lệ đạt chỉ khoảng 1–2/10 tấm là bình thường, vì vậy chụp nhiều là chìa khóa. Nếu ống kính của bạn có công tắc Mode 1/2 (OSS Mode 1/2), hãy chọn Mode 2 để chỉ chống rung theo chiều dọc, không cản cú lia ngang của bạn.',
+      text: 'Bắt đầu với tốc độ 1/125s và giảm dần để hậu cảnh nhòe nhiều hơn. Tỷ lệ đạt chỉ khoảng 1–2/10 tấm là bình thường, vì vậy chụp nhiều là chìa khóa. Nếu ống kính có công tắc OSS MODE 1/2, chọn MODE 2 dành cho lia máy.',
     },
     {
       t: 'checklist',
