@@ -38,7 +38,7 @@ export async function SourceList({
 
   return (
     <section aria-label={t('sources')}>
-      <h2 className="label">{t('sources')}</h2>
+      <h2 className="label text-ink">{t('sources')}</h2>
       <ol className="mt-2 flex flex-col gap-2">
         {sources.map((s) => {
           const facts = [s.publisher, s.section, s.scope].filter(Boolean).join(' · ')

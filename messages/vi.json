@@ -718,7 +718,6 @@
     "articleInVietnamese": "Bài viết này được soạn bằng tiếng Việt.",
     "setupPaths": {
       "modeDial": "Vòng xoay MODE",
-      "modeButton": "Nút MODE",
       "aelButton": "nút AEL (hoặc C1)"
     },
     "setupSteps": {
@@ -732,12 +731,12 @@
       "isoAutoRange": {
         "kicker": "Phơi sáng · ISO",
         "title": "Giới hạn ISO Auto trong khoảng 100 – {isoMax}",
-        "why": "ISO là thông số thứ ba của tam giác sáng — độ nhạy sáng của cảm biến. Để ISO Auto nhưng có trần: máy tự nâng ISO khi trời tối để giữ tốc chụp an toàn, nhưng không vượt quá {isoMax} — mức mà ảnh vẫn còn sạch và giữ được chi tiết. Đặt trần quá thấp thì trong nhà máy buộc phải hạ tốc và ảnh nhòe; đặt quá cao thì ảnh bết, mất chi tiết da và nhiễu hạt màu."
+        "why": "ISO là thông số thứ ba của tam giác sáng — độ nhạy sáng của cảm biến. Để ISO Auto nhưng có trần: máy tự nâng ISO khi trời tối để giữ tốc chụp an toàn, nhưng không vượt quá {isoMax} — mức mà ảnh vẫn còn sạch và giữ được chi tiết. Đặt trần quá thấp thì trong nhà máy buộc phải hạ tốc và ảnh nhòe; đặt quá cao thì ảnh bết, mất chi tiết da và nhiễu hạt màu. Trên ZV-E10 không có bước ISO Setting: vào thẳng Camera Settings1 → ISO."
       },
       "minShutter": {
         "kicker": "Phơi sáng · sàn tốc độ",
         "title": "ISO AUTO Min. SS đặt {minSs}",
-        "why": "Đây là mục nằm ngay cạnh ISO trong menu, và là mục quan trọng nhất mà người mới hay bỏ qua. Nó đặt sàn tốc độ: khi ánh sáng giảm, máy sẽ nâng ISO chứ không hạ tốc xuống dưới {minSs}. Nếu không đặt, máy có xu hướng ưu tiên ISO thấp và kéo tốc về 1/30 hay 1/15 — ảnh sạch nhiễu nhưng nhòe vì rung tay và vì người trong ảnh chuyển động. Ảnh nhiễu còn cứu được, ảnh nhòe thì không."
+        "why": "Đây là mục nằm ngay cạnh ISO trong menu, và là mục quan trọng nhất mà người mới hay bỏ qua. Nó đặt sàn tốc độ: khi ánh sáng giảm, máy sẽ nâng ISO chứ không hạ tốc xuống dưới {minSs}. Nếu không đặt, máy có xu hướng ưu tiên ISO thấp và kéo tốc về 1/30 hay 1/15 — ảnh sạch nhiễu nhưng nhòe vì rung tay và vì người trong ảnh chuyển động. Ảnh nhiễu còn cứu được, ảnh nhòe thì không. ZV-E10 không có mục ISO AUTO Min. SS; trên máy đó, hãy nhìn tốc độ trên màn hình và nâng ISO tay khi nó tụt dưới {minSs}."
       },
       "focusMode": {
         "kicker": "Lấy nét · chế độ",
@@ -749,8 +748,8 @@
         "title": "Focus Area chọn Tracking: Zone",
         "why": "Zone là một vùng vừa phải — không phải cả khung (máy tự chọn, hay nét vào hậu cảnh), cũng không phải một điểm bé xíu (khó ngắm khi cầm tay). Thêm Tracking: bạn chỉ cần đưa vùng đó lên chủ thể và bấm nét, máy khoá vào chủ thể rồi bám theo nó khi nó di chuyển trong khung. Bạn được rảnh tay bố cục lại mà nét vẫn dính đúng chỗ.",
         "tipTitle": "Lấy nét bằng ngón tay cái (AF-ON)",
-        "tipBody": "Gán AF ON cho nút AEL (hoặc C1) rồi tắt lấy nét ở nửa cò. Từ đó ngón cái giữ AF-ON là bám nét, nhả ra là khoá nét ngay tại đó, còn ngón trỏ chỉ còn một việc: bấm chụp. Không còn cảnh vừa muốn giữ nét vừa sợ bấm chụp sớm — đây là cách bấm của người chụp chuyên nghiệp và dễ hơn nửa cò sau khoảng một buổi tập.",
-        "tipAssign": "Gán AF ON",
+        "tipBody": "Gán AF On cho nút AEL (hoặc C1) rồi tắt lấy nét ở nửa cò. Từ đó ngón cái giữ AF-ON là bám nét, nhả ra là khoá nét ngay tại đó, còn ngón trỏ chỉ còn một việc: bấm chụp. Không còn cảnh vừa muốn giữ nét vừa sợ bấm chụp sớm — đây là cách bấm của người chụp chuyên nghiệp và dễ hơn nửa cò sau khoảng một buổi tập.",
+        "tipAssign": "Gán AF On",
         "tipHalfPress": "Tắt nét nửa cò"
       },
       "metering": {

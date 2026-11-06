@@ -81,7 +81,7 @@ export const ARTICLES: readonly Article[] = [
       { t: 'h', text: 'Ba thay đổi trong menu' },
       {
         t: 'menu',
-        old: 'MENU → Camera Settings2 → Custom Key (Shoot) → AEL Button → AF ON',
+        old: 'MENU → Camera Settings2 → Custom Key → AEL Button → AF On',
         new: 'MENU → Setup → Operation Customize → Custom Key/Dial Set. → AEL Button → AF On',
       },
       {
@@ -163,18 +163,18 @@ export const ARTICLES: readonly Article[] = [
       },
       {
         t: 'menu',
-        old: 'MENU → Camera Settings1 → ISO → ISO AUTO (Min 100 / Max 6400)',
+        old: 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO (Min 100 / Max 6400; ZV-E10: Camera Settings1 → ISO)',
         new: 'MENU → Exposure/Color → Exposure → ISO → ISO AUTO (Min 100 / Max 6400)',
       },
       {
         t: 'menu',
-        old: 'MENU → Camera Settings1 → ISO AUTO Min. SS → 1/125',
+        old: 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS → 1/125 (a6400; ZV-E10 không có mục này)',
         new: 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS → 1/125',
       },
       { t: 'h', text: 'Chọn con số nào' },
       {
         t: 'p',
-        text: 'Min. SS là sàn tốc độ màn trập: máy sẽ nâng ISO trước và chỉ đi chậm hơn con số này khi ISO đã chạm trần. Chọn nó theo chủ thể bạn chụp, không theo tiêu cự ống kính — người cử động nhanh hơn tay bạn rung.',
+        text: 'Min. SS là sàn tốc độ màn trập: máy sẽ nâng ISO trước và chỉ đi chậm hơn con số này khi ISO đã chạm trần. Chọn nó theo chủ thể bạn chụp, không theo tiêu cự ống kính — người cử động nhanh hơn tay bạn rung. ZV-E10 không có mục ISO AUTO Min. SS; trên máy đó, dùng chế độ S với ISO AUTO để tự đặt sàn tốc.',
       },
       {
         t: 'table',
@@ -271,7 +271,7 @@ export const ARTICLES: readonly Article[] = [
       { t: 'h', text: 'Kéo Body EV để dìm background' },
       {
         t: 'p',
-        text: 'Body EV xuống thì máy tăng tốc màn trập hoặc hạ ISO, ambient lọt vào ít đi và background thẫm lại, trong khi flash TTL vẫn tự đo và bơm đủ sáng cho mặt nên chủ thể gần như không đổi. Đây là cách làm ra background dramatic mà không cần thêm đèn: bạn không làm chủ thể sáng lên, bạn dìm môi trường xuống. ZV-E10 không có bánh xe EV riêng, nên gán Exposure Comp. ra Control Wheel hoặc nút C1 trong Custom Key (Shoot) — bạn sẽ đụng vào nó liên tục, đừng để nó nằm trong menu. Muốn thấy trước background mà không phải chụp thử, gán thêm Shot. Result Preview vào một nút Custom: giữ nút là máy hiện đúng kết quả với khẩu đã khép và tốc, ISO thực tế, thả ra là về bình thường.',
+        text: 'Body EV xuống thì máy tăng tốc màn trập hoặc hạ ISO, ambient lọt vào ít đi và background thẫm lại, trong khi flash TTL vẫn tự đo và bơm đủ sáng cho mặt nên chủ thể gần như không đổi. Đây là cách làm ra background dramatic mà không cần thêm đèn: bạn không làm chủ thể sáng lên, bạn dìm môi trường xuống. ZV-E10 không có bánh xe EV riêng, nên gán Exposure Comp. ra Control Wheel hoặc nút C1 trong Custom Key — bạn sẽ đụng vào nó liên tục, đừng để nó nằm trong menu. Muốn thấy trước background mà không phải chụp thử, gán thêm Shot. Result Preview vào một nút Custom: giữ nút là máy hiện đúng kết quả với khẩu đã khép và tốc, ISO thực tế, thả ra là về bình thường.',
       },
       {
         t: 'compare',

@@ -75,13 +75,13 @@ function paths(v: MenuVersion, t: SetupCopy) {
   return {
     mode: isNew
       ? `${modeDial} → A (a6700) · MENU → Shooting → Shooting Mode → Shoot Mode → A (ZV-E10 II)`
-      : `${modeDial} → A (a6400) · ${t('setupPaths.modeButton')} → A (ZV-E10)`,
+      : `${modeDial} → A (a6400) · MENU → Camera Settings1 → Shoot Mode → A (ZV-E10)`,
     iso: isNew
       ? 'MENU → Exposure/Color → Exposure → ISO → ISO AUTO'
-      : 'MENU → Camera Settings1 → ISO → ISO AUTO',
+      : 'MENU → Camera Settings1 → ISO Setting → ISO → ISO AUTO',
     minss: isNew
       ? 'MENU → Exposure/Color → Exposure → ISO AUTO Min. SS'
-      : 'MENU → Camera Settings1 → ISO AUTO Min. SS',
+      : 'MENU → Camera Settings1 → ISO Setting → ISO AUTO Min. SS',
     focusMode: isNew
       ? 'MENU → Focus → AF/MF → Focus Mode'
       : 'MENU → Camera Settings1 → Focus Mode',
@@ -89,8 +89,8 @@ function paths(v: MenuVersion, t: SetupCopy) {
       ? 'MENU → Focus → Focus Area → Focus Area'
       : 'MENU → Camera Settings1 → Focus Area',
     customKey: isNew
-      ? `MENU → Setup → Operation Customize → Custom Key/Dial Set. → ${aelButton} → AF ON`
-      : `MENU → Camera Settings2 → Custom Key (Shoot) → ${aelButton} → AF ON`,
+      ? `MENU → Setup → Operation Customize → Custom Key/Dial Set. → ${aelButton} → AF On`
+      : `MENU → Camera Settings2 → Custom Key → ${aelButton} → AF On`,
     afShutter: isNew
       ? 'MENU → Focus → AF/MF → AF w/ Shutter → Off'
       : 'MENU → Camera Settings1 → AF w/ shutter → Off',
@@ -98,16 +98,16 @@ function paths(v: MenuVersion, t: SetupCopy) {
       ? 'MENU → Exposure/Color → Metering → Metering Mode'
       : 'MENU → Camera Settings1 → Metering Mode',
     facePriority: isNew
-      ? 'MENU → Exposure/Color → Metering → Face Priority in Multi Mtr.'
+      ? 'MENU → Exposure/Color → Metering → Face Priority in Multi Metering'
       : 'MENU → Camera Settings1 → Face Priority in Multi Metering',
     look: isNew
       ? 'MENU → Exposure/Color → Color/Tone → Creative Look'
       : 'MENU → Camera Settings1 → Creative Style',
     brightness: isNew
-      ? 'MENU → Setup → Display Option → Monitor Brightness'
+      ? 'MENU → Setup → Finder/Monitor → Monitor Brightness (a6700) · MENU → Setup → Monitor → Monitor Brightness (ZV-E10 II)'
       : 'MENU → Setup → Monitor Brightness',
     quality: isNew
-      ? 'MENU → Setup → Display Option → Display Quality'
+      ? 'MENU → Setup → Finder/Monitor → Display Quality (a6700) · MENU → Setup → Monitor → Display Quality (ZV-E10 II)'
       : 'MENU → Setup → Display Quality',
   }
 }
@@ -174,7 +174,7 @@ export function setupSteps(v: MenuVersion, t: SetupCopy): readonly SetupStep[] {
         title: c('focusArea.tipTitle'),
         body: c('focusArea.tipBody'),
         settings: [
-          { label: c('focusArea.tipAssign'), value: 'AF ON', path: p.customKey },
+          { label: c('focusArea.tipAssign'), value: 'AF On', path: p.customKey },
           { label: c('focusArea.tipHalfPress'), value: 'Off', path: p.afShutter },
         ],
       },

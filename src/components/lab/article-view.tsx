@@ -4,9 +4,11 @@ import { RelatedLinks, refsUnavailable } from '@/components/content/related-link
 import { SourceList, formatIsoDay } from '@/components/content/source-list'
 import { resolvePrerequisites, resolveRefs } from '@/lib/content/relations'
 import { loadUniverse } from '@/lib/content/universe'
+import { listNotes } from '@/lib/alphaskill/knowledge'
 import { buildOutline } from '@/lib/lab/outline'
 import { ARTICLE_LANG } from '@/lib/lab/articles'
 import { checklistOrdinals } from '@/lib/lab/storage'
+import { wikiHrefs } from '@/lib/lab/wiki'
 import type { Article, Block } from '@/lib/lab/types'
 import type { Locale } from '@/lib/recipes/source'
 import {
@@ -47,6 +49,7 @@ function renderBlock(
   articleId: string,
   labels: BlockLabels,
   checklistOrdinal: number,
+  hrefs?: Awaited<ReturnType<typeof wikiHrefs>>,
 ) {
   const menuLabels = labels.menu
   switch (block.t) {
@@ -55,13 +58,13 @@ function renderBlock(
     case 'h':
       return <Heading key={i} block={block} index={i} />
     case 'p':
-      return <Paragraph key={i} block={block} />
+      return <Paragraph key={i} block={block} hrefs={hrefs} />
     case 'menu':
       return <MenuPair key={i} block={block} labels={menuLabels} />
     case 'table':
       return <ComparisonTable key={i} block={block} />
     case 'callout':
-      return <Callout key={i} block={block} />
+      return <Callout key={i} block={block} hrefs={hrefs} />
     case 'compare':
       return <CompareSlider key={i} block={block} articleId={articleId} />
     case 'checklist':
@@ -84,18 +87,17 @@ function renderBlock(
     from lg up, the folded list under the dek below it. */
 function OutlineList({ outline }: { outline: ReturnType<typeof buildOutline> }) {
   return (
-    <ul lang={ARTICLE_LANG} className="mt-1">
+    <ul lang={ARTICLE_LANG} className="mt-2 space-y-0.5">
       {outline.map((entry) => (
         <li key={entry.id}>
-          <hr className="seam" />
           <a
             href={`#${entry.id}`}
-            className="flex min-h-[var(--layout-touch-target)] gap-2.5 rounded-sm px-2 py-3 transition-colors hover:bg-glass"
+            className="flex min-h-[var(--layout-touch-target)] gap-2.5 rounded-md px-3 py-2.5 transition-colors hover:bg-glass"
           >
-            <span className="text-label font-bold tabular-nums text-accent-400">{entry.n}</span>
+            <span className="text-label font-bold tabular-nums text-accent-400 shrink-0">{entry.n}</span>
             <span className="min-w-0">
               <span className="block text-body-sm font-semibold leading-[1.35] text-ink">{entry.text}</span>
-              {entry.precis ? <span className="meta mt-1 block leading-[1.45]">{entry.precis}</span> : null}
+              {entry.precis ? <span className="meta mt-0.5 block leading-[1.45] text-ink-muted">{entry.precis}</span> : null}
             </span>
           </a>
         </li>
@@ -113,6 +115,8 @@ export async function ArticleView({ article }: { article: Article }) {
   const labels = { menu: { old: t('menuOld'), new: t('menuNew') }, tldr: t('summary') }
   const outline = buildOutline(article.blocks)
   const ordinals = checklistOrdinals(article.blocks)
+  const notes = await listNotes().catch(() => [])
+  const hrefs = wikiHrefs(article.blocks, notes)
   const { universe, unavailable } = await loadUniverse(locale as Locale)
   const prerequisites = resolvePrerequisites(article.meta.prerequisites, universe)
   const related = resolveRefs(article.meta.related, universe)
@@ -211,7 +215,7 @@ export async function ArticleView({ article }: { article: Article }) {
               ) : null}
               {outline.length > 0 ? (
                 <details className="group">
-                  <summary className="label flex min-h-[var(--layout-touch-target)] cursor-pointer list-none items-center justify-between gap-2 [&::-webkit-details-marker]:hidden">
+                  <summary className="label flex min-h-[var(--layout-touch-target)] cursor-pointer list-none items-center justify-between gap-2 [&::-webkit-details-marker]:hidden text-ink">
                     {knowledge ? tl('inThisPage') : t('inThisArticle')}
                     <span aria-hidden className="text-ink-faint group-open:rotate-180">▾</span>
                   </summary>
@@ -222,24 +226,27 @@ export async function ArticleView({ article }: { article: Article }) {
           ) : null}
           <hr className="seam mt-8 mb-8" />
 
-          {article.blocks.map((block, i) => renderBlock(block, i, article.id, labels, ordinals[i]))}
+          {article.blocks.map((block, i) => renderBlock(block, i, article.id, labels, ordinals[i], hrefs))}
         </div>
 
-        <footer className="mt-3 flex flex-col gap-6 pt-5">
+        <footer className="mt-12 pt-8 flex flex-col gap-6">
           <hr className="seam" />
-          <SourceList sources={article.meta.sources} lang={ARTICLE_LANG} />
-          {article.meta.reviewedAt || article.meta.authorName ? (
-            <p className="meta">
-              {article.meta.authorName ? (
-                <span lang={ARTICLE_LANG}>{tl('byAuthor', { name: article.meta.authorName })}</span>
-              ) : null}
-              {article.meta.authorName && article.meta.reviewedAt ? ' · ' : null}
-              {article.meta.reviewedAt
-                ? tl('reviewedOn', { date: formatIsoDay(article.meta.reviewedAt, locale) })
-                : null}
-            </p>
-          ) : null}
-          <p className="meta">{t('firmwareDisclaimer')}</p>
+          <div>
+            <SourceList sources={article.meta.sources} lang={ARTICLE_LANG} />
+            {article.meta.reviewedAt || article.meta.authorName ? (
+              <p className="meta mt-4">
+                {article.meta.authorName ? (
+                  <span lang={ARTICLE_LANG}>{tl('byAuthor', { name: article.meta.authorName })}</span>
+                ) : null}
+                {article.meta.authorName && article.meta.reviewedAt ? ' · ' : null}
+                {article.meta.reviewedAt
+                  ? tl('reviewedOn', { date: formatIsoDay(article.meta.reviewedAt, locale) })
+                  : null}
+              </p>
+            ) : null}
+            <p className="meta mt-2">{t('firmwareDisclaimer')}</p>
+          </div>
+          <hr className="seam" />
           <RelatedLinks
             links={related}
             unavailable={refsUnavailable(article.meta.related, unavailable)}
@@ -254,7 +261,7 @@ export async function ArticleView({ article }: { article: Article }) {
           a gap below it. */}
       <nav
         aria-label={t('railLabel')}
-        className="hidden lg:flex lg:sticky lg:top-6 shrink-0 basis-[clamp(15rem,19vw,20rem)] flex-col gap-5"
+        className="hidden lg:flex lg:sticky lg:top-6 shrink-0 basis-[clamp(15rem,19vw,20rem)] flex-col gap-6"
       >
         {/* In the rail, above the contents: it is navigation, not part of
             what the author wrote. The rail is the lg+ home of "read first";
@@ -265,7 +272,7 @@ export async function ArticleView({ article }: { article: Article }) {
 
         {outline.length > 0 ? (
           <div>
-            <p className="label">{knowledge ? tl('inThisPage') : t('inThisArticle')}</p>
+            <p className="label text-ink">{knowledge ? tl('inThisPage') : t('inThisArticle')}</p>
             <OutlineList outline={outline} />
           </div>
         ) : null}

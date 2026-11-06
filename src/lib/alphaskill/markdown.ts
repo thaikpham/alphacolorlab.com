@@ -6,6 +6,8 @@
  * Nested bullets flatten to a single list (one level is enough).
  */
 
+export type WikiSegment = { t: 'text'; text: string } | { t: 'wiki'; title: string; display: string }
+
 export type Inline =
   | { t: 'text'; text: string }
   | { t: 'strong'; text: string }
@@ -135,4 +137,28 @@ export function parseMarkdown(body: string): MdBlock[] {
   }
 
   return blocks
+}
+
+const WIKI_RE = /\[\[([^\]|#]+)(?:\|([^\]]*)|#[^\]]*)*\]\]/g
+
+/** Chỉ tách `[[…]]`; mọi markdown khác giữ nguyên là chữ (bài blog không phải markdown). */
+export function splitWiki(text: string): WikiSegment[] {
+  const out: WikiSegment[] = []
+  let last = 0
+  for (const m of text.matchAll(WIKI_RE)) {
+    const at = m.index ?? 0
+    if (at > last) out.push({ t: 'text', text: text.slice(last, at) })
+    const title = m[1].trim()
+    out.push({ t: 'wiki', title, display: m[2]?.trim() || title })
+    last = at + m[0].length
+  }
+  if (last < text.length) out.push({ t: 'text', text: text.slice(last) })
+  return out
+}
+
+/** Chữ hiển thị thôi — cho précis, search, description. */
+export function stripWiki(text: string): string {
+  return splitWiki(text)
+    .map((s) => (s.t === 'wiki' ? s.display : s.text))
+    .join('')
 }
