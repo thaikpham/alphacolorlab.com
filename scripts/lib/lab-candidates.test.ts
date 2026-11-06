@@ -10,6 +10,11 @@ describe('labCandidates', () => {
     })
     expect(out.at(-1)).toMatchObject({ status: 'draft', images: [{ blockIndex: page.blocks.length - 1, path: expect.stringMatching(/probe\.images\/probe\/1\.jpg$/) }] })
   })
+  it('pack trùng id bài mẫu thì chỉ còn bản pack', () => {
+    const out = labCandidates({ withPilotDrafts: false, pack: 'probe' }, { probe: [ARTICLES[0]] }, { probe: {} })
+    expect(out.filter((c) => c.article.id === ARTICLES[0].id)).toHaveLength(1)
+    expect(out.find((c) => c.article.id === ARTICLES[0].id)?.status).toBe('draft')
+  })
 })
 describe('replaceable', () => {
   it('chỉ dòng chưa ai sửa', () => {

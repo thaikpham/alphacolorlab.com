@@ -71,3 +71,8 @@ npm run push:lab -- --target content --pack thay-bai-live-2026-11 --replace back
 Bài đến dưới "Bản nháp"; chủ xuất bản từng bài từ nút Sửa của nó. `--replace` chỉ ghi đè dòng chưa ai sửa trong admin; dòng đã sửa bị bỏ qua và in ra.
 
 Sau khi merge PR #31 (AIO): bản `.md` và JSON-LD phải đi qua `stripWiki` để `[[…]]` không lọt ra ngoài.
+
+## Đã đẩy 2026-11-06
+- `push:lab --pack nen-tang-2026-11`: 25 inserted (24 nháp + body-ev-vs-flash-ev-sony-flash-ttl published từ `articles.ts`, vì content plane chưa có dòng này).
+- `push:lab --pack thay-bai-live-2026-11 --replace …`: iso-auto-min-ss và body-ev thay bằng bản pack (có ảnh), giữ status published. back-button-af bị bỏ qua đúng quy tắc: chủ đã sửa tay trong admin 2026-09-29; bản mới nằm trong pack, cập nhật tay qua `/blog/back-button-af/edit`.
+- Hai lỗi script lộ ra ở lần chạy đầu, sửa trong PR #39: module `server-only` (image-process, asset-store) không nạp được dưới tsx; `--replace` ghi cả status nên sẽ gỡ bài live xuống nháp.

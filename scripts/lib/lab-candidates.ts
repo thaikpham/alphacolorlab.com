@@ -39,6 +39,10 @@ export function labCandidates(
       throw new Error(`Unknown pack "${opts.pack}". Packs: ${Object.keys(packs).join(', ') || '(none yet)'}`)
     }
     const byPage = manifests[opts.pack] ?? {}
+    /* Một id vừa là bài mẫu vừa có trong pack: pack là bản mới, bài mẫu bỏ —
+       nếu không, script ghi bài mẫu rồi ghi đè ngay bằng pack và in mỗi bài hai dòng. */
+    const packIds = new Set(pack.map((a) => a.id))
+    for (let i = out.length - 1; i >= 0; i -= 1) if (packIds.has(out[i]!.article.id)) out.splice(i, 1)
     out.push(...pack.map((article) => ({
       article, status: 'draft' as const,
       images: (byPage[article.id] ?? []).map((m) => ({ blockIndex: m.blockIndex, path: join(PACKS_DIR, `${opts.pack}.images`, article.id, m.file) })),
