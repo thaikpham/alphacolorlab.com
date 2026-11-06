@@ -92,9 +92,9 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000649067.html',
-        title: 'ILCE-7M4 Help Guide — File Format (still image)',
-        checkedAt: '2026-11-05',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000659396.html',
+        title: 'Image Quality Settings: File Format (still image)',
+        checkedAt: '2026-11-06',
       },
     ],
     authorName: null,

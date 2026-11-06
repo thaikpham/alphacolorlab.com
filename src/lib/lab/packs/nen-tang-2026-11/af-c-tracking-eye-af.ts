@@ -8,14 +8,14 @@ export const page: Article = {
   archetype: 'setup-guide',
   read: '6 phút đọc',
   title: 'Ba cài đặt để máy tự bám mắt người',
-  dek: 'AF-C, Focus Area Tracking và Face/Eye AF Set. — ba dòng trong menu là công thức để máy tự khóa vào mắt chủ thể khi bạn chỉ cần bấm chụp.',
+  dek: 'AF-C, Focus Area Tracking và Face/Eye Prior. in AF — ba dòng trong menu là công thức để máy tự khóa vào mắt chủ thể khi bạn chỉ cần bấm chụp.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
         'Focus Mode: AF-C (bám liên tục), Focus Area: Tracking (vùng nét bám theo chuyển động).',
-        'Face/Eye AF Set.: tích Eye AF để máy ưu tiên mắt người trong khung.',
+        'Face/Eye Prior. in AF: tích Eye AF để máy ưu tiên mắt người trong khung.',
         'Một buổi tập: đưa vùng nét lên mắt trái của chủ thể, giữ chứng được máy bắt, rồi tự do bố cục lại.',
       ],
     },
@@ -53,15 +53,20 @@ export const page: Article = {
         ['Zone', 'Một khu vực mà máy tự chọn', 'Thể thao nhanh, vật chuyển động ngoài dự kiến'],
       ],
     },
-    { t: 'h', text: 'Face/Eye AF Set.: bật Eye AF' },
+    { t: 'h', text: 'Face/Eye Prior. in AF: bật Eye AF' },
     {
       t: 'p',
-      text: 'Menu này có tên khác nhau tuỳ máy (Face/Eye AF Set. trên a6400, Subject Recognition trên a7 IV): MENU → Camera Settings2 → Face/Eye AF Set. → Eye AF (cũ) hoặc MENU → Focus → Subject Recognition → Eye AF (mới). Khi bật Eye AF, máy tự phát hiện mắt người và ưu tiên [[lấy nét]] vào đó. Nếu có hai người, bạn có thể chỉ định mắt nào qua phím điều hướng khi chụp.',
+      text: 'Bật Face/Eye Prior. in AF là máy tự tìm mặt và mắt bên trong hoặc quanh vùng nét bạn đã đặt, rồi ưu tiên [[lấy nét]] vào mắt; không thấy mắt thì nó nét vào chủ thể khác trong vùng. Sony ghi rõ: kết hợp mục này với Focus Area Tracking để giữ nét trên một đôi mắt đang di chuyển.',
+    },
+    {
+      t: 'menu',
+      old: 'MENU → Focus → Face/Eye AF → Face/Eye Prior. in AF → On',
+      new: 'MENU → Focus → Face/Eye AF → Face/Eye Prior. in AF → On',
     },
     {
       t: 'callout',
-      label: 'Eye AF tìm mắt, còn bạn chỉ định người',
-      text: 'Eye AF tự động phát hiện mắt nhưng nếu có cặp đôi, máy có thể lúng túng. Nhấn phím ← → ↑ ↓ khi chụp để máy biết [[lấy nét]] vào mắt ai.',
+      label: 'Tắt nhanh khi cần',
+      text: 'Gán Face/Eye Priority Select vào một nút trong Custom Key/Dial Set.: bấm một lần là bật hoặc tắt ưu tiên mắt, không phải vào menu.',
     },
     {
       t: 'p',
@@ -72,7 +77,7 @@ export const page: Article = {
       label: 'Ba dòng phải đúng',
       items: [
         'Focus Mode: AF-C, Focus Area: Tracking: Zone',
-        'Eye AF hoặc Face/Eye AF Set.: On',
+        'Eye AF hoặc Face/Eye Prior. in AF: On',
         'Ánh sáng từ trước để máy dễ phát hiện khuôn mặt',
       ],
     },
@@ -87,22 +92,28 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
-        title: 'a7 IV Focus Mode',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000649113.html',
+        title: 'Selecting the focus method (Focus Mode)',
         publisher: 'Sony',
-        checkedAt: '2026-11-05',
+        checkedAt: '2026-11-06',
       },
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640841_01_01.html',
-        title: 'a7 IV Focus Area',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640179.html',
+        title: 'Selecting the focus area (Focus Area)',
         publisher: 'Sony',
-        checkedAt: '2026-11-05',
+        checkedAt: '2026-11-06',
       },
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000641011_01_01.html',
-        title: 'a7 IV Eye AF',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000657951.html',
+        title: 'Face/Eye Prior. in AF (still image/movie)',
         publisher: 'Sony',
-        checkedAt: '2026-11-05',
+        checkedAt: '2026-11-06',
+      },
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000657934.html',
+        title: 'Face/Eye Subject (still image/movie)',
+        publisher: 'Sony',
+        checkedAt: '2026-11-06',
       },
     ],
     authorName: null,

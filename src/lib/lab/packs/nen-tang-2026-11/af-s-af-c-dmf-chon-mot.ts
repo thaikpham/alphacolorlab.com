@@ -86,10 +86,10 @@ export const page: Article = {
     concepts: [],
     sources: [
       {
-        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840_01_01.html',
-        title: 'a7 IV Focus Mode',
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000649113.html',
+        title: 'Selecting the focus method (Focus Mode)',
         publisher: 'Sony',
-        checkedAt: '2026-11-05',
+        checkedAt: '2026-11-06',
       },
     ],
     authorName: null,
