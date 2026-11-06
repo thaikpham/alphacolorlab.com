@@ -718,7 +718,6 @@
     "articleInVietnamese": "This article is written in Vietnamese.",
     "setupPaths": {
       "modeDial": "MODE dial",
-      "modeButton": "MODE button",
       "aelButton": "AEL button (or C1)"
     },
     "setupSteps": {
@@ -732,12 +731,12 @@
       "isoAutoRange": {
         "kicker": "Exposure · ISO",
         "title": "Cap ISO Auto to the 100 – {isoMax} range",
-        "why": "ISO is the third side of the exposure triangle — how sensitive the sensor is to light. Leave ISO on Auto, but give it a ceiling: the camera raises ISO as the light drops so the shutter stays fast enough, but never past {isoMax}, the point where the file is still clean and keeps its detail. Set the ceiling too low and indoors the camera is forced to slow the shutter and the shot blurs; set it too high and the image goes mushy, skin loses detail and colour noise creeps in."
+        "why": "ISO is the third side of the exposure triangle — how sensitive the sensor is to light. Leave ISO on Auto, but give it a ceiling: the camera raises ISO as the light drops so the shutter stays fast enough, but never past {isoMax}, the point where the file is still clean and keeps its detail. Set the ceiling too low and indoors the camera is forced to slow the shutter and the shot blurs; set it too high and the image goes mushy, skin loses detail and colour noise creeps in. The ZV-E10 has no ISO Setting level: go straight to Camera Settings1 → ISO."
       },
       "minShutter": {
         "kicker": "Exposure · shutter floor",
         "title": "Set ISO AUTO Min. SS to {minSs}",
-        "why": "It sits directly beside ISO in the menu, and it is the single item beginners most often skip. It sets the shutter floor: as the light drops the camera raises ISO rather than letting the shutter fall below {minSs}. Left unset, the camera tends to protect low ISO and drags the shutter down to 1/30 or 1/15 — clean of noise, but blurred by your own hands and by people moving in the frame. A noisy photo can be rescued; a blurred one cannot."
+        "why": "It sits directly beside ISO in the menu, and it is the single item beginners most often skip. It sets the shutter floor: as the light drops the camera raises ISO rather than letting the shutter fall below {minSs}. Left unset, the camera tends to protect low ISO and drags the shutter down to 1/30 or 1/15 — clean of noise, but blurred by your own hands and by people moving in the frame. A noisy photo can be rescued; a blurred one cannot. The ZV-E10 has no ISO AUTO Min. SS item; on that body, watch the shutter speed on screen and raise ISO by hand when it drops below {minSs}."
       },
       "focusMode": {
         "kicker": "Focus · mode",
@@ -749,8 +748,8 @@
         "title": "Set Focus Area to Tracking: Zone",
         "why": "Zone is a middling area — not the whole frame, where the camera chooses for itself and often focuses on the background, and not a tiny point, which is hard to hold on target handheld. Add Tracking and you only have to put that area on the subject and focus once: the camera locks onto them and follows as they move through the frame. That leaves you free to recompose while focus stays where it belongs.",
         "tipTitle": "Focusing with your thumb (AF-ON)",
-        "tipBody": "Assign AF ON to the AEL button (or C1), then turn off focusing on the half-press. From then on, holding AF-ON with your thumb tracks focus and releasing it locks focus right there, while your index finger has one job left: taking the picture. No more wanting to hold focus and fearing an early shot — this is how working photographers shoot, and after about one practice session it is easier than the half-press.",
-        "tipAssign": "Assign AF ON",
+        "tipBody": "Assign AF On to the AEL button (or C1), then turn off focusing on the half-press. From then on, holding AF-ON with your thumb tracks focus and releasing it locks focus right there, while your index finger has one job left: taking the picture. No more wanting to hold focus and fearing an early shot — this is how working photographers shoot, and after about one practice session it is easier than the half-press.",
+        "tipAssign": "Assign AF On",
         "tipHalfPress": "Turn off half-press focus"
       },
       "metering": {

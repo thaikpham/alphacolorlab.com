@@ -17,7 +17,7 @@ describe('recapRows', () => {
     const rows = recapRows(setupSteps(version, copy));
     const assign = rows.find((r) => r.label === 'setupSteps.focusArea.tipAssign');
     const halfPress = rows.find((r) => r.label === 'setupSteps.focusArea.tipHalfPress');
-    expect(assign?.value).toBe('AF ON');
+    expect(assign?.value).toBe('AF On');
     expect(halfPress?.value).toBe('Off');
     for (const row of [assign, halfPress]) expect(row?.path.endsWith(`→ ${row?.value}`)).toBe(true);
   });
