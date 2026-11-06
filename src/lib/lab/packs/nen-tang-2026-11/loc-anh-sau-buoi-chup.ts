@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Máy Sony Alpha sau buổi chụp: trước tiên đánh Rating trên máy để lọc, rồi chép thẻ nhớ sang máy tính. Ảnh: Unknown Artist · CC0 1.0 · Wikimedia Commons',
+      caption: 'Máy Sony Alpha sau buổi chụp: trước tiên đánh Rating trên máy để lọc, rồi chép thẻ nhớ sang máy tính. Ảnh: Tech. Sgt. Kevin Coulter · Public domain · Wikimedia Commons',
     },
     {
       t: 'h',

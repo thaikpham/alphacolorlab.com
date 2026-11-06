@@ -8,14 +8,14 @@ export const page: Article = {
   archetype: 'explainer',
   read: '5 phút',
   title: 'Creative Look cho ngày đầu: chọn cái nào, chỉnh gì',
-  dek: 'Look giúp máy Sony tô màu ảnh ngay lúc chụp: chọn Look, chỉnh năm thông số chính, bắt đầu chụp.',
+  dek: 'Look giúp máy Sony tô màu ảnh ngay lúc chụp: chọn Look, chỉnh tám thông số, bắt đầu chụp.',
   updatedAt: '2026-11-06',
   blocks: [
     {
       t: 'tldr',
       items: [
         'Creative Look là bộ cài sẵn máy để tô màu JPEG trực tiếp khi chụp.',
-        'Chọn Look (Standard hoặc Portrait), rồi chỉnh năm thông số chính: Contrast, Highlights, Shadows, Saturation, Clarity.',
+        'Chọn Look (Standard hoặc Portrait), rồi chỉnh tám thông số: Contrast, Highlights, Shadows, Fade, Saturation, Sharpness, Sharpness Range, Clarity.',
         'Cấu hình cơ bản: Contrast +1, Highlights −6, Shadows +3, Saturation 0, Clarity 0.',
       ],
     },
@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Bộ cấu hình Creative Look cơ bản trên máy Sony. Ảnh: Unknown Artist · CC0 1.0 · Wikimedia Commons',
+      caption: 'Bộ cấu hình Creative Look cơ bản trên máy Sony. Ảnh: Giuseppe Milo · CC BY 3.0 · Wikimedia Commons',
     },
     {
       t: 'h',
@@ -42,11 +42,11 @@ export const page: Article = {
     },
     {
       t: 'h',
-      text: 'Năm thông số chính để chỉnh',
+      text: 'Tám thông số để chỉnh',
     },
     {
       t: 'p',
-      text: 'Sau khi chọn một Look, bạn chỉnh từng thông số bằng nút mũi tên. Năm thông số chính là:',
+      text: 'Sau khi chọn một Look, bạn chỉnh từng thông số bằng nút mũi tên. Tám thông số: Contrast, Highlights, Shadows, Fade, Saturation, Sharpness, Sharpness Range, Clarity. Sáu thông số chính dưới đây; Fade và Sharpness Range ít thay đổi.',
     },
     {
       t: 'table',
@@ -57,6 +57,7 @@ export const page: Article = {
         ['Highlights', '−9 đến +9', 'Chi tiết vùng sáng'],
         ['Shadows', '−9 đến +9', 'Chi tiết vùng tối'],
         ['Saturation', '−9 đến +9', 'Đậm nhạt màu sắc'],
+        ['Sharpness', '0 đến 9', 'Độ sắc nét cạnh'],
         ['Clarity', '0 đến 9', 'Sáng chi tiết trung bình'],
       ],
     },
@@ -100,7 +101,7 @@ export const page: Article = {
     sources: [
       {
         url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640837.html',
-        title: 'ILCE-7M4 Help Guide — Creative Look',
+        title: 'a7 IV Help Guide — Creative Look',
         checkedAt: '2026-11-05',
       },
     ],

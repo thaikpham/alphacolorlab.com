@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Người trong cửa sổ hình chữ nhật, cửa nét vừa đủ để nhìn thấy khung, ánh sáng dồn vào mặt người. Ảnh: example Wikimedia Commons',
+      caption: 'Người trong cửa sổ hình chữ nhật, cửa nét vừa đủ để nhìn thấy khung, ánh sáng dồn vào mặt người. Ảnh: Wikimedia · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',

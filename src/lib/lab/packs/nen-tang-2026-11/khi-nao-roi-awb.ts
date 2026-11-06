@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Chụp dưới ánh sáng hỗn hợp: AWB chọn trung bình dẫn đến màu sắc bị lệch. Ảnh: Unknown Artist · CC0 1.0 · Wikimedia Commons',
+      caption: 'Chụp dưới ánh sáng hỗn hợp: AWB chọn trung bình dẫn đến màu sắc bị lệch. Ảnh: CoolKoon · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',

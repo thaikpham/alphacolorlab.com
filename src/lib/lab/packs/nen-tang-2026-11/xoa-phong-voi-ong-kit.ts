@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Hai ảnh chân dung cùng máy, ống kit 18–55mm: ảnh trái zoom 18mm khẩu f/3.5, nền như bức vẽ; ảnh phải zoom 55mm khẩu f/5.6, nền hoàn toàn mờ. Ảnh: example Wikimedia Commons',
+      caption: 'Hai ảnh chân dung cùng máy, ống kit 18–55mm: ảnh trái zoom 18mm khẩu f/3.5, nền như bức vẽ; ảnh phải zoom 55mm khẩu f/5.6, nền hoàn toàn mờ. Ảnh: Rezasaad.art · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',

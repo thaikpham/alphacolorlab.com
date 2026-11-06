@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Comparison of three focus modes',
+      caption: 'Ba chế độ lấy nét: AF-S khóa nét tại thời điểm bấm, AF-C bám liên tục, DMF cho phép sửa nét thủ công. Ảnh: Wikimedia · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'h',

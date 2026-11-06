@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Bộ nhớ SD có đủ chỗ cho cả RAW và JPEG: máy Sony hỗ trợ chế độ RAW+JPEG để lưu cả hai cùng lúc. Ảnh: Unknown Artist · CC0 1.0 · Wikimedia Commons',
+      caption: 'Bộ nhớ SD có đủ chỗ cho cả RAW và JPEG: máy Sony hỗ trợ chế độ RAW+JPEG để lưu cả hai cùng lúc. Ảnh: User:kskhh · Public domain · Wikimedia Commons',
     },
     {
       t: 'h',
@@ -33,7 +33,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'RAW là dữ liệu gốc từ cảm biến mà máy chưa xử lý. Bạn chỉnh trong Lightroom, Capture One, hoặc Imaging Edge (miễn phí). Điểm tốt: toàn bộ tự do chỉnh White Balance, Exposure, Shadows–Highlights mà không mất chi tiết. Điểm xấu: mỗi tấm khoảng 50 MB, cần phần mềm chuyên dụng, và bạn phải chỉnh từng ảnh.',
+      text: 'RAW là dữ liệu gốc từ cảm biến mà máy chưa xử lý. Bạn chỉnh trong Lightroom, Capture One, hoặc Imaging Edge (miễn phí). Điểm tốt: toàn bộ tự do chỉnh White Balance, Exposure, Shadows–Highlights mà không mất chi tiết. Điểm xấu: dung lượng lớn, cần phần mềm chuyên dụng, và bạn phải chỉnh từng ảnh.',
     },
     {
       t: 'h',
@@ -41,14 +41,14 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'JPEG là ảnh đã được máy xử lý theo Creative Look hoặc Picture Profile. Tệp nhỏ (8–12 MB), dùng được ngay trên điện thoại, máy tính hay in ra. Điểm tốt: nhỏ gọn, hoàn thành. Điểm xấu: nếu chụp sai màu hoặc sáng, khó sửa lại vì máy đã nén và xóa dữ liệu.',
+      text: 'JPEG là ảnh đã được máy xử lý theo Creative Look hoặc Picture Profile. Tệp nhỏ hơn RAW nhiều lần, dùng được ngay trên điện thoại, máy tính hay in ra. Điểm tốt: nhỏ gọn, hoàn thành. Điểm xấu: nếu chụp sai màu hoặc sáng, khó sửa lại vì máy đã nén và xóa dữ liệu.',
     },
     {
       t: 'table',
       caption: 'So sánh RAW và JPEG',
       head: ['Tiêu chí', 'RAW', 'JPEG'],
       rows: [
-        ['Dung lượng', '40–60 MB/tấm', '8–12 MB/tấm'],
+        ['Dung lượng', 'Lớn hơn', 'Nhỏ gọn'],
         ['Chỉnh được', 'Tất cả: sáng, màu, gamma', 'Giới hạn; không lấy lại dữ liệu'],
         ['Thời gian', '5–15 phút/tấm', 'Dùng ngay'],
         ['Hỗ trợ phần mềm', 'Lightroom, Capture One, Imaging Edge', 'Mọi phần mềm, mọi thiết bị'],
