@@ -1,4 +1,5 @@
 import type { Article } from '../types'
+import { pages as NEN_TANG_2026_11 } from './nen-tang-2026-11'
 
 /**
  * Content packs: pages the blog-content skill (`.claude/skills/colorlab-blog-content`)
@@ -8,4 +9,5 @@ import type { Article } from '../types'
  * gate every pack passes before it can be merged.
  */
 export const PACKS: Readonly<Record<string, readonly Article[]>> = {
+  'nen-tang-2026-11': NEN_TANG_2026_11,
 }
