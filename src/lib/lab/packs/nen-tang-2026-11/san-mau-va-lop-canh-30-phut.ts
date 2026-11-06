@@ -97,6 +97,13 @@ export const page: Article = {
         checkedAt: '2026-11-05',
         scope: 'ILCE-7M4',
       },
+      {
+        url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640137.html',
+        title: 'Aperture Priority',
+        publisher: 'Sony Help Guide',
+        checkedAt: '2026-11-06',
+        scope: 'ILCE-7M4',
+      },
     ],
     authorName: null,
     reviewedAt: null,

@@ -56,7 +56,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Bước 1: Đặt chủ thể giữa mình và nguồn sáng — mặt trời, cửa sổ sáng, hay đèn sân khấu. Hạ máy xuống thấp, hướng lên để chủ thể nằm trọn trên nền trời, không có cây cối hay nhà cửa phía sau. Bước 2: Hướng khẩu kính lên vùng trời sáng nhất gần đầu chủ thể (không chấm vào mặt trời trực tiếp). Bấm nửa cò để đo sáng. Bước 3: Chọn dáng có đường viền rõ ràng: tay người mẫu giơ, chân bước, mặt nhìn sang hông (profile). Tránh ép tay sát thân vì sẽ biến thành một khối đen khó đọc.',
+      text: 'Bước 1: Đặt chủ thể giữa mình và nguồn sáng — mặt trời, cửa sổ sáng, hay đèn sân khấu. Hạ máy xuống thấp, hướng lên để chủ thể nằm trọn trên nền trời, không có cây cối hay nhà cửa phía sau. Bước 2: Hướng khẩu kính lên vùng trời sáng nhất gần đầu chủ thể (không chấm vào mặt trời trực tiếp). Bấm nửa cò để đo sáng. Trên a7 IV, cài Spot: Standard; máy thế hệ menu cũ chỉ có Spot. Bước 3: Chọn dáng có đường viền rõ ràng: tay người mẫu giơ, chân bước, mặt nhìn sang hông (profile). Tránh ép tay sát thân vì sẽ biến thành một khối đen khó đọc.',
     },
     {
       t: 'table',
