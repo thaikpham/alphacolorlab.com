@@ -194,7 +194,7 @@ describe('image-process packaging', () => {
     const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as {
       dependencies: Record<string, string>;
     };
-    const source = readFileSync(join(__dirname, 'image-process.ts'), 'utf8');
+    const source = readFileSync(join(__dirname, 'image-process.core.ts'), 'utf8');
     const packages = [...source.matchAll(/^import\s[^'"]*?['"]([^'"./][^'"]*)['"]/gm)]
       .map(([, spec]) => spec)
       .filter((spec) => !spec.startsWith('@/') && !spec.startsWith('node:'));

@@ -19,8 +19,8 @@
 
 import { readFileSync } from 'node:fs'
 import { adminClient } from './lib/db'
-import { processLabImage } from '../src/lib/lab/image-process'
-import { uploadDraftAsset } from '../src/lib/lab/asset-store'
+import { processLabImage } from '../src/lib/lab/image-process.core'
+import { uploadDraftAssetWith } from './lib/lab-assets'
 import { requireTarget } from './supabase/args'
 import { labCandidates, replaceable, withAssetIds } from './lib/lab-candidates'
 
@@ -75,19 +75,21 @@ async function main() {
     if (error) throw new Error(`insert lab_articles: ${error.message}`)
   }
   for (const c of replacing) {
-    const { error } = await db.from('lab_articles').update(rowOf(c)).eq('id', c.article.id).is('updated_by', null)
+    /* Giữ nguyên status: thay nội dung một bài đang live không được gỡ nó xuống nháp. */
+    const { status: _status, ...body } = rowOf(c)
+    const { error } = await db.from('lab_articles').update(body).eq('id', c.article.id).is('updated_by', null)
     if (error) throw new Error(`replace ${c.article.id}: ${error.message}`)
   }
-  /* Ảnh sau khi dòng đã có: uploadDraftAsset đòi articleExists. */
+  /* Ảnh sau khi dòng đã có: lab_assets.article_id trỏ vào dòng vừa ghi. */
   for (const c of [...toInsert, ...replacing]) {
     if (c.images.length === 0) continue
     const ids = new Map<number, string>()
     for (const img of c.images) {
       const processed = await processLabImage(new Uint8Array(readFileSync(img.path)))
       if (!processed.ok) throw new Error(`${c.article.id} ảnh ${img.path}: ${processed.error}`)
-      const up = await uploadDraftAsset(c.article.id, processed.image, 'push:lab')
+      const up = await uploadDraftAssetWith(db, c.article.id, processed.image, 'push:lab')
       if (!up.ok) throw new Error(`${c.article.id} ảnh ${img.path}: ${up.error}`)
-      ids.set(img.blockIndex, up.asset.assetId)
+      ids.set(img.blockIndex, up.assetId)
     }
     const { error } = await db.from('lab_articles').update({ blocks: withAssetIds(c.article, ids).blocks }).eq('id', c.article.id)
     if (error) throw new Error(`assets ${c.article.id}: ${error.message}`)
