@@ -19,7 +19,7 @@
 
 import { readFileSync } from 'node:fs'
 import { adminClient } from './lib/db'
-import { processLabImage } from '../src/lib/lab/image-process'
+import { processLabImage } from '../src/lib/lab/image-process.core'
 import { uploadDraftAsset } from '../src/lib/lab/asset-store'
 import { requireTarget } from './supabase/args'
 import { labCandidates, replaceable, withAssetIds } from './lib/lab-candidates'
