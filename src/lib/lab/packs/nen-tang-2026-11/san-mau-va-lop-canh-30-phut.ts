@@ -21,7 +21,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Săn màu và lớp cảnh là hai bài tập rèn mắt cơ bản. Một tông màu chủ đạo khiến ảnh có nhân cách, và ba lớp cảnh (tiền, trung, hậu) tạo chiều sâu 3D trên một bề mặt 2D. Bài tập này gộp cả hai: đi bộ 30 phút để tìm một màu trong ba lớp.',
+      text: '[[Bố cục]] là hai bài tập rèn mắt cơ bản. Một tông màu chủ đạo khiến ảnh có nhân cách, và ba lớp cảnh (tiền, trung, hậu) tạo chiều sâu 3D trên một bề mặt 2D. Bài tập này gộp cả hai: đi bộ 30 phút để tìm một màu trong ba lớp.',
     },
     {
       t: 'figure',
@@ -67,20 +67,8 @@ export const page: Article = {
       caption: 'Ba lớp cảnh và vai trò trong khung hình.',
     },
     {
-      t: 'h',
-      text: 'Bước 4: xem lại và nhận xét',
-    },
-    {
       t: 'p',
-      text: 'Sau 30 phút, xem lại ba ảnh bạn chụp. Cái nào có ba lớp cảnh rõ ràng nhất? Tông màu đó có thuyết phục bạn không? Màu có bị che khuất bởi các yếu tố khác hay nổi lên? Bài tập này giúp bạn phát triển "mắt thấy" sâu hơn.',
-    },
-    {
-      t: 'h',
-      text: 'Tại sao bài tập này quan trọng',
-    },
-    {
-      t: 'p',
-      text: 'Khi bạn tập "săn" một màu, bạn học cách thấy. Khi bạn xếp ba lớp cảnh, bạn học cách tạo chiều sâu. Gộp cả hai, bạn không chỉ chụp cảnh mà kể một câu chuyện: đây là ảnh về màu xanh, được đặt thành ba bước để mắt người xem lần lượt thấy tiền, trung, hậu.',
+      text: 'Sau 30 phút, xem lại ba ảnh bạn chụp. Cái nào có ba lớp cảnh rõ ràng nhất? Tông màu đó có thuyết phục bạn không? Màu có bị che khuất bởi các yếu tố khác hay nổi lên? Bài tập này giúp bạn phát triển "mắt thấy" sâu hơn. Khi bạn tập "[[Săn màu, phối màu và lớp cảnh]]" một màu, bạn học cách thấy. Khi bạn xếp ba lớp cảnh, bạn học cách tạo chiều sâu. Gộp cả hai, bạn không chỉ chụp cảnh mà kể một câu chuyện theo [[Bố cục]].',
     },
     {
       t: 'checklist',
@@ -96,8 +84,8 @@ export const page: Article = {
   meta: {
     related: [
       { kind: 'knowledge', id: 'bo-cuc' },
+      { kind: 'knowledge', id: 'san-mau-phoi-mau-va-lop-canh' },
       { kind: 'knowledge', id: 'creative-look' },
-      { kind: 'knowledge', id: '8-bai-thuc-hanh' },
     ],
     prerequisites: ['san-mau-phoi-mau-va-lop-canh'],
     concepts: [],

@@ -57,20 +57,8 @@ export const page: Article = {
       text: 'Để tập ba góc mà vẫn giữ nét vào chủ thể, dùng AF-C (Continuous AF), đặt Focus Area thành Tracking: Zone. Khi bạn di chuyển máy lên cao hoặc xuống thấp, máy vẫn bám nét vào chủ thể.',
     },
     {
-      t: 'h',
-      text: 'Bài tập 10 phút: chụp ba lần cùng một chủ thể',
-    },
-    {
       t: 'p',
-      text: 'Chọn một chủ thể (người, vật, tòa nhà). Chụp ba lần: một lần góc ngang mắt, một lần góc cao, một lần góc thấp. Mỗi lần, cảm nhận cảm xúc khác — chủ thể thay đổi theo góc, dù settings máy giống nhau.',
-    },
-    {
-      t: 'h',
-      text: 'Xem lại và so sánh',
-    },
-    {
-      t: 'p',
-      text: 'Xem ba ảnh cạnh nhau. Ảnh nào khiến bạn cảm thấy gần gũi? Ảnh nào khiến bạn cảm thấy sợ hay kinh ngạc? Ba góc kể ba câu chuyện khác nhau của cùng một khoảnh khắc. Kỹ năng chọn góc đúng là kỹ năng chụp ảnh lõi.',
+      text: 'Chọn một [[Chủ thể chính]] (người, vật, tòa nhà). Chụp ba lần: một lần góc ngang mắt, một lần góc cao, một lần góc thấp. Mỗi lần, cảm nhận cảm xúc khác — chủ thể thay đổi theo góc, dù settings máy giống nhau. Xem ba ảnh cạnh nhau. Ảnh nào khiến bạn cảm thấy gần gũi? Ảnh nào khiến bạn cảm thấy sợ hay kinh ngạc? Ba góc kể ba câu chuyện khác nhau của cùng một khoảnh khắc. [[Bố cục]] đúng là kỹ năng chụp ảnh lõi.',
     },
     {
       t: 'checklist',
@@ -87,8 +75,8 @@ export const page: Article = {
   meta: {
     related: [
       { kind: 'knowledge', id: 'goc-may-va-khung-hinh' },
+      { kind: 'knowledge', id: 'chu-the-chinh' },
       { kind: 'knowledge', id: 'bo-cuc' },
-      { kind: 'knowledge', id: '8-bai-thuc-hanh' },
     ],
     prerequisites: ['chu-the-chinh'],
     concepts: [],

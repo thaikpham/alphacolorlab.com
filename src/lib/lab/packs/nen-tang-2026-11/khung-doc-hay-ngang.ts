@@ -21,27 +21,15 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Góc máy và khung hình bao gồm cả chiều của khung. Khung dọc hoặc ngang không chỉ là sở thích — nó quyết định mắt người xem nhìn ảnh theo chiều nào, và đó là một phần của câu chuyện.',
+      text: '[[Bố cục]] được tạo thành từ [[Góc máy và khung hình]] — chiều của khung không chỉ là sở thích — nó quyết định mắt người xem nhìn ảnh theo chiều nào, và đó là một phần của câu chuyện.',
     },
     {
       t: 'figure',
       caption: 'Khung dọc buộc phải cắt bối cảnh bên cạnh, để chủ thể nổi bật. Ảnh: Lenny K Photography · CC BY 2.0 · Wikimedia Commons',
     },
     {
-      t: 'h',
-      text: 'Khung ngang (Landscape): bối cảnh rộng',
-    },
-    {
       t: 'p',
-      text: 'Khung ngang — chiều rộng lớn hơn chiều cao — là chế độ mặc định của máy ảnh. Nó tốt cho cảnh rộng, bầu trời, đường chân trời, nhóm người, hay bất cứ thứ gì yêu cầu không gian ngang. Mắt người xem quét từ trái sang phải, kéo dàn thời gian.',
-    },
-    {
-      t: 'h',
-      text: 'Khung dọc (Portrait): chủ thể nổi bật',
-    },
-    {
-      t: 'p',
-      text: 'Khung dọc — chiều cao lớn hơn chiều rộng — buộc phải cắt bối cảnh bên cạnh. Nó tốt cho chân dung, tòa nhà cao, bất cứ chủ thể dọc nào, hoặc khi bạn muốn bối cảnh không chiếm chỗ. Mắt người xem cô đặc và tập trung hơn.',
+      text: '**Khung ngang** (Landscape): chiều rộng lớn hơn chiều cao — là chế độ mặc định của máy ảnh. Nó tốt cho cảnh rộng, bầu trời, đường chân trời, nhóm người, hay bất cứ thứ gì yêu cầu không gian ngang. Mắt người xem quét từ trái sang phải, kéo dàn thời gian. **Khung dọc** (Portrait): chiều cao lớn hơn chiều rộng — buộc phải cắt bối cảnh bên cạnh. Nó tốt cho [[Chủ thể chính]] như chân dung, tòa nhà cao, bất cứ chủ thể dọc nào, hoặc khi bạn muốn bối cảnh không chiếm chỗ. Mắt người xem cô đặc và tập trung hơn.',
     },
     {
       t: 'h',
@@ -93,8 +81,8 @@ export const page: Article = {
   meta: {
     related: [
       { kind: 'knowledge', id: 'bo-cuc' },
+      { kind: 'knowledge', id: 'goc-may-va-khung-hinh' },
       { kind: 'knowledge', id: 'chu-the-chinh' },
-      { kind: 'knowledge', id: 'cai-dat-nhanh-truoc-buoi-chup' },
     ],
     prerequisites: ['goc-may-va-khung-hinh'],
     concepts: [],

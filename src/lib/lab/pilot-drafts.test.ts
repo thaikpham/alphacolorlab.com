@@ -63,7 +63,7 @@ describe('the pilot pages', () => {
       /PILOT_DRAFTS\.map\(\(a\) => \(\{ \.\.\.a, status: 'draft' as const/,
     )
     expect(readFileSync('scripts/lib/lab-candidates.ts', 'utf8')).toMatch(
-      /PILOT_DRAFTS\.map\(\(article\) => \(\{ article, status: 'draft' as const \}\)\)/,
+      /PILOT_DRAFTS\.map\(\(article\) => \(\{ article, status: 'draft' as const, images: \[\] \}\)\)/,
     )
     expect(readFileSync('scripts/push-lab-articles.ts', 'utf8')).toContain('labCandidates(')
   })
