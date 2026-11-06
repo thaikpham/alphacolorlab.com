@@ -46,7 +46,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tạo cấu trúc thư mục rõ ràng: Pictures → Năm (2026) → Tháng (2026-11) → Ngày-tên (20261110-lang-thang). Trong mỗi thư mục ngày-tên: subfolder RAW (chứa file ARW gốc), edited (ảnh đã chỉnh), export-1024 (ảnh xuất cho web). Cấu trúc này giúp bạn tìm nhanh theo năm, tháng, ngày, và tên buổi chụp.',
+      text: 'Tạo cấu trúc thư mục rõ ràng: Pictures → Năm (2026) → Tháng (2026-11) → Ngày-tên (20261110-lang-thang). Trong mỗi thư mục ngày-tên: subfolder [[RAW, JPEG và HEIF]] (chứa file ARW gốc), edited (ảnh đã chỉnh), export-1024 (ảnh xuất cho web). Cấu trúc này giúp bạn tìm nhanh theo năm, tháng, ngày, và tên buổi chụp.',
     },
     {
       t: 'h',
@@ -54,7 +54,7 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Mở Lightroom → File → Import Photos → chọn thư mục ngày-tên. Lightroom scan hết ảnh, ở cột trái bật Filter → Flag để hiện chỉ ảnh 5 sao từ máy. Lọc tiếp nếu muốn, chọn những ảnh 5 sao để bắt đầu chỉnh (save vào thư mục edited).',
+      text: 'Mở Lightroom → File → Import Photos → chọn thư mục ngày-tên. Lightroom scan hết ảnh, ở cột trái bật Filter → Flag để hiện chỉ ảnh 5 sao từ máy. Lọc tiếp nếu muốn, chọn những ảnh 5 sao để bắt đầu chỉnh và điều chỉnh [[cân bằng trắng và nhiệt độ màu]] nếu cần (save vào thư mục edited).',
     },
     {
       t: 'h',
@@ -63,14 +63,6 @@ export const page: Article = {
     {
       t: 'p',
       text: 'Trước khi chỉnh hay xóa gì, sao lưu thư mục RAW sang ổ cứng ngoài riêng biệt (hoặc Cloud). Quy tắc 3-2-1: 3 bản (máy + ổ ngoài + Cloud), 2 loại thiết bị (máy + ổ ngoài), 1 bản ở nơi khác (Cloud). Dùng rsync, Robocopy, hoặc phần mềm như ChronoSync; sao lưu hàng tuần hoặc sau mỗi buổi chụp lớn.',
-    },
-    {
-      t: 'h',
-      text: 'Lightroom hay Capture One?',
-    },
-    {
-      t: 'p',
-      text: 'Cả hai đều được. Lightroom dễ dùng, rẻ (subscription), đủ cho lọc ảnh. Capture One mạnh hơn, xử lý nhanh khi có hàng ngàn ảnh, nhưng đắt. Nếu mới bắt đầu, Lightroom là đủ.',
     },
     {
       t: 'checklist',
