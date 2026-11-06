@@ -20,7 +20,11 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Ở cách bấm mặc định, nửa cò làm hai việc cùng lúc: lấy nét và chờ chụp. Hệ quả là bạn luôn phải chọn giữa giữ nét và bấm chụp — và trong lúc do dự thì khoảnh khắc đã qua. Chuyển nét sang một nút riêng cho ngón tay cái là cách gỡ đúng cái xung đột đó.',
+      text: 'Ở cách bấm mặc định, nửa cò làm hai việc cùng lúc: lấy nét và chờ chụp. Hệ quả là bạn luôn phải chọn giữa giữ nét và bấm chụp — và trong lúc do dự thì khoảnh khắc đã qua. Chuyển [[Lấy nét|lấy nét]] sang một nút riêng cho ngón tay cái là cách gỡ đúng cái xung đột đó.',
+    },
+    {
+      t: 'figure',
+      caption: 'Mặt sau a7R IV: nút AF-ON nằm ngay dưới ngón cái, tách khỏi nút chụp. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
     },
     { t: 'h', text: 'Ba thay đổi trong menu' },
     {
@@ -41,7 +45,7 @@ export const page: Article = {
     { t: 'h', text: 'Tập trong một buổi' },
     {
       t: 'p',
-      text: 'Đặt AF-C và Focus Area là Tracking: Zone. Đưa vùng nét lên chủ thể, giữ ngón cái để máy bắt và bám, rồi bố cục lại thoải mái — nét vẫn dính vào chủ thể. Muốn khoá nét tại một điểm để bố cục kiểu khác: nhả ngón cái ra, nét đứng lại ngay đó cho tới khi bạn bấm lại.',
+      text: 'Đặt [[Lấy nét|AF-C]] và Focus Area là Tracking: Zone. Đưa vùng nét lên [[Chủ thể chính|chủ thể chính]], giữ ngón cái để máy bắt và bám, rồi [[Bố cục|bố cục]] lại thoải mái — nét vẫn dính vào chủ thể. Muốn khoá nét tại một điểm để bố cục kiểu khác: nhả ngón cái ra, nét đứng lại ngay đó cho tới khi bạn bấm lại.',
     },
     {
       t: 'table',
@@ -78,9 +82,9 @@ export const page: Article = {
     order: null,
     concepts: [],
     related: [
-      { kind: 'knowledge', id: 'picture-profile-va-creative-look' },
-      { kind: 'knowledge', id: 'white-balance-shift' },
-      { kind: 'knowledge', id: 'chon-cong-thuc-theo-may' },
+      { kind: 'knowledge', id: 'lay-net' },
+      { kind: 'knowledge', id: 'chu-the-chinh' },
+      { kind: 'knowledge', id: 'bo-cuc' },
     ],
     prerequisites: [],
     sources: [

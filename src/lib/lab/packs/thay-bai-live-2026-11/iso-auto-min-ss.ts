@@ -20,7 +20,11 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Khi để ISO Auto, máy phải chọn giữa hai cái xấu: nâng ISO cho nhiễu lên, hay hạ tốc màn trập cho ảnh có nguy cơ nhoè. Mặc định máy nghiêng về ISO thấp — nghe hợp lý, nhưng đó là lý do rất nhiều ảnh trong nhà của người mới bị nhoè ở ISO chỉ 400.',
+      text: 'Khi để [[ISO|ISO Auto]], máy phải chọn giữa hai cái xấu: nâng ISO cho nhiễu lên, hay hạ [[Tốc độ màn trập|tốc độ màn trập]] cho ảnh có nguy cơ nhoè, hai cạnh của cùng một [[Tam giác phơi sáng|tam giác phơi sáng]]. Mặc định máy nghiêng về ISO thấp — nghe hợp lý, nhưng đó là lý do rất nhiều ảnh trong nhà của người mới bị nhoè ở [[ISO]] chỉ 400.',
+    },
+    {
+      t: 'figure',
+      caption: 'Chụp trong nhà vào chiều: ISO cao nhưng nét, hay tốc độ chậm nhưng nhoè. Ảnh: Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons',
     },
     {
       t: 'menu',
@@ -35,7 +39,7 @@ export const page: Article = {
     { t: 'h', text: 'Chọn con số nào' },
     {
       t: 'p',
-      text: 'Min. SS là sàn tốc độ màn trập: máy sẽ nâng ISO trước và chỉ đi chậm hơn con số này khi ISO đã chạm trần. Chọn nó theo chủ thể bạn chụp, không theo tiêu cự ống kính — người cử động nhanh hơn tay bạn rung.',
+      text: 'Min. SS là sàn [[Tốc độ màn trập|tốc độ màn trập]]: máy sẽ nâng ISO trước và chỉ đi chậm hơn con số này khi ISO đã chạm trần. Chọn nó theo chủ thể bạn chụp, không theo tiêu cự ống kính — người cử động nhanh hơn tay bạn rung.',
     },
     {
       t: 'table',
@@ -76,9 +80,9 @@ export const page: Article = {
     order: null,
     concepts: [],
     related: [
-      { kind: 'knowledge', id: 'white-balance-shift' },
-      { kind: 'knowledge', id: 'picture-profile-va-creative-look' },
-      { kind: 'knowledge', id: 'chon-cong-thuc-theo-may' },
+      { kind: 'knowledge', id: 'iso' },
+      { kind: 'knowledge', id: 'toc-do-man-trap' },
+      { kind: 'knowledge', id: 'tam-giac-phoi-sang' },
     ],
     prerequisites: [],
     sources: [

@@ -20,9 +20,12 @@ export const page: Article = {
     },
     {
       t: 'p',
-      text: 'Tấm đầu: mặt đẹp, background cháy trắng. Kéo sáng xuống chụp lại thì tấm sau background đúng ý, mặt tối thui. Vấn đề không nằm ở đèn. Một tấm ảnh có flash là hai lớp sáng chồng lên nhau, và máy Sony cho bạn một thanh bù sáng riêng cho từng lớp — đa số người dùng chỉ đụng tới một trong hai.',
+      text: 'Tấm đầu: mặt đẹp, background cháy trắng. Kéo [[Bù sáng|sáng]] xuống chụp lại thì tấm sau background đúng ý, mặt tối thui. Vấn đề không nằm ở đèn. Một tấm ảnh có flash là hai lớp sáng chồng lên nhau trên cùng một [[Tam giác phơi sáng|tam giác phơi sáng]], và máy Sony cho bạn một thanh bù sáng riêng cho từng lớp — đa số người dùng chỉ đụng tới một trong hai.',
     },
-    { t: 'h', text: 'Vì sao hai thanh tách được nhau' },
+    {
+      t: 'figure',
+      caption: 'Ánh sáng tự nhiên từ một bên, đèn TTL ở phía trên: cách bố trí cổ điển để chiếu sáng chân dung. Ảnh: Jacopo188 · CC BY-SA 3.0 · Wikimedia Commons',
+    },
     {
       t: 'p',
       text: 'Lớp ambient là ánh sáng môi trường, phụ thuộc vào khẩu, tốc và ISO — bạn thấy nó rõ nhất ở background. Lớp flash chỉ kéo dài khoảng một phần nghìn giây, nên dù shutter là 1/160s hay 1/15s thì cú đèn vẫn lọt trọn vào bên trong: tốc độ màn trập không làm flash sáng hay tối đi. Shutter chậm hơn thì chỉ có ambient lọt vào nhiều hơn, background sáng lên còn chủ thể vẫn y nguyên. Đó là cần gạt tách biệt của bạn.',
@@ -30,7 +33,7 @@ export const page: Article = {
     { t: 'h', text: 'Dựng máy và đổi Exp.comp.set' },
     {
       t: 'p',
-      text: 'Chế độ A, ISO Auto, khẩu chọn theo ý, shutter không nhanh hơn 1/160s — đó là tốc độ đồng bộ đèn của ZV-E10, nhanh hơn mức này thì màn trập chưa mở hết mà đèn đã đánh xong và ảnh có một dải đen cắt ngang. Gắn đèn vào thì máy thường tự giới hạn giúp bạn, cứ biết con số để đỡ hoảng khi chụp nắng gắt. Nhưng có một mục mặc định sai phải sửa trước khi tin vào bất cứ thứ gì phía dưới: Sony để Exp.comp.set ở Ambient & Flash, nghĩa là bạn kéo Body EV xuống một stop thì máy hạ luôn công suất đèn một stop, và cả background lẫn mặt cùng tối đi.',
+      text: 'Chế độ A, ISO Auto, khẩu chọn theo ý, shutter không nhanh hơn 1/160s — đó là tốc độ [[Rear Sync|đồng bộ đèn]] của ZV-E10, nhanh hơn mức này thì màn trập chưa mở hết mà đèn đã đánh xong và ảnh có một dải đen cắt ngang. Gắn đèn vào thì máy thường tự giới hạn giúp bạn, cứ biết con số để đỡ hoảng khi chụp nắng gắt. Nhưng có một mục mặc định sai phải sửa trước khi tin vào bất cứ thứ gì phía dưới: Sony để Exp.comp.set ở Ambient & Flash, nghĩa là bạn kéo Body EV xuống một stop thì máy hạ luôn công suất đèn một stop, và cả background lẫn mặt cùng tối đi.',
     },
     {
       t: 'menu',
@@ -45,7 +48,7 @@ export const page: Article = {
     { t: 'h', text: 'Kéo Body EV để dìm background' },
     {
       t: 'p',
-      text: 'Body EV xuống thì máy tăng tốc màn trập hoặc hạ ISO, ambient lọt vào ít đi và background thẫm lại, trong khi flash TTL vẫn tự đo và bơm đủ sáng cho mặt nên chủ thể gần như không đổi. Đây là cách làm ra background dramatic mà không cần thêm đèn: bạn không làm chủ thể sáng lên, bạn dìm môi trường xuống. ZV-E10 không có bánh xe EV riêng, nên gán Exposure Comp. ra Control Wheel hoặc nút C1 trong Custom Key (Shoot) — bạn sẽ đụng vào nó liên tục, đừng để nó nằm trong menu. Muốn thấy trước background mà không phải chụp thử, gán thêm Shot. Result Preview vào một nút Custom: giữ nút là máy hiện đúng kết quả với khẩu đã khép và tốc, ISO thực tế, thả ra là về bình thường.',
+      text: 'Body EV xuống thì máy tăng tốc màn trập hoặc hạ [[ISO]], ambient lọt vào ít đi và background thẫm lại, trong khi flash TTL vẫn tự đo và bơm đủ sáng cho mặt nên chủ thể gần như không đổi. Đây là cách làm ra background dramatic mà không cần thêm đèn: bạn không làm chủ thể sáng lên, bạn dìm môi trường xuống. ZV-E10 không có bánh xe EV riêng, nên gán Exposure Comp. ra Control Wheel hoặc nút C1 trong Custom Key (Shoot) — bạn sẽ đụng vào nó liên tục, đừng để nó nằm trong menu. Muốn thấy trước background mà không phải chụp thử, gán thêm Shot. Result Preview vào một nút Custom: giữ nút là máy hiện đúng kết quả với khẩu đã khép và tốc, ISO thực tế, thả ra là về bình thường.',
     },
     {
       t: 'compare',
@@ -54,6 +57,7 @@ export const page: Article = {
       caption:
         'Cùng khẩu, cùng đèn TTL, chỉ khác Body EV: mặt giữ nguyên độ sáng, còn trời sau lưng chuyển từ trắng bệch sang lại có màu.',
     },
+
     { t: 'h', text: 'Kéo Flash EV để sửa chủ thể' },
     {
       t: 'p',
@@ -92,9 +96,10 @@ export const page: Article = {
     order: null,
     concepts: [],
     related: [
-      { kind: 'knowledge', id: 'picture-profile-va-creative-look' },
-      { kind: 'knowledge', id: 'white-balance-shift' },
-      { kind: 'knowledge', id: 'color-depth' },
+      { kind: 'knowledge', id: 'iso' },
+      { kind: 'knowledge', id: 'bu-sang' },
+      { kind: 'knowledge', id: 'dong-bo-man-sau' },
+      { kind: 'knowledge', id: 'tam-giac-phoi-sang' },
     ],
     prerequisites: ['iso-auto-min-ss'],
     sources: [
