@@ -24,7 +24,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Double Exposure - Size Difference Between Skylab (SL)-1 and SL-2. Ảnh: NASA Johnson Space Center · Public domain · Wikimedia Commons',
+      caption: 'Backlighting creates strong contrast — foreground darker than sky. Proper exposure compensation can reveal shadow detail. Ảnh: Staff Sgt. Daniel Love · Public domain · Wikimedia Commons',
     },
     { t: 'h', text: 'Xoay bù sáng' },
     {

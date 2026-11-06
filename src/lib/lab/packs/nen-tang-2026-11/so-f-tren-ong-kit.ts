@@ -25,7 +25,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Khẩu độ thay đổi theo tiêu cự. Ảnh: Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons',
+      caption: 'Sony FE 28-70mm F3.5-5.6 OSS kit lens — f-number changes as you zoom. Ảnh: Roman Eisele · CC BY-SA 4.0 · Wikimedia Commons',
     },
     { t: 'h', text: 'f/3.5–5.6: khẩu thay đổi theo zoom' },
     {

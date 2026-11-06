@@ -24,7 +24,7 @@ export const page: Article = {
     },
     {
       t: 'figure',
-      caption: 'Camera on stack of books. Ảnh: Markus Spiske markusspiske · CC0 · Wikimedia Commons',
+      caption: 'Sony Alpha 7R IV top view shows controls — exposure dial and buttons for precise adjustment. Ảnh: Franz van Duns · CC BY-SA 4.0 · Wikimedia Commons',
     },
     { t: 'h', text: 'Sony dùng 1/3 stop làm bước nhỏ nhất' },
     {
