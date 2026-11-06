@@ -1,5 +1,6 @@
 import type { Article } from '../types'
 import { pages as NEN_TANG_2026_11 } from './nen-tang-2026-11'
+import { pages as THAY_BAI_LIVE_2026_11 } from './thay-bai-live-2026-11'
 
 /**
  * Content packs: pages the blog-content skill (`.claude/skills/colorlab-blog-content`)
@@ -10,4 +11,5 @@ import { pages as NEN_TANG_2026_11 } from './nen-tang-2026-11'
  */
 export const PACKS: Readonly<Record<string, readonly Article[]>> = {
   'nen-tang-2026-11': NEN_TANG_2026_11,
+  'thay-bai-live-2026-11': THAY_BAI_LIVE_2026_11,
 }

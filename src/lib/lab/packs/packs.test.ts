@@ -27,6 +27,11 @@ const pages = (except?: string) => [
   ...Object.entries(PACKS).flatMap(([n, p]) => (n === except ? [] : p)),
 ]
 
+/* Packs that exist to replace existing articles via `push:lab --replace`.
+   Their ids overlap ARTICLES on purpose; takenIds must exclude ids from these
+   packs' own pages. */
+const REPLACE_PACKS = new Set(['thay-bai-live-2026-11'])
+
 const NOTES = notesSeed as AlphaNote[]
 const IMAGES_DIR = (pack: string) => join(__dirname, `${pack}.images`)
 
@@ -47,7 +52,7 @@ function packImages(pack: string, packPages: readonly Article[]): Set<string> {
 function knownFor(pack: string, extra: readonly Article[] = []): Known {
   const all = [...pages(), ...extra]
   return {
-    takenIds: new Set([...ids(pages(pack)), ...RESERVED_IDS]),
+    takenIds: new Set([...ids(REPLACE_PACKS.has(pack) ? pages(pack).filter((p) => !ARTICLES.some((a) => a.id === p.id)) : pages(pack)), ...RESERVED_IDS]),
     refIds: {
       recipe: ids(recipesSeed as { id: string }[]),
       product: new Set([...ids(camerasSeed as { id: string }[]), ...ids(audioSeed as { id: string }[])]),

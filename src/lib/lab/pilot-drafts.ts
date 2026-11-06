@@ -101,7 +101,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
     blocks: [
       {
         t: 'p',
-        text: 'Máy Sony Alpha có hai cách cài màu ngay trong máy: Picture Profile (PP) và Creative Look (CL). Chúng không cộng dồn với nhau. Theo Help Guide của Sony, khi Picture Profile đặt khác Off thì Creative Look bị khoá về [-] — muốn dùng Creative Look phải tắt Picture Profile trước.',
+        text: 'Máy Sony Alpha có hai cách cài màu ngay trong máy: Picture Profile (PP) và [[Creative Look]] (CL). Chúng không cộng dồn với nhau. Theo Help Guide của Sony, khi Picture Profile đặt khác Off thì Creative Look bị khoá về [-] — muốn dùng Creative Look phải tắt Picture Profile trước.',
       },
       { t: 'h', text: 'Picture Profile chỉnh từng tầng của tín hiệu' },
       {
@@ -157,12 +157,13 @@ export const PILOT_DRAFTS: readonly Article[] = [
       section: 'sony-color',
       order: 2,
       concepts: ['wb', 'wb.temperature', 'wb.shiftAb', 'wb.shiftGm'],
+      related: [{ kind: 'knowledge', id: 'picture-profile-va-creative-look' }],
       sources: [sony('wbIlce7m4', 'ILCE-7M4')],
     }),
     blocks: [
       {
         t: 'p',
-        text: 'White Balance trong một công thức có hai phần: chế độ cân bằng trắng, và độ lệch WB Shift đặt chồng lên nó. Hai phần này dùng chung cho cả Picture Profile lẫn Creative Look.',
+        text: '[[Cân bằng trắng và nhiệt độ màu]] trong một công thức có hai phần: chế độ cân bằng trắng, và độ lệch WB Shift đặt chồng lên nó. Hai phần này dùng chung cho cả Picture Profile lẫn Creative Look.',
       },
       { t: 'h', text: 'Ba cách đặt cân bằng trắng' },
       {
@@ -220,6 +221,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
       section: 'sony-color',
       order: 3,
       concepts: ['pp.colorDepth', 'pp.saturation', 'pp.colorPhase'],
+      related: [{ kind: 'knowledge', id: 'picture-profile-va-creative-look' }],
       prerequisites: ['picture-profile-va-creative-look'],
       sources: [sony('ppColor'), sony('ppIlce7m4', 'ILCE-7M4')],
     }),
@@ -271,6 +273,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
       section: 'fundamentals',
       order: 1,
       concepts: ['pp', 'pp.gamma', 'pp.colorMode', 'pp.knee', 'pp.blackGamma'],
+      related: [{ kind: 'knowledge', id: 'picture-profile-va-creative-look' }],
       sources: [sony('ppGammaColorMode'), sony('ppBlackKnee'), sony('ppIlce7m4', 'ILCE-7M4')],
     }),
     blocks: [
@@ -324,7 +327,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
     blocks: [
       {
         t: 'p',
-        text: 'Một công thức ColorLab là tập cài đặt trong máy: White Balance cộng Picture Profile hoặc Creative Look. Máy áp dụng chúng khi tự xử lý ảnh, tức là vào file JPEG máy xuất ra.',
+        text: 'Một công thức ColorLab là tập cài đặt trong máy: White Balance cộng Picture Profile hoặc Creative Look. Máy áp dụng chúng khi tự xử lý ảnh, tức là vào [[RAW, JPEG và HEIF]] máy xuất ra.',
       },
       { t: 'h', text: 'Với RAW, phần mềm quyết định' },
       {
@@ -365,13 +368,14 @@ export const PILOT_DRAFTS: readonly Article[] = [
       section: 'workflows',
       order: 1,
       concepts: ['pp', 'cl'],
+      related: [{ kind: 'knowledge', id: 'picture-profile-va-creative-look' }],
       prerequisites: ['picture-profile-va-creative-look'],
       sources: [sony('clIlce7m4', 'ILCE-7M4'), sony('ppColor'), ...PILOT_BODY_SOURCES],
     }),
     blocks: [
       {
         t: 'p',
-        text: 'Một công thức chỉ dùng được trọn vẹn khi máy có đủ các mục nó cần. Picture Profile và Creative Look không có mặt trên mọi đời máy, và các mục, lựa chọn có thể khác theo máy — ví dụ Picture Profile của ILCE-7M5 không có Color Depth, và Help Guide của ILCE-7CM2 không liệt kê gamma S-Log2.',
+        text: 'Một công thức chỉ dùng được trọn vẹn khi máy có đủ các mục nó cần. [[Cài đặt nhanh trước buổi chụp]] Picture Profile và Creative Look không có mặt trên mọi đời máy, và các mục, lựa chọn có thể khác theo máy — ví dụ Picture Profile của ILCE-7M5 không có Color Depth, và Help Guide của ILCE-7CM2 không liệt kê gamma S-Log2.',
       },
       { t: 'h', text: 'Ba bước đối chiếu' },
       {
