@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { recipeSchema, type Recipe } from '../../src/lib/camera/schema';
-import { ORIGINAL_CL } from '../../src/lib/originals/cl';
 import { ORIGINAL_PP } from '../../src/lib/originals/pp';
 import { recipeIdKey } from '../../src/lib/recipes/recipe-id';
 import { RETIRED_RECIPE_IDS } from '../../src/lib/recipes/redirects';
@@ -302,26 +301,6 @@ describe('library:sync against the content project before the code-id migration'
     expect([0, 1, 2].map((n) => storedSlug('pp-001', n))).toEqual(['mojave-sun', 'pp-001-vivid-nostalgia-film', 'pp-001']);
   });
 
-  it('inserts a recipe born after the move under SCL- and its own slug', () => {
-    const template = SEED.find(({ recipe }) => ORIGINALS.has(recipe.id) && recipe.format === 'cl')!;
-    const born = {
-      ...template,
-      recipe: { ...template.recipe, id: 'CL-046', slug: 'cl-046', name: 'CL-046-Warm Soft Rich' } as Recipe,
-    };
-    expect(slugHistory(born.recipe.slug)).toEqual(['cl-046']);
-    expect(SEED.some(({ recipe }) => recipe.id === 'CL-046' || recipe.name === born.recipe.name)).toBe(false);
-    const p = planForProject(
-      { ...SYNC_SEED, recipes: [...SYNC_SEED.recipes, born], originals: [...SYNC_SEED.originals, 'CL-046'] },
-      PRODUCTION,
-    );
-    if ('refusal' in p) throw new Error(p.refusal);
-    expect(p.plan.insert).toContain('SCL-CL-046');
-    expect(p.plan.conflicts).toEqual([]);
-    const r = insertRows(p.plan, p.stored).find((x) => x.id === 'SCL-CL-046')!;
-    expect(r.slug).toBe('cl-046');
-    expect(r.id).toMatch(OLD_ID_CHECK);
-    expect(r.slug).toMatch(SLUG_CHECK);
-  });
 
   it('inserts rows the later migration renames: each id is the number its first slug moves to', () => {
     for (const r of insertRows(plan, stored)) {

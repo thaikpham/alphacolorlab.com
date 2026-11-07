@@ -27,15 +27,13 @@
  */
 
 import {
-  CL_RANGES,
   PP_COLOR_DEPTH_CHANNELS,
   PP_KNEE_AUTO_GAMMA,
   PP_RANGES,
-  type CreativeLookCode,
 } from './constants';
 import { CHANNEL_HUE, WB_HUE, gamutMap, monochromeOf, oklchToHex, wbBalance, type AccentInput } from './color';
 import { fraction } from './effects';
-import type { ClSettings, PpSettings } from './schema';
+import type { PpSettings } from './schema';
 
 export const SWATCH_IDS = ['highlight', 'mid', 'shadow', 'red', 'skin', 'yellow', 'foliage', 'sky', 'blossom'] as const;
 export type SwatchId = (typeof SWATCH_IDS)[number];

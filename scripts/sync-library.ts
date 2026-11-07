@@ -32,7 +32,6 @@
 
 import { readFileSync } from 'node:fs';
 import { recipeSchema } from '../src/lib/camera/schema';
-import { ORIGINAL_CL } from '../src/lib/originals/cl';
 import { ORIGINAL_PP } from '../src/lib/originals/pp';
 import { RETIRED_RECIPE_IDS } from '../src/lib/recipes/redirects';
 import { SLUG_MOVES } from '../src/lib/recipes/slug-moves';
