@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 /**
- * Moved to `/admin/wiki?division=di`.
+ * Moved to `/admin/wiki`.
  *
  * One of two spellings of the same screen — `/admin/di` and `/di/admin` both existed and both rendered the same editor.
  *
@@ -20,5 +20,5 @@ import { redirect } from 'next/navigation';
 export const dynamic = 'force-dynamic';
 
 export default function MovedPage() {
-  redirect('/admin/wiki?division=di');
+  redirect('/admin/wiki');
 }

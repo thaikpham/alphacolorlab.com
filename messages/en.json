@@ -152,11 +152,6 @@
       "body": "It may have been renamed or retired, or the link may be incomplete.",
       "action": "Browse Sony Wiki"
     },
-    "audio": {
-      "title": "That product isn’t here.",
-      "body": "It may have been renamed or retired, or the link may be incomplete.",
-      "action": "Browse all audio"
-    },
     "blog": {
       "title": "That article isn’t here.",
       "body": "It may have been unpublished, or the link may be incomplete.",
@@ -259,7 +254,6 @@
     "specs": {
       "angleOfView": "Angle of view",
       "apertureBlades": "Aperture blades",
-      "audioTech": "Audio technologies",
       "autofocus": "Autofocus",
       "bassBoost": "Bass boost",
       "battery": "Battery",
@@ -448,15 +442,9 @@
     "galleryUrlsLabel": "Gallery image URLs (one per line)",
     "photosCount": "{count, plural, one {# photo} other {# photos}}",
     "galleryPreviewHeading": "Gallery preview",
-    "catAudio": "Audio",
-    "tabDi": "DI · Digital Imaging (cameras & lenses)",
-    "tabPe": "PE · Personal Entertainment (audio & speakers)",
-    "tabLockedToDi": "Your account manages the DI division",
-    "tabLockedToPe": "Your account manages the PE division",
     "roleLabel": "Role",
     "roleSuper": "Super Dev (whole site)",
     "roleDi": "DI Admin (Digital Imaging)",
-    "rolePe": "PE Admin (Personal Entertainment)",
     "galleryThumbAlt": "Gallery photo {n}",
     "notPublishedOption": "— Not published —",
     "otherOption": "Other: {value}",
@@ -487,7 +475,7 @@
     "sectionColorlab": "ColorLab",
     "sectionColorlabBody": "White Balance Shift recipes — Picture Profile and Creative Look, every value within the camera’s limits.",
     "sectionWiki": "Products",
-    "sectionWikiBody": "Sony cameras, lenses, accessories and audio — specs, features and photographs.",
+    "sectionWikiBody": "Sony cameras, lenses and accessories — specs, features and photographs.",
     "sectionBlog": "Articles",
     "sectionBlogBody": "Alpha Tech Blogs — write, illustrate, publish and unpublish.",
     "backToSite": "Back to the site",
@@ -497,7 +485,6 @@
     "gateDownTitle": "Could not verify your account",
     "gateDownBody": "The sign-in service is not answering right now. This is not a permissions problem — your access is unchanged. Try again shortly.",
     "roleDi": "DI admin",
-    "rolePe": "PE admin",
     "sectionSecurity": "Security",
     "signInTitle": "Sign in",
     "signInBody": "Your email, your password, and the code from your authenticator app. No Google, no redirect.",
@@ -1056,7 +1043,7 @@
   },
   "searchPage": {
     "title": "Search",
-    "description": "Search Sony Alpha colour recipes, cameras, lenses, audio, articles and reference pages from one box.",
+    "description": "Search Sony Alpha colour recipes, cameras, lenses, articles and reference pages from one box.",
     "label": "Search",
     "placeholder": "Search recipes, products, articles, settings…",
     "submit": "Search",

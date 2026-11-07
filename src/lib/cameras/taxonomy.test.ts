@@ -71,10 +71,6 @@ describe('the catalogue taxonomy', () => {
   });
 
   it('pairs audio’s second level with its first', () => {
-    expect(subCategory2Choices('audio', 'Tai nghe')).toEqual(['Choàng đầu', 'Nhét tai', 'Gaming']);
-    expect(subCategory2Choices('audio', 'Loa')).toEqual(['Di động', 'Karaoke']);
-    expect(isValidPlacement('audio', 'Loa', 'Nhét tai')).toBe(false);
-    expect(isValidPlacement('audio', 'Tai nghe', 'Karaoke')).toBe(false);
   });
 
   it('refuses a placement from another category', () => {

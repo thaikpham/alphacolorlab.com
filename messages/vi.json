@@ -152,11 +152,6 @@
       "body": "Có thể sản phẩm đã được đổi tên hoặc ngừng kinh doanh, hoặc liên kết không đầy đủ.",
       "action": "Xem Sony Wiki"
     },
-    "audio": {
-      "title": "Không tìm thấy sản phẩm này.",
-      "body": "Có thể sản phẩm đã được đổi tên hoặc ngừng kinh doanh, hoặc liên kết không đầy đủ.",
-      "action": "Xem tất cả sản phẩm âm thanh"
-    },
     "blog": {
       "title": "Không tìm thấy bài viết này.",
       "body": "Có thể bài viết đã bị gỡ xuống, hoặc liên kết không đầy đủ.",
@@ -259,7 +254,6 @@
     "specs": {
       "angleOfView": "Góc nhìn",
       "apertureBlades": "Số lá khẩu",
-      "audioTech": "Công nghệ âm thanh",
       "autofocus": "Lấy nét",
       "bassBoost": "Tăng cường bass",
       "battery": "Pin",
@@ -448,15 +442,9 @@
     "galleryUrlsLabel": "Danh sách URL ảnh minh họa / Gallery (Mỗi URL 1 dòng)",
     "photosCount": "{count, plural, other {# ảnh}}",
     "galleryPreviewHeading": "Xem trước ảnh minh họa trong Gallery:",
-    "catAudio": "Âm thanh",
-    "tabDi": "DI · Digital Imaging (Máy ảnh & Ống kính)",
-    "tabPe": "PE · Personal Entertainment (Âm thanh & Loa)",
-    "tabLockedToDi": "Tài khoản của bạn quản lý ngành hàng DI",
-    "tabLockedToPe": "Tài khoản của bạn quản lý ngành hàng PE",
     "roleLabel": "Phân quyền",
     "roleSuper": "Super Dev (toàn bộ trang web)",
     "roleDi": "DI Admin (Digital Imaging)",
-    "rolePe": "PE Admin (Personal Entertainment)",
     "galleryThumbAlt": "Ảnh {n} trong bộ sưu tập",
     "notPublishedOption": "— Chưa công bố —",
     "otherOption": "Khác: {value}",
@@ -487,7 +475,7 @@
     "sectionColorlab": "ColorLab",
     "sectionColorlabBody": "Công thức White Balance Shift — Picture Profile và Creative Look, mọi giá trị đều trong giới hạn máy ảnh.",
     "sectionWiki": "Sản phẩm",
-    "sectionWikiBody": "Máy ảnh, ống kính, phụ kiện và thiết bị âm thanh Sony — thông số, tính năng và ảnh.",
+    "sectionWikiBody": "Máy ảnh, ống kính và phụ kiện Sony — thông số, tính năng và ảnh.",
     "sectionBlog": "Bài viết",
     "sectionBlogBody": "Alpha Tech Blogs — viết, minh hoạ, đăng và gỡ đăng.",
     "backToSite": "Về trang chính",
@@ -497,7 +485,6 @@
     "gateDownTitle": "Chưa xác minh được tài khoản",
     "gateDownBody": "Dịch vụ đăng nhập hiện không phản hồi. Đây không phải vấn đề quyền hạn — quyền của bạn không thay đổi. Hãy thử lại sau ít phút.",
     "roleDi": "Admin ngành hàng DI",
-    "rolePe": "Admin ngành hàng PE",
     "sectionSecurity": "Bảo mật",
     "signInTitle": "Đăng nhập",
     "signInBody": "Email, mật khẩu và mã từ ứng dụng authenticator của bạn. Không qua Google, không chuyển hướng.",
@@ -1056,7 +1043,7 @@
   },
   "searchPage": {
     "title": "Tìm kiếm",
-    "description": "Tìm công thức màu, máy ảnh, ống kính, âm thanh, bài viết và kiến thức tham khảo của Sony Alpha trong một ô tìm kiếm.",
+    "description": "Tìm công thức màu, máy ảnh, ống kính, bài viết và kiến thức tham khảo của Sony Alpha trong một ô tìm kiếm.",
     "label": "Tìm kiếm",
     "placeholder": "Tìm công thức, sản phẩm, bài viết, thông số…",
     "submit": "Tìm",

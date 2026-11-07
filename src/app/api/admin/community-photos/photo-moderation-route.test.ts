@@ -206,7 +206,7 @@ describe('who may moderate', () => {
     expect(db.calls).toEqual([]);
   });
 
-  it.each(['super', 'di', 'pe'] as const)('lets a %s editor moderate, as any role may edit a recipe', async (role) => {
+  it.each(['super', 'di'] as const)('lets a %s editor moderate, as any role may edit a recipe', async (role) => {
     vi.mocked(requireAdmin).mockResolvedValue(admin(role));
     expect((await route.GET(list())).status).toBe(200);
     expect((await route.PATCH(patch({ id: ID, approved: false }))).status).toBe(200);

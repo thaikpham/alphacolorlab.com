@@ -81,7 +81,6 @@ const CATEGORY_LABEL_KEY: Record<string, string> = {
   camera: 'catCamera',
   lens: 'catLens',
   accessory: 'catAccessory',
-  audio: 'catAudio',
 };
 
 /** What the catalogue does not publish. Never a blank cell. */

@@ -30,7 +30,6 @@ import {
 
 type Props = {
   products: SonyCamera[];
-  initialTab?: 'di' | 'pe';
 };
 
 /**
@@ -65,7 +64,7 @@ const CATEGORY_KEY: Record<SonyCamera['category'], 'catCamera' | 'catLens' | 'ca
  * silently beats a `text-*` utility on its own element.
  */
 
-export function AdminEditor({ products: initialProducts, initialTab }: Props) {
+export function AdminEditor({ products: initialProducts }: Props) {
   const t = useTranslations('admin');
   const tSpec = useTranslations('cameras.specs');
   const tCore = useTranslations('cameras.coreSpecs');
@@ -80,11 +79,6 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
   const { role: adminRole, authed } = useAdminSession();
 
   const [products, setProducts] = useState<SonyCamera[]>(initialProducts);
-  /* The tab a click asked for, or null while nobody has asked. Derived below
-     rather than synced in an effect: the role arrives from the session after
-     the first paint, and writing it into state there is a cascading render
-     that renders the wrong division once before correcting itself. */
-  const [pickedTab, setPickedTab] = useState<'di' | 'pe' | null>(null);
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
@@ -124,14 +118,6 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
   const [newFeaturesVi, setNewFeaturesVi] = useState('');
   const [createError, setCreateError] = useState('');
 
-  /* The role wins over the URL, and both lose to a click.
-     `canManageCategory()` refuses a PE admin's write to a DI product
-     server-side, so honouring `?division=di` for them would render a whole
-     screen of controls that cannot save. A single-division admin cannot pick
-     the other tab anyway — the buttons below refuse. */
-  const activeTab: 'di' | 'pe' =
-    adminRole === 'pe' ? 'pe' : adminRole === 'di' ? 'di' : (pickedTab ?? initialTab ?? 'di');
-
   /* Only the categories a create could save, defaulting to the open
      division's. The form used to offer all four to every role and start on
      `camera`, so a PE admin's first create always answered 403. Derived, like
@@ -153,8 +139,7 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
   const newSub2Valid = newSub2Choices.includes(newSub2) ? newSub2 : '';
 
   /* What the open product may be refiled as: the role's categories within
-     the open division, so a save can never move it out of the list it is in.
-     A PE admin has one — audio — and sees it as text, not as a select. */
+     the role, so a save can never move it out of the list it is in. */
   const divisionCats = allowedCats;
 
   const selected = useMemo(
@@ -183,20 +168,14 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
 
   const confirmDiscard = () => !dirty || window.confirm(t('discardConfirm'));
 
-  const categoryFiltered = useMemo(() => {
-  const categoryFiltered = useMemo(() => {
-    return products;
-  }, [products]);
-    return products.filter((p) => p.category === 'audio');
-  }, [products, activeTab]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return categoryFiltered;
-    return categoryFiltered.filter((p) =>
+    if (!q) return products;
+    return products.filter((p) =>
       [p.name, p.sku, p.fullName, p.category, p.subCategory1].some((v) => v.toLowerCase().includes(q)),
     );
-  }, [categoryFiltered, query]);
+  }, [products, query]);
 
   /* Every code the routes answer with has a message under `admin.errors`;
      the lookup asks the catalogue rather than a hand-kept list. The list this
@@ -253,16 +232,6 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
     setCopiedMd(false);
     setStale(false);
     void open(p);
-  };
-
-  const pickTab = (tab: 'di' | 'pe') => {
-    if (!confirmDiscard()) return;
-    setPickedTab(tab);
-    setSelectedId(null);
-    setDraft(null);
-    setAsk(null);
-    setStatus(null);
-    onProduct.current = null;
   };
 
   const setHl = (side: 'en' | 'vi', patch: Partial<HighlightsDraft['en']>) =>
@@ -411,7 +380,7 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
       setCreateError(err('nameRequired'));
       return;
     }
-    if (newCat !== 'audio' && !newSku.trim()) {
+    if (!newSku.trim()) {
       setCreateError(err('skuRequired'));
       return;
     }
@@ -525,42 +494,10 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
           create action lives in the sticky save bar and the list column. */}
       <h1 className="sr-only">{t('title')}</h1>
 
-      {/* Category Division Navigation Tabs & Admin Role Badge */}
+      {/* Admin Role Badge */}
       <div className="surface flex flex-wrap items-center justify-between gap-4 p-3.5">
-        {/* Category Switcher Tabs — the rut is sunken, the choice is a fill. */}
-        <div className="surface-sunken flex items-center gap-1 p-1">
-          <button
-            type="button"
-            onClick={() => {
-              if (adminRole === 'pe') return;
-              pickTab('di');
-            }}
-            disabled={adminRole === 'pe'}
-            className={`px-4 min-h-[var(--layout-touch-target)] rounded-sm text-body-sm font-semibold transition-colors flex items-center gap-2 ${
-              activeTab === 'di' ? 'surface-selected text-ink' : 'text-ink-muted hover:text-ink'
-            } ${adminRole === 'pe' ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
-            title={adminRole === 'pe' ? t('tabLockedToPe') : undefined}
-          >
-            {t('tabDi')}
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              if (adminRole === 'di') return;
-              pickTab('pe');
-            }}
-            disabled={adminRole === 'di'}
-            className={`px-4 min-h-[var(--layout-touch-target)] rounded-sm text-body-sm font-semibold transition-colors flex items-center gap-2 ${
-              activeTab === 'pe' ? 'surface-selected text-ink' : 'text-ink-muted hover:text-ink'
-            } ${adminRole === 'di' ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
-            title={adminRole === 'di' ? t('tabLockedToDi') : undefined}
-          >
-            {t('tabPe')}
-          </button>
-        </div>
-
         {/* Role Badge — one signal per row: violet for the whole catalogue,
-            accent for DI, cyan for PE, and only ever one of the three. */}
+            accent for DI, and only ever one of the two. */}
         <div className="flex items-center gap-2">
           <span className="label">{t('roleLabel')}</span>
           {adminRole === 'super' && (
@@ -568,9 +505,6 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
           )}
           {adminRole === 'di' && (
             <span className={`${TAG} bg-accent-400/15 text-accent-400`}>{t('roleDi')}</span>
-          )}
-          {adminRole === 'pe' && (
-            <span className={`${TAG} bg-community/15 text-community`}>{t('rolePe')}</span>
           )}
         </div>
       </div>
@@ -1327,10 +1261,10 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
               {/* Product Basic Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
-                  <label className="label">{t('skuLabel')} {newCat !== 'audio' && '*'}</label>
+                  <label className="label">{t('skuLabel')} *</label>
                   <input
                     type="text"
-                    required={newCat !== 'audio'}
+                    required
                     value={newSku}
                     onChange={(e) => setNewSku(e.target.value)}
                     placeholder={t('placeholderSku')}
