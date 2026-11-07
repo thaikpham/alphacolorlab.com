@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import recipesSeed from '../../../data/recipes.seed.json';
-import { CREATIVE_LOOK_CODES, PP_GAMMA } from '@/lib/camera/constants';
+import { PP_GAMMA } from '@/lib/camera/constants';
 import type { Recipe } from '@/lib/camera/schema';
 import { markBase, markCode, markInitials, MARK_HUES } from './mark';
 import { paletteFor } from '@/lib/camera/palette';
@@ -50,11 +50,10 @@ describe('the code and the base', () => {
   });
 
   /* Rule 1: Sony's own string, read from the validated settings. */
-  it('prints the Look code or the gamma exactly as the camera does', () => {
+  it('prints the gamma exactly as the camera does', () => {
     for (const r of seed) {
       const base = markBase(r);
-      if (r.format === 'cl') expect(CREATIVE_LOOK_CODES).toContain(base);
-      else expect(PP_GAMMA as readonly string[]).toContain(base);
+      expect(PP_GAMMA as readonly string[]).toContain(base);
     }
   });
 });

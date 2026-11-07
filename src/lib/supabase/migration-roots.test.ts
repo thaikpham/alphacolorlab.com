@@ -3,7 +3,6 @@ import { PGlite } from '@electric-sql/pglite';
 import { beforeAll, describe, expect, it } from 'vitest';
 import type { Recipe } from '@/lib/camera/schema';
 import { PRODUCT_COLUMNS } from '@/lib/cameras/row';
-import { ORIGINAL_CL } from '@/lib/originals/cl';
 import { ORIGINAL_PP } from '@/lib/originals/pp';
 import { toRow } from '@/lib/recipes/row';
 import { SLUG_MOVES, formerSlugsFor, recipeIdOfSlug } from '@/lib/recipes/slug-moves';
@@ -791,7 +790,7 @@ describe('the recipe code-id migration (S5)', () => {
     /* Production before the migration: the published seed recipes in the SCL-
        shape, none of the originals. The sync inserts those in the shape it
        finds, through the old CHECKs; the migration must then rename them. */
-    const originals = [...ORIGINAL_PP, ...ORIGINAL_CL].map((o) => o.recipe.id);
+    const originals = ORIGINAL_PP.map((o) => o.recipe.id);
     const db = await freshDatabase(CONTENT_ROOT, (f) => f < CODE_IDS);
     for (const r of seed.filter((s) => !originals.includes(s.id))) {
       await insertRecipe(db, { ...toRow(r, r.legacyId), id: `SCL-${r.id}`, slug: formerOf.get(r.id) });

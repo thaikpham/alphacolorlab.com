@@ -19,7 +19,7 @@ import {
 
 const seed = recipesSeed as unknown as Recipe[];
 const A = seed.find((r) => r.format === 'pp')!;
-const B = seed.find((r) => r.format === 'cl')!;
+const C = seed.find((r) => r.format === 'pp' && r.id !== A.id)!; // different PP recipe
 const rec = (recipe: Recipe, updatedAt = 'v1'): RecipeRecord => ({ recipe, legacyId: null, updatedAt });
 
 describe('tags', () => {
@@ -85,7 +85,7 @@ describe('a save’s answer', () => {
 
   it('does not pull the editor back to a recipe it has left', () => {
     const sent = { ...opened(rec(A)), draft: { ...A, name: 'Sent' } };
-    const other = opened(rec(B));
+    const other = opened(rec(C));
     expect(afterSave(other, sent, fresh)).toBe(other);
     expect(afterSave(null, sent, fresh)).toBeNull();
   });

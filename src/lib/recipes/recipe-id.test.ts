@@ -26,7 +26,6 @@ describe('recipeIdKey', () => {
     expect(recipeIdKey('SCL-PP-001')).toBe('PP-001');
     expect(recipeIdKey('PP-001')).toBe('PP-001');
     expect(recipeIdAliases('PP-009')).toEqual(['PP-009', 'SCL-PP-009']);
-    expect(recipeIdAliases('SCL-CL-013')).toEqual(['CL-013', 'SCL-CL-013']);
   });
 });
 
@@ -97,7 +96,7 @@ describe('search across the rename', () => {
 
   it('makes both codes exact hits in the search index', () => {
     const doc = (r: Recipe) =>
-      recipeDoc({ ...r, wbLabel: '', description: '', look: r.format === 'cl' ? r.settings.look : undefined }, 'en');
+      recipeDoc({ ...r, wbLabel: '', description: '' }, 'en');
     for (const r of [pp009!, unmigrated(pp009!)]) {
       expect(doc(r).exact).toEqual(expect.arrayContaining(['pp009', 'sclpp009']));
     }

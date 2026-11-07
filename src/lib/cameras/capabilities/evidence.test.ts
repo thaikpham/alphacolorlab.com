@@ -138,7 +138,7 @@ const passing = (s: EvidenceSource): SourceCheck => ({
 })
 
 describe('only confirmed claims count', () => {
-  const claims: Claim[] = [{ capability: 'cl.look:FL', status: 'supported', match: ['FL(Film):'] }]
+  const claims: Claim[] = [{ capability: 'pp.gamma:S-Log2', status: 'supported', match: ['S-Log2:'] }]
   const s = source(claims)
 
   it.each([

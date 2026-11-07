@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import {
-  CL_EXPLANATIONS,
   COLOR_DEPTH_EXPLANATIONS,
   PP_DETAIL_EXPLANATIONS,
   PP_EXPLANATIONS,
@@ -16,8 +15,7 @@ describe('the generated glossary', () => {
       Object.keys(WB_EXPLANATIONS).length +
       Object.keys(PP_EXPLANATIONS).length +
       Object.keys(COLOR_DEPTH_EXPLANATIONS).length +
-      Object.keys(PP_DETAIL_EXPLANATIONS).length +
-      Object.keys(CL_EXPLANATIONS).length
+      Object.keys(PP_DETAIL_EXPLANATIONS).length
     expect(entries).toHaveLength(expected)
     for (const e of entries) expect(e.text.length).toBeGreaterThan(10)
   })
@@ -25,23 +23,20 @@ describe('the generated glossary', () => {
   it('uses the explanation text verbatim — the glossary adds no claim', () => {
     const vi = glossaryEntries('vi')
     expect(vi.find((e) => e.id === 'pp-colorDepth-R')?.text).toBe(COLOR_DEPTH_EXPLANATIONS.R.vi)
-    expect(vi.find((e) => e.id === 'cl-fade')?.text).toBe(CL_EXPLANATIONS.fade.vi)
   })
 
   it('gives every entry a unique, stable anchor', () => {
     const ids = glossaryEntries('en').map((e) => e.id)
     expect(new Set(ids).size).toBe(ids.length)
-    for (const id of ids) expect(id).toMatch(/^(wb|pp|cl)-[A-Za-z]+(-[A-Za-z]+)?$/)
+    for (const id of ids) expect(id).toMatch(/^(wb|pp)-[A-Za-z]+(-[A-Za-z]+)?$/)
   })
 
   it('has an anchor for every parameter concept a page can link to', () => {
-    /* Group concepts land on the group heading; `cl.look` on the Look list;
-       everything else on its own entry. */
+    /* Group concepts land on the group heading; everything else on its own entry. */
     const groups = new Set<string>(buildGlossary('en').map((g) => g.group))
     const ids = new Set(glossaryEntries('en').map((e) => e.id))
     for (const c of CONCEPTS) {
       if (c.key === c.group) expect(groups.has(c.key)).toBe(true)
-      else if (c.key === 'cl.look') expect(buildGlossary('en').find((g) => g.group === 'cl')?.looks).toHaveLength(10)
       else expect(ids.has(conceptAnchor(c.key))).toBe(true)
     }
   })

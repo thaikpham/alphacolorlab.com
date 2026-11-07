@@ -26,7 +26,7 @@ const page = (id: string, kind: Article['kind'], meta: Partial<ArticleMeta> = {}
 
 const recipes = [
   { id: 'PP-001', slug: 'pp-001-vivid-nostalgia-film', name: 'PP-001-Vivid Nostalgia Film', format: 'pp' as const, wbLabel: '5600K, A2' },
-  { id: 'CL-001', slug: 'cl-001-film-hard-faded', name: 'CL-001-Film Hard Faded', format: 'cl' as const, wbLabel: 'AWB', look: 'FL' },
+  { id: 'PP-002', slug: 'pp-002-cool-calm-forest', name: 'PP-002-Cool Calm Forest', format: 'pp' as const, wbLabel: 'AWB' },
 ]
 const products = [
   { id: 'sony-ilce-7m4-bq-ap2', name: '7 IV', fullName: 'Sony 7 IV (ILCE-7M4/BQ AP2)', sku: 'ILCE-7M4/BQ AP2', category: 'camera' },
@@ -41,7 +41,7 @@ describe('resolveRefs', () => {
     const links = resolveRefs(
       [
         { kind: 'recipe', id: 'PP-001' },
-        { kind: 'recipe', id: 'CL-001' },
+        { kind: 'recipe', id: 'PP-002' },
         { kind: 'product', id: 'sony-ilce-7m4-bq-ap2' },
         { kind: 'product', id: 'sony-wh-1000xm6' },
         { kind: 'knowledge', id: 'wb-shift' },
@@ -51,14 +51,14 @@ describe('resolveRefs', () => {
     )
     expect(links.map((l) => l.href)).toEqual([
       '/recipe/pp-001-vivid-nostalgia-film',
-      '/recipe/cl-001-film-hard-faded',
+      '/recipe/pp-002-cool-calm-forest',
       '/cameras/sony-ilce-7m4-bq-ap2',
       '/audio/sony-wh-1000xm6',
       '/learn/wb-shift',
       '/blog/iso-auto-min-ss',
     ])
     expect(links[0].subtitle).toBe('Picture Profile · 5600K, A2')
-    expect(links[1].subtitle).toBe('Creative Look FL · AWB')
+    expect(links[1].subtitle).toBe('Picture Profile · AWB')
     expect(links[2].title).toBe('Sony 7 IV')
     expect(links[2].subtitle).toBe('ILCE-7M4')
     // No full name on record: the short name stands.
@@ -90,13 +90,13 @@ describe('resolveRefs', () => {
   it('keeps authored order and drops repeats', () => {
     const links = resolveRefs(
       [
-        { kind: 'recipe', id: 'CL-001' },
+        { kind: 'recipe', id: 'PP-002' },
         { kind: 'recipe', id: 'PP-001' },
-        { kind: 'recipe', id: 'CL-001' },
+        { kind: 'recipe', id: 'PP-002' },
       ],
       universe,
     )
-    expect(links.map((l) => l.id)).toEqual(['CL-001', 'PP-001'])
+    expect(links.map((l) => l.id)).toEqual(['PP-002', 'PP-001'])
   })
 
   it('resolves prerequisites of either page kind', () => {
@@ -121,9 +121,9 @@ describe('reverse links', () => {
     const one = page('one', 'knowledge', { concepts: ['pp.colorDepth'], order: 1 })
     const two = page('two', 'knowledge', { concepts: ['pp.colorDepth', 'wb.shiftAb'], order: 9 })
     const blog = page('blog', 'article', { concepts: ['pp.colorDepth', 'wb.shiftAb'] })
-    const off = page('off', 'knowledge', { concepts: ['cl.fade'] })
+    const other = page('other', 'knowledge', { concepts: ['pp.saturation'] })
     expect(
-      knowledgeExplaining(['pp.colorDepth', 'wb.shiftAb'], [one, two, blog, off]).map((p) => p.id),
+      knowledgeExplaining(['pp.colorDepth', 'wb.shiftAb'], [one, two, blog, other]).map((p) => p.id),
     ).toEqual(['two', 'one'])
   })
 })

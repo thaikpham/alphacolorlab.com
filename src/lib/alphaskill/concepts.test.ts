@@ -23,23 +23,6 @@ describe('alphaskill concepts', () => {
       expect(note?.title).toBe('Cân bằng trắng và nhiệt độ màu')
     })
 
-    it('maps cl to a valid slug', () => {
-      const slug = CONCEPT_NOTES.cl
-      expect(slug).toBeDefined()
-      expect(typeof slug).toBe('string')
-      const note = snapshot.find((n) => n.slug === slug)
-      expect(note).toBeDefined()
-      expect(note?.title).toBe('Creative Look')
-    })
-
-    it('maps cl.look to a valid slug', () => {
-      const slug = CONCEPT_NOTES['cl.look']
-      expect(slug).toBeDefined()
-      expect(typeof slug).toBe('string')
-      const note = snapshot.find((n) => n.slug === slug)
-      expect(note).toBeDefined()
-      expect(note?.title).toBe('Creative Look')
-    })
 
     it('all mapped slugs exist in snapshot', () => {
       const slugSet = new Set(snapshot.map((n) => n.slug))
@@ -53,22 +36,9 @@ describe('alphaskill concepts', () => {
 
   describe('notesForConcepts', () => {
     it('returns notes for given concept keys', () => {
-      const result = notesForConcepts(['wb', 'cl'], snapshot)
-      expect(result).toHaveLength(2)
-      expect(result.map((n) => n.slug)).toContain('can-bang-trang-va-nhiet-do-mau')
-      expect(result.map((n) => n.slug)).toContain('creative-look')
-    })
-
-    it('dedupes duplicate slugs', () => {
-      const result = notesForConcepts(['cl', 'cl.look'], snapshot)
+      const result = notesForConcepts(['wb'], snapshot)
       expect(result).toHaveLength(1)
-      expect(result[0].slug).toBe('creative-look')
-    })
-
-    it('preserves order of first appearance', () => {
-      const result = notesForConcepts(['cl', 'wb'], snapshot)
-      expect(result[0].slug).toBe('creative-look')
-      expect(result[1].slug).toBe('can-bang-trang-va-nhiet-do-mau')
+      expect(result.map((n) => n.slug)).toContain('can-bang-trang-va-nhiet-do-mau')
     })
 
     it('ignores unknown keys', () => {

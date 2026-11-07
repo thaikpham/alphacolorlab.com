@@ -2,7 +2,6 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { PGlite } from '@electric-sql/pglite';
 import { beforeAll, describe, expect, it } from 'vitest';
 import {
-  CREATIVE_LOOK_CODES,
   RECIPE_FORMATS,
   WB_AUTO_MODES,
   WB_AXIS_AB,
@@ -99,10 +98,6 @@ describe.each(ROOTS)('SQL / constants drift in %s', (root) => {
 
   it('recipe_format enum matches RECIPE_FORMATS', async () => {
     expect(await enumLabels('recipe_format')).toEqual([...RECIPE_FORMATS]);
-  });
-
-  it('creative_look enum matches CREATIVE_LOOK_CODES', async () => {
-    expect(await enumLabels('creative_look')).toEqual([...CREATIVE_LOOK_CODES]);
   });
 
   it('wb_mode enum covers exactly the modes the schema can produce', async () => {
