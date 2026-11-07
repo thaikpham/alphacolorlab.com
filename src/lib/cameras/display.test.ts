@@ -12,9 +12,8 @@ const tVi = createTranslator({ locale: 'vi', messages: vi as AbstractIntlMessage
 
 describe('subCategoryLabel', () => {
   it('maps a stored Vietnamese value to the reader locale', () => {
-    expect(subCategoryLabel('Tai nghe', tEn)).toBe('Headphones');
     expect(subCategoryLabel('Máy ảnh Alpha', tEn)).toBe('Alpha cameras');
-    expect(subCategoryLabel('Tai nghe', tVi)).toBe('Tai nghe');
+    expect(subCategoryLabel('Audio', tVi)).toBe('Âm thanh');
   });
 
   it('fixes the spelling of a technical name without translating it', () => {

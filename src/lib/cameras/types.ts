@@ -280,12 +280,9 @@ export interface SonyCamera {
    * Official product page and photography.
    *
    * `''` is the absence of one, and both surfaces test truthiness before
-   * rendering. The audio catalogue is extracted from Sony Vietnam's FY26
-   * comparison sheets, which are print artwork: they publish a price and a
-   * spec table but no URL, no SKU and no image asset. Those three are `''`
-   * there and named in `specsMissing`, for the same reason a spec the source
-   * does not state is `null` — a plausible-looking B&H URL assembled from a
-   * guessed SKU renders a broken image and reads as sourced.
+   * rendering. A missing link stays `''` for the same reason a spec the
+   * source does not state is `null` — a plausible-looking B&H URL assembled
+   * from a guessed SKU renders a broken image and reads as sourced.
    */
   url: string;
   imageUrl: string;

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { SPEC_ROWS, type AccessorySpecs, type CameraSpecs, type LensSpecs, type ProductSpecs, type SonyCamera } from './types';
-import { PRICE_VND_MAX, type Category } from './taxonomy';
+import { PRICE_VND_MAX } from './taxonomy';
 import {
   PRODUCT_WRITE_ERRORS,
   SKU_MAX,
@@ -62,7 +62,6 @@ function expectMissingMatchesNulls(specs: ProductSpecs) {
 }
 
 const fx3 = () => byId('sony-ilme-fx3a-q-ap2');
-// audio category removed
 
 describe('productPatch — the fields that were read-only', () => {
   it('changes SKU, price, URL and placement in one save, as columns', () => {
@@ -258,9 +257,10 @@ describe('productPatch — authorisation', () => {
     expect(expectPatch(productPatch({ name: 'updated' }, byId('sony-ecm-m1'), diOnly))).toBeTruthy();
   });
 
-  it('can move products between remaining categories', () => {
-    const result = productPatch({ category: 'accessory', subCategory1: 'Bag', subCategory2: 'Carrying Cases' }, fx3(), diOnly);
-    expect(expectPatch(result)).toBeTruthy();
+  it('refuses a category the catalogue no longer has', () => {
+    expect(productPatch({ category: 'audio', subCategory1: 'Tai nghe', subCategory2: 'Nhét tai' }, fx3(), diOnly)).toMatchObject({
+      ok: false,
+    });
   });
 });
 

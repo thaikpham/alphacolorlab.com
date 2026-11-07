@@ -19,6 +19,7 @@
 const SUB_CATEGORY_LABEL_KEY: Record<string, string> = {
   'Máy ảnh Alpha': 'alphaCameras',
   Adapter: 'adapters',
+  Audio: 'audio',
   Microphone: 'microphones',
   Power: 'power',
   Battery: 'batteries',

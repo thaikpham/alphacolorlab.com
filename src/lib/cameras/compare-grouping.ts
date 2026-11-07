@@ -1,4 +1,4 @@
-import { SPEC_ROWS, type SonyCamera } from './types';
+import type { SonyCamera } from './types';
 
 export type CompareTabId =
   | 'all'

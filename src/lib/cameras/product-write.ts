@@ -129,7 +129,8 @@ function text(body: Body, key: string): string | undefined | null {
 
 /** Trimmed at the ends only: `DSC-RX1RM3  AP2` ships with two inner spaces. */
 function cleanSku(sku: string): string | Fail {
-  if (!sku || sku.length > SKU_MAX || /[\u0000-\u001f\u007f]/.test(sku)) return fail('skuRequired');
+  if (sku.length > SKU_MAX || /[\u0000-\u001f\u007f]/.test(sku)) return fail('invalidSku');
+  if (!sku) return fail('skuRequired');
   return sku;
 }
 
@@ -230,8 +231,8 @@ function nextSpecs(
  *
  * `canManage` is the signed-in role's category check — `canManageCategory()`
  * bound to the verified admin — asked of the category the product is in now
- * AND the one it is moving to, so a DI editor cannot file a camera under audio
- * and a PE editor cannot pull a lens into their list.
+ * AND the one it is moving to, so nobody can file a product under a category
+ * the catalogue does not have.
  *
  * Name, full name and primary image keep the route's old leniency: a blank one
  * is not sent rather than refused — the editor never sends one.
@@ -345,9 +346,8 @@ export function productPatch(
  * A new product, or why it may not be created. The same rules as an update;
  * every field is new, so every field is validated.
  *
- * The id is `sony-` and the SKU slugged with its diacritics folded, not dropped:
- * the id is a public `/cameras/<id>` URL, and stripping every non-ASCII letter
- * would turn "SEL-chống-ồn" into `sel-ch-ng-n`.
+ * The id is `sony-` and the SKU, slugged: the id is a public `/cameras/<id>`
+ * URL.
  */
 export function productCreate(body: unknown, canManage: (category: Category) => boolean): CreateResult {
   if (!isBody(body)) return fail('badRequest');

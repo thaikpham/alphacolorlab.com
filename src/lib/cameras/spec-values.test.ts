@@ -115,37 +115,6 @@ describe('spec value translation', () => {
     );
   });
 
-  /* The audio rules are ordered so a shorter pair cannot eat a longer one:
-     `Màng loa` alone would leave "Driver Dynamic Driver X". */
-  it('renders the audio wording without half-translated leftovers', () => {
-    expect(translateSpecValue('driver', 'Màng loa Dynamic Driver X 8.4mm', 'en')).toBe(
-      'Dynamic Driver X 8.4mm',
-    );
-    expect(translateSpecValue('driver', 'Màng loa sợi Carbon Dynamic Driver X 30mm', 'en')).toBe(
-      'Carbon fibre Dynamic Driver X 30mm',
-    );
-    expect(translateSpecValue('battery', '30 giờ + 40 giờ', 'en')).toBe('30 h + 40 h');
-    expect(translateSpecValue('fastCharge', '3 phút → 60 phút | Sạc không dây', 'en')).toBe(
-      '3 min → 60 min | Wireless charging',
-    );
-    expect(translateSpecValue('weight', '31 g (tai nghe 4.6 g x 2)', 'en')).toBe(
-      '31 g (earbuds 4.6 g x 2)',
-    );
-    expect(translateSpecValue('waterResistance', 'Kháng nước/bụi IP67', 'en')).toBe(
-      'Water/dust resistant IP67',
-    );
-    expect(translateSpecValue('micPorts', '2 cổng Micro | 1 cổng Guitar', 'en')).toBe(
-      '2 mic inputs | 1 guitar input',
-    );
-    expect(
-      translateSpecValue(
-        'specsSource',
-        'Sony Vietnam FY26 — Các sản phẩm tai nghe & Loa (100426), bảng so sánh',
-        'en',
-      ),
-    ).toBe('Sony Vietnam FY26 — Headphones & Speakers (100426), comparison sheet');
-  });
-
   it('catches Vietnamese written without diacritics', () => {
     expect(VIETNAMESE.test('Xoay')).toBe(true);
     expect(VIETNAMESE.test('31 g (tai nghe 4.6 g x 2)')).toBe(true);

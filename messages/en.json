@@ -336,11 +336,6 @@
     "kindLens": "Lens",
     "kindAccessory": "Accessory",
     "sub": {
-      "headphones": "Headphones",
-      "speakers": "Speakers",
-      "overEar": "Over-ear",
-      "inEar": "In-ear",
-      "portable": "Portable",
       "alphaCameras": "Alpha cameras",
       "adapters": "Adapters",
       "audio": "Audio",

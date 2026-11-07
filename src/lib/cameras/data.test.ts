@@ -60,7 +60,7 @@ describe('getSonyCameras cache safety', () => {
  * filter what comes back; a route must do the same.
  */
 describe('catalogue reads in route handlers', () => {
-  const WHOLE_TABLE = ['getSonyCameras', 'getSonyAudio', 'listSlugs'];
+  const WHOLE_TABLE = ['getSonyCameras', 'listSlugs'];
 
   function routes(dir: string): string[] {
     return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {

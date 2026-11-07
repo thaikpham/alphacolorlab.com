@@ -179,25 +179,6 @@ describe('the catalogue search keeps the reader on their grid', () => {
   });
 });
 
-/** The text of every `<button>` in the markup, tags stripped. */
-const buttonTexts = (html: string) =>
-  [...html.matchAll(/<button\b[^>]*>([\s\S]*?)<\/button>/g)].map(([, inner]) =>
-    inner.replace(/<[^>]+>/g, '').trim(),
-  );
-
-describe('the filter console reads in the reader’s language', () => {
-  it('names the audio tabs through the catalogue, not the stored value', () => {
-    /* The key stays `Tai nghe` / `Loa` — it is the filter value the route and
-       the catalogue share. Only the label was raw, so /en read Vietnamese. */
-    const tabs = buttonTexts(render('/audio'));
-    expect(tabs).toContain(en.cameras.sub.headphones);
-    expect(tabs).toContain(en.cameras.sub.speakers);
-    expect(tabs).not.toContain('Tai nghe');
-    expect(tabs).not.toContain('Loa');
-  });
-
-});
-
 describe('live search stays where the reader is', () => {
   it('filters in place only on a catalogue index', () => {
     /* On /recipe/<slug> the 250ms push went to /colorlab?q=…, and on

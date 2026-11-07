@@ -11,10 +11,9 @@ export type AdminRole = 'super' | 'di';
 export const PRODUCT_CATEGORIES = ['camera', 'lens', 'accessory'] as const;
 export type ProductCategoryId = (typeof PRODUCT_CATEGORIES)[number];
 
+/** Both roles manage the whole catalogue since PE was removed (2026-11-07); an unknown category is refused. */
 export function canManageCategory(role: AdminRole, category: string): boolean {
-  if (role === 'super') return true;
-  if (role === 'di') return true;
-  return false;
+  return (role === 'super' || role === 'di') && (PRODUCT_CATEGORIES as readonly string[]).includes(category);
 }
 
 /** The categories `role` may create, in the order the form lists them. */

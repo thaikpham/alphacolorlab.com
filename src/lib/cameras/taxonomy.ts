@@ -58,8 +58,8 @@ export function subCategory1Choices(category: Category): readonly string[] {
   return SUB_CATEGORY_1[category] ?? [];
 }
 
-export function subCategory2Choices(category: Category, subCategory1: string): readonly string[] {
-
+/** The second level does not depend on the first in any remaining category. */
+export function subCategory2Choices(category: Category, _subCategory1: string): readonly string[] {
   return SUB_CATEGORY_2[category] ?? [];
 }
 
@@ -80,8 +80,8 @@ export function isValidPlacement(category: string, subCategory1: string, subCate
  * A value that is not in the taxonomy has no kind, and saying so is
  * the caller's cue to refuse it.
  */
-export function specKindFor(category: Category, subCategory1: string): SpecKind | null {
-  return category as SpecKind;
+export function specKindFor(category: Category, _subCategory1: string): SpecKind | null {
+  return category;
 }
 
 /**

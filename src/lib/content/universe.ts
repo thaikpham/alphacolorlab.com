@@ -15,9 +15,9 @@ import {
 /**
  * Everything a related-content section can link to, for one render.
  *
- * Five cached reads — published pages, alphaskill notes, published recipes, 
- * the camera catalogue, the audio catalogue — each the same function its own 
- * pages use, so a link appears exactly when its target's page would answer 200.
+ * Four cached reads — published pages, alphaskill notes, published recipes,
+ * the camera catalogue — each the same function its own pages use, so a
+ * link appears exactly when its target's page would answer 200.
  *
  * The reads are settled independently. A related section is supplementary to
  * the page it sits on: an outage of the product catalogue must not take an
