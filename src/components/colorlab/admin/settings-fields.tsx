@@ -3,12 +3,6 @@
 import { useTranslations } from 'next-intl';
 import { Group, EnumSelect, Ranged, omitKey } from './fields';
 import {
-  CL_MONOCHROME_LOOKS,
-  CL_PARAM_LABELS,
-  CL_RANGES,
-  CL_SIGNED_PARAMS,
-  CREATIVE_LOOKS,
-  CREATIVE_LOOK_CODES,
   PP_BLACK_GAMMA_RANGE,
   PP_COLOR_DEPTH_CHANNELS,
   PP_COLOR_MODE,
@@ -21,7 +15,7 @@ import {
   PP_PARAM_LABELS,
   PP_RANGES,
 } from '@/lib/camera/constants';
-import type { ClSettings, PpSettings } from '@/lib/camera/schema';
+import type { PpSettings } from '@/lib/camera/schema';
 
 /**
  * The two settings forms, one per format.
@@ -239,77 +233,3 @@ export function PpFields({
   );
 }
 
-export function ClFields({
-  value,
-  onChange,
-}: {
-  value: ClSettings;
-  onChange: (next: ClSettings) => void;
-}) {
-  const t = useTranslations('recipeAdmin');
-  const mono = (CL_MONOCHROME_LOOKS as readonly string[]).includes(value.look);
-  const signed = (k: string) => (CL_SIGNED_PARAMS as readonly string[]).includes(k);
-  const set = <K extends keyof ClSettings>(k: K, v: ClSettings[K]) => onChange({ ...value, [k]: v });
-
-  return (
-    <div className="flex flex-col gap-6">
-      <Group title={t('clLook')}>
-        <EnumSelect
-          label={t('look')}
-          options={CREATIVE_LOOK_CODES}
-          labels={LOOK_LABELS}
-          value={value.look}
-          /* Changing to a monochrome Look drops saturation, and changing back
-             restores it — the schema refuses the field on BW/SE and requires
-             it everywhere else, so leaving it in place would make the form
-             unsaveable with no visible cause. */
-          onChange={(look) => {
-            const nowMono = (CL_MONOCHROME_LOOKS as readonly string[]).includes(look);
-            if (nowMono) {
-              const { saturation: _drop, ...rest } = value;
-              onChange({ ...rest, look });
-            } else {
-              onChange({ ...value, look, saturation: value.saturation ?? 0 });
-            }
-          }}
-          hint={mono ? t('monoHint') : undefined}
-        />
-      </Group>
-
-      {/* Parameter labels are Sony's own terms and are never translated, so
-          they come from `constants.ts` and not from the catalogue. */}
-      <Group title={t('clAdjust')}>
-        {(['contrast', 'highlights', 'shadows', 'fade'] as const).map((k) => (
-          <Ranged
-            key={k}
-            label={CL_PARAM_LABELS[k]}
-            range={CL_RANGES[k]}
-            value={value[k]}
-            onChange={(n) => set(k, n)}
-            signed={signed(k)}
-          />
-        ))}
-        {!mono && (
-          <Ranged
-            label={CL_PARAM_LABELS.saturation}
-            range={CL_RANGES.saturation}
-            value={value.saturation ?? 0}
-            onChange={(n) => set('saturation', n)}
-            hint={t('clSaturationHint')}
-            signed
-          />
-        )}
-        {(['sharpness', 'sharpnessRange', 'clarity'] as const).map((k) => (
-          <Ranged
-            key={k}
-            label={CL_PARAM_LABELS[k]}
-            range={CL_RANGES[k]}
-            value={value[k]}
-            onChange={(n) => set(k, n)}
-            signed={signed(k)}
-          />
-        ))}
-      </Group>
-    </div>
-  );
-}
