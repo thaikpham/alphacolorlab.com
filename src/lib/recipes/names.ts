@@ -44,7 +44,7 @@ import {
   type Warmth,
 } from '../camera/color';
 import { DEFAULT_PP_SETTINGS } from '../camera/defaults';
-import { fraction, step, stepFromMin } from '../camera/effects';
+import { fraction, step } from '../camera/effects';
 import { DAYLIGHT_K, PALETTE_WEIGHTS, REFERENCE, SWATCH_IDS, paletteFor, type Palette } from '../camera/palette';
 import type { PpSettings } from '../camera/schema';
 import { recipeIdKey } from './recipe-id';

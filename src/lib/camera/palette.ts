@@ -68,15 +68,8 @@ type Gamma = PpSettings['gamma'];
 type ColorMode = PpSettings['colorMode'];
 type BlackGammaRange = PpSettings['blackGamma']['range'];
 
-/** Tone a gamma or a Look lays down before any dial: ΔL at each end, a chroma factor. */
+/** Tone a gamma lays down before any dial: ΔL at each end, a chroma factor. */
 type Tone = { readonly shadow: number; readonly highlight: number; readonly chroma: number };
-type LookBase = Tone & {
-  readonly mid: number;
-  /** Extra ΔL / chroma factor on named swatches. */
-  readonly swatches?: Partial<Record<SwatchId, { readonly l?: number; readonly chroma?: number }>>;
-  /** A cast the Look adds on every swatch, OKLab chroma at an OKLCH hue. */
-  readonly cast?: { readonly c: number; readonly h: number };
-};
 
 const HLG: Tone = { shadow: 0.06, highlight: -0.1, chroma: 0.8 };
 const SLOG: Tone = { shadow: 0.14, highlight: -0.14, chroma: 0.55 };

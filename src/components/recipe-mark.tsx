@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import {
   markBase,
   markCode,
@@ -57,11 +57,8 @@ function dims(size: MarkSize): Dims {
   return { ...s, size, h: Math.round((s.w * 176) / 216), k: s.w / 216 };
 }
 
-/* The object's materials. Not interface colour: a white label, metal, film
-   base and paper ink, printed on a thing standing in the slot. */
-const LABEL_WHITE =
-  'linear-gradient(90deg, oklch(99.5% 0.002 275) 0%, oklch(97.5% 0.003 275) 45%, oklch(89% 0.006 275) 100%)';
-const METAL = 'linear-gradient(180deg, oklch(82% 0.006 275), oklch(54% 0.006 275))';
+/* The object's materials. Not interface colour: film base and paper ink,
+   printed on a thing standing in the slot. */
 const FILM = 'oklch(11% 0.006 275)';
 const SPROCKET = 'oklch(100% 0 0 / 0.16)';
 const STICKER = 'oklch(96.5% 0.014 85)';

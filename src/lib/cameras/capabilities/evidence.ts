@@ -131,8 +131,6 @@ const ITEM_LIST = { after: 'Items of the picture profile', before: 'To copy the 
 const GAMMA_LIST = { after: PP_ITEM_LITERAL.Gamma, before: PP_ITEM_LITERAL['Black Gamma'] }
 const COLOR_MODE_LIST = { after: PP_ITEM_LITERAL['Color Mode'], before: PP_ITEM_LITERAL.Saturation }
 
-const SHARPNESS_RANGE_MOVIE = 'In the movie mode, [Sharpness Range] cannot be adjusted.'
-
 /** White Balance's option list prints as one run: `Auto / Auto: Ambience / … / Underwater Auto:`. */
 const WB_PRESET_LITERAL: Record<WbPreset, string> = {
   Daylight: '/ Daylight /',

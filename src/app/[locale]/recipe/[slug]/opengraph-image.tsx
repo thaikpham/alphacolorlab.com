@@ -66,7 +66,6 @@ export default async function OgImage({
   /* A row still on the old `SCL-PP-048: Huế Silk` shape shows its code above
      the title, which drops it; the new name carries the code itself. */
   const legacyName = recipe.name.includes(': ');
-  const look = null; // CL removed
 
   return new ImageResponse(
     (

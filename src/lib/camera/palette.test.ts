@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import {
   CHANNEL_HUE,
   WB_HUE,
-  accentFor,
   accentHex,
   gamutMap,
   inSrgb,

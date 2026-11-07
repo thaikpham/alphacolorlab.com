@@ -3,8 +3,7 @@ import { describe, expect, it } from 'vitest';
 import recipesSeed from '../../../data/recipes.seed.json';
 import { PP_GAMMA } from '@/lib/camera/constants';
 import type { Recipe } from '@/lib/camera/schema';
-import { markBase, markCode, markInitials, MARK_HUES } from './mark';
-import { paletteFor } from '@/lib/camera/palette';
+import { markBase, markCode, markInitials } from './mark';
 
 const seed = recipesSeed as unknown as Recipe[];
 
