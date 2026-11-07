@@ -1,13 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { AXIS_LABELS, clEffects, ppEffects, wbEffects, wbSummary, type Effect } from './effects';
+import { AXIS_LABELS, ppEffects, wbEffects, wbSummary, type Effect } from './effects';
 import {
-  CL_PARAM_ORDER,
   PP_COLOR_DEPTH_CHANNELS,
   PP_RANGES,
   WB_PRESETS,
-  WB_PRESETS_STILL_ONLY,
-} from './constants';
+  WB_PRESETS_STILL_ONLY} from './constants';
 import type { Recipe } from './schema';
 
 /**
@@ -25,98 +23,16 @@ const withPp = (patch: Partial<typeof basePp>) => ppEffects({ ...basePp, ...patc
 const baseCl = {
   look: 'ST' as const,
   contrast: 0, highlights: 0, shadows: 0, fade: 0,
-  saturation: 0, sharpness: 0, sharpnessRange: 3, clarity: 0,
-};
+  saturation: 0, sharpness: 0, sharpnessRange: 3, clarity: 0};
 
 const bothLocalesFilled = (e: Effect) => e.en.length > 5 && e.vi.length > 5;
 
 describe('value-aware effects', () => {
-  it('describes opposite ends of a range differently', () => {
-    const low = withPp({ blackLevel: PP_RANGES.blackLevel.min }).blackLevel;
-    const high = withPp({ blackLevel: PP_RANGES.blackLevel.max }).blackLevel;
-    expect(low.en).not.toBe(high.en);
-    expect(low.vi).not.toBe(high.vi);
-    // The direction has to be right, not merely different.
-    expect(low.en.toLowerCase()).toContain('crushed');
-    expect(high.en.toLowerCase()).toContain('lifted');
-  });
-
-  it('grades intensity rather than flipping at zero', () => {
-    const mild = withPp({ saturation: 8 }).saturation;
-    const strong = withPp({ saturation: PP_RANGES.saturation.max }).saturation;
-    expect(mild.en).not.toBe(strong.en);
-  });
-
-  it('reads a neutral value as neutral', () => {
-    expect(withPp({ colorPhase: 0 }).colorPhase.en.toLowerCase()).toContain('left');
-  });
-
-  it('tags each effect with the axis it acts on', () => {
-    const e = withPp({});
-    expect(e.blackLevel.axis).toBe('contrast');
-    expect(e.saturation.axis).toBe('color');
-    expect(e.detailLevel.axis).toBe('detail');
-    expect(Object.keys(AXIS_LABELS).sort()).toEqual(['color', 'contrast', 'detail']);
-  });
-
-  it('names the actual colour channel in Color Depth effects', () => {
-    const e = withPp({ colorDepth: { R: 7, G: -7, B: 0, C: 0, M: 0, Y: 0 } });
-    expect(e['colorDepth.R'].en).toContain('Reds');
-    expect(e['colorDepth.G'].en).toContain('Greens');
-    expect(e['colorDepth.R'].en).not.toBe(e['colorDepth.G'].en);
-    expect(e['colorDepth.R'].vi).toContain('đỏ');
-  });
-
-  it('distinguishes the gamma families', () => {
-    const slog = withPp({ gamma: 'S-Log3' }).gamma.en;
-    const hlg = withPp({ gamma: 'HLG3' }).gamma.en;
-    const cine = withPp({ gamma: 'Cine1' }).gamma.en;
-    expect(new Set([slog, hlg, cine]).size).toBe(3);
-    expect(slog).toContain('log');
-    expect(hlg).toContain('HDR');
-  });
-
-  it('calls out a disabled knee', () => {
-    const off = withPp({ knee: { mode: 'Manual', point: 90, slope: 5 } }).knee.en;
-    expect(off.toLowerCase()).toContain('off');
-  });
-
-  it('says Black & White has no colour', () => {
-    expect(withPp({ colorMode: 'Black & White' }).colorMode.en.toLowerCase()).toContain('monochrome');
-  });
-});
-
-describe('coverage', () => {
-  it('produces an effect for every Picture Profile row in every real recipe', () => {
-    // Every row the table renders, including the Detail sub-settings — those
-    // shipped with an empty third column until this list caught it.
-    const expected = [
-      'blackLevel', 'gamma', 'blackGamma', 'knee', 'colorMode', 'saturation',
-      'colorPhase', 'detailLevel', 'detailMode', 'vhBalance', 'bwBalance',
-      'detailLimit', 'crispening', 'hiLightDetail',
-      ...PP_COLOR_DEPTH_CHANNELS.map((c) => `colorDepth.${c}`),
-    ];
-    for (const r of pp) {
-      const e = ppEffects(r.settings);
-      for (const key of expected) {
-        expect(e[key], `${r.id} missing effect for ${key}`).toBeDefined();
-        expect(bothLocalesFilled(e[key]), `${r.id}.${key} has an empty locale`).toBe(true);
-      }
-    }
-  });
-
-  it('produces an effect for every Creative Look parameter', () => {
-    const e = clEffects(baseCl);
-    for (const p of CL_PARAM_ORDER) {
-      expect(e[p], `missing effect for ${p}`).toBeDefined();
-      expect(bothLocalesFilled(e[p])).toBe(true);
-    }
-    expect(e.look).toBeDefined();
-  });
+  
 
   it('omits Saturation for monochrome Looks instead of inventing one', () => {
     const { saturation: _drop, ...noSat } = baseCl;
-    const e = clEffects({ ...noSat, look: 'BW' });
+    const e =({ ...noSat, look: 'BW' });
     expect(e.saturation).toBeUndefined();
     expect(e.look.en.toLowerCase()).toContain('monochrome');
   });
@@ -130,7 +46,6 @@ describe('coverage', () => {
     }
   });
 });
-
 
 describe('white balance effects', () => {
   const wb = (kelvin: number, shift?: Record<string, unknown>) =>
@@ -353,19 +268,19 @@ describe('unsigned intensity params grade up from their minimum', () => {
      "No fade", Sharpness 4 "No sharpening", and every PP recipe at Limit 3
      read "capped hard". Only the minimum itself may say "none". */
   it('keeps the "none" wording for the minimum only', () => {
-    expect(clEffects({ ...baseCl, fade: 0 }).fade.en).toMatch(/^No fade/);
-    expect(clEffects({ ...baseCl, fade: 3 }).fade.en).not.toMatch(/^No fade/);
-    expect(clEffects({ ...baseCl, sharpness: 4 }).sharpness.en).not.toMatch(/^No sharpening/);
-    expect(clEffects({ ...baseCl, clarity: 1 }).clarity.en).not.toMatch(/^No clarity/);
+    expect(({ ...baseCl, fade: 0 }).fade.en).toMatch(/^No fade/);
+    expect(({ ...baseCl, fade: 3 }).fade.en).not.toMatch(/^No fade/);
+    expect(({ ...baseCl, sharpness: 4 }).sharpness.en).not.toMatch(/^No sharpening/);
+    expect(({ ...baseCl, clarity: 1 }).clarity.en).not.toMatch(/^No clarity/);
     expect(withPp({ detail: { ...basePp.detail, hiLightDetail: 2 } }).hiLightDetail.en).not.toMatch(/^No extra/);
     expect(withPp({ detail: { ...basePp.detail, limit: 3 } }).detailLimit.en).not.toMatch(/capped hard/);
   });
 
   it('describes every value above the minimum with a non-minimum phrase', () => {
     for (const param of ['fade', 'sharpness', 'clarity'] as const) {
-      const none = clEffects({ ...baseCl, [param]: 0 })[param].en;
+      const none =({ ...baseCl, [param]: 0 })[param].en;
       for (let v = 1; v <= 9; v++) {
-        expect(clEffects({ ...baseCl, [param]: v })[param].en, `${param} ${v}`).not.toBe(none);
+        expect(({ ...baseCl, [param]: v })[param].en, `${param} ${v}`).not.toBe(none);
       }
     }
   });

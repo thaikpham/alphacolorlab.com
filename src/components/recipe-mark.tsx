@@ -132,94 +132,6 @@ function Sprockets({ d, width, edge }: { d: Dims; width: number; edge: 'top' | '
   );
 }
 
-function Cartridge({ d, c, ink }: { d: Dims; c: Record<string, string>; ink: Ink }) {
-  const px = scale(d);
-  const bodyW = d.size === 'xs' ? 44 : d.size === 's' ? 72 : d.size === 'sm' ? 84 : px(100);
-  const lip = Math.max(2, px(4));
-  const knobW = px(22);
-  const knobH = Math.max(4, px(10));
-  const capH = Math.max(4, px(8));
-  const tongueW = d.size === 'xs' ? 16 : d.size === 's' ? 32 : d.size === 'sm' ? 34 : px(44);
-  const tongueH = d.size === 'xs' ? 20 : d.size === 's' ? 36 : d.size === 'sm' ? 44 : px(56);
-  const x0 = Math.round((d.w - (bodyW + 2 * lip + tongueW)) / 2);
-  const bodyL = x0 + lip;
-  const labelT = knobH + capH;
-  const labelH = d.h - knobH - 2 * capH - 4;
-  const holeH = Math.max(2, px(4));
-  const frameT = holeH + px(7);
-  const tuck = px(6);
-  const cap = (top: number): CSSProperties => ({
-    left: x0,
-    top,
-    width: bodyW + 2 * lip,
-    height: capH,
-    borderRadius: px(3),
-    background: METAL,
-    boxShadow: LIFT,
-  });
-
-  return (
-    <>
-      {/* The spool's knob. */}
-      <span
-        className="absolute"
-        style={{
-          left: bodyL + Math.round((bodyW - knobW) / 2),
-          top: 0,
-          width: knobW,
-          height: knobH + 2,
-          borderRadius: `${px(3)}px ${px(3)}px 0 0`,
-          background: METAL,
-        }}
-      />
-      {/* The leader: three frames, the recipe's highlight, mid and shadow. */}
-      <span
-        className="absolute overflow-hidden"
-        style={{
-          left: bodyL + bodyW - tuck,
-          top: labelT + px(16),
-          width: tongueW + tuck,
-          height: tongueH,
-          borderRadius: `0 ${px(3)}px ${px(3)}px 0`,
-          background: FILM,
-          boxShadow: LIFT,
-        }}
-      >
-        <Sprockets d={d} width={tongueW} edge="top" />
-        <Sprockets d={d} width={tongueW} edge="bottom" />
-        <span
-          className="absolute flex"
-          style={{ left: tuck + px(4), right: px(4), top: frameT, height: tongueH - 2 * frameT, gap: Math.max(2, px(3)) }}
-        >
-          <span className="flex-1" style={{ background: c.highlight }} />
-          <span className="flex-1" style={{ background: c.mid }} />
-          <span className="flex-1" style={{ background: c.shadow }} />
-        </span>
-      </span>
-      <span className="absolute" style={cap(knobH)} />
-      <span className="absolute" style={cap(labelT + labelH)} />
-      {/* The label, lit from the left like a cylinder. */}
-      <span
-        className={`absolute flex flex-col items-start overflow-hidden ${d.size === 'xs' ? 'justify-center' : 'justify-between'}`}
-        style={{
-          left: bodyL,
-          top: labelT,
-          width: bodyW,
-          height: labelH,
-          padding: `${px(10)}px ${px(8)}px`,
-          background: LABEL_WHITE,
-          boxShadow: LIFT,
-        }}
-      >
-        {d.showCode ? <Small keepCase>{ink.base}</Small> : null}
-        <Initials d={d}>{ink.initials}</Initials>
-        {d.size === 'xs' ? null : <Sticker d={d} c={c} />}
-        {d.showId ? <Small>{ink.code}</Small> : null}
-      </span>
-    </>
-  );
-}
-
 /* Per size: the reel's diameter, its hub's, and a window's radius. */
 const REEL: Readonly<Record<MarkSize, { d: number; hub: number; win: number }>> = {
   xs: { d: 52, hub: 34, win: 4 },
@@ -344,7 +256,7 @@ export function RecipeMark({
   const ink: Ink = { initials: markInitials(recipe.name), code: markCode(recipe.id), base: markBase(recipe) };
   return (
     <div aria-hidden="true" className={`relative shrink-0 ${className}`} style={{ width: d.w, height: d.h }}>
-      {recipe.format === 'cl' ? <Cartridge d={d} c={c} ink={ink} /> : <Reel d={d} c={c} ink={ink} />}
+      <Reel d={d} c={c} ink={ink} />
     </div>
   );
 }

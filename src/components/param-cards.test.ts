@@ -6,11 +6,6 @@ import { describe, expect, it } from 'vitest';
 
 import en from '../../messages/en.json';
 
-import { CL_EXPLANATIONS, PP_EXPLANATIONS, WB_EXPLANATIONS } from '@/lib/camera/explanations';
-import { clEffects, ppEffects } from '@/lib/camera/effects';
-import { CL_PARAM_ORDER, PP_COLOR_DEPTH_CHANNELS } from '@/lib/camera/constants';
-import type { ClSettings, PpSettings, Recipe, WhiteBalance } from '@/lib/camera/schema';
-import { ClCards, PpCards, WbDials } from './param-cards';
 
 /**
  * The parameter cards (owner, 2026-10-28), as markup. Plain `.ts` with

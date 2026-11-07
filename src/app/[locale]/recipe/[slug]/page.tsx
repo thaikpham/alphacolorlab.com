@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { SiteHeader } from '@/components/site-header';
 import { RecipeGallery } from '@/components/recipe-gallery';
 import { RecipeComments } from '@/components/recipe-comments';
-import { ClCards, PpCards, WbPanel } from '@/components/param-cards';
+import { PpCards, WbPanel } from '@/components/param-cards';
 import { RecipeCard } from '@/components/recipe-card';
 import { RecipeMark } from '@/components/recipe-mark';
 import { RecipeStructuredData } from '@/components/structured-data';
@@ -14,7 +14,6 @@ import { MoreForSituation } from '@/components/more-for-situation';
 import { Link, permanentRedirect, redirect } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { accentCss } from '@/lib/camera/color';
-import { CREATIVE_LOOKS } from '@/lib/camera/constants';
 import { getSonyCameras } from '@/lib/cameras/data';
 import { cameraOptions, cameraRows, cameraWarnings } from '@/lib/cameras/my-camera';
 import {
@@ -127,8 +126,6 @@ export default async function RecipePage({
   const situationLabels = Object.fromEntries(
     SITUATIONS.map((id) => [id, tBrowse(`situations.${id}`)]),
   ) as Record<SituationId, string>;
-  const look =
-    recipe.format === 'cl' ? CREATIVE_LOOKS.find((l) => l.code === recipe.settings.look) : null;
   const shareUrl = `${SITE_URL}${
     locale === routing.defaultLocale ? '' : `/${locale}`
   }/recipe/${slug}`;
@@ -195,11 +192,6 @@ export default async function RecipePage({
                 {recipe.name.includes(': ') && <span className="chip label text-ink">{recipe.id}</span>}
                 {/* The code is uppercase on the camera; the Look's name is not,
                     and in `.label` "BW (Black & White)" ran to four words. */}
-                {look && (
-                  <span className="chip label bg-accent-900 text-accent-200">
-                    CL: {look.code} <span className="normal-case">({look.label})</span>
-                  </span>
-                )}
                 {recipe.format === 'pp' && (
                   <span className="chip label bg-accent-900 text-accent-200">PICTURE PROFILE</span>
                 )}
@@ -232,11 +224,7 @@ export default async function RecipePage({
               {t('paramsLabel')}
             </h2>
             <WbPanel recipe={recipe} locale={locale} />
-            {recipe.format === 'pp' ? (
-              <PpCards s={recipe.settings} locale={locale} />
-            ) : (
-              <ClCards s={recipe.settings} locale={locale} />
-            )}
+            <PpCards s={recipe.settings} locale={locale} />
             {/* What the cards mean, and what has been written about this
                 recipe — computed from the published pages, never authored
                 here (ADR 0002). */}

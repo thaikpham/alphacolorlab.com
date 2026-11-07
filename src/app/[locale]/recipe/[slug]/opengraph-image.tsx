@@ -1,6 +1,5 @@
 import { ImageResponse } from 'next/og';
 import { accentHex } from '@/lib/camera/color';
-import { CREATIVE_LOOKS } from '@/lib/camera/constants';
 import type { Locale } from '@/i18n/routing';
 import { listSlugs } from '@/lib/recipes/source';
 import { resolveRecipeSlug } from '@/lib/recipes/slug-resolve';
@@ -67,8 +66,7 @@ export default async function OgImage({
   /* A row still on the old `SCL-PP-048: Huế Silk` shape shows its code above
      the title, which drops it; the new name carries the code itself. */
   const legacyName = recipe.name.includes(': ');
-  const look =
-    recipe.format === 'cl' ? CREATIVE_LOOKS.find((l) => l.code === recipe.settings.look) : null;
+  const look = null; // CL removed
 
   return new ImageResponse(
     (
@@ -93,7 +91,7 @@ export default async function OgImage({
             ALPHA · COLORLAB
           </div>
           <div style={{ display: 'flex', fontSize: 22, letterSpacing: 4, opacity: 0.65 }}>
-            {recipe.format === 'cl' ? recipe.settings.look : 'PICTURE PROFILE'}
+            PICTURE PROFILE
           </div>
         </div>
 

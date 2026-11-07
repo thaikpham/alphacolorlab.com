@@ -40,7 +40,6 @@
  * anywhere" and "no Color Depth item anywhere" were established.
  */
 
-import { CREATIVE_LOOKS, type ClParam } from '@/lib/camera/constants'
 import type { CapabilityKey, PpColorMode, PpGamma, PpMenuItem, WbPreset } from './keys'
 
 export type ModeScope = 'photo' | 'video' | 'both'
@@ -132,17 +131,6 @@ const ITEM_LIST = { after: 'Items of the picture profile', before: 'To copy the 
 const GAMMA_LIST = { after: PP_ITEM_LITERAL.Gamma, before: PP_ITEM_LITERAL['Black Gamma'] }
 const COLOR_MODE_LIST = { after: PP_ITEM_LITERAL['Color Mode'], before: PP_ITEM_LITERAL.Saturation }
 
-const CL_ADJUST_LITERAL: Record<ClParam, string> = {
-  contrast: 'Contrast: The higher the value selected',
-  highlights: 'Highlights: Adjusts the brightness of the bright areas',
-  shadows: 'Shadows: Adjusts the darkness of the dark areas',
-  fade: 'Fade: Adjusts the degree of fade',
-  saturation: 'Saturation: The higher the value selected, the more vivid the color',
-  sharpness: 'Sharpness: Adjusts the sharpness',
-  sharpnessRange: 'Sharpness Range: Adjust the range where the sharpness effect is applied',
-  clarity: 'Clarity: Adjusts the degree of clarity',
-}
-
 const SHARPNESS_RANGE_MOVIE = 'In the movie mode, [Sharpness Range] cannot be adjusted.'
 
 /** White Balance's option list prints as one run: `Auto / Auto: Ambience / … / Underwater Auto:`. */
@@ -173,31 +161,6 @@ const MENU_PATH: Record<MenuPath, string> = {
 // ---------------------------------------------------------------------------
 // Claim builders — one topic shape each
 // ---------------------------------------------------------------------------
-
-/**
- * A Creative Look topic. `looks` is how this page prints a Look: `ST(Standard):`
- * on most bodies, bare `ST:` on the ILCE-6700.
- */
-function creativeLookClaims(looks: 'code-and-name' | 'code'): Claim[] {
-  const claims: Claim[] = [
-    { capability: 'creative-look', status: 'supported', match: ['[Color/Tone] → [Creative Look]'] },
-  ]
-  for (const look of CREATIVE_LOOKS) {
-    const literal = looks === 'code-and-name' ? `${look.code}(${look.label}):` : `${look.code}:`
-    claims.push({ capability: `cl.look:${look.code}`, status: 'supported', match: [literal] })
-  }
-  for (const [param, literal] of Object.entries(CL_ADJUST_LITERAL) as [ClParam, string][]) {
-    if (param === 'sharpnessRange') {
-      claims.push(
-        { capability: 'cl.adjust:sharpnessRange', status: 'supported', mode: 'photo', match: [literal] },
-        { capability: 'cl.adjust:sharpnessRange', status: 'unsupported', mode: 'video', match: [SHARPNESS_RANGE_MOVIE] },
-      )
-    } else {
-      claims.push({ capability: `cl.adjust:${param}`, status: 'supported', match: [literal] })
-    }
-  }
-  return claims
-}
 
 /**
  * A Creative Style topic: the body's style menu is Creative Style. That is a
@@ -325,14 +288,6 @@ function olderBody(camera: string, root: string, creativeStyle: string, pictureP
 
 export const EVIDENCE_SOURCES: readonly EvidenceSource[] = [
   // ILCE-7M4 — the older page template (TP… ids)
-  {
-    id: 'ILCE-7M4/creative-look',
-    camera: 'ILCE-7M4',
-    url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640837.html',
-    topic: STILL_MOVIE('Creative Look'),
-    scope: 'both',
-    claims: creativeLookClaims('code-and-name'),
-  },
   {
     id: 'ILCE-7M4/white-balance',
     camera: 'ILCE-7M4',
