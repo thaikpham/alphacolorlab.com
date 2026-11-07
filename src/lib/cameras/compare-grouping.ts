@@ -14,7 +14,7 @@ export interface SpecSectionGroup {
   specKeys: string[];
 }
 
-/** The camera, lens and accessory groups, which predate the audio catalogue. */
+/** The camera, lens and accessory spec groups. */
 const IMAGING_GROUPS: SpecSectionGroup[] = [
   {
     id: 'sensorOptics',
