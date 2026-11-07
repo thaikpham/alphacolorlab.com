@@ -26,15 +26,13 @@ import type { CapabilityKey } from './keys'
  */
 
 const recipes = JSON.parse(readFileSync('data/recipes.seed.json', 'utf8')) as Recipe[]
-const cl = recipes.filter((r) => r.format === 'cl')
 const pp = recipes.filter((r): r is Extract<Recipe, { format: 'pp' }> => r.format === 'pp')
 const sCinetone = pp.find((r) => r.settings.gamma === 'S-Cinetone')!
 
 const OLDER = ['ILCE-7M3', 'ILCE-6400', 'ILCE-7C', 'ILCE-7RM3A', 'ILCE-7RM4A', 'ZV-E10', 'DSC-RX100M7', 'ZV-1']
 
 describe('fixtures this file relies on', () => {
-  it('the seed has Creative Look recipes and an S-Cinetone Picture Profile', () => {
-    expect(cl.length).toBeGreaterThan(0)
+  it('the seed has an S-Cinetone Picture Profile', () => {
     expect(sCinetone).toBeDefined()
   })
 
@@ -53,21 +51,12 @@ describe('a7 III', () => {
   const caps = capabilitiesForModel('ILCE-7M3')
 
   it('is confirmed on Creative Style with a Picture Profile, and its lists are complete', () => {
-    expect(caps.creativeLook).toBe(false)
+    expect(caps.creativeStyle).toBe(true)
     expect(caps.pictureProfile).toBe(true)
     expect(caps.gammas).not.toBeNull()
     expect(caps.colorModes).not.toBeNull()
     expect(caps.gammas).not.toContain('S-Cinetone')
     expect(caps.colorModes).not.toContain('S-Cinetone')
-  })
-
-  it('cannot install a single Creative Look recipe', () => {
-    for (const r of cl) {
-      expect(installability(r, caps), r.id).toEqual({
-        installable: false,
-        reasons: [{ setting: 'creativeLook', label: 'Creative Look', confirmed: true }],
-      })
-    }
   })
 
   it('cannot install an S-Cinetone Picture Profile — one line, not one per dial', () => {
@@ -90,9 +79,8 @@ describe('S-Cinetone', () => {
     expect(installability(sCinetone, caps)).toEqual({ installable: true, reasons: [] })
   })
 
-  it('a7 IV has it, and Creative Look', () => {
+  it('a7 IV has it', () => {
     const caps = capabilitiesForModel('ILCE-7M4')
-    expect(caps.creativeLook).toBe(true)
     expect(caps.gammas).toContain('S-Cinetone')
     expect(caps.colorModes).toContain('S-Cinetone')
     for (const r of recipes) expect(installability(r, caps).installable, r.id).toBe(true)
@@ -132,9 +120,8 @@ describe('no data shows everything', () => {
 describe('the older-camera choice (Creative Style menu)', () => {
   const caps = capabilitiesForChoice('older-creative-style')
 
-  it('hides every Creative Look recipe', () => {
+  it('is the older-camera capabilities', () => {
     expect(caps).toBe(OLDER_CREATIVE_STYLE_CAMERA)
-    for (const r of cl) expect(installability(r, caps).installable, r.id).toBe(false)
   })
 
   it('leaves S-Cinetone installable, with a warning flagged as unconfirmed', () => {
@@ -183,11 +170,8 @@ describe('from claims to capabilities', () => {
     expect(capabilitiesFromClaims(map(all.filter((c) => c.capability !== 'pp.gamma:Cine4'))).gammas).toBeNull()
   })
 
-  it('Creative Style confirms no Creative Look; a Creative Look support outranks it', () => {
-    expect(capabilitiesFromClaims(map([claim('creative-style', 'supported')])).creativeLook).toBe(false)
-    expect(
-      capabilitiesFromClaims(map([claim('creative-style', 'supported'), claim('creative-look', 'supported')])).creativeLook,
-    ).toBe(true)
+  it('reads a Creative Style body off its claim', () => {
+    expect(capabilitiesFromClaims(map([claim('creative-style', 'supported')])).creativeStyle).toBe(true)
   })
 
   it('lists hold constants.ts spellings only', () => {
