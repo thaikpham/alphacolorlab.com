@@ -271,7 +271,7 @@ export interface SonyCamera {
   sku: string;
   name: string;
   fullName: string;
-  category: 'camera' | 'lens' | 'accessory' | 'audio';
+  category: 'camera' | 'lens' | 'accessory';
   subCategory1: string;
   subCategory2: string;
   priceVnd: number;

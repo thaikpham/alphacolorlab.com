@@ -49,11 +49,10 @@ const withStored = (choices: readonly string[], stored: string) =>
   choices.includes(stored) ? [...choices] : [stored, ...choices];
 
 /** The catalogue's category enum, read back through the message catalogue. */
-const CATEGORY_KEY: Record<SonyCamera['category'], 'catCamera' | 'catLens' | 'catAccessory' | 'catAudio'> = {
+const CATEGORY_KEY: Record<SonyCamera['category'], 'catCamera' | 'catLens' | 'catAccessory'> = {
   camera: 'catCamera',
   lens: 'catLens',
   accessory: 'catAccessory',
-  audio: 'catAudio',
 };
 
 /**
@@ -138,7 +137,7 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
      `camera`, so a PE admin's first create always answered 403. Derived, like
      the tab, because the role arrives after the first paint. */
   const allowedCats = categoriesFor(adminRole);
-  const fallbackCat: ProductCategoryId = activeTab === 'pe' ? 'audio' : 'camera';
+  const fallbackCat: ProductCategoryId = 'camera';
   const newCat: ProductCategoryId =
     pickedCat && allowedCats.includes(pickedCat)
       ? pickedCat
@@ -156,7 +155,7 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
   /* What the open product may be refiled as: the role's categories within
      the open division, so a save can never move it out of the list it is in.
      A PE admin has one — audio — and sees it as text, not as a select. */
-  const divisionCats = allowedCats.filter((c) => (activeTab === 'pe' ? c === 'audio' : c !== 'audio'));
+  const divisionCats = allowedCats;
 
   const selected = useMemo(
     () => products.find((p) => p.id === selectedId) ?? null,
@@ -185,9 +184,9 @@ export function AdminEditor({ products: initialProducts, initialTab }: Props) {
   const confirmDiscard = () => !dirty || window.confirm(t('discardConfirm'));
 
   const categoryFiltered = useMemo(() => {
-    if (activeTab === 'di') {
-      return products.filter((p) => p.category !== 'audio');
-    }
+  const categoryFiltered = useMemo(() => {
+    return products;
+  }, [products]);
     return products.filter((p) => p.category === 'audio');
   }, [products, activeTab]);
 

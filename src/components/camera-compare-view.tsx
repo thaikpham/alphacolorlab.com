@@ -290,7 +290,7 @@ export function CameraCompareView({ initialCameras, selectedIds }: CameraCompare
     if (next.length > 0) {
       router.replace(`/cameras/compare?ids=${next.join(',')}`);
     } else {
-      router.push(compareExitPath(comparedCameras.filter((c) => c.id === id)));
+      router.push(compareExitPath());
     }
   };
 
@@ -331,7 +331,7 @@ export function CameraCompareView({ initialCameras, selectedIds }: CameraCompare
      `/${locale}/cameras` was `/en/cameras` on English, which the middleware
      redirects on every click and prefetch. */
   const backLink = (
-    <Link href={compareExitPath(comparedCameras)} className="btn-glass">
+    <Link href={compareExitPath()} className="btn-glass">
       {t('backToCatalog')}
     </Link>
   );

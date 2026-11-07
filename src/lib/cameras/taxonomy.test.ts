@@ -68,10 +68,6 @@ describe('the catalogue taxonomy', () => {
     expect(specKindFor('camera', 'Full Frame')).toBe('camera');
     expect(specKindFor('lens', 'APS-C')).toBe('lens');
     expect(specKindFor('accessory', 'Power')).toBe('accessory');
-    /* Not a guess from a substring: an audio sub-category the taxonomy does not
-       know has no kind. The create route used to regex "loa" out of it. */
-    expect(specKindFor('audio', 'Loa kéo')).toBeNull();
-    expect(specKindFor('audio', '')).toBeNull();
   });
 
   it('pairs audio’s second level with its first', () => {

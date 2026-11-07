@@ -62,7 +62,7 @@ function expectMissingMatchesNulls(specs: ProductSpecs) {
 }
 
 const fx3 = () => byId('sony-ilme-fx3a-q-ap2');
-const headphone = () => structuredClone(catalogue.find((p) => p.category === 'audio' && p.subCategory1 === 'Tai nghe')!);
+// audio category removed
 
 describe('productPatch — the fields that were read-only', () => {
   it('changes SKU, price, URL and placement in one save, as columns', () => {
@@ -150,7 +150,7 @@ describe('productPatch — the fields that were read-only', () => {
   });
 
   it('lets the link be cleared — an empty url is the catalogue’s “no page”', () => {
-    /* 20 audio rows and 6 cameras ship with `url: ''`; both surfaces test it
+    /* Some products ship with `url: ''`; both surfaces test it
        before linking. A made-up sony.com.vn link would read as sourced. */
     expect(expectPatch(productPatch({ url: '  ' }, fx3(), anyone))).toEqual({ url: '' });
   });
@@ -184,7 +184,6 @@ describe('productPatch — the fields that were read-only', () => {
       { subCategory2: 'GM' },
       /* "Cinema Line" is not a lens line. */
       { category: 'lens' },
-      { category: 'audio', subCategory1: 'Loa', subCategory2: 'Nhét tai' },
     ]) {
       expect(productPatch(body, fx3(), anyone), JSON.stringify(body)).toMatchObject({
         ok: false,
@@ -502,15 +501,6 @@ describe('productCreate', () => {
     expect(expectCreated(productCreate({ ...body, priceVnd: undefined }, anyone)).priceVnd).toBe(0);
   });
 
-  it('derives the spec kind from the taxonomy, not by searching the label for "loa"', () => {
-    const speaker = expectCreated(
-      productCreate({ ...body, sku: '', category: 'audio', subCategory1: 'Loa', subCategory2: 'Karaoke' }, anyone),
-    );
-    expect(speaker.specs?.kind).toBe('speaker');
-    expect(
-      productCreate({ ...body, sku: '', category: 'audio', subCategory1: 'Loa kéo', subCategory2: '' }, anyone),
-    ).toMatchObject({ ok: false, error: 'invalidPlacement' });
-  });
 
   it('builds an all-gaps block with the body’s values applied', () => {
     const p = expectCreated(productCreate({ ...body, specs: { weight: 'Khoảng 600 g' } }, anyone));
@@ -537,30 +527,13 @@ describe('productCreate', () => {
     });
     expect(productCreate({ ...body, name: ' ' }, anyone)).toMatchObject({ ok: false, error: 'nameRequired' });
     expect(productCreate({ ...body, sku: 1 }, anyone)).toMatchObject({ ok: false, error: 'badRequest' });
-    expect(productCreate(body, peOnly)).toMatchObject({ ok: false, error: 'notAllowedForCategory', status: 403 });
   });
 
-  it('checks the role before the placement, so a refused category reads as one', () => {
-    expect(productCreate({ ...body, subCategory1: 'nonsense' }, peOnly)).toMatchObject({
-      ok: false,
-      error: 'notAllowedForCategory',
-    });
-  });
 
   it('leaves the link empty rather than inventing one', () => {
     expect(expectCreated(productCreate({ ...body, url: undefined }, anyone)).url).toBe('');
   });
 
-  it('allows an audio product without a SKU, and folds diacritics into its id', () => {
-    const p = expectCreated(
-      productCreate(
-        { ...body, sku: '', name: 'Tai nghe chống ồn', category: 'audio', subCategory1: 'Tai nghe', subCategory2: 'Choàng đầu' },
-        peOnly,
-      ),
-    );
-    expect(p.id).toBe('sony-tai-nghe-chong-on');
-    expect(p.specs?.kind).toBe('headphone');
-  });
 
   it('takes the id from the SKU', () => {
     expect(expectCreated(productCreate({ ...body, sku: 'ILME-FX5B/Q FS1' }, anyone)).id).toBe('sony-ilme-fx5b-q-fs1');

@@ -88,16 +88,13 @@ describe('officialUrl', () => {
 
 describe('productPath', () => {
   it('sends products to their routes', () => {
-    expect(productPath({ id: 'sony-ilce-7m4', category: 'camera' })).toBe('/cameras/sony-ilce-7m4');
-    expect(productPath({ id: 'sony-sel2470gm2', category: 'lens' })).toBe('/cameras/sony-sel2470gm2');
+    expect(productPath({ id: 'sony-ilce-7m4' })).toBe('/cameras/sony-ilce-7m4');
+    expect(productPath({ id: 'sony-sel2470gm2' })).toBe('/cameras/sony-sel2470gm2');
   });
 });
 
 describe('compareExitPath', () => {
-  
-
-  it('leaves anything else for the camera catalogue', () => {
-    expect(compareExitPath([{ category: 'lens' }])).toBe('/cameras');
-    expect(compareExitPath([])).toBe('/cameras');
+  it('goes to the camera catalogue', () => {
+    expect(compareExitPath()).toBe('/cameras');
   });
 });
