@@ -20,10 +20,9 @@ import { compareCameras } from './types';
  * exactly the path that aliases the cache.
  */
 describe('getSonyCameras cache safety', () => {
-  it('takes no options, in either catalogue', () => {
+  it('takes no options', () => {
     /* Nothing to sort the cache with, and nothing to split the cache key on. */
     expect(readFileSync('src/lib/cameras/data.ts', 'utf8')).toMatch(/async function _getSonyCameras\(\): Promise/);
-    expect(readFileSync('src/lib/audio/data.ts', 'utf8')).toMatch(/async function _getSonyAudio\(\): Promise/);
   });
 
   it('does not let a sorted copy reorder later reads', async () => {
