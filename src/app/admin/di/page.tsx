@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 /**
- * Moved to `/admin/wiki?division=di`.
+ * Moved to `/admin/wiki`.
  *
  * The old English spelling of this screen. `/admin` is excluded from the
  * next-intl matcher now (see `src/proxy.ts`), so `/admin/di` no longer reaches
@@ -9,5 +9,5 @@ import { redirect } from 'next/navigation';
  * Its Vietnamese twin `/vi/admin/di` is handled inside the locale segment.
  */
 export default function MovedPage() {
-  redirect('/admin/wiki?division=di');
+  redirect('/admin/wiki');
 }

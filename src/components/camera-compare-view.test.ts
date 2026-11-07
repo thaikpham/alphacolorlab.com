@@ -109,67 +109,16 @@ describe('the difference filter', () => {
   });
 });
 
-const headphone = (id: string, driver: string): SonyCamera => ({
-  ...camera(id, 10_990_000, '10.990.000 đ'),
-  category: 'audio',
-  subCategory1: 'Tai nghe',
-  subCategory2: 'Choàng đầu',
-  specs: {
-    kind: 'headphone',
-    specsSource: '',
-    specsMissing: [],
-    designType: 'Tai nghe choàng đầu không dây',
-    design: null,
-    noiseCancelling: 'Chống ồn | Xuyên âm',
-    driver,
-    frequencyResponse: null,
-    audioTech: null,
-    processor: null,
-    microphones: null,
-    connectivity: null,
-    battery: '30 giờ',
-    fastCharge: null,
-    smartFeatures: null,
-    spatialSound: null,
-    gameModes: null,
-    includedAccessories: null,
-    weight: '254 g',
-  },
-});
 
-describe('an audio compare', () => {
-  it('draws the headphone rows and offers the audio tab', () => {
-    const html = render([headphone('xm6', '30mm carbon'), headphone('xm5', '30mm')]);
-    expect(html).toContain(esc(en.cameras.sectionAudio));
-    expect(html).toContain(`>${en.cameras.tabAudio}<`);
-    expect(rowOf(html, en.cameras.specs.driver)).toContain(en.cameras.diffBadge);
-    expect(rowOf(html, en.cameras.specs.noiseCancelling)).not.toBeNull();
-  });
 
-  it('offers no audio tab to a camera-only compare', () => {
-    expect(render(pair)).not.toContain(`>${en.cameras.tabAudio}<`);
-  });
-});
 
 describe('leaving the compare page', () => {
-  it('opens an audio product on its own route, where it resolves', () => {
-    /* `/cameras/<audio-id>` is a 404: the camera reader excludes audio. */
-    const html = render([headphone('xm6', '30mm'), pair[0]]);
-    expect(html).toContain('href="/audio/xm6"');
-    expect(html).toContain('href="/cameras/a7iv"');
-    expect(html).not.toContain('href="/cameras/xm6"');
-  });
-
   it('goes back to the catalogue through the locale-aware link, with no prefix to redirect', () => {
     expect(render(pair)).toMatch(/<a href="\/cameras"[^>]*>[^<]*Back to catalogue/);
     expect(render(pair)).not.toContain('href="/en/cameras"');
   });
 
-  it('goes back to the audio catalogue when only headphones are compared', () => {
-    expect(render([headphone('xm6', '30mm'), headphone('xm5', '30mm')])).toMatch(
-      /<a href="\/audio"[^>]*>[^<]*Back to catalogue/,
-    );
-  });
+  
 });
 
 describe('the page head', () => {

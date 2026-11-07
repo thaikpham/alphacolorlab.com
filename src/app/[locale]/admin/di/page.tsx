@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 /**
- * Moved to `/admin/wiki?division=di`.
+ * Moved to `/admin/wiki`.
  *
  * Four routes differed only in the `initialTab` they handed the product editor. The division is a search param now.
  *
@@ -20,5 +20,5 @@ import { redirect } from 'next/navigation';
 export const dynamic = 'force-dynamic';
 
 export default function MovedPage() {
-  redirect('/admin/wiki?division=di');
+  redirect('/admin/wiki');
 }

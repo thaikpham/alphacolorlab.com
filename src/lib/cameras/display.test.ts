@@ -12,9 +12,8 @@ const tVi = createTranslator({ locale: 'vi', messages: vi as AbstractIntlMessage
 
 describe('subCategoryLabel', () => {
   it('maps a stored Vietnamese value to the reader locale', () => {
-    expect(subCategoryLabel('Tai nghe', tEn)).toBe('Headphones');
     expect(subCategoryLabel('Máy ảnh Alpha', tEn)).toBe('Alpha cameras');
-    expect(subCategoryLabel('Tai nghe', tVi)).toBe('Tai nghe');
+    expect(subCategoryLabel('Audio', tVi)).toBe('Âm thanh');
   });
 
   it('fixes the spelling of a technical name without translating it', () => {
@@ -74,7 +73,8 @@ describe('officialUrl', () => {
 
   /* The catalogue as shipped. A seed row that fails here is not a test to
      relax: it is a content fix for the database, listed in the audit notes. */
-  it.each(['cameras', 'audio'])('drops every image-list url in the %s seed', (seed) => {
+  it('drops every image-list url in the cameras seed', () => {
+    const seed = 'cameras';
     const products = JSON.parse(readFileSync(`data/sony-${seed}.seed.json`, 'utf8')) as SonyCamera[];
     for (const p of products) {
       const link = officialUrl(p.url);
@@ -86,21 +86,14 @@ describe('officialUrl', () => {
 });
 
 describe('productPath', () => {
-  it('sends audio to its own route, which is the only one that resolves it', () => {
-    expect(productPath({ id: 'sony-wh-1000xm6', category: 'audio' })).toBe('/audio/sony-wh-1000xm6');
-    expect(productPath({ id: 'sony-ilce-7m4', category: 'camera' })).toBe('/cameras/sony-ilce-7m4');
-    expect(productPath({ id: 'sony-sel2470gm2', category: 'lens' })).toBe('/cameras/sony-sel2470gm2');
+  it('sends products to their routes', () => {
+    expect(productPath({ id: 'sony-ilce-7m4' })).toBe('/cameras/sony-ilce-7m4');
+    expect(productPath({ id: 'sony-sel2470gm2' })).toBe('/cameras/sony-sel2470gm2');
   });
 });
 
 describe('compareExitPath', () => {
-  it('leaves a headphones-only compare for the audio catalogue', () => {
-    expect(compareExitPath([{ category: 'audio' }, { category: 'audio' }])).toBe('/audio');
-  });
-
-  it('leaves anything else for the camera catalogue', () => {
-    expect(compareExitPath([{ category: 'audio' }, { category: 'camera' }])).toBe('/cameras');
-    expect(compareExitPath([{ category: 'lens' }])).toBe('/cameras');
-    expect(compareExitPath([])).toBe('/cameras');
+  it('goes to the camera catalogue', () => {
+    expect(compareExitPath()).toBe('/cameras');
   });
 });

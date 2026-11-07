@@ -42,7 +42,6 @@ const SECURITY_HREF = '/admin/security';
 
 function roleNote(role: AdminRole, t: ReturnType<typeof useTranslations>): string | null {
   if (role === 'di') return t('roleDi');
-  if (role === 'pe') return t('rolePe');
   return null;
 }
 

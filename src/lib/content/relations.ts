@@ -78,7 +78,7 @@ export function productTarget(p: ProductSummary): LinkTarget {
     kind: 'product',
     id: p.id,
     title: productTitle(p),
-    href: p.category === 'audio' ? `/audio/${p.id}` : `/cameras/${p.id}`,
+    href: `/cameras/${p.id}`,
     ...(code ? { subtitle: code } : {}),
   }
 }

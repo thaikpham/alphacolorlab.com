@@ -30,7 +30,7 @@ const recipes = [
 ]
 const products = [
   { id: 'sony-ilce-7m4-bq-ap2', name: '7 IV', fullName: 'Sony 7 IV (ILCE-7M4/BQ AP2)', sku: 'ILCE-7M4/BQ AP2', category: 'camera' },
-  { id: 'sony-wh-1000xm6', name: 'WH-1000XM6', sku: '', category: 'audio' },
+  { id: 'test-accessory', name: 'Test Grip', sku: '', category: 'accessory' },
 ]
 
 describe('resolveRefs', () => {
@@ -43,7 +43,7 @@ describe('resolveRefs', () => {
         { kind: 'recipe', id: 'PP-001' },
         { kind: 'recipe', id: 'PP-002' },
         { kind: 'product', id: 'sony-ilce-7m4-bq-ap2' },
-        { kind: 'product', id: 'sony-wh-1000xm6' },
+        { kind: 'product', id: 'test-accessory' },
         { kind: 'knowledge', id: 'wb-shift' },
         { kind: 'article', id: 'iso-auto-min-ss' },
       ],
@@ -53,7 +53,7 @@ describe('resolveRefs', () => {
       '/recipe/pp-001-vivid-nostalgia-film',
       '/recipe/pp-002-cool-calm-forest',
       '/cameras/sony-ilce-7m4-bq-ap2',
-      '/audio/sony-wh-1000xm6',
+      '/cameras/test-accessory',
       '/learn/wb-shift',
       '/blog/iso-auto-min-ss',
     ])
@@ -62,7 +62,7 @@ describe('resolveRefs', () => {
     expect(links[2].title).toBe('Sony 7 IV')
     expect(links[2].subtitle).toBe('ILCE-7M4')
     // No full name on record: the short name stands.
-    expect(links[3].title).toBe('WH-1000XM6')
+    expect(links[3].title).toBe('Test Grip')
     expect(links[3].subtitle).toBeUndefined()
   })
 

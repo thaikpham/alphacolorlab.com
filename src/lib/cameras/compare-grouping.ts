@@ -1,4 +1,4 @@
-import { SPEC_ROWS, type SonyCamera } from './types';
+import type { SonyCamera } from './types';
 
 export type CompareTabId =
   | 'all'
@@ -6,16 +6,15 @@ export type CompareTabId =
   | 'sensorOptics'
   | 'videoIso'
   | 'afStab'
-  | 'physical'
-  | 'audio';
+  | 'physical';
 
 export interface SpecSectionGroup {
-  id: 'sensorOptics' | 'videoIso' | 'afStab' | 'physical' | 'audio';
+  id: 'sensorOptics' | 'videoIso' | 'afStab' | 'physical';
   labelKey: string;
   specKeys: string[];
 }
 
-/** The camera, lens and accessory groups, which predate the audio catalogue. */
+/** The camera, lens and accessory spec groups. */
 const IMAGING_GROUPS: SpecSectionGroup[] = [
   {
     id: 'sensorOptics',
@@ -63,24 +62,8 @@ const IMAGING_GROUPS: SpecSectionGroup[] = [
   },
 ];
 
-/**
- * Every headphone and speaker row the imaging groups do not already draw.
- *
- * Derived from `SPEC_ROWS` rather than listed, because a list is what lost
- * them: the compare page loads audio on purpose, and a WH-1000XM6 against an
- * XM5 compared Battery and Weight and nothing else, while sixteen rows sat in
- * the schema. A field added to either kind now joins the grid by itself.
- * `battery`, `weight` and `dimensions` stay in `physical`, so a body and a
- * headset still meet on one row for each.
- */
-const imagingKeys = new Set(IMAGING_GROUPS.flatMap((g) => g.specKeys));
-const AUDIO_SPEC_KEYS = [...new Set([...SPEC_ROWS.headphone, ...SPEC_ROWS.speaker])].filter(
-  (key) => !imagingKeys.has(key),
-);
-
 export const SPEC_SECTION_GROUPS: SpecSectionGroup[] = [
-  ...IMAGING_GROUPS,
-  { id: 'audio', labelKey: 'sectionAudio', specKeys: AUDIO_SPEC_KEYS },
+  ...IMAGING_GROUPS
 ];
 
 /** The most products one compare holds — the hard limit both pickers state. */

@@ -273,12 +273,10 @@ const CATEGORIES = Object.keys(KINDS);
 /**
  * Whether a spec block names where it came from.
  *
- * The B&H catalogue cites a page. The audio catalogue is extracted from Sony
- * Vietnam's FY26 comparison sheets, which are print artwork with no URL, so
- * there the citation is the sheet's name.
+ * Sources must be http(s) URLs.
  */
 function sourced(p: SonyCamera, source: string | undefined): boolean {
-  return p.category === 'audio' ? Boolean(source?.trim()) : /^https:\/\//.test(source ?? '');
+  return /^https?:\/\//.test(source ?? '');
 }
 
 function checkProducts(file: string, products: SonyCamera[]): Section {

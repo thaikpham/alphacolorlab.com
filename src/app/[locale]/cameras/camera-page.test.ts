@@ -68,7 +68,6 @@ describe('the camera page', () => {
   });
 });
 
-const audioPage = readFileSync('src/app/[locale]/audio/[id]/page.tsx', 'utf8');
 
 describe('the official link', () => {
   it('is drawn only for a url that officialUrl accepts', () => {
@@ -82,7 +81,6 @@ describe('the official link', () => {
 describe('the product pages', () => {
   it.each([
     ['camera', page],
-    ['audio', audioPage],
   ])('the %s page sizes to the dynamic viewport, never 100vh', (_kind, source) => {
     expect(source).not.toMatch(/\bmin-h-screen\b(?!-dynamic)/);
     expect(source).toContain('min-h-screen-dynamic');

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { AccessorySpecs, CameraSpecs, HeadphoneSpecs, SonyCamera } from '@/lib/cameras/types';
+import type { AccessorySpecs, CameraSpecs, SonyCamera } from '@/lib/cameras/types';
 import {
   afterSave,
   asDraft,
@@ -210,18 +210,6 @@ describe('the spec block follows the placement', () => {
     });
   });
 
-  it('gives an audio product the kind its first level names', () => {
-    const speaker = asDraft(blockless({ category: 'audio', subCategory1: 'Loa', subCategory2: 'Di động', sku: '' }), V1);
-    expect(speaker.specKind).toBe('speaker');
-    expect(Object.keys(speaker.specs)).toContain('power');
-  });
-
-  it('has no rows for a legacy audio first level the taxonomy does not know', () => {
-    const d = asDraft(blockless({ category: 'audio', subCategory1: 'Loa Bluetooth', sku: '' }), V1);
-    expect(d.specKind).toBeNull();
-    expect(d.specs).toEqual({});
-  });
-
   it('re-shapes the sheet when the placement changes the kind, and sends the new kind', () => {
     const d = asDraft(product(), V1);
     const moved = withPlacement(d, choosePlacement(d, { category: 'lens' }));
@@ -233,22 +221,6 @@ describe('the spec block follows the placement', () => {
     expect(body).toMatchObject({ category: 'lens', subCategory2: '' });
     expect(body).not.toHaveProperty('subCategory1');
     expect(body.specs).toMatchObject({ kind: 'lens', weight: '659 g', focalLength: '' });
-  });
-
-  it('turns a headphone sheet into a speaker sheet through the rows they share', () => {
-    const hp = {
-      kind: 'headphone',
-      specsSource: 'https://www.sony.com.vn/wh',
-      specsMissing: [],
-      battery: '30 giờ',
-      designType: 'Choàng đầu',
-    } as unknown as HeadphoneSpecs;
-    const d = asDraft(product({ category: 'audio', subCategory1: 'Tai nghe', subCategory2: 'Choàng đầu', specs: hp }), V1);
-    const moved = withPlacement(d, choosePlacement(d, { subCategory1: 'Loa' }));
-    expect(moved.subCategory2).toBe('');
-    expect(moved.specKind).toBe('speaker');
-    expect(moved.specs.battery).toBe('30 giờ');
-    expect(moved.specs).not.toHaveProperty('designType');
   });
 
   it('gives the stored values back when the move is undone before saving', () => {

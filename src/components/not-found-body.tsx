@@ -17,7 +17,6 @@ export { NOT_FOUND_APPS, type NotFoundApp };
 const INDEX: Record<NotFoundApp, string> = {
   recipe: '/colorlab',
   camera: '/cameras',
-  audio: '/audio',
   blog: '/blog',
   learn: '/learn',
 };
@@ -27,7 +26,6 @@ const under = (pathname: string, base: string) => pathname === base || pathname.
 /** Which app `pathname` (locale already stripped) belongs to. ColorLab by default. */
 export function notFoundApp(pathname: string): NotFoundApp {
   if (under(pathname, '/cameras')) return 'camera';
-  if (under(pathname, '/audio')) return 'audio';
   if (under(pathname, '/blog')) return 'blog';
   if (under(pathname, '/learn')) return 'learn';
   return 'recipe';

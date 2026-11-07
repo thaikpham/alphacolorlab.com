@@ -52,7 +52,6 @@ describe('not-found boundary', () => {
   it('knows which app a missing path belongs to', () => {
     expect(notFoundApp('/cameras/unknown')).toBe('camera');
     expect(notFoundApp('/cameras/compare')).toBe('camera');
-    expect(notFoundApp('/audio/wh-1000')).toBe('audio');
     expect(notFoundApp('/blog/unknown')).toBe('blog');
     expect(notFoundApp('/learn/unknown')).toBe('learn');
     expect(notFoundApp('/recipe/unknown')).toBe('recipe');

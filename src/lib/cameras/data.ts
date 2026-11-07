@@ -48,7 +48,6 @@ async function _getSonyCameras(): Promise<SonyCamera[]> {
            under the anon key, which ships in the browser bundle — the same rule
            `no-email-leak.test.ts` pins for the community tables. */
         .select(PRODUCT_COLUMNS)
-        .neq('category', 'audio')
         .order('price_vnd', { ascending: false });
 
       if (error) throw new Error(`sony_cameras: ${error.message}`);

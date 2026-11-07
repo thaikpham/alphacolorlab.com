@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { SPEC_ROWS, type CameraSpecs, type HeadphoneSpecs, type ProductSpecs, type SonyCamera } from './types';
+import { SPEC_ROWS, type CameraSpecs, type ProductSpecs, type SonyCamera } from './types';
 import {
   CATEGORIES,
   PRICE_VND_MAX,
@@ -25,7 +25,7 @@ import {
  */
 
 const seed = (path: string) => JSON.parse(readFileSync(path, 'utf8')) as SonyCamera[];
-const catalogue = [...seed('data/sony-cameras.seed.json'), ...seed('data/sony-audio.seed.json')];
+const catalogue = [...seed('data/sony-cameras.seed.json')];
 
 /** The catalogue's central invariant: every null is declared, nothing declared holds a value. */
 function expectMissingMatchesNulls(specs: ProductSpecs) {
@@ -36,7 +36,7 @@ function expectMissingMatchesNulls(specs: ProductSpecs) {
 
 describe('the catalogue taxonomy', () => {
   it('accepts every placement the seeds ship', () => {
-    expect(catalogue.length).toBeGreaterThan(100);
+    expect(catalogue.length).toBeGreaterThan(90);
     for (const p of catalogue) {
       expect(isCategory(p.category), `${p.id}: category ${p.category}`).toBe(true);
       expect(subCategory1Choices(p.category), `${p.id}: sub1`).toContain(p.subCategory1);
@@ -68,19 +68,6 @@ describe('the catalogue taxonomy', () => {
     expect(specKindFor('camera', 'Full Frame')).toBe('camera');
     expect(specKindFor('lens', 'APS-C')).toBe('lens');
     expect(specKindFor('accessory', 'Power')).toBe('accessory');
-    expect(specKindFor('audio', 'Tai nghe')).toBe('headphone');
-    expect(specKindFor('audio', 'Loa')).toBe('speaker');
-    /* Not a guess from a substring: an audio sub-category the taxonomy does not
-       know has no kind. The create route used to regex "loa" out of it. */
-    expect(specKindFor('audio', 'Loa kéo')).toBeNull();
-    expect(specKindFor('audio', '')).toBeNull();
-  });
-
-  it('pairs audio’s second level with its first', () => {
-    expect(subCategory2Choices('audio', 'Tai nghe')).toEqual(['Choàng đầu', 'Nhét tai', 'Gaming']);
-    expect(subCategory2Choices('audio', 'Loa')).toEqual(['Di động', 'Karaoke']);
-    expect(isValidPlacement('audio', 'Loa', 'Nhét tai')).toBe(false);
-    expect(isValidPlacement('audio', 'Tai nghe', 'Karaoke')).toBe(false);
   });
 
   it('refuses a placement from another category', () => {
@@ -94,7 +81,6 @@ describe('the catalogue taxonomy', () => {
 
   it('allows an empty second level', () => {
     expect(isValidPlacement('lens', 'Adapter', '')).toBe(true);
-    expect(isValidPlacement('audio', 'Loa', '')).toBe(true);
   });
 });
 
@@ -190,26 +176,7 @@ describe('rebuildSpecs', () => {
     expect(rebuildSpecs(acc, 'camera')).not.toHaveProperty('keySpecs');
   });
 
-  it('moves a headphone to a speaker through the rows they share', () => {
-    const hp = {
-      kind: 'headphone',
-      specsSource: 'Sony Vietnam FY26',
-      specsMissing: [],
-      battery: '30 giờ',
-      fastCharge: '3 phút',
-      connectivity: 'Bluetooth 5.3',
-      weight: '250 g',
-      designType: 'Choàng đầu',
-    } as unknown as HeadphoneSpecs;
-    const out = rebuildSpecs(hp, 'speaker') as unknown as Record<string, unknown>;
-    expect(out.kind).toBe('speaker');
-    expect(out.battery).toBe('30 giờ');
-    expect(out.connectivity).toBe('Bluetooth 5.3');
-    expect(out.weight).toBe('250 g');
-    expect(out).not.toHaveProperty('designType');
-    expect(out.specsSource).toBe('Sony Vietnam FY26');
-    expectMissingMatchesNulls(out as unknown as ProductSpecs);
-  });
+  
 
   it('recomputes specsMissing on a block that keeps its kind', () => {
     const out = rebuildSpecs(camera({ lcd: null, specsMissing: [] }), 'camera');
