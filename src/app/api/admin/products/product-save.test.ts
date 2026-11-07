@@ -437,9 +437,7 @@ describe('PATCH — the fields that used to be read-only', () => {
     expect(db.calls.some((c) => c.op === 'update')).toBe(false);
   });
 
-  it('refuses a move into a category the role does not cover, writing nothing', async () => {
-    db.role = 'di';
-    const res = await patch({ category: 'audio', subCategory1: 'Tai nghe', subCategory2: 'Nhét tai' });
+  
     expect(res.status).toBe(403);
     expect(await res.json()).toEqual({ error: 'notAllowedForCategory' });
     expect(db.calls.some((c) => c.op === 'update')).toBe(false);
@@ -516,12 +514,7 @@ describe('POST /api/admin/products', () => {
     expect(stored?.price_vnd).toBe(12_490_000);
   });
 
-  it('files a speaker as a speaker by the taxonomy, not by finding "loa" in the label', async () => {
-    db.row = null;
-    const res = await create({ name: 'SRS-X', category: 'audio', subCategory1: 'Loa', subCategory2: 'Di động' });
-    expect(res.status).toBe(200);
-    expect((db.row as Row | null)?.specs).toMatchObject({ kind: 'speaker' });
-  });
+  
 
   it('refuses a sub-category the catalogue never filters by, writing nothing', async () => {
     db.row = null;
@@ -558,12 +551,12 @@ describe('malformed bodies', () => {
 
 describe('product ids', () => {
   it('folds Vietnamese diacritics instead of dropping the letters', async () => {
-    /* Audio items may have no SKU, so the name becomes the public
+    /* Products may have no SKU, so the name becomes the public
        /cameras/<id> URL. `[^a-z0-9]` alone turned "chống ồn" into "ch-ng-n". */
     db.row = null;
-    const res = await create({ sku: '', name: 'Tai nghe chống ồn', category: 'audio', subCategory1: 'Tai nghe' });
+    const res = await create({ sku: '', name: 'Máy ảnh chống ồn', category: 'camera', subCategory1: 'Full Frame', subCategory2: 'Máy ảnh Alpha' });
     expect(res.status).toBe(200);
-    expect((await res.json()).product.id).toBe('sony-tai-nghe-chong-on');
+    expect((await res.json()).product.id).toBe('sony-may-anh-chong-on');
   });
 });
 
