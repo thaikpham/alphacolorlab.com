@@ -172,7 +172,7 @@ const SYNC_SEED: SyncSeed<Recipe> = {
   recipes: SEED,
   translations: JSON.parse(readFileSync('data/translations.seed.json', 'utf8')) as SyncSeed<Recipe>['translations'],
   retired: RETIRED_RECIPE_IDS,
-  originals: [...ORIGINAL_PP, ...ORIGINAL_CL].map((o) => o.recipe.id),
+  originals: ORIGINAL_PP.map((o) => o.recipe.id),
 };
 const ORIGINALS = new Set(SYNC_SEED.originals);
 const KEPT = SEED.filter(({ recipe }) => !ORIGINALS.has(recipe.id));

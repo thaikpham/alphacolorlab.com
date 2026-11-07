@@ -65,7 +65,7 @@ async function main() {
     return { recipe: parsed.data, legacyId: (r.legacyId as string | null | undefined) ?? null };
   });
   const translations = JSON.parse(readFileSync('data/translations.seed.json', 'utf8')) as SeedTranslation[];
-  const originals = [...ORIGINAL_PP, ...ORIGINAL_CL].map((o) => o.recipe.id);
+  const originals = ORIGINAL_PP.map((o) => o.recipe.id);
 
   const { data, error } = await db.from('recipes').select('id, slug, name, published');
   if (error) throw new Error(`recipes read: ${error.message}`);
