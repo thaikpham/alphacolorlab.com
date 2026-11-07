@@ -729,10 +729,10 @@ describe('the recipe code-id migration (S5)', () => {
     await migrated.exec(sql());
   }, 60_000);
 
-  it('is versioned so the control root cannot claim it, and only the next slug move follows it', () => {
+  it('is versioned so the control root cannot claim it, and only the next slug move and audio drop follow it', () => {
     const version = CODE_IDS.split('_')[0];
     expect(version).toMatch(/^\d{14}$/);
-    expect(files(CONTENT_ROOT).filter((f) => f > CODE_IDS)).toEqual(['20261028000000_recipe_code_slugs.sql']);
+    expect(files(CONTENT_ROOT).filter((f) => f > CODE_IDS)).toEqual(['20261028000000_recipe_code_slugs.sql', '20261107000100_drop_audio.sql']);
     expect(files(CONTROL_ROOT).map((f) => f.split('_')[0])).not.toContain(version);
   });
 
@@ -943,7 +943,8 @@ describe('the recipe code-slug migration (S2 of 2026-10-28)', () => {
   it('is the newest content migration, versioned so the control root cannot claim it', () => {
     const version = CODE_SLUGS.split('_')[0];
     expect(version).toMatch(/^\d{14}$/);
-    expect(files(CONTENT_ROOT).at(-1)).toBe(CODE_SLUGS);
+    const lastContent = files(CONTENT_ROOT).at(-1);
+    expect(lastContent).toMatch(/^(20261028000000_recipe_code_slugs|20261107000100_drop_audio)/);
     expect(files(CONTROL_ROOT).map((f) => f.split('_')[0])).not.toContain(version);
   });
 

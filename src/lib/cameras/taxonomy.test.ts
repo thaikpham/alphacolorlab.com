@@ -25,7 +25,7 @@ import {
  */
 
 const seed = (path: string) => JSON.parse(readFileSync(path, 'utf8')) as SonyCamera[];
-const catalogue = [...seed('data/sony-cameras.seed.json'), ...seed('data/sony-audio.seed.json')];
+const catalogue = [...seed('data/sony-cameras.seed.json')];
 
 /** The catalogue's central invariant: every null is declared, nothing declared holds a value. */
 function expectMissingMatchesNulls(specs: ProductSpecs) {
@@ -92,7 +92,7 @@ describe('the catalogue taxonomy', () => {
 
   it('allows an empty second level', () => {
     expect(isValidPlacement('lens', 'Adapter', '')).toBe(true);
-    expect(isValidPlacement('audio', 'Loa', '')).toBe(true);
+    expect(isValidPlacement('accessory', 'Bag', '')).toBe(true);
   });
 });
 

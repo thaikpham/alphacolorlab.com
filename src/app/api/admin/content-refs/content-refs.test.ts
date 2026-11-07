@@ -21,11 +21,8 @@ vi.mock('@/lib/recipes/admin-store', () => ({
 }))
 vi.mock('@/lib/cameras/data', () => ({
   getSonyCameras: async () => [
-        { id: 'a7-iv', name: 'Alpha 7 IV', code: 'ILCE-7M4' },
+        { id: 'a7-iv', name: 'Alpha 7 IV', sku: 'ILCE-7M4' },
   ],
-}))
-vi.mock('@/lib/audio/data', () => ({
-  getSonyAudio: async () => [{ id: 'wh-1000xm6', name: 'WH-1000XM6', sku: 'WH1000XM6', category: 'audio' }],
 }))
 vi.mock('@/lib/lab/admin-store', () => ({
   listArticleRecords: async () => [

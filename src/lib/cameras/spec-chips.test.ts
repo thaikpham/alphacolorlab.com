@@ -22,7 +22,7 @@ import { toCameraCard, type SonyCamera } from './types';
 const readSeed = (file: string) =>
   JSON.parse(readFileSync(`data/${file}`, 'utf8')) as SonyCamera[];
 
-const products = [...readSeed('sony-cameras.seed.json'), ...readSeed('sony-audio.seed.json')];
+const products = [...readSeed('sony-cameras.seed.json')];
 
 /* Same detector as `spec-values.test.ts`. Prices are excluded: `đ` is the
    currency symbol and a VND figure is not a translation failure. */

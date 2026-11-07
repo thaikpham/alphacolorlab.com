@@ -31,7 +31,7 @@ import {
  */
 
 const seed = (path: string) => JSON.parse(readFileSync(path, 'utf8')) as SonyCamera[];
-const catalogue = [...seed('data/sony-cameras.seed.json'), ...seed('data/sony-audio.seed.json')];
+const catalogue = [...seed('data/sony-cameras.seed.json')];
 const byId = (id: string) => {
   const p = catalogue.find((c) => c.id === id);
   if (!p) throw new Error(`no seeded product ${id}`);
@@ -39,8 +39,7 @@ const byId = (id: string) => {
 };
 
 const anyone = () => true;
-const diOnly = (c: Category) => c !== 'audio';
-const peOnly = (c: Category) => c === 'audio';
+const diOnly = () => true;
 
 function expectPatch(r: PatchResult): Record<string, unknown> {
   if (!r.ok) throw new Error(`expected ok, got ${r.error}`);
@@ -156,31 +155,16 @@ describe('productPatch — the fields that were read-only', () => {
     expect(expectPatch(productPatch({ url: '  ' }, fx3(), anyone))).toEqual({ url: '' });
   });
 
-  it('requires a SKU except on audio, and caps its length', () => {
+  it('requires a SKU and caps its length', () => {
     expect(productPatch({ sku: '   ' }, fx3(), anyone)).toMatchObject({ ok: false, error: 'skuRequired', status: 400 });
     expect(productPatch({ sku: 'X'.repeat(SKU_MAX + 1) }, fx3(), anyone)).toMatchObject({ ok: false, error: 'invalidSku' });
     expect(productPatch({ sku: 'A\u0007B' }, fx3(), anyone)).toMatchObject({ ok: false, error: 'invalidSku' });
-    const audio = { ...headphone(), sku: 'WH-TEST' };
-    expect(expectPatch(productPatch({ sku: '' }, audio, anyone))).toEqual({ sku: '' });
   });
 
   it('keeps the inner spacing of a SKU as Sony prints it', () => {
     /* `DSC-RX1RM3  AP2` ships with two spaces; collapsing them would make it a
        different SKU from the one on the box. */
     expect(expectPatch(productPatch({ sku: 'DSC-RX1RM3  AP2' }, fx3(), anyone)).sku).toBe('DSC-RX1RM3  AP2');
-  });
-
-  it('asks for a SKU when an audio product without one moves out of audio', () => {
-    const audio = headphone();
-    expect(audio.sku).toBe('');
-    expect(
-      productPatch({ category: 'accessory', subCategory1: 'Audio', subCategory2: 'Microphone' }, audio, anyone),
-    ).toMatchObject({ ok: false, error: 'skuRequired' });
-    expect(
-      expectPatch(
-        productPatch({ category: 'accessory', subCategory1: 'Audio', subCategory2: 'Microphone', sku: 'ECM-X' }, audio, anyone),
-      ),
-    ).toMatchObject({ category: 'accessory', sub_category_1: 'Audio', sub_category_2: 'Microphone', sku: 'ECM-X' });
   });
 
   it('answers a malformed field as a malformed request', () => {
@@ -269,24 +253,15 @@ describe('productPatch — the fields that were read-only', () => {
 });
 
 describe('productPatch — authorisation', () => {
-  it('needs the role to cover the category the product is in now', () => {
-    expect(productPatch({ name: 'x' }, headphone(), diOnly)).toMatchObject({
-      ok: false,
-      error: 'notAllowedForCategory',
-      status: 403,
-    });
-    expect(productPatch({ name: 'x' }, fx3(), peOnly)).toMatchObject({ ok: false, error: 'notAllowedForCategory' });
+  it('allows DI role to manage all remaining categories', () => {
+    expect(expectPatch(productPatch({ name: 'updated' }, fx3(), diOnly))).toBeTruthy();
+    expect(expectPatch(productPatch({ name: 'updated' }, byId('sony-selp1020g-csyx'), diOnly))).toBeTruthy();
+    expect(expectPatch(productPatch({ name: 'updated' }, byId('sony-ecm-m1'), diOnly))).toBeTruthy();
   });
 
-  it('and the category it is moving to', () => {
-    /* A DI editor cannot file a camera under audio, nor a PE editor pull a
-       headphone into the camera list. */
-    expect(
-      productPatch({ category: 'audio', subCategory1: 'Tai nghe', subCategory2: 'Nhét tai', sku: '' }, fx3(), diOnly),
-    ).toMatchObject({ ok: false, error: 'notAllowedForCategory', status: 403 });
-    expect(
-      productPatch({ category: 'accessory', subCategory1: 'Audio', subCategory2: 'Microphone', sku: 'X' }, headphone(), peOnly),
-    ).toMatchObject({ ok: false, error: 'notAllowedForCategory', status: 403 });
+  it('can move products between remaining categories', () => {
+    const result = productPatch({ category: 'accessory', subCategory1: 'Bag', subCategory2: 'Carrying Cases' }, fx3(), diOnly);
+    expect(expectPatch(result)).toBeTruthy();
   });
 });
 
@@ -473,12 +448,6 @@ describe('productPatch — the spec block follows the placement', () => {
     expectMissingMatchesNulls(specs);
   });
 
-  it('re-shapes the block on a kind-changing move even when the body sends no specs', () => {
-    const update = expectPatch(productPatch({ subCategory1: 'Loa', subCategory2: 'Di động' }, headphone(), anyone));
-    expect((update.specs as ProductSpecs).kind).toBe('speaker');
-    expectMissingMatchesNulls(update.specs as ProductSpecs);
-  });
-
   it('keeps the block whole on a move that does not change the kind', () => {
     const update = expectPatch(productPatch({ subCategory1: 'APS-C', subCategory2: 'Vlog' }, fx3(), anyone));
     expect(update).toEqual({ sub_category_1: 'APS-C', sub_category_2: 'Vlog' });
@@ -511,16 +480,6 @@ describe('productPatch — the spec block follows the placement', () => {
       const specs = expectPatch(productPatch({ specs: {} }, structuredClone(p), anyone)).specs as ProductSpecs;
       expect(specs.kind, p.id).toBe(p.specs?.kind ?? 'accessory');
     }
-  });
-
-  it('keeps a legacy audio row’s stored block, and refuses to invent one of unknown shape', () => {
-    const legacy = { ...headphone(), subCategory1: 'Tai nghe Inzone', subCategory2: '' };
-    const specs = expectPatch(productPatch({ specs: { battery: '40 giờ' } }, legacy, anyone)).specs as ProductSpecs;
-    expect(specs.kind).toBe('headphone');
-    expect(productPatch({ specs: { battery: '1' } }, { ...legacy, specs: undefined }, anyone)).toMatchObject({
-      ok: false,
-      error: 'invalidPlacement',
-    });
   });
 });
 

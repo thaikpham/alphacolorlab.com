@@ -50,7 +50,6 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
   { q: 'cl-020', locale: 'en', type: 'exact', relevant: ['CL-020'], top1: 'CL-020' },
   { q: 'ILCE-7CM2', locale: 'vi', type: 'exact', relevant: ['sony-ilce-7cm2-sqap2'], top1: 'sony-ilce-7cm2-sqap2' },
   { q: 'ZV-E10', locale: 'vi', type: 'exact', relevant: ['sony-zv-e10-bq-ap2'], top1: 'sony-zv-e10-bq-ap2' },
-  { q: 'WH-1000XM6', locale: 'en', type: 'exact', relevant: ['sony-wh-1000xm6'], top1: 'sony-wh-1000xm6' },
   { q: 'Color Depth R', locale: 'vi', type: 'exact', relevant: ['glossary-pp-colorDepth-R'], top1: 'glossary-pp-colorDepth-R' },
   { q: 'Knee', locale: 'en', type: 'exact', relevant: ['glossary-pp-knee'], top1: 'glossary-pp-knee' },
   { q: 'V/H Balance', locale: 'vi', type: 'exact', relevant: ['glossary-pp-detail-vhBalance'], top1: 'glossary-pp-detail-vhBalance' },
@@ -77,9 +76,6 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
   // --- Vietnamese with and without diacritics ---------------------------
   { q: 'lấy nét bằng ngón tay cái', locale: 'vi', type: 'vi-accent', relevant: ['back-button-af'], top1: 'back-button-af' },
   { q: 'lay net bang ngon tay cai', locale: 'vi', type: 'vi-plain', relevant: ['back-button-af'], top1: 'back-button-af' },
-  { q: 'tai nghe chống ồn', locale: 'vi', type: 'vi-accent', relevant: ['sony-wh-1000xm6', 'sony-inzone-buds', 'sony-wf-lc900'] },
-  { q: 'tai nghe chong on', locale: 'vi', type: 'vi-plain', relevant: ['sony-wh-1000xm6', 'sony-inzone-buds', 'sony-wf-lc900'] },
-  { q: 'loa karaoke', locale: 'vi', type: 'vi-plain', relevant: ['sony-srs-xv500', 'sony-srs-xv800', 'sony-ult-tower-10'] },
 
   // --- a problem, not a name --------------------------------------------
   { q: 'ảnh trong nhà bị nhòe', locale: 'vi', type: 'problem', relevant: ['iso-auto-min-ss'], top1: 'iso-auto-min-ss' },

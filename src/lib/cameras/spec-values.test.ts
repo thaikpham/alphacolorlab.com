@@ -7,9 +7,8 @@ import { SPEC_ROWS, type SonyCamera } from './types';
 const readSeed = (file: string) =>
   JSON.parse(readFileSync(join(process.cwd(), 'data', file), 'utf8')) as SonyCamera[];
 
-/* Audio shares ProductSpecTable with cameras, so its values reach /en through
-   the same function and are held to the same rule. */
-const products = [...readSeed('sony-cameras.seed.json'), ...readSeed('sony-audio.seed.json')];
+/* Spec values reach /en through the translation function and are held to the same rule. */
+const products = [...readSeed('sony-cameras.seed.json')];
 
 /* Diacritics that exist in Vietnamese and not in English. `đ` is included; the
    bare vowels are not, because `a` in "Alpha" is not evidence of anything. */
