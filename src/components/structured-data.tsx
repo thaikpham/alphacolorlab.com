@@ -86,7 +86,7 @@ export function RecipeStructuredData({
           inLanguage: locale,
           identifier: recipe.id,
           keywords: recipe.tags.join(', '),
-          genre: recipe.format === 'pp' ? 'Picture Profile' : 'Creative Look',
+          genre: 'Picture Profile',
           isPartOf: { '@type': 'WebSite', name: 'Alpha ColorLab', url: home },
           /* No `about`: its name was an English literal declared in the
              page's language, and `genre` already says what the work is. */

@@ -16,10 +16,9 @@ import { RecipeMark } from './recipe-mark';
  * Compact on purpose (owner, 2026-10-29: "too big and ugly"). It was a 210px
  * slot under three lines — a format eyebrow, the full name, the situations —
  * and printed the code twice and the format twice. Now each fact appears
- * once: the silhouette (cartridge or clapperboard) and the code's prefix on
- * the mark say the format, so the eyebrow went (a label over a heading is the
- * eyebrow CLAUDE.md removes everywhere); the code is printed on the mark
- * only; the title is the mood, the part a reader remembers. The code and the
+ * once: the reel and the code's prefix on the mark say the format, so the
+ * eyebrow went (a label over a heading is the eyebrow CLAUDE.md removes
+ * everywhere); the code is printed on the mark only; the title is the mood, the part a reader remembers. The code and the
  * format are still spoken to a screen reader, inside the heading.
  *
  * The mark is the `sm` size on the stage, the `s` one when the card is

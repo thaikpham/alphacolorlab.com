@@ -10,16 +10,15 @@ import {
 } from '@/lib/recipes/mark';
 
 /**
- * The recipe mark (owner, 2026-10-28; redesigned 2026-11-04): a white 35mm
- * cartridge standing up for a Creative Look, a white cinema reel for a
- * Picture Profile (a clapperboard until 2026-10-29). It replaced the nine-swatch strip on the card, which
+ * The recipe mark (owner, 2026-10-28; redesigned 2026-11-04): a white cinema
+ * reel for a Picture Profile (a clapperboard until 2026-10-29; a cartridge
+ * drew the Creative Looks until they were removed on 2026-11-07). It replaced the nine-swatch strip on the card, which
  * readers found hard to choose from: a silhouette says stills or cinema
  * before a word is read, and the initials give a recipe a handle.
  *
- * The colour is on the film, never under the type. Each object's leader
- * shows three frames — the recipe's highlight, mid and shadow; the cartridge
- * wears a sticker of its six hues and the reel shows them through its six
- * windows. Nothing stands behind either object (owner, 2026-11-04).
+ * The colour is on the film, never under the type. The leader
+ * shows three frames — the recipe's highlight, mid and shadow — and the reel
+ * shows its six hues through its six windows. Nothing stands behind it (owner, 2026-11-04).
  * All of it is `paletteFor`'s reading of the settings, never a preview.
  *
  * It is a drawn object, not a surface. That is why its body is white and its
@@ -29,7 +28,7 @@ import {
  * carries the palette's label.
  *
  * Five sizes, every type size a step of the scale and none under 13px: what
- * does not fit drops out (the code at `s`, the id and sticker at `xs`)
+ * does not fit drops out (the code at `s`, the id at `xs`)
  * instead of shrinking. `sm` is the browse card's.
  */
 
@@ -91,35 +90,6 @@ function Small({ children, keepCase = false }: { children: ReactNode; keepCase?:
   );
 }
 
-/** The six hues on an ivory paper sticker. */
-function Sticker({ d, c }: { d: Dims; c: Record<string, string> }) {
-  const px = scale(d);
-  return (
-    <span
-      className="inline-flex self-start"
-      style={{
-        gap: Math.max(1, px(2)),
-        padding: Math.max(2, px(3)),
-        borderRadius: Math.max(3, px(5)),
-        background: STICKER,
-        boxShadow: '0 1px 2px oklch(0% 0 0 / 0.22)',
-      }}
-    >
-      {MARK_HUES.map((hue) => (
-        <span
-          key={hue}
-          style={{
-            width: Math.max(5, px(10)),
-            height: Math.max(7, px(14)),
-            borderRadius: Math.max(1, px(2)),
-            background: c[hue],
-          }}
-        />
-      ))}
-    </span>
-  );
-}
-
 function Sprockets({ d, width, edge }: { d: Dims; width: number; edge: 'top' | 'bottom' }) {
   const px = scale(d);
   const count = Math.max(2, Math.floor(width / px(14)));
@@ -143,7 +113,7 @@ const REEL: Readonly<Record<MarkSize, { d: number; hub: number; win: number }>> 
 
 /**
  * Picture Profile: a cinema reel (owner, 2026-10-29; it was a clapperboard),
- * white like the cartridge, its leader coming off the rim to the right. Six
+ * white, its leader coming off the rim to the right. Six
  * windows between the spokes show the recipe's six hues; the leader's three
  * frames are its highlight, mid and shadow; the hub is the ivory label with
  * the name.

@@ -1,7 +1,7 @@
 # DESIGN.md — Sony Alpha ecosystem
 
-Read this before writing UI. It applies to Alpha ColorLab and Sony Wiki (cameras +
-audio). The values live in
+Read this before writing UI. It applies to Alpha ColorLab and Sony Wiki (cameras).
+The values live in
 `packages/colorlab-tokens/src/tokens.ts`; this file is why they are what they
 are, and what to do when you are tempted otherwise.
 
@@ -155,8 +155,7 @@ the launcher stops being the signature — at which point delete it there too.
 Two things on the catalogue are drawn objects, and the surface rules describe
 the interface around them, not them (owner, 2026-10-28):
 
-- **The recipe mark** (`recipe-mark.tsx`) — a white 35mm cartridge for a
-  Creative Look, a white cinema reel for a Picture Profile, with nothing
+- **The recipe mark** (`recipe-mark.tsx`) — a white cinema reel, with nothing
   behind it (owner, 2026-11-04: no halo, no gradient). Its type is dark
   because it is printed on a white object (the paper room's ink); its corners
   follow the object; its film, windows and sticker are the recipe's own

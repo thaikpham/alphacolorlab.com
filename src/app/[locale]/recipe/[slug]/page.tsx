@@ -23,7 +23,7 @@ import {
   moreForSituation,
 } from '@/lib/recipes/browse';
 import { listRecipes, listSlugs } from '@/lib/recipes/source';
-import { isPermanentMove } from '@/lib/recipes/slug-aliases';
+import { isPermanentMove, isRemovedCreativeLook } from '@/lib/recipes/slug-aliases';
 import { resolveRecipeSlug } from '@/lib/recipes/slug-resolve';
 import { SITUATIONS, type SituationId } from '@/lib/recipes/taxonomy';
 import { recipeTitle } from '@/lib/recipes/title';
@@ -97,7 +97,11 @@ export default async function RecipePage({
     getTranslations('browse'),
     getSonyCameras(),
   ]);
-  if (!resolved) notFound();
+  if (!resolved) {
+    /* Shared links to the removed Creative Looks land on the catalogue. */
+    if (isRemovedCreativeLook(requested)) permanentRedirect({ href: '/colorlab', locale });
+    notFound();
+  }
   const { recipe, slug } = resolved;
   /* A slug the recipe had, or will have once a content migration runs,
      lands on the one the catalogue holds now. Permanent only from an older

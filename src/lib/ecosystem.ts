@@ -7,7 +7,7 @@
  * been a launcher that disagrees with itself about what exists.
  *
  * **App names are not translated.** They are product names, the same category
- * as recipe names and Creative Look codes in Rule 3: "ColorLab 2.0" is
+ * as recipe names and gamma names in Rule 3: "ColorLab 2.0" is
  * "ColorLab 2.0" in both locales. That is why they are here and not in
  * `messages/*.json` — a name in a message catalogue is a name somebody will
  * eventually translate.

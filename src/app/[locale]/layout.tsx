@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s · Alpha ColorLab',
   },
   description:
-    'White Balance Shift recipes for Sony Alpha cameras, paired with Picture Profile or Creative Look.',
+    'White Balance Shift recipes for Sony Alpha cameras, paired with a Picture Profile.',
 };
 
 export const viewport: Viewport = {

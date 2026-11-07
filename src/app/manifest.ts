@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Alpha ColorLab',
     short_name: 'ColorLab',
     description:
-      'White Balance Shift recipes for Sony Alpha cameras, paired with Picture Profile or Creative Look.',
+      'White Balance Shift recipes for Sony Alpha cameras, paired with a Picture Profile.',
     start_url: '/',
     display: 'standalone',
     orientation: 'any',

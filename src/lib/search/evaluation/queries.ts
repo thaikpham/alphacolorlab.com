@@ -42,12 +42,11 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
      only published recipe holding all three (data/recipes.seed.json). The
      names it carried before 2026-10-28 are not here: the owner dropped them,
      and search does not index them (R4 of the names design). */
-  { q: 'PP-001-Warm Rosy Rich', locale: 'vi', type: 'exact', relevant: ['PP-001'], top1: 'PP-001' },
+  { q: 'PP-001-Warm Soft Rich', locale: 'vi', type: 'exact', relevant: ['PP-001'], top1: 'PP-001' },
   { q: 'Warm Deep Muted', locale: 'en', type: 'exact', relevant: ['PP-025'], top1: 'PP-025' },
-  { q: 'SCL-CL-017', locale: 'vi', type: 'exact', relevant: ['CL-017'], top1: 'CL-017' },
   { q: 'scl pp 009', locale: 'vi', type: 'exact', relevant: ['PP-009'], top1: 'PP-009' },
   /* The slug, as a reader pastes it from a link: the code. */
-  { q: 'cl-020', locale: 'en', type: 'exact', relevant: ['CL-020'], top1: 'CL-020' },
+  { q: 'pp-025', locale: 'en', type: 'exact', relevant: ['PP-025'], top1: 'PP-025' },
   { q: 'ILCE-7CM2', locale: 'vi', type: 'exact', relevant: ['sony-ilce-7cm2-sqap2'], top1: 'sony-ilce-7cm2-sqap2' },
   { q: 'ZV-E10', locale: 'vi', type: 'exact', relevant: ['sony-zv-e10-bq-ap2'], top1: 'sony-zv-e10-bq-ap2' },
   { q: 'WH-1000XM6', locale: 'en', type: 'exact', relevant: ['sony-wh-1000xm6'], top1: 'sony-wh-1000xm6' },
@@ -57,7 +56,7 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
   { q: 'ISO Auto Min SS', locale: 'vi', type: 'exact', relevant: ['iso-auto-min-ss'], top1: 'iso-auto-min-ss' },
   // The code a recipe's name starts with (`PP-009-…`).
   { q: 'PP-009', locale: 'vi', type: 'exact', relevant: ['PP-009'], top1: 'PP-009' },
-  { q: 'cl 013', locale: 'en', type: 'exact', relevant: ['CL-013'], top1: 'CL-013' },
+  { q: 'pp 046', locale: 'en', type: 'exact', relevant: ['PP-046'], top1: 'PP-046' },
 
   // --- aliases (derived from SKUs and names, never typed) ---------------
   { q: 'a7cii', locale: 'vi', type: 'alias', relevant: ['sony-ilce-7cm2-sqap2'], top1: 'sony-ilce-7cm2-sqap2' },
@@ -69,10 +68,10 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
   // --- typos ------------------------------------------------------------
   // Of the words of a name; relevant is every published recipe whose name
   // holds both words, read from data/recipes.seed.json.
-  { q: 'goldn matte', locale: 'vi', type: 'typo', relevant: ['CL-013', 'CL-014'] },
-  { q: 'sepai soft', locale: 'en', type: 'typo', relevant: ['CL-018'] },
-  { q: 'punchy vivd', locale: 'en', type: 'typo', relevant: ['CL-006'] },
-  { q: 'rosy deeep', locale: 'vi', type: 'typo', relevant: ['PP-027', 'PP-045'] },
+  { q: 'wram matte', locale: 'vi', type: 'typo', relevant: ['PP-002'] },
+  { q: 'neutrl gentle', locale: 'en', type: 'typo', relevant: ['PP-044'] },
+  { q: 'deep vivd', locale: 'en', type: 'typo', relevant: ['PP-027', 'PP-047'] },
+  { q: 'rosy deeep', locale: 'vi', type: 'typo', relevant: ['PP-027'] },
 
   // --- Vietnamese with and without diacritics ---------------------------
   { q: 'lấy nét bằng ngón tay cái', locale: 'vi', type: 'vi-accent', relevant: ['back-button-af'], top1: 'back-button-af' },
@@ -88,8 +87,8 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
   { q: 'tốc độ màn trập tối thiểu', locale: 'vi', type: 'problem', relevant: ['iso-auto-min-ss'] },
 
   // --- a concept --------------------------------------------------------
-  { q: 'creative look', locale: 'vi', type: 'concept', relevant: ['glossary-cl', 'picture-profile-va-creative-look'], corpus: 'with-pilot' },
-  { q: 'saturation', locale: 'en', type: 'concept', relevant: ['glossary-pp-saturation', 'glossary-cl-saturation'] },
+  { q: 'creative look', locale: 'vi', type: 'concept', relevant: ['picture-profile-va-creative-look'], corpus: 'with-pilot' },
+  { q: 'saturation', locale: 'en', type: 'concept', relevant: ['glossary-pp-saturation'] },
   { q: 'black level', locale: 'vi', type: 'concept', relevant: ['glossary-pp-blackLevel'] },
   { q: 'white balance shift', locale: 'vi', type: 'concept', relevant: ['white-balance-shift', 'glossary-wb-shiftAb', 'glossary-wb-shiftGm'], corpus: 'with-pilot' },
   { q: 'color depth', locale: 'vi', type: 'concept', relevant: ['color-depth', 'glossary-pp-colorDepth'], corpus: 'with-pilot' },
@@ -100,12 +99,11 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
      they are published; no published recipe answers them today, and a label
      with no document behind it is a label from the ranker. */
   { q: 'warm golden hour', locale: 'en', type: 'mood', relevant: ['PP-001'] },
-  { q: 'sepia look', locale: 'en', type: 'mood', relevant: ['CL-017', 'CL-018'] },
-  // The words of a name computed from the palette (`CL-024-Golden Soft
-  // Muted`, `CL-018-Sepia Soft Crisp`): the only published recipes whose
-  // names hold both words.
-  { q: 'golden soft', locale: 'en', type: 'mood', relevant: ['CL-024'] },
-  { q: 'sepia crisp', locale: 'vi', type: 'mood', relevant: ['CL-018'] },
+  // The words of a name computed from the palette (`PP-015-Warm Soft Vivid`,
+  // `PP-009-Cool Deep Muted`): the only published recipes whose names hold
+  // both words.
+  { q: 'warm soft', locale: 'en', type: 'mood', relevant: ['PP-001', 'PP-015'] },
+  { q: 'cool muted', locale: 'vi', type: 'mood', relevant: ['PP-009'] },
 
   // --- a situation, a style or a tone, by its browse label -----------------
   // Labelled from the taxonomy the documents carry (`data/recipe-taxonomy.json`
@@ -115,25 +113,19 @@ export const EVAL_QUERIES: readonly EvalQuery[] = [
     q: 'chan dung',
     locale: 'vi',
     type: 'vi-plain',
-    relevant: ['PP-002', 'PP-015', 'PP-027', 'PP-045', 'PP-046', 'CL-013', 'CL-014', 'CL-015', 'CL-016', 'CL-019'],
+    relevant: ['PP-002', 'PP-015', 'PP-027', 'PP-045', 'PP-046'],
   },
   {
     q: 'cafe',
     locale: 'vi',
     type: 'mood',
-    relevant: ['PP-001', 'CL-001', 'CL-013', 'CL-014', 'CL-015', 'CL-016', 'CL-020', 'CL-021', 'CL-022', 'CL-023', 'CL-024', 'CL-030'],
+    relevant: ['PP-001'],
   },
   {
     q: 'phim',
     locale: 'vi',
     type: 'mood',
-    relevant: ['PP-001', 'PP-002', 'PP-009', 'PP-015', 'PP-044', 'CL-001', 'CL-002', 'CL-017', 'CL-018', 'CL-020', 'CL-021', 'CL-022', 'CL-023', 'CL-024', 'CL-025', 'CL-026', 'CL-027', 'CL-028', 'CL-029', 'CL-030', 'CL-031', 'CL-032', 'CL-033', 'CL-034', 'CL-035', 'CL-036', 'CL-037'],
-  },
-  {
-    q: 'đen trắng',
-    locale: 'vi',
-    type: 'vi-accent',
-    relevant: ['CL-017', 'CL-018'],
+    relevant: ['PP-001', 'PP-002', 'PP-009', 'PP-015', 'PP-044'],
   },
 
   // --- nothing to find ---------------------------------------------------

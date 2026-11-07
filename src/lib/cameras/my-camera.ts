@@ -20,7 +20,7 @@ import {
 } from './capabilities/installable';
 import { wellFormedChoice } from './my-camera-cookie';
 
-/** The generic choice that hides Creative Look and knows nothing else. */
+/** The generic older camera: Creative Style, and nothing else known. */
 export const OLDER_CAMERA_CHOICE = 'older-creative-style';
 /** The generic choice that is the same as choosing nothing. */
 export const UNKNOWN_CAMERA_CHOICE = 'unknown';
@@ -37,7 +37,7 @@ export type CameraOption = {
 /**
  * `7 III` → `a7 III`, `6400` → `a6400`; `ZV-E10`, `FX3`, `RX100 VII` unchanged.
  * The catalogue stores an Alpha body's name without its prefix, and a bare
- * `7 III` in a sentence ("7 III has no Creative Look") does not read as a
+ * `7 III` in a sentence ("7 III has no S-Cinetone") does not read as a
  * camera. The `a` goes where `productAliases` adds one: an `ILCE-` body whose
  * name starts with a digit. Latin `a`, not `α`: the self-hosted subsets are
  * Latin and Vietnamese, and a Greek glyph would fall back mid-word.

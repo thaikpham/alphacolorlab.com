@@ -37,6 +37,9 @@ export const slugHistory = (slug: string): readonly string[] =>
 /** The newest spelling of a slug's recipe — `mojave-sun` → `pp-001` — or the slug itself. */
 export const newestSlugOf = (slug: string): string => slugHistory(slug).at(-1)!;
 
+/** A Creative Look recipe, under any of its spellings: the format was removed on 2026-11-07. */
+export const isRemovedCreativeLook = (slug: string): boolean => /^cl-\d{3}$/.test(newestSlugOf(slug));
+
 /**
  * The slug as asked, then every other spelling of its recipe, newest first:
  * what a lookup must try so a recipe answers under any. A slug no history
