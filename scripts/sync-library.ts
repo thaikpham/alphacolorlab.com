@@ -13,7 +13,7 @@
  * by the slug the plan matched on.
  *
  * It replaces the one-off `pp:refresh` of 2026-10-23, which did the first two
- * of those and nothing else, and it is what carries the `PP-NNN` / `CL-NNN`
+ * of those and nothing else, and it is what carries the `PP-NNN`
  * names to production. `push:supabase` cannot: it never changes an existing row
  * without `--overwrite`, and `--overwrite` replaces rows whole, undoing every
  * edit an administrator made since the seed.

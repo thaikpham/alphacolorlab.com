@@ -57,28 +57,6 @@ const pp = (over: Partial<Extract<Recipe, { format: 'pp' }>['settings']> = {}, w
   },
 });
 
-const cl = (look: Extract<Recipe, { format: 'cl' }>['settings']['look'], over: Partial<Extract<Recipe, { format: 'cl' }>['settings']> = {}): Recipe => ({
-  id: 'CL-999',
-  slug: 'x',
-  name: 'CL-999-Soft Film',
-  format: 'cl',
-  whiteBalance: { mode: 'auto', auto: 'AWB' },
-  tags: [],
-  published: true,
-  settings: {
-    look,
-    contrast: 0,
-    highlights: 0,
-    shadows: 0,
-    fade: 0,
-    ...(look === 'BW' || look === 'SE' ? {} : { saturation: 0 }),
-    sharpness: 0,
-    sharpnessRange: 3,
-    clarity: 0,
-    ...over,
-  },
-});
-
 describe('the ids', () => {
   it('are unique, URL-safe and parse back to themselves', () => {
     for (const list of [SITUATIONS, STYLES, TONES]) {
@@ -118,12 +96,9 @@ describe('the ids', () => {
 });
 
 describe('monochrome is read off the settings', () => {
-  it('is the Black & White colour mode, or a BW/SE Look, and nothing else', () => {
+  it('is the Black & White colour mode, and nothing else', () => {
     expect(isMonochrome(pp({ colorMode: 'Black & White' }))).toBe(true);
     expect(isMonochrome(pp({ colorMode: 'Still' }))).toBe(false);
-    expect(isMonochrome(cl('BW'))).toBe(true);
-    expect(isMonochrome(cl('SE'))).toBe(true);
-    expect(isMonochrome(cl('FL'))).toBe(false);
   });
 
   it('always wins, in both directions', () => {
@@ -165,32 +140,12 @@ describe('tone from the white balance', () => {
 });
 
 describe('style and situations from the settings', () => {
-  it('places each Look', () => {
-    expect(styleFromSettings(cl('FL'))).toBe('film');
-    expect(styleFromSettings(cl('IN'))).toBe('film');
-    expect(styleFromSettings(cl('SE'))).toBe('film');
-    expect(styleFromSettings(cl('BW'))).toBe('film');
-    expect(styleFromSettings(cl('VV'))).toBe('vivid');
-    expect(styleFromSettings(cl('VV2'))).toBe('vivid');
-    for (const look of ['ST', 'PT', 'NT', 'SH'] as const) expect(styleFromSettings(cl(look))).toBe('natural');
-  });
-
   it('reads a Picture Profile as range, vivid or natural', () => {
     expect(styleFromSettings(pp({ gamma: 'S-Log3', colorMode: 'S-Gamut3' }))).toBe('range');
     expect(styleFromSettings(pp({ gamma: 'HLG2', colorMode: 'BT.2020' }))).toBe('range');
     expect(styleFromSettings(pp({ saturation: 16 }))).toBe('vivid');
     expect(styleFromSettings(pp({ saturation: 15 }))).toBe('natural');
     expect(styleFromSettings(pp({ saturation: -10 }))).toBe('natural');
-  });
-
-  it('places a Film Look by its Fade, Clarity and Contrast', () => {
-    expect(situationsFromSettings(cl('FL', { fade: 3 }))).toEqual(['lifestyle', 'daily']);
-    expect(situationsFromSettings(cl('FL', { clarity: 4 }))).toEqual(['street', 'daily']);
-    expect(situationsFromSettings(cl('FL', { contrast: 2 }))).toEqual(['street', 'daily']);
-    expect(situationsFromSettings(cl('FL'))).toEqual(['daily', 'street']);
-    expect(situationsFromSettings(cl('SH'))).toEqual(['portrait', 'lifestyle', 'fashion']);
-    expect(situationsFromSettings(cl('PT'))).toEqual(['portrait']);
-    expect(situationsFromSettings(cl('BW'))).toEqual(['street', 'daily']);
   });
 
   it('places no Picture Profile on its own', () => {
@@ -224,9 +179,6 @@ describe('the manifest', () => {
     expect(edited).toEqual({ situations: ['travel', 'lifestyle'], style: 'film', tone: 'warm' });
     /* 002 leaves tone to the white balance: 3700K with A7 is warm. */
     expect(taxonomyFor(seed.find((r) => r.id === 'PP-002')!).tone).toBe('warm');
-    /* A Creative Look has no entry and browses by its Look. */
-    const look = taxonomyFor(seed.find((r) => r.id === 'CL-003')!);
-    expect(look).toEqual({ situations: ['travel', 'landscape'], style: 'vivid', tone: 'neutral' });
   });
 });
 

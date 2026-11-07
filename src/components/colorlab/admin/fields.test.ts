@@ -6,7 +6,8 @@ import {
   PP_DETAIL_LABELS,
   PP_PARAM_LABELS,
   PP_RANGES,
-  WB_PARAM_LABELS} from '@/lib/camera/constants';
+  WB_PARAM_LABELS,
+} from '@/lib/camera/constants';
 import type { PpSettings } from '@/lib/camera/schema';
 
 /**
@@ -18,7 +19,8 @@ import type { PpSettings } from '@/lib/camera/schema';
  */
 
 vi.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => key}));
+  useTranslations: () => (key: string) => key,
+}));
 
 const { Ranged, parseRangedInput, omitKey } = await import('./fields');
 const { PpFields } = await import('./settings-fields');
@@ -41,7 +43,9 @@ const PP: PpSettings = {
     bwBalance: 'Type3',
     limit: PP_RANGES.detailLimit.min,
     crispening: PP_RANGES.detailCrispening.min,
-    hiLightDetail: PP_RANGES.detailHiLightDetail.min}};
+    hiLightDetail: PP_RANGES.detailHiLightDetail.min,
+  },
+};
 
 describe('a number field', () => {
   it('commits only a whole number, so a lone minus or an empty box is not one', () => {
@@ -71,7 +75,8 @@ describe('a number field', () => {
         range: PP_RANGES.kneeAutoMaxPoint,
         value: undefined,
         onChange: () => {},
-        onClear: () => {}}),
+        onClear: () => {},
+      }),
     );
     expect(out).toContain('value=""');
   });
@@ -90,7 +95,8 @@ describe('an Auto knee', () => {
   it('drops a cleared key rather than storing an empty one', () => {
     expect(omitKey({ mode: 'Auto', sensitivity: 'Mid', maxPoint: 95 }, 'sensitivity')).toEqual({
       mode: 'Auto',
-      maxPoint: 95});
+      maxPoint: 95,
+    });
   });
 
   it('types no camera value into the component', () => {
@@ -103,7 +109,6 @@ describe('parameter labels', () => {
   const technical = new Set<string>([
     ...Object.values(PP_PARAM_LABELS),
     ...Object.values(PP_DETAIL_LABELS),
-    ...Object.values(),
     ...Object.values(WB_PARAM_LABELS),
   ]);
 

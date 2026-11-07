@@ -65,8 +65,8 @@ describe('planLibrarySync', () => {
 
   it('leaves a recipe whose name already matches', () => {
     const plan = planLibrarySync(
-      [seed('CL-001', 'cl-001-film-hard-faded', 'CL-001-Film Hard Faded')],
-      [row('CL-001', 'cl-001-film-hard-faded', 'CL-001-Film Hard Faded', true)],
+      [seed('PP-002', 'pp-002-film-hard-faded', 'PP-002-Film Hard Faded')],
+      [row('PP-002', 'pp-002-film-hard-faded', 'PP-002-Film Hard Faded', true)],
       [],
       new Set(),
     );
@@ -151,10 +151,10 @@ describe('storedShape', () => {
   });
 
   it('refuses a project holding both shapes', () => {
-    const read = storedShape(['PP-001'], ['SCL-PP-001', 'SCL-PP-003', 'SCL-CL-001', 'SCL-CL-002', 'PP-090']);
+    const read = storedShape(['PP-001'], ['SCL-PP-001', 'SCL-PP-003', 'SCL-PP-004', 'SCL-PP-005', 'PP-090']);
     expect(read).toHaveProperty('refusal');
     const why = 'refusal' in read ? read.refusal : '';
-    expect(why).toMatch(/both shapes: 4 SCL- \(SCL-PP-001, SCL-PP-003, SCL-CL-001, …\) and 1 code-shaped \(PP-090\)/);
+    expect(why).toMatch(/both shapes: 4 SCL- \(SCL-PP-001, SCL-PP-003, SCL-PP-004, …\) and 1 code-shaped \(PP-090\)/);
     expect(why).toMatch(/Nothing was planned or written/);
   });
 
@@ -184,10 +184,10 @@ const OLD_ID_CHECK = /^SCL-(PP|CL)-[0-9]{3}$/;
 const SLUG_CHECK = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 /**
- * The content project as it is before the code-id migration: the 47 published
+ * The content project as it is before the code-id migration: the 10 published
  * seed recipes (10 kept legacy Picture Profiles, 37 Sony Asia Creative Looks)
  * under SCL- ids, their former slugs and their old names, and the 36 withdrawn
- * Picture Profiles still published. None of the 43 originals.
+ * Picture Profiles still published. None of the 35 originals.
  */
 const PRODUCTION: readonly PlanExistingRow[] = [
   ...KEPT.map(({ recipe }) => {
@@ -233,11 +233,11 @@ describe('library:sync against the content project before the code-id migration'
   if ('refusal' in planned) throw new Error(planned.refusal);
   const { shape, stored, plan } = planned;
 
-  it('is the production fixture: 47 kept, 36 withdrawn, 43 originals missing', () => {
-    expect(KEPT).toHaveLength(47);
+  it('is the production fixture: 10 kept, 36 withdrawn, 35 originals missing', () => {
+    expect(KEPT).toHaveLength(10);
     expect(RETIRED_RECIPE_IDS).toHaveLength(36);
-    expect(ORIGINALS.size).toBe(43);
-    expect(PRODUCTION).toHaveLength(83);
+    expect(ORIGINALS.size).toBe(35);
+    expect(PRODUCTION).toHaveLength(46);
     expect(PRODUCTION[0]).toEqual(row('SCL-PP-001', 'mojave-sun', 'SCL-PP-001: Mojave Sun', true));
   });
 
@@ -246,21 +246,21 @@ describe('library:sync against the content project before the code-id migration'
     expect(planned).toHaveProperty('slugState', 0);
   });
 
-  it('plans exactly: unpublish 36, rename 47, insert 43, refresh 0, conflicts 0', () => {
+  it('plans exactly: unpublish 36, rename 10, insert 35, refresh 0, conflicts 0', () => {
     expect(plan.unpublish).toEqual(RETIRED_RECIPE_IDS.map((id) => `SCL-${id}`));
-    expect(plan.rename).toHaveLength(47);
-    expect(plan.insert).toHaveLength(43);
+    expect(plan.rename).toHaveLength(10);
+    expect(plan.insert).toHaveLength(35);
     expect(plan.refresh).toEqual([]);
     expect(plan.conflicts).toEqual([]);
   });
 
-  it("renames the 47 under their SCL- ids, to the seed's new names", () => {
+  it("renames the 10 under their SCL- ids, to the seed's new names", () => {
     expect(plan.rename.map((r) => r.id).sort()).toEqual(KEPT.map(({ recipe }) => `SCL-${recipe.id}`).sort());
     for (const r of plan.rename) expect(r.to, r.id).toBe(nameOf.get(recipeIdKey(r.id)));
     expect(plan.rename).toContainEqual({ id: 'SCL-PP-001', from: 'SCL-PP-001: Mojave Sun', to: nameOf.get('PP-001') });
   });
 
-  it('inserts the 43 originals under SCL- ids and their former slugs, unpublished, under the new names', () => {
+  it('inserts the 35 originals under SCL- ids and their former slugs, unpublished, under the new names', () => {
     const rows = insertRows(plan, stored);
     expect(rows.map((r) => r.id).sort()).toEqual([...ORIGINALS].map((id) => `SCL-${id}`).sort());
     for (const r of rows) {
@@ -297,10 +297,30 @@ describe('library:sync against the content project before the code-id migration'
   });
 
   it('stores a recipe with no former slug under its own slug, in every slug state', () => {
-    for (const n of [0, 1, 2]) expect(storedSlug('cl-046', n)).toBe('cl-046');
+    for (const n of [0, 1, 2]) expect(storedSlug('pp-083', n)).toBe('pp-083');
     expect([0, 1, 2].map((n) => storedSlug('pp-001', n))).toEqual(['mojave-sun', 'pp-001-vivid-nostalgia-film', 'pp-001']);
   });
 
+  it('inserts a recipe born after the move under SCL- and its own slug', () => {
+    const template = SEED.find(({ recipe }) => ORIGINALS.has(recipe.id))!;
+    const born = {
+      ...template,
+      recipe: { ...template.recipe, id: 'PP-083', slug: 'pp-083', name: 'PP-083-Icy Flat Pale' } as Recipe,
+    };
+    expect(slugHistory(born.recipe.slug)).toEqual(['pp-083']);
+    expect(SEED.some(({ recipe }) => recipe.id === 'PP-083' || recipe.name === born.recipe.name)).toBe(false);
+    const p = planForProject(
+      { ...SYNC_SEED, recipes: [...SYNC_SEED.recipes, born], originals: [...SYNC_SEED.originals, 'PP-083'] },
+      PRODUCTION,
+    );
+    if ('refusal' in p) throw new Error(p.refusal);
+    expect(p.plan.insert).toContain('SCL-PP-083');
+    expect(p.plan.conflicts).toEqual([]);
+    const r = insertRows(p.plan, p.stored).find((x) => x.id === 'SCL-PP-083')!;
+    expect(r.slug).toBe('pp-083');
+    expect(r.id).toMatch(OLD_ID_CHECK);
+    expect(r.slug).toMatch(SLUG_CHECK);
+  });
 
   it('inserts rows the later migration renames: each id is the number its first slug moves to', () => {
     for (const r of insertRows(plan, stored)) {
@@ -314,7 +334,7 @@ describe('library:sync against the content project before the code-id migration'
 
   it('writes translations under the SCL- ids', () => {
     const rows = translationRows(stored, plan.insert);
-    expect(rows).toHaveLength(86);
+    expect(rows).toHaveLength(70);
     for (const t of rows) expect(t.recipe_id).toMatch(OLD_ID_CHECK);
     expect(new Set(rows.map((t) => t.recipe_id))).toEqual(new Set(plan.insert));
   });
@@ -360,7 +380,7 @@ describe('library:sync against the content project before the code-id migration'
 
   it('refuses a project holding both shapes', () => {
     const mixed = planForProject(SYNC_SEED, [...PRODUCTION, row('PP-048', 'pp-048-soft-clean-portrait', 'x', false)]);
-    expect(mixed).toEqual({ refusal: expect.stringMatching(/both shapes: 83 SCL- .* and 1 code-shaped \(PP-048\)/) });
+    expect(mixed).toEqual({ refusal: expect.stringMatching(/both shapes: 46 SCL- .* and 1 code-shaped \(PP-048\)/) });
   });
 });
 
@@ -393,8 +413,8 @@ describe('library:sync against the content project after the code-id migration',
  * The content project today (2026-10-28): 20261024000000 applied, so code ids
  * and every seed recipe at its 2026-10-24 slug, under the names main's seed
  * gave them — the name of the day was the slug, in Title Case (`HLG` the one
- * acronym) — 47 published, the 43 originals unpublished, the 36 withdrawn
- * Picture Profiles unpublished beside them. 126 rows.
+ * acronym) — 10 published, the 35 originals unpublished, the 36 withdrawn
+ * Picture Profiles unpublished beside them. 81 rows.
  */
 const mainName = (slug: string) =>
   `${slug.slice(0, 6).toUpperCase()}-${titled(slug.slice(7)).replace(/\bHlg\b/, 'HLG')}`;
@@ -412,9 +432,9 @@ describe('library:sync against the content project today, before and after the c
     ['after 20261028000000', TODAY.map(migrateSlugs), 2],
   ] as const;
 
-  it('is the production fixture: 126 rows, 47 published, every seed recipe at its 2026-10-24 slug', () => {
-    expect(TODAY).toHaveLength(126);
-    expect(TODAY.filter((r) => r.published)).toHaveLength(47);
+  it('is the production fixture: 81 rows, 10 published, every seed recipe at its 2026-10-24 slug', () => {
+    expect(TODAY).toHaveLength(81);
+    expect(TODAY.filter((r) => r.published)).toHaveLength(10);
     expect(TODAY[0]).toEqual(row('PP-001', 'pp-001-vivid-nostalgia-film', 'PP-001-Vivid Nostalgia Film', true));
     expect(TODAY.find((r) => r.id === 'PP-080')?.name).toBe('PP-080-Range HLG Daylight');
     /* The published ones are exactly the kept recipes, the originals all drafts. */
@@ -425,7 +445,7 @@ describe('library:sync against the content project today, before and after the c
     expect(after.filter((r) => r.slug.startsWith('withdrawn-'))).toHaveLength(36);
   });
 
-  it.each(states)('%s: plans rename 47 (names only), refresh 43, nothing else, 0 conflicts', (_label, rows, slugState) => {
+  it.each(states)('%s: plans rename 10 (names only), refresh 35, nothing else, 0 conflicts', (_label, rows, slugState) => {
     const planned = planForProject(SYNC_SEED, rows);
     if ('refusal' in planned) throw new Error(planned.refusal);
     expect(planned.shape).toBe('code');
@@ -434,7 +454,7 @@ describe('library:sync against the content project today, before and after the c
     expect(planned.plan.insert).toEqual([]);
     expect(planned.plan.conflicts).toEqual([]);
     expect([...planned.plan.refresh].sort()).toEqual([...ORIGINALS].sort());
-    expect(planned.plan.rename).toHaveLength(47);
+    expect(planned.plan.rename).toHaveLength(10);
     for (const r of planned.plan.rename) {
       const slug = rows.find((x) => x.id === r.id)!.slug;
       expect(r.from, r.id).toBe(mainName(slugAtState(slug, 1)));

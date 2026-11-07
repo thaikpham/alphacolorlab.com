@@ -37,7 +37,40 @@ describe('parameter explanations', () => {
     }
   });
 
-  it('covers every Creative Look parameter', () => {
+  it('has both locales filled in everywhere', () => {
+    const tables = { PP_EXPLANATIONS, COLOR_DEPTH_EXPLANATIONS, PP_DETAIL_EXPLANATIONS };
+    for (const [name, table] of Object.entries(tables)) {
+      for (const [key, value] of Object.entries(table)) {
+        expect(value.en.length, `${name}.${key}.en`).toBeGreaterThan(20);
+        expect(value.vi.length, `${name}.${key}.vi`).toBeGreaterThan(20);
+      }
+    }
+  });
+
+  it('states the saturation range', () => {
+    // Read from constants.ts, so a range change cannot leave the text stale and this test green.
+    const pp = PP_RANGES.saturation;
+    expect(PP_EXPLANATIONS.saturation.en).toContain(`${pp.min} to +${pp.max}`);
+    expect(PP_EXPLANATIONS.saturation.vi).toContain(`${pp.min} đến +${pp.max}`);
+  });
+
+  it('names the end of the Kelvin range where the shift is the finer control', () => {
+    // The overview had this backwards: at 9900K a 100K step is about 1 mired,
+    // finer than any shift step, so the shift is finer only at the low end.
+    const kelvinStep = (from: number, to: number) => Math.abs(1e6 / from - 1e6 / to);
+    const atMin = kelvinStep(WB_KELVIN.min, WB_KELVIN.min + WB_KELVIN.step);
+    const atMax = kelvinStep(WB_KELVIN.max - WB_KELVIN.step, WB_KELVIN.max);
+    const shiftStep = WB_SHIFT_AXIS.step * MIRED_PER_SHIFT_STEP;
+    expect(atMin).toBeGreaterThan(shiftStep);
+    expect(atMax).toBeLessThan(shiftStep);
+
+    const en = WB_OVERVIEW.en.join(' ');
+    const vi = WB_OVERVIEW.vi.join(' ');
+    expect(en).toContain(`the shift is the finer control down at ${WB_KELVIN.min}K and the coarser one up at ${WB_KELVIN.max}K`);
+    expect(vi).toContain(`shift là nút tinh hơn ở vùng ${WB_KELVIN.min}K và thô hơn ở vùng ${WB_KELVIN.max}K`);
+    expect(en).toContain(`about ${Math.round(atMin)} mired down at ${WB_KELVIN.min}K`);
+    expect(en).toContain(`about ${Math.round(atMax)} mired up at ${WB_KELVIN.max}K`);
+    expect(en).not.toContain('finer control at the warm end');
   });
 
   it('names no Detail number that is not a bound of PP_RANGES.detailLevel', () => {
