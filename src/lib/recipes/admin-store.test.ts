@@ -104,7 +104,6 @@ describe('slugifyRecipe', () => {
 describe('normaliseRecipe', () => {
   const seed = recipesSeed as unknown as Record<string, unknown>[];
   const pp = seed.find((r) => r.format === 'pp')!;
-  const cl = seed.find((r) => r.format === 'cl')!;
 
   it('accepts a body that is already a valid recipe', () => {
     const out = normaliseRecipe(pp.id as string, pp);
@@ -140,15 +139,6 @@ describe('normaliseRecipe', () => {
     };
     const out = normaliseRecipe(pp.id as string, body);
     expect(out.ok).toBe(false);
-  });
-
-  it('refuses saturation on a monochrome Creative Look', () => {
-    /* The camera greys the control out for BW/SE, so a recipe carrying a value
-       there describes a setting the reader cannot reproduce. */
-    const body = { ...cl, settings: { ...(cl.settings as object), look: 'BW', saturation: 3 } };
-    const out = normaliseRecipe(cl.id as string, body);
-    expect(out.ok).toBe(false);
-    if (!out.ok) expect(out.issues.join(' ')).toMatch(/saturation/i);
   });
 
   it('reports every issue at once rather than the first', () => {
@@ -281,18 +271,6 @@ describe('computedRecipeName', () => {
     }
   });
 
-  it('renames a recipe when a dial moves, from the settings alone, into words no other row holds', async () => {
-    await stored();
-    const cl = byId.get('CL-011')!;
-    if (cl.format !== 'cl') throw new Error('CL-011 is a Creative Look');
-    const punchier = { ...cl, settings: { ...cl.settings, contrast: 9 } };
-    const named = await computedRecipeName(punchier);
-    if (!named.ok) throw new Error('CL-011 at Contrast +9 has a free name');
-    expect(named.name).not.toBe(cl.name);
-    expect(named.name.startsWith('CL-011-')).toBe(true);
-    expect(othersHolding(seed, cl.id, named.name)).toEqual([]);
-  });
-
   it('holds every other row to its stored words: an edit never takes a name another row keeps', async () => {
     /* The whole-library assignment, run again for one save, handed the edited
        recipe words a later row held and moved that row aside — a move never
@@ -327,12 +305,12 @@ describe('computedRecipeName', () => {
     /* Every option of PP-055's own reading, held by a stored row under another
        number and with other settings: nothing honest is left. */
     const like = byId.get('PP-055')!;
-    const other = byId.get('CL-011')!;
+    const other = byId.get('PP-001')!;
     const held = optionsOf(readName(like)).map((o, i) => ({
       ...other,
-      id: `CL-${900 + i}`,
-      slug: `cl-${900 + i}`,
-      name: `CL-${900 + i}-${o.words.join(' ')}`,
+      id: `PP-${900 + i}`,
+      slug: `pp-${900 + i}`,
+      name: `PP-${900 + i}-${o.words.join(' ')}`,
     }));
     await store(held);
     const named = await computedRecipeName({ ...like, id: 'PP-899', slug: 'pp-899' });
@@ -341,24 +319,29 @@ describe('computedRecipeName', () => {
 
   it('names a new recipe after every stored one, by its own number, in words no row holds', async () => {
     await stored();
-    const cl = byId.get('CL-011')!;
-    if (cl.format !== 'cl') throw new Error('CL-011 is a Creative Look');
-    const fresh = { ...cl, id: 'CL-046', slug: 'cl-046', name: 'CL-046', settings: { ...cl.settings, shadows: -6 } };
+    const pp = byId.get('PP-055')!;
+    const fresh = { ...pp, id: 'PP-046', slug: 'pp-046', name: 'PP-046', settings: { ...pp.settings, saturation: 9 } };
     const named = await computedRecipeName(fresh);
     expect(named).toMatchObject({ ok: true, tiedWith: null });
     if (named.ok) expect(othersHolding(seed, fresh.id, named.name)).toEqual([]);
   });
 
   it('shares words only with a stored recipe that reads alike, and says which', async () => {
-    /* A copy of CL-011 renders CL-011's nine swatches: no word tells them
-       apart, so the tie is the truth and is reported, not refused. */
+    /* A copy renders its source's swatches. Where no other honest reading is
+       free, no word tells them apart, so the tie is the truth and is reported,
+       not refused. Found among the seed rather than pinned to one recipe: which
+       copies run out of readings moves whenever the catalogue changes. */
     await stored();
-    const copy = { ...byId.get('CL-011')!, id: 'CL-046', slug: 'cl-046', name: 'CL-046' };
-    await expect(computedRecipeName(copy)).resolves.toEqual({
-      ok: true,
-      name: `CL-046-${byId.get('CL-011')!.name.slice(7)}`,
-      tiedWith: 'CL-011',
-    });
+    const ties: { id: string; tiedWith: string }[] = [];
+    for (const source of seed) {
+      const copy = { ...source, id: 'PP-099', slug: 'pp-099', name: 'PP-099' };
+      const named = await computedRecipeName(copy);
+      if (named.ok && named.tiedWith) {
+        expect(othersHolding(seed, copy.id, named.name), source.id).toContain(named.tiedWith);
+        ties.push({ id: source.id, tiedWith: named.tiedWith });
+      }
+    }
+    expect(ties.length).toBeGreaterThan(0);
   });
 });
 
@@ -400,25 +383,15 @@ describe('the shipped catalogue', () => {
  */
 describe('nextIdAmong', () => {
   it('issues the stored shape while every row still has it', () => {
-    expect(nextIdAmong('PP', ['SCL-PP-001', 'SCL-PP-082', 'SCL-CL-045'])).toBe('SCL-PP-083');
-    expect(nextIdAmong('CL', ['SCL-PP-001', 'SCL-PP-082', 'SCL-CL-045'])).toBe('SCL-CL-046');
+    expect(nextIdAmong('PP', ['SCL-PP-001', 'SCL-PP-082'])).toBe('SCL-PP-083');
   });
 
   it('issues the code shape once the rows have it', () => {
-    expect(nextIdAmong('PP', ['PP-001', 'PP-082', 'CL-045'])).toBe('PP-083');
-    expect(nextIdAmong('CL', ['PP-001', 'PP-082', 'CL-045'])).toBe('CL-046');
+    expect(nextIdAmong('PP', ['PP-001', 'PP-082'])).toBe('PP-083');
   });
 
   it('never reissues a number held under the other shape', () => {
     expect(nextIdAmong('PP', ['SCL-PP-090', 'PP-012'])).toBe('PP-091');
-  });
-
-  it('starts at 001 in the stored shape when a format has no rows', () => {
-    expect(nextIdAmong('CL', ['SCL-PP-001'])).toBe('SCL-CL-001');
-  });
-
-  it('reads the shape across both formats once the CHECK has moved', () => {
-    expect(nextIdAmong('CL', ['PP-001'])).toBe('CL-001');
   });
 
   it('ignores ids of other shapes and refuses past 999', () => {

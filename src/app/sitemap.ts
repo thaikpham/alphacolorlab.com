@@ -3,7 +3,6 @@ import { bilingualAlternates } from '@/i18n/alternates';
 import { routing } from '@/i18n/routing';
 import { visibleSituations } from '@/lib/recipes/browse';
 import { listRecipes, listSlugs } from '@/lib/recipes/source';
-import { getSonyAudio } from '@/lib/audio/data';
 import { getSonyCameras } from '@/lib/cameras/data';
 import { ARTICLE_LANG } from '@/lib/lab/articles';
 import { getPublishedArticles, getPublishedKnowledge } from '@/lib/lab/data';
@@ -34,13 +33,11 @@ const path = (locale: string, rest: string) => bilingualAlternates(locale, rest)
  * article under English chrome, not a translation of it.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [slugs, recipes, audio, cameras, articles, knowledge, notes] = await Promise.all([
+  const [slugs, recipes, cameras, articles, knowledge, notes] = await Promise.all([
     listSlugs(),
     /* For the situation pages: only a situation with enough published recipes
        to be worth a tile is listed, and that is counted at render, not typed. */
-    listRecipes('en'),
-    getSonyAudio(),
-    getSonyCameras(),
+    listRecipes('en'),    getSonyCameras(),
     // Published only, and from the store rather than the seed: an article an
     // editor unpublished must leave the sitemap, or a crawler keeps asking for
     // a URL that now 404s.
@@ -100,9 +97,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...cameras.flatMap((c) => bilingual(`/cameras/${c.id}`, 'yearly', 0.6)),
 
     // The headphone & speaker wiki, and a page per product.
-    ...bilingual('/audio', 'monthly', 0.8),
-    ...audio.flatMap((p) => bilingual(`/audio/${p.id}`, 'yearly', 0.6)),
-
     /* Alpha Tech Blogs. The feed carries a query string in use, but the
        canonical URL is the unfiltered one — a sitemap listing `?topic=af`
        would ask a crawler to index eleven near-identical pages. */

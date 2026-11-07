@@ -13,7 +13,7 @@
  * by the slug the plan matched on.
  *
  * It replaces the one-off `pp:refresh` of 2026-10-23, which did the first two
- * of those and nothing else, and it is what carries the `PP-NNN` / `CL-NNN`
+ * of those and nothing else, and it is what carries the `PP-NNN`
  * names to production. `push:supabase` cannot: it never changes an existing row
  * without `--overwrite`, and `--overwrite` replaces rows whole, undoing every
  * edit an administrator made since the seed.
@@ -32,7 +32,6 @@
 
 import { readFileSync } from 'node:fs';
 import { recipeSchema } from '../src/lib/camera/schema';
-import { ORIGINAL_CL } from '../src/lib/originals/cl';
 import { ORIGINAL_PP } from '../src/lib/originals/pp';
 import { RETIRED_RECIPE_IDS } from '../src/lib/recipes/redirects';
 import { SLUG_MOVES } from '../src/lib/recipes/slug-moves';
@@ -66,7 +65,7 @@ async function main() {
     return { recipe: parsed.data, legacyId: (r.legacyId as string | null | undefined) ?? null };
   });
   const translations = JSON.parse(readFileSync('data/translations.seed.json', 'utf8')) as SeedTranslation[];
-  const originals = [...ORIGINAL_PP, ...ORIGINAL_CL].map((o) => o.recipe.id);
+  const originals = ORIGINAL_PP.map((o) => o.recipe.id);
 
   const { data, error } = await db.from('recipes').select('id, slug, name, published');
   if (error) throw new Error(`recipes read: ${error.message}`);

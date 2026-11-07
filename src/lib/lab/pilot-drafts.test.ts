@@ -1,8 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import {
-  CL_RANGES,
-  CREATIVE_LOOK_CODES,
   HELP_GUIDE_SOURCES,
   PP_COLOR_MODE,
   PP_GAMMA,
@@ -106,32 +104,7 @@ describe('the reference pages', () => {
     const range = (min: number, max: number) =>
       `${min < 0 ? `−${-min}` : min} đến ${max > 0 && min < 0 ? `+${max}` : max}`
 
-    expect(prose('picture-profile-va-creative-look')).toContain(
-      range(PP_RANGES.saturation.min, PP_RANGES.saturation.max),
-    )
-    expect(prose('picture-profile-va-creative-look')).toContain(
-      range(CL_RANGES.saturation.min, CL_RANGES.saturation.max),
-    )
     expect(prose('color-depth')).toContain(range(PP_RANGES.colorDepth.min, PP_RANGES.colorDepth.max))
-    expect(prose('picture-profile-va-creative-look')).toContain(
-      `Sharpness Range ${CL_RANGES.sharpnessRange.min} đến ${CL_RANGES.sharpnessRange.max}`,
-    )
-
-    /* Every other number the prose restates, each against its constant, so a
-       range widened in constants.ts (Rule 5) fails here instead of leaving a
-       reference page silently wrong. */
-    const ppcl = prose('picture-profile-va-creative-look')
-    expect(ppcl).toContain(
-      `Limit và Crispening ${range(PP_RANGES.detailLimit.min, PP_RANGES.detailLimit.max)}`,
-    )
-    expect(PP_RANGES.detailCrispening).toEqual(PP_RANGES.detailLimit)
-    expect(ppcl).toContain(
-      `Hi-Light Detail ${range(PP_RANGES.detailHiLightDetail.min, PP_RANGES.detailHiLightDetail.max)}`,
-    )
-    expect(ppcl).toContain(`Fade, Sharpness, Clarity ${range(CL_RANGES.fade.min, CL_RANGES.fade.max)}`)
-    expect(CL_RANGES.sharpness).toEqual(CL_RANGES.fade)
-    expect(CL_RANGES.clarity).toEqual(CL_RANGES.fade)
-    for (const code of CREATIVE_LOOK_CODES) expect(ppcl).toContain(code)
 
     const wb = prose('white-balance-shift')
     expect(wb).toContain(`tối đa ${WB_SHIFT_AXIS.max} mỗi phía`)

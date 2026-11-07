@@ -54,7 +54,6 @@ vi.mock('@/lib/cameras/data', () => ({
     return state.cameras
   },
 }))
-vi.mock('@/lib/audio/data', () => ({ getSonyAudio: async () => [] }))
 
 const { searchContent, searchGroups } = await import('./service')
 
@@ -75,9 +74,9 @@ const product = (over: Partial<SonyCamera> & { id: string; name: string }): Sony
   ({
     sku: '',
     fullName: over.name,
-    category: 'audio',
-    subCategory1: 'Tai nghe',
-    subCategory2: 'Choàng đầu',
+    category: 'camera',
+    subCategory1: 'Full Frame',
+    subCategory2: 'Máy ảnh Alpha',
     priceVnd: 8_990_000,
     priceFormatted: '8.990.000 ₫',
     imageUrl: '',
@@ -160,7 +159,7 @@ describe('searchContent', () => {
 describe('a product hit', () => {
   beforeEach(() => {
     state.cameras = [
-      product({ id: 'sony-wh-1000xm5', name: 'WH-1000XM5' }),
+      product({ id: 'sony-ilce-7m4', name: '7 IV', sku: 'ILCE-7M4/BQ AP2' }),
       product({
         id: 'sony-selc1635g',
         sku: 'SELC1635G/C SYX',
@@ -179,16 +178,16 @@ describe('a product hit', () => {
   })
 
   it("shows its stored sub-category and price in the reader's language", async () => {
-    /* The seed stores "Tai nghe" and, for a product with no published
+    /* The seed stores "Máy ảnh Alpha" and, for a product with no published
        figure, the Vietnamese "Liên hệ" — which read as the price on /en. */
-    const [wh] = (await searchIn('WH-1000', 'en', 'products')).hits
-    expect(wh).toMatchObject({ badge: 'Headphones', subtitle: 'Headphones · Over-ear' })
+    const [body] = (await searchIn('ILCE-7M4', 'en', 'products')).hits
+    expect(body).toMatchObject({ badge: 'Full-Frame', subtitle: 'ILCE-7M4 · Full-Frame · Alpha cameras' })
     const [lens] = (await searchIn('selc1635g', 'en', 'products')).hits
     expect(lens.price).toBe('Price on request')
     expect(lens.subtitle).toBe('SELC1635G · Full-Frame · G')
 
-    const [whVi] = (await searchIn('WH-1000', 'vi', 'products')).hits
-    expect(whVi).toMatchObject({ badge: 'Tai nghe', subtitle: 'Tai nghe · Choàng đầu' })
+    const [bodyVi] = (await searchIn('ILCE-7M4', 'vi', 'products')).hits
+    expect(bodyVi).toMatchObject({ badge: 'Full-Frame', subtitle: 'ILCE-7M4 · Full-Frame · Máy ảnh Alpha' })
     expect((await searchIn('selc1635g', 'vi', 'products')).hits[0].price).toBe('Liên hệ')
   })
 

@@ -2,7 +2,6 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { PGlite } from '@electric-sql/pglite';
 import { beforeAll, describe, expect, it } from 'vitest';
 import {
-  CREATIVE_LOOK_CODES,
   RECIPE_FORMATS,
   WB_AUTO_MODES,
   WB_AXIS_AB,
@@ -40,6 +39,13 @@ const ROOTS = [CONTROL_ROOT, CONTENT_ROOT] as const;
 const ID_CHECK: Record<(typeof ROOTS)[number], RegExp> = {
   [CONTENT_ROOT]: RECIPE_ID_RE,
   [CONTROL_ROOT]: /^SCL-(PP|CL)-\d{3}$/,
+};
+
+/* Control's `recipes` is the dormant pre-split table: its schema is history and
+   still names Creative Look; only content follows RECIPE_FORMATS. */
+const FORMATS: Record<(typeof ROOTS)[number], readonly string[]> = {
+  [CONTENT_ROOT]: RECIPE_FORMATS,
+  [CONTROL_ROOT]: ['pp', 'cl'],
 };
 
 async function build(root: string): Promise<PGlite> {
@@ -98,11 +104,7 @@ describe.each(ROOTS)('SQL / constants drift in %s', (root) => {
   };
 
   it('recipe_format enum matches RECIPE_FORMATS', async () => {
-    expect(await enumLabels('recipe_format')).toEqual([...RECIPE_FORMATS]);
-  });
-
-  it('creative_look enum matches CREATIVE_LOOK_CODES', async () => {
-    expect(await enumLabels('creative_look')).toEqual([...CREATIVE_LOOK_CODES]);
+    expect(await enumLabels('recipe_format')).toEqual([...FORMATS[root]]);
   });
 
   it('wb_mode enum covers exactly the modes the schema can produce', async () => {

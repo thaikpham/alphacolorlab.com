@@ -29,34 +29,25 @@ const { capabilitiesForModel } = await import('@/lib/cameras/capabilities/instal
 const browse = (cookie: string | undefined, sp: Record<string, string> = {}) => loadBrowse('en', null, sp, cookie);
 
 describe('choosing a7 III', () => {
-  it('removes every Creative Look recipe from the grid, the tiles and every count', async () => {
+  it('filters recipes to only those installable on the chosen camera', async () => {
     const none = await browse(undefined);
     const a7iii = await browse('ILCE-7M3');
-    expect(none.recipes.some((r) => r.format === 'cl')).toBe(true);
 
     expect(a7iii.camera).toMatchObject({ choice: 'ILCE-7M3', name: 'a7 III' });
-    expect(a7iii.recipes.some((r) => r.format === 'cl')).toBe(false);
-    expect(a7iii.all.some((r) => r.format === 'cl')).toBe(false);
-    expect(a7iii.facets.formats.cl).toBe(0);
-    /* What else goes is a Picture Profile outside the a7 III's confirmed lists. */
+    /* What's kept is a Picture Profile in the a7 III's confirmed lists. */
     const caps = capabilitiesForModel('ILCE-7M3');
     const installablePp = none.recipes.filter(
       (r) => r.format === 'pp' && caps.gammas!.includes(r.settings.gamma) && caps.colorModes!.includes(r.settings.colorMode),
     );
     expect(a7iii.recipes.map((r) => r.id)).toEqual(installablePp.map((r) => r.id));
-    expect(a7iii.facets.formats.pp).toBe(installablePp.length);
 
-    const ppOnly = none.recipes.filter((r) => r.format === 'pp');
     for (const [id, n] of Object.entries(a7iii.facets.situations)) {
-      expect(n, id).toBeLessThanOrEqual(ppOnly.filter((r) => r.situations.includes(id as never)).length);
+      expect(n, id).toBeLessThanOrEqual(
+        installablePp.filter((r) => r.situations.includes(id as never)).length,
+      );
     }
     const sum = (o: Record<string, number>) => Object.values(o).reduce((a, b) => a + b, 0);
     expect(sum(a7iii.facets.tones)).toBe(a7iii.recipes.length);
-  });
-
-  it('keeps narrowing with the other filters: ?format=cl leaves nothing', async () => {
-    const model = await browse('ILCE-7M3', { format: 'cl' });
-    expect(model.recipes).toEqual([]);
   });
 });
 

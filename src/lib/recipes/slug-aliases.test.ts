@@ -5,11 +5,9 @@ import formerSlugs from '../../../data/former-slugs.json';
 import { recipeSchema, type Recipe } from '../camera/schema';
 import legacyRecipes from '../legacy/recipes.legacy.js';
 import { migrateAll } from '../legacy/migrate';
-import { ORIGINAL_CL } from '../originals/cl';
 import { ORIGINAL_PP } from '../originals/pp';
 import { recipeDoc } from '../search/documents';
-import { SONY_ASIA_IDS } from '../sony-asia/ids';
-import { isPermanentMove, newestSlugOf, slugAliases, slugHistory } from './slug-aliases';
+import { isPermanentMove, isRemovedCreativeLook, newestSlugOf, slugAliases, slugHistory } from './slug-aliases';
 import { parseRecipeName } from './names';
 import { SLUG_MOVES } from './slug-moves';
 import { matchesQuery } from './source';
@@ -31,8 +29,7 @@ const [OCT24, OCT28] = SLUG_MOVES;
 /** The slug each source published the recipe under, by id. */
 const sourceSlug = new Map<string, string>([
   ...migrateAll(legacyRecipes as Record<string, unknown>[]).ok.map((r) => [r.recipe.id, r.recipe.slug] as const),
-  ...Object.values(SONY_ASIA_IDS).map((p) => [p.id, p.slug] as const),
-  ...[...ORIGINAL_PP, ...ORIGINAL_CL].map((o) => [o.recipe.id, o.recipe.slug] as const),
+  ...ORIGINAL_PP.map((o) => [o.recipe.id, o.recipe.slug] as const),
 ]);
 
 /** Each seed recipe's three spellings, oldest first, from the frozen batches alone. */
@@ -51,14 +48,20 @@ describe('data/former-slugs.json', () => {
       expected[s.first] = s.code;
       expected[s.oct24] = s.code;
     }
-    expect(map).toEqual(expected);
+    /* The removed Creative Looks keep their history (links still resolve to a
+       308): every other entry points at a `cl-` code. */
+    const pp = Object.fromEntries(Object.entries(map).filter(([, code]) => !code.startsWith('cl-')));
+    expect(pp).toEqual(expected);
+    for (const [former, code] of Object.entries(map)) {
+      if (code.startsWith('cl-')) expect(isRemovedCreativeLook(former), former).toBe(true);
+    }
   });
 
   it('never names a current slug as a former one, and points only at code slugs', () => {
     const current = new Set(seed.map((r) => r.slug));
     for (const former of Object.keys(map)) expect(current.has(former), former).toBe(false);
     for (const t of Object.values(map)) {
-      expect(current.has(t), t).toBe(true);
+      expect(current.has(t) || isRemovedCreativeLook(t), t).toBe(true);
       expect(t).toMatch(/^(pp|cl)-\d{3}$/);
     }
   });

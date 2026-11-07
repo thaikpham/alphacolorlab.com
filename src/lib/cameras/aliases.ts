@@ -26,8 +26,7 @@ const ROMAN: ReadonlyArray<readonly [RegExp, string]> = [
 
 /**
  * The model code a SKU starts with: `ILCE-7CM2/SQAP2` → `ILCE-7CM2`,
- * `ILME-FX6V//CAP2` → `ILME-FX6V`, `DSC-RX1RM3  AP2` → `DSC-RX1RM3`. Empty when
- * the source published no SKU (the audio sheets), never a guess.
+ * `ILME-FX6V//CAP2` → `ILME-FX6V`, `DSC-RX1RM3  AP2` → `DSC-RX1RM3`.
  */
 export function modelCode(sku: string): string {
   return sku.split('/')[0].trim().split(/\s+/)[0] ?? ''

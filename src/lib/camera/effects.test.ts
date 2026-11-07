@@ -1,8 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { AXIS_LABELS, clEffects, ppEffects, wbEffects, wbSummary, type Effect } from './effects';
+import { AXIS_LABELS, ppEffects, wbEffects, wbSummary, type Effect } from './effects';
 import {
-  CL_PARAM_ORDER,
   PP_COLOR_DEPTH_CHANNELS,
   PP_RANGES,
   WB_PRESETS,
@@ -21,12 +20,6 @@ const pp = recipes.filter((r): r is Extract<Recipe, { format: 'pp' }> => r.forma
 
 const basePp = pp[0].settings;
 const withPp = (patch: Partial<typeof basePp>) => ppEffects({ ...basePp, ...patch });
-
-const baseCl = {
-  look: 'ST' as const,
-  contrast: 0, highlights: 0, shadows: 0, fade: 0,
-  saturation: 0, sharpness: 0, sharpnessRange: 3, clarity: 0,
-};
 
 const bothLocalesFilled = (e: Effect) => e.en.length > 5 && e.vi.length > 5;
 
@@ -103,22 +96,6 @@ describe('coverage', () => {
         expect(bothLocalesFilled(e[key]), `${r.id}.${key} has an empty locale`).toBe(true);
       }
     }
-  });
-
-  it('produces an effect for every Creative Look parameter', () => {
-    const e = clEffects(baseCl);
-    for (const p of CL_PARAM_ORDER) {
-      expect(e[p], `missing effect for ${p}`).toBeDefined();
-      expect(bothLocalesFilled(e[p])).toBe(true);
-    }
-    expect(e.look).toBeDefined();
-  });
-
-  it('omits Saturation for monochrome Looks instead of inventing one', () => {
-    const { saturation: _drop, ...noSat } = baseCl;
-    const e = clEffects({ ...noSat, look: 'BW' });
-    expect(e.saturation).toBeUndefined();
-    expect(e.look.en.toLowerCase()).toContain('monochrome');
   });
 
   it('never returns an empty string for any legal value in a range', () => {
@@ -304,7 +281,7 @@ describe('white balance summary', () => {
   });
 
   it('keeps a neutral amber–blue reading from denying the tint it then adds', () => {
-    // CL-021 and Mojave Sun: "not from the white balance", then a magenta
+    // Two blue-and-magenta recipes: "not from the white balance", then a magenta
     // tint that IS the white balance.
     for (const shift of [
       { ab: { axis: 'B', amount: 2.5 }, gm: { axis: 'M', amount: 5 } },
@@ -347,26 +324,12 @@ describe('HLG colour modes', () => {
 });
 
 describe('unsigned intensity params grade up from their minimum', () => {
-  /* Fade, Sharpness and Clarity (0–9) and the PP Detail Limit, Crispening and
-     Hi-Light Detail were graded around their midpoint, so the whole low half
-     of each range fell back to the wording for the minimum: Fade 3 read
-     "No fade", Sharpness 4 "No sharpening", and every PP recipe at Limit 3
-     read "capped hard". Only the minimum itself may say "none". */
+  /* The PP Detail Limit, Crispening and Hi-Light Detail were graded around
+     their midpoint, so the whole low half of each range fell back to the
+     wording for the minimum: every recipe at Limit 3 read "capped hard". Only
+     the minimum itself may say "none". */
   it('keeps the "none" wording for the minimum only', () => {
-    expect(clEffects({ ...baseCl, fade: 0 }).fade.en).toMatch(/^No fade/);
-    expect(clEffects({ ...baseCl, fade: 3 }).fade.en).not.toMatch(/^No fade/);
-    expect(clEffects({ ...baseCl, sharpness: 4 }).sharpness.en).not.toMatch(/^No sharpening/);
-    expect(clEffects({ ...baseCl, clarity: 1 }).clarity.en).not.toMatch(/^No clarity/);
     expect(withPp({ detail: { ...basePp.detail, hiLightDetail: 2 } }).hiLightDetail.en).not.toMatch(/^No extra/);
     expect(withPp({ detail: { ...basePp.detail, limit: 3 } }).detailLimit.en).not.toMatch(/capped hard/);
-  });
-
-  it('describes every value above the minimum with a non-minimum phrase', () => {
-    for (const param of ['fade', 'sharpness', 'clarity'] as const) {
-      const none = clEffects({ ...baseCl, [param]: 0 })[param].en;
-      for (let v = 1; v <= 9; v++) {
-        expect(clEffects({ ...baseCl, [param]: v })[param].en, `${param} ${v}`).not.toBe(none);
-      }
-    }
   });
 });

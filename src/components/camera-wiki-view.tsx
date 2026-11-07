@@ -4,7 +4,6 @@ import { Suspense, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
-import { WikiDivisionSwitch } from './wiki-division-switch';
 import { ProductPhoto } from './product-photo';
 import {
   compareCameras,
@@ -32,11 +31,10 @@ const CATEGORY_LABEL_KEY: Record<string, string> = {
   camera: 'catCamera',
   lens: 'catLens',
   accessory: 'catAccessory',
-  audio: 'catAudio',
 };
 
 /** Catalogue order for the first facet group. Only the ones present are drawn. */
-const CATEGORY_ORDER: ProductCategory[] = ['camera', 'lens', 'accessory', 'audio'];
+const CATEGORY_ORDER: ProductCategory[] = ['camera', 'lens', 'accessory'];
 
 /**
  * The two accent recipes this screen repeats.
@@ -61,12 +59,11 @@ const CHIP =
 /**
  * The category tag, tinted by what the row *is*.
  *
- * Two tints and a neutral, not four: a colour per category would put four
+ * Two tints and a neutral: a colour per category would be decoration
  * signals in one list and turn classification into decoration.
  */
 const CATEGORY_TAG_CLASS: Record<string, string> = {
   camera: 'bg-accent-400/15 text-accent-400',
-  audio: 'bg-community/15 text-community',
   lens: 'bg-white/[0.08] text-ink-muted',
   accessory: 'bg-white/[0.08] text-ink-muted',
 };
@@ -367,7 +364,7 @@ function CameraWikiViewInner({ initialCameras, basePath = '/cameras' }: CameraWi
     ...(selectedSub2 !== 'all' ? [subCategoryLabel(selectedSub2, t)] : []),
   ];
 
-  const pageTitle = basePath === '/audio' ? t('audioTitle') : t('title');
+  const pageTitle = t('title');
 
   return (
     <div className="w-full flex flex-col gap-6">
@@ -426,7 +423,7 @@ function CameraWikiViewInner({ initialCameras, basePath = '/cameras' }: CameraWi
             — a rail that advertises overflow reads as a broken table.
 
             On a phone the DI/PE switch leads this rail, because the header rail
-            it belongs on has no room for it at 375px — `wiki-division-switch.tsx`
+            
             carries that arithmetic. It sits OUTSIDE the scroller rather than as
             its first chip: the chips scroll sideways, and a switch between
             catalogues that slides out of reach once you have paged through the
@@ -434,7 +431,6 @@ function CameraWikiViewInner({ initialCameras, basePath = '/cameras' }: CameraWi
             holds its place when there is no facet rail at all — the rail is
             hidden below two axes, and the switch is not one of them. */}
         <div className="flex items-center gap-[9px]">
-          <WikiDivisionSwitch current={basePath} className="flex sm:hidden" />
 
           {facetRail.length > 1 && (
             <div className="scroll-silent flex min-w-0 flex-1 gap-[9px] overflow-x-auto pb-0.5">

@@ -1,6 +1,6 @@
 ---
 name: sync-camera-constants
-description: Update Alpha ColorLab's Sony camera constants — ranges, gamma curves, colour modes, Creative Looks — from the official Sony help guide. Use when adding support for a new camera body, when Sony adds or renames a Look or parameter, or when a range in constants.ts is suspected wrong.
+description: Update Alpha ColorLab's Sony camera constants — ranges, gamma curves, colour modes — from the official Sony help guide. Use when adding support for a new camera body, when Sony adds or renames a parameter, or when a range in constants.ts is suspected wrong.
 ---
 
 # Sync camera constants
@@ -13,7 +13,7 @@ downstream follows — which is exactly why it must never be edited from memory.
 
 **Every number comes from a fetched Sony page, not from recall.** Model knowledge
 of these ranges is unreliable and confidently wrong: web-search summaries of these
-same pages have reported Creative Look Saturation as both `0…9` and `−9…+9` in one
+same pages have reported one Saturation range as both `0…9` and `−9…+9` in one
 answer. Fetch the page. Read the raw text. Cite the URL.
 
 ## Sources
@@ -26,11 +26,6 @@ Picture Profile (generic, applies across bodies):
 | Black Level, Black Gamma, Knee | `.../TP0000909110.html` |
 | Saturation, Color Phase, Color Depth | `.../TP0000909111.html` |
 | Detail | `.../TP0000909112.html` |
-
-Creative Look is **per-body** — always use the guide for the specific camera:
-
-- ILCE-7M4: `https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640837.html`
-- Others: search `helpguide.sony.net` for `<model> Creative Look`.
 
 ## Extracting reliably
 
@@ -53,9 +48,7 @@ i=o.find('Go to Page Top'); print(o[:i] if i>0 else o)"
    change to match, that is a bug in the derivation; fix the derivation.
 3. Widening a range? Check `LEGACY_CORRECTIONS` in `src/lib/legacy/migrate.ts` —
    a value corrected as impossible may now be legal for the new body.
-4. Adding a Creative Look? Update `CREATIVE_LOOKS`, and check whether it is
-   monochrome (`CL_MONOCHROME_LOOKS` gates the Saturation rule).
-5. `npm test` — the count assertions and negative cases will catch a typo'd enum.
+4. `npm test` — the count assertions and negative cases will catch a typo'd enum.
 
 ## Bodies differ
 

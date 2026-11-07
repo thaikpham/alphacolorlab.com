@@ -4,7 +4,6 @@ import { PP_RANGES, PP_COLOR_DEPTH_CHANNELS } from '../camera/constants';
 import { recipeSchema, type PpSettings, type Recipe } from '../camera/schema';
 import { TAXONOMY_MANIFEST, taxonomyFor } from '../recipes/taxonomy-assign';
 import { parseSituation } from '../recipes/taxonomy';
-import { ORIGINAL_CL } from './cl';
 import { ORIGINAL_PP, type OriginalRecipe } from './pp';
 
 /**
@@ -13,7 +12,7 @@ import { ORIGINAL_PP, type OriginalRecipe } from './pp';
  * pass cannot drift off it without saying so.
  */
 
-const ALL: readonly OriginalRecipe[] = [...ORIGINAL_PP, ...ORIGINAL_CL];
+const ALL: readonly OriginalRecipe[] = ORIGINAL_PP;
 const vi = JSON.parse(readFileSync('data/translations.vi.json', 'utf8')) as Record<string, string>;
 
 /* An original carries no name (emit-seed computes it); the seed's stands in
@@ -48,14 +47,10 @@ const sequence = (list: readonly OriginalRecipe[]) => list.map((o) => Number(o.r
 const range = (from: number, to: number) => Array.from({ length: to - from + 1 }, (_, i) => from + i);
 
 describe('the originals', () => {
-  it('parse with recipeSchema, each in its own format', () => {
+  it('parse with recipeSchema', () => {
     for (const o of ORIGINAL_PP) {
       expect(recipeSchema.safeParse(named(o)).success, o.recipe.id).toBe(true);
       expect(o.recipe.format, o.recipe.id).toBe('pp');
-    }
-    for (const o of ORIGINAL_CL) {
-      expect(recipeSchema.safeParse(named(o)).success, o.recipe.id).toBe(true);
-      expect(o.recipe.format, o.recipe.id).toBe('cl');
     }
   });
 
@@ -63,9 +58,8 @@ describe('the originals', () => {
     for (const o of ALL) expect(o.recipe.published, o.recipe.id).toBe(false);
   });
 
-  it('are numbered without gaps: PP 048–082, CL 038–045', () => {
+  it('are numbered without gaps: PP 048–082', () => {
     expect(sequence(ORIGINAL_PP)).toEqual(range(48, 82));
-    expect(sequence(ORIGINAL_CL)).toEqual(range(38, 45));
     const ids = ALL.map((o) => o.recipe.id);
     expect(new Set(ids).size).toBe(ids.length);
     const slugs = ALL.map((o) => o.recipe.slug);
@@ -133,14 +127,6 @@ describe('the originals', () => {
       expect(entry?.style, o.recipe.id).toBeDefined();
       expect(entry?.tone, o.recipe.id).toBeDefined();
       for (const s of entry?.situations ?? []) expect(parseSituation(s), `${o.recipe.id}: ${s}`).not.toBeNull();
-    }
-  });
-
-  it('describe a Creative Look with Creative Look settings only', () => {
-    /* A stray Picture Profile key is a schema error, not a dropped field. */
-    for (const o of ORIGINAL_CL) {
-      const withPp = { ...named(o), settings: { ...o.recipe.settings, blackLevel: 0 } } as unknown as Recipe;
-      expect(recipeSchema.safeParse(withPp).success, o.recipe.id).toBe(false);
     }
   });
 });

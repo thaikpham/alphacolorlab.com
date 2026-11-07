@@ -108,8 +108,6 @@ describe('the parameter cards', () => {
 
   it('take their labels from constants.ts, never a literal per call', () => {
     expect(cards).toMatch(/label=\{PP_PARAM_LABELS\.blackLevel\}/);
-    expect(cards).toMatch(/label=\{CL_PARAM_LABELS\[p\]\}/);
-    expect(cards).toMatch(/value=\{formatClValue\(p, value\)\}/);
   });
 });
 
@@ -146,12 +144,11 @@ describe('labels', () => {
   });
 
   /* Uppercase is `.label` only, and never over three words: Vietnamese
-     diacritics need the ascender room. vi rendered "TẤT CẢ CÔNG THỨC",
-     "CÀI ĐẶT MÁY ẢNH" and "CL: BW (BLACK & WHITE)". */
+     diacritics need the ascender room. vi rendered "TẤT CẢ CÔNG THỨC"
+     and "CÀI ĐẶT MÁY ẢNH". */
   it('sets no uppercase over more than three words', () => {
     expect(page).not.toMatch(/className="[^"]*\buppercase\b/);
     expect(page).not.toMatch(/className="label[^"]*">\{t\('(back|paramsLabel)'\)\}/);
-    expect(page).toMatch(/CL: \{look\.code\}\s*<span className="normal-case">\(\{look\.label\}\)<\/span>/);
   });
 });
 

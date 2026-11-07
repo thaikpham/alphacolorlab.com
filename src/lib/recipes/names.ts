@@ -8,18 +8,16 @@
  * The words read the palette (`paletteFor`), the same nine swatches the grid
  * draws beside the name, so they see everything the palette combines: the
  * White Balance under the light the recipe is built for, every dial, the
- * gamma and colour mode of a Picture Profile, a Creative Look's own base. Two
- * Looks with every dial at zero no longer read alike, because their palettes
- * do not.
+ * gamma and colour mode of the Picture Profile.
  *
  * Each reading is a change from a reference palette of the same format — the
  * Still / Still pair the guide calls the rendering without a Picture Profile
- * (`PP_STANDARD_STILL`), or ST — with every dial at its default
+ * (`PP_STANDARD_STILL`) — with every dial at its default
  * (`defaults.ts`), graded as a fraction of the largest change the
  * palette can make in that direction for that format — found by evaluating it
  * at the range endpoints of `constants.ts` — with `effects.ts`'s 55% strong
  * cut. No magnitude lives here. No word names a place, a situation, a use, a
- * film stock, a Creative Look code, a brand or a person, and the whole string,
+ * film stock, a brand or a person, and the whole string,
  * like every recipe name, is never translated (Rule 3).
  *
  * Reads the taxonomy manifest (the light a recipe is built for), so this is
@@ -27,8 +25,6 @@
  */
 
 import {
-  CL_RANGES,
-  CREATIVE_LOOK_CODES,
   PP_BLACK_GAMMA_RANGE,
   PP_COLOR_MODE,
   PP_GAMMA,
@@ -47,10 +43,10 @@ import {
   type AccentInput,
   type Warmth,
 } from '../camera/color';
-import { DEFAULT_CL_SETTINGS, DEFAULT_PP_SETTINGS } from '../camera/defaults';
-import { fraction, step, stepFromMin } from '../camera/effects';
+import { DEFAULT_PP_SETTINGS } from '../camera/defaults';
+import { fraction, step } from '../camera/effects';
 import { DAYLIGHT_K, PALETTE_WEIGHTS, REFERENCE, SWATCH_IDS, paletteFor, type Palette } from '../camera/palette';
-import type { ClSettings, PpSettings } from '../camera/schema';
+import type { PpSettings } from '../camera/schema';
 import { recipeIdKey } from './recipe-id';
 import type { ToneId } from './taxonomy';
 import { designedLightFor, editorialToneFor } from './taxonomy-assign';
@@ -81,9 +77,9 @@ export const ADAPTIVE = 'Adaptive';
 /** Slot 1 of a colour recipe: the amber–blue grade, the tint when it dominates, or Adaptive. */
 export const TEMPERATURE_WORDS = [...Object.values(WARMTH_WORDS), ...TINT_WORDS, ADAPTIVE] as const;
 /** Slot 1 of a monochrome recipe. */
-export const MONO_WORDS = ['Mono', 'Sepia'] as const;
+export const MONO_WORDS = ['Mono'] as const;
 /** Slot 2: what the neutral ramp does. Even when nothing on it moves. */
-export const TONALITY_WORDS = ['Matte', 'Faded', 'Deep', 'Punchy', 'Soft', 'Flat', 'Airy', 'Even'] as const;
+export const TONALITY_WORDS = ['Matte', 'Faded', 'Deep', 'Punchy', 'Soft', 'Flat', 'Even'] as const;
 /** Slot 3 of a colour recipe, strong up to strong down. */
 export const COLOUR_WORDS = ['Vivid', 'Rich', 'Natural', 'Muted', 'Pale'] as const;
 /** Slot 3 of a monochrome recipe; Crisp and Gentle also break a tie. */
@@ -105,13 +101,13 @@ export const NAME_VOCABULARY: ReadonlySet<string> = new Set<string>([
 ]);
 
 /** `PP-048-Neutral Soft Rich`: format, three digits, exactly three Title Case words. */
-export const RECIPE_NAME_RE = /^(PP|CL)-(\d{3})-([A-Z][a-z]+(?: [A-Z][a-z]+){2})$/;
+export const RECIPE_NAME_RE = /^(PP)-(\d{3})-([A-Z][a-z]+(?: [A-Z][a-z]+){2})$/;
 
 /** The temperature words that claim a browse tone. Rosy, Mint and Adaptive claim none. */
 export const TONE_WORDS: Readonly<Record<ToneId, readonly string[]>> = {
   warm: ['Golden', 'Warm'],
   cool: ['Cool', 'Icy'],
-  mono: ['Mono', 'Sepia'],
+  mono: ['Mono'],
   neutral: ['Neutral'],
 };
 
@@ -127,10 +123,10 @@ export function slugFor(id: string): string {
 
 export function parseRecipeName(
   name: string,
-): { format: 'pp' | 'cl'; number: string; words: string[] } | null {
+): { format: 'pp'; number: string; words: string[] } | null {
   const m = RECIPE_NAME_RE.exec(name);
   if (!m) return null;
-  return { format: m[1] === 'PP' ? 'pp' : 'cl', number: m[2], words: m[3].split(' ') };
+  return { format: 'pp', number: m[2], words: m[3].split(' ') };
 }
 
 /* ----------------------------------------------------------------------- */
@@ -168,67 +164,53 @@ const CHROMA_STEP = 1e-4;
 const NO_CAST = { mode: 'auto', auto: WB_AUTO_MODES[0] } as const;
 
 const ppInput = (settings: PpSettings): AccentInput => ({ format: 'pp', whiteBalance: NO_CAST, settings });
-const clInput = (settings: ClSettings): AccentInput => ({ format: 'cl', whiteBalance: NO_CAST, settings });
 
 type Format = (typeof RECIPE_FORMATS)[number];
 
 /** The reference each recipe is read against: its format at the defaults, no cast. */
-function referenceInput(format: Format): AccentInput {
-  return format === 'pp'
-    ? ppInput({ ...DEFAULT_PP_SETTINGS, ...PP_STANDARD_STILL })
-    : clInput({ ...DEFAULT_CL_SETTINGS });
+function referenceInput(_format: Format): AccentInput {
+  return ppInput({ ...DEFAULT_PP_SETTINGS, ...PP_STANDARD_STILL });
 }
 
 const ends = (r: { min: number; max: number }) => [r.min, r.max] as const;
 
 /**
- * Every palette the reach is measured over: each format's enums in full and
- * each numeric dial at both ends of its `constants.ts` range. Monochrome
- * colour modes and Looks are left out — they have no colour to reach for,
+ * Every palette the reach is measured over: the enums in full and each
+ * numeric dial at both ends of its `constants.ts` range. Monochrome
+ * colour modes are left out — they have no colour to reach for,
  * and their tone is their colour sibling's.
  */
-function endpointInputs(format: Format): AccentInput[] {
+function endpointInputs(_format: Format): AccentInput[] {
   const out: AccentInput[] = [];
-  if (format === 'pp') {
-    const base = { ...DEFAULT_PP_SETTINGS, ...PP_STANDARD_STILL };
-    const knees: PpSettings['knee'][] = [
-      { mode: 'Auto' },
-      { mode: 'Manual', point: PP_RANGES.kneeManualPoint.min, slope: PP_RANGES.kneeManualSlope.min },
-      { mode: 'Manual', point: PP_RANGES.kneeManualPoint.max, slope: PP_RANGES.kneeManualSlope.max },
-    ];
-    // Tone: the gamma, the two black controls and the knee.
-    for (const gamma of PP_GAMMA)
-      for (const blackLevel of ends(PP_RANGES.blackLevel))
-        for (const range of PP_BLACK_GAMMA_RANGE)
-          for (const level of ends(PP_RANGES.blackGammaLevel))
-            for (const knee of knees)
-              out.push(ppInput({ ...base, gamma, blackLevel, blackGamma: { range, level }, knee }));
-    // Colour: the gamma's chroma, the colour mode, Saturation, Color Depth and Phase.
-    for (const gamma of PP_GAMMA)
-      for (const colorMode of PP_COLOR_MODE.filter((m) => m !== 'Black & White'))
-        for (const saturation of ends(PP_RANGES.saturation))
-          for (const depth of ends(PP_RANGES.colorDepth))
-            for (const colorPhase of ends(PP_RANGES.colorPhase))
-              out.push(
-                ppInput({
-                  ...base,
-                  gamma,
-                  colorMode,
-                  saturation,
-                  colorPhase,
-                  colorDepth: { R: depth, G: depth, B: depth, C: depth, M: depth, Y: depth },
-                }),
-              );
-    return out;
-  }
-  const base = DEFAULT_CL_SETTINGS;
-  for (const look of CREATIVE_LOOK_CODES.filter((l) => l !== 'BW' && l !== 'SE'))
-    for (const contrast of ends(CL_RANGES.contrast))
-      for (const highlights of ends(CL_RANGES.highlights))
-        for (const shadows of ends(CL_RANGES.shadows))
-          for (const fade of ends(CL_RANGES.fade))
-            for (const saturation of ends(CL_RANGES.saturation))
-              out.push(clInput({ ...base, look, contrast, highlights, shadows, fade, saturation }));
+  const base = { ...DEFAULT_PP_SETTINGS, ...PP_STANDARD_STILL };
+  const knees: PpSettings['knee'][] = [
+    { mode: 'Auto' },
+    { mode: 'Manual', point: PP_RANGES.kneeManualPoint.min, slope: PP_RANGES.kneeManualSlope.min },
+    { mode: 'Manual', point: PP_RANGES.kneeManualPoint.max, slope: PP_RANGES.kneeManualSlope.max },
+  ];
+  // Tone: the gamma, the two black controls and the knee.
+  for (const gamma of PP_GAMMA)
+    for (const blackLevel of ends(PP_RANGES.blackLevel))
+      for (const range of PP_BLACK_GAMMA_RANGE)
+        for (const level of ends(PP_RANGES.blackGammaLevel))
+          for (const knee of knees)
+            out.push(ppInput({ ...base, gamma, blackLevel, blackGamma: { range, level }, knee }));
+  // Colour: the gamma's chroma, the colour mode, Saturation, Color Depth and Phase.
+  for (const gamma of PP_GAMMA)
+    for (const colorMode of PP_COLOR_MODE.filter((m) => m !== 'Black & White'))
+      for (const saturation of ends(PP_RANGES.saturation))
+        for (const depth of ends(PP_RANGES.colorDepth))
+          for (const colorPhase of ends(PP_RANGES.colorPhase))
+            out.push(
+              ppInput({
+                ...base,
+                gamma,
+                colorMode,
+                saturation,
+                colorPhase,
+                colorDepth: { R: depth, G: depth, B: depth, C: depth, M: depth, Y: depth },
+              }),
+            );
   return out;
 }
 
@@ -314,7 +296,7 @@ function castOf(palette: Palette): { warmth: number; tint: number } {
 const bandFor = (amount: number | undefined) => (amount ? MIRED_PER_SHIFT_STEP : NEUTRAL_MIRED_BAND);
 
 /**
- * Slot 1. Mono or Sepia for a monochrome recipe. Where an editor set the
+ * Slot 1. Mono for a monochrome recipe. Where an editor set the
  * recipe's tone in the manifest, that side wins — it was set because the
  * photographs disagree with the White Balance arithmetic, and a name that
  * says Neutral beside a Warm chip and a golden-hour description reads as a
@@ -324,7 +306,7 @@ const bandFor = (amount: number | undefined) => (amount ? MIRED_PER_SHIFT_STEP :
  */
 function temperature(r: NameInput, cast: { warmth: number; tint: number }): string {
   const mono = monochromeOf(r);
-  if (mono) return mono === 'bw' ? 'Mono' : 'Sepia';
+  if (mono) return 'Mono';
   const editorial = editorialToneFor(r.id);
   if (editorial === 'neutral') return 'Neutral';
   if (editorial === 'warm') return gradeWarmth(cast.warmth) === 'strong-warm' ? 'Golden' : 'Warm';
@@ -341,23 +323,20 @@ const signed = (d: number) => `${d >= 0 ? '+' : ''}${d.toFixed(3)}`;
 /**
  * Slot 2's readings, off the neutral ramp against the reference's:
  * the shadow lifted (Matte, strong Faded) or crushed (Deep); the spread from
- * shadow to highlight widened (Punchy) or narrowed (Soft, strong Flat); the
- * highlight lifted while the spread did not widen (Airy). Unordered.
+ * shadow to highlight widened (Punchy) or narrowed (Soft, strong Flat).
+ * Unordered.
  */
 function tonalityReadings(m: Measure, scale: Scale): Candidate[] {
   const { reference: ref, reach } = scale;
   const out: Candidate[] = [];
   const dS = delta(m.shadow, ref.shadow);
   const dSp = delta(m.spread, ref.spread);
-  const dH = delta(m.highlight, ref.highlight);
   const fS = graded(dS, reach.shadow);
   const fSp = graded(dSp, reach.spread);
   if (fS > 0) out.push({ word: isStrong(fS) ? 'Faded' : 'Matte', salience: fS, from: `shadow ${signed(dS)}` });
   if (fS < 0) out.push({ word: 'Deep', salience: -fS, from: `shadow ${signed(dS)}` });
   if (fSp > 0) out.push({ word: 'Punchy', salience: fSp, from: `spread ${signed(dSp)}` });
   if (fSp < 0) out.push({ word: isStrong(fSp) ? 'Flat' : 'Soft', salience: -fSp, from: `spread ${signed(dSp)}` });
-  const fH = graded(dH, reach.highlight);
-  if (fH > 0 && dSp <= 0) out.push({ word: 'Airy', salience: fH, from: `highlight ${signed(dH)}, spread ${signed(dSp)}` });
   return out;
 }
 
@@ -384,24 +363,13 @@ function colourReading(r: NameInput, m: Measure, scale: Scale): Candidate {
 
 /**
  * The detail reading — the one thing the palette cannot paint (a flat patch
- * has no edge to sharpen): Picture Profile Detail Level graded around 0; for a
- * Creative Look the larger of Sharpness and Clarity graded from the minimum,
- * as their effect rows are — strong Crisp, mild Plain, both at none Gentle.
+ * has no edge to sharpen): Picture Profile Detail Level graded around 0.
  */
 function detailReading(r: NameInput): Candidate {
-  if (r.format === 'pp') {
-    const level = r.settings.detail.level;
-    const f = fraction(level, PP_RANGES.detailLevel);
-    const s = step(level, PP_RANGES.detailLevel);
-    return { word: s > 0 ? 'Crisp' : s < 0 ? 'Gentle' : 'Plain', salience: Math.abs(f), from: `detail ${level}` };
-  }
-  const { sharpness, clarity } = r.settings;
-  const s = Math.max(stepFromMin(sharpness, CL_RANGES.sharpness), stepFromMin(clarity, CL_RANGES.clarity));
-  const d = Math.max(fraction(sharpness, CL_RANGES.sharpness), fraction(clarity, CL_RANGES.clarity));
-  const from = `sharpness ${sharpness}, clarity ${clarity}`;
-  if (s === 2) return { word: 'Crisp', salience: d, from };
-  if (s === 0) return { word: 'Gentle', salience: 1, from };
-  return { word: 'Plain', salience: 0, from };
+  const level = r.settings.detail.level;
+  const f = fraction(level, PP_RANGES.detailLevel);
+  const s = step(level, PP_RANGES.detailLevel);
+  return { word: s > 0 ? 'Crisp' : s < 0 ? 'Gentle' : 'Plain', salience: Math.abs(f), from: `detail ${level}` };
 }
 
 /** The palette tint a full G/M shift reaches, under daylight: the tint word's scale. */
@@ -678,7 +646,7 @@ const isAutoWb = (r: NameInput) => r.whiteBalance.mode === 'auto';
  * Whether `r` takes Adaptive against `twin`: the two read alike, `r` is on
  * auto White Balance (the AWB family, `WB_AUTO_MODES`) and `twin` on a fixed
  * one — a Kelvin or a preset. Two auto twins, or two fixed ones, have no such
- * difference and stay tied. A monochrome recipe keeps Mono or Sepia: its
+ * difference and stay tied. A monochrome recipe keeps Mono: its
  * temperature slot says what it renders, and no cast survives to adapt.
  */
 export function adaptiveTwin(r: NameInput, twin: NameInput): boolean {

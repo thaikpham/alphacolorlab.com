@@ -23,7 +23,7 @@ export function useMyCameraChoice(): string | null {
 
 /**
  * The recipe page's accuracy line for the reader's camera (ADR 0006):
- * "a7 III has no Creative Look", "An older camera may have no S-Cinetone".
+ * "a7 III has no S-Cinetone", "An older camera may have no S-Cinetone".
  *
  * The page is prerendered, so it cannot read the cookie; it computes, at
  * build, every choice that has something to say about this recipe

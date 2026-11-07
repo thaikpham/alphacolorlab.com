@@ -52,7 +52,6 @@ export function seedCorpus(
   const t = camerasT(locale)
   const products = [
     ...json<SonyCamera[]>('sony-cameras.seed.json'),
-    ...json<SonyCamera[]>('sony-audio.seed.json'),
   ]
   const notes = json<NoteForSearch[]>('alphaskill-knowledge.seed.json')
 
@@ -63,7 +62,6 @@ export function seedCorpus(
         recipeDoc({
           ...r,
           ...taxonomyFor(r),
-          look: r.format === 'cl' ? r.settings.look : undefined,
           wbLabel: formatWhiteBalance(r.whiteBalance),
           description: describe(r.id),
         }, locale),

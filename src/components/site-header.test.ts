@@ -133,9 +133,9 @@ describe('the wiki search keeps the reader’s filters', () => {
     expect(hiddenInputs(html)).toEqual([]);
   });
 
-  it('carries the catalogue’s style, tone and colour system, never a legacy look or tag', () => {
+  it('carries the catalogue’s style and tone, never a removed format, look or tag', () => {
     const html = render('/colorlab?q=a&style=film&tone=warm&format=cl&look=FL&tag=portrait');
-    expect(hiddenInputs(html)).toEqual(['style=film', 'tone=warm', 'format=cl']);
+    expect(hiddenInputs(html)).toEqual(['style=film', 'tone=warm']);
   });
 });
 
@@ -177,25 +177,6 @@ describe('the catalogue search keeps the reader on their grid', () => {
     expect(html).not.toContain(vi_.search.clearAll);
     expect(html).toContain('grid-rows-[0fr]');
   });
-});
-
-/** The text of every `<button>` in the markup, tags stripped. */
-const buttonTexts = (html: string) =>
-  [...html.matchAll(/<button\b[^>]*>([\s\S]*?)<\/button>/g)].map(([, inner]) =>
-    inner.replace(/<[^>]+>/g, '').trim(),
-  );
-
-describe('the filter console reads in the reader’s language', () => {
-  it('names the audio tabs through the catalogue, not the stored value', () => {
-    /* The key stays `Tai nghe` / `Loa` — it is the filter value the route and
-       the catalogue share. Only the label was raw, so /en read Vietnamese. */
-    const tabs = buttonTexts(render('/audio'));
-    expect(tabs).toContain(en.cameras.sub.headphones);
-    expect(tabs).toContain(en.cameras.sub.speakers);
-    expect(tabs).not.toContain('Tai nghe');
-    expect(tabs).not.toContain('Loa');
-  });
-
 });
 
 describe('live search stays where the reader is', () => {

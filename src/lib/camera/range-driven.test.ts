@@ -19,14 +19,13 @@ vi.mock('./constants', async (importOriginal) => {
     ...real,
     WB_SHIFT_AXIS: { ...real.WB_SHIFT_AXIS, max: real.WB_SHIFT_AXIS.max * 2 },
     PP_RANGES: widenAll(real.PP_RANGES),
-    CL_RANGES: widenAll(real.CL_RANGES),
   };
 });
 
 const { ppEffects, wbEffects, wbSummary } = await import('./effects');
 const { shiftPosition } = await import('./color');
-const { CL_EXPLANATIONS, PP_DETAIL_EXPLANATIONS, PP_EXPLANATIONS, WB_EXPLANATIONS } = await import('./explanations');
-const { CL_RANGES, PP_RANGES, WB_SHIFT_AXIS } = await import('./constants');
+const { PP_DETAIL_EXPLANATIONS, PP_EXPLANATIONS, WB_EXPLANATIONS } = await import('./explanations');
+const { PP_RANGES, WB_SHIFT_AXIS } = await import('./constants');
 
 const real = await vi.importActual<typeof import('./constants')>('./constants');
 
@@ -80,8 +79,6 @@ describe('help text states the ranges constants.ts holds', () => {
     ['Limit', PP_DETAIL_EXPLANATIONS.limit, PP_RANGES.detailLimit],
     ['Crispening', PP_DETAIL_EXPLANATIONS.crispening, PP_RANGES.detailCrispening],
     ['Hi-Light Detail', PP_DETAIL_EXPLANATIONS.hiLightDetail, PP_RANGES.detailHiLightDetail],
-    ['CL saturation', CL_EXPLANATIONS.saturation, CL_RANGES.saturation],
-    ['Sharpness Range', CL_EXPLANATIONS.sharpnessRange, CL_RANGES.sharpnessRange],
   ];
 
   it.each(stated)('%s states the widened bounds in both locales', (_name, text, range) => {

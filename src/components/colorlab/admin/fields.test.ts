@@ -3,7 +3,6 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import {
-  CL_PARAM_LABELS,
   PP_DETAIL_LABELS,
   PP_PARAM_LABELS,
   PP_RANGES,
@@ -110,7 +109,6 @@ describe('parameter labels', () => {
   const technical = new Set<string>([
     ...Object.values(PP_PARAM_LABELS),
     ...Object.values(PP_DETAIL_LABELS),
-    ...Object.values(CL_PARAM_LABELS),
     ...Object.values(WB_PARAM_LABELS),
   ]);
 

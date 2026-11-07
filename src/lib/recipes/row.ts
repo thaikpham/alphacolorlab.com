@@ -2,8 +2,7 @@
  * Maps a validated `Recipe` to and from its `recipes` table row.
  *
  * White balance is flattened into real columns so the grid can filter on it;
- * the format-specific settings stay in jsonb. `look` is denormalised out of the
- * Creative Look settings to drive the homepage filter.
+ * the settings stay in jsonb.
  */
 
 import { recipeSchema, type Recipe } from '../camera/schema';
@@ -13,7 +12,7 @@ export type RecipeRow = {
   legacy_id: string | null;
   slug: string;
   name: string;
-  format: 'pp' | 'cl';
+  format: 'pp';
   wb_mode: 'kelvin' | 'auto' | 'preset';
   wb_kelvin: number | null;
   wb_auto: string | null;
@@ -22,7 +21,6 @@ export type RecipeRow = {
   wb_shift_ab_amount: number | null;
   wb_shift_gm_axis: 'G' | 'M' | null;
   wb_shift_gm_amount: number | null;
-  look: string | null;
   settings: unknown;
   tags: string[];
   published: boolean;
@@ -38,7 +36,7 @@ export type RecipeRow = {
 export const RECIPE_COLUMNS =
   'id, legacy_id, slug, name, format, wb_mode, wb_kelvin, wb_auto, wb_preset, ' +
   'wb_shift_ab_axis, wb_shift_ab_amount, wb_shift_gm_axis, wb_shift_gm_amount, ' +
-  'look, settings, tags, published';
+  'settings, tags, published';
 
 /**
  * Rebuilds a Recipe from its row, re-validating on the way out.
@@ -104,7 +102,6 @@ export function toRow(recipe: Recipe, legacyId: string | null = null): RecipeRow
     wb_shift_ab_amount: wb.shift?.ab?.amount ?? null,
     wb_shift_gm_axis: wb.shift?.gm?.axis ?? null,
     wb_shift_gm_amount: wb.shift?.gm?.amount ?? null,
-    look: recipe.format === 'cl' ? recipe.settings.look : null,
     settings: recipe.settings,
     tags: recipe.tags,
     published: recipe.published,

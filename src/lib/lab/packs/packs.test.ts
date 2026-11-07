@@ -3,7 +3,6 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import recipesSeed from '../../../../data/recipes.seed.json'
 import camerasSeed from '../../../../data/sony-cameras.seed.json'
-import audioSeed from '../../../../data/sony-audio.seed.json'
 import notesSeed from '../../../../data/alphaskill-knowledge.seed.json'
 import { ARTICLES } from '../articles'
 import { PILOT_DRAFTS } from '../pilot-drafts'
@@ -55,7 +54,7 @@ function knownFor(pack: string, extra: readonly Article[] = []): Known {
     takenIds: new Set([...ids(REPLACE_PACKS.has(pack) ? pages(pack).filter((p) => !ARTICLES.some((a) => a.id === p.id)) : pages(pack)), ...RESERVED_IDS]),
     refIds: {
       recipe: ids(recipesSeed as { id: string }[]),
-      product: new Set([...ids(camerasSeed as { id: string }[]), ...ids(audioSeed as { id: string }[])]),
+      product: new Set([...ids(camerasSeed as { id: string }[])]),
       article: ids(all.filter((a) => a.kind === 'article')),
       knowledge: new Set([...ids(all.filter((a) => a.kind === 'knowledge')), ...NOTES.map((n) => n.slug)]),
     },

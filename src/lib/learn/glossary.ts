@@ -1,7 +1,4 @@
 import {
-  CL_PARAM_LABELS,
-  CL_PARAM_ORDER,
-  CREATIVE_LOOKS,
   HELP_GUIDE_SOURCES,
   PP_COLOR_DEPTH_CHANNELS,
   PP_DETAIL_LABELS,
@@ -9,7 +6,6 @@ import {
   WB_PARAM_LABELS,
 } from '@/lib/camera/constants'
 import {
-  CL_EXPLANATIONS,
   COLOR_DEPTH_EXPLANATIONS,
   PP_DETAIL_EXPLANATIONS,
   PP_EXPLANATIONS,
@@ -52,8 +48,6 @@ export type GlossaryGroup = {
   /** WB only: the paragraphs that explain the dials together. */
   readonly overview: readonly string[]
   readonly entries: readonly GlossaryEntry[]
-  /** Creative Look only: the ten Looks, code and name. Data, not prose. */
-  readonly looks?: readonly { readonly code: string; readonly label: string }[]
   readonly sources: readonly { readonly url: string; readonly title: string }[]
 }
 
@@ -123,21 +117,7 @@ export function buildGlossary(locale: Locale): readonly GlossaryGroup[] {
     ],
   }
 
-  const cl: GlossaryGroup = {
-    group: 'cl',
-    title: CONCEPT_GROUP_LABELS.cl,
-    overview: [],
-    entries: CL_PARAM_ORDER.map((p) => ({
-      id: conceptAnchor(`cl.${p}`),
-      concept: `cl.${p}` as ConceptKey,
-      label: CL_PARAM_LABELS[p],
-      text: CL_EXPLANATIONS[p][locale],
-    })),
-    looks: CREATIVE_LOOKS.map((l) => ({ code: l.code, label: l.label })),
-    sources: [HELP_GUIDE_SOURCES.clIlce7m4],
-  }
-
-  return [wb, pp, cl]
+  return [wb, pp]
 }
 
 /**

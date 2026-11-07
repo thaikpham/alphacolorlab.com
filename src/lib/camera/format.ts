@@ -7,10 +7,8 @@
  */
 
 import {
-  CL_SIGNED_PARAMS,
   WB_AUTO_MODES,
   WB_PRESETS,
-  type ClParam,
 } from './constants';
 import type { WhiteBalance } from './schema';
 
@@ -19,14 +17,6 @@ const num = (n: number) => String(n);
 
 /** Renders a value with an explicit sign, the way the camera shows it. */
 export const signed = (n: number) => (n > 0 ? `+${num(n)}` : num(n));
-
-/**
- * Formats a Creative Look parameter. Signed params get an explicit +/-;
- * unsigned ones (fade, sharpness, sharpnessRange, clarity) never do.
- */
-export function formatClValue(param: ClParam, value: number): string {
-  return (CL_SIGNED_PARAMS as readonly string[]).includes(param) ? signed(value) : num(value);
-}
 
 /**
  * The White Balance value without its shift — "7000K", "AWB", "Cloudy".

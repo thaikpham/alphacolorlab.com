@@ -55,11 +55,15 @@ test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true
  * below a 390×844 screen. The recipe page's first screen does not move: its
  * mark is hidden on a phone.
  *
+ * `list` 21 -> 20 on 2026-11-07, lowered with the change that caused it: the
+ * Creative Look format was removed, and with it the colour-system row, so one
+ * fewer chip sits on the first screen.
+ *
  * `detail` 9 -> 5 on 2026-10-28, lowered with the change that caused it: the
  * recipe page's hero lost its situation, style and tone chips (owner), so the
  * phone's first screen is the frame and "All recipes".
  */
-const BUDGET = { list: 21, detail: 5 };
+const BUDGET = { list: 20, detail: 5 };
 
 test('the first screens ask little: the list and a recipe page stay within their budgets', async ({ page }) => {
   await routeAssetHosts(page);
@@ -86,6 +90,8 @@ test('the first screens ask little: the list and a recipe page stay within their
   // Re-measured 2026-10-28 after the recipe page redesign (cards, no palette strip, no proposals or AI tweak),
   // which printed 4.5: lowered 6.2 -> 4.6. Re-measured the same day without the hero's chips, which printed
   // 4.4: lowered 4.6 -> 4.5. Re-measured 2026-10-29 with the compact recipe card in the related row, which
-  // printed 3.9: lowered 4.5 -> 4.0.
-  expect(screens).toBeLessThanOrEqual(4.0);
+  // printed 3.9: lowered 4.5 -> 4.0. 2026-11-07: the Creative Looks were removed, so the instance moved from
+  // cl-001 (a Look: few parameter cards) to pp-001 (a Picture Profile: every dial). Not a regression: the same
+  // pp-001 page measured 4.8 on main 3ecbae7 and 4.4 on this branch. The cap is that instance's measurement, 4.5.
+  expect(screens).toBeLessThanOrEqual(4.5);
 });

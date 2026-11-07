@@ -5,11 +5,11 @@ import { useTranslations } from 'next-intl';
 import { useAdminSession } from '@/components/admin-ui/session';
 import { FIELD, FIELD_SM } from '@/components/admin-ui/controls';
 import { WB_KELVIN } from '@/lib/camera/constants';
-import { DEFAULT_CL_SETTINGS, DEFAULT_PP_SETTINGS } from '@/lib/camera/defaults';
+import { DEFAULT_PP_SETTINGS } from '@/lib/camera/defaults';
 import type { Recipe } from '@/lib/camera/schema';
 import type { UnreadableRecipe } from '@/lib/recipes/admin-types';
 import { PhotoModeration } from './photo-moderation';
-import { PpFields, ClFields } from './settings-fields';
+import { PpFields } from './settings-fields';
 import { WhiteBalanceFields } from './wb-fields';
 import {
   afterSave,
@@ -70,7 +70,6 @@ export function RecipeAdmin() {
   const [status, setStatus] = useState<{ kind: 'ok' | 'err'; msg: string } | null>(null);
   const [issues, setIssues] = useState<readonly string[]>([]);
   const [query, setQuery] = useState('');
-  const [newFormat, setNewFormat] = useState<'pp' | 'cl'>('pp');
 
   /* An unknown code is never shown raw — a camelCase identifier is not a
      message. It falls back to the generic failure for the call that raised it,
@@ -190,10 +189,10 @@ export function RecipeAdmin() {
         method: 'POST',
         headers: authed(),
         body: JSON.stringify({
-          format: newFormat,
+          format: 'pp',
           whiteBalance: { mode: 'kelvin', kelvin: WB_KELVIN.min },
           tags: [],
-          settings: newFormat === 'pp' ? DEFAULT_PP_SETTINGS : DEFAULT_CL_SETTINGS,
+          settings: DEFAULT_PP_SETTINGS,
         }),
       });
       const data = (await res.json()) as { ok?: boolean; id?: string; error?: string };
@@ -300,20 +299,7 @@ export function RecipeAdmin() {
       <aside className="flex grow basis-[clamp(16rem,20vw,22rem)] flex-col gap-4 self-start lg:sticky lg:top-6 lg:grow-0">
         <div className="flex flex-col gap-2 surface-raised p-4 rounded-md">
           <span className="label text-ink-muted">{t('newRecipe')}</span>
-          <div className="flex gap-2">
-            {(['pp', 'cl'] as const).map((f) => (
-              <button
-                key={f}
-                type="button"
-                onClick={() => setNewFormat(f)}
-                className={`flex-1 min-h-[var(--layout-touch-target)] px-3 py-2 rounded-sm text-body-sm font-semibold cursor-pointer ${
-                  newFormat === f ? 'surface-selected text-ink' : 'text-ink-muted hover:text-ink'
-                }`}
-              >
-                {f === 'pp' ? t('formatPp') : t('formatCl')}
-              </button>
-            ))}
-          </div>
+          
           <button
             type="button"
             onClick={create}
@@ -497,17 +483,10 @@ export function RecipeAdmin() {
               onChange={(whiteBalance) => edit({ ...draft, whiteBalance })}
             />
 
-            {draft.format === 'pp' ? (
-              <PpFields
+            <PpFields
                 value={draft.settings}
-                onChange={(settings) => edit({ ...draft, format: 'pp', settings })}
+                onChange={(settings) => edit({ ...draft, settings })}
               />
-            ) : (
-              <ClFields
-                value={draft.settings}
-                onChange={(settings) => edit({ ...draft, format: 'cl', settings })}
-              />
-            )}
 
             {/* From the stored row: the slug never changes, and keying on it
                 starts the list afresh when another recipe is opened. */}

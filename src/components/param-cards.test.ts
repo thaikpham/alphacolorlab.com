@@ -6,11 +6,11 @@ import { describe, expect, it } from 'vitest';
 
 import en from '../../messages/en.json';
 
-import { CL_EXPLANATIONS, PP_EXPLANATIONS, WB_EXPLANATIONS } from '@/lib/camera/explanations';
-import { clEffects, ppEffects } from '@/lib/camera/effects';
-import { CL_PARAM_ORDER, PP_COLOR_DEPTH_CHANNELS } from '@/lib/camera/constants';
-import type { ClSettings, PpSettings, Recipe, WhiteBalance } from '@/lib/camera/schema';
-import { ClCards, PpCards, WbDials } from './param-cards';
+import { PP_EXPLANATIONS, WB_EXPLANATIONS } from '@/lib/camera/explanations';
+import { ppEffects } from '@/lib/camera/effects';
+import { PP_COLOR_DEPTH_CHANNELS } from '@/lib/camera/constants';
+import type { PpSettings, Recipe, WhiteBalance } from '@/lib/camera/schema';
+import { PpCards, WbDials } from './param-cards';
 
 /**
  * The parameter cards (owner, 2026-10-28), as markup. Plain `.ts` with
@@ -19,8 +19,6 @@ import { ClCards, PpCards, WbDials } from './param-cards';
 
 const seed = JSON.parse(readFileSync('data/recipes.seed.json', 'utf8')) as Recipe[];
 const pp = seed.find((r) => r.format === 'pp')!.settings as PpSettings;
-const clRecipes = seed.filter((r) => r.format === 'cl');
-const cl = clRecipes.find((r) => (r.settings as ClSettings).fade! > 0)!.settings as ClSettings;
 
 /* The provider's props type requires `children`; the real child is passed
    positionally, which is what createElement renders. */
@@ -65,27 +63,6 @@ describe('Picture Profile cards', () => {
   it('draws Color Depth in its channel colours', () => {
     for (const c of PP_COLOR_DEPTH_CHANNELS) expect(labels(html)).toContain(c);
     expect(html).toMatch(/style="color:#[0-9a-f]{6}"/i);
-  });
-});
-
-describe('Creative Look cards', () => {
-  const html = render(createElement(ClCards, { s: cl, locale: 'en' }));
-
-  it('give the Look and every dial the camera shows a card', () => {
-    const shown = CL_PARAM_ORDER.filter((p) => cl[p] !== undefined).length;
-    expect(cards(html)).toBe(1 + shown);
-  });
-
-  /* Rule 1: Fade, Sharpness, Clarity and Sharpness Range are unsigned. */
-  it('prints unsigned values without a sign', () => {
-    const fade = html.match(/>Fade<\/span><span class="[^"]*">([^<]+)<\/span>/)?.[1];
-    expect(fade).toBe(String(cl.fade));
-    expect(html).toContain(CL_EXPLANATIONS.fade.en);
-    expect(html).toContain(clEffects(cl).fade.en);
-  });
-
-  it('names the Look beside its code', () => {
-    expect(html).toContain(`>${cl.look}</span>`);
   });
 });
 

@@ -95,19 +95,14 @@ describe('the editor stops at what parseMeta keeps', () => {
   const buttons = (html: string, label: string): string[] =>
     [...html.matchAll(/<button([^>]*)>([^<]*)<\/button>/g)].filter((m) => m[2] === label).map((m) => m[1])
 
-  it('disables every unticked concept once the cap is reached, and none before', () => {
+  /* With Picture Profile and White Balance alone (2026-11-07) there are fewer
+     concepts than the cap, so ticking every one disables none. */
+  it('never disables a concept while the whole list fits under the cap', () => {
     const keys = CONCEPTS.map((c) => c.key)
-    expect(keys.length).toBeGreaterThan(META_LIMITS.concepts)
-    const tagsOf = (concepts: string[]) =>
-      [...render({ ...emptyMetaDraft(), concepts }).matchAll(/<button([^>]*aria-pressed[^>]*)>/g)].map((m) => m[1])
-
-    const full = tagsOf(keys.slice(0, META_LIMITS.concepts))
-    expect(full.filter((a) => a.includes('aria-pressed="false"')).every((a) => a.includes('disabled=""'))).toBe(true)
-    // A ticked one can still be unticked.
-    expect(full.filter((a) => a.includes('aria-pressed="true"')).some((a) => a.includes('disabled=""'))).toBe(false)
-
-    const below = tagsOf(keys.slice(0, META_LIMITS.concepts - 1))
-    expect(below.some((a) => a.includes('disabled=""'))).toBe(false)
+    expect(keys.length).toBeLessThanOrEqual(META_LIMITS.concepts)
+    const tags = [...render({ ...emptyMetaDraft(), concepts: keys }).matchAll(/<button([^>]*aria-pressed[^>]*)>/g)].map((m) => m[1])
+    expect(tags.length).toBe(keys.length)
+    expect(tags.some((a) => a.includes('disabled=""'))).toBe(false)
   })
 
   const blank: { [K in 'prerequisites' | 'related' | 'sources']: MetaDraft[K][number] } = {

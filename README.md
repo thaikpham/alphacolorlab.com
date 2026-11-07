@@ -50,7 +50,7 @@ ColorLab helps photographers understand and experiment with settings that influe
 
 **Key capabilities:**
 
-- Discover color recipes built around Creative Look and Picture Profile settings.
+- Discover color recipes built around Picture Profile settings.
 - Explore White Balance and White Balance Shift combinations.
 - Understand color temperature, contrast, saturation, and tonal rendering.
 - Review detailed configurations and creative references.
@@ -84,17 +84,7 @@ We want to help creators understand what those specifications mean for actual ph
 
 **Because choosing the right gear starts with understanding what it can do.**
 
-### 03. Sony Personal Audio
-
-**Discover the technology behind the listening experience.**
-
-ColorLab also explores Sony's personal audio ecosystem through a dedicated product reference.
-
-Discover supported headphones and audio products, review technical specifications, and explore their capabilities.
-
-By extending beyond imaging alone, the platform aims to connect different areas of Sony's creative technology ecosystem within a consistent discovery experience.
-
-### 04. Learn — Photography Knowledge Hub
+### 03. Learn — Photography Knowledge Hub
 
 **Learn the technology. Master the craft.**
 
@@ -116,7 +106,7 @@ Educational content is designed to connect concepts with real-world applications
 
 The platform includes dedicated learning pages, a glossary, related resources, and links between relevant knowledge and products.
 
-### 05. Intelligent Content Discovery
+### 04. Intelligent Content Discovery
 
 **Less searching. More creating.**
 
@@ -126,7 +116,7 @@ Rather than navigating isolated information sources, users can explore products,
 
 The long-term vision is to make technical knowledge increasingly contextual, relevant, and actionable.
 
-### 06. Community & Creative Inspiration
+### 05. Community & Creative Inspiration
 
 **Great creativity deserves to be shared.**
 

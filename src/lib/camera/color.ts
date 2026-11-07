@@ -103,12 +103,7 @@ const add = (a: Vec, b: Vec): Vec => [a[0] + b[0], a[1] + b[1]];
  * Recipes shot in monochrome, where any hue would be a lie. Shared with
  * `palette.ts`, so the accent and the palette agree on which recipes have none.
  */
-export function monochromeOf(recipe: AccentInput): 'bw' | 'sepia' | null {
-  if (recipe.format === 'cl') {
-    if (recipe.settings.look === 'BW') return 'bw';
-    if (recipe.settings.look === 'SE') return 'sepia';
-    return null;
-  }
+export function monochromeOf(recipe: AccentInput): 'bw' | null {
   return recipe.settings.colorMode === 'Black & White' ? 'bw' : null;
 }
 
@@ -231,10 +226,8 @@ export type AccentInput = DistributivePick<Recipe, 'format' | 'whiteBalance' | '
 export function accentFor(recipe: AccentInput): Accent {
   const mono = monochromeOf(recipe);
 
-  // A monochrome recipe gets no hue. Sepia keeps a trace of warmth, because
-  // that is what sepia is; black and white gets none at all.
+  // A monochrome recipe gets no hue.
   if (mono === 'bw') return { l: 0.78, c: 0, h: 0 };
-  if (mono === 'sepia') return { l: 0.775, c: 0.035, h: 70 };
 
   const wb = whiteBalanceVector(recipe.whiteBalance);
   const depth =

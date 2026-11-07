@@ -260,10 +260,10 @@ describe('the catalogue read path', () => {
   });
 
   it('selects through the shared column list, which names no editor', () => {
-    /* The list moved to `row.ts` so the camera reader, the audio reader and the
-       admin route cannot drift apart again — they did, over `gallery_urls`.
+    /* The list moved to `row.ts` so the camera reader and the
+       admin route cannot drift apart — they did, over `gallery_urls`.
        The guard follows it there rather than passing on a constant's name. */
-    for (const file of ['src/lib/cameras/data.ts', 'src/lib/audio/data.ts']) {
+    for (const file of ['src/lib/cameras/data.ts']) {
       expect(readFileSync(file, 'utf8')).toMatch(/\.select\(PRODUCT_COLUMNS\)/);
     }
     const row = readFileSync('src/lib/cameras/row.ts', 'utf8');

@@ -17,11 +17,6 @@
 
 /** Stored value → key under `cameras.sub`. */
 const SUB_CATEGORY_LABEL_KEY: Record<string, string> = {
-  'Tai nghe': 'headphones',
-  Loa: 'speakers',
-  'Choàng đầu': 'overEar',
-  'Nhét tai': 'inEar',
-  'Di động': 'portable',
   'Máy ảnh Alpha': 'alphaCameras',
   Adapter: 'adapters',
   Audio: 'audio',
@@ -44,7 +39,6 @@ export const PRODUCT_KIND_LABEL_KEY: Record<string, string> = {
   camera: 'kindCamera',
   lens: 'kindLens',
   accessory: 'kindAccessory',
-  audio: 'catAudio',
 };
 
 /** A translator scoped to the `cameras` namespace. */
@@ -97,18 +91,15 @@ export function officialUrl(url: string | null | undefined): string | null {
 }
 
 /**
- * The route that renders a product. Audio lives under `/audio`, and
- * `/cameras/<audio-id>` is a 404: the camera reader excludes the category.
+ * The route that renders a product.
  */
-export function productPath(product: { id: string; category: string }): string {
-  return product.category === 'audio' ? `/audio/${product.id}` : `/cameras/${product.id}`;
+export function productPath(product: { id: string }): string {
+  return `/cameras/${product.id}`;
 }
 
 /**
- * Where leaving the compare page goes. One compare surface serves both
- * catalogues, so a reader who compared only headphones goes back to `/audio`
- * rather than being put in the camera catalogue.
+ * Where leaving the compare page goes.
  */
-export function compareExitPath(products: readonly { category: string }[]): string {
-  return products.length > 0 && products.every((p) => p.category === 'audio') ? '/audio' : '/cameras';
+export function compareExitPath(): string {
+  return '/cameras';
 }

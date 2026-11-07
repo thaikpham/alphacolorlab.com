@@ -3,21 +3,18 @@ import { describe, expect, it } from 'vitest';
 import { canManageCategory, categoriesFor } from './category-roles';
 
 describe('canManageCategory', () => {
-  it('splits the catalogue between DI and PE, and gives super all of it', () => {
-    expect(canManageCategory('super', 'audio')).toBe(true);
+  it('gives super and DI the whole catalogue, and refuses an unknown category', () => {
     expect(canManageCategory('super', 'camera')).toBe(true);
     expect(canManageCategory('di', 'lens')).toBe(true);
     expect(canManageCategory('di', 'audio')).toBe(false);
-    expect(canManageCategory('pe', 'audio')).toBe(true);
-    expect(canManageCategory('pe', 'camera')).toBe(false);
+    expect(canManageCategory('super', 'audio')).toBe(false);
   });
 });
 
 describe('categoriesFor', () => {
   it('offers each role only what a create could save', () => {
-    expect(categoriesFor('super')).toEqual(['camera', 'lens', 'accessory', 'audio']);
+    expect(categoriesFor('super')).toEqual(['camera', 'lens', 'accessory']);
     expect(categoriesFor('di')).toEqual(['camera', 'lens', 'accessory']);
-    expect(categoriesFor('pe')).toEqual(['audio']);
   });
 
   it('is importable by a client component', () => {

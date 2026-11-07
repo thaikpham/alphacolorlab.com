@@ -35,6 +35,7 @@ export async function publishedRecipeExists(slug: string): Promise<boolean> {
     .select('id')
     .in('slug', slugAliases(slug))
     .eq('published', true)
+    .eq('format', 'pp')
     .limit(1);
 
   if (error) {

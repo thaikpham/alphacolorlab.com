@@ -116,10 +116,6 @@ describe('the table view', () => {
     for (const c of CATALOGUE) expect(html).toContain(`href="/cameras/${c.id}"`);
   });
 
-  it('opens audio under its own route', () => {
-    const html = render('view=table', 'en', [card('xm6', { category: 'audio', subCategory1: 'Tai nghe' })], '/audio');
-    expect(html).toContain('href="/audio/xm6"');
-  });
 
   it('gives the compare checkbox a 44px target', () => {
     const html = render('view=table');

@@ -94,20 +94,6 @@ export default async function GlossaryPage({ params }: { params: Promise<{ local
                 </div>
               ) : null}
 
-              {g.looks ? (
-                <div id="cl-look" className="mt-6 scroll-mt-24">
-                  <h3 className="label">{t('looks')}</h3>
-                  <ul className="mt-2 flex flex-wrap gap-2">
-                    {g.looks.map((l) => (
-                      <li key={l.code} className="chip">
-                        <span className="font-semibold text-ink">{l.code}</span>
-                        <span>{l.label}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-
               <dl className="mt-6 max-w-[56rem]">
                 {g.entries.map((e, i) => {
                   const explained = e.concept

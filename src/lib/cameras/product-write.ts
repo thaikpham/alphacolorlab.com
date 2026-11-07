@@ -128,9 +128,9 @@ function text(body: Body, key: string): string | undefined | null {
 }
 
 /** Trimmed at the ends only: `DSC-RX1RM3  AP2` ships with two inner spaces. */
-function cleanSku(sku: string, category: Category): string | Fail {
+function cleanSku(sku: string): string | Fail {
   if (sku.length > SKU_MAX || /[\u0000-\u001f\u007f]/.test(sku)) return fail('invalidSku');
-  if (!sku && category !== 'audio') return fail('skuRequired');
+  if (!sku) return fail('skuRequired');
   return sku;
 }
 
@@ -142,8 +142,8 @@ function cleanPrice(raw: unknown): number | Fail {
 }
 
 /**
- * One http(s) link, or `''` — the catalogue's own "no page", which 20 audio
- * rows and 6 cameras hold and both surfaces test before linking. No whitespace
+ * One http(s) link, or `''` — the catalogue's own "no page", which some
+ * products hold and both surfaces test before linking. No whitespace
  * inside: six scraped rows once held a newline-joined list of image URLs here,
  * and the WHATWG parser strips the newlines silently, so `new URL()` alone would
  * call that list one valid link.
@@ -215,7 +215,7 @@ function nextSpecs(
 ): ProductSpecs | undefined | Fail {
   const body = isBody(input) ? input : undefined;
   if (!kind) {
-    /* A legacy audio first level the taxonomy does not know: keep what is
+    /* A placement the taxonomy does not recognize: keep what is
        stored, and refuse only an attempt to write a block of unknown shape. */
     if (body && !current) return fail('invalidPlacement');
     return body && current ? sanitizeSpecs(body, current) : undefined;
@@ -231,8 +231,8 @@ function nextSpecs(
  *
  * `canManage` is the signed-in role's category check — `canManageCategory()`
  * bound to the verified admin — asked of the category the product is in now
- * AND the one it is moving to, so a DI editor cannot file a camera under audio
- * and a PE editor cannot pull a lens into their list.
+ * AND the one it is moving to, so nobody can file a product under a category
+ * the catalogue does not have.
  *
  * Name, full name and primary image keep the route's old leniency: a blank one
  * is not sent rather than refused — the editor never sends one.
@@ -292,14 +292,9 @@ export function productPatch(
   const sku = text(body, 'sku');
   if (sku === null) return fail('badRequest');
   if (sku !== undefined && sku !== current.sku.trim()) {
-    const clean = cleanSku(sku, category);
+    const clean = cleanSku(sku);
     if (failed(clean)) return clean;
     update.sku = clean;
-  } else if (category !== current.category) {
-    /* Moving out of audio, where a SKU is optional, into a category where it
-       is not: the stored one has to qualify too. */
-    const kept = cleanSku(current.sku, category);
-    if (failed(kept)) return kept;
   }
 
   if ('priceVnd' in body && body.priceVnd !== current.priceVnd) {
@@ -351,10 +346,8 @@ export function productPatch(
  * A new product, or why it may not be created. The same rules as an update;
  * every field is new, so every field is validated.
  *
- * The id is `sony-` and the SKU — or, for an audio product without one, the
- * name — slugged with its diacritics folded, not dropped: the id is a public
- * `/cameras/<id>` URL, and stripping every non-ASCII letter turned "Tai nghe
- * chống ồn" into `tai-nghe-ch-ng-n`.
+ * The id is `sony-` and the SKU, slugged: the id is a public `/cameras/<id>`
+ * URL.
  */
 export function productCreate(body: unknown, canManage: (category: Category) => boolean): CreateResult {
   if (!isBody(body)) return fail('badRequest');
@@ -378,7 +371,7 @@ export function productCreate(body: unknown, canManage: (category: Category) => 
   const kind = specKindFor(category, subCategory1);
   if (!kind || !isValidPlacement(category, subCategory1, subCategory2)) return fail('invalidPlacement');
 
-  const cleanedSku = cleanSku(sku ?? '', category);
+  const cleanedSku = cleanSku(sku ?? '');
   if (failed(cleanedSku)) return cleanedSku;
 
   const priceVnd = cleanPrice(body.priceVnd ?? 0);

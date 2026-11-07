@@ -44,9 +44,9 @@ describe('parseMeta', () => {
 
   it('rebuilds each reference, so a stray key never survives', () => {
     const { meta } = parseMeta({
-      related: [{ kind: 'recipe', id: 'CL-003', onclick: 'alert(1)' }],
+      related: [{ kind: 'recipe', id: 'PP-003', onclick: 'alert(1)' }],
     })
-    expect(meta.related[0]).toEqual({ kind: 'recipe', id: 'CL-003' })
+    expect(meta.related[0]).toEqual({ kind: 'recipe', id: 'PP-003' })
   })
 
   it('bounds every list', () => {

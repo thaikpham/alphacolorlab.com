@@ -11,7 +11,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # Alpha ColorLab
 
 Web app for sharing Sony Alpha colour recipes. White Balance Shift is the core;
-each recipe pairs it with **either** a Picture Profile **or** a Creative Look.
+each recipe pairs it with a Picture Profile. Creative Look recipes were removed
+on 2026-11-07 (owner): the format, its 45 recipes and their community rows.
+Do not add them back.
 
 Next.js 16 (App Router) · React 19 · TypeScript · Tailwind v4 · Supabase · Vercel
 
@@ -86,7 +88,7 @@ produces recipes that silently fail on a real camera.
 
 Three traps that have already bitten this dataset:
 
-- `Saturation` means different things per format: **PP is −32…+32, Creative Look is −9…+9.**
+- Picture Profile `Saturation` is **−32…+32**, not the −9…+9 a Creative Look used.
 - `Fade` (0–9), `Sharpness` (0–9), `Clarity` (0–9), `Sharpness Range` (1–5) are
   **unsigned** — never render or store them with a `+`.
 - `V/H Balance` is only −2…+2. The legacy dataset shipped `-22`; see
@@ -95,7 +97,7 @@ Three traps that have already bitten this dataset:
 ## Rule 1b — White Balance has three modes, not two
 
 `kelvin` · `auto` (AWB…) · `preset` (Daylight, Cloudy, Shade, Underwater Auto…).
-All three take an optional shift, and both recipe formats share all of it.
+All three take an optional shift.
 Presets are `WB_PRESETS` in `constants.ts`, cited to the a7 IV guide
 (`TP1000640840`). `Custom 1-3` are excluded on purpose — they replay a white
 card measured in one room and mean nothing to a reader.
@@ -108,19 +110,19 @@ Adding an enum value to Postgres needs **its own migration file** — a value
 cannot be used in the transaction that created it, which is why `0005` adds
 `preset` to `wb_mode` and `0006` is what uses it.
 
-## Rule 2 — A recipe is exactly one format
+## Rule 2 — A recipe is a Picture Profile
 
-Picture Profile and Creative Look are **mutually exclusive on the camera**
-("[Creative Look] is fixed to [-] … when [Picture Profile] is set to other than
-[Off]"). `recipeSchema` is a discriminated union on `format: 'pp' | 'cl'` and the
-settings objects are `strictObject`, so a stray key from the other format is a
-validation error, not a silently dropped field. Keep it that way.
+`format` is `'pp'` only. `recipeSchema` keeps its discriminated union and the
+settings objects are `strictObject`, so a stray key (a Creative Look's `look`,
+`fade`, `clarity`) is a validation error, not a silently dropped field. Keep it
+that way. A shared link to a removed Creative Look (`/recipe/cl-NNN`, or any
+earlier spelling of one) answers 308 to `/colorlab` (`isRemovedCreativeLook`).
 
 ## Rule 3 — Translate content, never technical terms
 
 Bilingual EN/VI. Translate **descriptions and UI copy only**.
 
-Never translated: recipe names, parameter labels, Creative Look codes and names,
+Never translated: recipe names, parameter labels,
 gamma/colour-mode names, WB values. These live in `constants.ts`, outside the
 message catalogues, so they cannot be translated by accident. Do not copy a
 technical label into a translation file to "make it easier".
@@ -186,8 +188,8 @@ dial's card.
 
 ## Rule 5 — Changing a range means changing one file
 
-`constants.ts` → `schema.ts` derives from it → tests derive from both. Adding a
-Creative Look or supporting a new body touches `constants.ts` only. Use the
+`constants.ts` → `schema.ts` derives from it → tests derive from both.
+Supporting a new body touches `constants.ts` only. Use the
 `sync-camera-constants` skill; do not hand-edit downstream files to match.
 
 ## Rule 6 — One app, one set of design tokens
@@ -239,21 +241,16 @@ mean something else.
 src/lib/camera/     constants.ts · schema.ts · format.ts   ← source of truth
 src/lib/legacy/     one-shot migration from sonycolorlab (delete after cutover)
 src/lib/originals/  pp.ts — ColorLab's own Picture Profile library (2026-10-23)
-src/lib/sony-asia/  import.ts — Creative Look library from Sony's Alpha Recipes
 src/lib/recipes/    row.ts (Recipe ⇄ DB row) · Supabase data access
 supabase/migrations/  SQL; runs for real against PGlite in migration.test.ts
 src/app/            App Router routes
 data/               recipes.seed.json (generated — never hand-edit)
 ```
 
-The catalogue is three libraries in one table: the ten Picture Profile recipes
-kept from sonycolorlab, ColorLab's own originals (`src/lib/originals/pp.ts`
-and `cl.ts`, both formats), and Creative Look recipes imported from a scrape of
-Sony's Alpha Recipes microsite. The originals share the `CL-` sequence with
-the scrape, so `emit-seed` passes their ids to the importer as reserved. The
-first and last come from **untrusted input parsed against `constants.ts`** —
-`LEGACY_CORRECTIONS` and `SCRAPE_CORRECTIONS` record every fix by name and
-reason. A row the source does not fully state is **skipped and reported**,
+The catalogue is two libraries in one table: the ten Picture Profile recipes
+kept from sonycolorlab and ColorLab's own originals (`src/lib/originals/pp.ts`).
+The first comes from **untrusted input parsed against `constants.ts`** —
+`LEGACY_CORRECTIONS` records every fix by name and reason. A row the source does not fully state is **skipped and reported**,
 never completed with a plausible value: `Default Settings` has no published
 expansion, and a Kelvin *range* is not a Kelvin.
 
@@ -354,9 +351,8 @@ Do not write App Router code from memory. Read the relevant file first:
   (`src/lib/camera/palette.ts`) grades nine swatches — a neutral ramp and six
   hues — from the recipe's own settings in Sony's documented directions. The
   card draws them on the recipe's mark (owner, 2026-10-28/29; `recipe-mark.tsx`):
-  a cartridge for a Creative Look, a cinema reel for a Picture Profile, the
-  ramp on the leader's three frames, the hues on the cartridge's sticker and
-  in the reel's six windows, nothing behind either (owner, 2026-11-04),
+  a cinema reel, the ramp on the leader's three frames, the hues in the
+  reel's six windows, nothing behind it (owner, 2026-11-04),
   the initials, code and Sony base in print; the recipe page
   carries the same mark beside its title, and no swatch strip. It is a reading of the settings, never
   a camera preview, and nothing may present it as one. Every
@@ -370,35 +366,34 @@ Do not write App Router code from memory. Read the relevant file first:
 
 ## Browse by situation
 
-The catalogue browses by **colour system · situation · style · tone**, not by
-Look or tag (D1–D4 of the 2026-10-23 handoff; the colour system, Picture
-Profile or Creative Look, was added on 2026-10-24). The rules:
+The catalogue browses by **situation · style · tone**, not by tag (D1–D4 of
+the 2026-10-23 handoff). The rules:
 
 - **Taxonomy ids live in `src/lib/recipes/taxonomy.ts`**, labels in
   `messages/*.json` under `browse`, and the editor's assignments in the git
   manifest `data/recipe-taxonomy.json`, keyed by recipe id. No content column
   yet: a recipe the manifest does not name browses by what `deriveTaxonomy`
-  reads off its settings (Look → style and situations; white balance → tone).
+  reads off its settings (white balance → tone).
   `taxonomy.test.ts` fails a manifest that names an unknown id, more than
   three situations, or a tone that contradicts the settings.
 - **Mono is read off the settings, never edited.** `tone = 'mono'` iff the
-  colour mode is Black & White or the Look is BW/SE. Warm/cool is an estimate
+  colour mode is Black & White. Warm/cool is an estimate
   from the white balance (`toneFromWhiteBalance`), right for daylight recipes
   only — Sài Gòn Café is warm under bulbs and reads cool here — so the manifest
   may override it, and does.
 - **One address per result.** The situation is the path,
-  `/colorlab/[situation]`; `format` (`pp`|`cl`, the same strings the previous
-  catalogue used), `style`, `tone` and `q` are the query string;
+  `/colorlab/[situation]`; `style`, `tone` and `q` are the query string;
   `?situation=` is not read. An unknown situation is `notFound()`, which is why
   the index page lives in the `(index)` route group: its `loading.tsx` must not
   sit above the route that refuses (`next-boundaries.test.ts`).
 - **Filter in the page after one unfiltered `listRecipes(locale)`.** Nothing
   new goes into the `catalogueCache` key. The browse row is a server component
   of `<Link>`s with facet counts; only the header's search box and the camera
-  picker are client code, and the search box builds its URL with `colorlabSearch()` so a typed query keeps the
-  chosen colour system, style and tone and the current pathname.
-- **Tags stay in the data for search and are not shown (D9).** `?look=` and
-  `?tag=` are still honoured by `matchesLegacyFilters` for one release, then
+  picker are client code, and the search box builds its URL with
+  `colorlabSearch()` so a typed query keeps the chosen style and tone and the
+  current pathname.
+- **Tags stay in the data for search and are not shown (D9).** `?tag=` is
+  still honoured by `matchesLegacyFilters` for one release, then
   dropped.
 - **Search inherits the taxonomy.** `taxonomyTerms()` feeds both `matchesQuery`
   and `recipeDoc`, so "cafe", "chân dung", "phim" and "đen trắng" are tag hits
@@ -421,10 +416,9 @@ cannot install (ADR 0006). The rules:
   there.
 - **Evidence only.** What a body lacks comes from `installability()` over the
   checked Help Guide claims in `src/lib/cameras/capabilities/`, never from a
-  table typed here. A list counts only when complete; Creative Style means no
-  Creative Look (the owner's rule, in `installable.ts` alone); the generic
-  older camera hides Creative Look and only *warns* about what no checked
-  Creative Style body has (S-Cinetone, 709tone).
+  table typed here. A list counts only when complete; the generic older
+  camera hides nothing and only *warns* about what no checked Creative Style
+  body has (S-Cinetone, 709tone).
 - **No data shows all.** An unknown, malformed or uncatalogued value is no
   camera, and a catalogue camera without checked claims hides nothing.
 - **`npm run capabilities:check` is the gate.** Adding a body means adding its

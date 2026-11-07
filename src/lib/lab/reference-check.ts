@@ -1,5 +1,4 @@
 import 'server-only'
-import { getSonyAudio } from '@/lib/audio/data'
 import { getSonyCameras } from '@/lib/cameras/data'
 import { unknownRefs } from '@/lib/content/relations'
 import { listRecipeRecords } from '@/lib/recipes/admin-store'
@@ -29,10 +28,9 @@ export async function findUnknownReferences(
     const needsRecipes = meta.related.some((r) => r.kind === 'recipe')
     const needsProducts = meta.related.some((r) => r.kind === 'product')
 
-    const [recipes, cameras, audio, pages, notes] = await Promise.all([
+    const [recipes, cameras, pages, notes] = await Promise.all([
       needsRecipes ? listRecipeRecords() : Promise.resolve([]),
       needsProducts ? getSonyCameras() : Promise.resolve([]),
-      needsProducts ? getSonyAudio() : Promise.resolve([]),
       listArticleRecords(),
       listNotes().catch(() => []),
     ])
@@ -44,7 +42,7 @@ export async function findUnknownReferences(
 
     return unknownRefs(meta, {
       recipes: new Set(recipes.map((r) => r.recipe.id)),
-      products: new Set([...cameras, ...audio].map((p) => p.id)),
+      products: new Set(cameras.map((p) => p.id)),
       pages: pageIds,
     })
   } catch (err) {

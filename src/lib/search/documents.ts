@@ -13,7 +13,6 @@
 
 import { stripWiki } from '@/lib/alphaskill/markdown'
 import { accentHex, type Accent } from '@/lib/camera/color'
-import { CREATIVE_LOOKS } from '@/lib/camera/constants'
 import type { Locale } from '@/lib/camera/explanations'
 import { conceptTitle } from '@/lib/content/concepts'
 import { ARTICLE_LANG, LEVELS, TOPICS } from '@/lib/lab/articles'
@@ -69,9 +68,7 @@ export type RecipeForSearch = {
   readonly id: string
   readonly slug: string
   readonly name: string
-  readonly format: 'pp' | 'cl'
-  /** The Creative Look code, for a `cl` recipe. */
-  readonly look?: string
+  readonly format: 'pp'
   readonly wbLabel: string
   readonly description: string
   readonly tags: readonly string[]
@@ -90,10 +87,9 @@ export function recipeDoc(r: RecipeForSearch, locale: Locale): SearchDoc {
      `resolveRecipeSlug`, which search has no part in. The slug indexed is the
      code (`slugFor`), not the stored one, which on a content plane before
      20261028000000 still spells a former name. */
-  const code = /^(PP|CL)-\d{3}/.exec(r.name)?.[0] ?? ''
+  const code = /^PP-\d{3}/.exec(r.name)?.[0] ?? ''
   const slug = slugFor(r.id)
-  const look = r.format === 'cl' ? CREATIVE_LOOKS.find((l) => l.code === r.look) : undefined
-  const formatLabel = r.format === 'pp' ? 'Picture Profile' : 'Creative Look'
+  const formatLabel = 'Picture Profile'
   /* Every synonym of the recipe's situations, style and tone, both languages:
      "cafe", "chân dung", "phim", "đen trắng" land on it as tag hits. One
      ranking for the header, the grid and `/search` — the browse row is not a
@@ -128,7 +124,6 @@ export function recipeDoc(r: RecipeForSearch, locale: Locale): SearchDoc {
       ...inherited,
       formatLabel,
       r.format.toUpperCase(),
-      ...(look ? [look.code, look.label] : []),
       r.wbLabel,
     ],
     headings: [],
@@ -136,8 +131,8 @@ export function recipeDoc(r: RecipeForSearch, locale: Locale): SearchDoc {
     boost: 0,
     snippetLanguage: locale,
     display: {
-      subtitle: `${look ? `${formatLabel} (${look.code})` : formatLabel} · ${r.wbLabel}`,
-      badge: look ? `CL:${look.code}` : 'PP',
+      subtitle: `${formatLabel} · ${r.wbLabel}`,
+      badge: 'PP',
       accentHex: r.accent ? accentHex(r.accent) : undefined,
     },
   }
@@ -218,7 +213,7 @@ export function articleDoc(a: Article): SearchDoc {
  */
 export function glossaryDocs(locale: Locale): SearchDoc[] {
   return buildGlossary(locale).flatMap((group) => [
-    /* The group itself — "Creative Look", "Picture Profile", "White Balance" —
+    /* The group itself — "Picture Profile", "White Balance" —
        is a document too, landing on its heading. Without it a query naming the
        format returns eight entries that each mention it and no page about it. */
     {
@@ -230,10 +225,7 @@ export function glossaryDocs(locale: Locale): SearchDoc[] {
       exact: [squash(group.title)],
       aliases: [],
       titleText: group.title,
-      summary: [
-        ...group.overview,
-        ...(group.looks ?? []).map((l) => `${l.code} ${l.label}`),
-      ].join(' '),
+      summary: group.overview.join(' '),
       tags: group.entries.map((e) => e.label),
       headings: [],
       body: '',
@@ -262,8 +254,8 @@ export function glossaryDocs(locale: Locale): SearchDoc[] {
         ].filter((s) => s.length >= 3),
         aliases: [],
         /* Searchable title without the group name, which goes to the tags:
-           otherwise "Creative Look" is a title-phrase hit on all eight of its
-           adjustments, and they bury the page that explains Creative Look. */
+           otherwise "Picture Profile" is a title-phrase hit on every one of
+           its adjustments, and they bury the page that explains it. */
         titleText: e.parent ? `${e.parent} ${e.label}` : e.label,
         summary: e.text,
         tags: [group.title],

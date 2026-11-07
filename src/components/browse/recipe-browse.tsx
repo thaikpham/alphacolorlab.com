@@ -39,9 +39,8 @@ export type BrowseModel = {
  * header pushes `?q=` after every typing pause — so "mojave" used to be up to
  * six cache misses, each a recipes select plus a translations read, and any
  * `?q=` from anyone added an entry. Nothing new goes into that key: the text
- * match, the four groups and the legacy `?look=`/`?tag=` of the previous
- * catalogue (one more release, then gone) all run here. `?format=` is not
- * legacy any more: it is the colour-system group, read by `browseFilters`.
+ * match, the three groups and the legacy `?tag=` of the previous catalogue
+ * (one more release, then gone) all run here.
  *
  * The reader's camera is the same: the cookie's raw value comes in as
  * `cameraCookie` and narrows the catalogue here, before the text query, the
@@ -56,10 +55,7 @@ export async function loadBrowse(
 ): Promise<BrowseModel> {
   const filters = browseFilters(situation, sp);
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
-  const legacy = {
-    look: one(sp.look),
-    tag: one(sp.tag),
-  };
+  const legacy = { tag: one(sp.tag) };
 
   const [catalogue, products] = await Promise.all([listRecipes(locale), getSonyCameras()]);
   const cameras = cameraOptions(products);

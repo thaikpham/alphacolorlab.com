@@ -73,7 +73,6 @@ describe('canonical URLs for Vietnamese bodies (ADR 0004)', () => {
     ['src/app/[locale]/page.tsx', '/'],
     ['src/app/[locale]/colorlab/(index)/page.tsx', '/colorlab'],
     ['src/app/[locale]/cameras/page.tsx', '/cameras'],
-    ['src/app/[locale]/audio/page.tsx', '/audio'],
     ['src/app/[locale]/blog/page.tsx', '/blog'],
     ['src/app/[locale]/blog/setup/page.tsx', '/blog/setup'],
   ])('%s canonicalises its filtered views to the bare path', (path, rest) => {

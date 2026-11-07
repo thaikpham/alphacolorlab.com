@@ -1,9 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import recipesSeed from '../../../data/recipes.seed.json';
 import {
-  CL_RANGES,
-  CREATIVE_LOOK_CODES,
-  CREATIVE_LOOKS,
   PP_COLOR_MODE,
   PP_GAMMA,
   PP_RANGES,
@@ -54,7 +51,7 @@ describe('the name syntax', () => {
       'SCL-PP-001: Mojave Sun', // the oldest shape
       'PP-48-Warm Deep Rich', // two digits
       'PP-048-Warm Deep', // two words
-      'CL-007-Neutral Even Natural Crisp', // four: the shape a tie-break used to add
+      'PP-007-Neutral Even Natural Crisp', // four: the shape a tie-break used to add
       'PP-048-warm deep rich', // not Title Case
       'PP-048-Huế Deep Rich', // diacritics
       'XX-048-Warm Deep Rich',
@@ -70,8 +67,8 @@ describe('the name syntax', () => {
        reading in names.ts, so a name can never widen the list by itself. */
     expect([...NAME_VOCABULARY].sort()).toEqual(
       [
-        'Golden', 'Warm', 'Neutral', 'Cool', 'Icy', 'Rosy', 'Mint', 'Adaptive', 'Mono', 'Sepia',
-        'Matte', 'Faded', 'Deep', 'Punchy', 'Soft', 'Flat', 'Airy', 'Even',
+        'Golden', 'Warm', 'Neutral', 'Cool', 'Icy', 'Rosy', 'Mint', 'Adaptive', 'Mono',
+        'Matte', 'Faded', 'Deep', 'Punchy', 'Soft', 'Flat', 'Even',
         'Vivid', 'Rich', 'Natural', 'Muted', 'Pale',
         'Crisp', 'Gentle', 'Plain',
         'Bright', 'Dark',
@@ -84,24 +81,17 @@ describe('the name syntax', () => {
     expect(Object.keys(TONE_WORDS).sort()).toEqual([...TONES].sort());
   });
 
-  /* The owner's rule (2026-10-28): no place, no situation, no Look, no film
-     stock, no brand, no person — a name says what the settings do. */
-  it('has no word that names a situation, a Look, a place, a stock, a brand or a person', () => {
+  /* The owner's rule (2026-10-28): no place, no situation, no film stock, no
+     brand, no person — a name says what the settings do. */
+  it('has no word that names a situation, a place, a stock, a brand or a person', () => {
     const fold = (s: string) => s.toLowerCase();
     const situations = new Set(Object.values(SITUATION_SYNONYMS).flat().map(fold));
-    /* Three words are also Look labels. Each is a graded reading here — a
-       temperature band, a chroma grade, monochromeOf() = sepia — so they
-       stay, and they are the only ones: a fourth Look label fails. */
-    const GRADED_LOOK_LABELS = new Set(['Neutral', 'Vivid', 'Sepia']);
-    const looks = new Set(
-      CREATIVE_LOOKS.flatMap((l) => [l.code, l.label]).filter((w) => !GRADED_LOOK_LABELS.has(w)).map(fold),
-    );
     const BANNED = [
       // the words the hand-picked names used for a use, a time or a place
       'Portrait', 'Street', 'Night', 'Studio', 'Table', 'Coast', 'Nature', 'Festival', 'Autumn',
       'Monsoon', 'Overcast', 'Indoor', 'Stream', 'Landscape', 'Product', 'Daylight', 'Dusk',
       'Tungsten', 'Tropical', 'Nostalgia', 'Sun', 'Jade', 'Teal',
-      // a process, a stock or a Look by another name
+      // a process or a stock by another name
       'Film', 'Cinema', 'Noir', 'Slide', 'Instant', 'Standard', 'Log', 'Base', 'Range', 'Velvet',
       'Cream', 'Pop', 'Kodak', 'Fuji', 'Portra', 'Velvia', 'Ektar', 'Polaroid',
       // brands, and the places and people the former names carried
@@ -109,26 +99,22 @@ describe('the name syntax', () => {
     ].map(fold);
     for (const w of NAME_VOCABULARY) {
       expect(situations.has(fold(w)), `${w} is a situation`).toBe(false);
-      expect(looks.has(fold(w)), `${w} is a Creative Look`).toBe(false);
       expect(BANNED.includes(fold(w)), `${w} is banned`).toBe(false);
     }
-    for (const w of GRADED_LOOK_LABELS) expect(CREATIVE_LOOKS.some((l) => l.label === w), w).toBe(true);
   });
 });
 
 describe('slugFor', () => {
   it('is the code, lowercased, in either id shape', () => {
     expect(slugFor('PP-048')).toBe('pp-048');
-    expect(slugFor('CL-007')).toBe('cl-007');
-    expect(slugFor('SCL-CL-045')).toBe('cl-045');
   });
 });
 
 /* --------------------------------------------------------------------- */
 
-/* The references the words are measured against: Still / Still with every
-   dial at zero (PP_STANDARD_STILL), and ST with every dial at its default. */
-const PP: Extract<Recipe, { format: 'pp' }> = {
+/* The reference the words are measured against: Still / Still with every
+   dial at zero (PP_STANDARD_STILL). */
+const PP: Recipe = {
   id: 'PP-900',
   slug: 'pp-900',
   name: 'PP-900',
@@ -149,17 +135,6 @@ const PP: Extract<Recipe, { format: 'pp' }> = {
   },
 };
 
-const CL: Extract<Recipe, { format: 'cl' }> = {
-  id: 'CL-900',
-  slug: 'cl-900',
-  name: 'CL-900',
-  format: 'cl',
-  published: false,
-  tags: [],
-  whiteBalance: { mode: 'kelvin', kelvin: 5500 },
-  settings: { look: 'ST', contrast: 0, highlights: 0, shadows: 0, fade: 0, saturation: 0, sharpness: 4, sharpnessRange: 3, clarity: 0 },
-};
-
 type Wb = Recipe['whiteBalance'];
 const pp = (patch: Partial<typeof PP.settings>, wb: Wb = PP.whiteBalance, id = PP.id) => ({
   ...PP,
@@ -167,20 +142,13 @@ const pp = (patch: Partial<typeof PP.settings>, wb: Wb = PP.whiteBalance, id = P
   whiteBalance: wb,
   settings: { ...PP.settings, ...patch },
 });
-const cl = (patch: Partial<typeof CL.settings>, wb: Wb = CL.whiteBalance, id = CL.id) => ({
-  ...CL,
-  id,
-  whiteBalance: wb,
-  settings: { ...CL.settings, ...patch },
-});
 const words = (r: Recipe) => readName(r).words;
 const kelvin = (k: number, shift?: Extract<Wb, { mode: 'kelvin' }>['shift']): Wb => ({ mode: 'kelvin', kelvin: k, shift });
 const COLOUR_ORDER = ['Pale', 'Muted', 'Natural', 'Rich', 'Vivid'];
 
 describe('the reading', () => {
-  it('names a recipe at the reference Neutral Even Natural, in both formats', () => {
+  it('names a recipe at the reference Neutral Even Natural', () => {
     expect(words(PP)).toEqual(['Neutral', 'Even', 'Natural']);
-    expect(words(CL)).toEqual(['Neutral', 'Even', 'Natural']);
     expect(nameFor(PP)).toBe('PP-900-Neutral Even Natural');
   });
 
@@ -205,30 +173,20 @@ describe('the reading', () => {
        temperature word names it. */
     for (const wb of [kelvin(WB_KELVIN.min), kelvin(WB_KELVIN.max), kelvin(5500, { gm: { axis: 'M', amount: WB_SHIFT_AXIS.max } })]) {
       expect(words(pp({}, wb))[2]).toBe('Natural');
-      expect(words(cl({}, wb))[2]).toBe('Natural');
     }
   });
 
-  it('names a monochrome recipe Mono or Sepia, and its detail instead of its colour', () => {
+  it('names a monochrome recipe Mono, and its detail instead of its colour', () => {
     expect(words(pp({ colorMode: 'Black & White', detail: { ...PP.settings.detail, level: 3 } }))).toEqual(['Mono', 'Even', 'Crisp']);
     expect(words(pp({ colorMode: 'Black & White', detail: { ...PP.settings.detail, level: -3 } }))[2]).toBe('Gentle');
     expect(words(pp({ colorMode: 'Black & White' }))[2]).toBe('Plain');
-    expect(words(cl({ look: 'BW', saturation: undefined, sharpness: 0, clarity: 0 }))).toEqual(['Mono', 'Even', 'Gentle']);
-    expect(words(cl({ look: 'SE', saturation: undefined, clarity: 7 }))).toEqual(['Sepia', 'Even', 'Crisp']);
-    expect(words(cl({ look: 'SE', saturation: undefined, sharpness: 3 }))[2]).toBe('Plain');
   });
 
   it('reads the tonality off the neutral ramp, whatever dial moved it', () => {
     // The shadow lifted: Matte, strongly Faded; crushed: Deep.
     expect(words(pp({ blackLevel: 6 }))[1]).toBe('Matte');
-    expect(words(cl({ fade: 2 }))[1]).toBe('Matte');
-    expect(words(cl({ fade: CL_RANGES.fade.max, shadows: CL_RANGES.shadows.max }))[1]).toBe('Faded');
     expect(words(pp({ blackLevel: -6 }))[1]).toBe('Deep');
-    expect(words(cl({ shadows: CL_RANGES.shadows.min }))[1]).toBe('Deep');
     // The spread widened: Punchy; narrowed: Soft, strongly Flat.
-    expect(words(cl({ contrast: 5 }))[1]).toBe('Punchy');
-    expect(words(cl({ highlights: CL_RANGES.highlights.max }))[1]).toBe('Punchy');
-    expect(words(cl({ contrast: -5 }))[1]).toBe('Soft');
     expect(words(pp({ knee: { mode: 'Manual', point: 80, slope: -5 } }))[1]).toBe('Soft');
     expect(words(pp({ gamma: 'S-Log3', colorMode: 'S-Gamut3.Cine' }))[1]).toBe('Soft');
     expect(
@@ -241,21 +199,6 @@ describe('the reading', () => {
         }),
       )[1],
     ).toBe('Flat');
-    // The highlight lifted with the spread no wider: Airy.
-    expect(words(cl({ highlights: CL_RANGES.highlights.max, shadows: 5 }))[1]).toBe('Airy');
-    expect(words(cl({ look: 'SH' }))[1]).toBe('Airy');
-  });
-
-  it('reads each Creative Look’s own base, so Looks at zero no longer read alike', () => {
-    const atZero = Object.fromEntries(
-      CREATIVE_LOOK_CODES.filter((l) => l !== 'BW' && l !== 'SE').map((look) => [look, words(cl({ look })).join(' ')]),
-    );
-    expect(atZero.ST).toBe('Neutral Even Natural');
-    expect(words(cl({ look: 'VV' }))[2]).toBe('Rich'); // VV raises chroma
-    expect(words(cl({ look: 'NT' }))[2]).toBe('Muted'); // NT lowers it
-    expect(words(cl({ look: 'FL' }))[1]).toBe('Deep'); // FL darkens the shadow
-    expect(words(cl({ look: 'IN' }))[0]).toBe('Warm'); // IN lays its own warm cast
-    expect(new Set(Object.values(atZero)).size).toBeGreaterThanOrEqual(6);
   });
 
   it('reads a Picture Profile’s gamma and colour mode against Still / Still', () => {
@@ -265,19 +208,15 @@ describe('the reading', () => {
     expect(words(pp({ gamma: 'S-Log3', colorMode: 'S-Gamut3.Cine' }))[2]).toBe('Pale');
   });
 
-  it('grades the colour on each format’s own reach, monotonically in Saturation', () => {
+  it('grades the colour on the format’s own reach, monotonically in Saturation', () => {
     expect(words(pp({ saturation: PP_RANGES.saturation.max }))[2]).toBe('Vivid');
     expect(words(pp({ saturation: 4 }))[2]).toBe('Rich');
     expect(words(pp({ saturation: -8 }))[2]).toBe('Muted');
     expect(words(pp({ saturation: PP_RANGES.saturation.min }))[2]).toBe('Pale');
-    expect(words(cl({ saturation: CL_RANGES.saturation.max }))[2]).toBe('Vivid');
-    expect(words(cl({ saturation: CL_RANGES.saturation.min }))[2]).toBe('Pale');
     // One step either way is already a reading: 0 only at 0, as `step()` grades.
     expect(words(pp({ saturation: 1 }))[2]).toBe('Rich');
-    expect(words(cl({ saturation: -1 }))[2]).toBe('Muted');
     for (const [make, range] of [
       [(s: number) => pp({ saturation: s }), PP_RANGES.saturation],
-      [(s: number) => cl({ saturation: s }), CL_RANGES.saturation],
     ] as const) {
       let last = -1;
       for (let s = range.min; s <= range.max; s += 1) {
@@ -290,7 +229,7 @@ describe('the reading', () => {
 
   it('offers only honest alternatives: each is a reading of its own', () => {
     // Detail is not painted, so it is never a slot word for a colour recipe — but it is a reading.
-    expect(readName(cl({ sharpness: CL_RANGES.sharpness.max })).alternatives.map((a) => a.word)).toContain('Crisp');
+    expect(readName(pp({ detail: { ...PP.settings.detail, level: PP_RANGES.detailLevel.max } })).alternatives.map((a) => a.word)).toContain('Crisp');
     expect(readName(pp({ detail: { ...PP.settings.detail, level: -3 } })).alternatives.map((a) => a.word)).toContain('Gentle');
     expect(readName(pp({ blackLevel: 15 })).alternatives.map((a) => a.word)).toContain('Bright');
     expect(readName(pp({ blackLevel: -15 })).alternatives.map((a) => a.word)).toContain('Dark');
@@ -302,8 +241,8 @@ describe('the reading', () => {
   });
 
   it('can produce every word of the vocabulary, and no other', () => {
-    /* The ends of every range in constants.ts, through every gamma, colour
-       mode and Look, under the Kelvin ends and a full shift each way. */
+    /* The ends of every range in constants.ts, through every gamma and colour
+       mode, under the Kelvin ends and a full shift each way. */
     const seen = new Set<string>();
     const note = (r: Recipe) => {
       const n = readName(r);
@@ -323,19 +262,10 @@ describe('the reading', () => {
           for (const blackLevel of ends(PP_RANGES.blackLevel))
             for (const saturation of ends(PP_RANGES.saturation))
               note(pp({ gamma, colorMode, blackLevel, saturation, detail: { ...PP.settings.detail, level: blackLevel > 0 ? 7 : blackLevel < 0 ? -7 : 0 } }, wb));
-      for (const look of CREATIVE_LOOK_CODES)
-        for (const contrast of ends(CL_RANGES.contrast))
-          for (const highlights of ends(CL_RANGES.highlights))
-            for (const shadows of ends(CL_RANGES.shadows))
-              for (const fade of [0, CL_RANGES.fade.max])
-                for (const sharpness of [0, 3, CL_RANGES.sharpness.max]) {
-                  const mono = look === 'BW' || look === 'SE';
-                  note(cl({ look, contrast, highlights, shadows, fade, sharpness, saturation: mono ? undefined : contrast }, wb));
-                }
     }
     /* Adaptive is no reading of one recipe: the last resort between an auto
        White Balance twin and a fixed one (`adaptiveTwin`). */
-    for (const n of readNames([cl({}, { mode: 'preset', preset: 'Daylight' }, 'CL-901'), cl({}, { mode: 'auto', auto: 'AWB' }, 'CL-902')]))
+    for (const n of readNames([pp({}, { mode: 'preset', preset: 'Daylight' }, 'PP-901'), pp({}, { mode: 'auto', auto: 'AWB' }, 'PP-902')]))
       for (const w of n.words) seen.add(w);
     expect([...seen].sort()).toEqual([...NAME_VOCABULARY].sort());
   });
@@ -343,49 +273,43 @@ describe('the reading', () => {
 
 describe('the tie-break', () => {
   it('replaces the least salient slot with the most salient honest alternative, whatever order the catalogue comes in', () => {
-    const first = cl({}, CL.whiteBalance, 'CL-901');
-    const second = cl({ sharpness: CL_RANGES.sharpness.max }, CL.whiteBalance, 'CL-902');
-    const third = cl({ sharpness: CL_RANGES.sharpness.max, shadows: -4 }, CL.whiteBalance, 'CL-903');
+    const first = pp({}, PP.whiteBalance, 'PP-901');
+    const second = pp({ detail: { ...PP.settings.detail, level: PP_RANGES.detailLevel.max } }, PP.whiteBalance, 'PP-902');
+    const third = pp({ detail: { ...PP.settings.detail, level: PP_RANGES.detailLevel.max }, blackLevel: -4 }, PP.whiteBalance, 'PP-903');
     const names = namesFor([third, second, first]);
-    expect(names.get('CL-901')).toBe('CL-901-Neutral Even Natural');
+    expect(names.get('PP-901')).toBe('PP-901-Neutral Even Natural');
     // Even and Natural both read nothing; the colour slot goes first.
-    expect(names.get('CL-902')).toBe('CL-902-Neutral Even Crisp');
-    expect(names.get('CL-903')).toBe('CL-903-Neutral Deep Natural');
+    expect(names.get('PP-902')).toBe('PP-902-Neutral Even Crisp');
+    expect(names.get('PP-903')).toBe('PP-903-Neutral Deep Natural');
     expect(namesFor([first, second, third])).toEqual(names);
-    expect(nameFor(third, [first, second])).toBe(names.get('CL-903'));
-  });
-
-  it('names Picture Profiles first, so a profile never yields its words to a Look by order', () => {
-    expect(namesFor([cl({}, CL.whiteBalance, 'CL-001'), pp({}, PP.whiteBalance, 'PP-099')]).get('PP-099')).toBe(
-      'PP-099-Neutral Even Natural',
-    );
+    expect(nameFor(third, [first, second])).toBe(names.get('PP-903'));
   });
 
   it('moves an earlier holder that has an alternative aside for a later recipe that has none', () => {
-    const earlier = cl({ sharpness: CL_RANGES.sharpness.max }, CL.whiteBalance, 'CL-901');
-    const later = cl({}, CL.whiteBalance, 'CL-902');
+    const earlier = pp({ detail: { ...PP.settings.detail, level: PP_RANGES.detailLevel.max } }, PP.whiteBalance, 'PP-901');
+    const later = pp({}, PP.whiteBalance, 'PP-902');
     const [a, b] = readNames([later, earlier]);
-    expect(a).toMatchObject({ id: 'CL-901', words: ['Neutral', 'Even', 'Crisp'], yieldedTo: 'CL-902' });
-    expect(b).toMatchObject({ id: 'CL-902', words: ['Neutral', 'Even', 'Natural'], tiedWith: null });
+    expect(a).toMatchObject({ id: 'PP-901', words: ['Neutral', 'Even', 'Crisp'], yieldedTo: 'PP-902' });
+    expect(b).toMatchObject({ id: 'PP-902', words: ['Neutral', 'Even', 'Natural'], tiedWith: null });
   });
 
   it('names one recipe among stored names held fixed, and never moves a holder', () => {
-    const plain = cl({}, CL.whiteBalance, 'CL-800');
-    const sharp = cl({ sharpness: CL_RANGES.sharpness.max }, CL.whiteBalance, 'CL-902');
+    const plain = pp({}, PP.whiteBalance, 'PP-800');
+    const sharp = pp({ detail: { ...PP.settings.detail, level: PP_RANGES.detailLevel.max } }, PP.whiteBalance, 'PP-902');
     // Its own words free: taken.
-    expect(nameAmong(sharp, [])).toEqual({ ok: true, name: 'CL-902-Neutral Even Natural', tiedWith: null });
+    expect(nameAmong(sharp, [])).toEqual({ ok: true, name: 'PP-902-Neutral Even Natural', tiedWith: null });
     // Held by a row that reads alike: its most salient honest alternative.
-    const stored = { ...cl({}, CL.whiteBalance, 'CL-901'), name: 'CL-901-Neutral Even Natural' };
-    expect(nameAmong(sharp, [stored])).toEqual({ ok: true, name: 'CL-902-Neutral Even Crisp', tiedWith: null });
+    const stored = { ...pp({}, PP.whiteBalance, 'PP-901'), name: 'PP-901-Neutral Even Natural' };
+    expect(nameAmong(sharp, [stored])).toEqual({ ok: true, name: 'PP-902-Neutral Even Crisp', tiedWith: null });
     // Nothing left, and the holder reads alike: the tie is the truth.
-    expect(nameAmong(plain, [stored])).toEqual({ ok: true, name: 'CL-800-Neutral Even Natural', tiedWith: 'CL-901' });
-    // Nothing left, and the holder looks different: refused, though CL-800 is
-    // the earlier number and the whole-library assignment would move CL-902.
-    const heldBySharp = { ...sharp, name: 'CL-902-Neutral Even Natural' };
-    expect(nameAmong(plain, [heldBySharp])).toEqual({ ok: false, heldBy: ['CL-902'] });
-    expect(readNames([plain, sharp])[0]).toMatchObject({ id: 'CL-800', words: ['Neutral', 'Even', 'Natural'] });
+    expect(nameAmong(plain, [stored])).toEqual({ ok: true, name: 'PP-800-Neutral Even Natural', tiedWith: 'PP-901' });
+    // Nothing left, and the holder looks different: refused, though PP-800 is
+    // the earlier number and the whole-library assignment would move PP-902.
+    const heldBySharp = { ...sharp, name: 'PP-902-Neutral Even Natural' };
+    expect(nameAmong(plain, [heldBySharp])).toEqual({ ok: false, heldBy: ['PP-902'] });
+    expect(readNames([plain, sharp])[0]).toMatchObject({ id: 'PP-800', words: ['Neutral', 'Even', 'Natural'] });
     // Its own row, in either id shape, holds nothing against it.
-    expect(nameAmong(plain, [{ ...heldBySharp, id: 'SCL-CL-800' }])).toMatchObject({ ok: true, tiedWith: null });
+    expect(nameAmong(plain, [{ ...heldBySharp, id: 'SCL-PP-800' }])).toMatchObject({ ok: true, tiedWith: null });
   });
 
   it('holds a combination as a set of words, so a reordering is a collision too', () => {
@@ -394,46 +318,46 @@ describe('the tie-break', () => {
   });
 
   it('reports a tie only between recipes that read alike', () => {
-    const a = cl({}, { mode: 'preset', preset: 'Daylight' }, 'CL-901');
-    const b = cl({}, { mode: 'preset', preset: 'Daylight' }, 'CL-902');
+    const a = pp({}, { mode: 'preset', preset: 'Daylight' }, 'PP-901');
+    const b = pp({}, { mode: 'preset', preset: 'Daylight' }, 'PP-902');
     expect(readsAlike(a, b)).toBe(true);
-    expect(readNames([a, b])[1]).toMatchObject({ id: 'CL-902', tiedWith: 'CL-901' });
+    expect(readNames([a, b])[1]).toMatchObject({ id: 'PP-902', tiedWith: 'PP-901' });
     // Two auto twins have no White Balance difference either: still a tie.
-    const autoA = cl({}, { mode: 'auto', auto: 'AWB' }, 'CL-903');
-    const autoB = cl({}, { mode: 'auto', auto: 'AWB (Priority White)' }, 'CL-904');
-    expect(readNames([autoA, autoB])[1]).toMatchObject({ id: 'CL-904', tiedWith: 'CL-903' });
-    expect(readsAlike(a, cl({ contrast: 1 }, a.whiteBalance, 'CL-903'))).toBe(false);
-    expect(readsAlike(a, cl({ sharpness: CL_RANGES.sharpness.max }, a.whiteBalance, 'CL-903'))).toBe(false);
+    const autoA = pp({}, { mode: 'auto', auto: 'AWB' }, 'PP-903');
+    const autoB = pp({}, { mode: 'auto', auto: 'AWB (Priority White)' }, 'PP-904');
+    expect(readNames([autoA, autoB])[1]).toMatchObject({ id: 'PP-904', tiedWith: 'PP-903' });
+    expect(readsAlike(a, pp({ saturation: 1 }, a.whiteBalance, 'PP-903'))).toBe(false);
+    expect(readsAlike(a, pp({ detail: { ...PP.settings.detail, level: PP_RANGES.detailLevel.max } }, a.whiteBalance, 'PP-903'))).toBe(false);
   });
 
   it('gives Adaptive, as a last resort, only to the auto White Balance twin of a fixed one that reads alike', () => {
-    const fixed = cl({}, { mode: 'preset', preset: 'Daylight' }, 'CL-901');
-    const auto = cl({}, { mode: 'auto', auto: 'AWB' }, 'CL-902');
+    const fixed = pp({}, { mode: 'preset', preset: 'Daylight' }, 'PP-901');
+    const auto = pp({}, { mode: 'auto', auto: 'AWB' }, 'PP-902');
     expect(readsAlike(fixed, auto)).toBe(true);
     expect(adaptiveTwin(auto, fixed)).toBe(true);
     expect(adaptiveTwin(fixed, auto)).toBe(false);
     // The auto twin takes Adaptive whichever comes first; the fixed one keeps its words.
     const later = readNames([fixed, auto]);
-    expect(later[0]).toMatchObject({ id: 'CL-901', words: ['Neutral', 'Even', 'Natural'], replaced: null, tiedWith: null });
-    expect(later[1]).toMatchObject({ id: 'CL-902', words: ['Adaptive', 'Even', 'Natural'], replaced: { slot: 0, word: 'Adaptive' }, tiedWith: null });
-    const fixedLater = { ...fixed, id: 'CL-903' };
+    expect(later[0]).toMatchObject({ id: 'PP-901', words: ['Neutral', 'Even', 'Natural'], replaced: null, tiedWith: null });
+    expect(later[1]).toMatchObject({ id: 'PP-902', words: ['Adaptive', 'Even', 'Natural'], replaced: { slot: 0, word: 'Adaptive' }, tiedWith: null });
+    const fixedLater = { ...fixed, id: 'PP-903' };
     const earlier = readNames([auto, fixedLater]);
-    expect(earlier[0]).toMatchObject({ id: 'CL-902', words: ['Adaptive', 'Even', 'Natural'], yieldedTo: 'CL-903' });
-    expect(earlier[1]).toMatchObject({ id: 'CL-903', words: ['Neutral', 'Even', 'Natural'], tiedWith: null });
+    expect(earlier[0]).toMatchObject({ id: 'PP-902', words: ['Adaptive', 'Even', 'Natural'], yieldedTo: 'PP-903' });
+    expect(earlier[1]).toMatchObject({ id: 'PP-903', words: ['Neutral', 'Even', 'Natural'], tiedWith: null });
     // Never while an honest reading is left: a sharper auto twin takes Crisp, not Adaptive.
-    const sharp = cl({ sharpness: CL_RANGES.sharpness.max }, { mode: 'auto', auto: 'AWB' }, 'CL-904');
-    expect(namesFor([fixed, sharp]).get('CL-904')).toBe('CL-904-Neutral Even Crisp');
+    const sharp = pp({ detail: { ...PP.settings.detail, level: PP_RANGES.detailLevel.max } }, { mode: 'auto', auto: 'AWB' }, 'PP-904');
+    expect(namesFor([fixed, sharp]).get('PP-904')).toBe('PP-904-Neutral Even Crisp');
     // Not a twin that looks different, and not a monochrome one: Mono says what it renders.
-    expect(adaptiveTwin(cl({ contrast: 1 }, auto.whiteBalance, 'CL-905'), fixed)).toBe(false);
-    const monoFixed = cl({ look: 'BW' }, fixed.whiteBalance, 'CL-906');
-    const monoAuto = cl({ look: 'BW' }, auto.whiteBalance, 'CL-907');
+    expect(adaptiveTwin(pp({ saturation: 1 }, auto.whiteBalance, 'PP-905'), fixed)).toBe(false);
+    const monoFixed = pp({ colorMode: 'Black & White' }, fixed.whiteBalance, 'PP-906');
+    const monoAuto = pp({ colorMode: 'Black & White' }, auto.whiteBalance, 'PP-907');
     expect(readsAlike(monoFixed, monoAuto)).toBe(true);
     expect(adaptiveTwin(monoAuto, monoFixed)).toBe(false);
     // /admin, holding the stored twin fixed, follows the same rule.
-    const storedFixed = { ...fixed, name: 'CL-901-Neutral Even Natural' };
-    expect(nameAmong(auto, [storedFixed])).toEqual({ ok: true, name: 'CL-902-Adaptive Even Natural', tiedWith: null });
-    const storedAuto = { ...auto, name: 'CL-902-Neutral Even Natural' };
-    expect(nameAmong(fixedLater, [storedAuto])).toEqual({ ok: true, name: 'CL-903-Neutral Even Natural', tiedWith: 'CL-902' });
+    const storedFixed = { ...fixed, name: 'PP-901-Neutral Even Natural' };
+    expect(nameAmong(auto, [storedFixed])).toEqual({ ok: true, name: 'PP-902-Adaptive Even Natural', tiedWith: null });
+    const storedAuto = { ...auto, name: 'PP-902-Neutral Even Natural' };
+    expect(nameAmong(fixedLater, [storedAuto])).toEqual({ ok: true, name: 'PP-903-Neutral Even Natural', tiedWith: 'PP-902' });
   });
 });
 
@@ -450,7 +374,7 @@ describe('every recipe in the seed', () => {
     }
   });
 
-  it('is named PP-NNN or CL-NNN after its own id and format, in exactly three vocabulary words', () => {
+  it('is named PP-NNN after its own id, in exactly three vocabulary words', () => {
     for (const r of seed) {
       const parsed = parseRecipeName(r.name);
       expect(parsed, `${r.id}: ${r.name}`).not.toBeNull();
@@ -478,12 +402,8 @@ describe('every recipe in the seed', () => {
         expect(readsAlike(byId.get(ids[0])!, byId.get(id)!), `${ids.join(', ')} share words but not a palette`).toBe(true);
       }
     }
-    /* No pair today. The one there was — Film at every dial's default under
-       Daylight (CL-033) and under AWB (CL-034), the same nine swatches and
-       Sharpness 4, Clarity 1 — is told apart by Adaptive on the AWB one. */
     expect(shared).toEqual([]);
     expect(results.filter((n) => n.tiedWith)).toEqual([]);
-    expect(seed.filter((r) => wordsOf(r.name)[0] === 'Adaptive').map((r) => r.id)).toEqual(['CL-034']);
   });
 
   it('says Adaptive only on an auto White Balance recipe that reads alike a fixed twin', () => {
@@ -614,14 +534,9 @@ describe('every recipe in the seed', () => {
   });
 
   /* Where the tone is read off the White Balance alone, the name and the
-     browse tone agree, except for the Creative Looks listed here, whose Look and dials move the
-     palette's cast where the White Balance cannot see: Instant lays its own
-     warm cast over AWB (CL-020); Film's lower chroma and Saturation −2 take
-     Cloudy A1.5 back inside one shift step of neutral (CL-002). A new
-     disagreement fails until an editor sets that recipe's tone or it is added
-     here with its reason. */
+     browse tone agree. A new disagreement fails until an editor sets that
+     recipe's tone. */
   it('agrees with the browse tone the White Balance gives, where no editor set one', () => {
-    const LOOK_MOVES_THE_CAST = ['CL-002', 'CL-020'];
     const disagree: string[] = [];
     for (const r of seed) {
       if (TAXONOMY_MANIFEST[r.id]?.tone) continue;
@@ -630,7 +545,6 @@ describe('every recipe in the seed', () => {
       const claimed = (Object.entries(TONE_WORDS) as [string, readonly string[]][]).find(([, ws]) => ws.includes(first))?.[0];
       if (claimed && claimed !== tone) disagree.push(r.id);
     }
-    expect(disagree.sort()).toEqual(LOOK_MOVES_THE_CAST);
-    for (const id of LOOK_MOVES_THE_CAST) expect(byId.get(id)?.format, id).toBe('cl');
+    expect(disagree).toEqual([]);
   });
 });

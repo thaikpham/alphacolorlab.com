@@ -1,9 +1,8 @@
 /**
  * Maps a `sony_cameras` row to a `SonyCamera`, for every reader of the table.
  *
- * There were three copies of this mapping — the camera catalogue, the audio
- * catalogue and the admin save route — and they had drifted on the one column
- * that mattered: only the route selected `gallery_urls`. Both catalogues read
+ * The camera catalogue and the admin save route had drifted on the one column
+ * that mattered: only the route selected `gallery_urls`. The catalogue read
  * the gallery from the seed instead, so a gallery the admin saved reached the
  * database and was never read back. The editor reopened on the old photographs,
  * the public page kept them, and the save looked like it had not happened.

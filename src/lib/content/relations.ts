@@ -30,9 +30,8 @@ export type RecipeSummary = {
   readonly id: string
   readonly slug: string
   readonly name: string
-  readonly format: 'pp' | 'cl'
+  readonly format: 'pp'
   readonly wbLabel: string
-  readonly look?: string
 }
 
 export type ProductSummary = {
@@ -59,7 +58,7 @@ export function recipeTarget(r: RecipeSummary): LinkTarget {
     id: r.id,
     title: r.name,
     href: `/recipe/${r.slug}`,
-    subtitle: `${r.format === 'pp' ? 'Picture Profile' : `Creative Look${r.look ? ` ${r.look}` : ''}`} · ${r.wbLabel}`,
+    subtitle: `Picture Profile · ${r.wbLabel}`,
   }
 }
 
@@ -79,7 +78,7 @@ export function productTarget(p: ProductSummary): LinkTarget {
     kind: 'product',
     id: p.id,
     title: productTitle(p),
-    href: p.category === 'audio' ? `/audio/${p.id}` : `/cameras/${p.id}`,
+    href: `/cameras/${p.id}`,
     ...(code ? { subtitle: code } : {}),
   }
 }

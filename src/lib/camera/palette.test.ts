@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import {
   CHANNEL_HUE,
   WB_HUE,
-  accentFor,
   accentHex,
   gamutMap,
   inSrgb,
@@ -12,8 +11,6 @@ import {
   type AccentInput,
 } from './color';
 import {
-  CL_RANGES,
-  CREATIVE_LOOK_CODES,
   PP_BLACK_GAMMA_RANGE,
   PP_COLOR_DEPTH_CHANNELS,
   PP_DETAIL_BW_BALANCE,
@@ -23,7 +20,7 @@ import {
   type Range,
 } from './constants';
 import { DAYLIGHT_K, PALETTE_WEIGHTS, REFERENCE, SWATCH_IDS, paletteFor, type Palette, type SwatchId } from './palette';
-import type { ClSettings, PpSettings, Recipe, WhiteBalance } from './schema';
+import type { PpSettings, Recipe, WhiteBalance } from './schema';
 
 /**
  * The palette is a reading of the settings in Sony's documented directions,
@@ -48,31 +45,12 @@ const NEUTRAL_PP_SETTINGS: PpSettings = {
   detail: { level: 0, mode: 'Manual', vhBalance: 0, bwBalance: 'Type3', limit: 0, crispening: 0, hiLightDetail: 0 },
 };
 
-const NEUTRAL_CL_SETTINGS: ClSettings = {
-  look: 'ST',
-  contrast: 0,
-  highlights: 0,
-  shadows: 0,
-  fade: 0,
-  saturation: 0,
-  sharpness: 0,
-  sharpnessRange: 3,
-  clarity: 0,
-};
-
 const NEUTRAL_PP: AccentInput = { format: 'pp', whiteBalance: NEUTRAL_WB, settings: NEUTRAL_PP_SETTINGS };
-const NEUTRAL_CL: AccentInput = { format: 'cl', whiteBalance: NEUTRAL_WB, settings: NEUTRAL_CL_SETTINGS };
 
 const pp = (settings: Partial<PpSettings>, whiteBalance: WhiteBalance = NEUTRAL_WB): AccentInput => ({
   format: 'pp',
   whiteBalance,
   settings: { ...NEUTRAL_PP_SETTINGS, ...settings },
-});
-
-const cl = (settings: Partial<ClSettings>, whiteBalance: WhiteBalance = NEUTRAL_WB): AccentInput => ({
-  format: 'cl',
-  whiteBalance,
-  settings: { ...NEUTRAL_CL_SETTINGS, ...settings },
 });
 
 /** Every legal value of a range, in steps, from the bound in `constants.ts`. */
@@ -148,15 +126,13 @@ describe('hex emitter', () => {
 });
 
 describe('palette identity', () => {
-  it('returns the references, in order, for a neutral Picture Profile and a neutral Creative Look', () => {
-    for (const neutral of [NEUTRAL_PP, NEUTRAL_CL]) {
-      const p = paletteFor(neutral);
-      expect(p.map((s) => s.id)).toEqual([...SWATCH_IDS]);
-      for (const s of p) {
-        expect(s.l, s.id).toBeCloseTo(REFERENCE[s.id].l, 6);
-        expect(s.c, s.id).toBeCloseTo(REFERENCE[s.id].c, 6);
-        expect(s.h, s.id).toBeCloseTo(REFERENCE[s.id].h, 6);
-      }
+  it('returns the references, in order, for a neutral Picture Profile', () => {
+    const p = paletteFor(NEUTRAL_PP);
+    expect(p.map((s) => s.id)).toEqual([...SWATCH_IDS]);
+    for (const s of p) {
+      expect(s.l, s.id).toBeCloseTo(REFERENCE[s.id].l, 6);
+      expect(s.c, s.id).toBeCloseTo(REFERENCE[s.id].c, 6);
+      expect(s.h, s.id).toBeCloseTo(REFERENCE[s.id].h, 6);
     }
   });
 });
@@ -200,21 +176,16 @@ describe('one-dial sweeps, in the documented direction', () => {
     expectNonDecreasing(values, 'highlight L against slope');
   });
 
-  it('Saturation up raises chroma, and PP and CL meet at both ends of their own ranges', () => {
+  it('Saturation up raises chroma', () => {
     /* Skin, not red: red sits near the sRGB edge and is gamut-capped from half
-       range up, so a red comparison at the top would pass whatever the two
-       laws did. Skin (C 0.09) stays inside sRGB across both ranges, so the
-       sweep must rise strictly and the two ends must genuinely meet. */
+       range up, so a red comparison at the top would pass whatever the law
+       did. Skin (C 0.09) stays inside sRGB across the range, so the sweep must
+       rise strictly. */
     const ppSkin = sweep(PP_RANGES.saturation).map((v) => swatch(paletteFor(pp({ saturation: v })), 'skin').c);
-    const clSkin = sweep(CL_RANGES.saturation).map((v) => swatch(paletteFor(cl({ saturation: v })), 'skin').c);
-    for (const [label, values] of [['PP', ppSkin], ['CL', clSkin]] as const) {
-      for (let i = 1; i < values.length; i++) {
-        expect(values[i], `${label} skin C step ${i}`).toBeGreaterThan(values[i - 1]);
-      }
+    for (let i = 1; i < ppSkin.length; i++) {
+      expect(ppSkin[i], `skin C step ${i}`).toBeGreaterThan(ppSkin[i - 1]);
     }
     expect(ppSkin.at(-1)!).toBeGreaterThan(REFERENCE.skin.c);
-    expect(Math.abs(ppSkin.at(-1)! - clSkin.at(-1)!)).toBeLessThanOrEqual(1e-3);
-    expect(Math.abs(ppSkin[0] - clSkin[0])).toBeLessThanOrEqual(1e-3);
     expect(inSrgb({ l: REFERENCE.skin.l, c: ppSkin.at(-1)!, h: REFERENCE.skin.h })).toBe(true);
   });
 
@@ -277,31 +248,6 @@ describe('one-dial sweeps, in the documented direction', () => {
         for (const id of NEUTRALS) expect(swatch(p, id), `${channel} ${id}`).toEqual(swatch(neutral, id));
       }
     }
-  });
-
-  it('CL Contrast up spreads the ramp: shadow down, highlight up', () => {
-    const palettes = sweep(CL_RANGES.contrast).map((v) => paletteFor(cl({ contrast: v })));
-    expectNonIncreasing(palettes.map((p) => swatch(p, 'shadow').l), 'shadow L');
-    expectNonDecreasing(palettes.map((p) => swatch(p, 'highlight').l), 'highlight L');
-  });
-
-  it('CL Highlights up lifts the highlight only', () => {
-    const palettes = sweep(CL_RANGES.highlights).map((v) => paletteFor(cl({ highlights: v })));
-    expectNonDecreasing(palettes.map((p) => swatch(p, 'highlight').l), 'highlight L');
-    for (const p of palettes) expect(swatch(p, 'shadow').l).toBe(REFERENCE.shadow.l);
-  });
-
-  it('CL Shadows up lifts the shadow only', () => {
-    const palettes = sweep(CL_RANGES.shadows).map((v) => paletteFor(cl({ shadows: v })));
-    expectNonDecreasing(palettes.map((p) => swatch(p, 'shadow').l), 'shadow L');
-    for (const p of palettes) expect(swatch(p, 'highlight').l).toBe(REFERENCE.highlight.l);
-  });
-
-  it('CL Fade up lifts the blacks, dims the whites and lowers chroma', () => {
-    const palettes = sweep(CL_RANGES.fade).map((v) => paletteFor(cl({ fade: v })));
-    expectNonDecreasing(palettes.map((p) => swatch(p, 'shadow').l), 'shadow L');
-    expectNonIncreasing(palettes.map((p) => swatch(p, 'highlight').l), 'highlight L');
-    expectNonIncreasing(palettes.map((p) => swatch(p, 'red').c), 'red C');
   });
 
   it('a higher Kelvin warms the mid along amber', () => {
@@ -418,9 +364,7 @@ describe('monochrome', () => {
     }) as AccentInput;
 
   it('paints every Black & White recipe without chroma, even under a shift', () => {
-    const bw = recipes.filter(
-      (r) => (r.format === 'pp' && r.settings.colorMode === 'Black & White') || (r.format === 'cl' && r.settings.look === 'BW'),
-    );
+    const bw = recipes.filter((r) => r.settings.colorMode === 'Black & White');
     expect(bw.length).toBeGreaterThan(0);
     for (const r of bw) {
       for (const input of [r, withShift(r)]) {
@@ -430,25 +374,8 @@ describe('monochrome', () => {
     for (const s of paletteFor(pp({ colorMode: 'Black & White', saturation: PP_RANGES.saturation.max }))) {
       expect(s.c, s.id).toBe(0);
     }
-    for (const s of paletteFor(cl({ look: 'BW', saturation: undefined }))) expect(s.c, s.id).toBe(0);
   });
 
-  it('paints every Sepia recipe in one warm hue — the accent\'s sepia, not the White Balance', () => {
-    const sepia = recipes.filter((r) => r.format === 'cl' && r.settings.look === 'SE');
-    expect(sepia.length).toBeGreaterThan(0);
-    for (const r of sepia) {
-      // The accent is the one other reading of a sepia recipe; the two agree.
-      const accent = accentFor(r);
-      expect(hueGap(accent.h, WB_HUE.amber), `${r.id} accent`).toBeLessThanOrEqual(20);
-      for (const input of [r, withShift(r)]) {
-        for (const s of paletteFor(input)) {
-          expect(hueGap(s.h, accent.h), `${r.id} ${s.id}`).toBeLessThanOrEqual(3);
-          expect(s.c, `${r.id} ${s.id}`).toBeGreaterThan(0);
-          expect(s.c, `${r.id} ${s.id}`).toBeLessThanOrEqual(accent.c + 0.001);
-        }
-      }
-    }
-  });
 });
 
 describe('not painted', () => {
@@ -465,35 +392,6 @@ describe('not painted', () => {
       { ...d, mode: 'Auto' as const },
     ];
     for (const detail of variants) expect(paletteFor(pp({ detail })), JSON.stringify(detail)).toEqual(base);
-  });
-
-  it('ignores Creative Look Sharpness, Sharpness Range and Clarity', () => {
-    const base = paletteFor(NEUTRAL_CL);
-    for (const sharpness of sweep(CL_RANGES.sharpness)) expect(paletteFor(cl({ sharpness }))).toEqual(base);
-    for (const sharpnessRange of sweep(CL_RANGES.sharpnessRange)) expect(paletteFor(cl({ sharpnessRange }))).toEqual(base);
-    for (const clarity of sweep(CL_RANGES.clarity)) expect(paletteFor(cl({ clarity }))).toEqual(base);
-  });
-});
-
-describe('Creative Look bases', () => {
-  const bare = (look: (typeof CREATIVE_LOOK_CODES)[number]) =>
-    paletteFor(cl({ look, saturation: look === 'BW' || look === 'SE' ? undefined : 0 }));
-
-  it('orders the Looks by chroma as their names say: VV2 > VV > ST > NT', () => {
-    expect(meanChroma(bare('VV2'))).toBeGreaterThan(meanChroma(bare('VV')));
-    expect(meanChroma(bare('VV'))).toBeGreaterThan(meanChroma(bare('ST')));
-    expect(meanChroma(bare('ST'))).toBeGreaterThan(meanChroma(bare('NT')));
-  });
-
-  it('gives Soft Highkey the lightest shadow of any Look', () => {
-    const sh = swatch(bare('SH'), 'shadow').l;
-    for (const look of CREATIVE_LOOK_CODES.filter((l) => l !== 'SH')) {
-      expect(sh, look).toBeGreaterThan(swatch(bare(look), 'shadow').l);
-    }
-  });
-
-  it('holds Film\'s highlight below Standard\'s', () => {
-    expect(swatch(bare('FL'), 'highlight').l).toBeLessThan(swatch(bare('ST'), 'highlight').l);
   });
 });
 
@@ -587,20 +485,15 @@ describe('source hygiene', () => {
 // ---------------------------------------------------------------------------
 
 /**
- * What the palette reads from a recipe. Detail, sharpness, sharpness range
- * and clarity are not painted; White Balance is read only as its warmth and
+ * What the palette reads from a recipe. Detail is not painted; White Balance is read only as its warmth and
  * tint, so two Auto modes with the same shift are the same input.
  */
 function paintedKey(r: Recipe): string {
   const { warmth, tint } = wbBalance(r.whiteBalance);
   const wb = { warmth: Number(warmth.toFixed(6)), tint: Number(tint.toFixed(6)) };
-  if (r.format === 'pp') {
-    const { detail: _detail, knee, ...rest } = r.settings;
-    const kneeKey = knee.mode === 'Auto' ? { mode: 'Auto' } : knee;
-    return JSON.stringify({ format: 'pp', wb, ...rest, knee: kneeKey });
-  }
-  const { sharpness: _s, sharpnessRange: _r, clarity: _c, ...rest } = r.settings;
-  return JSON.stringify({ format: 'cl', wb, ...rest });
+  const { detail: _detail, knee, ...rest } = r.settings;
+  const kneeKey = knee.mode === 'Auto' ? { mode: 'Auto' } : knee;
+  return JSON.stringify({ format: 'pp', wb, ...rest, knee: kneeKey });
 }
 
 function oklchToOklab(s: { l: number; c: number; h: number }): [number, number, number] {

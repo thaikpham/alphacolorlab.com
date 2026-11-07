@@ -108,27 +108,30 @@ describe('highlights', () => {
 
 /* The readers themselves, online, against a fake content project. */
 
-const answers: Record<string, ProductRow[]> = { camera: [], audio: [] };
+const answers: Record<string, ProductRow[]> = { camera: [] };
 const selected: string[] = [];
 
 vi.mock('@/lib/supabase/server', () => ({
   contentRead: () => ({
     from: (table: string) => {
       expect(table).toBe('sony_cameras');
-      let audio = false;
       const builder = {
         select(columns: string) {
           selected.push(columns);
           return builder;
         },
-        eq(column: string, value: string) {
-          if (column === 'category' && value === 'audio') audio = true;
+        eq() {
+          return builder;
+        },
+        in(column: string, values: string[]) {
+          /* Only the categories the app renders (audio was removed 2026-11-07). */
+          expect([column, values]).toEqual(['category', ['camera', 'lens', 'accessory']]);
           return builder;
         },
         neq() {
           return builder;
         },
-        order: async () => ({ data: audio ? answers.audio : answers.camera, error: null }),
+        order: async () => ({ data: answers.camera, error: null }),
       };
       return builder;
     },
@@ -161,13 +164,5 @@ describe('the catalogue readers, online', () => {
     expect(selected).toEqual([PRODUCT_COLUMNS]);
   });
 
-  it('serve the audio gallery the database holds', async () => {
-    answers.audio = [
-      row({ id: 'sony-wh-1000xm6', category: 'audio', gallery_urls: ['https://db.example/xm6.jpg'] }),
-    ];
-    const { getSonyAudio } = await import('@/lib/audio/data');
-    const [product] = await getSonyAudio();
-    expect(product.galleryUrls).toEqual(['https://db.example/xm6.jpg']);
-    expect(selected).toEqual([PRODUCT_COLUMNS]);
-  });
+  
 });

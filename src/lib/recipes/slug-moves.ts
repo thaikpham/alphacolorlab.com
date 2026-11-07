@@ -4,9 +4,9 @@
  * A move is a pair of migrations — one on each plane, written once, applied
  * once, and history from then on — and the former → current pairs both files
  * rename. The pairs live here, not recomputed from the sources, because the
- * sources keep changing after the move: a Creative Look imported next month
- * arrives with an importer slug (`fl-sandeeshwara-perera-4`) that differs from
- * the slug it is emitted with and was never stored anywhere. Recomputing would
+ * sources keep changing after the move: a recipe imported later may arrive
+ * with an importer slug that differs from the slug it is emitted with and was
+ * never stored anywhere. Recomputing would
  * call that a former slug, and the paired migrations — which cannot be
  * rewritten — would stop matching the map.
  *

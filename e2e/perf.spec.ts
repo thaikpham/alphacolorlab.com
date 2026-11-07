@@ -42,7 +42,7 @@ const LCP_MAX = 2500;
  */
 const SCREENS: [string, number][] = [
   ['/', 174], ['/colorlab', 185], ['/colorlab/:situation', 178], ['/recipe/:recipe', 190], ['/cameras', 186], ['/cameras/:camera', 177],
-  ['/audio', 186], ['/blog', 183], ['/blog/:article', 180], ['/learn', 183], ['/vi/colorlab', 185], ['/vi/colorlab/:situation', 178],
+  ['/blog', 183], ['/blog/:article', 180], ['/learn', 183], ['/vi/colorlab', 185], ['/vi/colorlab/:situation', 178],
 ];
 
 async function phone(browser: Browser) {

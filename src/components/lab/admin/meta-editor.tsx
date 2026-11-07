@@ -148,7 +148,7 @@ export function MetaEditor({
         : [...meta.concepts, key],
     })
 
-  const groups: ConceptGroup[] = ['wb', 'pp', 'cl']
+  const groups: ConceptGroup[] = ['wb', 'pp']
   /* `parseMeta` keeps the first N of each list and counts the rest as
      dropped, so the controls stop at the same N. Past it, an addition saved,
      was reported as a refused field, and vanished on the reload. */

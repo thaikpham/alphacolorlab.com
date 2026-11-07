@@ -6,5 +6,5 @@
  * module gets a client reference, not the array — `[locale]/not-found.tsx`
  * then failed the build with `NOT_FOUND_APPS.map is not a function`.
  */
-export const NOT_FOUND_APPS = ['recipe', 'camera', 'audio', 'blog', 'learn'] as const;
+export const NOT_FOUND_APPS = ['recipe', 'camera', 'blog', 'learn'] as const;
 export type NotFoundApp = (typeof NOT_FOUND_APPS)[number];

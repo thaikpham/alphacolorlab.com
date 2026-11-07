@@ -1,17 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import {
-  clSettingsSchema,
   ppSettingsSchema,
   RECIPE_ID_RE,
   RECIPE_ID_TRANSITION_RE,
   recipeSchema,
   whiteBalanceSchema,
 } from './schema';
-import { formatClValue, formatWhiteBalance, parseWhiteBalance } from './format';
+import { formatWhiteBalance, parseWhiteBalance } from './format';
 import {
-  CL_MONOCHROME_LOOKS,
-  CL_RANGES,
-  CREATIVE_LOOK_CODES,
   PP_GAMMA,
   PP_RANGES,
   WB_KELVIN,
@@ -31,12 +27,6 @@ const validPp = {
   colorPhase: 1,
   colorDepth: { R: -1, G: 1, B: 5, C: 4, M: -2, Y: 2 },
   detail: { level: 0, mode: 'Manual', vhBalance: 2, bwBalance: 'Type3', limit: 3, crispening: 7, hiLightDetail: 4 },
-};
-
-const validCl = {
-  look: 'SH',
-  contrast: -2, highlights: -5, shadows: 4, fade: 5,
-  saturation: 0, sharpness: 5, sharpnessRange: 3, clarity: 1,
 };
 
 describe('white balance', () => {
@@ -90,86 +80,21 @@ describe('picture profile', () => {
   });
 });
 
-describe('creative look', () => {
-  it('accepts a known-good look', () => {
-    expect(clSettingsSchema.safeParse(validCl).success).toBe(true);
-  });
-
-  it('accepts every built-in Look, each once, including NT', () => {
-    /* Not a count: adding a Look touches constants.ts only (rule 5), so a
-       typed-in length failed the day an eleventh arrived. */
-    expect(new Set(CREATIVE_LOOK_CODES).size).toBe(CREATIVE_LOOK_CODES.length);
-    expect(CREATIVE_LOOK_CODES).toContain('NT');
-    const { saturation: _drop, ...noSat } = validCl;
-    for (const look of CREATIVE_LOOK_CODES) {
-      const mono = (CL_MONOCHROME_LOOKS as readonly string[]).includes(look);
-      expect(clSettingsSchema.safeParse(mono ? { ...noSat, look } : { ...validCl, look }).success, look).toBe(true);
-    }
-  });
-
-  it('rejects a Look that does not exist', () => {
-    expect(clSettingsSchema.safeParse({ ...validCl, look: 'XX' }).success).toBe(false);
-  });
-
-  it('rejects PP Saturation range leaking into a Creative Look', () => {
-    // Legal for Picture Profile but NOT for a Creative Look.
-    const leak = PP_RANGES.saturation.max;
-    expect(leak).toBeGreaterThan(CL_RANGES.saturation.max);
-    expect(ppSettingsSchema.safeParse({ ...validPp, saturation: leak }).success).toBe(true);
-    expect(clSettingsSchema.safeParse({ ...validCl, saturation: leak }).success).toBe(false);
-  });
-
-  it('forbids Saturation on monochrome Looks', () => {
-    expect(clSettingsSchema.safeParse({ ...validCl, look: 'BW' }).success).toBe(false);
-    const { saturation: _drop, ...noSat } = validCl;
-    expect(clSettingsSchema.safeParse({ ...noSat, look: 'BW' }).success).toBe(true);
-    expect(clSettingsSchema.safeParse({ ...noSat, look: 'SE' }).success).toBe(true);
-  });
-
-  it('requires Saturation on colour Looks', () => {
-    const { saturation: _drop, ...noSat } = validCl;
-    expect(clSettingsSchema.safeParse({ ...noSat, look: 'VV' }).success).toBe(false);
-  });
-
-  it('formats signed and unsigned parameters the way the camera displays them', () => {
-    expect(formatClValue('contrast', 2)).toBe('+2');
-    expect(formatClValue('contrast', -2)).toBe('-2');
-    expect(formatClValue('fade', 5)).toBe('5');
-    expect(formatClValue('sharpnessRange', 3)).toBe('3');
-    expect(formatClValue('clarity', 1)).toBe('1');
-  });
-});
-
 describe('recipe', () => {
   const base = { slug: 'pp-001-vivid-nostalgia-film', name: 'PP-001-Vivid Nostalgia Film', whiteBalance: wb, tags: ['warm'], published: true };
 
-  it('accepts both formats', () => {
+  it('accepts PP format', () => {
     expect(recipeSchema.safeParse({ ...base, id: 'PP-001', format: 'pp', settings: validPp }).success).toBe(true);
-    expect(
-      recipeSchema.safeParse({ ...base, id: 'CL-001', slug: 'x', name: 'y', format: 'cl', settings: validCl }).success,
-    ).toBe(true);
     /* A row the content migration has not reached yet still reads. */
     expect(recipeSchema.safeParse({ ...base, id: 'SCL-PP-001', format: 'pp', settings: validPp }).success).toBe(true);
   });
 
-  it('accepts the code shape the ids are moving to, in both formats', () => {
-    expect(recipeSchema.safeParse({ ...base, id: 'PP-001', format: 'pp', settings: validPp }).success).toBe(true);
-    expect(
-      recipeSchema.safeParse({ ...base, id: 'CL-045', slug: 'x', name: 'y', format: 'cl', settings: validCl }).success,
-    ).toBe(true);
-  });
-
   it('rejects an id whose segment disagrees with the format', () => {
     expect(recipeSchema.safeParse({ ...base, id: 'SCL-CL-001', format: 'pp', settings: validPp }).success).toBe(false);
-    expect(recipeSchema.safeParse({ ...base, id: 'CL-001', format: 'pp', settings: validPp }).success).toBe(false);
-    expect(
-      recipeSchema.safeParse({ ...base, id: 'PP-001', slug: 'x', name: 'y', format: 'cl', settings: validCl }).success,
-    ).toBe(false);
   });
 
   it('keeps RECIPE_ID_RE to the code shape the CHECK enforces, and reading tolerant', () => {
     expect(RECIPE_ID_RE.test('PP-001')).toBe(true);
-    expect(RECIPE_ID_RE.test('CL-042')).toBe(true);
     expect(RECIPE_ID_RE.test('SCL-PP-001')).toBe(false);
     expect(RECIPE_ID_TRANSITION_RE.test('PP-001')).toBe(true);
     expect(RECIPE_ID_TRANSITION_RE.test('SCL-PP-001')).toBe(true);
@@ -181,11 +106,6 @@ describe('recipe', () => {
     }
   });
 
-  it('rejects a recipe carrying both formats of settings', () => {
-    // PP and Creative Look are mutually exclusive on the camera.
-    const both = { ...base, id: 'PP-001', format: 'pp', settings: { ...validPp, ...validCl } };
-    expect(recipeSchema.safeParse(both).success).toBe(false);
-  });
 });
 
 /**
@@ -203,8 +123,6 @@ describe('recipe', () => {
 type Probe = (v: number) => boolean;
 const pp = (patch: (v: number) => object): Probe => (v) =>
   ppSettingsSchema.safeParse({ ...validPp, ...patch(v) }).success;
-const cl = (key: keyof typeof CL_RANGES): Probe => (v) =>
-  clSettingsSchema.safeParse({ ...validCl, [key]: v }).success;
 const detail = (key: keyof typeof validPp.detail) => pp((v) => ({ detail: { ...validPp.detail, [key]: v } }));
 
 const PP_PROBES: Record<keyof typeof PP_RANGES, Probe> = {
@@ -223,16 +141,9 @@ const PP_PROBES: Record<keyof typeof PP_RANGES, Probe> = {
   detailHiLightDetail: detail('hiLightDetail'),
 };
 
-const CL_PROBES: Record<keyof typeof CL_RANGES, Probe> = Object.fromEntries(
-  Object.keys(CL_RANGES).map((k) => [k, cl(k as keyof typeof CL_RANGES)]),
-) as Record<keyof typeof CL_RANGES, Probe>;
-
 const RANGES: [string, Range, Probe][] = [
   ...Object.entries(PP_RANGES).map(([k, r]): [string, Range, Probe] => [
     `PP ${k}`, r, PP_PROBES[k as keyof typeof PP_RANGES],
-  ]),
-  ...Object.entries(CL_RANGES).map(([k, r]): [string, Range, Probe] => [
-    `CL ${k}`, r, CL_PROBES[k as keyof typeof CL_RANGES],
   ]),
   ['WB Kelvin', WB_KELVIN, (v) => whiteBalanceSchema.safeParse({ mode: 'kelvin', kelvin: v }).success],
   [

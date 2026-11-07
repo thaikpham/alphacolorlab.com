@@ -7,6 +7,7 @@ import { slugAliases } from './slug-aliases';
 import { SLUG_MOVES } from './slug-moves';
 import { PHOTO_COLUMNS } from '../community/columns';
 import type { Recipe } from '../camera/schema';
+import { WB_PRESETS } from '../camera/constants';
 
 /**
  * Executes the real migrations against an in-process Postgres and loads the full
@@ -369,7 +370,7 @@ describe('migrations', () => {
        held it, or a photo 0020 left behind) and under the 2026-10-24 one. */
     const file = MIGRATIONS.find((f) => f.startsWith('0021_'));
     expect(file).toBe('0021_recipe_slugs_to_code_only.sql');
-    expect(MIGRATIONS.at(-1)).toBe(file);
+    expect(MIGRATIONS.filter((f) => f > file!)).toEqual(['0022_drop_creative_look_community.sql', '0023_drop_pe_role.sql']);
     const sql = readFileSync(`supabase/migrations/${file}`, 'utf8');
     const [OCT24, OCT28] = SLUG_MOVES;
     const first = 'clear-day';
@@ -517,7 +518,7 @@ describe('migrations', () => {
     expect(await state()).toEqual(once);
   });
 
-  it('accepts every seeded recipe, in both formats', async () => {
+  it('accepts every seeded recipe', async () => {
     /* In the id shape this root stores. Its `recipes` table is applied
        history and keeps the `SCL-` CHECK it was created with; the seed's code
        shape (`PP-001`) is what the content root stores, and
@@ -528,16 +529,18 @@ describe('migrations', () => {
     // fails for the wrong reason and teaches nothing.
     expect(c.rows[0].n).toBe(seed.length);
 
-    // Both libraries must survive the real CHECK constraints, not just the
-    // Picture Profile one the schema was originally written around.
-    const byFormat = await db.query<{ format: string; n: number }>(
-      'select format::text as format, count(*)::int as n from recipes group by format order by format',
-    );
-    expect(byFormat.rows.map((r) => r.format)).toEqual(['cl', 'pp']);
-    for (const row of byFormat.rows) expect(row.n).toBeGreaterThan(0);
+    const byFormat = await db.query<{ format: string }>('select distinct format::text as format from recipes');
+    expect(byFormat.rows.map((r) => r.format)).toEqual(['pp']);
   });
 
   it('stores a light-source preset with a null kelvin and a null auto', async () => {
+    /* No seed recipe uses a preset since the Creative Looks went (2026-11-07). */
+    const base = seed[0];
+    await insert({
+      ...toRow({ ...base, whiteBalance: { mode: 'preset', preset: WB_PRESETS[0] } }, null),
+      id: 'SCL-PP-998',
+      slug: 'preset-row',
+    });
     const q = await db.query<{ wb_preset: string; wb_kelvin: number | null; wb_auto: string | null }>(
       `select wb_preset, wb_kelvin, wb_auto from recipes where wb_mode = 'preset' limit 1`,
     );

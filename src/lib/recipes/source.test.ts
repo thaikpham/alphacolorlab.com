@@ -90,11 +90,6 @@ describe('what the reader asks PostgREST for', () => {
 });
 
 describe('filters from a query string', () => {
-  it('answers an unknown look with nothing, without asking the database', async () => {
-    await expect(listRecipes('en', { look: 'foo' })).resolves.toEqual([]);
-    expect(db.selects).toEqual([]);
-  });
-
   it('answers a malformed tag with nothing, without asking the database', async () => {
     await expect(listRecipes('en', { tag: '{' })).resolves.toEqual([]);
     expect(db.selects).toEqual([]);

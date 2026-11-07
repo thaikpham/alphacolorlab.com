@@ -76,7 +76,7 @@ const LOCAL_DEV_ADMIN: AdminUser = {
 
 /* Keyed by the union, so a role added to `AdminRole` fails to compile here
    until it is listed. */
-const ADMIN_ROLES: Record<AdminRole, true> = { super: true, di: true, pe: true };
+const ADMIN_ROLES: Record<AdminRole, true> = { super: true, di: true };
 
 function isAdminRole(role: string): role is AdminRole {
   return Object.hasOwn(ADMIN_ROLES, role);
