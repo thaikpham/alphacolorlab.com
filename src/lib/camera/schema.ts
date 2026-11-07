@@ -135,36 +135,7 @@ export const ppSettingsSchema = z.strictObject({
 // Creative Look
 // ---------------------------------------------------------------------------
 
-export const clSettingsSchema = z
-  .strictObject({
-    look: z.enum(CREATIVE_LOOK_CODES),
-    contrast: ranged(CL_RANGES.contrast, 'Contrast'),
-    highlights: ranged(CL_RANGES.highlights, 'Highlights'),
-    shadows: ranged(CL_RANGES.shadows, 'Shadows'),
-    fade: ranged(CL_RANGES.fade, 'Fade'),
-    /** Omitted for BW/SE — the camera greys it out for monochrome Looks. */
-    saturation: ranged(CL_RANGES.saturation, 'CL Saturation').optional(),
-    sharpness: ranged(CL_RANGES.sharpness, 'Sharpness'),
-    sharpnessRange: ranged(CL_RANGES.sharpnessRange, 'Sharpness Range'),
-    clarity: ranged(CL_RANGES.clarity, 'Clarity'),
-  })
-  .superRefine((v, ctx) => {
-    const mono = (CL_MONOCHROME_LOOKS as readonly string[]).includes(v.look);
-    if (mono && v.saturation !== undefined) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['saturation'],
-        message: `Saturation cannot be adjusted for the ${v.look} Look (monochrome)`,
-      });
-    }
-    if (!mono && v.saturation === undefined) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['saturation'],
-        message: `Saturation is required for the ${v.look} Look`,
-      });
-    }
-  });
+
 
 // ---------------------------------------------------------------------------
 // Recipe
@@ -184,11 +155,10 @@ const baseRecipe = {
 
 export const recipeSchema = z
   .discriminatedUnion('format', [
-    z.object({ ...baseRecipe, format: z.literal('pp'), settings: ppSettingsSchema }),
-    z.object({ ...baseRecipe, format: z.literal('cl'), settings: clSettingsSchema }),
+    z.object({ ...baseRecipe, format: z.literal('pp'), settings: ppSettingsSchema })
   ])
   .superRefine((v, ctx) => {
-    const expected = v.format === 'pp' ? 'PP' : 'CL';
+    const expected = 'PP';
     if (RECIPE_ID_TRANSITION_RE.exec(v.id)?.[1] !== expected) {
       ctx.addIssue({
         code: 'custom',
@@ -200,4 +170,3 @@ export const recipeSchema = z
 
 export type Recipe = z.infer<typeof recipeSchema>;
 export type PpSettings = z.infer<typeof ppSettingsSchema>;
-export type ClSettings = z.infer<typeof clSettingsSchema>;

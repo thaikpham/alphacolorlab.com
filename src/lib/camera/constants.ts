@@ -14,7 +14,6 @@
  *        https://helpguide.sony.net/di/pp/v1/en/contents/TP0000909110.html (Black Level / Black Gamma / Knee)
  *        https://helpguide.sony.net/di/pp/v1/en/contents/TP0000909111.html (Saturation / Color Phase / Color Depth)
  *        https://helpguide.sony.net/di/pp/v1/en/contents/TP0000909112.html (Detail)
- *  CL  — https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640837.html (ILCE-7M4 Creative Look)
  *  WB  — https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840.html (ILCE-7M4 White Balance)
  *  PP on one body — https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000649066.html (ILCE-7M4 Picture Profile)
  *
@@ -232,72 +231,9 @@ export const PP_RANGES = {
   detailHiLightDetail: r(0, 4),
 } as const satisfies Record<string, Range>;
 
-// ---------------------------------------------------------------------------
-// Format 2 — Creative Look (CL)
-// ---------------------------------------------------------------------------
-
-/** The ten built-in Looks. `code` is what the camera displays. */
-export const CREATIVE_LOOKS = [
-  { code: 'ST',  label: 'Standard' },
-  { code: 'PT',  label: 'Portrait' },
-  { code: 'NT',  label: 'Neutral' },
-  { code: 'VV',  label: 'Vivid' },
-  { code: 'VV2', label: 'Vivid 2' },
-  { code: 'FL',  label: 'Film' },
-  { code: 'IN',  label: 'Instant' },
-  { code: 'SH',  label: 'Soft Highkey' },
-  { code: 'BW',  label: 'Black & White' },
-  { code: 'SE',  label: 'Sepia' },
-] as const;
-
-export const CREATIVE_LOOK_CODES = CREATIVE_LOOKS.map((l) => l.code) as readonly CreativeLookCode[];
-
-/**
- * Looks that render monochrome. The camera greys out Saturation for these:
- * "When this function is set to [BW(Black & White)] or [SE(Sepia)],
- *  [Saturation] cannot be adjusted."
- */
-export const CL_MONOCHROME_LOOKS = ['BW', 'SE'] as const;
-
-/**
- * Creative Look adjustment ranges.
- *
- * CAREFUL — four of these are unsigned and are a frequent source of bad data:
- *   fade, sharpness, clarity   start at 0 (never negative)
- *   sharpnessRange            starts at 1 (never 0, never signed)
- * And `saturation` here is -9..+9, NOT the -32..+32 of Picture Profile.
- */
-export const CL_RANGES = {
-  contrast: r(-9, 9),
-  highlights: r(-9, 9),
-  shadows: r(-9, 9),
-  fade: r(0, 9),
-  saturation: r(-9, 9),
-  sharpness: r(0, 9),
-  sharpnessRange: r(1, 5),
-  clarity: r(0, 9),
-} as const satisfies Record<string, Range>;
-
 /** Parameters the camera displays with an explicit +/- sign. */
-export const CL_SIGNED_PARAMS = ['contrast', 'highlights', 'shadows', 'saturation'] as const;
-
-/** Display order on the camera's adjustment screen — drives UI table order. */
-export const CL_PARAM_ORDER = [
-  'contrast', 'highlights', 'shadows', 'fade',
-  'saturation', 'sharpness', 'sharpnessRange', 'clarity',
-] as const;
 
 /** Human labels. These are technical terms and are never translated. */
-export const CL_PARAM_LABELS: Record<ClParam, string> = {
-  contrast: 'Contrast',
-  highlights: 'Highlights',
-  shadows: 'Shadows',
-  fade: 'Fade',
-  saturation: 'Saturation',
-  sharpness: 'Sharpness',
-  sharpnessRange: 'Sharpness Range',
-  clarity: 'Clarity',
-};
 
 // ---------------------------------------------------------------------------
 // Citations, as data
@@ -342,11 +278,6 @@ export const HELP_GUIDE_SOURCES = {
     title: 'ILCE-7M4 Help Guide — Picture Profile (still image/movie)',
     checkedAt: '2026-10-05',
   },
-  clIlce7m4: {
-    url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640837.html',
-    title: 'ILCE-7M4 Help Guide — Creative Look',
-    checkedAt: '2026-10-05',
-  },
   wbIlce7m4: {
     url: 'https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840.html',
     title: 'ILCE-7M4 Help Guide — White Balance (still image/movie)',
@@ -358,21 +289,15 @@ export const HELP_GUIDE_SOURCES = {
 // Cross-format rule
 // ---------------------------------------------------------------------------
 
-/**
- * Picture Profile and Creative Look are mutually exclusive on the camera:
- * "[Creative Look] is fixed to [-] ... when [Picture Profile] is set to other
- * than [Off]."  A recipe is therefore exactly one format, never both.
- */
-export const RECIPE_FORMATS = ['pp', 'cl'] as const;
+export const RECIPE_FORMATS = ['pp'] as const;
 
 /**
  * Each format by its Sony menu name. Never translated (Rule 3): these are the
  * words printed on the camera, and the browse row's colour-system chips read
  * them from here rather than from a message catalogue.
  */
-export const FORMAT_LABELS: Readonly<Record<'pp' | 'cl', string>> = {
+export const FORMAT_LABELS: Readonly<Record<'pp', string>> = {
   pp: 'Picture Profile',
-  cl: 'Creative Look',
 };
 
 // ---------------------------------------------------------------------------
@@ -380,5 +305,4 @@ export const FORMAT_LABELS: Readonly<Record<'pp' | 'cl', string>> = {
 // ---------------------------------------------------------------------------
 
 export type RecipeFormat = (typeof RECIPE_FORMATS)[number];
-export type CreativeLookCode = (typeof CREATIVE_LOOKS)[number]['code'];
-export type ClParam = keyof typeof CL_RANGES;
+

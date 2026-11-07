@@ -4,7 +4,6 @@ import { PP_RANGES, PP_COLOR_DEPTH_CHANNELS } from '../camera/constants';
 import { recipeSchema, type PpSettings, type Recipe } from '../camera/schema';
 import { TAXONOMY_MANIFEST, taxonomyFor } from '../recipes/taxonomy-assign';
 import { parseSituation } from '../recipes/taxonomy';
-import { ORIGINAL_CL } from './cl';
 import { ORIGINAL_PP, type OriginalRecipe } from './pp';
 
 /**
@@ -13,7 +12,7 @@ import { ORIGINAL_PP, type OriginalRecipe } from './pp';
  * pass cannot drift off it without saying so.
  */
 
-const ALL: readonly OriginalRecipe[] = [...ORIGINAL_PP, ...ORIGINAL_CL];
+const ALL: readonly OriginalRecipe[] = ORIGINAL_PP;
 const vi = JSON.parse(readFileSync('data/translations.vi.json', 'utf8')) as Record<string, string>;
 
 /* An original carries no name (emit-seed computes it); the seed's stands in
@@ -53,19 +52,15 @@ describe('the originals', () => {
       expect(recipeSchema.safeParse(named(o)).success, o.recipe.id).toBe(true);
       expect(o.recipe.format, o.recipe.id).toBe('pp');
     }
-    for (const o of ORIGINAL_CL) {
-      expect(recipeSchema.safeParse(named(o)).success, o.recipe.id).toBe(true);
-      expect(o.recipe.format, o.recipe.id).toBe('cl');
-    }
-  });
+    });
 
   it('are all unpublished until shot on a camera', () => {
     for (const o of ALL) expect(o.recipe.published, o.recipe.id).toBe(false);
   });
 
-  it('are numbered without gaps: PP 048–082, CL 038–045', () => {
+  it('are numbered without gaps: PP 048–082', () => {
     expect(sequence(ORIGINAL_PP)).toEqual(range(48, 82));
-    expect(sequence(ORIGINAL_CL)).toEqual(range(38, 45));
+
     const ids = ALL.map((o) => o.recipe.id);
     expect(new Set(ids).size).toBe(ids.length);
     const slugs = ALL.map((o) => o.recipe.slug);

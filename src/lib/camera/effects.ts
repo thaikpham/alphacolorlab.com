@@ -14,15 +14,13 @@
  */
 
 import {
-  CL_RANGES,
   PP_RANGES,
   WB_PRESETS,
   WB_PRESETS_STILL_ONLY,
   WB_SHIFT_AXIS,
-  type ClParam,
   type Range,
 } from './constants';
-import type { ClSettings, PpSettings, WhiteBalance } from './schema';
+import type { PpSettings, WhiteBalance } from './schema';
 import { MIRED_PER_SHIFT_STEP, gradeWarmth, wbBalance, type Warmth, type WbBalance } from './color';
 
 export type EffectAxis = 'contrast' | 'color' | 'detail';
@@ -741,82 +739,6 @@ export function wbSummary(wb: WhiteBalance): WbSummary {
 // Creative Look
 // ---------------------------------------------------------------------------
 
-const CL_PHRASES: Record<ClParam, { axis: EffectAxis; phrases: Phrases }> = {
-  contrast: {
-    axis: 'contrast',
-    phrases: {
-      [-2]: ['Contrast well down — flat, gentle tonality', 'Giảm tương phản nhiều — tông phẳng, dịu'],
-      [-1]: ['Contrast eased slightly', 'Giảm tương phản nhẹ'],
-      0: ['Contrast as the Look defines it', 'Tương phản theo đúng Look'],
-      1: ['Contrast raised a little', 'Tăng tương phản chút'],
-      2: ['Contrast raised hard — strong light-to-dark separation', 'Tăng tương phản mạnh — sáng tối tách bạch rõ'],
-    },
-  },
-  highlights: {
-    axis: 'contrast',
-    phrases: {
-      [-2]: ['Bright areas pulled well down — highlights protected', 'Vùng sáng kéo xuống nhiều — giữ được chi tiết sáng'],
-      [-1]: ['Bright areas pulled down slightly', 'Vùng sáng kéo xuống nhẹ'],
-      0: ['Bright areas left as the Look renders them', 'Vùng sáng giữ nguyên theo Look'],
-      1: ['Bright areas lifted a little', 'Vùng sáng nâng nhẹ'],
-      2: ['Bright areas lifted hard — airy, high-key', 'Vùng sáng nâng mạnh — thoáng, high-key'],
-    },
-  },
-  shadows: {
-    axis: 'contrast',
-    phrases: {
-      [-2]: ['Dark areas pushed well down — heavy, dense shadows', 'Vùng tối đẩy xuống nhiều — bóng nặng, dày'],
-      [-1]: ['Dark areas pushed down slightly', 'Vùng tối đẩy xuống nhẹ'],
-      0: ['Dark areas left as the Look renders them', 'Vùng tối giữ nguyên theo Look'],
-      1: ['Dark areas opened up a little', 'Vùng tối mở ra chút'],
-      2: ['Dark areas opened well up — shadow detail stays visible', 'Vùng tối mở nhiều — chi tiết vùng tối vẫn rõ'],
-    },
-  },
-  fade: {
-    axis: 'contrast',
-    phrases: {
-      0: ['No fade — blacks stay true', 'Không phai — vùng đen giữ nguyên'],
-      1: ['Slight milky lift across the frame', 'Phủ nhẹ lớp mờ sữa lên toàn khung'],
-      2: ['Strong faded wash — matte, vintage feel', 'Phai mạnh — bề mặt lì, cảm giác hoài cổ'],
-    },
-  },
-  saturation: {
-    axis: 'color',
-    phrases: {
-      [-2]: ['Colour pulled well down — subdued', 'Màu giảm nhiều — trầm lắng'],
-      [-1]: ['Colour restrained slightly', 'Màu tiết chế nhẹ'],
-      0: ['Colour as the Look defines it', 'Màu theo đúng Look'],
-      1: ['Colour lifted a little', 'Màu nâng nhẹ'],
-      2: ['Colour lifted hard — vivid', 'Màu nâng mạnh — rực rỡ'],
-    },
-  },
-  sharpness: {
-    axis: 'detail',
-    phrases: {
-      0: ['No sharpening — softest rendering', 'Không tăng nét — mềm nhất'],
-      1: ['Moderate edge definition', 'Đường viền vừa phải'],
-      2: ['Strong edge definition — crisp detail', 'Đường viền rõ mạnh — chi tiết sắc'],
-    },
-  },
-  sharpnessRange: {
-    axis: 'detail',
-    phrases: {
-      [-2]: ['Sharpening kept to broad edges only', 'Chỉ tăng nét ở đường viền lớn'],
-      [-1]: ['Sharpening on medium and broad edges', 'Tăng nét ở đường viền vừa và lớn'],
-      0: ['Sharpening across the middle range', 'Tăng nét ở dải trung bình'],
-      1: ['Sharpening reaching into finer detail', 'Tăng nét lan tới chi tiết mảnh hơn'],
-      2: ['Sharpening applied to the finest detail', 'Tăng nét tới chi tiết mảnh nhất'],
-    },
-  },
-  clarity: {
-    axis: 'detail',
-    phrases: {
-      0: ['No clarity boost — smooth mid-tones', 'Không tăng độ trong — vùng trung gian mượt'],
-      1: ['Mild local contrast in the mid-tones', 'Tương phản cục bộ nhẹ ở vùng trung gian'],
-      2: ['Strong local contrast — textures stand out', 'Tương phản cục bộ mạnh — kết cấu nổi rõ'],
-    },
-  },
-};
 
 /** Monochrome Looks: nothing about hue applies. */
 function lookEffect(look: string): Effect {
@@ -829,18 +751,6 @@ function lookEffect(look: string): Effect {
   if (look === 'PT') return { axis: 'color', en: 'Portrait base — skin rendered soft', vi: 'Nền Portrait — da lên mềm' };
   if (look === 'NT') return { axis: 'color', en: 'Neutral base — saturation and sharpness lowered for grading', vi: 'Nền Neutral — giảm bão hoà và độ nét để hậu kỳ' };
   return { axis: 'color', en: 'Standard base — balanced across subjects', vi: 'Nền Standard — cân bằng cho mọi chủ thể' };
-}
-
-export function clEffects(s: ClSettings): Record<string, Effect> {
-  const effects: Record<string, Effect> = { look: lookEffect(s.look) };
-
-  for (const [param, def] of Object.entries(CL_PHRASES) as [ClParam, (typeof CL_PHRASES)[ClParam]][]) {
-    const value = s[param];
-    if (value === undefined) continue; // Saturation on BW/SE
-    effects[param] = grade(def.axis, def.phrases, value, CL_RANGES[param]);
-  }
-
-  return effects;
 }
 
 export const AXIS_LABELS: Record<EffectAxis, { en: string; vi: string }> = {

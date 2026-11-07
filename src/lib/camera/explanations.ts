@@ -7,11 +7,10 @@
  * parameter loses its entry.
  *
  * Picture Profile text is carried over from the original sonycolorlab, which had
- * both locales already. Creative Look text is written from Sony's own
- * descriptions in the ILCE-7M4 help guide (TP1000640837).
+ * both locales already.
  */
 
-import { CL_RANGES, PP_RANGES, WB_KELVIN, WB_SHIFT_AXIS, type Range } from './constants';
+import { PP_RANGES, WB_KELVIN, WB_SHIFT_AXIS, type Range } from './constants';
 
 export type Explanation = { en: string; vi: string };
 
@@ -46,8 +45,8 @@ export const PP_EXPLANATIONS = {
     vi: "Xác định ma trận màu và không gian màu. Cần chọn phù hợp với Gamma (ví dụ: S-Cinetone cho skintone tự nhiên, Cinema/Pro cho màu điện ảnh đậm đà, ITU709 cho màu truyền hình chuẩn).",
   },
   saturation: {
-    en: `Adjusts overall color intensity across all channels. Higher values yield vibrant, vivid colors; lower values produce muted, desaturated tones. Range is ${span(PP_RANGES.saturation, 'to')} — dramatically wider than Creative Look saturation.`,
-    vi: `Điều chỉnh độ bão hoà (cường độ đậm nhạt) của toàn bộ màu sắc trong ảnh. Giá trị cao cho màu sắc rực rỡ, tươi tắn; giá trị thấp tạo màu nhạt, dịu nhẹ. Dải điều chỉnh từ ${span(PP_RANGES.saturation, 'đến')} rộng hơn rất nhiều so với Creative Look.`,
+    en: `Adjusts overall color intensity across all channels. Higher values yield vibrant, vivid colors; lower values produce muted, desaturated tones. Range is ${span(PP_RANGES.saturation, 'to')}.`,
+    vi: `Điều chỉnh độ bão hoà (cường độ đậm nhạt) của toàn bộ màu sắc trong ảnh. Giá trị cao cho màu sắc rực rỡ, tươi tắn; giá trị thấp tạo màu nhạt, dịu nhẹ. Dải điều chỉnh từ ${span(PP_RANGES.saturation, 'đến')}.`,
   },
   colorPhase: {
     en: "Shifts the entire color spectrum hue globally. Negative (-) values shift all colors towards green; positive (+) values shift colors towards red/magenta. Useful for subtle global hue correction or matching camera bodies.",
@@ -120,42 +119,6 @@ export const COLOR_DEPTH_EXPLANATIONS = {
   Y: {
     en: 'Yellow channel. Increase (+) for darker, richer yellows — Asian skin tones. Decrease (-) for lighter, paler yellows.',
     vi: 'Kênh vàng. Tăng (+) để vàng tối và đậm hơn — tông da người châu Á. Giảm (-) để sáng và nhạt hơn.',
-  },
-} as const satisfies Record<string, Explanation>;
-
-/** Creative Look adjustments, from Sony's own descriptions in the ILCE-7M4 guide. */
-export const CL_EXPLANATIONS = {
-  contrast: {
-    en: 'The higher the value, the more the difference between light and shadow is accentuated.',
-    vi: 'Giá trị càng cao, chênh lệch giữa vùng sáng và vùng tối càng được nhấn mạnh.',
-  },
-  highlights: {
-    en: 'Adjusts the brightness of the bright areas. Higher values make them brighter.',
-    vi: 'Điều chỉnh độ sáng của vùng sáng. Giá trị cao hơn làm vùng sáng sáng hơn.',
-  },
-  shadows: {
-    en: 'Adjusts the darkness of the dark areas. Higher values make them brighter.',
-    vi: 'Điều chỉnh độ tối của vùng tối. Giá trị cao hơn làm vùng tối sáng lên.',
-  },
-  fade: {
-    en: 'Adjusts the degree of fade — a milky lift on the whole image. Larger values make the effect greater. Never negative.',
-    vi: 'Điều chỉnh mức độ phai màu — độ mờ sữa phủ toàn ảnh. Giá trị lớn hơn cho hiệu ứng mạnh hơn. Không bao giờ âm.',
-  },
-  saturation: {
-    en: `The higher the value, the more vivid the colour. Range is ${span(CL_RANGES.saturation, 'to')} — much narrower than Picture Profile saturation. Cannot be adjusted on the BW or SE Looks.`,
-    vi: `Giá trị càng cao màu càng rực. Dải giá trị ${span(CL_RANGES.saturation, 'đến')} — hẹp hơn nhiều so với Saturation của Picture Profile. Không chỉnh được trên Look BW hoặc SE.`,
-  },
-  sharpness: {
-    en: 'Adjusts sharpness. Higher values accentuate contours; lower values soften them. Never negative.',
-    vi: 'Điều chỉnh độ sắc nét. Giá trị cao làm đường viền rõ hơn, giá trị thấp làm mềm đi. Không bao giờ âm.',
-  },
-  sharpnessRange: {
-    en: `Sets the range the sharpening applies to. A larger value applies it to finer outlines. Runs from ${span(CL_RANGES.sharpnessRange, 'to')} and is never negative.`,
-    vi: `Đặt phạm vi áp dụng độ nét. Giá trị lớn hơn áp dụng cho đường viền mảnh hơn. Từ ${span(CL_RANGES.sharpnessRange, 'đến')}, không có giá trị âm.`,
-  },
-  clarity: {
-    en: 'Adjusts the degree of clarity — local contrast in the mid-tones. Larger values make the effect greater. Never negative.',
-    vi: 'Điều chỉnh độ trong trẻo — tương phản cục bộ ở vùng trung gian. Giá trị lớn hơn cho hiệu ứng mạnh hơn. Không bao giờ âm.',
   },
 } as const satisfies Record<string, Explanation>;
 
