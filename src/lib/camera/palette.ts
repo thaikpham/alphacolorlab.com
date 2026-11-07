@@ -162,35 +162,8 @@ export const PALETTE_WEIGHTS = {
     '709': 1,
   } satisfies Record<ColorMode, number>,
 
-  /** Creative Look base: shadow / mid / highlight ΔL and chroma ×, before the Look's own dials. */
-  looks: {
-    ST: { shadow: 0, mid: 0, highlight: 0, chroma: 1 },
-    PT: { shadow: 0, mid: 0, highlight: 0, chroma: 0.95, swatches: { skin: { l: 0.02, chroma: 0.92 } } },
-    NT: { shadow: 0.03, mid: 0, highlight: -0.03, chroma: 0.8 },
-    VV: { shadow: -0.03, mid: 0, highlight: 0.02, chroma: 1.25 },
-    VV2: { shadow: -0.02, mid: 0.02, highlight: 0.04, chroma: 1.35 },
-    FL: {
-      shadow: -0.03,
-      mid: 0,
-      highlight: -0.03,
-      chroma: 0.85,
-      swatches: { sky: { l: -0.03, chroma: 1.1 }, foliage: { l: -0.03, chroma: 1.1 } },
-    },
-    IN: { shadow: 0.06, mid: 0.02, highlight: -0.02, chroma: 0.9, cast: { c: 0.015, h: 70 } },
-    SH: { shadow: 0.1, mid: 0.06, highlight: 0.03, chroma: 0.9 },
-    BW: { shadow: 0, mid: 0, highlight: 0, chroma: 0 },
-    SE: { shadow: 0, mid: 0, highlight: 0, chroma: 0 },
-  } satisfies Record<CreativeLookCode, LookBase>,
-
   /** Sepia: no chroma, then this one warm cast on every swatch — the accent's sepia. */
   sepia: { c: 0.035, h: 70 },
-
-  /** Creative Look dials, per unit. `*Share` is how far a hue follows the neutral it sits nearest. */
-  clContrast: { shadow: -0.012, highlight: 0.008, darkHueShare: 0.5, lightHueShare: 0.5 },
-  clHighlights: { highlight: 0.008, lightHue: 0.004 },
-  clShadows: { shadow: 0.012, darkHue: 0.006 },
-  /** Fade fraction f (0..1): lifts blacks, dims whites a little, lowers chroma. */
-  clFade: { shadow: 0.2, mid: 0.04, highlight: -0.04, chroma: -0.27 },
 
   /** L floor keeps the shadow visible on the void ground. */
   bounds: { lMin: 0.14, lMax: 0.97 },
@@ -198,12 +171,6 @@ export const PALETTE_WEIGHTS = {
 
 /** Hues dark enough to follow the shadow under Black Level and Wide Black Gamma. */
 const DARK_HUES: readonly SwatchId[] = ['red', 'foliage', 'sky'];
-/** Hues that follow the shadow under CL Contrast and Shadows. */
-const CL_DARK_HUES: readonly SwatchId[] = ['red', 'foliage'];
-/** Hues that follow the highlight under CL Contrast. */
-const CL_CONTRAST_LIGHT_HUES: readonly SwatchId[] = ['yellow', 'skin', 'sky'];
-/** Hues that follow the highlight under CL Highlights. */
-const CL_HIGHLIGHT_HUES: readonly SwatchId[] = ['skin', 'yellow'];
 
 // ---------------------------------------------------------------------------
 
@@ -328,38 +295,7 @@ function ppTone(state: State, s: PpSettings) {
   }
 }
 
-function clTone(state: State, s: ClSettings) {
-  const w = PALETTE_WEIGHTS;
-
-  const base: LookBase = w.looks[s.look];
-  applyTone(state, base, base.mid);
-  for (const [id, extra] of Object.entries(base.swatches ?? {}) as [SwatchId, { l?: number; chroma?: number }][]) {
-    state[id].L += extra.l ?? 0;
-    scaleChroma(state[id], extra.chroma ?? 1);
-  }
-  if (base.cast) addCast(state, base.cast.c, base.cast.h);
-
-  const contrastShadow = w.clContrast.shadow * s.contrast;
-  const contrastHighlight = w.clContrast.highlight * s.contrast;
-  state.shadow.L += contrastShadow;
-  state.highlight.L += contrastHighlight;
-  lift(state, CL_DARK_HUES, w.clContrast.darkHueShare * contrastShadow);
-  lift(state, CL_CONTRAST_LIGHT_HUES, w.clContrast.lightHueShare * contrastHighlight);
-
-  state.highlight.L += w.clHighlights.highlight * s.highlights;
-  lift(state, CL_HIGHLIGHT_HUES, w.clHighlights.lightHue * s.highlights);
-
-  state.shadow.L += w.clShadows.shadow * s.shadows;
-  lift(state, CL_DARK_HUES, w.clShadows.darkHue * s.shadows);
-
-  const f = fraction(s.fade, CL_RANGES.fade);
-  state.shadow.L += w.clFade.shadow * f;
-  state.mid.L += w.clFade.mid * f;
-  state.highlight.L += w.clFade.highlight * f;
-  each(state, (lab) => scaleChroma(lab, 1 + w.clFade.chroma * f));
-}
-
-// --- 3. Colour -------------------------------------------------------------
+// --- 3. Colour-------------------------------------------------------------
 
 function saturate(state: State, f: number) {
   const w = PALETTE_WEIGHTS.saturation;
@@ -408,10 +344,6 @@ function ppColour(state: State, s: PpSettings) {
   });
 }
 
-function clColour(state: State, s: ClSettings) {
-  if (s.saturation !== undefined) saturate(state, fraction(s.saturation, CL_RANGES.saturation));
-}
-
 /** Black & White: no chroma anywhere, cast included. Sepia: none, then one warm cast. */
 function monochrome(state: State, recipe: AccentInput) {
   const mono = monochromeOf(recipe);
@@ -457,13 +389,8 @@ export function paletteFor(recipe: AccentInput, { light = DAYLIGHT_K }: { light?
 
   whiteBalanceCast(state, recipe, light);
 
-  if (recipe.format === 'pp') {
-    ppTone(state, recipe.settings);
-    ppColour(state, recipe.settings);
-  } else {
-    clTone(state, recipe.settings);
-    clColour(state, recipe.settings);
-  }
+  ppTone(state, recipe.settings);
+  ppColour(state, recipe.settings);
 
   monochrome(state, recipe);
 

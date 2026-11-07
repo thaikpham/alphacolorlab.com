@@ -104,11 +104,6 @@ const add = (a: Vec, b: Vec): Vec => [a[0] + b[0], a[1] + b[1]];
  * `palette.ts`, so the accent and the palette agree on which recipes have none.
  */
 export function monochromeOf(recipe: AccentInput): 'bw' | 'sepia' | null {
-  if (recipe.format === 'cl') {
-    if (recipe.settings.look === 'BW') return 'bw';
-    if (recipe.settings.look === 'SE') return 'sepia';
-    return null;
-  }
   return recipe.settings.colorMode === 'Black & White' ? 'bw' : null;
 }
 
