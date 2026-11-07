@@ -8,9 +8,6 @@
 import { z } from 'zod';
 import { RECIPE_ID_RE, RECIPE_ID_TRANSITION_RE, RECIPE_TAG_RE } from './ids';
 import {
-  CL_MONOCHROME_LOOKS,
-  CL_RANGES,
-  CREATIVE_LOOK_CODES,
   PP_BLACK_GAMMA_RANGE,
   PP_COLOR_DEPTH_CHANNELS,
   PP_COLOR_MODE,
@@ -130,12 +127,6 @@ export const ppSettingsSchema = z.strictObject({
   colorDepth: colorDepthSchema,
   detail: detailSchema,
 });
-
-// ---------------------------------------------------------------------------
-// Creative Look
-// ---------------------------------------------------------------------------
-
-
 
 // ---------------------------------------------------------------------------
 // Recipe

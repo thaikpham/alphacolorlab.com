@@ -1,16 +1,12 @@
 import { useId, type CSSProperties, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import {
-  CL_PARAM_LABELS,
-  CL_PARAM_ORDER,
-  CREATIVE_LOOKS,
   PP_COLOR_DEPTH_CHANNELS,
   PP_DETAIL_LABELS,
   PP_PARAM_LABELS,
   WB_PARAM_LABELS,
 } from '@/lib/camera/constants';
 import {
-  CL_EXPLANATIONS,
   COLOR_DEPTH_EXPLANATIONS,
   PP_DETAIL_EXPLANATIONS,
   PP_EXPLANATIONS,
@@ -18,10 +14,10 @@ import {
   WB_OVERVIEW,
   type Locale,
 } from '@/lib/camera/explanations';
-import { AXIS_LABELS, clEffects, ppEffects, wbEffects, wbSummary, type Effect } from '@/lib/camera/effects';
-import { formatClValue, signed, wbHeadLabel } from '@/lib/camera/format';
+import { AXIS_LABELS, ppEffects, wbEffects, wbSummary, type Effect } from '@/lib/camera/effects';
+import { signed, wbHeadLabel } from '@/lib/camera/format';
 import { getColorDepthChannelHexColor, getKelvinHexColor, getWbShiftAxisHexColor } from '@/lib/camera/color';
-import type { ClSettings, PpSettings, WhiteBalance } from '@/lib/camera/schema';
+import type { PpSettings, WhiteBalance } from '@/lib/camera/schema';
 import type { RecipeView } from '@/lib/recipes/source';
 import { WbShiftPlane } from './wb-shift-plane';
 
@@ -38,8 +34,7 @@ import { WbShiftPlane } from './wb-shift-plane';
  * ships no JavaScript.
  *
  * Labels and value formatting come from `constants.ts` / `format.ts`, never
- * retyped here — that is what keeps a Creative Look's unsigned `Fade` from
- * being rendered "+5" while Picture Profile's signed `Saturation` is "+25".
+ * retyped here — that ensures parameter consistency.
  *
  * Every card carries `param-row`: the first-screen gate counts them as the
  * page's content rows, apart from its controls (e2e/first-screen.spec.ts).
@@ -220,32 +215,6 @@ export function PpCards({ s, locale = 'en' }: { s: PpSettings; locale?: Locale }
         <ParamCard locale={locale} label={PP_DETAIL_LABELS.hiLightDetail} value={String(s.detail.hiLightDetail)} effect={fx.hiLightDetail} explanation={d('hiLightDetail')} />
       </ParamPanel>
     </>
-  );
-}
-
-export function ClCards({ s, locale = 'en' }: { s: ClSettings; locale?: Locale }) {
-  const fx = clEffects(s);
-  const look = CREATIVE_LOOKS.find((l) => l.code === s.look);
-
-  return (
-    <ParamPanel title="Creative Look">
-      <ParamCard locale={locale} label="Look" value={s.look} sub={look?.label} effect={fx.look} />
-      {CL_PARAM_ORDER.map((p) => {
-        const value = s[p];
-        // Saturation is absent on BW and SE — the camera greys it out.
-        if (value === undefined) return null;
-        return (
-          <ParamCard
-            key={p}
-            locale={locale}
-            label={CL_PARAM_LABELS[p]}
-            value={formatClValue(p, value)}
-            effect={fx[p]}
-            explanation={CL_EXPLANATIONS[p][locale]}
-          />
-        );
-      })}
-    </ParamPanel>
   );
 }
 

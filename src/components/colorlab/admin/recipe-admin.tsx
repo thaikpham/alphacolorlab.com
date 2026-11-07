@@ -484,17 +484,10 @@ export function RecipeAdmin() {
               onChange={(whiteBalance) => edit({ ...draft, whiteBalance })}
             />
 
-            {draft.format === 'pp' ? (
-              <PpFields
+            <PpFields
                 value={draft.settings}
-                onChange={(settings) => edit({ ...draft, format: 'pp', settings })}
+                onChange={(settings) => edit({ ...draft, settings })}
               />
-            ) : (
-              <ClFields
-                value={draft.settings}
-                onChange={(settings) => edit({ ...draft, format: 'cl', settings })}
-              />
-            )}
 
             {/* From the stored row: the slug never changes, and keying on it
                 starts the list afresh when another recipe is opened. */}

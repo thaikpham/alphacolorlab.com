@@ -18,25 +18,14 @@ import {
 import type { PpSettings } from '@/lib/camera/schema';
 
 /**
- * The two settings forms, one per format.
+ * Picture Profile settings form.
  *
- * They are separate components and not one form with a flag, for the same
- * reason `recipeSchema` is a discriminated union and Rule 2 says a recipe is
- * exactly one format: there is no recipe that has both a gamma curve and a
- * Look, and a shared form is where one grows a field belonging to the other.
- *
- * Every bound comes from `PP_RANGES` / `CL_RANGES`, every list from its
- * `constants.ts` tuple, and every parameter label `constants.ts` names from
- * `PP_PARAM_LABELS` / `PP_DETAIL_LABELS` / `CL_PARAM_LABELS` — they are Sony's
- * terms and never translated (Rule 3), and a copy in the catalogue had
- * already drifted: Sony's Detail "Adjust" read "Detail Mode" here. Nothing
- * here types a camera value. The Black Gamma and Knee sub-items have no label
- * in `constants.ts` yet, so those still come from the catalogue.
+ * Every bound comes from `PP_RANGES`, every list from `constants.ts`, and
+ * every parameter label from `PP_PARAM_LABELS` / `PP_DETAIL_LABELS` — they are
+ * Sony's terms and never translated (Rule 3). Nothing here types a camera value.
+ * The Black Gamma and Knee sub-items have no label in `constants.ts` yet, so
+ * those still come from the catalogue.
  */
-
-const LOOK_LABELS = Object.fromEntries(
-  CREATIVE_LOOKS.map((l) => [l.code, `${l.code} · ${l.label}`]),
-);
 
 function KneeMode({
   value,
