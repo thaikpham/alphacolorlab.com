@@ -49,7 +49,7 @@ export function productDoc(p: ProductForSearch, locale: Locale, t: CamerasT): Se
     kind: 'product',
     id: p.id,
     title: productTitle(p),
-    url: p.category === 'audio' ? `/audio/${p.id}` : `/cameras/${p.id}`,
+    url: `/cameras/${p.id}`,
     contentLanguage: 'en',
     exact: [squash(p.id), squash(code), squash(productTitle(p))].filter(Boolean),
     aliases: productAliases(p),
