@@ -1,10 +1,9 @@
 import {
-  CL_PARAM_LABELS,
   PP_PARAM_LABELS,
   WB_PARAM_LABELS,
   type RecipeFormat,
 } from '@/lib/camera/constants'
-import { CL_EXPLANATIONS, PP_EXPLANATIONS, WB_EXPLANATIONS } from '@/lib/camera/explanations'
+import { PP_EXPLANATIONS, WB_EXPLANATIONS } from '@/lib/camera/explanations'
 
 /**
  * The closed vocabulary a page uses to say which camera concepts it explains.
@@ -23,16 +22,13 @@ import { CL_EXPLANATIONS, PP_EXPLANATIONS, WB_EXPLANATIONS } from '@/lib/camera/
 
 type WbKey = keyof typeof WB_EXPLANATIONS
 type PpKey = keyof typeof PP_EXPLANATIONS
-type ClKey = keyof typeof CL_EXPLANATIONS
 
-export type ConceptGroup = 'wb' | 'pp' | 'cl'
+export type ConceptGroup = 'wb' | 'pp'
 
 export type ConceptKey =
   | ConceptGroup
-  | 'cl.look'
   | `wb.${WbKey}`
   | `pp.${PpKey}`
-  | `cl.${ClKey}`
 
 export type Concept = {
   readonly key: ConceptKey
@@ -41,11 +37,10 @@ export type Concept = {
   readonly label: string
 }
 
-/** The group names are product terms, the same category as a Look code. */
+/** The group names are product terms, never translated. */
 export const CONCEPT_GROUP_LABELS: Readonly<Record<ConceptGroup, string>> = {
   wb: 'White Balance',
   pp: 'Picture Profile',
-  cl: 'Creative Look',
 }
 
 const keysOf = <T extends object>(o: T) => Object.keys(o) as (keyof T & string)[]
@@ -58,11 +53,6 @@ export const CONCEPTS: readonly Concept[] = [
   { key: 'pp', group: 'pp', label: CONCEPT_GROUP_LABELS.pp },
   ...keysOf(PP_EXPLANATIONS).map(
     (k): Concept => ({ key: `pp.${k}`, group: 'pp', label: PP_PARAM_LABELS[k] }),
-  ),
-  { key: 'cl', group: 'cl', label: CONCEPT_GROUP_LABELS.cl },
-  { key: 'cl.look', group: 'cl', label: 'Look' },
-  ...keysOf(CL_EXPLANATIONS).map(
-    (k): Concept => ({ key: `cl.${k}`, group: 'cl', label: CL_PARAM_LABELS[k] }),
   ),
 ]
 
@@ -85,8 +75,7 @@ export function conceptTitle(key: ConceptKey): string {
 
 /**
  * Every concept a recipe of this format exercises: White Balance and its
- * three dials always — both formats share all of it (Rule 1b) — plus the
- * format and each of its parameters.
+ * three dials always (Rule 1b) — plus the format and each of its parameters.
  */
 export function conceptsForRecipe(format: RecipeFormat): readonly ConceptKey[] {
   return CONCEPTS.filter((c) => c.group === 'wb' || c.group === format).map((c) => c.key)

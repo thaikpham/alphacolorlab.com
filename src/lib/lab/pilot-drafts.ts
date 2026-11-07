@@ -94,7 +94,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
     meta: meta({
       section: 'sony-color',
       order: 1,
-      concepts: ['pp', 'cl', 'cl.look', 'pp.saturation', 'cl.saturation'],
+      concepts: ['pp', 'pp.saturation'],
       related: [{ kind: 'knowledge', id: 'white-balance-shift' }],
       sources: [sony('ppIlce7m4', 'ILCE-7M4'), sony('ppColor')],
     }),
@@ -320,7 +320,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
     meta: meta({
       section: 'fundamentals',
       order: 2,
-      concepts: ['wb', 'pp', 'cl'],
+      concepts: ['wb', 'pp'],
       related: [{ kind: 'knowledge', id: 'picture-profile-va-creative-look' }],
       sources: [PILOT_EXTRA_SOURCES.fileFormatIlce7m4, sony('ppIlce7m4', 'ILCE-7M4')],
     }),
@@ -367,7 +367,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
     meta: meta({
       section: 'workflows',
       order: 1,
-      concepts: ['pp', 'cl'],
+      concepts: ['pp'],
       related: [{ kind: 'knowledge', id: 'picture-profile-va-creative-look' }],
       prerequisites: ['picture-profile-va-creative-look'],
       sources: [sony('ppColor'), ...PILOT_BODY_SOURCES],

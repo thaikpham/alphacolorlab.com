@@ -58,7 +58,7 @@ export function recipeTarget(r: RecipeSummary): LinkTarget {
     id: r.id,
     title: r.name,
     href: `/recipe/${r.slug}`,
-    subtitle: `${r.format === 'pp' ? 'Picture Profile' : `Creative Look${r.look ? ` ${r.look}` : ''}`} · ${r.wbLabel}`,
+    subtitle: `Picture Profile · ${r.wbLabel}`,
   }
 }
 

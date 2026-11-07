@@ -32,6 +32,8 @@ import type { CapabilityKey, PpColorMode, PpGamma } from './keys'
 
 /** What is known about one camera. `null`: unknown, which never hides a recipe. */
 export type CameraCapabilities = {
+  /** The body's style menu is `[Creative Style]`: what the older-camera choice warns from. */
+  readonly creativeStyle: boolean | null
   readonly pictureProfile: boolean | null
   /** The camera's complete Gamma list, or `null` when any option is unsettled. */
   readonly gammas: readonly PpGamma[] | null
@@ -46,6 +48,7 @@ export type CameraCapabilities = {
 
 /** "Unknown / skip": nothing is known, so everything shows. */
 export const UNKNOWN_CAMERA: CameraCapabilities = {
+  creativeStyle: null,
   pictureProfile: null,
   gammas: null,
   colorModes: null,
@@ -95,6 +98,7 @@ function completeList<T extends string>(
 /** Pure: the capabilities one body's confirmed claims establish. */
 export function capabilitiesFromClaims(byKey: ReadonlyMap<CapabilityKey, readonly ConfirmedClaim[]>): CameraCapabilities {
   return {
+    creativeStyle: asBoolean(settled(byKey, 'creative-style')),
     pictureProfile: asBoolean(settled(byKey, 'picture-profile')),
     gammas: completeList(byKey, PP_GAMMA, (g) => `pp.gamma:${g}`),
     colorModes: completeList(byKey, PP_COLOR_MODE, (m) => `pp.colorMode:${m}`),
@@ -124,7 +128,7 @@ function lackedByEveryCreativeStyleBody<T extends string>(
   list: (c: CameraCapabilities) => readonly T[] | null,
 ): readonly T[] {
   const lists = [...BY_MODEL.values()]
-    .filter((c) => c.creativeLook === false)
+    .filter((c) => c.creativeStyle === true)
     .map(list)
     .filter((l): l is readonly T[] => l !== null)
   if (lists.length === 0) return []
@@ -132,12 +136,11 @@ function lackedByEveryCreativeStyleBody<T extends string>(
 }
 
 /**
- * "Older camera, Creative Style menu": Creative Look is hidden by the owner's
- * rule; everything else is unknown, with a warning for what no checked
- * Creative Style body has.
+ * "Older camera, Creative Style menu": everything is unknown, with a warning
+ * for what no checked Creative Style body has.
  */
 export const OLDER_CREATIVE_STYLE_CAMERA: CameraCapabilities = {
-  creativeLook: false,
+  creativeStyle: true,
   pictureProfile: null,
   gammas: null,
   colorModes: null,

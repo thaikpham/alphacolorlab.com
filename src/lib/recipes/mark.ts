@@ -42,16 +42,16 @@ export function markInitials(name: string): string {
     .toLocaleUpperCase('en');
 }
 
-/** The code printed on the object: `CL-013`, whichever id shape the row holds. */
+/** The code printed on the object: `PP-013`, whichever id shape the row holds. */
 export const markCode = (id: string): string => recipeIdKey(id);
 
 /**
  * Sony's own name for what the recipe starts from, exactly as the camera
- * prints it: the Look code (`SH`, `VV2`) or the gamma (`S-Cinetone`, `Cine1`).
+ * prints it: the gamma (`S-Cinetone`, `Cine1`).
  * Read from the validated settings, never retyped (Rule 1).
  */
 export const markBase = (recipe: DistributivePick<Recipe, 'format' | 'settings'>): string =>
-  recipe.format === 'cl' ? recipe.settings.look : recipe.settings.gamma;
+  recipe.settings.gamma;
 
 export const swatchCss = (palette: Palette): Record<SwatchId, string> =>
   Object.fromEntries(palette.map((s) => [s.id, s.css])) as Record<SwatchId, string>;

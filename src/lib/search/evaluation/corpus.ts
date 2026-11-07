@@ -63,7 +63,6 @@ export function seedCorpus(
         recipeDoc({
           ...r,
           ...taxonomyFor(r),
-          look: r.format === 'cl' ? r.settings.look : undefined,
           wbLabel: formatWhiteBalance(r.whiteBalance),
           description: describe(r.id),
         }, locale),

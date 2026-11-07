@@ -22,7 +22,6 @@ import recipesSeed from '../../../data/recipes.seed.json';
 import translationsSeed from '../../../data/translations.seed.json';
 import { accentFor, type Accent } from '../camera/color';
 import { paletteFor, type Palette } from '../camera/palette';
-import { CREATIVE_LOOK_CODES } from '../camera/constants';
 import { formatWhiteBalance } from '../camera/format';
 import { RECIPE_TAG_RE, type Recipe } from '../camera/schema';
 import { removeAccents } from '../search/fuzzy-search';
@@ -56,7 +55,7 @@ export type RecipeView = Recipe &
     light: number | null;
   };
 
-export type RecipeFilters = { format?: 'pp' | 'cl'; look?: string; tag?: string; q?: string };
+export type RecipeFilters = { format?: 'pp'; tag?: string; q?: string };
 
 // ---------------------------------------------------------------------------
 // Seed fallback
@@ -158,22 +157,19 @@ export const matchesQuery = (r: Recipe & Partial<RecipeTaxonomy>, q: string) => 
 };
 
 /**
- * The query-string filters of the previous catalogue — `?look=` and `?tag=` —
- * still honoured for one release so a link shared before the situation browse
- * keeps answering, and then dropped. `format` stays accepted for callers of
- * `listRecipes`, but the browse no longer passes it: `?format=` is the
- * colour-system group now, read by `browseFilters`.
+ * The query-string filter of the previous catalogue — `?tag=` — still
+ * honoured for one release so a link shared before the situation browse keeps
+ * answering, and then dropped. `format` stays accepted for callers of
+ * `listRecipes`; the browse no longer passes it.
  */
 export const matchesLegacyFilters = (r: Recipe, f: Omit<RecipeFilters, 'q'>) =>
   (!f.format || r.format === f.format) &&
-  (!f.look || (r.format === 'cl' && r.settings.look === f.look)) &&
   (!f.tag || r.tags.includes(f.tag));
 
 /**
  * Filters as they arrive from a query string: untrusted, and possibly arrays.
  *
- * `?q=a&q=b` is a string[] and `q.trim` threw. A `look` outside the enum or a
- * `tag` that is not a tag is not "no match" to Postgres but 22P02 or a
+ * `?q=a&q=b` is a string[] and `q.trim` threw. A `tag` that is not a tag is not "no match" to Postgres but 22P02 or a
  * malformed array literal — which the reader reported as a content outage and
  * rendered as the error page. Neither can match a recipe, so `null` says the
  * answer is empty without asking.
@@ -183,11 +179,10 @@ function cleanFilters(raw: RecipeFilters): RecipeFilters | null {
     const x = Array.isArray(v) ? v[0] : v;
     return typeof x === 'string' && x !== '' ? x : undefined;
   };
-  const [format, look, tag, q] = [one(raw.format), one(raw.look), one(raw.tag), one(raw.q)];
-  if (format !== undefined && format !== 'pp' && format !== 'cl') return null;
-  if (look !== undefined && !(CREATIVE_LOOK_CODES as readonly string[]).includes(look)) return null;
+  const [format, tag, q] = [one(raw.format), one(raw.tag), one(raw.q)];
+  if (format !== undefined && format !== 'pp') return null;
   if (tag !== undefined && !RECIPE_TAG_RE.test(tag)) return null;
-  return { format, look, tag, q };
+  return { format, tag, q };
 }
 
 // ---------------------------------------------------------------------------
@@ -222,7 +217,6 @@ async function _listRecipes(
   const db = contentRead();
   let query = db.from('recipes').select(RECIPE_COLUMNS).eq('published', true);
   if (filters.format) query = query.eq('format', filters.format);
-  if (filters.look) query = query.eq('look', filters.look);
   if (filters.tag) query = query.contains('tags', [filters.tag]);
 
   const { data, error } = await query.order('id');

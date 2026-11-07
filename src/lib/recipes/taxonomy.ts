@@ -13,7 +13,7 @@
  * this for its URL builder, and the manifest lives in `taxonomy-assign.ts`.
  */
 
-import { CL_MONOCHROME_LOOKS, PP_RANGES } from '../camera/constants';
+import { PP_RANGES } from '../camera/constants';
 import { MIRED_PER_SHIFT_STEP, wbBalance } from '../camera/color';
 import type { Recipe, WhiteBalance } from '../camera/schema';
 
@@ -133,13 +133,10 @@ export function taxonomyTerms(t: RecipeTaxonomy): string[] {
 
 /**
  * Black & white is the one classification the settings state exactly: a
- * Picture Profile in the Black & White colour mode, or a monochrome Look.
- * Everything else is an estimate or an editor's call.
+ * Picture Profile in the Black & White colour mode. Everything else is an
+ * estimate or an editor's call.
  */
-export const isMonochrome = (r: Recipe): boolean =>
-  r.format === 'pp'
-    ? r.settings.colorMode === 'Black & White'
-    : (CL_MONOCHROME_LOOKS as readonly string[]).includes(r.settings.look);
+export const isMonochrome = (r: Recipe): boolean => r.settings.colorMode === 'Black & White';
 
 /**
  * Warm, neutral or cool, from the white balance alone.
@@ -161,57 +158,15 @@ export function toneFromWhiteBalance(wb: WhiteBalance): Exclude<ToneId, 'mono'> 
 
 /** The style a recipe's own numbers suggest, for a recipe no editor has placed. */
 export function styleFromSettings(r: Recipe): StyleId {
-  if (r.format === 'cl') {
-    switch (r.settings.look) {
-      case 'FL':
-      case 'IN':
-      case 'SE':
-      case 'BW':
-        return 'film';
-      case 'VV':
-      case 'VV2':
-        return 'vivid';
-      default:
-        return 'natural';
-    }
-  }
   const { gamma, saturation } = r.settings;
   if (gamma.startsWith('S-Log') || gamma.startsWith('HLG')) return 'range';
   if (saturation >= PP_RANGES.saturation.max / 2) return 'vivid';
   return 'natural';
 }
 
-/**
- * Where a Creative Look recipe belongs, from its Look and its numbers. A Film
- * Look with a high Fade is a café, one with Clarity or Contrast up is a street;
- * the rest of each Look's defaults are the handoff's card sort. A Picture
- * Profile without a manifest entry belongs nowhere until an editor places it.
- */
-export function situationsFromSettings(r: Recipe): readonly SituationId[] {
-  if (r.format === 'pp') return [];
-  const s = r.settings;
-  switch (s.look) {
-    case 'FL':
-      if (s.fade >= 3) return ['lifestyle', 'daily'];
-      if (s.clarity >= 4 || s.contrast >= 2) return ['street', 'daily'];
-      return ['daily', 'street'];
-    case 'IN':
-      return ['lifestyle', 'daily'];
-    case 'VV':
-    case 'VV2':
-      return ['travel', 'landscape'];
-    case 'ST':
-      return ['daily', 'travel'];
-    case 'SH':
-      return ['portrait', 'lifestyle', 'fashion'];
-    case 'PT':
-      return ['portrait'];
-    case 'NT':
-      return ['daily', 'portrait'];
-    case 'BW':
-    case 'SE':
-      return ['street', 'daily'];
-  }
+/** A Picture Profile without a manifest entry belongs nowhere until an editor places it. */
+export function situationsFromSettings(_r: Recipe): readonly SituationId[] {
+  return [];
 }
 
 /** The whole taxonomy a recipe's settings suggest, before any editor's say. */

@@ -44,7 +44,7 @@ type Adapter = (locale: 'en' | 'vi') => Promise<readonly SearchDoc[]>
 const ADAPTERS: Readonly<Record<SearchKind, Adapter>> = {
   recipe: async (locale) =>
     (await listRecipes(locale)).map((r) =>
-      recipeDoc({ ...r, look: r.format === 'cl' ? r.settings.look : undefined }, locale),
+      recipeDoc(r, locale),
     ),
   product: async (locale) => {
     const [cameras, audio, t] = await Promise.all([
