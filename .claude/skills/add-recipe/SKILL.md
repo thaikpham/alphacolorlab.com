@@ -1,6 +1,6 @@
 ---
 name: add-recipe
-description: Add a new colour recipe to Alpha ColorLab — either WB + Picture Profile or WB + Creative Look. Use when the user wants to add, publish, or draft a recipe, supplies camera settings to turn into a recipe, or says "new recipe" / "thêm công thức". Handles ID assignment, validation and bilingual descriptions.
+description: Add a new colour recipe to Alpha ColorLab — WB + Picture Profile. Use when the user wants to add, publish, or draft a recipe, supplies camera settings to turn into a recipe, or says "new recipe" / "thêm công thức". Handles ID assignment, validation and bilingual descriptions.
 ---
 
 # Add a recipe
@@ -8,18 +8,13 @@ description: Add a new colour recipe to Alpha ColorLab — either WB + Picture P
 ## Before anything else
 
 Read `src/lib/camera/constants.ts`. Do not proceed from memory — the legal ranges
-differ between the two formats and are easy to get plausibly wrong.
+are easy to get plausibly wrong.
 
 ## 1. Establish the format
 
-A recipe is **either** Picture Profile **or** Creative Look, never both — the
-camera disables Creative Look whenever Picture Profile is on. If the user supplies
-settings for both, stop and ask which one they actually shot with.
-
-| Signal | Format |
-|---|---|
-| Gamma, Black Gamma, Knee, Color Depth, Detail | `pp` |
-| A Look code (ST/PT/NT/VV/VV2/FL/IN/SH/BW/SE), Fade, Clarity | `cl` |
+Every recipe is a Picture Profile (`format: 'pp'`). Creative Look recipes were
+removed on 2026-11-07 (owner). If the user supplies a Look code, Fade or
+Clarity, say ColorLab no longer takes Creative Look recipes and stop.
 
 ## 2. Collect the settings
 
@@ -32,14 +27,12 @@ mentioned, ask; do not fill in defaults that will end up on someone's camera.
 
 Watch for these, which are wrong more often than not when supplied by hand:
 
-- `Fade`, `Sharpness`, `Clarity`, `Sharpness Range` are unsigned. If the user
-  writes `"+3"` for Sharpness Range, store `3`.
-- Creative Look `Saturation` is −9…+9, not the −32…+32 of Picture Profile.
-- `BW` and `SE` Looks have **no** Saturation at all — omit the field.
+- `Sharpness Range` is unsigned. If the user writes `"+3"`, store `3`.
+- Picture Profile `Saturation` is −32…+32.
 
 ## 3. Assign the ID
 
-Sequential within the format, zero-padded to three digits:
+Sequential, zero-padded to three digits:
 
 ```bash
 node -e "const r=require('./data/recipes.seed.json');const f='PP';\
@@ -47,12 +40,12 @@ const n=r.filter(x=>x.id.replace(/^SCL-/,'').startsWith(f+'-')).map(x=>+x.id.sli
 console.log('next: '+f+'-'+String(Math.max(0,...n)+1).padStart(3,'0'))"
 ```
 
-- `id` is `PP-NNN` / `CL-NNN` (no `SCL-` prefix since 2026-10-24).
+- `id` is `PP-NNN` (no `SCL-` prefix since 2026-10-24).
 - `name` is never written by hand: `npm run seed:emit` computes it from the
   recipe's palette (`nameFor` in `src/lib/recipes/names.ts`), e.g.
-  `CL-013-Golden Matte Muted`, and `/admin` the same way on every save. An
+  `PP-001-Warm Soft Rich`, and `/admin` the same way on every save. An
   originals entry has no `name` field.
-- `slug` is the code, lowercased: `slugFor(id)`, e.g. `cl-046`. Never typed
+- `slug` is the code, lowercased: `slugFor(id)`, e.g. `pp-048`. Never typed
   by hand and never derived from the name, so a later rename moves no URL;
   `names.test.ts` fails a slug that is not.
 
