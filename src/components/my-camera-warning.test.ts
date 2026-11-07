@@ -27,17 +27,17 @@ const render = (locale: 'en' | 'vi', el: ReturnType<typeof createElement>) => {
 
 const text = (html: string) => [...html.matchAll(/<li[^>]*>([^<]*)<\/li>/g)].map((m) => m[1].replace(/&amp;/g, '&'));
 
-const noLook: InstallReason = { setting: 'creativeLook', label: 'Creative Look', confirmed: true };
+const noHlg: InstallReason = { setting: 'gamma', label: 'HLG', confirmed: true };
 const noCinetone: InstallReason = { setting: 'gamma', label: 'S-Cinetone', confirmed: true };
 const mayCinetone: InstallReason = { setting: 'gamma', label: 'S-Cinetone', confirmed: false };
 
 describe('the warning line', () => {
   it('names the camera and Sony’s setting, untranslated, in both locales', () => {
-    const a7iii = createElement(CameraWarningLines, { camera: 'a7 III', reasons: [noLook] });
+    const a7iii = createElement(CameraWarningLines, { camera: 'a7 III', reasons: [noHlg] });
     const a6400 = createElement(CameraWarningLines, { camera: 'a6400', reasons: [noCinetone] });
-    expect(text(render('en', a7iii))).toEqual(['a7 III has no Creative Look']);
+    expect(text(render('en', a7iii))).toEqual(['a7 III has no HLG']);
     expect(text(render('en', a6400))).toEqual(['a6400 has no S-Cinetone']);
-    expect(text(render('vi', a7iii))).toEqual(['a7 III không có Creative Look']);
+    expect(text(render('vi', a7iii))).toEqual(['a7 III không có HLG']);
     expect(text(render('vi', a6400))).toEqual(['a6400 không có S-Cinetone']);
   });
 
@@ -48,13 +48,13 @@ describe('the warning line', () => {
   });
 
   it('marks a confirmed reason as one, and an unconfirmed one as a warning', () => {
-    const html = render('en', createElement(CameraWarningLines, { camera: null, reasons: [noLook, mayCinetone] }));
-    expect(html).toMatch(/<li class="[^"]*text-danger[^"]*">An older camera has no Creative Look<\/li>/);
+    const html = render('en', createElement(CameraWarningLines, { camera: null, reasons: [noHlg, mayCinetone] }));
+    expect(html).toMatch(/<li class="[^"]*text-danger[^"]*">An older camera has no HLG<\/li>/);
     expect(html).toMatch(/<li class="[^"]*text-ink-muted[^"]*">An older camera may have no S-Cinetone<\/li>/);
   });
 
   it('renders nothing on the server: the cookie is the browser’s, read after hydration', () => {
-    const html = render('en', createElement(MyCameraWarning, { warnings: { 'ILCE-7M3': { camera: 'a7 III', reasons: [noLook] } } }));
+    const html = render('en', createElement(MyCameraWarning, { warnings: { 'ILCE-7M3': { camera: 'a7 III', reasons: [noHlg] } } }));
     expect(html).toBe('');
   });
 });

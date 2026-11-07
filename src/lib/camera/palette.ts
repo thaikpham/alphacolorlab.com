@@ -1,8 +1,8 @@
 /**
  * A recipe's palette: nine swatches graded by its own settings.
  *
- * WHAT IT IS. A reading of the White Balance and either the Picture Profile or
- * the Creative Look, each moved in the direction Sony documents for it (Help
+ * WHAT IT IS. A reading of the White Balance and the Picture Profile, each
+ * moved in the direction Sony documents for it (Help
  * Guide for Creators TP0000909106–112, TP1000756714, the pages `constants.ts`
  * cites): Black Level plus weakens black, Black Gamma Narrow stays near black
  * and Wide reaches into grey, Knee from a lower point with a gentler slope

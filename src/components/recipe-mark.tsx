@@ -12,13 +12,14 @@ import {
 /**
  * The recipe mark (owner, 2026-10-28; redesigned 2026-11-04): a white cinema
  * reel for a Picture Profile (a clapperboard until 2026-10-29; a cartridge
- * drew the Creative Looks until they were removed on 2026-11-07). It replaced the nine-swatch strip on the card, which
- * readers found hard to choose from: a silhouette says stills or cinema
- * before a word is read, and the initials give a recipe a handle.
+ * drew the Creative Looks until they were removed on 2026-11-07). It replaced
+ * the nine-swatch strip on the card, which readers found hard to choose
+ * from: the initials give a recipe a handle.
  *
- * The colour is on the film, never under the type. The leader
- * shows three frames — the recipe's highlight, mid and shadow — and the reel
- * shows its six hues through its six windows. Nothing stands behind it (owner, 2026-11-04).
+ * The colour is on the film, never under the type. The leader shows three
+ * frames — the recipe's highlight, mid and shadow — and the reel shows its
+ * six hues through its six windows. Nothing stands behind it (owner,
+ * 2026-11-04).
  * All of it is `paletteFor`'s reading of the settings, never a preview.
  *
  * It is a drawn object, not a surface. That is why its body is white and its

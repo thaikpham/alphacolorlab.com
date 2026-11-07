@@ -167,7 +167,7 @@ export function capabilitiesForChoice(choice: string | null | undefined): Camera
  * is Sony's own name and is never translated (Rule 3).
  */
 export type InstallReason = {
-  readonly setting: 'creativeLook' | 'pictureProfile' | 'gamma' | 'colorMode'
+  readonly setting: 'pictureProfile' | 'gamma' | 'colorMode'
   /** `Creative Look`, `Picture Profile`, or the Gamma / Color Mode value: `S-Cinetone`. */
   readonly label: string
   /** `true`: confirmed missing, and the recipe is hidden. `false`: unconfirmed, a warning only. */
