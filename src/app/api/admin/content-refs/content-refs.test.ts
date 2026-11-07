@@ -21,7 +21,7 @@ vi.mock('@/lib/recipes/admin-store', () => ({
 }))
 vi.mock('@/lib/cameras/data', () => ({
   getSonyCameras: async () => [
-    { id: 'a7-iv', name: 'Alpha 7 IV', sku: 'ILCE-7M4 / Body', category: 'camera' },
+        { id: 'a7-iv', name: 'Alpha 7 IV', code: 'ILCE-7M4' },
   ],
 }))
 vi.mock('@/lib/audio/data', () => ({
@@ -48,7 +48,6 @@ describe('GET /api/admin/content-refs', () => {
       recipes: [{ id: 'scl-001', name: 'Mojave Sun' }],
       products: [
         { id: 'a7-iv', name: 'Alpha 7 IV', code: 'ILCE-7M4' },
-        { id: 'wh-1000xm6', name: 'WH-1000XM6', code: 'WH1000XM6' },
       ],
       pages: [
         { id: 'white-balance-shift', title: 'White Balance Shift', kind: 'knowledge' },
