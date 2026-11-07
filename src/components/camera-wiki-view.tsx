@@ -4,7 +4,6 @@ import { Suspense, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
-import { WikiDivisionSwitch } from './wiki-division-switch';
 import { ProductPhoto } from './product-photo';
 import {
   compareCameras,
@@ -434,7 +433,6 @@ function CameraWikiViewInner({ initialCameras, basePath = '/cameras' }: CameraWi
             holds its place when there is no facet rail at all — the rail is
             hidden below two axes, and the switch is not one of them. */}
         <div className="flex items-center gap-[9px]">
-          <WikiDivisionSwitch current={basePath} className="flex sm:hidden" />
 
           {facetRail.length > 1 && (
             <div className="scroll-silent flex min-w-0 flex-1 gap-[9px] overflow-x-auto pb-0.5">
