@@ -1,6 +1,6 @@
 import type { LocalizedFeatures } from './features';
 import type { Highlights } from './highlights';
-export type ProductCategory = 'all' | 'camera' | 'lens' | 'accessory' | 'audio';
+export type ProductCategory = 'all' | 'camera' | 'lens' | 'accessory';
 
 /**
  * Core specs, per category.
@@ -99,61 +99,9 @@ export interface AccessorySpecs extends SpecProvenance {
  * figure for in-ears and nothing at all for over-ears, so a shared row would be
  * empty for most of the catalogue and would not mean the same thing twice.
  */
-export interface HeadphoneSpecs extends SpecProvenance {
-  kind: 'headphone';
-  /** Wearing style as the sheet states it, e.g. "Tai nghe nhét tai dạng kín". */
-  designType: string | null;
-  /** Physical build notes: folding, detachable earpads, carry case. */
-  design: string | null;
-  /**
-   * The ANC / ambient row.
-   *
-   * A tick in the source becomes "Chống ồn | Xuyên âm"; a dash becomes `null`,
-   * not "Không có". The sheet's dash means the row was not claimed, and on
-   * WF-C510 the same row carries the words "Xuyên âm" alone — transparency
-   * without cancellation. Flattening those three states to a boolean would
-   * invent a claim for one of them.
-   */
-  noiseCancelling: string | null;
-  driver: string | null;
-  frequencyResponse: string | null;
-  /** Codec and processing badges: LDAC, Hi-Res, DSEE, 360 Reality Audio. */
-  audioTech: string | null;
-  processor: string | null;
-  microphones: string | null;
-  connectivity: string | null;
-  /** Buds plus case where the source gives both, e.g. "8 giờ + 16 giờ". */
-  battery: string | null;
-  fastCharge: string | null;
-  smartFeatures: string | null;
-  spatialSound: string | null;
-  gameModes: string | null;
-  includedAccessories: string | null;
-  weight: string | null;
-}
 
-/** Portable and karaoke speakers. The karaoke rows are `null` on a portable. */
-export interface SpeakerSpecs extends SpecProvenance {
-  kind: 'speaker';
-  /** The ULT / MEGA BASS row, e.g. "TẮT ULT | BẬT ULT 1 | ULT 2". */
-  bassBoost: string | null;
-  /** Output with the room size the sheet pairs it with, e.g. "180W | 25m² - 45m²". */
-  power: string | null;
-  drivers: string | null;
-  battery: string | null;
-  fastCharge: string | null;
-  connectivity: string | null;
-  waterResistance: string | null;
-  utilities: string | null;
-  /** Bundled microphone, where one ships. */
-  includedMic: string | null;
-  /** Microphone and guitar inputs, e.g. "2 cổng Micro | 1 cổng Guitar". */
-  micPorts: string | null;
-  dimensions: string | null;
-  weight: string | null;
-}
 
-export type ProductSpecs = CameraSpecs | LensSpecs | AccessorySpecs | HeadphoneSpecs | SpeakerSpecs;
+export type ProductSpecs = CameraSpecs | LensSpecs | AccessorySpecs;
 
 /**
  * Row order for the spec tables, per category.
@@ -179,16 +127,6 @@ export const SPEC_ROWS: Record<ProductSpecs['kind'], readonly string[]> = {
     'apertureBlades', 'stabilization', 'weight', 'dimensions',
   ],
   accessory: ['compatibility', 'weight', 'dimensions'],
-  headphone: [
-    'designType', 'design', 'noiseCancelling', 'driver', 'frequencyResponse',
-    'audioTech', 'processor', 'microphones', 'connectivity', 'battery',
-    'fastCharge', 'smartFeatures', 'spatialSound', 'gameModes',
-    'includedAccessories', 'weight',
-  ],
-  speaker: [
-    'bassBoost', 'power', 'drivers', 'battery', 'fastCharge', 'connectivity',
-    'waterResistance', 'utilities', 'includedMic', 'micPorts', 'dimensions', 'weight',
-  ],
 } as const;
 
 /** Orderings the wiki catalogue offers. */
