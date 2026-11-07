@@ -68,20 +68,9 @@ describe('the catalogue taxonomy', () => {
     expect(specKindFor('camera', 'Full Frame')).toBe('camera');
     expect(specKindFor('lens', 'APS-C')).toBe('lens');
     expect(specKindFor('accessory', 'Power')).toBe('accessory');
-    /* Not a guess from a substring: an audio sub-category the taxonomy does not
-       know has no kind. The create route used to regex "loa" out of it. */
-    expect(specKindFor('audio', 'Loa kéo')).toBeNull();
-    expect(specKindFor('audio', '')).toBeNull();
   });
 
-  it('pairs audio’s second level with its first', () => {
-    expect(subCategory2Choices('audio', 'Tai nghe')).toEqual(['Choàng đầu', 'Nhét tai', 'Gaming']);
-    expect(subCategory2Choices('audio', 'Loa')).toEqual(['Di động', 'Karaoke']);
-    expect(isValidPlacement('audio', 'Loa', 'Nhét tai')).toBe(false);
-    expect(isValidPlacement('audio', 'Tai nghe', 'Karaoke')).toBe(false);
-  });
-
-  it('refuses a placement from another category', () => {
+  it(‘refuses a placement from another category’, () => {
     expect(isValidPlacement('camera', 'Full Frame', 'GM')).toBe(false);
     expect(isValidPlacement('lens', 'Full Frame', 'Cinema Line')).toBe(false);
     expect(isValidPlacement('camera', 'Tai nghe', '')).toBe(false);
@@ -92,7 +81,7 @@ describe('the catalogue taxonomy', () => {
 
   it('allows an empty second level', () => {
     expect(isValidPlacement('lens', 'Adapter', '')).toBe(true);
-    expect(isValidPlacement('accessory', 'Bag', '')).toBe(true);
+    expect(isValidPlacement('accessory', 'Power', '')).toBe(true);
   });
 });
 

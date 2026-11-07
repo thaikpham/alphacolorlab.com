@@ -4,8 +4,7 @@ import { SPEC_ROWS, type ProductSpecs, type SonyCamera } from './types';
  * The Wiki catalogue's taxonomy — the single source of truth for where a
  * product may be filed and what shape its spec block takes.
  *
- * Source: the catalogue itself, `data/sony-cameras.seed.json` and
- * `data/sony-audio.seed.json`. These are not labels but **filter keys**: the
+ * Source: the catalogue itself, `data/sony-cameras.seed.json`. These are not labels but **filter keys**: the
  * public wiki matches `subCategory1 === chip` character for character, so a
  * product saved as "Mirrorless Full-Frame" sits beside the "Full Frame" chip and
  * never appears under it. `taxonomy.test.ts` reads both seeds and fails if any
@@ -32,7 +31,6 @@ const SUB_CATEGORY_1: Record<Category, readonly string[]> = {
   camera: ['Full Frame', 'APS-C', '1-Inch'],
   lens: ['Full Frame', 'APS-C', 'Adapter'],
   accessory: ['Audio', 'Power', 'Grip / Tripod', 'Adapter'],
-  audio: ['Tai nghe', 'Loa'],
 };
 
 /**
@@ -40,19 +38,13 @@ const SUB_CATEGORY_1: Record<Category, readonly string[]> = {
  *
  * The DI categories mix freely — a 1-Inch body is DSC or Vlog, an APS-C one
  * Alpha, Cinema Line or Vlog — so their second level is not narrowed by the
- * first. Audio's is: a speaker is never "Choàng đầu". That pairing lives in
- * `AUDIO_SUB_CATEGORY_2` below, and the audio entry here is their union.
+ * first.
  */
 const SUB_CATEGORY_2: Record<Category, readonly string[]> = {
   camera: ['Máy ảnh Alpha', 'Cinema Line', 'Vlog', 'DSC'],
   lens: ['G', 'GM', 'SEL'],
   accessory: ['Microphone', 'Battery', 'Vlog Accessory', 'Lens Mount'],
-  audio: ['Choàng đầu', 'Nhét tai', 'Gaming', 'Di động', 'Karaoke'],
 };
-
-/**
- * Audio's first level decides both its second level and its spec kind — the
- */
 
 
 /** The highest price the editor accepts, in đồng. The dearest product is ~3.5×10⁸. */
@@ -85,9 +77,7 @@ export function isValidPlacement(category: string, subCategory1: string, subCate
 /**
  * The spec block a product filed here carries — the key into `SPEC_ROWS`.
  *
- * `null` for an audio first level the taxonomy does not know. The create route
- * used to look for "loa" inside the string and call everything else a
- * headphone; a value that is not in the taxonomy has no kind, and saying so is
+ * A value that is not in the taxonomy has no kind, and saying so is
  * the caller's cue to refuse it.
  */
 export function specKindFor(category: Category, subCategory1: string): SpecKind | null {
