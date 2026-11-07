@@ -1,6 +1,5 @@
 import 'server-only'
 import { getTranslations } from 'next-intl/server'
-import { getSonyAudio } from '@/lib/audio/data'
 import { getSonyCameras } from '@/lib/cameras/data'
 import { getPublishedArticles, getPublishedKnowledge } from '@/lib/lab/data'
 import { listRecipes } from '@/lib/recipes/source'
@@ -29,7 +28,7 @@ import {
  * ColorLab/Wiki predictive box all come through here.
  *
  * There is no index. Each adapter reads the function its own pages read —
- * `listRecipes`, `getSonyCameras`, `getSonyAudio`, the published-article read —
+ * `listRecipes`, `getSonyCameras`, the published-article read —
  * so search cannot disagree with the site: an unpublished article leaves the
  * results on the next request, because `revalidateTag(LAB_TAG)` empties the
  * same cache the article page reads, and nothing else holds a copy.
@@ -47,12 +46,11 @@ const ADAPTERS: Readonly<Record<SearchKind, Adapter>> = {
       recipeDoc({ ...r, look: r.format === 'cl' ? r.settings.look : undefined }, locale),
     ),
   product: async (locale) => {
-    const [cameras, audio, t] = await Promise.all([
+    const [cameras, t] = await Promise.all([
       getSonyCameras(),
-      getSonyAudio(),
       getTranslations({ locale, namespace: 'cameras' }),
     ])
-    return [...cameras, ...audio].map((p) => productDoc(p, locale, t))
+    return cameras.map((p) => productDoc(p, locale, t))
   },
   article: async () => (await getPublishedArticles()).map(articleDoc),
   /* Generated glossary entries need no read and cannot fail; the authored

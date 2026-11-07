@@ -1,6 +1,5 @@
 import 'server-only'
 import { cache } from 'react'
-import { getSonyAudio } from '@/lib/audio/data'
 import { getSonyCameras } from '@/lib/cameras/data'
 import { getPublishedEntries } from '@/lib/lab/data'
 import type { Article } from '@/lib/lab/types'
@@ -36,18 +35,17 @@ export type LoadedUniverse = {
 }
 
 async function load(locale: Locale): Promise<LoadedUniverse> {
-  const [entries, recipes, cameras, audio, notes] = await Promise.allSettled([
+  const [entries, recipes, cameras, notes] = await Promise.allSettled([
     getPublishedEntries(),
     listRecipes(locale),
     getSonyCameras(),
-    getSonyAudio(),
     listNotes(),
   ])
 
   const unavailable: LoadedUniverse['unavailable'][number][] = []
   if (entries.status === 'rejected') unavailable.push('pages')
   if (recipes.status === 'rejected') unavailable.push('recipes')
-  if (cameras.status === 'rejected' || audio.status === 'rejected') unavailable.push('products')
+  if (cameras.status === 'rejected') unavailable.push('products')
   if (notes.status === 'rejected') unavailable.push('notes')
 
   const pageList = entries.status === 'fulfilled' ? entries.value : []
@@ -64,7 +62,6 @@ async function load(locale: Locale): Promise<LoadedUniverse> {
       : []
   const productList: ProductSummary[] = [
     ...(cameras.status === 'fulfilled' ? cameras.value : []),
-    ...(audio.status === 'fulfilled' ? audio.value : []),
   ].map((p) => ({ id: p.id, name: p.name, fullName: p.fullName, sku: p.sku, category: p.category }))
   const notesList = notes.status === 'fulfilled' ? notes.value : []
 

@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { getSonyAudio } from '@/lib/audio/data'
 import { adminGate } from '@/lib/auth/admin-gate'
 import { getSonyCameras } from '@/lib/cameras/data'
 import { modelCode } from '@/lib/cameras/aliases'
@@ -29,10 +28,9 @@ export async function GET(request: Request) {
   }
 
   try {
-    const [recipes, cameras, audio, pages, notes] = await Promise.all([
+    const [recipes, cameras, pages, notes] = await Promise.all([
       listRecipeRecords(),
       getSonyCameras(),
-      getSonyAudio(),
       listArticleRecords(),
       listNotes().catch(() => []),
     ])
@@ -41,7 +39,7 @@ export async function GET(request: Request) {
        how the picker splits pages between the article and knowledge lists. */
     return NextResponse.json({
       recipes: recipes.map(({ recipe }) => ({ id: recipe.id, name: recipe.name })),
-      products: [...cameras, ...audio].map((p) => ({
+      products: cameras.map((p) => ({
         id: p.id,
         name: p.name,
         code: modelCode(p.sku),
