@@ -123,6 +123,11 @@ vi.mock('@/lib/supabase/server', () => ({
         eq() {
           return builder;
         },
+        in(column: string, values: string[]) {
+          /* Only the categories the app renders (audio was removed 2026-11-07). */
+          expect([column, values]).toEqual(['category', ['camera', 'lens', 'accessory']]);
+          return builder;
+        },
         neq() {
           return builder;
         },

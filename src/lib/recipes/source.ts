@@ -215,8 +215,9 @@ async function _listRecipes(
 
   return contentOrOfflineSeed('recipes.list', async () => {
   const db = contentRead();
-  let query = db.from('recipes').select(RECIPE_COLUMNS).eq('published', true);
-  if (filters.format) query = query.eq('format', filters.format);
+  /* Picture Profile only: a Creative Look row (removed 2026-11-07) fails the
+     schema, and one bad row fails the whole read. */
+  let query = db.from('recipes').select(RECIPE_COLUMNS).eq('published', true).eq('format', 'pp');
   if (filters.tag) query = query.contains('tags', [filters.tag]);
 
   const { data, error } = await query.order('id');
@@ -275,6 +276,7 @@ async function _getRecipe(slug: string, locale: Locale = 'en'): Promise<RecipeVi
     .select(RECIPE_COLUMNS)
     .eq('slug', slug)
     .eq('published', true)
+    .eq('format', 'pp')
     .maybeSingle();
   if (error) throw new Error(`getRecipe: ${error.message}`);
   if (!data) return null;
@@ -294,7 +296,8 @@ async function _listSlugs(): Promise<string[]> {
     const { data, error } = await contentRead()
       .from('recipes')
       .select('slug')
-      .eq('published', true);
+      .eq('published', true)
+      .eq('format', 'pp');
     if (error) throw new Error(`listSlugs: ${error.message}`);
     /* An empty result is an answer, not a failure. It used to throw here on
        purpose, to reach the seed fallback — with that fallback gone, the throw

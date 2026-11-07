@@ -5,6 +5,7 @@ import { catalogueCache } from '@/lib/catalogue-cache';
 import { contentRead } from '@/lib/supabase/server';
 import { contentOrOfflineSeed } from '@/lib/supabase/content-source';
 import { PRODUCT_COLUMNS, productFromRow, type ProductRow } from './row';
+import { CATEGORIES } from './taxonomy';
 import type { SonyCamera } from './types';
 
 let cachedSeedCameras: SonyCamera[] | null = null;
@@ -48,6 +49,9 @@ async function _getSonyCameras(): Promise<SonyCamera[]> {
            under the anon key, which ships in the browser bundle — the same rule
            `no-email-leak.test.ts` pins for the community tables. */
         .select(PRODUCT_COLUMNS)
+        /* Only the categories the app renders: a row of a removed one (audio,
+           2026-11-07) must not reach a reader that cannot type it. */
+        .in('category', [...CATEGORIES])
         .order('price_vnd', { ascending: false });
 
       if (error) throw new Error(`sony_cameras: ${error.message}`);
