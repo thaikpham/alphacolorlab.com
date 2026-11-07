@@ -6,11 +6,10 @@ export type CompareTabId =
   | 'sensorOptics'
   | 'videoIso'
   | 'afStab'
-  | 'physical'
-  | 'audio';
+  | 'physical';
 
 export interface SpecSectionGroup {
-  id: 'sensorOptics' | 'videoIso' | 'afStab' | 'physical' | 'audio';
+  id: 'sensorOptics' | 'videoIso' | 'afStab' | 'physical';
   labelKey: string;
   specKeys: string[];
 }
@@ -79,8 +78,7 @@ const AUDIO_SPEC_KEYS = [...new Set([...SPEC_ROWS.headphone, ...SPEC_ROWS.speake
 );
 
 export const SPEC_SECTION_GROUPS: SpecSectionGroup[] = [
-  ...IMAGING_GROUPS,
-  { id: 'audio', labelKey: 'sectionAudio', specKeys: AUDIO_SPEC_KEYS },
+  ...IMAGING_GROUPS
 ];
 
 /** The most products one compare holds — the hard limit both pickers state. */

@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { SPEC_ROWS, type CameraSpecs, type HeadphoneSpecs, type ProductSpecs, type SonyCamera } from './types';
+import { SPEC_ROWS, type CameraSpecs, type ProductSpecs, type SonyCamera } from './types';
 import {
   CATEGORIES,
   PRICE_VND_MAX,
@@ -68,8 +68,6 @@ describe('the catalogue taxonomy', () => {
     expect(specKindFor('camera', 'Full Frame')).toBe('camera');
     expect(specKindFor('lens', 'APS-C')).toBe('lens');
     expect(specKindFor('accessory', 'Power')).toBe('accessory');
-    expect(specKindFor('audio', 'Tai nghe')).toBe('headphone');
-    expect(specKindFor('audio', 'Loa')).toBe('speaker');
     /* Not a guess from a substring: an audio sub-category the taxonomy does not
        know has no kind. The create route used to regex "loa" out of it. */
     expect(specKindFor('audio', 'Loa kéo')).toBeNull();

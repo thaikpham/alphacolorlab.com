@@ -161,13 +161,5 @@ describe('the catalogue readers, online', () => {
     expect(selected).toEqual([PRODUCT_COLUMNS]);
   });
 
-  it('serve the audio gallery the database holds', async () => {
-    answers.audio = [
-      row({ id: 'sony-wh-1000xm6', category: 'audio', gallery_urls: ['https://db.example/xm6.jpg'] }),
-    ];
-    const { getSonyAudio } = await import('@/lib/audio/data');
-    const [product] = await getSonyAudio();
-    expect(product.galleryUrls).toEqual(['https://db.example/xm6.jpg']);
-    expect(selected).toEqual([PRODUCT_COLUMNS]);
-  });
+  
 });

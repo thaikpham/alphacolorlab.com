@@ -25,7 +25,7 @@ import { SPEC_ROWS, type ProductSpecs, type SonyCamera } from './types';
 export type Category = SonyCamera['category'];
 export type SpecKind = ProductSpecs['kind'];
 
-export const CATEGORIES: readonly Category[] = ['camera', 'lens', 'accessory', 'audio'];
+export const CATEGORIES: readonly Category[] = ['camera', 'lens', 'accessory'];
 
 /** The first level, per category, in the order the editor offers it. */
 const SUB_CATEGORY_1: Record<Category, readonly string[]> = {
@@ -71,7 +71,7 @@ export function subCategory1Choices(category: Category): readonly string[] {
 }
 
 export function subCategory2Choices(category: Category, subCategory1: string): readonly string[] {
-  if (category === 'audio') return AUDIO[subCategory1]?.sub2 ?? [];
+
   return SUB_CATEGORY_2[category] ?? [];
 }
 
@@ -95,7 +95,7 @@ export function isValidPlacement(category: string, subCategory1: string, subCate
  * the caller's cue to refuse it.
  */
 export function specKindFor(category: Category, subCategory1: string): SpecKind | null {
-  if (category === 'audio') return AUDIO[subCategory1]?.kind ?? null;
+
   return category;
 }
 

@@ -15,7 +15,7 @@ const product = (id: string, specs: Partial<ProductSpecs> & { kind: ProductSpecs
   sku: '',
   name: id,
   fullName: id,
-  category: specs.kind === 'headphone' || specs.kind === 'speaker' ? 'audio' : specs.kind,
+  category: specs.kind as 'camera' | 'lens' | 'accessory',
   subCategory1: '',
   subCategory2: '',
   priceVnd: 1,
@@ -37,16 +37,7 @@ describe('compare groups', () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it('show the audio rows for two headphones', () => {
-    const cams = [
-      product('xm6', { kind: 'headphone', designType: 'Choàng đầu', noiseCancelling: 'Chống ồn' }),
-      product('xm5', { kind: 'headphone', designType: 'Choàng đầu', driver: '30mm' }),
-    ];
-    const sections = getActiveSpecSections(cams, 'all');
-    const audio = sections.find((s) => s.id === 'audio');
-    expect(audio?.specKeys).toEqual(expect.arrayContaining(['designType', 'noiseCancelling', 'driver']));
-    expect(getActiveSpecSections(cams, 'audio').map((s) => s.id)).toEqual(['audio']);
-  });
+  
 
   it('drop a group no compared product has a value for', () => {
     const lenses = [product('a', { kind: 'lens', focalLength: '24-70mm' }), product('b', { kind: 'lens', focalLength: '85mm' })];
