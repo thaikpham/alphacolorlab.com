@@ -80,8 +80,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'badRequest' }, { status: 400 });
   }
 
-  const format = body.format === 'cl' ? 'cl' : body.format === 'pp' ? 'pp' : null;
-  if (!format) return NextResponse.json({ error: 'formatRequired' }, { status: 400 });
+  if (body.format !== 'pp') return NextResponse.json({ error: 'formatRequired' }, { status: 400 });
 
   /* Allocation is max+1, read before the insert, so two creates from two tabs
      can be handed the same id — and with it the same slug, which is the code.
@@ -91,10 +90,10 @@ export async function POST(request: Request) {
   for (let attempt = 0; attempt < CREATE_ATTEMPTS; attempt += 1) {
     let id: string;
     try {
-      id = await nextRecipeId(format);
+      id = await nextRecipeId();
     } catch (err) {
       if (err instanceof Error && err.message === 'idSpaceExhausted') {
-        /* 999 per format is the table's CHECK constraint, not an arbitrary
+        /* 999 is the table's CHECK constraint, not an arbitrary
            cap. Saying so beats failing later with a message about a regex. */
         return NextResponse.json({ error: 'idSpaceExhausted' }, { status: 409 });
       }

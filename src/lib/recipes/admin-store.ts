@@ -123,11 +123,9 @@ export async function getRecipeRecord(id: string): Promise<RecipeRecord | null> 
 // ---------------------------------------------------------------------------
 
 /**
- * The next free `SCL-PP-###` / `SCL-CL-###`, or `PP-###` / `CL-###` once the
- * table holds the code shape.
+ * The next free `SCL-PP-###`, or `PP-###` once the table holds the code shape.
  *
- * Ids are sequential per format and three digits wide, which caps each format
- * at 999 — a real ceiling rather than a theoretical one, so it is reported
+ * Ids are sequential and three digits wide, which caps the catalogue at 999 — a real ceiling rather than a theoretical one, so it is reported
  * instead of wrapping to `SCL-PP-1000` and failing the table's CHECK
  * constraint with a message about a regex.
  *
@@ -136,18 +134,16 @@ export async function getRecipeRecord(id: string): Promise<RecipeRecord | null> 
  * recipe is a URL somebody may still hold, and handing it to a different
  * recipe would answer that URL with the wrong colour science.
  */
-export async function nextRecipeId(format: 'pp' | 'cl'): Promise<string> {
-  const code = format.toUpperCase();
+export async function nextRecipeId(): Promise<string> {
   const ids = isRecipeDevStore() ? devRecipeIds() : await allIds();
-  return nextIdAmong(code, ids);
+  return nextIdAmong('PP', ids);
 }
 
 /**
  * Numbers across both id shapes, so the same number is never issued twice
  * while the table is mid-migration, and answers in the shape the table
  * already uses: the CHECK accepts exactly one shape at a time, and the rows
- * say which. The shape is read across both formats, because a format with no
- * rows of its own still sits under the same CHECK.
+ * say which.
  */
 export function nextIdAmong(code: string, ids: readonly string[]): string {
   const sameFormat = new RegExp(`^(?:SCL-)?${code}-(\\d{3})$`);
@@ -162,9 +158,8 @@ export function nextIdAmong(code: string, ids: readonly string[]): string {
   const next = highest + 1;
   if (next > 999) throw new Error('idSpaceExhausted');
   /* The migration renames every row in one transaction, so one code-shaped id
-     in either format means the CHECK has moved; with none, the stored shape
-     still holds. */
-  const codeShape = ids.some((id) => /^(PP|CL)-\d{3}$/.test(id));
+     means the CHECK has moved; with none, the stored shape still holds. */
+  const codeShape = ids.some((id) => /^PP-\d{3}$/.test(id));
   const prefix = codeShape ? '' : 'SCL-';
   return `${prefix}${code}-${String(next).padStart(3, '0')}`;
 }

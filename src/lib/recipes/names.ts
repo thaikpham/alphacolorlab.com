@@ -77,9 +77,9 @@ export const ADAPTIVE = 'Adaptive';
 /** Slot 1 of a colour recipe: the amber–blue grade, the tint when it dominates, or Adaptive. */
 export const TEMPERATURE_WORDS = [...Object.values(WARMTH_WORDS), ...TINT_WORDS, ADAPTIVE] as const;
 /** Slot 1 of a monochrome recipe. */
-export const MONO_WORDS = ['Mono', 'Sepia'] as const;
+export const MONO_WORDS = ['Mono'] as const;
 /** Slot 2: what the neutral ramp does. Even when nothing on it moves. */
-export const TONALITY_WORDS = ['Matte', 'Faded', 'Deep', 'Punchy', 'Soft', 'Flat', 'Airy', 'Even'] as const;
+export const TONALITY_WORDS = ['Matte', 'Faded', 'Deep', 'Punchy', 'Soft', 'Flat', 'Even'] as const;
 /** Slot 3 of a colour recipe, strong up to strong down. */
 export const COLOUR_WORDS = ['Vivid', 'Rich', 'Natural', 'Muted', 'Pale'] as const;
 /** Slot 3 of a monochrome recipe; Crisp and Gentle also break a tie. */
@@ -107,7 +107,7 @@ export const RECIPE_NAME_RE = /^(PP)-(\d{3})-([A-Z][a-z]+(?: [A-Z][a-z]+){2})$/;
 export const TONE_WORDS: Readonly<Record<ToneId, readonly string[]>> = {
   warm: ['Golden', 'Warm'],
   cool: ['Cool', 'Icy'],
-  mono: ['Mono', 'Sepia'],
+  mono: ['Mono'],
   neutral: ['Neutral'],
 };
 
@@ -296,7 +296,7 @@ function castOf(palette: Palette): { warmth: number; tint: number } {
 const bandFor = (amount: number | undefined) => (amount ? MIRED_PER_SHIFT_STEP : NEUTRAL_MIRED_BAND);
 
 /**
- * Slot 1. Mono or Sepia for a monochrome recipe. Where an editor set the
+ * Slot 1. Mono for a monochrome recipe. Where an editor set the
  * recipe's tone in the manifest, that side wins — it was set because the
  * photographs disagree with the White Balance arithmetic, and a name that
  * says Neutral beside a Warm chip and a golden-hour description reads as a
@@ -306,7 +306,7 @@ const bandFor = (amount: number | undefined) => (amount ? MIRED_PER_SHIFT_STEP :
  */
 function temperature(r: NameInput, cast: { warmth: number; tint: number }): string {
   const mono = monochromeOf(r);
-  if (mono) return mono === 'bw' ? 'Mono' : 'Sepia';
+  if (mono) return 'Mono';
   const editorial = editorialToneFor(r.id);
   if (editorial === 'neutral') return 'Neutral';
   if (editorial === 'warm') return gradeWarmth(cast.warmth) === 'strong-warm' ? 'Golden' : 'Warm';
@@ -323,23 +323,20 @@ const signed = (d: number) => `${d >= 0 ? '+' : ''}${d.toFixed(3)}`;
 /**
  * Slot 2's readings, off the neutral ramp against the reference's:
  * the shadow lifted (Matte, strong Faded) or crushed (Deep); the spread from
- * shadow to highlight widened (Punchy) or narrowed (Soft, strong Flat); the
- * highlight lifted while the spread did not widen (Airy). Unordered.
+ * shadow to highlight widened (Punchy) or narrowed (Soft, strong Flat).
+ * Unordered.
  */
 function tonalityReadings(m: Measure, scale: Scale): Candidate[] {
   const { reference: ref, reach } = scale;
   const out: Candidate[] = [];
   const dS = delta(m.shadow, ref.shadow);
   const dSp = delta(m.spread, ref.spread);
-  const dH = delta(m.highlight, ref.highlight);
   const fS = graded(dS, reach.shadow);
   const fSp = graded(dSp, reach.spread);
   if (fS > 0) out.push({ word: isStrong(fS) ? 'Faded' : 'Matte', salience: fS, from: `shadow ${signed(dS)}` });
   if (fS < 0) out.push({ word: 'Deep', salience: -fS, from: `shadow ${signed(dS)}` });
   if (fSp > 0) out.push({ word: 'Punchy', salience: fSp, from: `spread ${signed(dSp)}` });
   if (fSp < 0) out.push({ word: isStrong(fSp) ? 'Flat' : 'Soft', salience: -fSp, from: `spread ${signed(dSp)}` });
-  const fH = graded(dH, reach.highlight);
-  if (fH > 0 && dSp <= 0) out.push({ word: 'Airy', salience: fH, from: `highlight ${signed(dH)}, spread ${signed(dSp)}` });
   return out;
 }
 
@@ -649,7 +646,7 @@ const isAutoWb = (r: NameInput) => r.whiteBalance.mode === 'auto';
  * Whether `r` takes Adaptive against `twin`: the two read alike, `r` is on
  * auto White Balance (the AWB family, `WB_AUTO_MODES`) and `twin` on a fixed
  * one — a Kelvin or a preset. Two auto twins, or two fixed ones, have no such
- * difference and stay tied. A monochrome recipe keeps Mono or Sepia: its
+ * difference and stay tied. A monochrome recipe keeps Mono: its
  * temperature slot says what it renders, and no cast survives to adapt.
  */
 export function adaptiveTwin(r: NameInput, twin: NameInput): boolean {

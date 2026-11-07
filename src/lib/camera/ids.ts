@@ -7,7 +7,7 @@
 /**
  * `PP-001` — the shape the content plane's CHECK stores once
  * `20261024000000_recipe_code_ids.sql` has run, and the shape the seed, the
- * originals and the importers issue. `sql-drift.test.ts` pins it to that CHECK.
+ * originals issue. `sql-drift.test.ts` pins it to that CHECK.
  */
 export const RECIPE_ID_RE = /^PP-\d{3}$/;
 
@@ -16,7 +16,7 @@ export const RECIPE_ID_RE = /^PP-\d{3}$/;
  * until its migration is applied by hand (S1, S7). Everything that READS an id
  * accepts both, so a deployment never depends on whether that migration has
  * run, and stays tolerant after it: a stale link or a rollback copy still
- * carries the old shape. 
+ * carries the old shape.
  */
 export const RECIPE_ID_TRANSITION_RE = /^(?:SCL-)?PP-\d{3}$/;
 

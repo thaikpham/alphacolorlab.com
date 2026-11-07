@@ -735,24 +735,6 @@ export function wbSummary(wb: WhiteBalance): WbSummary {
   };
 }
 
-// ---------------------------------------------------------------------------
-// Creative Look
-// ---------------------------------------------------------------------------
-
-
-/** Monochrome Looks: nothing about hue applies. */
-function lookEffect(look: string): Effect {
-  if (look === 'BW') return { axis: 'color', en: 'Monochrome — no colour at all', vi: 'Đơn sắc — không màu' };
-  if (look === 'SE') return { axis: 'color', en: 'Sepia monotone — warm single-hue rendering', vi: 'Đơn sắc nâu — một tông ấm duy nhất' };
-  if (look === 'VV' || look === 'VV2') return { axis: 'color', en: 'Vivid base — saturation and contrast raised before any adjustment', vi: 'Nền Vivid — bão hoà và tương phản đã cao sẵn trước khi chỉnh' };
-  if (look === 'FL') return { axis: 'color', en: 'Film base — moody colour with sharp contrast', vi: 'Nền Film — màu u trầm với tương phản gắt' };
-  if (look === 'IN') return { axis: 'color', en: 'Instant base — matte texture, contrast and colour suppressed', vi: 'Nền Instant — bề mặt lì, tương phản và màu bị nén' };
-  if (look === 'SH') return { axis: 'color', en: 'Soft Highkey base — bright, airy, gentle', vi: 'Nền Soft Highkey — sáng, thoáng, dịu' };
-  if (look === 'PT') return { axis: 'color', en: 'Portrait base — skin rendered soft', vi: 'Nền Portrait — da lên mềm' };
-  if (look === 'NT') return { axis: 'color', en: 'Neutral base — saturation and sharpness lowered for grading', vi: 'Nền Neutral — giảm bão hoà và độ nét để hậu kỳ' };
-  return { axis: 'color', en: 'Standard base — balanced across subjects', vi: 'Nền Standard — cân bằng cho mọi chủ thể' };
-}
-
 export const AXIS_LABELS: Record<EffectAxis, { en: string; vi: string }> = {
   contrast: { en: 'Contrast', vi: 'Tương phản' },
   color: { en: 'Colour', vi: 'Màu' },

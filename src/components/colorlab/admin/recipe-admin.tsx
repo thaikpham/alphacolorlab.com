@@ -70,7 +70,6 @@ export function RecipeAdmin() {
   const [status, setStatus] = useState<{ kind: 'ok' | 'err'; msg: string } | null>(null);
   const [issues, setIssues] = useState<readonly string[]>([]);
   const [query, setQuery] = useState('');
-  const newFormat = 'pp' as const;
 
   /* An unknown code is never shown raw — a camelCase identifier is not a
      message. It falls back to the generic failure for the call that raised it,
@@ -190,7 +189,7 @@ export function RecipeAdmin() {
         method: 'POST',
         headers: authed(),
         body: JSON.stringify({
-          format: newFormat,
+          format: 'pp',
           whiteBalance: { mode: 'kelvin', kelvin: WB_KELVIN.min },
           tags: [],
           settings: DEFAULT_PP_SETTINGS,

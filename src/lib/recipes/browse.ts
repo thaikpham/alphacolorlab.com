@@ -1,21 +1,16 @@
 /**
- * Browsing the catalogue by colour system, situation, style and tone — the
- * pure half.
+ * Browsing the catalogue by situation, style and tone — the pure half.
  *
  * The URL shape is one address per result (handoff, "URL"): the situation is
- * the path, `/colorlab/[situation]`; style, tone, the colour system and the
- * text query are the query string. `?situation=` is not read, so a shared link
- * has exactly one spelling. The filters AND across the four groups and each
+ * the path, `/colorlab/[situation]`; style, tone and the text query are the
+ * query string. `?situation=` and `?format=` are not read, so a shared link
+ * has exactly one spelling. The filters AND across the three groups and each
  * group takes one value, which is what keeps a chip row readable on a phone.
- *
- * The colour system is `?format=pp|cl` — the same parameter and values the
- * previous catalogue used, so a link shared from it keeps its meaning.
  *
  * Client-safe: the header's URL builder and the server filter row both import
  * from here, and nothing here reads a file or a database.
  */
 
-import { RECIPE_FORMATS, type RecipeFormat } from '@/lib/camera/constants';
 import {
   MIN_SITUATION_RECIPES,
   SITUATIONS,
@@ -34,15 +29,10 @@ export type BrowseFilters = {
   readonly situation: SituationId | null;
   readonly style: StyleId | null;
   readonly tone: ToneId | null;
-  readonly format: RecipeFormat | null;
   readonly q: string;
 };
 
-export const NO_FILTERS: BrowseFilters = { situation: null, style: null, tone: null, format: null, q: '' };
-
-/** `pp` or `cl`, exactly; anything else is no colour system. */
-export const parseFormat = (v: unknown): RecipeFormat | null =>
-  (RECIPE_FORMATS as readonly unknown[]).includes(v) ? (v as RecipeFormat) : null;
+export const NO_FILTERS: BrowseFilters = { situation: null, style: null, tone: null, q: '' };
 
 type RawParam = string | string[] | undefined;
 
@@ -66,13 +56,12 @@ export function browseFilters(
     situation,
     style: parseStyle(one(sp.style)),
     tone: parseTone(one(sp.tone)),
-    format: parseFormat(one(sp.format)),
     q: one(sp.q)?.trim() ?? '',
   };
 }
 
 export const hasBrowseFilters = (f: BrowseFilters): boolean =>
-  Boolean(f.situation || f.style || f.tone || f.format || f.q);
+  Boolean(f.situation || f.style || f.tone || f.q);
 
 /* --------------------------------------------------------------------- */
 /* URLs                                                                   */
@@ -81,15 +70,15 @@ export const hasBrowseFilters = (f: BrowseFilters): boolean =>
 export const colorlabPath = (situation: SituationId | null | undefined): string =>
   situation ? `/colorlab/${situation}` : '/colorlab';
 
-export type ColorlabPatch = { q?: string; style?: string; tone?: string; format?: string };
+export type ColorlabPatch = { q?: string; style?: string; tone?: string };
 
 /**
  * The catalogue's query string after `patch`, every empty left out — the
  * ColorLab twin of `wikiSearch`. The header's search box goes through here, so
- * typing a query keeps the style, tone and colour system already chosen (it
- * used to rebuild the string from `q` alone), and the no-JS form's hidden
- * inputs are read from the same builder. The order is fixed — q, style, tone,
- * format — so one filter state has one spelling.
+ * typing a query keeps the style and tone already chosen (it used to rebuild
+ * the string from `q` alone), and the no-JS form's hidden inputs are read from
+ * the same builder. The order is fixed — q, style, tone — so one filter state
+ * has one spelling.
  */
 export function colorlabSearch(
   current: { get(name: string): string | null } | null,
@@ -101,17 +90,15 @@ export function colorlabSearch(
   const q = pick('q').trim();
   const style = parseStyle(pick('style'));
   const tone = parseTone(pick('tone'));
-  const format = parseFormat(pick('format'));
   if (q) next.set('q', q);
   if (style) next.set('style', style);
   if (tone) next.set('tone', tone);
-  if (format) next.set('format', format);
   return next.toString();
 }
 
 /** The address of a filter state. */
 export function browseHref(f: BrowseFilters): string {
-  const qs = colorlabSearch(null, { q: f.q, style: f.style ?? '', tone: f.tone ?? '', format: f.format ?? '' });
+  const qs = colorlabSearch(null, { q: f.q, style: f.style ?? '', tone: f.tone ?? '' });
   return colorlabPath(f.situation) + (qs ? `?${qs}` : '');
 }
 
@@ -119,15 +106,14 @@ export function browseHref(f: BrowseFilters): string {
 /* Matching and counting                                                  */
 /* --------------------------------------------------------------------- */
 
-export type Browsable = RecipeTaxonomy & { readonly format: RecipeFormat };
+export type Browsable = RecipeTaxonomy;
 
-/** The four group filters, without the text query — that is `matchesQuery`. */
+/** The three group filters, without the text query — that is `matchesQuery`. */
 export function matchesBrowse(
   r: Browsable,
-  f: Pick<BrowseFilters, 'situation' | 'style' | 'tone' | 'format'>,
+  f: Pick<BrowseFilters, 'situation' | 'style' | 'tone'>,
 ): boolean {
   return (
-    (!f.format || r.format === f.format) &&
     (!f.situation || r.situations.includes(f.situation)) &&
     (!f.style || r.style === f.style) &&
     (!f.tone || r.tone === f.tone)
@@ -135,7 +121,6 @@ export function matchesBrowse(
 }
 
 export type Facets = {
-  readonly formats: Readonly<Record<RecipeFormat, number>>;
   readonly situations: Readonly<Record<SituationId, number>>;
   readonly styles: Readonly<Record<StyleId, number>>;
   readonly tones: Readonly<Record<ToneId, number>>;
@@ -146,22 +131,20 @@ const zeros = <K extends string>(keys: readonly K[]): Record<K, number> =>
 
 /**
  * How many recipes each chip would show: each group is counted with the OTHER
- * three groups and the text query applied, so a chip's number is what pressing
+ * two groups and the text query applied, so a chip's number is what pressing
  * it yields rather than a total that the current selection has already
  * narrowed. `recipes` must already be narrowed by the text query.
  */
 export function facetCounts<T extends Browsable>(recipes: readonly T[], f: BrowseFilters): Facets {
-  const formats = zeros(RECIPE_FORMATS);
   const situations = zeros(SITUATIONS);
   const styles = zeros(STYLES);
   const tones = zeros(TONES);
   for (const r of recipes) {
-    if (matchesBrowse(r, { ...f, format: null })) formats[r.format] += 1;
     if (matchesBrowse(r, { ...f, situation: null })) for (const s of r.situations) situations[s] += 1;
     if (matchesBrowse(r, { ...f, style: null })) styles[r.style] += 1;
     if (matchesBrowse(r, { ...f, tone: null })) tones[r.tone] += 1;
   }
-  return { formats, situations, styles, tones };
+  return { situations, styles, tones };
 }
 
 /** Recipes per situation, over the whole published catalogue. */
@@ -195,8 +178,8 @@ export const MORE_FOR_SITUATION_LIMIT = 6;
 /**
  * How many the page reads, in the same order, so a reader's camera can hide
  * what it cannot install and the row still fills from the ones after
- * (`cameraRows`). Three rows' worth: a Creative Style body hides every
- * Creative Look, often half a situation.
+ * (`cameraRows`). Three rows' worth, so a body that lacks a gamma or colour
+ * mode still fills the row.
  */
 export const MORE_FOR_SITUATION_CANDIDATES = MORE_FOR_SITUATION_LIMIT * 3;
 

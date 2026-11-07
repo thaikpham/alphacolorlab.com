@@ -2,17 +2,12 @@ import { getTranslations } from 'next-intl/server';
 import { CHIP_IDLE, CHIP_SELECTED } from '@/components/chip-styles';
 import { Link } from '@/i18n/navigation';
 import type { CameraOption } from '@/lib/cameras/my-camera';
-import { FORMAT_LABELS, RECIPE_FORMATS } from '@/lib/camera/constants';
 import { browseHref, hasBrowseFilters, type BrowseFilters, type Facets } from '@/lib/recipes/browse';
 import { SITUATIONS, STYLES, TONES } from '@/lib/recipes/taxonomy';
 import { CameraPicker } from './camera-picker';
 
 /**
- * The quick-filter row: Colour system · Situation · Style · Tone, as links.
- *
- * The colour system comes first because it is the one choice the camera
- * forces: a body without Creative Look cannot use half the catalogue. Its
- * chips are Sony's menu names (`FORMAT_LABELS`), never translated.
+ * The quick-filter row: Situation · Style · Tone, as links.
  *
  * A server component rendering `<Link>`s, not buttons with a router: the row
  * works before hydration and with JS off, every state has one address, and
@@ -20,14 +15,14 @@ import { CameraPicker } from './camera-picker';
  * search box is client code.
  *
  * Each chip carries the count of what pressing it yields (`facetCounts`): its
- * own group released, the other three and the query applied. A chip that would
+ * own group released, the other two and the query applied. A chip that would
  * yield nothing is left out rather than dimmed — except the one that is
  * selected, which must stay to be unselected. Pressing a selected chip
  * releases it; there is no "All" chip per group because the row with nothing
  * selected already is "all".
  *
  * Under 48rem each group is one silently scrolling row (`.filter-scroll`), so
- * four groups cost four lines on a phone rather than a screen of chips.
+ * three groups cost three lines on a phone rather than a screen of chips.
  *
  * Above them, the reader's camera (ADR 0006). It is not a filter and not a
  * link: it is a preference kept in a cookie, so it has no address, "Clear
@@ -53,14 +48,6 @@ export async function BrowseFilterRow({
   ]);
 
   const groups = [
-    {
-      key: 'format' as const,
-      label: t('system'),
-      ids: RECIPE_FORMATS,
-      counts: facets.formats as Readonly<Record<string, number>>,
-      name: (id: string) => FORMAT_LABELS[id as keyof typeof FORMAT_LABELS],
-      selected: filters.format,
-    },
     {
       key: 'situation' as const,
       label: t('situation'),

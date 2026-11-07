@@ -162,9 +162,6 @@ export const PALETTE_WEIGHTS = {
     '709': 1,
   } satisfies Record<ColorMode, number>,
 
-  /** Sepia: no chroma, then this one warm cast on every swatch — the accent's sepia. */
-  sepia: { c: 0.035, h: 70 },
-
   /** L floor keeps the shadow visible on the void ground. */
   bounds: { lMin: 0.14, lMax: 0.97 },
 } as const;
@@ -344,7 +341,7 @@ function ppColour(state: State, s: PpSettings) {
   });
 }
 
-/** Black & White: no chroma anywhere, cast included. Sepia: none, then one warm cast. */
+/** Black & White: no chroma anywhere, cast included. */
 function monochrome(state: State, recipe: AccentInput) {
   const mono = monochromeOf(recipe);
   if (!mono) return;
@@ -352,7 +349,6 @@ function monochrome(state: State, recipe: AccentInput) {
     lab.a = 0;
     lab.b = 0;
   });
-  if (mono === 'sepia') addCast(state, PALETTE_WEIGHTS.sepia.c, PALETTE_WEIGHTS.sepia.h);
 }
 
 // --- 4. Bounds -------------------------------------------------------------
