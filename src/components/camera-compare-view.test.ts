@@ -112,15 +112,7 @@ describe('the difference filter', () => {
 
 
 
-
-  it('offers no audio tab to a camera-only compare', () => {
-    expect(render(pair)).not.toContain(`>${en.cameras.tabAudio}<`);
-  });
-});
-
 describe('leaving the compare page', () => {
-  
-
   it('goes back to the catalogue through the locale-aware link, with no prefix to redirect', () => {
     expect(render(pair)).toMatch(/<a href="\/cameras"[^>]*>[^<]*Back to catalogue/);
     expect(render(pair)).not.toContain('href="/en/cameras"');

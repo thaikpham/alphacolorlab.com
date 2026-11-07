@@ -188,26 +188,7 @@ describe('rebuildSpecs', () => {
     expect(rebuildSpecs(acc, 'camera')).not.toHaveProperty('keySpecs');
   });
 
-  it('moves a headphone to a speaker through the rows they share', () => {
-    const hp = {
-      kind: 'headphone',
-      specsSource: 'Sony Vietnam FY26',
-      specsMissing: [],
-      battery: '30 giờ',
-      fastCharge: '3 phút',
-      connectivity: 'Bluetooth 5.3',
-      weight: '250 g',
-      designType: 'Choàng đầu',
-    } as unknown as HeadphoneSpecs;
-    const out = rebuildSpecs(hp, 'speaker') as unknown as Record<string, unknown>;
-    expect(out.kind).toBe('speaker');
-    expect(out.battery).toBe('30 giờ');
-    expect(out.connectivity).toBe('Bluetooth 5.3');
-    expect(out.weight).toBe('250 g');
-    expect(out).not.toHaveProperty('designType');
-    expect(out.specsSource).toBe('Sony Vietnam FY26');
-    expectMissingMatchesNulls(out as unknown as ProductSpecs);
-  });
+  
 
   it('recomputes specsMissing on a block that keeps its kind', () => {
     const out = rebuildSpecs(camera({ lcd: null, specsMissing: [] }), 'camera');

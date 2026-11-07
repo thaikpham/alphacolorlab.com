@@ -306,7 +306,6 @@ export function CameraCompareView({ initialCameras, selectedIds }: CameraCompare
     router.replace(`/cameras/compare?ids=${next.join(',')}`);
   };
 
-  const hasAudio = comparedCameras.some((c) => c.category === 'audio');
 
   const tabs: { id: CompareTabId; label: string }[] = [
     { id: 'all', label: t('tabAll') },
@@ -315,11 +314,9 @@ export function CameraCompareView({ initialCameras, selectedIds }: CameraCompare
     { id: 'videoIso', label: t('tabVideoIso') },
     { id: 'afStab', label: t('tabAfStab') },
     { id: 'physical', label: t('tabPhysical') },
-    ...(hasAudio ? [{ id: 'audio' as const, label: t('tabAudio') }] : []),
+
   ];
 
-  /* Removing the last headset hides the audio tab; a grid left on it would
-     be empty with no tab lit to say why. */
   const shownTab = tabs.some((tab) => tab.id === activeTab) ? activeTab : 'all';
 
   const visibleBlocks = compareBlocks({

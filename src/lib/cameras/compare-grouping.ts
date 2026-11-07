@@ -62,21 +62,6 @@ const IMAGING_GROUPS: SpecSectionGroup[] = [
   },
 ];
 
-/**
- * Every headphone and speaker row the imaging groups do not already draw.
- *
- * Derived from `SPEC_ROWS` rather than listed, because a list is what lost
- * them: the compare page loads audio on purpose, and a WH-1000XM6 against an
- * XM5 compared Battery and Weight and nothing else, while sixteen rows sat in
- * the schema. A field added to either kind now joins the grid by itself.
- * `battery`, `weight` and `dimensions` stay in `physical`, so a body and a
- * headset still meet on one row for each.
- */
-const imagingKeys = new Set(IMAGING_GROUPS.flatMap((g) => g.specKeys));
-const AUDIO_SPEC_KEYS = [...new Set([...SPEC_ROWS.headphone, ...SPEC_ROWS.speaker])].filter(
-  (key) => !imagingKeys.has(key),
-);
-
 export const SPEC_SECTION_GROUPS: SpecSectionGroup[] = [
   ...IMAGING_GROUPS
 ];

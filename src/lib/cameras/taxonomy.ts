@@ -52,12 +52,8 @@ const SUB_CATEGORY_2: Record<Category, readonly string[]> = {
 
 /**
  * Audio's first level decides both its second level and its spec kind — the
- * FY26 sheets publish headphones and speakers as two different tables.
  */
-const AUDIO: Record<string, { sub2: readonly string[]; kind: SpecKind }> = {
-  'Tai nghe': { sub2: ['Choàng đầu', 'Nhét tai', 'Gaming'], kind: 'headphone' },
-  Loa: { sub2: ['Di động', 'Karaoke'], kind: 'speaker' },
-};
+
 
 /** The highest price the editor accepts, in đồng. The dearest product is ~3.5×10⁸. */
 export const PRICE_VND_MAX = 100_000_000_000;
@@ -95,8 +91,7 @@ export function isValidPlacement(category: string, subCategory1: string, subCate
  * the caller's cue to refuse it.
  */
 export function specKindFor(category: Category, subCategory1: string): SpecKind | null {
-
-  return category;
+  return category as SpecKind;
 }
 
 /**
