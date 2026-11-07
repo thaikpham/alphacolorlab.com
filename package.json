@@ -48,6 +48,8 @@
     "//library:sync": "Brings the content project's recipe library in line with the seed: withdrawn recipes unpublished (never deleted), names updated, ColorLab's unpublished originals refreshed whole, missing recipes inserted unpublished. Prints the plan; writes only with --apply. Rules: scripts/lib/library-plan.ts.",
     "library:sync": "tsx --env-file=.env.local scripts/sync-library.ts",
     "push:lab": "tsx --env-file=.env.local scripts/push-lab-articles.ts",
+    "publish:lab": "tsx --env-file=.env.local scripts/publish-lab-articles.ts",
+    "publish:recipes": "tsx --env-file=.env.local scripts/publish-recipes.ts",
     "pull:supabase": "tsx --env-file=.env.local scripts/pull-supabase.ts"
   },
   "dependencies": {
