@@ -327,15 +327,21 @@ describe('computedRecipeName', () => {
   });
 
   it('shares words only with a stored recipe that reads alike, and says which', async () => {
-    /* A copy of PP-055 renders PP-055's swatches: no word tells them
-       apart, so the tie is the truth and is reported, not refused. */
+    /* A copy renders its source's swatches. Where no other honest reading is
+       free, no word tells them apart, so the tie is the truth and is reported,
+       not refused. Found among the seed rather than pinned to one recipe: which
+       copies run out of readings moves whenever the catalogue changes. */
     await stored();
-    const copy = { ...byId.get('PP-055')!, id: 'PP-046', slug: 'pp-046', name: 'PP-046' };
-    await expect(computedRecipeName(copy)).resolves.toEqual({
-      ok: true,
-      name: `PP-046-${byId.get('PP-055')!.name.slice(7)}`,
-      tiedWith: 'PP-055',
-    });
+    const ties: { id: string; tiedWith: string }[] = [];
+    for (const source of seed) {
+      const copy = { ...source, id: 'PP-099', slug: 'pp-099', name: 'PP-099' };
+      const named = await computedRecipeName(copy);
+      if (named.ok && named.tiedWith) {
+        expect(othersHolding(seed, copy.id, named.name), source.id).toContain(named.tiedWith);
+        ties.push({ id: source.id, tiedWith: named.tiedWith });
+      }
+    }
+    expect(ties.length).toBeGreaterThan(0);
   });
 });
 

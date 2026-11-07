@@ -41,6 +41,13 @@ const ID_CHECK: Record<(typeof ROOTS)[number], RegExp> = {
   [CONTROL_ROOT]: /^SCL-(PP|CL)-\d{3}$/,
 };
 
+/* Control's `recipes` is the dormant pre-split table: its schema is history and
+   still names Creative Look; only content follows RECIPE_FORMATS. */
+const FORMATS: Record<(typeof ROOTS)[number], readonly string[]> = {
+  [CONTENT_ROOT]: RECIPE_FORMATS,
+  [CONTROL_ROOT]: ['pp', 'cl'],
+};
+
 async function build(root: string): Promise<PGlite> {
   const db = new PGlite();
   await db.exec(`
@@ -97,7 +104,7 @@ describe.each(ROOTS)('SQL / constants drift in %s', (root) => {
   };
 
   it('recipe_format enum matches RECIPE_FORMATS', async () => {
-    expect(await enumLabels('recipe_format')).toEqual([...RECIPE_FORMATS]);
+    expect(await enumLabels('recipe_format')).toEqual([...FORMATS[root]]);
   });
 
   it('wb_mode enum covers exactly the modes the schema can produce', async () => {

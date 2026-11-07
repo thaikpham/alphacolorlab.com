@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import recipesSeed from '../../../data/recipes.seed.json';
+import { WB_PRESETS } from '../camera/constants';
 import { recipeSchema, type Recipe } from '../camera/schema';
 import { fromRow, toRow, type RecipeRow } from './row';
 
@@ -35,7 +36,14 @@ describe('fromRow', () => {
 
   it('covers all three white-balance modes', () => {
     const modes = new Set(seed.map((r) => r.whiteBalance.mode));
-    expect([...modes].sort()).toEqual(['auto', 'kelvin', 'preset']);
+    expect([...modes].sort()).toEqual(['auto', 'kelvin']);
+  });
+
+  /* No seed recipe uses a light-source preset since the Creative Looks went
+     (2026-11-07), so one is built from a seed recipe here. */
+  it('rebuilds a light-source preset', () => {
+    const preset = { ...seed[0], whiteBalance: { mode: 'preset' as const, preset: WB_PRESETS[0], shift: { ab: { axis: 'A' as const, amount: 1 } } } };
+    expect(fromRow(overTheWire(toRow(preset, null)))).toEqual(recipeSchema.parse(preset));
   });
 
   it('rebuilds a shift on one axis only, without inventing the other', () => {

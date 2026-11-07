@@ -700,7 +700,7 @@ describe('the recipe code-id migration (S5)', () => {
     await db.exec(`
       insert into recipe_translations (recipe_id, locale, description) values ('${WITHDRAWN.id}', 'vi', 'Mô tả.');
       insert into recipe_images (recipe_id, storage_path, sort) values ('SCL-PP-048', 'SCL-PP-048/1.jpg', 0);
-      insert into recipe_images (recipe_id, storage_path, sort) values ('SCL-CL-013', 'SCL-CL-013/1.jpg', 0);
+      insert into recipe_images (recipe_id, storage_path, sort) values ('SCL-PP-001', 'SCL-PP-001/1.jpg', 0);
     `);
     await db.query(
       `insert into lab_articles (id, topic, level, archetype, title, meta)
@@ -728,10 +728,14 @@ describe('the recipe code-id migration (S5)', () => {
     await migrated.exec(sql());
   }, 60_000);
 
-  it('is versioned so the control root cannot claim it, and only the next slug move follows it', () => {
+  it('is versioned so the control root cannot claim it, and only the next slug move and the 2026-11-07 removals follow it', () => {
     const version = CODE_IDS.split('_')[0];
     expect(version).toMatch(/^\d{14}$/);
-    expect(files(CONTENT_ROOT).filter((f) => f > CODE_IDS)).toEqual(['20261028000000_recipe_code_slugs.sql']);
+    expect(files(CONTENT_ROOT).filter((f) => f > CODE_IDS)).toEqual([
+      '20261028000000_recipe_code_slugs.sql',
+      '20261107000000_drop_creative_look.sql',
+      '20261107000100_drop_audio.sql',
+    ]);
     expect(files(CONTROL_ROOT).map((f) => f.split('_')[0])).not.toContain(version);
   });
 
@@ -745,7 +749,7 @@ describe('the recipe code-id migration (S5)', () => {
     /* The key follows; the path is a Storage object name, not a reference. */
     const i = await migrated.query(`select recipe_id, storage_path from recipe_images order by recipe_id`);
     expect(i.rows).toEqual([
-      { recipe_id: 'CL-013', storage_path: 'SCL-CL-013/1.jpg' },
+      { recipe_id: 'PP-001', storage_path: 'SCL-PP-001/1.jpg' },
       { recipe_id: 'PP-048', storage_path: 'SCL-PP-048/1.jpg' },
     ]);
   });
@@ -942,7 +946,11 @@ describe('the recipe code-slug migration (S2 of 2026-10-28)', () => {
   it('is the newest content migration, versioned so the control root cannot claim it', () => {
     const version = CODE_SLUGS.split('_')[0];
     expect(version).toMatch(/^\d{14}$/);
-    expect(files(CONTENT_ROOT).at(-1)).toBe(CODE_SLUGS);
+    /* Only the 2026-11-07 removals come after it. */
+    expect(files(CONTENT_ROOT).filter((f) => f > CODE_SLUGS)).toEqual([
+      '20261107000000_drop_creative_look.sql',
+      '20261107000100_drop_audio.sql',
+    ]);
     expect(files(CONTROL_ROOT).map((f) => f.split('_')[0])).not.toContain(version);
   });
 

@@ -33,15 +33,12 @@ describe('/colorlab and /colorlab/[situation]', () => {
     for (const page of [index, situation]) expect(page).not.toMatch(/listRecipes\(/);
   });
 
-  /* `?format=` was a legacy parameter for one release; it is the colour-system
-     group now, read once by `browseFilters`. Left in the legacy object too it
-     would filter twice and the system row's counts would lose the other
-     system — every count for it would read zero and its chip would vanish. */
-  it('reads ?format= as the colour-system group, not as a legacy parameter', () => {
+  /* Every recipe is a Picture Profile since 2026-11-07: `?format=` and
+     `?look=` filter nothing, and only `?tag=` stays for one release. */
+  it('reads only ?tag= as a legacy parameter', () => {
     const legacy = browse.slice(browse.indexOf('const legacy = {'), browse.indexOf('};', browse.indexOf('const legacy = {')));
-    expect(legacy).toContain('look: one(sp.look)');
     expect(legacy).toContain('tag: one(sp.tag)');
-    expect(legacy).not.toMatch(/format/);
+    expect(legacy).not.toMatch(/format|look/);
   });
 
   it('are one browse: the same component, the heading the only difference', () => {
@@ -99,15 +96,10 @@ describe('the browse row', () => {
     expect(filters).not.toMatch(/filterAll|'all'/);
   });
 
-  it('puts the colour system first, named by Sony’s own menu words', () => {
+  it('browses by situation, style and tone, with no colour-system row', () => {
     const keys = [...filters.matchAll(/key: '(\w+)' as const/g)].map((m) => m[1]);
-    expect(keys).toEqual(['format', 'situation', 'style', 'tone']);
-    expect(filters).toContain("label: t('system')");
-    expect(filters).toContain('ids: RECIPE_FORMATS');
-    expect(filters).toContain('counts: facets.formats');
-    expect(filters).toMatch(/name: \(id: string\) => FORMAT_LABELS\[/);
-    /* Never a message key: Picture Profile and Creative Look are not translated. */
-    expect(filters).not.toMatch(/t\(`formats?\./);
+    expect(keys).toEqual(['situation', 'style', 'tone']);
+    expect(filters).not.toMatch(/RECIPE_FORMATS|facets\.formats/);
   });
 
   it('leaves out a chip that would yield nothing, unless it is the selected one', () => {

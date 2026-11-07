@@ -167,9 +167,7 @@ describe('the design rules, on this screen', () => {
     for (const [f, src] of files) expect(src, f).not.toMatch(/tracking-\[-0\.01em\]/);
   });
 
-  it('gives the format toggles and the checkbox labels a 44px target', () => {
-    const toggle = code.match(/onClick=\{\(\) => setNewFormat\(f\)\}\s*className=\{`([^`]*)`/);
-    expect(toggle?.[1]).toMatch(/min-h-\[var\(--layout-touch-target\)\]/);
+  it('gives the checkbox labels a 44px target', () => {
     let labels = 0;
     for (const [f, src] of files) {
       for (const label of src.match(/<label className="[^"]*">\s*<input\s+type="checkbox"/g) ?? []) {
