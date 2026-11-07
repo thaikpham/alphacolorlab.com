@@ -22,8 +22,8 @@ export type Role = 'visitor';
  * published), and it is skipped and said so — any other missing one throws. `/admin` and the edit route show the gate to a signed-out visitor.
  */
 const TEMPLATES = [
-  '/', '/colorlab', '/colorlab?format=pp', '/colorlab/:situation', '/recipe/:recipe',
-  '/cameras', '/cameras/:camera', '/cameras/compare', '/audio', '/audio/:audio',
+  '/', '/colorlab', '/colorlab/:situation', '/recipe/:recipe',
+  '/cameras', '/cameras/:camera', '/cameras/compare',
   '/blog', '/blog/:article', '/blog/setup', '/blog/:article/edit',
   '/learn', '/learn/glossary', '/learn/:knowledge',
   '/search?q=sony', '/admin',
@@ -43,8 +43,8 @@ export const SCREENS = {
 export const EXEMPT_SCROLL = '.scroll-silent, .filter-scroll, .scroll-area, .scroll-table';
 
 /**
- * The sitemap prefix to search and strip for each placeholder. Recipes,
- * cameras and audio are listed bilingually (a bare-path and a `/vi/` entry
+ * The sitemap prefix to search and strip for each placeholder. Recipes and
+ * cameras are listed bilingually (a bare-path and a `/vi/` entry
  * per instance), so the bare prefix finds one. An article or knowledge page
  * is authored Vietnamese-bodied on both locales (ADR 0004) and indexed ONLY
  * at its Vietnamese canonical URL — the English route renders the same
@@ -58,7 +58,7 @@ export const EXEMPT_SCROLL = '.scroll-silent, .filter-scroll, .scroll-area, .scr
  * leaves out, so nothing else under the prefix needs skipping.
  */
 const PREFIX: Record<string, string> = {
-  ':situation': '/colorlab/', ':recipe': '/recipe/', ':camera': '/cameras/', ':audio': '/audio/', ':article': '/vi/blog/', ':knowledge': '/vi/learn/',
+  ':situation': '/colorlab/', ':recipe': '/recipe/', ':camera': '/cameras/', ':article': '/vi/blog/', ':knowledge': '/vi/learn/',
 };
 let locs: string[] | null = null;
 /**
