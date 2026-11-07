@@ -96,7 +96,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
       order: 1,
       concepts: ['pp', 'cl', 'cl.look', 'pp.saturation', 'cl.saturation'],
       related: [{ kind: 'knowledge', id: 'white-balance-shift' }],
-      sources: [sony('clIlce7m4', 'ILCE-7M4'), sony('ppIlce7m4', 'ILCE-7M4'), sony('ppColor')],
+      sources: [sony('ppIlce7m4', 'ILCE-7M4'), sony('ppColor')],
     }),
     blocks: [
       {
@@ -370,7 +370,7 @@ export const PILOT_DRAFTS: readonly Article[] = [
       concepts: ['pp', 'cl'],
       related: [{ kind: 'knowledge', id: 'picture-profile-va-creative-look' }],
       prerequisites: ['picture-profile-va-creative-look'],
-      sources: [sony('clIlce7m4', 'ILCE-7M4'), sony('ppColor'), ...PILOT_BODY_SOURCES],
+      sources: [sony('ppColor'), ...PILOT_BODY_SOURCES],
     }),
     blocks: [
       {

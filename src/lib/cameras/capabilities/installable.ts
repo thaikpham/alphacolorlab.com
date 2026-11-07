@@ -6,20 +6,10 @@
  * Unknown is never "no". Every field below is `null` until a checked claim
  * settles it, and a `null` hides nothing:
  *
- * - a Creative Look recipe is hidden only when the camera is confirmed to
- *   lack Creative Look;
  * - a Picture Profile recipe is hidden only when the camera is confirmed to
  *   lack Picture Profile, or the recipe's Gamma or Color Mode is outside the
  *   camera's confirmed list;
  * - a camera with no checked data shows everything.
- *
- * **Creative Style means no Creative Look.** No Help Guide topic read says
- * "this body has no Creative Look" in words, and none prints a menu list it
- * would be absent from. What a page does say is that the body's style menu is
- * `[Creative Style]` — the menu Creative Look replaced. The owner's rule
- * (P4 brief, 2026-10-23) is that a body confirmed to be on Creative Style is
- * treated as confirmed to lack Creative Look. That inference lives here and
- * nowhere else; `evidence.ts` only records what the page says.
  *
  * **Spelling.** Gamma and Color Mode values are `constants.ts` spellings
  * (`PP_GAMMA`, `PP_COLOR_MODE`), the same strings a recipe stores. They are
@@ -42,7 +32,6 @@ import type { CapabilityKey, PpColorMode, PpGamma } from './keys'
 
 /** What is known about one camera. `null`: unknown, which never hides a recipe. */
 export type CameraCapabilities = {
-  readonly creativeLook: boolean | null
   readonly pictureProfile: boolean | null
   /** The camera's complete Gamma list, or `null` when any option is unsettled. */
   readonly gammas: readonly PpGamma[] | null
@@ -57,7 +46,6 @@ export type CameraCapabilities = {
 
 /** "Unknown / skip": nothing is known, so everything shows. */
 export const UNKNOWN_CAMERA: CameraCapabilities = {
-  creativeLook: null,
   pictureProfile: null,
   gammas: null,
   colorModes: null,
@@ -106,11 +94,7 @@ function completeList<T extends string>(
 
 /** Pure: the capabilities one body's confirmed claims establish. */
 export function capabilitiesFromClaims(byKey: ReadonlyMap<CapabilityKey, readonly ConfirmedClaim[]>): CameraCapabilities {
-  const look = settled(byKey, 'creative-look')
-  const style = settled(byKey, 'creative-style')
   return {
-    /* A Creative Look support outranks the Creative Style inference. */
-    creativeLook: look !== null ? look === 'yes' : style === 'yes' ? false : null,
     pictureProfile: asBoolean(settled(byKey, 'picture-profile')),
     gammas: completeList(byKey, PP_GAMMA, (g) => `pp.gamma:${g}`),
     colorModes: completeList(byKey, PP_COLOR_MODE, (m) => `pp.colorMode:${m}`),
@@ -195,9 +179,7 @@ export type Installability = {
 }
 
 /** What `installability` reads of a recipe — any `Recipe` fits. */
-export type InstallableRecipe =
-  | { readonly format: 'cl' }
-  | { readonly format: 'pp'; readonly settings: Pick<PpSettings, 'gamma' | 'colorMode'> }
+export type InstallableRecipe = { readonly format: 'pp'; readonly settings: Pick<PpSettings, 'gamma' | 'colorMode'> }
 
 export function installability(recipe: InstallableRecipe, caps: CameraCapabilities): Installability {
   const reasons: InstallReason[] = []
@@ -205,9 +187,7 @@ export function installability(recipe: InstallableRecipe, caps: CameraCapabiliti
     if (!reasons.some((x) => x.label === r.label)) reasons.push(r)
   }
 
-  if (recipe.format === 'cl') {
-    if (caps.creativeLook === false) add({ setting: 'creativeLook', label: FORMAT_LABELS.cl, confirmed: true })
-  } else if (caps.pictureProfile === false) {
+  if (caps.pictureProfile === false) {
     add({ setting: 'pictureProfile', label: FORMAT_LABELS.pp, confirmed: true })
   } else {
     const { gamma, colorMode } = recipe.settings

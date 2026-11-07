@@ -306,14 +306,6 @@ export const EVIDENCE_SOURCES: readonly EvidenceSource[] = [
   },
   // ILCE-7CM2
   {
-    id: 'ILCE-7CM2/creative-look',
-    camera: 'ILCE-7CM2',
-    url: 'https://helpguide.sony.net/ilc/2360/v1/en/contents/0411B_creative_look.html',
-    topic: STILL_MOVIE('Creative Look'),
-    scope: 'both',
-    claims: creativeLookClaims('code-and-name'),
-  },
-  {
     id: 'ILCE-7CM2/white-balance',
     camera: 'ILCE-7CM2',
     url: 'https://helpguide.sony.net/ilc/2360/v1/en/contents/0410C_white_balance.html',
@@ -331,14 +323,6 @@ export const EVIDENCE_SOURCES: readonly EvidenceSource[] = [
   },
   // ILCE-6700
   {
-    id: 'ILCE-6700/creative-look',
-    camera: 'ILCE-6700',
-    url: 'https://helpguide.sony.net/ilc/2320/v1/en/contents/0411B_creative_look.html',
-    topic: STILL_MOVIE('Creative Look'),
-    scope: 'both',
-    claims: creativeLookClaims('code'),
-  },
-  {
     id: 'ILCE-6700/white-balance',
     camera: 'ILCE-6700',
     url: 'https://helpguide.sony.net/ilc/2320/v1/en/contents/0410C_white_balance.html',
@@ -354,17 +338,7 @@ export const EVIDENCE_SOURCES: readonly EvidenceSource[] = [
     scope: 'both',
     claims: pictureProfileClaims(ALL_ITEMS, CURRENT_GAMMAS, CURRENT_COLOR_MODES),
   },
-  // ILCE-7M5 — its Creative Look also lists FL2 and FL3, which `constants.ts`
-  // does not hold yet (a sync-camera-constants change), so no key and no claim;
-  // its Picture Profile has no Color Depth item.
-  {
-    id: 'ILCE-7M5/creative-look',
-    camera: 'ILCE-7M5',
-    url: 'https://helpguide.sony.net/ilc/2540/v1/en/contents/0411B_creative_look.html',
-    topic: STILL_MOVIE('Creative Look'),
-    scope: 'both',
-    claims: creativeLookClaims('code-and-name'),
-  },
+  // ILCE-7M5 — its Picture Profile has no Color Depth item.
   {
     id: 'ILCE-7M5/white-balance',
     camera: 'ILCE-7M5',

@@ -20,10 +20,13 @@ import { ORIGINAL_PP, type OriginalRecipe } from '../src/lib/originals/pp';
 import { NAME_VOCABULARY, namesFor, parseRecipeName, readNames, readsAlike, slugFor } from '../src/lib/recipes/names';
 import { formerSlugsFor } from '../src/lib/recipes/slug-moves';
 
-const { ok, failed } = migrateAll(legacyRecipes as Record<string, unknown>[]);
-if (failed.length) {
-  console.error(`✗ ${failed.length} recipe(s) failed validation:`);
-  for (const f of failed) console.error(`  ${f.legacyId}: ${f.error}`);
+const { ok: allRecipes, failed } = migrateAll(legacyRecipes as Record<string, unknown>[]);
+// Filter to PP format only - CL is being removed
+const ok = allRecipes.filter((r) => /^PP-\d{3}$/.test(r.recipe.id));
+const failedPp = failed.filter((f) => /^PP-/.test(f.legacyId));
+if (failedPp.length) {
+  console.error(`✗ ${failedPp.length} recipe(s) failed validation:`);
+  for (const f of failedPp) console.error(`  ${f.legacyId}: ${f.error}`);
   process.exit(1);
 }
 

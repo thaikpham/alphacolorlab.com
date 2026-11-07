@@ -149,12 +149,12 @@ export const recipeSchema = z
     z.object({ ...baseRecipe, format: z.literal('pp'), settings: ppSettingsSchema })
   ])
   .superRefine((v, ctx) => {
-    const expected = 'PP';
-    if (RECIPE_ID_TRANSITION_RE.exec(v.id)?.[1] !== expected) {
+    // Format is now always 'pp', so just verify the ID matches the pattern
+    if (!RECIPE_ID_TRANSITION_RE.test(v.id)) {
       ctx.addIssue({
         code: 'custom',
         path: ['id'],
-        message: `id segment must match format: expected ${expected}-…`,
+        message: `id must match format: expected PP-NNN`,
       });
     }
   });

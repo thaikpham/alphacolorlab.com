@@ -4,7 +4,7 @@
  *
  * A capability key names one thing a body either has or lacks: a menu
  * (`picture-profile`, `creative-style`), an item in it (`pp.item:Knee`), one option of an item
- * (`pp.gamma:S-Cinetone`, `cl.look:FL`) or a White Balance control. Every key
+ * (`pp.gamma:S-Cinetone`) or a White Balance control. Every key
  * is built from a constant, so a key cannot name a value `constants.ts` does
  * not hold, and a value added there gains its key without an edit here.
  *
@@ -15,15 +15,11 @@
  */
 
 import {
-  CL_PARAM_ORDER,
-  CREATIVE_LOOKS,
   PP_COLOR_MODE,
   PP_GAMMA,
   PP_MENU_ITEMS,
   WB_AUTO_MODES,
   WB_PRESETS,
-  type ClParam,
-  type CreativeLookCode,
 } from '@/lib/camera/constants'
 
 export type PpMenuItem = (typeof PP_MENU_ITEMS)[number]
@@ -38,10 +34,7 @@ export type CapabilityKey =
   | `pp.item:${PpMenuItem}`
   | `pp.gamma:${PpGamma}`
   | `pp.colorMode:${PpColorMode}`
-  | 'creative-look'
   | 'creative-style'
-  | `cl.look:${CreativeLookCode}`
-  | `cl.adjust:${ClParam}`
   | 'wb.kelvin'
   | `wb.auto:${WbAutoMode}`
   | `wb.preset:${WbPreset}`
@@ -52,10 +45,7 @@ export const CAPABILITY_KEYS: readonly CapabilityKey[] = [
   ...PP_MENU_ITEMS.map((i) => `pp.item:${i}` as const),
   ...PP_GAMMA.map((g) => `pp.gamma:${g}` as const),
   ...PP_COLOR_MODE.map((m) => `pp.colorMode:${m}` as const),
-  'creative-look',
   'creative-style',
-  ...CREATIVE_LOOKS.map((l) => `cl.look:${l.code}` as const),
-  ...CL_PARAM_ORDER.map((p) => `cl.adjust:${p}` as const),
   'wb.kelvin',
   ...WB_AUTO_MODES.map((m) => `wb.auto:${m}` as const),
   ...WB_PRESETS.map((p) => `wb.preset:${p}` as const),

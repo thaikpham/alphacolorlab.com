@@ -115,11 +115,6 @@ export default async function OgImage({
           >
             {recipe.wbLabel}
           </div>
-          {look && (
-            <div style={{ display: 'flex', fontSize: 26, marginTop: 14, opacity: 0.7 }}>
-              Creative Look {look.code} · {look.label}
-            </div>
-          )}
         </div>
 
         {/* The palette, in the card's order: the neutral ramp, then the six

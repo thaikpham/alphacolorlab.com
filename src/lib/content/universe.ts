@@ -59,7 +59,6 @@ async function load(locale: Locale): Promise<LoadedUniverse> {
           name: r.name,
           format: r.format,
           wbLabel: r.wbLabel,
-          ...(r.format === 'cl' ? { look: r.settings.look } : {}),
         }))
       : []
   const productList: ProductSummary[] = [

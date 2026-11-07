@@ -30,9 +30,8 @@ export type RecipeSummary = {
   readonly id: string
   readonly slug: string
   readonly name: string
-  readonly format: 'pp' | 'cl'
+  readonly format: 'pp'
   readonly wbLabel: string
-  readonly look?: string
 }
 
 export type ProductSummary = {
