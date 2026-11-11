@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480">
+<title>Khung Vùng lấy nét đặt lên chủ thể chính trên màn hình máy</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="48" y="48" width="624" height="384" rx="24" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<text x="80" y="104" font-family="Noto Sans, system-ui, sans-serif" font-size="24" font-weight="600" fill="#4a5260">Màn hình máy</text>
+<rect x="470" y="130" width="170" height="110" rx="14" fill="#e3e6eb"/>
+<text x="492" y="196" font-family="Noto Sans, system-ui, sans-serif" font-size="26" font-weight="600" fill="#4a5260">Vai phụ</text>
+<rect x="84" y="318" width="96" height="96" rx="14" fill="#e3e6eb"/>
+<circle cx="300" cy="196" r="52" fill="#4a5260"/>
+<path d="M200 432 L200 320 Q200 262 300 262 Q400 262 400 320 L400 432 Z" fill="#4a5260"/>
+<rect x="230" y="120" width="140" height="140" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<path d="M428 288 L378 236" stroke="#f05a14" stroke-width="3" fill="none"/>
+<text x="430" y="300" font-family="Noto Sans, system-ui, sans-serif" font-size="28" font-weight="600" fill="#b43f00">Khung lấy nét</text>
+<path d="M428 362 L404 362" stroke="#7c8594" stroke-width="3" fill="none"/>
+<text x="430" y="372" font-family="Noto Sans, system-ui, sans-serif" font-size="28" font-weight="600" fill="#0b0d12">Chủ thể chính</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba bước đăng ký Custom WB trên ZV-E10</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="40" y="80" width="640" height="104" rx="14" fill="#f3f4f6"/>
+<circle cx="96" cy="132" r="28" fill="#0b0d12"/>
+<text x="96" y="141" text-anchor="middle" font-size="28" font-weight="600" fill="#ffffff">1</text>
+<text x="152" y="140" font-size="28" font-weight="600" fill="#0b0d12">Chọn Custom 1 đến 3</text>
+<rect x="572" y="108" width="80" height="14" rx="7" fill="#7c8594"/>
+<rect x="572" y="128" width="80" height="14" rx="7" fill="#0b0d12"/>
+<rect x="572" y="148" width="80" height="14" rx="7" fill="#7c8594"/>
+<rect x="40" y="208" width="640" height="104" rx="14" fill="#f3f4f6"/>
+<circle cx="96" cy="260" r="28" fill="#0b0d12"/>
+<text x="96" y="269" text-anchor="middle" font-size="28" font-weight="600" fill="#ffffff">2</text>
+<text x="152" y="268" font-size="28" font-weight="600" fill="#0b0d12">Vùng trắng lấp kín khung</text>
+<rect x="560" y="226" width="100" height="68" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<rect x="584" y="240" width="52" height="40" rx="4" fill="none" stroke="#f05a14" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="40" y="336" width="640" height="104" rx="14" fill="#f3f4f6"/>
+<circle cx="96" cy="388" r="28" fill="#0b0d12"/>
+<text x="96" y="397" text-anchor="middle" font-size="28" font-weight="600" fill="#ffffff">3</text>
+<text x="152" y="396" font-size="28" font-weight="600" fill="#0b0d12">Bấm giữa để chụp</text>
+<polyline points="582,388 600,406 632,372" fill="none" stroke="#127a3a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

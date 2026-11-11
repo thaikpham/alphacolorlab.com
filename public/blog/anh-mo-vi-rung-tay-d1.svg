@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba dấu vết nhòe: rung tay, chủ thể cử động và hụt nét</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="36" y="100" width="192" height="256" rx="14" fill="#f3f4f6"/>
+<rect x="264" y="100" width="192" height="256" rx="14" fill="#f3f4f6"/>
+<rect x="492" y="100" width="192" height="256" rx="14" fill="#f3f4f6"/>
+<rect x="78" y="150" width="112" height="16" rx="8" fill="#7c8594" fill-opacity="0.6"/>
+<rect x="78" y="200" width="112" height="16" rx="8" fill="#7c8594" fill-opacity="0.6"/>
+<rect x="78" y="250" width="112" height="16" rx="8" fill="#7c8594" fill-opacity="0.6"/>
+<rect x="78" y="300" width="112" height="16" rx="8" fill="#7c8594" fill-opacity="0.6"/>
+<rect x="60" y="150" width="112" height="16" rx="8" fill="#0b0d12"/>
+<rect x="60" y="200" width="112" height="16" rx="8" fill="#0b0d12"/>
+<rect x="60" y="250" width="112" height="16" rx="8" fill="#0b0d12"/>
+<rect x="60" y="300" width="112" height="16" rx="8" fill="#0b0d12"/>
+<line x1="288" y1="120" x2="288" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="320" y1="120" x2="320" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="352" y1="120" x2="352" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="384" y1="120" x2="384" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="416" y1="120" x2="416" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="448" y1="120" x2="448" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="284" y1="220" x2="308" y2="220" stroke="#0b0d12" stroke-width="4" stroke-linecap="round"/>
+<line x1="284" y1="250" x2="308" y2="250" stroke="#0b0d12" stroke-width="4" stroke-linecap="round"/>
+<line x1="284" y1="280" x2="308" y2="280" stroke="#0b0d12" stroke-width="4" stroke-linecap="round"/>
+<rect x="316" y="190" width="84" height="100" rx="14" fill="#f05a14"/>
+<line x1="516" y1="120" x2="516" y2="340" stroke="#7c8594" stroke-width="8" stroke-opacity="0.35"/>
+<line x1="548" y1="120" x2="548" y2="340" stroke="#7c8594" stroke-width="8" stroke-opacity="0.35"/>
+<line x1="580" y1="120" x2="580" y2="340" stroke="#7c8594" stroke-width="8" stroke-opacity="0.35"/>
+<line x1="612" y1="120" x2="612" y2="340" stroke="#7c8594" stroke-width="8" stroke-opacity="0.35"/>
+<line x1="644" y1="120" x2="644" y2="340" stroke="#7c8594" stroke-width="8" stroke-opacity="0.35"/>
+<line x1="676" y1="120" x2="676" y2="340" stroke="#7c8594" stroke-width="8" stroke-opacity="0.35"/>
+<circle cx="588" cy="240" r="60" fill="#0b0d12" fill-opacity="0.08"/>
+<circle cx="588" cy="240" r="50" fill="#0b0d12" fill-opacity="0.12"/>
+<circle cx="588" cy="240" r="40" fill="#0b0d12" fill-opacity="0.18"/>
+<circle cx="588" cy="240" r="30" fill="#0b0d12" fill-opacity="0.3"/>
+<text x="132" y="402" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Rung tay</text>
+<text x="360" y="402" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Chủ thể chạy</text>
+<text x="588" y="402" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Hụt nét</text>
+</svg>

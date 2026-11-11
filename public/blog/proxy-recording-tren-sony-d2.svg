@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Hai định dạng proxy của A7C II: XAVC HS HD và XAVC S HD</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="120" width="320" height="270" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="4"/>
+<text x="56" y="176" font-size="28" font-weight="600" fill="#0b0d12">XAVC HS HD</text>
+<text x="56" y="232" font-size="26" font-weight="600" fill="#0b0d12">1920×1080</text>
+<text x="56" y="284" font-size="24" fill="#4a5260">16 hoặc 9 Mbps, 10 bit</text>
+<text x="56" y="330" font-size="24" fill="#4a5260">MPEG-H HEVC/H.265</text>
+<rect x="368" y="120" width="320" height="270" rx="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<text x="392" y="176" font-size="28" font-weight="600" fill="#0b0d12">XAVC S HD</text>
+<text x="392" y="232" font-size="26" font-weight="600" fill="#0b0d12">1280×720</text>
+<text x="392" y="284" font-size="24" fill="#4a5260">6 Mbps, 8 bit</text>
+<text x="392" y="330" font-size="24" fill="#4a5260">MPEG-4 AVC/H.264</text>
+</svg>

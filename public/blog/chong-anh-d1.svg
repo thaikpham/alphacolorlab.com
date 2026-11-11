@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480">
+<title>Khuôn sáng cộng họa tiết thành ảnh chồng</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="64" text-anchor="middle" font-family="Noto Sans, system-ui, sans-serif" font-size="28" font-weight="600" fill="#0b0d12">Khuôn sáng cộng họa tiết</text>
+<rect x="40" y="110" width="180" height="220" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="130" cy="190" r="44" fill="#4a5260"/>
+<path d="M 80 318 Q 80 232 130 232 Q 180 232 180 318 Z" fill="#4a5260"/>
+<rect x="270" y="110" width="180" height="220" rx="14" fill="#0b0d12" stroke="#0b0d12" stroke-width="3"/>
+<g fill="#f3f4f6">
+<circle cx="360" cy="168" r="26"/>
+<circle cx="386" cy="188" r="26"/>
+<circle cx="376" cy="220" r="26"/>
+<circle cx="344" cy="220" r="26"/>
+<circle cx="334" cy="188" r="26"/>
+</g>
+<circle cx="360" cy="200" r="12" fill="#7c8594"/>
+<rect x="500" y="110" width="180" height="220" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="590" cy="190" r="44" fill="#4a5260"/>
+<path d="M 540 318 Q 540 232 590 232 Q 640 232 640 318 Z" fill="#4a5260"/>
+<g fill="#f3f4f6">
+<circle cx="590" cy="174" r="13"/>
+<circle cx="603" cy="184" r="13"/>
+<circle cx="598" cy="200" r="13"/>
+<circle cx="582" cy="200" r="13"/>
+<circle cx="577" cy="184" r="13"/>
+</g>
+<path d="M 232 220 H 258 M 245 207 V 233" stroke="#0b0d12" stroke-width="4" stroke-linecap="round" fill="none"/>
+<path d="M 462 210 H 488 M 462 230 H 488" stroke="#0b0d12" stroke-width="4" stroke-linecap="round" fill="none"/>
+<g font-family="Noto Sans, system-ui, sans-serif" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">
+<text x="130" y="374">Khuôn sáng</text>
+<text x="360" y="374">Họa tiết</text>
+<text x="590" y="374" fill="#b43f00">Ảnh chồng</text>
+</g>
+</svg>

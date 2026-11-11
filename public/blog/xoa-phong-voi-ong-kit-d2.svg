@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Hai khung tiêu cự ngắn và dài cùng chỗ đứng</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<defs>
+<clipPath id="khung16"><rect x="40" y="120" width="300" height="280" rx="14"/></clipPath>
+<clipPath id="khung50"><rect x="380" y="120" width="300" height="280" rx="14"/></clipPath>
+</defs>
+<rect x="40" y="120" width="300" height="280" rx="14" fill="#f3f4f6"/>
+<g clip-path="url(#khung16)" fill="#7c8594">
+<circle cx="90" cy="200" r="22"/>
+<circle cx="280" cy="180" r="30"/>
+<circle cx="130" cy="330" r="18"/>
+<circle cx="300" cy="300" r="26"/>
+<circle cx="170" cy="150" r="14"/>
+</g>
+<g fill="#0b0d12">
+<circle cx="190" cy="228" r="12"/>
+<ellipse cx="190" cy="292" rx="28" ry="18"/>
+</g>
+<rect x="40" y="120" width="300" height="280" rx="14" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<rect x="380" y="120" width="300" height="280" rx="14" fill="#f3f4f6"/>
+<g clip-path="url(#khung50)" fill="#7c8594">
+<circle cx="430" cy="210" r="52"/>
+<circle cx="610" cy="170" r="34"/>
+<circle cx="600" cy="320" r="30"/>
+</g>
+<g fill="#0b0d12">
+<circle cx="530" cy="206" r="26"/>
+<ellipse cx="530" cy="318" rx="60" ry="38"/>
+</g>
+<rect x="380" y="120" width="300" height="280" rx="14" fill="none" stroke="#f05a14" stroke-width="3"/>
+<text x="190" y="104" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">Khung tiêu cự ngắn</text>
+<text x="530" y="104" text-anchor="middle" font-size="28" font-weight="600" fill="#b43f00">Khung tiêu cự dài</text>
+<text x="360" y="448" text-anchor="middle" font-size="26" font-weight="600" fill="#4a5260">Cùng chỗ đứng</text>
+</svg>

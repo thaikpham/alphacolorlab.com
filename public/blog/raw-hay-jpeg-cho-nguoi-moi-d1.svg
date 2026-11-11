@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Hai đường đi của JPEG và RAW</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="40" y="215" width="150" height="90" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<text x="115" y="269" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Cảm biến</text>
+<path d="M190 260 H230 V160 H262" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<path d="M230 260 V300 H262" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="270,160 258,153 258,167" fill="#0b0d12"/>
+<polygon points="270,300 258,293 258,307" fill="#0b0d12"/>
+<rect x="270" y="125" width="230" height="70" rx="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<text x="385" y="168" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Xử lý trong máy</text>
+<path d="M500 160 H528" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="536,160 524,153 524,167" fill="#0b0d12"/>
+<rect x="536" y="125" width="148" height="70" rx="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<text x="610" y="168" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">JPEG</text>
+<rect x="270" y="265" width="230" height="70" rx="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<text x="385" y="308" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Ghi dữ liệu thô</text>
+<path d="M500 300 H528" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="536,300 524,293 524,307" fill="#0b0d12"/>
+<rect x="536" y="265" width="148" height="70" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
+<text x="610" y="308" text-anchor="middle" font-size="26" font-weight="600" fill="#b43f00">RAW</text>
+<path d="M610 335 V366" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="610,378 604,366 616,366" fill="#0b0d12"/>
+<rect x="410" y="380" width="275" height="56" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<text x="547.5" y="415" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Phần mềm chỉnh RAW</text>
+</svg>

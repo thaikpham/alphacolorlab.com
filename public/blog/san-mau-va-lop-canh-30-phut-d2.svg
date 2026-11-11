@@ -1,0 +1,16 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba lớp cảnh từ máy ảnh đến hậu cảnh</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="60" y="110" font-size="28" font-weight="600" fill="#0b0d12">Gần lớn, xa nhỏ</text>
+<line x1="40" y1="380" x2="680" y2="380" stroke="#7c8594" stroke-width="2"/>
+<rect x="60" y="300" width="70" height="60" rx="8" fill="#0b0d12"/>
+<rect x="130" y="318" width="24" height="24" rx="4" fill="#4a5260"/>
+<text x="95" y="280" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Máy</text>
+<rect x="250" y="200" width="20" height="180" rx="8" fill="#4a5260"/>
+<text x="260" y="170" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Tiền cảnh</text>
+<rect x="420" y="240" width="20" height="140" rx="8" fill="#f05a14"/>
+<text x="430" y="210" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Trung cảnh</text>
+<text x="430" y="425" font-size="28" font-weight="600" text-anchor="middle" fill="#b43f00">Lấy nét ở đây</text>
+<rect x="600" y="270" width="20" height="110" rx="8" fill="#7c8594"/>
+<text x="610" y="240" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Hậu cảnh</text>
+</svg>

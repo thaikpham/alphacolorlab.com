@@ -1,0 +1,202 @@
+{
+  "dong-bo-man-sau": [
+    {
+      "find": "- Khẩu F5.6–F8, ISO 400–800.",
+      "replace": "- Khẩu F5.6–F8, [[ISO]] 400–800."
+    },
+    {
+      "find": "- Cân bằng trắng **Đèn sợi đốt** hoặc nhập K ~3.200K: vệt đèn nền ngả xanh lạnh.",
+      "replace": "- [[Cân bằng trắng và nhiệt độ màu|Cân bằng trắng]] **Đèn sợi đốt** hoặc nhập K ~3.200K: vệt đèn nền ngả xanh lạnh."
+    },
+    {
+      "find": "2. Đo sáng cho hậu cảnh trước (chưa tính flash): nền phải hơi thiếu sáng.",
+      "replace": "2. [[Đo sáng]] cho hậu cảnh trước (chưa tính flash): nền phải hơi thiếu sáng."
+    },
+    {
+      "find": "3. Chủ thể di chuyển, hoặc mình lia nhẹ máy trong lúc màn trập mở.",
+      "replace": "3. Chủ thể di chuyển, hoặc mình lia nhẹ máy trong lúc [[Tốc độ màn trập|màn trập]] mở."
+    }
+  ],
+  "lay-net": [
+    {
+      "find": "Khi chủ thể không nằm giữa khung: đặt điểm nét lên chủ thể → bấm nửa nút (nghe \"bíp\") → giữ nguyên, bố cục lại → bấm hết. Dùng với AF-S.",
+      "replace": "Khi chủ thể không nằm giữa khung: đặt điểm nét lên chủ thể → bấm nửa nút (nghe \"bíp\") → giữ nguyên, bố cục lại → bấm hết. Dùng với [[af-s-af-c-dmf-chon-mot|AF-S]]."
+    }
+  ],
+  "do-sau-truong-anh-va-xoa-phong": [
+    {
+      "find": "1. **Mở khẩu** (số f nhỏ): F2.8 mờ hơn F16. Đây là yếu tố \"phần cứng\" chỉnh nhanh nhất ở chế độ A. → [[Khẩu độ]]",
+      "replace": "1. **Mở khẩu** (số f nhỏ): F2.8 mờ hơn F16. Đây là yếu tố \"phần cứng\" chỉnh nhanh nhất ở [[che-do-a-cho-ngay-dau|chế độ A]]. → [[Khẩu độ]]"
+    }
+  ],
+  "can-bang-trang-va-nhiet-do-mau": [
+    {
+      "find": "- Mắt và não người tự bù trừ (quả táo dưới đèn nào cũng thấy đỏ), cảm biến thì không. Máy cần được báo nguồn sáng là gì.",
+      "replace": "- Mắt và não người tự bù trừ (quả táo dưới đèn nào cũng thấy đỏ), [[Cảm biến hình ảnh|cảm biến]] thì không. Máy cần được báo nguồn sáng là gì."
+    },
+    {
+      "find": "- Mỗi mức cân bằng trắng **nhớ chỉnh tinh riêng** (đã kiểm trên file máy A7C II): chỉnh A3 ở AWB rồi chuyển sang Nhiệt độ màu thì máy dùng chỉnh tinh đã lưu của Nhiệt độ màu, không mang A3 theo. Chỉnh tinh có cả nửa nấc (ví dụ M0.5).",
+      "replace": "- Mỗi mức cân bằng trắng **nhớ chỉnh tinh riêng** (đã kiểm trên file máy [[A7C II]]): chỉnh A3 ở AWB rồi chuyển sang Nhiệt độ màu thì máy dùng chỉnh tinh đã lưu của Nhiệt độ màu, không mang A3 theo. Chỉnh tinh có cả nửa nấc (ví dụ M0.5)."
+    }
+  ],
+  "picture-profile": [
+    {
+      "find": "- **Gamma:** đường cong tông. A7C II có Movie, Still, S-Cinetone, Cine1–Cine4, ITU709, S-Log3, HLG, HLG1–HLG3.",
+      "replace": "- **Gamma:** đường cong tông. [[A7C II]] có Movie, Still, S-Cinetone, Cine1–Cine4, ITU709, S-Log3, HLG, HLG1–HLG3."
+    }
+  ],
+  "raw-jpeg-va-heif": [
+    {
+      "find": "- **JPEG/HEIF**: sự kiện, du lịch, cần đăng nhanh, người chưa biết hậu kỳ. Chọn đúng Picture Profile và cân bằng trắng ngay khi chụp.",
+      "replace": "- **JPEG/HEIF**: sự kiện, du lịch, cần đăng nhanh, người chưa biết hậu kỳ. Chọn đúng [[Picture Profile]] và [[Cân bằng trắng và nhiệt độ màu|cân bằng trắng]] ngay khi chụp."
+    }
+  ],
+  "he-menu-legacy-va-new-gen": [
+    {
+      "find": "- **New-gen Menu:** bắt đầu từ A7S III (2020). Tab Chụp, Phơi sáng/màu, Lấy nét, Xem lại, Mạng, Cài đặt; mỗi tab chia thành nhóm có tên (ví dụ Phơi sáng/màu › Đo sáng).",
+      "replace": "- **New-gen Menu:** bắt đầu từ [[A7S III]] (2020). Tab Chụp, Phơi sáng/màu, [[Lấy nét]], Xem lại, Mạng, Cài đặt; mỗi tab chia thành nhóm có tên (ví dụ Phơi sáng/màu › [[Đo sáng]])."
+    }
+  ],
+  "bu-sang": [
+    {
+      "find": "- Vòng bù sáng trên thân máy (đa số máy full-frame), hoặc nút ▼ / bánh xe điều khiển, hoặc menu **Bù sáng** (Exposure Comp.). Bước 1/3 EV; phạm vi tùy model.",
+      "replace": "- Vòng bù sáng trên thân máy (đa số máy [[Cảm biến hình ảnh|full-frame]]), hoặc nút ▼ / bánh xe điều khiển, hoặc menu **Bù sáng** (Exposure Comp.). Bước 1/3 EV; phạm vi tùy model."
+    },
+    {
+      "find": "- Có tác dụng ở P, A, S và **M khi dùng ISO AUTO**. Ở M với ISO cố định, bù sáng không thay đổi ảnh.",
+      "replace": "- Có tác dụng ở P, A, S và **M khi dùng ISO AUTO**. Ở M với [[ISO]] cố định, bù sáng không thay đổi ảnh."
+    }
+  ],
+  "che-do-chup-p-a-s-m": [
+    {
+      "find": "- **A**: chân dung, phong cảnh, macro — mọi lúc cần kiểm soát xóa phông. **Chế độ khuyên dùng cho người mới** (giáo trình Sony: \"không dùng Auto nữa\").",
+      "replace": "- **A**: chân dung, phong cảnh, macro — mọi lúc cần kiểm soát [[Độ sâu trường ảnh và xóa phông|xóa phông]]. **Chế độ khuyên dùng cho người mới** (giáo trình Sony: \"không dùng Auto nữa\")."
+    },
+    {
+      "find": "- *Dân chuyên nghiệp có phải luôn dùng M?* Không. A + ISO AUTO + bù sáng nhanh và chính xác cho phần lớn tình huống; M dùng khi ánh sáng cố định hoặc cần nhất quán giữa các tấm.",
+      "replace": "- *Dân chuyên nghiệp có phải luôn dùng M?* Không. A + [[ISO|ISO AUTO]] + [[Bù sáng|bù sáng]] nhanh và chính xác cho phần lớn tình huống; M dùng khi ánh sáng cố định hoặc cần nhất quán giữa các tấm."
+    }
+  ],
+  "iso": [
+    {
+      "find": "- Khẩu độ và tốc độ quyết định *bao nhiêu ánh sáng vào máy*; ISO quyết định *khuếch đại ánh sáng đó bao nhiêu lần*.",
+      "replace": "- [[Khẩu độ]] và tốc độ quyết định *bao nhiêu ánh sáng vào máy*; ISO quyết định *khuếch đại ánh sáng đó bao nhiêu lần*."
+    },
+    {
+      "find": "- **ISO AUTO** với khoảng giới hạn (ví dụ 100–6400) và tốc độ tối thiểu (ISO AUTO Min. SS, ví dụ 1/125s khi chụp người). Đây là cấu hình khởi đầu khuyên dùng cho người mới.",
+      "replace": "- **ISO AUTO** với khoảng giới hạn (ví dụ 100–6400) và tốc độ tối thiểu ([[iso-auto-min-ss|ISO AUTO Min. SS]], ví dụ 1/125s khi chụp người). Đây là cấu hình khởi đầu khuyên dùng cho người mới."
+    },
+    {
+      "find": "- Chế độ M + ISO AUTO: khóa cả khẩu và tốc độ, máy tự lo độ sáng bằng ISO, và **bù sáng vẫn có tác dụng** (máy đổi ISO).",
+      "replace": "- [[che-do-m-ba-buoc|Chế độ M]] + ISO AUTO: khóa cả khẩu và tốc độ, máy tự lo độ sáng bằng ISO, và **bù sáng vẫn có tác dụng** (máy đổi ISO)."
+    },
+    {
+      "find": "- ISO AUTO tối thiểu/tối đa chọn theo nấc 1/3 stop. **ISO AUTO tốc độ tối thiểu** có trên A6400 và A7C II, không có trên ZV-E10.",
+      "replace": "- ISO AUTO tối thiểu/tối đa chọn theo nấc [[Stop và EV|1/3 stop]]. **ISO AUTO tốc độ tối thiểu** có trên A6400 và A7C II, không có trên ZV-E10."
+    },
+    {
+      "find": "- *ISO bao nhiêu thì \"chịu được\"?* Tùy cảm biến và mục đích đăng ảnh; full-frame đời mới thường ổn tới 6400–12800 cho ảnh mạng xã hội. Nên tự chụp thử máy mình để biết giới hạn.",
+      "replace": "- *ISO bao nhiêu thì \"chịu được\"?* Tùy [[Cảm biến hình ảnh|cảm biến]] và mục đích đăng ảnh; full-frame đời mới thường ổn tới 6400–12800 cho ảnh mạng xã hội. Nên tự chụp thử máy mình để biết giới hạn."
+    }
+  ],
+  "khau-do": [
+    {
+      "find": "- Vì sao √2: số f là tỷ lệ tiêu cự / đường kính lỗ, còn lượng sáng tỷ lệ với **diện tích** lỗ. Đường kính nhỏ đi √2 lần thì diện tích nhỏ đi 2 lần.",
+      "replace": "- Vì sao √2: số f là tỷ lệ [[Tiêu cự|tiêu cự]] / đường kính lỗ, còn lượng sáng tỷ lệ với **diện tích** lỗ. Đường kính nhỏ đi √2 lần thì diện tích nhỏ đi 2 lần."
+    },
+    {
+      "find": "- Mở khẩu (số f nhỏ): sáng hơn, độ sâu trường ảnh nông, xóa phông mạnh. Khép khẩu (số f lớn): tối hơn, nét sâu từ trước ra sau.",
+      "replace": "- Mở khẩu (số f nhỏ): sáng hơn, [[Độ sâu trường ảnh và xóa phông|độ sâu trường ảnh]] nông, xóa phông mạnh. Khép khẩu (số f lớn): tối hơn, nét sâu từ trước ra sau."
+    },
+    {
+      "find": "- Máy hiện nay chỉnh theo bước 1/3 stop: F5.6 → F6.3 → F7.1 → F8.",
+      "replace": "- Máy hiện nay chỉnh theo bước [[Stop và EV|1/3 stop]]: F5.6 → F6.3 → F7.1 → F8."
+    }
+  ],
+  "stop-va-ev": [
+    {
+      "find": "- Ba yếu tố đo bằng ba đơn vị khác nhau (số f, giây, ISO), nên người ta đặt ra \"stop\" để quy đổi. Tiếng Nhật gọi là 段 (đoạn/bậc).",
+      "replace": "- Ba yếu tố đo bằng ba đơn vị khác nhau (số f, giây, [[ISO]]), nên người ta đặt ra \"stop\" để quy đổi. Tiếng Nhật gọi là 段 (đoạn/bậc)."
+    },
+    {
+      "find": "- Bảng EV (ở ISO 100) cho thấy rất nhiều cặp khẩu–tốc cùng ra một độ sáng; chọn cặp nào là chọn **cách diễn đạt** (xóa phông hay nét sâu, bắt dính hay nhòe).",
+      "replace": "- Bảng EV (ở ISO 100) cho thấy rất nhiều cặp khẩu–tốc cùng ra một độ sáng; chọn cặp nào là chọn **cách diễn đạt** ([[Độ sâu trường ảnh và xóa phông|xóa phông]] hay nét sâu, bắt dính hay nhòe)."
+    }
+  ],
+  "tam-giac-phoi-sang": [
+    {
+      "find": "- Khẩu độ và màn trập là hai \"cơ cấu\" thật: khẩu độ nằm trong ống kính (thân máy điều khiển), màn trập nằm trước cảm biến trong thân máy. ISO là cách thứ ba khi hai cơ cấu kia đã chạm giới hạn.",
+      "replace": "- [[Khẩu độ]] và màn trập là hai \"cơ cấu\" thật: khẩu độ nằm trong ống kính (thân máy điều khiển), màn trập nằm trước [[Cảm biến hình ảnh|cảm biến]] trong thân máy. ISO là cách thứ ba khi hai cơ cấu kia đã chạm giới hạn."
+    },
+    {
+      "find": "- *Nên chỉnh yếu tố nào trước?* Chọn theo ý đồ: cần xóa phông → khẩu độ (chế độ A); cần bắt dính/làm nhòe chuyển động → tốc độ (chế độ S); ISO để máy tự lo (ISO AUTO) trừ khi cần khóa nhiễu.",
+      "replace": "- *Nên chỉnh yếu tố nào trước?* Chọn theo ý đồ: cần xóa phông → khẩu độ ([[che-do-a-cho-ngay-dau|chế độ A]]); cần bắt dính/làm nhòe chuyển động → tốc độ (chế độ S); ISO để máy tự lo (ISO AUTO) trừ khi cần khóa nhiễu."
+    }
+  ],
+  "toc-do-man-trap": [
+    {
+      "find": "- Mốc an toàn khi cầm tay: không chậm hơn **1/tiêu cự** (ống 50mm → 1/50s; máy APS-C nhân thêm 1,5). Chống rung SteadyShot cho chậm thêm vài stop, nhưng **chỉ chống rung tay, không cứu được chủ thể chuyển động**.",
+      "replace": "- Mốc an toàn khi cầm tay: không chậm hơn **1/tiêu cự** (ống 50mm → 1/50s; máy [[Cảm biến hình ảnh|APS-C]] nhân thêm 1,5). Chống rung SteadyShot cho chậm thêm vài [[Stop và EV|stop]], nhưng **chỉ chống rung tay, không cứu được chủ thể chuyển động**."
+    },
+    {
+      "find": "- Chế độ **S (Ưu tiên tốc độ màn trập)** hoặc **M**. BULB (giữ nút chụp bao lâu mở bấy lâu) có ở chế độ M.",
+      "replace": "- Chế độ **S (Ưu tiên tốc độ màn trập)** hoặc **M**. BULB (giữ nút chụp bao lâu mở bấy lâu) có ở [[che-do-m-ba-buoc|chế độ M]]."
+    },
+    {
+      "find": "- ISO AUTO có tham số **tốc độ tối thiểu** (ISO AUTO Min. SS): máy sẽ tăng ISO trước khi để tốc độ chậm hơn mức này.",
+      "replace": "- [[ISO|ISO AUTO]] có tham số **tốc độ tối thiểu** ([[iso-auto-min-ss|ISO AUTO Min. SS]]): máy sẽ tăng ISO trước khi để tốc độ chậm hơn mức này."
+    }
+  ],
+  "do-sang": [
+    {
+      "find": "- Mọi chế độ đo sáng đều nhắm tới mức xám trung tính, nên vẫn cần [[Bù sáng]] khi cảnh chủ yếu trắng hoặc đen.",
+      "replace": "- Mọi [[chon-metering-mode|chế độ đo sáng]] đều nhắm tới mức xám trung tính, nên vẫn cần [[Bù sáng]] khi cảnh chủ yếu trắng hoặc đen."
+    },
+    {
+      "find": "- Ở chế độ M, thước đo phơi sáng trên màn hình cho biết thông số đang lệch bao nhiêu stop so với mức máy đo.",
+      "replace": "- Ở [[che-do-m-ba-buoc|chế độ M]], thước đo phơi sáng trên màn hình cho biết thông số đang lệch bao nhiêu [[Stop và EV|stop]] so với mức máy đo."
+    }
+  ],
+  "bo-nho-cai-dat-va-memory-recall": [
+    {
+      "find": "- **Trên thân máy:** A7C II lưu 3 bộ, gọi bằng vòng chế độ 1, 2, 3.",
+      "replace": "- **Trên thân máy:** [[A7C II]] lưu 3 bộ, gọi bằng vòng chế độ 1, 2, 3."
+    },
+    {
+      "find": "- **Trên thẻ nhớ:** 4 bộ M1–M4. File nằm ở `PRIVATE/SONY/SETTING/<thư mục model>/CAMPR01P.DAT`…`CAMPR04P.DAT`; đuôi P là máy hệ PAL (máy bán ở Việt Nam), N là NTSC. Thư mục: ZV-E10 là `E10`, A7C II là `7CM2`.",
+      "replace": "- **Trên thẻ nhớ:** 4 bộ M1–M4. File nằm ở `PRIVATE/SONY/SETTING/<thư mục model>/CAMPR01P.DAT`…`CAMPR04P.DAT`; đuôi P là máy hệ PAL (máy bán ở Việt Nam), N là [[Độ phân giải và tốc độ khung hình video|NTSC]]. Thư mục: ZV-E10 là `E10`, A7C II là `7CM2`."
+    },
+    {
+      "find": "- ZV-E10: gọi lại bằng MENU › Cài đặt máy ảnh1 › Chế độ chụp › MR. Mục \"MR Memory\" là để lưu, chọn nhầm sẽ ghi đè.",
+      "replace": "- [[ZV-E10]]: gọi lại bằng MENU › Cài đặt máy ảnh1 › Chế độ chụp › MR. Mục \"MR Memory\" là để lưu, chọn nhầm sẽ ghi đè."
+    }
+  ],
+  "chong-rung-dien-tu": [
+    {
+      "find": "- Máy xử lý trên chính dữ liệu ảnh, không cần cơ cấu dịch cảm biến.",
+      "replace": "- Máy xử lý trên chính dữ liệu ảnh, không cần cơ cấu dịch [[Cảm biến hình ảnh|cảm biến]]."
+    },
+    {
+      "find": "- [[ZV-E10]] và [[ZV-E10 II]] không có [[Chống rung IBIS]]. Khi quay, SteadyShot có hai mức: Tiêu chuẩn chỉ dùng OSS của ống kính, Chủ động thêm chống rung điện tử.",
+      "replace": "- [[ZV-E10]] và [[ZV-E10 II]] không có [[Chống rung IBIS]]. Khi quay, SteadyShot có hai mức: Tiêu chuẩn chỉ dùng [[OSS]] của ống kính, Chủ động thêm chống rung điện tử."
+    }
+  ],
+  "power-zoom": [
+    {
+      "find": "- APS-C: [[E PZ 16-50mm F3.5-5.6 OSS II]], [[E PZ 10-20mm F4 G]], [[E PZ 18-105mm F4 G OSS]].",
+      "replace": "- [[Cảm biến hình ảnh|APS-C]]: [[E PZ 16-50mm F3.5-5.6 OSS II]], [[E PZ 10-20mm F4 G]], [[E PZ 18-105mm F4 G OSS]]."
+    }
+  ],
+  "do-phan-giai-anh-tinh": [
+    {
+      "find": "- Ít MP trên cảm biến full-frame thì mỗi điểm ảnh to hơn, hợp quay phim và chụp thiếu sáng.",
+      "replace": "- Ít MP trên [[Cảm biến hình ảnh|cảm biến]] full-frame thì mỗi điểm ảnh to hơn, hợp quay phim và chụp thiếu sáng."
+    }
+  ],
+  "ong-kinh-zoom-va-ong-kinh-fix": [
+    {
+      "find": "- **Fix**: khẩu độ lớn như F1.4, F1.8 nên xóa phông mạnh và chụp tốt khi thiếu sáng. Muốn đổi khung thì bạn bước tới hoặc lùi lại.",
+      "replace": "- **Fix**: [[Khẩu độ|khẩu độ]] lớn như F1.4, F1.8 nên [[Độ sâu trường ảnh và xóa phông|xóa phông]] mạnh và chụp tốt khi thiếu sáng. Muốn đổi khung thì bạn bước tới hoặc lùi lại."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Quy đổi tiêu cự 50 mm trên máy APS-C ra tốc độ tối thiểu</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="180" y="40" width="360" height="70" rx="14" fill="#f3f4f6" stroke="#e3e6eb" stroke-width="2"/>
+<rect x="180" y="150" width="360" height="70" rx="14" fill="#f3f4f6" stroke="#e3e6eb" stroke-width="2"/>
+<rect x="180" y="260" width="360" height="70" rx="14" fill="#f3f4f6" stroke="#e3e6eb" stroke-width="2"/>
+<rect x="180" y="370" width="360" height="70" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
+<text x="360" y="84" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Ống 50 mm</text>
+<text x="360" y="194" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Nhân với 1,5</text>
+<text x="360" y="304" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Tương đương 75 mm</text>
+<text x="360" y="414" text-anchor="middle" font-size="26" font-weight="600" fill="#b43f00">Tốc độ tối thiểu 1/80 s</text>
+<line x1="360" y1="110" x2="360" y2="136" stroke="#7c8594" stroke-width="3"/>
+<polygon points="350,136 370,136 360,150" fill="#7c8594"/>
+<line x1="360" y1="220" x2="360" y2="246" stroke="#7c8594" stroke-width="3"/>
+<polygon points="350,246 370,246 360,260" fill="#7c8594"/>
+<line x1="360" y1="330" x2="360" y2="356" stroke="#7c8594" stroke-width="3"/>
+<polygon points="350,356 370,356 360,370" fill="#7c8594"/>
+</svg>

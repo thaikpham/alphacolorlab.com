@@ -1,0 +1,20 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+  <title>Khung ngang giữ bối cảnh quanh người, khung dọc đưa người lên gần hết chiều cao khung</title>
+  <rect width="720" height="480" fill="#ffffff"/>
+  <rect x="48" y="120" width="324" height="216" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+  <rect x="60" y="230" width="60" height="106" fill="#e3e6eb"/>
+  <rect x="130" y="200" width="70" height="136" fill="#e3e6eb"/>
+  <rect x="210" y="240" width="56" height="96" fill="#e3e6eb"/>
+  <rect x="276" y="215" width="80" height="121" fill="#e3e6eb"/>
+  <circle cx="300" cy="278" r="11" fill="#4a5260"/>
+  <rect x="288" y="292" width="24" height="44" rx="12" fill="#4a5260"/>
+  <line x1="188" y1="178" x2="188" y2="200" stroke="#f05a14" stroke-width="3"/>
+  <circle cx="188" cy="200" r="4" fill="#f05a14"/>
+  <rect x="64" y="134" width="248" height="44" rx="22" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
+  <text x="188" y="165" font-size="26" font-weight="600" fill="#b43f00" text-anchor="middle">Thêm bối cảnh</text>
+  <text x="210" y="380" font-size="28" font-weight="600" fill="#0b0d12" text-anchor="middle">Khung ngang</text>
+  <rect x="512" y="96" width="160" height="240" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+  <circle cx="592" cy="180" r="24" fill="#4a5260"/>
+  <rect x="566" y="214" width="52" height="122" rx="26" fill="#4a5260"/>
+  <text x="592" y="380" font-size="28" font-weight="600" fill="#0b0d12" text-anchor="middle">Khung dọc</text>
+</svg>

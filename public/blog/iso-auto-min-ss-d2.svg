@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Khi ISO đã tối đa mà vẫn thiếu sáng</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="180" width="180" height="120" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="270" y="180" width="180" height="120" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="508" y="180" width="180" height="120" rx="14" fill="#f05a14" stroke="#f05a14" stroke-width="3"/>
+<g font-size="24" font-weight="600" text-anchor="middle" fill="#0b0d12">
+<text x="122" y="250">Ánh sáng yếu</text>
+<text x="360" y="250">ISO tối đa</text>
+<text x="598" y="250">Thiếu sáng</text>
+</g>
+<line x1="212" y1="240" x2="252" y2="240" stroke="#7c8594" stroke-width="4"/>
+<polygon points="250,231 266,240 250,249" fill="#7c8594"/>
+<line x1="450" y1="240" x2="490" y2="240" stroke="#7c8594" stroke-width="4"/>
+<polygon points="488,231 504,240 488,249" fill="#7c8594"/>
+<text x="32" y="340" font-size="24" fill="#4a5260">Tính ra chậm</text>
+<text x="360" y="340" font-size="24" fill="#4a5260" text-anchor="middle">Vẫn thiếu sáng</text>
+<text x="688" y="340" font-size="24" fill="#4a5260" text-anchor="end">Chậm hơn Min. SS</text>
+</svg>

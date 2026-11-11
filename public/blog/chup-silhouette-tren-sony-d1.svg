@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Sơ đồ nhìn từ hông: máy đặt thấp, chủ thể đứng giữa máy và mặt trời, vòng đo Spot chỉ vào vùng trời</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="0" y="0" width="720" height="380" fill="#f3f4f6"/>
+<rect x="0" y="380" width="720" height="100" fill="#e3e6eb"/>
+<line x1="0" y1="380" x2="720" y2="380" stroke="#7c8594" stroke-width="2"/>
+<circle cx="620" cy="330" r="34" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<text x="620" y="270" text-anchor="middle" font-size="26" font-weight="600" fill="#4a5260">Mặt trời</text>
+<path d="M202 344 L520 70" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="10 8"/>
+<circle cx="520" cy="70" r="44" fill="none" stroke="#f05a14" stroke-width="4"/>
+<text x="458" y="80" text-anchor="end" font-size="26" font-weight="600" fill="#b43f00">Vùng đo Spot</text>
+<rect x="96" y="332" width="92" height="48" rx="8" fill="#0b0d12"/>
+<rect x="188" y="340" width="14" height="26" rx="4" fill="#7c8594"/>
+<text x="150" y="300" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Máy thấp</text>
+<circle cx="380" cy="236" r="24" fill="#0b0d12"/>
+<rect x="356" y="262" width="48" height="94" rx="16" fill="#0b0d12"/>
+<rect x="358" y="346" width="16" height="34" rx="6" fill="#0b0d12"/>
+<rect x="382" y="346" width="16" height="34" rx="6" fill="#0b0d12"/>
+<text x="428" y="300" font-size="26" font-weight="600" fill="#0b0d12">Chủ thể</text>
+</svg>

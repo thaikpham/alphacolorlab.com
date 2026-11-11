@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Nút chụp mặc định gánh hai việc, sau khi tách phím AF On lo lấy nét</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="56" y="64" width="608" height="168" rx="14" fill="#f3f4f6"/>
+<text x="88" y="112" font-size="30" font-weight="600" fill="#0b0d12">Nút chụp, mặc định</text>
+<rect x="88" y="132" width="280" height="72" rx="12" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<text x="112" y="178" font-size="26" fill="#0b0d12">Nửa cò: lấy nét</text>
+<rect x="392" y="132" width="240" height="72" rx="12" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<text x="416" y="178" font-size="26" fill="#0b0d12">Bấm hết: chụp</text>
+<rect x="56" y="248" width="608" height="160" rx="14" fill="#f3f4f6"/>
+<text x="88" y="296" font-size="30" font-weight="600" fill="#0b0d12">Sau khi tách</text>
+<rect x="88" y="316" width="280" height="72" rx="12" fill="#ffffff" stroke="#f05a14" stroke-width="4"/>
+<text x="112" y="362" font-size="26" fill="#0b0d12">AF On: lấy nét</text>
+<rect x="392" y="316" width="240" height="72" rx="12" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<text x="416" y="362" font-size="26" fill="#0b0d12">Nút chụp: chụp</text>
+</svg>

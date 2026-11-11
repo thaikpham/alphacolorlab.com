@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba dạng histogram: cháy sáng, mất vùng tối và đủ chi tiết</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="36" y="110" width="192" height="240" rx="14" fill="#f3f4f6"/>
+<rect x="264" y="110" width="192" height="240" rx="14" fill="#f3f4f6"/>
+<rect x="492" y="110" width="192" height="240" rx="14" fill="#f3f4f6"/>
+<line x1="48" y1="340" x2="216" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="276" y1="340" x2="444" y2="340" stroke="#7c8594" stroke-width="2"/>
+<line x1="504" y1="340" x2="672" y2="340" stroke="#7c8594" stroke-width="2"/>
+<rect x="54" y="332" width="16" height="8" fill="#7c8594"/>
+<rect x="74" y="326" width="16" height="14" fill="#7c8594"/>
+<rect x="94" y="318" width="16" height="22" fill="#7c8594"/>
+<rect x="114" y="304" width="16" height="36" fill="#7c8594"/>
+<rect x="134" y="284" width="16" height="56" fill="#7c8594"/>
+<rect x="154" y="250" width="16" height="90" fill="#7c8594"/>
+<rect x="174" y="210" width="16" height="130" fill="#7c8594"/>
+<rect x="194" y="150" width="16" height="190" fill="#f05a14"/>
+<rect x="282" y="150" width="16" height="190" fill="#7c8594"/>
+<rect x="302" y="210" width="16" height="130" fill="#7c8594"/>
+<rect x="322" y="250" width="16" height="90" fill="#7c8594"/>
+<rect x="342" y="284" width="16" height="56" fill="#7c8594"/>
+<rect x="362" y="304" width="16" height="36" fill="#7c8594"/>
+<rect x="382" y="318" width="16" height="22" fill="#7c8594"/>
+<rect x="402" y="326" width="16" height="14" fill="#7c8594"/>
+<rect x="422" y="332" width="16" height="8" fill="#7c8594"/>
+<rect x="510" y="326" width="16" height="14" fill="#7c8594"/>
+<rect x="530" y="300" width="16" height="40" fill="#7c8594"/>
+<rect x="550" y="260" width="16" height="80" fill="#7c8594"/>
+<rect x="570" y="220" width="16" height="120" fill="#7c8594"/>
+<rect x="590" y="210" width="16" height="130" fill="#7c8594"/>
+<rect x="610" y="240" width="16" height="100" fill="#7c8594"/>
+<rect x="630" y="280" width="16" height="60" fill="#7c8594"/>
+<rect x="650" y="316" width="16" height="24" fill="#7c8594"/>
+<text x="132" y="392" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Cháy sáng</text>
+<text x="360" y="392" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Mất vùng tối</text>
+<text x="588" y="392" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Đủ chi tiết</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Thang thời gian phơi khi tăng mật độ kính lọc ND</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="32" width="656" height="416" rx="24" fill="#f3f4f6"/>
+<line x1="120" y1="250" x2="596" y2="250" stroke="#7c8594" stroke-width="4"/>
+<polygon points="620,250 596,240 596,260" fill="#7c8594"/>
+<circle cx="120" cy="250" r="16" fill="#ffffff" stroke="#0b0d12" stroke-width="4"/>
+<circle cx="280" cy="250" r="16" fill="#ffffff" stroke="#0b0d12" stroke-width="4"/>
+<circle cx="440" cy="250" r="16" fill="#ffffff" stroke="#0b0d12" stroke-width="4"/>
+<circle cx="600" cy="250" r="16" fill="#f05a14"/>
+<g font-size="30" font-weight="600" text-anchor="middle">
+<text x="120" y="200" fill="#0b0d12">Không ND</text>
+<text x="280" y="200" fill="#0b0d12">ND8</text>
+<text x="440" y="200" fill="#0b0d12">ND64</text>
+<text x="600" y="200" fill="#b43f00">ND1000</text>
+</g>
+<g font-size="26" font-weight="600" text-anchor="middle">
+<text x="120" y="320" fill="#4a5260">1/60 s</text>
+<text x="280" y="320" fill="#4a5260">1/8 s</text>
+<text x="440" y="320" fill="#4a5260">1 giây</text>
+<text x="600" y="320" fill="#b43f00">17 giây</text>
+</g>
+</svg>

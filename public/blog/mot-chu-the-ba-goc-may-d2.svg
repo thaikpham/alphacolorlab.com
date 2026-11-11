@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Cùng một chủ thể chụp từ góc cao, ngang tầm mắt và góc thấp</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="36" y="100" font-size="26" font-weight="600" fill="#0b0d12">Góc cao</text>
+<text x="260" y="100" font-size="26" font-weight="600" fill="#b43f00">Ngang mắt</text>
+<text x="484" y="100" font-size="26" font-weight="600" fill="#0b0d12">Góc thấp</text>
+<rect x="36" y="120" width="200" height="280" rx="14" fill="#ffffff"/>
+<path d="M36 160 H236 V386 Q236 400 222 400 H50 Q36 400 36 386 Z" fill="#e3e6eb"/>
+<circle cx="136" cy="300" r="10" fill="#4a5260"/>
+<rect x="126" y="312" width="20" height="50" rx="8" fill="#4a5260"/>
+<rect x="260" y="120" width="200" height="280" rx="14" fill="#ffffff"/>
+<path d="M260 268 H460 V386 Q460 400 446 400 H274 Q260 400 260 386 Z" fill="#e3e6eb"/>
+<circle cx="360" cy="279" r="17" fill="#4a5260"/>
+<rect x="345" y="296" width="30" height="66" rx="10" fill="#4a5260"/>
+<rect x="484" y="120" width="200" height="280" rx="14" fill="#ffffff"/>
+<path d="M484 340 H684 V386 Q684 400 670 400 H498 Q484 400 484 386 Z" fill="#e3e6eb"/>
+<circle cx="584" cy="170" r="28" fill="#4a5260"/>
+<rect x="556" y="200" width="56" height="162" rx="16" fill="#4a5260"/>
+<rect x="36" y="120" width="200" height="280" rx="14" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<rect x="260" y="120" width="200" height="280" rx="14" fill="none" stroke="#f05a14" stroke-width="3"/>
+<rect x="484" y="120" width="200" height="280" rx="14" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<text x="36" y="450" font-size="24" fill="#4a5260">Cùng một chủ thể</text>
+</svg>

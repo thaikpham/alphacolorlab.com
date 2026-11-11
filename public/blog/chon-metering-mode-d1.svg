@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Đa điểm đo nhiều ô, Điểm chỉ đo vùng giữa</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="50" y="110" width="290" height="220" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="65" y="125" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="119" y="125" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="173" y="125" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="227" y="125" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="281" y="125" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="65" y="175" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="119" y="175" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="173" y="175" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="227" y="175" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="281" y="175" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="65" y="225" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="119" y="225" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="173" y="225" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="227" y="225" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="281" y="225" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="65" y="275" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="119" y="275" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="173" y="275" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="227" y="275" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="281" y="275" width="44" height="40" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<rect x="380" y="110" width="290" height="220" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<circle cx="525" cy="220" r="40" fill="#f05a14"/>
+<text x="195" y="90" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Đa điểm</text>
+<text x="195" y="368" font-size="24" text-anchor="middle" fill="#4a5260">Cả khung</text>
+<text x="525" y="90" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Điểm</text>
+<text x="525" y="368" font-size="24" text-anchor="middle" fill="#4a5260">Vùng giữa</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba lựa chọn của Priority Set in AWB và điều mỗi lựa chọn ưu tiên</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="30" y="70" width="210" height="330" rx="24" fill="#f3f4f6"/>
+<rect x="255" y="70" width="210" height="330" rx="24" fill="#f3f4f6" stroke="#f05a14" stroke-width="6"/>
+<rect x="480" y="70" width="210" height="330" rx="24" fill="#f3f4f6"/>
+<text x="135" y="130" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Standard</text>
+<text x="360" y="130" text-anchor="middle" font-size="30" font-weight="600" fill="#b43f00">Ambience</text>
+<text x="585" y="130" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">White</text>
+<circle cx="135" cy="250" r="56" fill="#7c8594"/>
+<circle cx="360" cy="250" r="56" fill="#f05a14"/>
+<circle cx="585" cy="250" r="56" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<text x="135" y="360" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Tự điều chỉnh</text>
+<text x="360" y="360" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Không khí ấm</text>
+<text x="585" y="360" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Màu trắng rõ</text>
+<text x="360" y="448" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Khi WB là Auto</text>
+</svg>

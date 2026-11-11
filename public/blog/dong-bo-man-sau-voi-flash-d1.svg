@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Rear Sync: flash nổ ở cuối phơi sáng, sau khi nền đã ghi vệt</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="88" y="112" font-size="30" font-weight="600" fill="#0b0d12">Rear Sync</text>
+<text x="88" y="170" font-size="26" fill="#0b0d12">Màn trập mở</text>
+<text x="632" y="170" font-size="26" text-anchor="end" fill="#0b0d12">Màn trập đóng</text>
+<rect x="88" y="190" width="544" height="72" rx="12" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<rect x="92" y="194" width="456" height="64" rx="8" fill="#e3e6eb"/>
+<line x1="584" y1="186" x2="584" y2="266" stroke="#f05a14" stroke-width="8"/>
+<text x="92" y="306" font-size="26" fill="#0b0d12">Nền ghi vệt</text>
+<text x="584" y="306" font-size="26" text-anchor="middle" fill="#0b0d12">Flash nổ</text>
+<line x1="88" y1="372" x2="618" y2="372" stroke="#7c8594" stroke-width="3"/>
+<polygon points="632,372 616,363 616,381" fill="#7c8594"/>
+<text x="88" y="412" font-size="26" fill="#4a5260">Thời gian</text>
+</svg>

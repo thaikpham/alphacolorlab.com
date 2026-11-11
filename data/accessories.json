@@ -1,0 +1,9 @@
+[
+  { "id": "ecm-w2bt", "name": "ECM-W2BT", "code": "ECM-W2BT", "group": "audio" },
+  { "id": "ecm-b10", "name": "ECM-B10", "code": "ECM-B10", "group": "audio" },
+  { "id": "ecm-g1", "name": "ECM-G1", "code": "ECM-G1", "group": "audio" },
+  { "id": "gp-vpt2bt", "name": "GP-VPT2BT", "code": "GP-VPT2BT", "group": "grip" },
+  { "id": "np-fw50", "name": "NP-FW50", "code": "NP-FW50", "group": "power", "battery": "NP-FW50" },
+  { "id": "np-fz100", "name": "NP-FZ100", "code": "NP-FZ100", "group": "power", "battery": "NP-FZ100" },
+  { "id": "hvl-f28rm", "name": "HVL-F28RM", "code": "HVL-F28RM", "group": "lighting" }
+]

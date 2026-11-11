@@ -1,0 +1,13 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Nút chụp và màn trập ở chế độ BULB</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<line x1="300" y1="120" x2="300" y2="400" stroke="#e3e6eb" stroke-width="2" stroke-dasharray="6 6"/>
+<line x1="560" y1="120" x2="560" y2="400" stroke="#e3e6eb" stroke-width="2" stroke-dasharray="6 6"/>
+<text x="40" y="175" font-size="28" font-weight="600" fill="#0b0d12">Nút chụp</text>
+<text x="40" y="325" font-size="28" font-weight="600" fill="#0b0d12">Màn trập</text>
+<polyline points="220,190 300,190 300,140 560,140 560,190 680,190" fill="none" stroke="#0b0d12" stroke-width="4" stroke-linejoin="round"/>
+<polyline points="220,340 320,340 320,290 580,290 580,340 680,340" fill="none" stroke="#f05a14" stroke-width="4" stroke-linejoin="round"/>
+<text x="430" y="105" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Mở khi giữ nút</text>
+<path d="M320,385 V397 H580 V385" fill="none" stroke="#7c8594" stroke-width="3"/>
+<text x="450" y="435" font-size="28" font-weight="600" text-anchor="middle" fill="#b43f00">Bạn quyết định thời gian</text>
+</svg>

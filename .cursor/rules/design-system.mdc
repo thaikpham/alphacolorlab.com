@@ -1,0 +1,12 @@
+---
+description: Luật dự án và design system (iOS Settings, token-only)
+globs:
+alwaysApply: true
+---
+
+Đọc và tuân thủ @AGENTS.md và @DESIGN.md trước khi viết code. Token nằm trong `app/globals.css`.
+
+- Chỉ dùng token: bg-accent, text-footnote, rounded-card, shadow-card, max-w-page…
+- Không giá trị tùy ý trong className, không màu palette Tailwind, không text-sm/rounded-lg/shadow-md.
+- Không thẻ lồng thẻ, không eyebrow, không ký tự làm icon.
+- Chạy `npm run check:design` trước khi xong.

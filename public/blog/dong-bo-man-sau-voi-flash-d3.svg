@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba bước trước khi chụp đồng bộ màn sau</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="40" y="112" font-size="30" font-weight="600" fill="#0b0d12">Trước khi chụp</text>
+<rect x="40" y="160" width="176" height="160" rx="14" fill="#f3f4f6"/>
+<text x="128" y="246" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Chọn</text>
+<text x="128" y="286" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Rear Sync</text>
+<line x1="220" y1="240" x2="266" y2="240" stroke="#7c8594" stroke-width="3"/>
+<polygon points="272,240 258,232 258,248" fill="#7c8594"/>
+<rect x="272" y="160" width="176" height="160" rx="14" fill="#f3f4f6"/>
+<text x="360" y="246" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Đo nền,</text>
+<text x="360" y="286" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">bù flash</text>
+<line x1="452" y1="240" x2="498" y2="240" stroke="#7c8594" stroke-width="3"/>
+<polygon points="504,240 490,232 490,248" fill="#7c8594"/>
+<rect x="504" y="160" width="176" height="160" rx="14" fill="#f3f4f6"/>
+<text x="592" y="246" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Giữ máy</text>
+<text x="592" y="286" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">đến khi nổ</text>
+</svg>

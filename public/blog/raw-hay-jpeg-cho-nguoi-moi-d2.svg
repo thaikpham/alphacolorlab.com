@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba mức JPEG Quality từ Extra fine đến Standard</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="40" y="72" font-size="26" font-weight="600" fill="#0b0d12">JPEG Quality</text>
+<path d="M120 130 H650" fill="none" stroke="#f05a14" stroke-width="3"/>
+<polygon points="662,130 648,123 648,137" fill="#f05a14"/>
+<text x="385" y="112" text-anchor="middle" font-size="24" font-weight="600" fill="#b43f00">Dung lượng giảm dần</text>
+<rect x="120" y="160" width="140" height="240" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<rect x="300" y="220" width="140" height="180" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<rect x="480" y="280" width="140" height="120" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<path d="M100 400 H660" fill="none" stroke="#7c8594" stroke-width="2"/>
+<text x="190" y="444" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Extra fine</text>
+<text x="370" y="444" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Fine</text>
+<text x="550" y="444" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Standard</text>
+</svg>

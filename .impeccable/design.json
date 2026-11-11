@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T07:53:50+00:00",
+  "title": "Design System: Tối ưu cài đặt ZV-E10 & Legacy Menu",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Xanh hệ thống",
+        "canonical": "oklch(56.3% 0.193 256.2)",
+        "tonalRamp": [
+          "#010b1f",
+          "#03244d",
+          "#084081",
+          "#115fb9",
+          "#1f7ff1",
+          "#60a6ff",
+          "#96ccff",
+          "#ccf2ff"
+        ]
+      },
+      "accent-text": {
+        "role": "primary",
+        "displayName": "Xanh chữ",
+        "canonical": "oklch(52.2% 0.177 255.8)",
+        "tonalRamp": [
+          "#010b1d",
+          "#06244a",
+          "#10417c",
+          "#1c60b1",
+          "#2d81e8",
+          "#66a7fc",
+          "#9accff",
+          "#cef1ff"
+        ]
+      },
+      "warning": {
+        "role": "semantic",
+        "displayName": "Cam cảnh báo",
+        "canonical": "oklch(55.2% 0.192 35.3)",
+        "tonalRamp": [
+          "#1b0301",
+          "#451003",
+          "#75210a",
+          "#a83313",
+          "#dc4922",
+          "#f57e5f",
+          "#ffad95",
+          "#ffdcca"
+        ]
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Xanh lá trạng thái",
+        "canonical": "oklch(55.8% 0.146 147.5)",
+        "tonalRamp": [
+          "#020f03",
+          "#0a2d11",
+          "#174f23",
+          "#267336",
+          "#38994c",
+          "#70b97a",
+          "#a2d9a8",
+          "#d4fad8"
+        ]
+      },
+      "danger": {
+        "role": "semantic",
+        "displayName": "Đỏ lỗi",
+        "canonical": "oklch(55.3% 0.225 27.3)",
+        "tonalRamp": [
+          "#1e0101",
+          "#4a0606",
+          "#7d1010",
+          "#b31b1c",
+          "#ea2d2c",
+          "#ff7064",
+          "#ffa598",
+          "#ffd7cc"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Nền nhóm iOS",
+        "canonical": "oklch(96.3% 0.007 286.3)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424244",
+          "#616164",
+          "#828286",
+          "#a4a4a8",
+          "#c9c9cc",
+          "#eeeef0"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Thẻ trắng",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "label": {
+        "role": "neutral",
+        "displayName": "Chữ chính",
+        "canonical": "oklch(0.0% 0.000 0.0)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Chữ phụ",
+        "canonical": "oklch(48.7% 0.008 286.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252527",
+          "#424245",
+          "#616165",
+          "#828287",
+          "#a4a4a9",
+          "#c9c9cc",
+          "#eeeef1"
+        ]
+      },
+      "tertiary": {
+        "role": "neutral",
+        "displayName": "Trang trí",
+        "canonical": "oklch(75.2% 0.006 286.3)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424244",
+          "#616164",
+          "#828286",
+          "#a5a5a8",
+          "#c9c9cb",
+          "#eeeef0"
+        ]
+      },
+      "separator": {
+        "role": "neutral",
+        "displayName": "Đường kẻ",
+        "canonical": "oklch(92.3% 0.007 286.3)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424244",
+          "#616164",
+          "#828286",
+          "#a4a4a8",
+          "#c9c9cc",
+          "#eeeef0"
+        ]
+      },
+      "fill": {
+        "role": "neutral",
+        "displayName": "Fill xám 12%"
+      },
+      "fill-strong": {
+        "role": "neutral",
+        "displayName": "Fill xám 20%"
+      },
+      "warning-fill": {
+        "role": "semantic",
+        "displayName": "Nền cảnh báo"
+      },
+      "success-fill": {
+        "role": "semantic",
+        "displayName": "Nền thành công"
+      },
+      "danger-fill": {
+        "role": "semantic",
+        "displayName": "Nền lỗi"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Chỉ tiêu đề hero."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Tiêu đề chương (h2)."
+      },
+      "title3": {
+        "displayName": "Title 3",
+        "purpose": "Tiêu đề khối công cụ preset, tên ô M1–M4."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Thân bài, lead, tên bước."
+      },
+      "callout": {
+        "displayName": "Callout",
+        "purpose": "Chữ trong input/select, tối thiểu 16px."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Nút, segmented, hàng phụ."
+      },
+      "footnote": {
+        "displayName": "Footnote",
+        "purpose": "Nhãn, dòng phụ, đường dẫn menu, chip, ghi chú."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-card",
+        "value": "0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.06)",
+        "purpose": "Mọi thẻ nhóm trắng."
+      },
+      {
+        "name": "shadow-thumb",
+        "value": "0 1px 3px rgb(0 0 0 / 0.12), 0 1px 1px rgb(0 0 0 / 0.04)",
+        "purpose": "Segment đang chọn."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-ios",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Mọi chuyển động."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity .35→1, translateY(12px)→0, 700ms, stagger 60ms × tối đa 6",
+        "purpose": "Hiện dần khi cuộn tới; tắt khi prefers-reduced-motion."
+      },
+      {
+        "name": "nav-hide",
+        "value": "transform 350ms ease-ios",
+        "purpose": "Thanh điều hướng ẩn khi cuộn xuống."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "page",
+        "value": "1080px (max-w-page)"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Nút chính",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Hành động chính duy nhất của màn hình: Bắt đầu cài đặt, Tải ZIP.",
+      "html": "<button class=\"ds-btn-primary\">Bắt đầu cài đặt</button>",
+      "css": ".ds-btn-primary { font-family: var(--font-sans); height: 48px; padding: 0 24px; border: 0; border-radius: 9999px; background: var(--color-accent); color: #fff; font-size: 15px; line-height: 22px; font-weight: 600; cursor: pointer; transition: background .2s, transform .2s cubic-bezier(.16,1,.3,1); } .ds-btn-primary:hover { background: color-mix(in oklab, var(--color-accent) 90%, transparent); } .ds-btn-primary:active { transform: scale(.98); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent); }"
+    },
+    {
+      "name": "Nút tinted",
+      "kind": "button",
+      "refersTo": "button-tinted",
+      "description": "Hành động phụ: Áp dụng theo 11 bước, Tải M1.",
+      "html": "<button class=\"ds-btn-tinted\">Áp dụng theo 11 bước</button>",
+      "css": ".ds-btn-tinted { font-family: var(--font-sans); height: 44px; padding: 0 16px; border: 0; border-radius: 9999px; background: color-mix(in oklab, var(--color-accent) 10%, transparent); color: var(--color-accent-text); font-size: 15px; line-height: 22px; font-weight: 600; cursor: pointer; transition: background .2s; } .ds-btn-tinted:hover { background: color-mix(in oklab, var(--color-accent) 15%, transparent); } .ds-btn-tinted:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent); }"
+    },
+    {
+      "name": "Segmented control",
+      "kind": "custom",
+      "refersTo": "segmented-track",
+      "description": "Lựa chọn loại trừ 2–5 mục: nguồn file, PAL/NTSC, chế độ chụp.",
+      "html": "<div class=\"ds-seg\"><button class=\"ds-seg-item\" aria-pressed=\"true\">PAL · file …P</button><button class=\"ds-seg-item\" aria-pressed=\"false\">NTSC · file …N</button></div>",
+      "css": ".ds-seg { font-family: var(--font-sans); display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: var(--color-fill); max-width: 360px; } .ds-seg-item { flex: 1; height: 36px; border: 0; border-radius: 9px; background: transparent; color: var(--color-label); font-size: 15px; font-weight: 500; cursor: pointer; transition: background .2s; } .ds-seg-item:hover { background: var(--color-fill-strong); } .ds-seg-item[aria-pressed=true] { background: var(--color-card); font-weight: 600; box-shadow: var(--shadow-thumb); }"
+    },
+    {
+      "name": "Ô chọn",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Select và input số; chữ 16px để iOS Safari không tự phóng to.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Cân bằng trắng</span><select class=\"ds-input\"><option>Giữ gốc</option><option>AWB</option></select></label>",
+      "css": ".ds-field { font-family: var(--font-sans); display: block; max-width: 320px; } .ds-field-label { display: block; margin-bottom: 6px; font-size: 13px; line-height: 19px; font-weight: 500; color: var(--color-secondary); } .ds-input { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--color-separator); border-radius: 12px; background: var(--color-card); color: var(--color-label); font: inherit; font-size: 16px; } .ds-input:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent); }"
+    },
+    {
+      "name": "Hàng bước",
+      "kind": "card",
+      "refersTo": "card-grouped",
+      "description": "Signature: một bước cài đặt trong thẻ nhóm, số bước, chip giá trị, đường dẫn menu, ghi chú.",
+      "html": "<ul class=\"ds-card\"><li class=\"ds-step\"><span class=\"ds-badge\">3</span><div class=\"ds-step-body\"><div class=\"ds-step-head\"><span class=\"ds-step-title\">Tốc độ tối thiểu cho ISO AUTO <span class=\"ds-opt\">(tùy chọn)</span></span><span class=\"ds-chip-value\">1/125</span></div><div class=\"ds-meta\">ISO AUTO Min. SS</div><div class=\"ds-path\">MENU <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\"><path d=\"M6 4l4 4-4 4\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> Cài đặt máy ảnh1</div><div class=\"ds-note ds-note-warn\">Chỉ có trên A6400. ZV-E10 không có mục này.</div></div></li></ul>",
+      "css": ".ds-card { font-family: var(--font-sans); list-style: none; margin: 0; padding: 0; max-width: 560px; background: var(--color-card); border-radius: 22px; box-shadow: var(--shadow-card); } .ds-step { display: flex; gap: 12px; padding: 16px; } .ds-badge { flex: none; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; background: var(--color-accent); color: #fff; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-step-body { flex: 1; min-width: 0; } .ds-step-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; } .ds-step-title { font-size: 17px; line-height: 26px; font-weight: 600; color: var(--color-label); } .ds-opt { font-weight: 400; color: var(--color-secondary); } .ds-chip-value { flex: none; padding: 4px 10px; border-radius: 9999px; background: color-mix(in oklab, var(--color-accent) 10%, transparent); color: var(--color-accent-text); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-meta { margin-top: 4px; font-size: 13px; color: var(--color-secondary); } .ds-path { margin-top: 8px; display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; color: var(--color-secondary); } .ds-path svg { color: var(--color-tertiary); } .ds-note { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: var(--color-fill); font-size: 13px; line-height: 19px; color: var(--color-label); } .ds-note-warn { background: var(--color-warning-fill); }"
+    },
+    {
+      "name": "Ghi chú thông tin",
+      "kind": "custom",
+      "refersTo": "note-info",
+      "description": "Ghi chú mặc định, xám. Cam chỉ khi là cảnh báo thật.",
+      "html": "<div class=\"ds-callout\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\"><circle cx=\"8\" cy=\"8\" r=\"6.25\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M8 7.25v3.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><circle cx=\"8\" cy=\"5.1\" r=\"0.9\" fill=\"currentColor\"/></svg><p>Màn hình không dừng lại để hiện ảnh vừa chụp.</p></div>",
+      "css": ".ds-callout { font-family: var(--font-sans); display: flex; gap: 8px; max-width: 420px; padding: 10px 12px; border-radius: 12px; background: var(--color-fill); color: var(--color-label); font-size: 13px; line-height: 19px; } .ds-callout svg { flex: none; margin-top: 2px; color: var(--color-secondary); } .ds-callout p { margin: 0; }"
+    },
+    {
+      "name": "Pill điều hướng",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Mục trong thanh kính mờ; pill của chương đang xem chuyển xanh.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-pill\" href=\"#\">Phơi sáng</a><a class=\"ds-pill\" href=\"#\">Lấy nét</a><a class=\"ds-pill ds-pill-active\" href=\"#\">Tạo preset</a></nav>",
+      "css": ".ds-nav { font-family: var(--font-sans); display: flex; gap: 8px; padding: 10px 16px; background: color-mix(in oklab, var(--color-card) 70%, transparent); backdrop-filter: blur(40px) saturate(1.5); border-bottom: 1px solid var(--color-separator); } .ds-pill { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 9999px; background: var(--color-fill); color: var(--color-label); font-size: 13px; font-weight: 500; text-decoration: none; transition: background .2s; } .ds-pill:hover { background: var(--color-fill-strong); } .ds-pill-active { background: color-mix(in srgb, var(--color-accent) 12%, transparent); color: var(--color-accent-text); }"
+    },
+    {
+      "name": "Chip trạng thái",
+      "kind": "chip",
+      "refersTo": "chip-tag",
+      "description": "Trạng thái hỗ trợ trong Memory Recall, đặt bên phải hàng.",
+      "html": "<div class=\"ds-chips\"><span class=\"ds-chip ds-chip-ok\">Có trong file</span><span class=\"ds-chip ds-chip-warn\">Chưa giải mã</span><span class=\"ds-chip\">Ngoài Memory Recall</span></div>",
+      "css": ".ds-chips { font-family: var(--font-sans); display: flex; gap: 8px; flex-wrap: wrap; } .ds-chip { padding: 2px 10px; border-radius: 9999px; background: var(--color-fill); color: var(--color-secondary); font-size: 13px; line-height: 19px; font-weight: 600; } .ds-chip-ok { background: var(--color-success-fill); color: var(--color-success); } .ds-chip-warn { background: var(--color-warning-fill); color: var(--color-warning); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ứng dụng Cài đặt iOS",
+    "overview": "Người đọc cầm máy ảnh và dò từng mục menu. Trang đọc nhanh như Cài đặt trên iPhone: nền xám nhạt, nhóm thẻ trắng bo góc, mỗi hàng một việc, giá trị cần đặt ở bên phải. Thẩm mỹ đến từ độ chính xác: thang chữ iOS, khoảng cách đều, một màu nhấn.\n\nThanh điều hướng là lớp kính mờ duy nhất. Mọi bề mặt khác đặc, phẳng, bóng rất nhẹ. Giao diện tiếng Việt, tên menu đúng chữ trên máy.",
+    "keyCharacteristics": [
+      "Nền xám iOS, thẻ trắng, bóng rất nhẹ",
+      "Một màu nhấn xanh cho hành động và giá trị",
+      "Xám cho thông tin, cam cho cảnh báo",
+      "Thang chữ iOS 13–56px, Inter có dấu tiếng Việt",
+      "Chuyển động ngắn ease-out, tôn trọng reduced-motion"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Chỉ một màu nhấn. Xanh nghĩa là bấm được hoặc giá trị cần đặt.",
+        "section": "colors"
+      },
+      {
+        "name": "The Gray-Info Orange-Warning Rule",
+        "body": "Ghi chú mặc định xám; cam chỉ khi noteTone là warning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Token-Only Rule",
+        "body": "Không hex, rgb() hay palette Tailwind ngoài app/globals.css. Palette mặc định đã bị xóa khỏi theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sentence-Case Rule",
+        "body": "Không viết hoa toàn bộ nhãn; nhãn là footnote medium secondary.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Eyebrow Rule",
+        "body": "Không nhãn nhỏ phía trên tiêu đề.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two-Shadow Rule",
+        "body": "Chỉ shadow-card và shadow-thumb; kính mờ chỉ ở thanh điều hướng.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Nested-Card Rule",
+        "body": "Tiêu đề trên nền xám, một thẻ trắng, hàng chia bằng divide-separator.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lấy mọi giá trị từ token (bg-accent, text-footnote, rounded-card, shadow-card, max-w-page).",
+      "Do thêm token mới vào @theme và DESIGN.md cùng lúc.",
+      "Do dùng text-callout cho input/select.",
+      "Do giữ vùng chạm tối thiểu 44px.",
+      "Do chạy npm run check:design và xem trang ở 390, 840, 1440px."
+    ],
+    "donts": [
+      "Don't viết giá trị tùy ý trong className, trừ grid-cols-[…], grid-rows-[…], aspect-[…].",
+      "Don't dùng màu palette Tailwind, bg-white, text-black.",
+      "Don't dùng text-sm, rounded-lg, shadow-md.",
+      "Don't đặt thẻ trong thẻ, eyebrow, hay nhãn viết hoa.",
+      "Don't dùng ký tự làm icon.",
+      "Don't thêm gradient, bóng màu, kính mờ ngoài nav, file CSS mới hay style màu inline."
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480">
+<title>Screen và Multiply cho hai kết quả ngược nhau</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="64" text-anchor="middle" font-family="Noto Sans, system-ui, sans-serif" font-size="28" font-weight="600" fill="#0b0d12">Screen và Multiply đảo ngược</text>
+<rect x="60" y="120" width="270" height="200" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="195" cy="220" r="50" fill="#4a5260"/>
+<g fill="#f3f4f6">
+<circle cx="195" cy="200" r="12"/>
+<circle cx="210" cy="212" r="12"/>
+<circle cx="204" cy="232" r="12"/>
+<circle cx="186" cy="232" r="12"/>
+<circle cx="180" cy="212" r="12"/>
+</g>
+<rect x="390" y="120" width="270" height="200" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="525" cy="220" r="50" fill="#4a5260"/>
+<g fill="#7c8594">
+<circle cx="435" cy="165" r="20"/>
+<circle cx="450" cy="275" r="22"/>
+<circle cx="610" cy="165" r="20"/>
+<circle cx="615" cy="270" r="18"/>
+<circle cx="527" cy="300" r="16"/>
+</g>
+<g font-family="Noto Sans, system-ui, sans-serif" text-anchor="middle">
+<text x="195" y="364" font-size="30" font-weight="600" fill="#0b0d12">Screen</text>
+<text x="525" y="364" font-size="30" font-weight="600" fill="#b43f00">Multiply</text>
+<text x="195" y="402" font-size="24" font-weight="400" fill="#4a5260">Lộ trong vùng tối</text>
+<text x="525" y="402" font-size="24" font-weight="400" fill="#4a5260">Lộ trong vùng sáng</text>
+</g>
+</svg>

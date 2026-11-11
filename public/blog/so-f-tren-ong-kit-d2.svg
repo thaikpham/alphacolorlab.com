@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Zoom từ 16mm lên 50mm: khẩu đi từ f/3.5 đến f/5.6</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<line x1="60" y1="260" x2="636" y2="260" stroke="#7c8594" stroke-width="4"/>
+<polygon points="636,248 656,260 636,272" fill="#7c8594"/>
+<circle cx="100" cy="260" r="16" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="620" cy="260" r="16" fill="#f05a14"/>
+<text x="100" y="196" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">f/3.5</text>
+<text x="620" y="196" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">f/5.6</text>
+<text x="100" y="312" font-size="26" text-anchor="middle" fill="#4a5260">16mm</text>
+<text x="620" y="312" font-size="26" text-anchor="middle" fill="#4a5260">50mm</text>
+<rect x="180" y="352" width="360" height="72" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<text x="360" y="398" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Tối hơn 1,4 stop</text>
+</svg>

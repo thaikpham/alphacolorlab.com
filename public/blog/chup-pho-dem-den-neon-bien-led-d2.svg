@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Thang bù sáng từ -3.0 đến +3.0 EV trên màn hình ZV-E10</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<line x1="80" y1="280" x2="640" y2="280" stroke="#0b0d12" stroke-width="4"/>
+<line x1="80" y1="266" x2="80" y2="294" stroke="#0b0d12" stroke-width="4"/>
+<line x1="173.3" y1="266" x2="173.3" y2="294" stroke="#0b0d12" stroke-width="4"/>
+<line x1="266.7" y1="266" x2="266.7" y2="294" stroke="#0b0d12" stroke-width="4"/>
+<line x1="360" y1="266" x2="360" y2="294" stroke="#0b0d12" stroke-width="4"/>
+<line x1="453.3" y1="266" x2="453.3" y2="294" stroke="#0b0d12" stroke-width="4"/>
+<line x1="546.7" y1="266" x2="546.7" y2="294" stroke="#0b0d12" stroke-width="4"/>
+<line x1="640" y1="266" x2="640" y2="294" stroke="#0b0d12" stroke-width="4"/>
+<polygon points="266.7,268 252,230 281.4,230" fill="#f05a14"/>
+<text x="266.7" y="204" text-anchor="middle" font-size="28" font-weight="600" fill="#b43f00">-1.0 EV</text>
+<text x="80" y="180" font-size="24" font-weight="600" fill="#4a5260">Tối hơn</text>
+<text x="640" y="180" text-anchor="end" font-size="24" font-weight="600" fill="#4a5260">Sáng hơn</text>
+<text x="80" y="336" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">-3.0</text>
+<text x="360" y="336" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">0</text>
+<text x="640" y="336" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">+3.0</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Khung đo Highlight quanh biển neon trong phố đêm</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="56" width="380" height="368" rx="14" fill="#0b0d12"/>
+<line x1="32" y1="340" x2="412" y2="340" stroke="#7c8594" stroke-width="2"/>
+<rect x="88" y="160" width="288" height="112" rx="24" fill="none" stroke="#f05a14" stroke-width="6"/>
+<rect x="124" y="190" width="216" height="14" rx="7" fill="#f05a14"/>
+<rect x="124" y="224" width="150" height="14" rx="7" fill="#f05a14"/>
+<rect x="72" y="142" width="308" height="136" rx="14" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="448" y="112" width="36" height="36" rx="8" fill="none" stroke="#f05a14" stroke-width="6"/>
+<text x="496" y="140" font-size="24" font-weight="600" fill="#0b0d12">Biển neon</text>
+<rect x="448" y="200" width="36" height="36" rx="8" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="6 5"/>
+<text x="496" y="228" font-size="24" font-weight="600" fill="#0b0d12">Vùng Highlight</text>
+<rect x="448" y="288" width="36" height="36" rx="8" fill="#0b0d12"/>
+<text x="496" y="316" font-size="24" font-weight="600" fill="#0b0d12">Nền phố tối</text>
+</svg>

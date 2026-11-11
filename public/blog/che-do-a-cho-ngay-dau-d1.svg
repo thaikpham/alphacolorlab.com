@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Số f nhỏ làm nền mờ, số f lớn giữ rõ cả khung</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="188" y="88" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">F nhỏ</text>
+<text x="532" y="88" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">F lớn</text>
+<rect x="32" y="112" width="312" height="260" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="376" y="112" width="312" height="260" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<ellipse cx="100" cy="160" rx="46" ry="26" fill="#e3e6eb"/>
+<rect x="250" y="300" width="70" height="48" rx="8" fill="#e3e6eb"/>
+<circle cx="188" cy="242" r="50" fill="#f05a14"/>
+<ellipse cx="444" cy="160" rx="46" ry="26" fill="#7c8594"/>
+<rect x="594" y="300" width="70" height="48" rx="8" fill="#7c8594"/>
+<circle cx="532" cy="242" r="50" fill="#f05a14"/>
+<text x="188" y="418" font-size="26" font-weight="600" text-anchor="middle" fill="#4a5260">Nền mờ</text>
+<text x="532" y="418" font-size="26" font-weight="600" text-anchor="middle" fill="#4a5260">Cả khung rõ</text>
+</svg>

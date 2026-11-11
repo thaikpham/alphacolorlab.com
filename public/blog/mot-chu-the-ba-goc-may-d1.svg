@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba độ cao đặt máy so với chủ thể: góc cao, ngang mắt và góc thấp</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="32" y="60" font-size="24" fill="#4a5260">Nhìn từ bên hông</text>
+<rect x="0" y="420" width="720" height="60" fill="#f3f4f6"/>
+<line x1="0" y1="420" x2="720" y2="420" stroke="#7c8594" stroke-width="2"/>
+<line x1="314" y1="150" x2="534" y2="292" stroke="#7c8594" stroke-width="2" stroke-dasharray="10 8"/>
+<line x1="314" y1="380" x2="534" y2="308" stroke="#7c8594" stroke-width="2" stroke-dasharray="10 8"/>
+<line x1="314" y1="300" x2="534" y2="300" stroke="#f05a14" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="190" y="128" width="104" height="44" rx="8" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<rect x="294" y="138" width="16" height="24" rx="4" fill="#0b0d12"/>
+<rect x="190" y="278" width="104" height="44" rx="8" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
+<rect x="294" y="288" width="16" height="24" rx="4" fill="#f05a14"/>
+<rect x="190" y="358" width="104" height="44" rx="8" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<rect x="294" y="368" width="16" height="24" rx="4" fill="#0b0d12"/>
+<circle cx="560" cy="300" r="26" fill="#e3e6eb" stroke="#0b0d12" stroke-width="3"/>
+<rect x="536" y="330" width="48" height="90" rx="14" fill="#e3e6eb" stroke="#0b0d12" stroke-width="3"/>
+<text x="32" y="160" font-size="26" font-weight="600" fill="#0b0d12">Góc cao</text>
+<text x="32" y="308" font-size="26" font-weight="600" fill="#b43f00">Ngang mắt</text>
+<text x="32" y="388" font-size="26" font-weight="600" fill="#0b0d12">Góc thấp</text>
+<text x="560" y="246" font-size="26" font-weight="600" fill="#0b0d12" text-anchor="middle">Chủ thể</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Sơ đồ nhìn từ trên xuống: người chụp xoay máy từ hông theo cung tròn, chủ thể chạy ngang trước mặt</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="0" y="200" width="720" height="80" fill="#f3f4f6"/>
+<path d="M100 240 H600" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="12 10"/>
+<polygon points="600,228 622,240 600,252" fill="#7c8594"/>
+<text x="520" y="186" font-size="26" font-weight="600" fill="#4a5260">Hướng chạy</text>
+<text x="300" y="186" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Chủ thể lúc bấm</text>
+<circle cx="300" cy="240" r="16" fill="#0b0d12"/>
+<line x1="300" y1="380" x2="300" y2="262" stroke="#7c8594" stroke-width="3" stroke-dasharray="8 8"/>
+<path d="M221 310 A120 120 0 0 1 397 329" fill="none" stroke="#f05a14" stroke-width="4"/>
+<polygon points="402,335 385,328 399,318" fill="#f05a14"/>
+<text x="480" y="390" font-size="26" font-weight="600" fill="#b43f00">Lia từ hông</text>
+<circle cx="300" cy="400" r="20" fill="#0b0d12"/>
+<text x="300" y="456" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Người chụp</text>
+</svg>

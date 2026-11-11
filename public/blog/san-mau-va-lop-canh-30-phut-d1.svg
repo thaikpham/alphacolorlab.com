@@ -1,0 +1,24 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba cách phối màu trên bánh xe màu</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<circle cx="130" cy="200" r="90" fill="none" stroke="#7c8594" stroke-width="3"/>
+<circle cx="360" cy="200" r="90" fill="none" stroke="#7c8594" stroke-width="3"/>
+<circle cx="590" cy="200" r="90" fill="none" stroke="#7c8594" stroke-width="3"/>
+<circle cx="193.6" cy="136.4" r="16" fill="#7c8594"/>
+<circle cx="130" cy="110" r="16" fill="#7c8594"/>
+<circle cx="360" cy="110" r="16" fill="#f05a14"/>
+<circle cx="360" cy="290" r="16" fill="#f05a14"/>
+<circle cx="590" cy="110" r="16" fill="#7c8594"/>
+<circle cx="512.1" cy="245" r="16" fill="#7c8594"/>
+<circle cx="667.9" cy="245" r="16" fill="#7c8594"/>
+<g font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">
+<text x="130" y="350">Tương đồng</text>
+<text x="360" y="350">Bổ túc</text>
+<text x="590" y="350">Bộ ba</text>
+</g>
+<g font-size="26" text-anchor="middle" fill="#4a5260">
+<text x="130" y="392">Êm</text>
+<text x="360" y="392">Mạnh</text>
+<text x="590" y="392">Sống động</text>
+</g>
+</svg>

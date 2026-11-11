@@ -1,0 +1,11 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Quay 1 giây ở 100fps, phát ở 25p thành 4 giây</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="32" y="58" font-size="26" font-weight="600" fill="#0b0d12">Quay 1 giây ở 100fps, phát ở 25p</text>
+<text x="32" y="124" font-size="24" fill="#4a5260">Quay: 1 giây, 100 khung hình</text>
+<rect x="32" y="140" width="164" height="56" rx="8" fill="#7c8594"/>
+<text x="32" y="250" font-size="24" fill="#4a5260">Phát: 4 giây, 100 khung hình ở 25p</text>
+<rect x="32" y="266" width="656" height="56" rx="8" fill="#f05a14"/>
+<text x="32" y="372" font-size="26" font-weight="600" fill="#0b0d12">Cùng 100 khung hình, phát chậm 4 lần</text>
+<text x="32" y="430" font-size="24" fill="#4a5260">Độ dài thanh tỉ lệ với thời gian.</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ngược sáng: máy đo vào nền sáng nên mặt tối đi</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="400" y="40" width="300" height="150" fill="#f3f4f6"/>
+<text x="420" y="78" font-size="24" font-weight="600" fill="#4a5260">Nền sáng</text>
+<circle cx="620" cy="210" r="40" fill="#f05a14"/>
+<text x="620" y="284" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Mặt trời</text>
+<line x1="580" y1="206" x2="372" y2="206" stroke="#7c8594" stroke-width="3" stroke-dasharray="8 6"/>
+<line x1="580" y1="250" x2="372" y2="262" stroke="#7c8594" stroke-width="3" stroke-dasharray="8 6"/>
+<line x1="40" y1="400" x2="680" y2="400" stroke="#7c8594" stroke-width="3"/>
+<rect x="60" y="200" width="120" height="70" rx="10" fill="#4a5260"/>
+<circle cx="182" cy="235" r="16" fill="#0b0d12" stroke="#7c8594" stroke-width="4"/>
+<text x="120" y="190" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Máy ảnh</text>
+<line x1="200" y1="228" x2="506" y2="124" stroke="#f05a14" stroke-width="4" stroke-dasharray="10 8"/>
+<polygon points="520,118 505.6,131.5 500.4,116.3" fill="#f05a14"/>
+<text x="200" y="168" font-size="24" font-weight="600" fill="#0b0d12">Đo nền sáng</text>
+<circle cx="330" cy="230" r="40" fill="#0b0d12"/>
+<rect x="296" y="274" width="68" height="126" rx="24" fill="#4a5260"/>
+<circle cx="300" cy="232" r="18" fill="none" stroke="#127a3a" stroke-width="4" stroke-dasharray="6 5"/>
+<line x1="288" y1="248" x2="236" y2="290" stroke="#127a3a" stroke-width="3"/>
+<text x="230" y="312" text-anchor="end" font-size="24" font-weight="600" fill="#127a3a">Spot đo mặt</text>
+<text x="330" y="440" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Chủ thể</text>
+</svg>

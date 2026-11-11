@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba bước chọn thông số ở chế độ M</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="45" y="140" width="180" height="160" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="270" y="140" width="180" height="160" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="495" y="140" width="180" height="160" rx="14" fill="#f3f4f6" stroke="#f05a14" stroke-width="4"/>
+<text x="135" y="212" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Chọn khẩu</text>
+<text x="135" y="256" font-size="24" text-anchor="middle" fill="#4a5260">Vùng nét</text>
+<text x="360" y="212" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Chọn tốc</text>
+<text x="360" y="256" font-size="24" text-anchor="middle" fill="#4a5260">Chuyển động</text>
+<text x="585" y="212" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Chỉnh ISO</text>
+<text x="585" y="256" font-size="24" text-anchor="middle" fill="#4a5260">M.M. về 0</text>
+<line x1="229" y1="220" x2="258" y2="220" stroke="#7c8594" stroke-width="4"/>
+<polygon points="258,212 268,220 258,228" fill="#7c8594"/>
+<line x1="454" y1="220" x2="483" y2="220" stroke="#7c8594" stroke-width="4"/>
+<polygon points="483,212 493,220 483,228" fill="#7c8594"/>
+<text x="360" y="372" font-size="24" font-weight="600" text-anchor="middle" fill="#0b0d12">Làm theo thứ tự</text>
+</svg>

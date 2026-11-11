@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Tốc độ gợi ý tăng theo loại chủ thể</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="36" y="129" font-size="26" font-weight="600" fill="#0b0d12">Đứng yên</text>
+<text x="36" y="199" font-size="26" font-weight="600" fill="#0b0d12">Ngồi trò chuyện</text>
+<text x="36" y="269" font-size="26" font-weight="600" fill="#0b0d12">Người chạy</text>
+<text x="36" y="339" font-size="26" font-weight="600" fill="#0b0d12">Chim bay</text>
+<line x1="300" y1="120" x2="600" y2="120" stroke="#e3e6eb" stroke-width="3"/>
+<line x1="400" y1="190" x2="600" y2="190" stroke="#e3e6eb" stroke-width="3"/>
+<line x1="500" y1="260" x2="600" y2="260" stroke="#e3e6eb" stroke-width="3"/>
+<line x1="600" y1="330" x2="600" y2="330" stroke="#e3e6eb" stroke-width="3"/>
+<circle cx="300" cy="120" r="12" fill="#f05a14"/>
+<circle cx="400" cy="190" r="12" fill="#f05a14"/>
+<circle cx="500" cy="260" r="12" fill="#f05a14"/>
+<circle cx="600" cy="330" r="12" fill="#f05a14"/>
+<line x1="300" y1="390" x2="600" y2="390" stroke="#7c8594" stroke-width="2"/>
+<line x1="300" y1="390" x2="300" y2="400" stroke="#7c8594" stroke-width="2"/>
+<line x1="400" y1="390" x2="400" y2="400" stroke="#7c8594" stroke-width="2"/>
+<line x1="500" y1="390" x2="500" y2="400" stroke="#7c8594" stroke-width="2"/>
+<line x1="600" y1="390" x2="600" y2="400" stroke="#7c8594" stroke-width="2"/>
+<text x="300" y="430" text-anchor="middle" font-size="26" fill="#4a5260">1/30</text>
+<text x="400" y="430" text-anchor="middle" font-size="26" fill="#4a5260">1/125</text>
+<text x="500" y="430" text-anchor="middle" font-size="26" fill="#4a5260">1/500</text>
+<text x="600" y="430" text-anchor="middle" font-size="26" fill="#4a5260">1/1000</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Màn trập 1/50 s khớp nhịp đèn 100 Hz, 1/125 s lệch nhịp</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="32" y="112" font-size="26" font-weight="600" fill="#0b0d12">Đèn 100 Hz</text>
+<text x="688" y="112" font-size="24" fill="#4a5260" text-anchor="end">Theo lý thuyết</text>
+<polyline points="80,180 150,130 220,180 290,130 360,180 430,130 500,180 570,130 640,180" fill="none" stroke="#0b0d12" stroke-width="4" stroke-linejoin="round"/>
+<path d="M80 204H220M80 196V212M220 196V212" stroke="#7c8594" stroke-width="2" fill="none"/>
+<text x="236" y="212" font-size="24" fill="#4a5260">Một chu kỳ 10 ms</text>
+<text x="32" y="282" font-size="26" font-weight="600" fill="#0b0d12">Màn trập 1/50 s</text>
+<rect x="80" y="296" width="280" height="44" rx="8" fill="#f05a14"/>
+<text x="384" y="326" font-size="26" font-weight="600" fill="#0b0d12">Khớp nhịp</text>
+<text x="32" y="384" font-size="26" font-weight="600" fill="#0b0d12">Màn trập 1/125 s</text>
+<rect x="80" y="398" width="112" height="44" rx="8" fill="#7c8594"/>
+<text x="208" y="428" font-size="26" font-weight="600" fill="#0b0d12">Lệch nhịp</text>
+</svg>

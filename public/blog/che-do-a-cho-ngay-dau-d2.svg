@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Khi tốc độ nhấp nháy, đổi số f rồi chụp lại</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="200" y="36" width="320" height="60" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<text x="360" y="74" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Đặt số f</text>
+<line x1="360" y1="96" x2="360" y2="120" stroke="#7c8594" stroke-width="4"/>
+<polygon points="350,118 360,134 370,118" fill="#7c8594"/>
+<rect x="200" y="134" width="320" height="60" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<text x="360" y="172" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Máy chọn tốc độ</text>
+<line x1="360" y1="194" x2="360" y2="218" stroke="#7c8594" stroke-width="4"/>
+<polygon points="350,216 360,232 370,216" fill="#7c8594"/>
+<rect x="200" y="232" width="320" height="60" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="4"/>
+<text x="360" y="270" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Tốc độ nhấp nháy?</text>
+<path d="M 260 292 V 316 H 172 V 336" fill="none" stroke="#7c8594" stroke-width="4"/>
+<polygon points="164,332 172,348 180,332" fill="#7c8594"/>
+<path d="M 460 292 V 316 H 548 V 336" fill="none" stroke="#7c8594" stroke-width="4"/>
+<polygon points="540,332 548,348 556,332" fill="#7c8594"/>
+<rect x="32" y="348" width="280" height="60" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<text x="172" y="386" font-size="24" font-weight="600" text-anchor="middle" fill="#0b0d12">Có: đổi số f</text>
+<rect x="408" y="348" width="280" height="60" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<text x="548" y="386" font-size="24" font-weight="600" text-anchor="middle" fill="#0b0d12">Không: chụp ảnh</text>
+</svg>

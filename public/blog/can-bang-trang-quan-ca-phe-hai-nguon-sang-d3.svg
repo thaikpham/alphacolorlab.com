@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba bước Custom WB trên ZV-E10: chọn ô, chụp tờ trắng, lưu giá trị</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="40" y="60" width="200" height="340" rx="24" fill="#f3f4f6"/>
+<rect x="260" y="60" width="200" height="340" rx="24" fill="#f3f4f6"/>
+<rect x="480" y="60" width="200" height="340" rx="24" fill="#f3f4f6"/>
+<text x="140" y="118" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">1 Chọn ô</text>
+<text x="360" y="118" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">2 Chụp trắng</text>
+<text x="580" y="118" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">3 Lưu</text>
+<rect x="60" y="164" width="160" height="44" rx="10" fill="#ffffff" stroke="#f05a14" stroke-width="4"/>
+<text x="140" y="193" text-anchor="middle" font-size="24" font-weight="600" fill="#b43f00">Custom 1</text>
+<rect x="60" y="220" width="160" height="44" rx="10" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<text x="140" y="249" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Custom 2</text>
+<rect x="60" y="276" width="160" height="44" rx="10" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<text x="140" y="305" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Custom 3</text>
+<rect x="290" y="164" width="140" height="150" rx="8" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<rect x="325" y="194" width="70" height="90" fill="none" stroke="#f05a14" stroke-width="4" stroke-dasharray="8 6"/>
+<text x="360" y="354" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Phủ kín khung</text>
+<circle cx="580" cy="230" r="54" fill="#ffffff" stroke="#0b0d12" stroke-width="4"/>
+<circle cx="580" cy="230" r="22" fill="#f05a14"/>
+<text x="580" y="354" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Bấm giữa</text>
+</svg>

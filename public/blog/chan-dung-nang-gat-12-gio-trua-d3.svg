@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Không flash và Fill-flash trên cùng một khuôn mặt</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="40" y="90" width="300" height="300" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<circle cx="190" cy="220" r="80" fill="#4a5260"/>
+<circle cx="160" cy="210" r="8" fill="#e3e6eb"/>
+<circle cx="220" cy="210" r="8" fill="#e3e6eb"/>
+<path d="M160 262 Q190 282 220 262" fill="none" stroke="#e3e6eb" stroke-width="5" stroke-linecap="round"/>
+<rect x="380" y="90" width="300" height="300" rx="14" fill="#f3f4f6" stroke="#f05a14" stroke-width="6"/>
+<circle cx="530" cy="220" r="80" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<circle cx="500" cy="210" r="8" fill="#0b0d12"/>
+<circle cx="560" cy="210" r="8" fill="#0b0d12"/>
+<path d="M500 262 Q530 282 560 262" fill="none" stroke="#0b0d12" stroke-width="5" stroke-linecap="round"/>
+<text x="190" y="436" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Không flash</text>
+<text x="530" y="436" text-anchor="middle" font-size="26" font-weight="600" fill="#b43f00">Fill-flash</text>
+</svg>

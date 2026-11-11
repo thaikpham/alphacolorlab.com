@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Năm mức ISO AUTO Min. SS trên A6400</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="32" width="656" height="416" rx="24" fill="#f3f4f6"/>
+<g font-size="26" font-weight="600" text-anchor="middle">
+<text x="100" y="190" fill="#0b0d12">FASTER</text>
+<text x="230" y="190" fill="#0b0d12">FAST</text>
+<text x="360" y="190" fill="#b43f00">STD</text>
+<text x="490" y="190" fill="#0b0d12">SLOW</text>
+<text x="620" y="190" fill="#0b0d12">SLOWER</text>
+</g>
+<line x1="100" y1="240" x2="620" y2="240" stroke="#7c8594" stroke-width="4"/>
+<circle cx="100" cy="240" r="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="230" cy="240" r="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="360" cy="240" r="14" fill="#f05a14" stroke="#f05a14" stroke-width="3"/>
+<circle cx="490" cy="240" r="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="620" cy="240" r="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<text x="100" y="300" font-size="24" fill="#4a5260">ISO tăng sớm</text>
+<text x="620" y="300" font-size="24" fill="#4a5260" text-anchor="end">ISO tăng muộn</text>
+<text x="360" y="370" font-size="24" fill="#4a5260" text-anchor="middle">1 EV mỗi bậc</text>
+</svg>

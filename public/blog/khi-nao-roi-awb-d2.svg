@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Đo Custom trên ZV-E10 qua bốn bước</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="60" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Đo Custom trên ZV-E10</text>
+<rect x="150" y="92" width="420" height="60" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<text x="360" y="130" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">1. Chọn ô Custom</text>
+<path d="M360 152 V168" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="360,180 353,168 367,168" fill="#0b0d12"/>
+<rect x="150" y="180" width="420" height="60" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<text x="360" y="218" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">2. Vùng trắng vào khung</text>
+<path d="M360 240 V256" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="360,268 353,256 367,256" fill="#0b0d12"/>
+<rect x="150" y="268" width="420" height="60" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<text x="360" y="306" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">3. Bấm giữa để đo</text>
+<path d="M360 328 V344" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="360,356 353,344 367,344" fill="#0b0d12"/>
+<rect x="150" y="356" width="420" height="60" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
+<text x="360" y="394" text-anchor="middle" font-size="26" font-weight="600" fill="#b43f00">4. Máy ghi nhớ giá trị</text>
+<text x="360" y="450" text-anchor="middle" font-size="24" fill="#4a5260">Giữ đến khi ghi đè</text>
+</svg>

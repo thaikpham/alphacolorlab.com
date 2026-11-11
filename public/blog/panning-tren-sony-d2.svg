@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Bốn thanh tốc màn trập từ 1/250 s đến 1/30 s, thanh càng dài thì vệt nền càng dài khi panning</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="56" y="129" font-size="26" font-weight="600" fill="#0b0d12">1/250 s</text>
+<rect x="220" y="96" width="120" height="48" rx="8" fill="#e3e6eb"/>
+<text x="56" y="219" font-size="26" font-weight="600" fill="#0b0d12">1/125 s</text>
+<rect x="220" y="186" width="200" height="48" rx="8" fill="#f05a14"/>
+<text x="436" y="219" font-size="26" font-weight="600" fill="#b43f00">Xe máy</text>
+<text x="56" y="309" font-size="26" font-weight="600" fill="#0b0d12">1/60 s</text>
+<rect x="220" y="276" width="320" height="48" rx="8" fill="#e3e6eb"/>
+<text x="56" y="399" font-size="26" font-weight="600" fill="#0b0d12">1/30 s</text>
+<rect x="220" y="366" width="440" height="48" rx="8" fill="#e3e6eb"/>
+<text x="360" y="462" text-anchor="middle" font-size="24" fill="#4a5260">Tốc chậm hơn, vệt nền dài hơn</text>
+</svg>

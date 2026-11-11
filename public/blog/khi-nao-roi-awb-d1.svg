@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba lựa chọn Ưu tiên trong AWB: Standard, Ambience, White</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="76" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Ưu tiên trong AWB</text>
+<rect x="32" y="120" width="200" height="250" rx="14" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<text x="132" y="180" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Standard</text>
+<text x="132" y="240" text-anchor="middle" font-size="24" fill="#4a5260">Tự điều chỉnh</text>
+<text x="132" y="272" text-anchor="middle" font-size="24" fill="#4a5260">tông màu</text>
+<rect x="260" y="120" width="200" height="250" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
+<text x="360" y="180" text-anchor="middle" font-size="30" font-weight="600" fill="#b43f00">Ambience</text>
+<text x="360" y="240" text-anchor="middle" font-size="24" fill="#4a5260">Giữ tông màu</text>
+<text x="360" y="272" text-anchor="middle" font-size="24" fill="#4a5260">của nguồn sáng</text>
+<rect x="488" y="120" width="200" height="250" rx="14" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
+<text x="588" y="180" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">White</text>
+<text x="588" y="240" text-anchor="middle" font-size="24" fill="#4a5260">Làm trắng</text>
+<text x="588" y="272" text-anchor="middle" font-size="24" fill="#4a5260">khi nguồn ấm</text>
+<text x="360" y="420" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Chỉ khi WB là Auto</text>
+</svg>

@@ -1,0 +1,119 @@
+[
+  {
+    "id": "shoot-easy",
+    "name": "Shoot Easy",
+    "description": "by Thaikpham",
+    "recommended": true,
+    "unlisted": true,
+    "author": {
+      "name": "Thai K. Pham",
+      "handle": "thaikpham"
+    },
+    "slots": [
+      {
+        "label": "Hằng ngày",
+        "settings": {
+          "mode": "A",
+          "focus": "AF-C",
+          "focusArea": "tracking-zone",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "off",
+          "iso": "auto",
+          "wb": {
+            "mode": "awb",
+            "ab": 0,
+            "gm": 0,
+            "priority": "white"
+          },
+          "flashMode": "rear-sync",
+          "expCompSet": "ambient-flash",
+          "awbPriority": "white",
+          "preAF": "on",
+          "steadyShot": "off",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-on"
+        }
+      },
+      {
+        "label": "Hằng ngày",
+        "settings": {
+          "mode": "A",
+          "focus": "AF-C",
+          "focusArea": "tracking-zone",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "off",
+          "iso": "auto",
+          "wb": {
+            "mode": "awb",
+            "ab": 0,
+            "gm": 0,
+            "priority": "white"
+          },
+          "flashMode": "rear-sync",
+          "expCompSet": "ambient-flash",
+          "awbPriority": "white",
+          "preAF": "on",
+          "steadyShot": "off",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-on"
+        }
+      },
+      {
+        "label": "Hằng ngày",
+        "settings": {
+          "mode": "A",
+          "focus": "AF-C",
+          "focusArea": "tracking-zone",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "off",
+          "iso": "auto",
+          "wb": {
+            "mode": "awb",
+            "ab": 0,
+            "gm": 0,
+            "priority": "white"
+          },
+          "flashMode": "rear-sync",
+          "expCompSet": "ambient-flash",
+          "awbPriority": "white",
+          "preAF": "on",
+          "steadyShot": "off",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-on"
+        }
+      },
+      {
+        "label": "Hằng ngày",
+        "settings": {
+          "mode": "A",
+          "focus": "AF-C",
+          "focusArea": "tracking-zone",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "off",
+          "iso": "auto",
+          "wb": {
+            "mode": "awb",
+            "ab": 0,
+            "gm": 0,
+            "priority": "white"
+          },
+          "flashMode": "rear-sync",
+          "expCompSet": "ambient-flash",
+          "awbPriority": "white",
+          "preAF": "on",
+          "steadyShot": "off",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-on"
+        }
+      }
+    ]
+  }
+]

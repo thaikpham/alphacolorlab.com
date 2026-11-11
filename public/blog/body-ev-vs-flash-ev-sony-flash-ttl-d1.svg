@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Khi cài Ambient only: Body EV đổi nền, Flash EV đổi chủ thể</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="40" y="100" font-size="30" font-weight="600" fill="#0b0d12">Cài Ambient only</text>
+<rect x="40" y="130" width="640" height="150" rx="14" fill="#f3f4f6"/>
+<text x="72" y="196" font-size="26" font-weight="600" fill="#0b0d12">Body EV</text>
+<text x="72" y="238" font-size="26" fill="#4a5260">Nền</text>
+<rect x="300" y="196" width="340" height="12" rx="6" fill="#e3e6eb"/>
+<circle cx="470" cy="202" r="18" fill="#f05a14"/>
+<rect x="40" y="310" width="640" height="150" rx="14" fill="#f3f4f6"/>
+<text x="72" y="376" font-size="26" font-weight="600" fill="#0b0d12">Flash EV</text>
+<text x="72" y="418" font-size="26" fill="#4a5260">Chủ thể</text>
+<rect x="300" y="376" width="340" height="12" rx="6" fill="#e3e6eb"/>
+<circle cx="470" cy="382" r="18" fill="#0b0d12"/>
+</svg>

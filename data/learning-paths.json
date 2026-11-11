@@ -1,0 +1,316 @@
+[
+  {
+    "slug": "tuan-dau-voi-may-anh",
+    "title": "Tuần đầu với máy ảnh",
+    "draft": true,
+    "lead": "Sáu bài cho tuần đầu cầm máy. Chụp được ngay ở chế độ A, rồi sửa dần ba lỗi hay gặp: mất nét, rung tay và sai sáng.",
+    "steps": [
+      {
+        "kind": "blog",
+        "id": "che-do-a-cho-ngay-dau",
+        "reason": "Chụp được ngay: bạn chọn khẩu độ, máy lo tốc độ."
+      },
+      {
+        "kind": "blog",
+        "id": "af-s-af-c-dmf-chon-mot",
+        "reason": "Chọn chế độ lấy nét hợp với chủ thể đứng yên hay chuyển động."
+      },
+      {
+        "kind": "blog",
+        "id": "anh-mo-vi-rung-tay",
+        "reason": "Hiểu vì sao ảnh mờ và tốc độ tối thiểu theo tiêu cự."
+      },
+      {
+        "kind": "blog",
+        "id": "anh-toi-anh-chay-bu-sang",
+        "reason": "Sửa ảnh tối hoặc cháy sáng bằng bù sáng và biểu đồ."
+      },
+      {
+        "kind": "blog",
+        "id": "raw-hay-jpeg-cho-nguoi-moi",
+        "reason": "Chọn RAW hay JPEG trước khi đi chụp buổi đầu."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "he-menu-legacy-va-new-gen",
+        "reason": "Biết máy bạn dùng hệ menu nào để tìm cài đặt nhanh."
+      }
+    ]
+  },
+  {
+    "slug": "lam-chu-phoi-sang",
+    "title": "Làm chủ phơi sáng",
+    "draft": true,
+    "lead": "Đi từ tam giác phơi sáng tới chế độ M. Học xong, bạn tự đặt khẩu, tốc và ISO cho mọi cảnh.",
+    "steps": [
+      {
+        "kind": "knowledge",
+        "slug": "tam-giac-phoi-sang",
+        "reason": "Nắm ba yếu tố quyết định độ sáng của ảnh."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "khau-do",
+        "reason": "Khẩu độ đổi độ sáng và độ xóa phông."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "toc-do-man-trap",
+        "reason": "Tốc độ màn trập đổi độ sáng và cách ghi chuyển động."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "iso",
+        "reason": "ISO bù sáng khi thiếu sáng, đổi lại ảnh nhiễu hơn."
+      },
+      {
+        "kind": "blog",
+        "id": "xoay-1-3-stop-tren-sony",
+        "reason": "Một nấc bánh xe là 1/3 stop: đếm nấc để đổi sáng chính xác."
+      },
+      {
+        "kind": "blog",
+        "id": "chon-metering-mode",
+        "reason": "Chọn kiểu đo sáng để máy đo đúng chỗ bạn cần."
+      },
+      {
+        "kind": "blog",
+        "id": "che-do-m-ba-buoc",
+        "reason": "Ghép tất cả lại ở chế độ M theo ba bước."
+      }
+    ]
+  },
+  {
+    "slug": "lay-net-chac-tay",
+    "title": "Lấy nét chắc tay",
+    "draft": true,
+    "lead": "Bốn bài để ảnh luôn nét đúng chỗ, từ chọn chế độ lấy nét tới bám mắt và lấy nét bằng ngón cái.",
+    "steps": [
+      {
+        "kind": "knowledge",
+        "slug": "lay-net",
+        "reason": "Hiểu các chế độ và vùng lấy nét trên máy Sony."
+      },
+      {
+        "kind": "blog",
+        "id": "af-s-af-c-dmf-chon-mot",
+        "reason": "Chọn AF-S, AF-C hay DMF cho từng tình huống."
+      },
+      {
+        "kind": "blog",
+        "id": "af-c-tracking-eye-af",
+        "reason": "Ba cài đặt để máy tự bám mắt người."
+      },
+      {
+        "kind": "blog",
+        "id": "back-button-af",
+        "reason": "Tách lấy nét khỏi nút chụp bằng nút AF-ON."
+      }
+    ]
+  },
+  {
+    "slug": "chup-sang-tao",
+    "title": "Chụp sáng tạo",
+    "draft": true,
+    "lead": "Tám bài về bố cục và kỹ thuật sáng tạo. Mỗi bài có một bài tập ngắn để làm ngay.",
+    "steps": [
+      {
+        "kind": "knowledge",
+        "slug": "chu-the-chinh",
+        "reason": "Bắt đầu từ câu hỏi: ảnh này kể về ai, về cái gì."
+      },
+      {
+        "kind": "blog",
+        "id": "bat-luoi-1-3-va-bon-bo-cuc",
+        "reason": "Bật lưới 1/3 và tập bốn kiểu bố cục."
+      },
+      {
+        "kind": "blog",
+        "id": "mot-chu-the-ba-goc-may",
+        "reason": "Chụp một chủ thể từ ba độ cao để thấy góc máy đổi câu chuyện."
+      },
+      {
+        "kind": "blog",
+        "id": "xoa-phong-voi-ong-kit",
+        "reason": "Xóa phông bằng ống kit, chưa cần mua ống mới."
+      },
+      {
+        "kind": "blog",
+        "id": "chup-silhouette-tren-sony",
+        "reason": "Chụp bóng đen trước nền trời bằng đo sáng điểm."
+      },
+      {
+        "kind": "blog",
+        "id": "panning-tren-sony",
+        "reason": "Lia máy theo chủ thể để nền nhòe thành vệt."
+      },
+      {
+        "kind": "blog",
+        "id": "phoi-sang-dai-tren-sony",
+        "reason": "Phơi sáng dài biến nước và đèn xe thành vệt mượt."
+      },
+      {
+        "kind": "blog",
+        "id": "san-mau-va-lop-canh-30-phut",
+        "reason": "Đi bộ 30 phút săn một màu và xếp ba lớp cảnh."
+      }
+    ]
+  },
+  {
+    "slug": "mau-va-sau-buoi-chup",
+    "title": "Màu sắc và sau buổi chụp",
+    "draft": true,
+    "lead": "Sáu bài về màu và quy trình sau khi chụp: cân bằng trắng, Picture Profile, định dạng tập tin và lọc ảnh, chuyển ảnh sang điện thoại.",
+    "steps": [
+      {
+        "kind": "knowledge",
+        "slug": "can-bang-trang-va-nhiet-do-mau",
+        "reason": "Hiểu cân bằng trắng và nhiệt độ màu."
+      },
+      {
+        "kind": "blog",
+        "id": "khi-nao-roi-awb",
+        "reason": "Nhận ra lúc AWB sai và chọn cân bằng trắng đúng."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "picture-profile",
+        "reason": "Chỉnh màu ngay trong máy bằng Picture Profile."
+      },
+      {
+        "kind": "blog",
+        "id": "raw-hay-jpeg-cho-nguoi-moi",
+        "reason": "Chọn RAW hay JPEG theo thời gian bạn dành cho hậu kỳ."
+      },
+      {
+        "kind": "blog",
+        "id": "loc-anh-sau-buoi-chup",
+        "reason": "Lọc, đặt tên và sao lưu ảnh sau buổi chụp."
+      },
+      {
+        "kind": "blog",
+        "id": "chuyen-anh-tu-may-sony-sang-dien-thoai",
+        "reason": "Gửi ảnh sang điện thoại ngay tại buổi chụp để đăng sớm."
+      }
+    ]
+  },
+  {
+    "slug": "hieu-may-va-ong-kinh",
+    "title": "Hiểu máy và ống kính",
+    "draft": true,
+    "lead": "Tám bài để đọc được bảng thông số trước khi mua máy hay ống kính: cảm biến, tiêu cự, khẩu độ, chống rung và các dòng ống kính Sony.",
+    "steps": [
+      {
+        "kind": "knowledge",
+        "slug": "cam-bien-hinh-anh",
+        "reason": "Hiểu full-frame, APS-C và hệ số crop 1,5."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "tieu-cu",
+        "reason": "Đọc tiêu cự để biết ống kính chụp rộng hay kéo gần."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "ong-kinh-zoom-va-ong-kinh-fix",
+        "reason": "Chọn giữa ống zoom linh hoạt và ống fix sáng."
+      },
+      {
+        "kind": "blog",
+        "id": "clear-image-zoom-ong-fix-thanh-hai-tieu-cu",
+        "reason": "Dùng Clear Image Zoom hoặc APS-C/Super 35mm để một ống fix có hai tiêu cự."
+      },
+      {
+        "kind": "blog",
+        "id": "so-f-tren-ong-kit",
+        "reason": "Hiểu con số F3.5–5.6 trên ống kit."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "chong-rung-ibis",
+        "reason": "Biết máy bạn có chống rung trên thân máy hay không."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "oss",
+        "reason": "Chọn ống có OSS khi máy không có IBIS."
+      },
+      {
+        "kind": "knowledge",
+        "slug": "dong-ong-kinh-g-va-g-master",
+        "reason": "Phân biệt các dòng G Master, G, ZEISS và tiêu chuẩn."
+      }
+    ]
+  },
+  {
+    "slug": "anh-sang-kho",
+    "title": "Ánh sáng khó",
+    "draft": true,
+    "lead": "Năm bài cho những cảnh sáng dễ làm hỏng ảnh ở Việt Nam: nắng gắt giữa trưa, quán cà phê hai nguồn sáng, phố đèn neon, đèn LED gây sọc và trời đêm.",
+    "steps": [
+      {
+        "kind": "blog",
+        "id": "chan-dung-nang-gat-12-gio-trua",
+        "reason": "Bốn cách chụp chân dung khi nắng đứng bóng."
+      },
+      {
+        "kind": "blog",
+        "id": "can-bang-trang-quan-ca-phe-hai-nguon-sang",
+        "reason": "Chọn một nguồn sáng làm chuẩn khi đèn vàng lẫn ánh cửa sổ."
+      },
+      {
+        "kind": "blog",
+        "id": "chup-pho-dem-den-neon-bien-led",
+        "reason": "Đo sáng theo biển hiệu để màu đèn không cháy trắng."
+      },
+      {
+        "kind": "blog",
+        "id": "chup-im-lang-va-soc-ngang-duoi-den",
+        "reason": "Biết khi nào tắt chụp im lặng để ảnh không có sọc ngang."
+      },
+      {
+        "kind": "blog",
+        "id": "bright-monitoring-chup-sao-va-canh-dem",
+        "reason": "Bật Bright Monitoring để thấy khung hình khi chụp trời đêm."
+      }
+    ]
+  },
+  {
+    "slug": "quay-phim-voi-may-sony",
+    "title": "Quay phim với máy Sony",
+    "draft": true,
+    "lead": "Sáu bài để quay phim chắc tay trên máy Sony: chọn độ phân giải và tốc độ khung hình, tránh đèn nhấp nháy, chống rung, quay chậm, proxy và phát trực tiếp qua USB.",
+    "steps": [
+      {
+        "kind": "knowledge",
+        "slug": "do-phan-giai-va-toc-do-khung-hinh-video",
+        "reason": "Đọc được 4K, Full HD, 25p và 50p trước khi chọn cài đặt quay."
+      },
+      {
+        "kind": "blog",
+        "id": "den-led-nhap-nhay-khi-quay-video",
+        "reason": "Đặt tốc độ màn trập theo điện 50 Hz để đèn LED không nhấp nháy."
+      },
+      {
+        "kind": "blog",
+        "id": "active-steadyshot-cat-bao-nhieu-khung-hinh",
+        "reason": "Chọn kiểu chống rung và tiêu cự trước khi quay cầm tay."
+      },
+      {
+        "kind": "blog",
+        "id": "quay-cham-tua-nhanh-bang-s-and-q",
+        "reason": "Quay chậm và tua nhanh ngay trong máy bằng S&Q."
+      },
+      {
+        "kind": "blog",
+        "id": "proxy-recording-tren-sony",
+        "reason": "Ghi thêm file proxy nhẹ để gửi sang điện thoại hoặc tải lên web."
+      },
+      {
+        "kind": "blog",
+        "id": "dung-may-sony-lam-webcam-qua-usb",
+        "reason": "Dùng máy làm webcam và phát trực tiếp qua cáp USB."
+      }
+    ]
+  }
+]

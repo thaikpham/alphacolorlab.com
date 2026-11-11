@@ -1,0 +1,11 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Giảm nhiễu phơi sáng dài làm khung tiếp theo chậm lại</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="60" y="110" font-size="28" font-weight="600" fill="#0b0d12">Bật giảm nhiễu</text>
+<text x="60" y="200" font-size="26" font-weight="600" fill="#0b0d12">Phơi 2 phút</text>
+<rect x="60" y="220" width="270" height="70" rx="14" fill="#7c8594"/>
+<text x="330" y="200" font-size="26" font-weight="600" fill="#0b0d12">Trừ nhiễu 2 phút</text>
+<rect x="330" y="220" width="270" height="70" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3" stroke-dasharray="10 8"/>
+<path d="M60,314 V334 H600 V314" fill="none" stroke="#f05a14" stroke-width="4"/>
+<text x="330" y="395" font-size="28" font-weight="600" text-anchor="middle" fill="#b43f00">Khung tiếp sau 4 phút</text>
+</svg>

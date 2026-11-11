@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Tốc độ đồng bộ flash 1/160 s với đèn Sony</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="40" y="104" font-size="30" font-weight="600" fill="#0b0d12">Tốc độ màn trập</text>
+<line x1="60" y1="270" x2="660" y2="270" stroke="#7c8594" stroke-width="3"/>
+<line x1="120" y1="258" x2="120" y2="282" stroke="#7c8594" stroke-width="3"/>
+<line x1="260" y1="258" x2="260" y2="282" stroke="#7c8594" stroke-width="3"/>
+<line x1="400" y1="258" x2="400" y2="282" stroke="#7c8594" stroke-width="3"/>
+<line x1="540" y1="258" x2="540" y2="282" stroke="#7c8594" stroke-width="3"/>
+<text x="120" y="232" font-size="26" text-anchor="middle" fill="#0b0d12">1/500</text>
+<text x="260" y="232" font-size="26" text-anchor="middle" fill="#0b0d12">1/250</text>
+<text x="400" y="232" font-size="26" font-weight="600" text-anchor="middle" fill="#b43f00">1/160</text>
+<text x="540" y="232" font-size="26" text-anchor="middle" fill="#0b0d12">1/60</text>
+<circle cx="400" cy="270" r="16" fill="#f05a14"/>
+<text x="60" y="318" font-size="26" fill="#4a5260">Nhanh</text>
+<text x="660" y="318" font-size="26" text-anchor="end" fill="#4a5260">Chậm</text>
+<text x="400" y="344" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Đồng bộ flash</text>
+</svg>

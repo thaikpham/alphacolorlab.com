@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>So sánh Face/Eye AF Set. và nút Eye AF</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="104" width="308" height="280" rx="14" fill="#f3f4f6"/>
+<rect x="380" y="104" width="308" height="280" rx="14" fill="#f3f4f6"/>
+<text x="186" y="84" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">Face/Eye AF Set.</text>
+<text x="534" y="84" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">Nút Eye AF</text>
+<rect x="116" y="190" width="140" height="130" fill="none" stroke="#f05a14" stroke-width="4" stroke-dasharray="10 8"/>
+<circle cx="186" cy="236" r="40" fill="#7c8594"/>
+<rect x="156" y="282" width="60" height="60" rx="26" fill="#7c8594"/>
+<circle cx="172" cy="232" r="9" fill="none" stroke="#f05a14" stroke-width="4"/>
+<circle cx="294" cy="170" r="20" fill="none" stroke="#7c8594" stroke-width="3"/>
+<circle cx="600" cy="220" r="40" fill="#7c8594"/>
+<rect x="570" y="266" width="60" height="60" rx="26" fill="#7c8594"/>
+<circle cx="586" cy="216" r="9" fill="none" stroke="#f05a14" stroke-width="4"/>
+<text x="186" y="440" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Ưu tiên vùng nét</text>
+<text x="534" y="440" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Tìm mắt cả khung</text>
+</svg>

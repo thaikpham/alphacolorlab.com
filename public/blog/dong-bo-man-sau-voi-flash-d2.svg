@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Chủ thể đóng băng ở cuối, vệt nền nằm phía sau chủ thể</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<line x1="170" y1="190" x2="586" y2="190" stroke="#f05a14" stroke-width="6"/>
+<polygon points="600,190 582,180 582,200" fill="#f05a14"/>
+<text x="170" y="164" font-size="26" fill="#0b0d12">Hướng chuyển động</text>
+<rect x="130" y="254" width="300" height="12" rx="6" fill="#e3e6eb"/>
+<rect x="170" y="284" width="260" height="12" rx="6" fill="#7c8594"/>
+<rect x="110" y="314" width="320" height="12" rx="6" fill="#e3e6eb"/>
+<text x="110" y="366" font-size="26" fill="#0b0d12">Vệt nền</text>
+<rect x="440" y="240" width="120" height="120" rx="16" fill="#0b0d12"/>
+<text x="500" y="398" font-size="26" text-anchor="middle" fill="#0b0d12">Chủ thể</text>
+</svg>

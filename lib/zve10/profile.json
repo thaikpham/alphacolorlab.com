@@ -1,0 +1,942 @@
+{
+  "model": "ZV-E10",
+  "trained_from": "Dot4/Dot5 2026-10-28 — eight user camera samples",
+  "profile": {
+    "version": 1,
+    "model": "ZV-E10",
+    "calibrated": true,
+    "pp": {
+      "black_level": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "gamma": {
+        "kind": "enum",
+        "values": {
+          "Movie": 4,
+          "Still": 5,
+          "Cine1": 6,
+          "Cine4": 9,
+          "S-Log3": 12,
+          "HLG3": 15,
+          "S-Log2": 11
+        }
+      },
+      "color_mode": {
+        "kind": "enum",
+        "values": {
+          "Movie": 5,
+          "Still": 6,
+          "Pro": 3,
+          "S-Gamut3": 10,
+          "S-Gamut3.Cine": 11,
+          "BT.2020": 22,
+          "Black & White": 9
+        }
+      },
+      "black_gamma_range": {
+        "kind": "enum",
+        "values": {
+          "Wide": 0,
+          "Middle": 1,
+          "Narrow": 2
+        }
+      },
+      "black_gamma_level": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "knee_mode": {
+        "kind": "enum",
+        "values": {
+          "Auto": 0,
+          "Manual": 1
+        }
+      },
+      "knee_auto_max": {
+        "kind": "affine",
+        "a": "2/5",
+        "b": "-36",
+        "transform": "identity",
+        "signed": true
+      },
+      "knee_auto_sens": {
+        "kind": "enum",
+        "values": {
+          "Low": 2,
+          "Mid": 1,
+          "High": 0
+        }
+      },
+      "knee_point": {
+        "kind": "affine",
+        "a": "2/5",
+        "b": "-30",
+        "transform": "identity",
+        "signed": true
+      },
+      "knee_slope": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "saturation": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "color_phase": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "depth_r": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "depth_g": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "depth_b": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "depth_c": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "depth_m": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "depth_y": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "detail_level": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "detail_mode": {
+        "kind": "enum",
+        "values": {
+          "Auto": 0,
+          "Manual": 1
+        }
+      },
+      "detail_vh": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "detail_bw": {
+        "kind": "enum",
+        "values": {
+          "Type1": 0,
+          "Type2": 1,
+          "Type3": 2,
+          "Type5": 4
+        }
+      },
+      "detail_limit": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "detail_crisp": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      },
+      "detail_hilight": {
+        "kind": "affine",
+        "a": "1",
+        "b": "0",
+        "transform": "identity",
+        "signed": true
+      }
+    },
+    "shoot_modes": {
+      "P": 1,
+      "A": 2,
+      "S": 3,
+      "M": 4
+    },
+    "shoot_offsets": [
+      384
+    ],
+    "wb": {
+      "ctemp": {
+        "ab": [
+          {
+            "kind": "affine",
+            "a": "1000",
+            "b": "0",
+            "transform": "fraction",
+            "offset": 1270,
+            "width": 2,
+            "signed": true
+          },
+          {
+            "kind": "affine",
+            "a": "1",
+            "b": "0",
+            "transform": "trunc",
+            "offset": 440,
+            "width": 1,
+            "signed": true
+          }
+        ],
+        "gm": [
+          {
+            "kind": "affine",
+            "a": "1000",
+            "b": "0",
+            "transform": "fraction",
+            "offset": 1315,
+            "width": 2,
+            "signed": true
+          },
+          {
+            "kind": "affine",
+            "a": "1",
+            "b": "0",
+            "transform": "trunc",
+            "offset": 470,
+            "width": 1,
+            "signed": true
+          }
+        ]
+      },
+      "awb": {
+        "ab": [
+          {
+            "kind": "affine",
+            "a": "1",
+            "b": "0",
+            "transform": "trunc",
+            "offset": 412,
+            "width": 1,
+            "signed": true
+          },
+          {
+            "kind": "affine",
+            "a": "1000",
+            "b": "0",
+            "transform": "fraction",
+            "offset": 1228,
+            "width": 2,
+            "signed": true
+          }
+        ],
+        "gm": [
+          {
+            "kind": "affine",
+            "a": "1000",
+            "b": "0",
+            "transform": "fraction",
+            "offset": 1273,
+            "width": 2,
+            "signed": true
+          },
+          {
+            "kind": "affine",
+            "a": "1",
+            "b": "0",
+            "transform": "trunc",
+            "offset": 442,
+            "width": 1,
+            "signed": true
+          }
+        ],
+        "fractional_verified": {
+          "ab": false,
+          "gm": true
+        },
+        "note": "AWB A/B phần nguyên đã đối chiếu; vị trí phần lẻ suy từ hai bảng đồng dạng, chỉ cho phép xóa về 0.",
+        "priority_offsets": [
+          1491
+        ],
+        "priority_values": {
+          "standard": 1,
+          "white": 3,
+          "ambience": 2
+        }
+      }
+    },
+    "evidence": [
+      {
+        "id": "C01_P",
+        "sha256": "f28a57d9b925653c7311fc8379bbe5a32971a2b6f9ec5cc35a6a64e5662a581e"
+      },
+      {
+        "id": "C02_A",
+        "sha256": "43b14605fb7c0a01d97c6b86e4b908771ea1e857f3bca626b6fedcd4d32a9c88"
+      },
+      {
+        "id": "C03_S",
+        "sha256": "70523610160a44db9466c3f57c808b91ea6fd692bd4f59ea085e6ea88755bcd5"
+      },
+      {
+        "id": "C04_M",
+        "sha256": "39df0076e2c964bd1214dd519302b14b5f7b756847a24d19703729073920165a"
+      },
+      {
+        "id": "C05_AWB",
+        "sha256": "3fbfef9dcdc2cb88c585fcefed21bf2a1ad373e5315d16be2fe58a5b28c4fe45"
+      },
+      {
+        "id": "C06_AWB_SHIFT",
+        "sha256": "80cb2b26bcf360750245f9fe34974cca7b93176d2e58f9bbb82e9a13f3b89e08"
+      },
+      {
+        "id": "C07_AWB_WHITE",
+        "sha256": "b0a06b826d43a413b191ddf7a689e838ba0fe08e8804c1c57c36d82b6de1b4c7"
+      },
+      {
+        "id": "C08_AWB_AMB",
+        "sha256": "659fee4df61cf789519dabb17426ffd9c50a32113fecbf13ad321ca2fd614c13"
+      }
+    ],
+    "note": "Các trường chưa hiệu chỉnh bị chặn; không làm tròn WB hoặc đổi Gamma.",
+    "mode_bindings": [
+      {
+        "offset": 384,
+        "width": 1,
+        "values": {
+          "P": 1,
+          "A": 2,
+          "S": 3,
+          "M": 4
+        }
+      }
+    ],
+    "codec_revision": 3,
+    "camera_verified": false,
+    "family": "N"
+  },
+  "focus": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "codec_revision": 3,
+    "camera_verified": false,
+    "rules": [
+      {
+        "offset": 731,
+        "width": 1,
+        "values": {
+          "MF": 1,
+          "AF-S": 2,
+          "AF-C": 2
+        }
+      },
+      {
+        "offset": 725,
+        "width": 1,
+        "values": {
+          "MF": null,
+          "AF-S": 2,
+          "AF-C": 3
+        },
+        "note": "MF ignores and preserves retained AF subtype"
+      }
+    ],
+    "modes": [
+      "MF",
+      "AF-S",
+      "AF-C"
+    ],
+    "learning_plan": "dot4-dot5-combined-v1",
+    "evidence": [
+      {
+        "id": "C01_P",
+        "sha256": "f28a57d9b925653c7311fc8379bbe5a32971a2b6f9ec5cc35a6a64e5662a581e"
+      },
+      {
+        "id": "C02_A",
+        "sha256": "43b14605fb7c0a01d97c6b86e4b908771ea1e857f3bca626b6fedcd4d32a9c88"
+      },
+      {
+        "id": "C03_S",
+        "sha256": "70523610160a44db9466c3f57c808b91ea6fd692bd4f59ea085e6ea88755bcd5"
+      },
+      {
+        "id": "C04_M",
+        "sha256": "39df0076e2c964bd1214dd519302b14b5f7b756847a24d19703729073920165a"
+      },
+      {
+        "id": "C05_AWB",
+        "sha256": "3fbfef9dcdc2cb88c585fcefed21bf2a1ad373e5315d16be2fe58a5b28c4fe45"
+      },
+      {
+        "id": "C06_AWB_SHIFT",
+        "sha256": "80cb2b26bcf360750245f9fe34974cca7b93176d2e58f9bbb82e9a13f3b89e08"
+      },
+      {
+        "id": "C07_AWB_WHITE",
+        "sha256": "b0a06b826d43a413b191ddf7a689e838ba0fe08e8804c1c57c36d82b6de1b4c7"
+      },
+      {
+        "id": "C08_AWB_AMB",
+        "sha256": "659fee4df61cf789519dabb17426ffd9c50a32113fecbf13ad321ca2fd614c13"
+      }
+    ]
+  },
+  "focus_area": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "areas": ["wide", "zone", "flexible-spot-l", "tracking-zone", "tracking-flexible-spot-l"],
+    "rules": [
+      {
+        "offset": 480,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 11,
+          "flexible-spot-l": 4,
+          "tracking-zone": 11,
+          "tracking-flexible-spot-l": 4
+        }
+      },
+      {
+        "offset": 482,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 11,
+          "flexible-spot-l": 4,
+          "tracking-zone": 11,
+          "tracking-flexible-spot-l": 4
+        }
+      },
+      {
+        "offset": 1684,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 11,
+          "flexible-spot-l": 4,
+          "tracking-zone": 11,
+          "tracking-flexible-spot-l": 4
+        }
+      },
+      {
+        "offset": 1692,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 11,
+          "flexible-spot-l": 4,
+          "tracking-zone": 11,
+          "tracking-flexible-spot-l": 4
+        }
+      },
+      {
+        "offset": 490,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 1,
+          "flexible-spot-l": 6,
+          "tracking-zone": 1,
+          "tracking-flexible-spot-l": 6
+        }
+      },
+      {
+        "offset": 492,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 1,
+          "flexible-spot-l": 6,
+          "tracking-zone": 1,
+          "tracking-flexible-spot-l": 6
+        }
+      },
+      {
+        "offset": 494,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 1,
+          "flexible-spot-l": 6,
+          "tracking-zone": 1,
+          "tracking-flexible-spot-l": 6
+        }
+      },
+      {
+        "offset": 502,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 1,
+          "flexible-spot-l": 2,
+          "tracking-zone": 2,
+          "tracking-flexible-spot-l": 2
+        }
+      },
+      {
+        "offset": 1706,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 1,
+          "flexible-spot-l": 2,
+          "tracking-zone": 2,
+          "tracking-flexible-spot-l": 2
+        }
+      },
+      {
+        "offset": 1708,
+        "width": 1,
+        "values": {
+          "wide": 1,
+          "zone": 1,
+          "flexible-spot-l": 2,
+          "tracking-zone": 2,
+          "tracking-flexible-spot-l": 2
+        }
+      },
+      {
+        "offset": 1151,
+        "width": 1,
+        "values": {
+          "wide": 0,
+          "zone": 0,
+          "flexible-spot-l": 0,
+          "tracking-zone": 1,
+          "tracking-flexible-spot-l": 1
+        }
+      },
+      {
+        "offset": 1686,
+        "width": 1,
+        "values": {
+          "wide": 0,
+          "zone": 0,
+          "flexible-spot-l": 0,
+          "tracking-zone": 1,
+          "tracking-flexible-spot-l": 1
+        }
+      },
+      {
+        "offset": 1694,
+        "width": 1,
+        "values": {
+          "wide": 0,
+          "zone": 0,
+          "flexible-spot-l": 0,
+          "tracking-zone": 1,
+          "tracking-flexible-spot-l": 1
+        }
+      }
+    ]
+  },
+  "metering": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "modes": ["multi", "center", "spot-standard", "spot-large", "entire", "highlight"],
+    "rules": [
+      {
+        "offset": 476,
+        "width": 1,
+        "values": {
+          "multi": 1,
+          "center": 3,
+          "spot-standard": 4,
+          "spot-large": 4,
+          "entire": 5,
+          "highlight": 6
+        }
+      },
+      {
+        "offset": 1493,
+        "width": 1,
+        "values": {
+          "multi": null,
+          "center": null,
+          "spot-standard": 2,
+          "spot-large": 3,
+          "entire": null,
+          "highlight": null
+        }
+      }
+    ]
+  },
+  "face_priority": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "states": ["off", "on"],
+    "rules": [
+      {
+        "offset": 1860,
+        "width": 1,
+        "values": {
+          "off": 1,
+          "on": 2
+        }
+      }
+    ]
+  },
+  "soft_skin": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "levels": ["off", "low", "mid", "high"],
+    "rules": [
+      {
+        "offset": 714,
+        "width": 1,
+        "values": {
+          "off": 0,
+          "low": 1,
+          "mid": 2,
+          "high": 3
+        }
+      },
+      {
+        "offset": 1178,
+        "width": 1,
+        "values": {
+          "off": null,
+          "low": 1,
+          "mid": 2,
+          "high": 3
+        }
+      }
+    ]
+  },
+  "auto_review": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "modes": ["off", "2s", "5s", "10s"],
+    "rules": [
+      {
+        "offset": 1644,
+        "width": 1,
+        "values": {
+          "off": 0,
+          "2s": 1,
+          "5s": 2,
+          "10s": 3
+        }
+      }
+    ]
+  },
+  "flash_mode": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "modes": ["fill-flash", "rear-sync", "slow-sync"],
+    "rules": [
+      {
+        "offset": 619,
+        "width": 1,
+        "values": {
+          "fill-flash": 1,
+          "slow-sync": 3,
+          "rear-sync": 4
+        }
+      }
+    ]
+  },
+  "exp_comp_set": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "modes": ["ambient-only", "ambient-flash"],
+    "rules": [
+      {
+        "offset": 1513,
+        "width": 1,
+        "values": {
+          "ambient-only": 1,
+          "ambient-flash": 2
+        }
+      }
+    ]
+  },
+  "awb_priority": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "modes": ["standard", "ambience", "white"],
+    "rules": [
+      {
+        "offset": 1491,
+        "width": 1,
+        "values": {
+          "standard": 1,
+          "ambience": 2,
+          "white": 3
+        }
+      }
+    ]
+  },
+  "pre_af": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "states": ["off", "on"],
+    "rules": [
+      {
+        "offset": 1525,
+        "width": 1,
+        "values": {
+          "off": 0,
+          "on": 1
+        }
+      }
+    ]
+  },
+  "steady_shot": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "states": ["off", "on"],
+    "rules": [
+      {
+        "offset": 708,
+        "width": 1,
+        "values": {
+          "on": 2,
+          "off": 0
+        }
+      }
+    ]
+  },
+  "e_front_curtain": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "states": ["off", "on"],
+    "rules": [
+      {
+        "offset": 1566,
+        "width": 1,
+        "values": {
+          "on": 1,
+          "off": 2
+        }
+      }
+    ]
+  },
+  "live_view": {
+    "version": 1,
+    "model": "ZV-E10",
+    "family": "N",
+    "calibrated": true,
+    "source": "camera samples 2026-11-07",
+    "modes": ["setting-effect-on", "setting-effect-off"],
+    "rules": [
+      {
+        "offset": 1642,
+        "width": 1,
+        "values": {
+          "setting-effect-on": 0,
+          "setting-effect-off": 1
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Full edited presets have not yet been recalled on camera; earlier camera passes cover Kelvin and Black Level only.",
+    "Exposure: camera-saved samples cover F5.6/F8/F11, 1/50–1/250 s and ISO AUTO/100/400/800/1600; other 1/3-stop values follow the same APEX rule (A7R V) and still need a recall check.",
+    "Cine3 and Detail B/W Type4 are inferred from code sequences; ITU709, Cine2, HLG2, ITU709 Matrix and Cinema from factory PP banks. Auto ISO Min/Max are not decoded for writing."
+  ],
+  "supplement": {
+    "revision": 1,
+    "family": "N",
+    "date": "2026-10-28",
+    "pp_enum": {
+      "gamma": {
+        "ITU709": 3,
+        "Cine2": 7,
+        "Cine3": 8,
+        "ITU709(800%)": 10,
+        "HLG1": 13,
+        "HLG2": 14,
+        "HLG": 16
+      },
+      "color_mode": {
+        "ITU709 Matrix": 4,
+        "Cinema": 7,
+        "S-Gamut": 8,
+        "709": 21
+      },
+      "detail_bw": {
+        "Type4": 3
+      }
+    },
+    "pp_basis": {
+      "gamma": {
+        "ITU709": "pp-default",
+        "Cine2": "camera-sample",
+        "Cine3": "camera-sample",
+        "ITU709(800%)": "camera-sample",
+        "HLG1": "camera-sample",
+        "HLG2": "camera-sample",
+        "HLG": "camera-sample"
+      },
+      "color_mode": {
+        "ITU709 Matrix": "camera-sample",
+        "Cinema": "camera-sample",
+        "S-Gamut": "camera-sample",
+        "709": "camera-sample"
+      },
+      "detail_bw": {
+        "Type4": "camera-sample"
+      }
+    },
+    "awb_fractional_verified": {
+      "ab": true
+    },
+    "exposure": {
+      "aperture": {
+        "apex_offsets": [
+          321
+        ],
+        "display_offset": 333
+      },
+      "shutter": {
+        "apex_offsets": [
+          323
+        ],
+        "display_offset": 335
+      },
+      "iso": {
+        "offsets": [
+          404
+        ],
+        "base": 11,
+        "auto": 0
+      },
+      "verified": {
+        "aperture": [
+          "5.6",
+          "8",
+          "11"
+        ],
+        "shutter": [
+          "1/50",
+          "1/60",
+          "1/125",
+          "1/250"
+        ],
+        "iso": [
+          "AUTO",
+          "100",
+          "400",
+          "800",
+          "1600"
+        ]
+      }
+    },
+    "evidence": [
+      {
+        "id": "D6_01_F5.6_1-60_ISO400_SGAMUT",
+        "sha256": "5dddfe9866d64424c047e24887e1acb840204ab9e199f3c0d2a9e0b659ea9285"
+      },
+      {
+        "id": "D6_02_F11_1-250_ISO1600_HLG_709_AWB_A0.5",
+        "sha256": "1460cdbb2413ae543b7bafe00ef91ee9eb2658d4999894c87a39d235da1631a2"
+      },
+      {
+        "id": "D6_03_ISOAUTO_HLG1_BT2020",
+        "sha256": "1e61afdb9fec233c012bc4d6e116ecd38ff03c138bf5a85a5d89ca01570babc8"
+      },
+      {
+        "id": "D6_04_ISO800_ITU709-800",
+        "sha256": "ce79ba6faa0f0a4047f1e8d0e51cae7e837a51c1104ab41348c85c18a1e99f75"
+      },
+      {
+        "id": "R4_2026-11-07_PP_CONFIRM_M1",
+        "sha256": "d08611ce5efee2385a2db4803d81a0b197827bdc2baa8f7a85e994ec80fcabb6"
+      },
+      {
+        "id": "R4_2026-11-07_PP_CONFIRM_M2",
+        "sha256": "45dfe538a2b79c5328b047168c5431000b12e7f310cfcd7ca32686c42ab037ea"
+      },
+      {
+        "id": "R4_2026-11-07_PP_CONFIRM_M3",
+        "sha256": "8fcf6b39739b6cd943b5ec1b0ea6786ad85177eb371af18b311537a9da2fd8e5"
+      },
+      {
+        "id": "R4_2026-11-07_PP_CONFIRM_M4",
+        "sha256": "9035cb7bdd23a990471a5c3abaa27065e475f15726995db0edfb937d6c1fc110"
+      },
+      {
+        "id": "PP_FACTORY_DEFAULTS",
+        "note": "PP3–PP6, PP8–PP10 giống nhau trong 26 DAT: PP3 ITU709/Pro, PP4 ITU709/ITU709 Matrix, PP5 Cine1/Cinema, PP6 Cine2/Cinema, PP8 S-Log3/S-Gamut3.Cine, PP9 S-Log3/S-Gamut3, PP10 HLG2/BT.2020"
+      }
+    ]
+  }
+}

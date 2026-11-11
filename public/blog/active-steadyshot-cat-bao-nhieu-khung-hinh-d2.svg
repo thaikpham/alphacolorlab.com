@@ -1,0 +1,16 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>A7C II: Dynamic active hẹp nhất, Active hẹp hơn, Standard và Off không nêu thu hẹp góc</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="36" width="656" height="88" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
+<text x="60" y="90" font-size="26" font-weight="600" fill="#0b0d12">Dynamic active</text>
+<text x="668" y="90" font-size="24" fill="#b43f00" text-anchor="end">Hẹp nhất, tắt Clear Image Zoom</text>
+<rect x="32" y="144" width="656" height="88" rx="14" fill="#f3f4f6"/>
+<text x="60" y="198" font-size="26" font-weight="600" fill="#0b0d12">Active</text>
+<text x="668" y="198" font-size="24" fill="#4a5260" text-anchor="end">Góc quay hẹp hơn</text>
+<rect x="32" y="252" width="656" height="88" rx="14" fill="#f3f4f6"/>
+<text x="60" y="306" font-size="26" font-weight="600" fill="#0b0d12">Standard</text>
+<text x="668" y="306" font-size="24" fill="#4a5260" text-anchor="end">Không nêu thu hẹp góc</text>
+<rect x="32" y="360" width="656" height="88" rx="14" fill="#f3f4f6"/>
+<text x="60" y="414" font-size="26" font-weight="600" fill="#0b0d12">Off</text>
+<text x="668" y="414" font-size="24" fill="#4a5260" text-anchor="end">Không dùng SteadyShot</text>
+</svg>

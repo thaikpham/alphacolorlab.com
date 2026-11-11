@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480">
+<title>Đường dẫn kéo mắt từ góc dưới khung tới chủ thể gần giao điểm</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="144" y="88" width="432" height="324" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<g stroke="#7c8594" stroke-width="2" stroke-dasharray="8 6">
+<line x1="288" y1="88" x2="288" y2="412"/>
+<line x1="432" y1="88" x2="432" y2="412"/>
+<line x1="144" y1="196" x2="576" y2="196"/>
+<line x1="144" y1="304" x2="576" y2="304"/>
+</g>
+<path d="M144 412 L432 196" fill="none" stroke="#4a5260" stroke-width="4" stroke-linecap="round"/>
+<circle cx="432" cy="196" r="18" fill="#f05a14" stroke="#ffffff" stroke-width="3"/>
+<text x="456" y="170" font-family="Noto Sans, system-ui, sans-serif" font-size="26" font-weight="600" fill="#0b0d12">Chủ thể</text>
+<text x="360" y="462" text-anchor="middle" font-family="Noto Sans, system-ui, sans-serif" font-size="28" font-weight="600" fill="#0b0d12">Đường dẫn kéo mắt</text>
+</svg>

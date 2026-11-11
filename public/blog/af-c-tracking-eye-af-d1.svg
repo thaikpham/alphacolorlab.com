@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba bước Tracking: đặt khung, giữ nửa cò, đặt lại</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="56" y="80" width="208" height="100" rx="14" fill="#f3f4f6"/>
+<rect x="56" y="210" width="208" height="100" rx="14" fill="#f3f4f6"/>
+<rect x="56" y="340" width="208" height="100" rx="14" fill="#f3f4f6"/>
+<rect x="122" y="92" width="76" height="76" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<circle cx="160" cy="112" r="13" fill="#7c8594"/>
+<rect x="142" y="130" width="36" height="30" rx="12" fill="#7c8594"/>
+<rect x="122" y="222" width="76" height="76" rx="8" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="6 6"/>
+<rect x="172" y="222" width="76" height="76" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<circle cx="210" cy="242" r="13" fill="#7c8594"/>
+<rect x="192" y="260" width="36" height="30" rx="12" fill="#7c8594"/>
+<rect x="122" y="352" width="76" height="76" rx="8" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="226" cy="372" r="13" fill="#7c8594"/>
+<rect x="208" y="390" width="36" height="30" rx="12" fill="#7c8594"/>
+<line x1="160" y1="184" x2="160" y2="202" stroke="#7c8594" stroke-width="3"/>
+<polygon points="160,208 152,196 168,196" fill="#7c8594"/>
+<line x1="160" y1="314" x2="160" y2="332" stroke="#7c8594" stroke-width="3"/>
+<polygon points="160,338 152,326 168,326" fill="#7c8594"/>
+<text x="296" y="140" font-size="30" font-weight="600" fill="#0b0d12">Đặt khung lên người</text>
+<text x="296" y="270" font-size="30" font-weight="600" fill="#0b0d12">Giữ nửa cò</text>
+<text x="296" y="400" font-size="30" font-weight="600" fill="#0b0d12">Bám sai, đặt lại</text>
+</svg>

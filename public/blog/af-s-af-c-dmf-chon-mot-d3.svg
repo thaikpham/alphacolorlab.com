@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>DMF: bấm nửa cò, giữ nguyên, xoay vòng lấy nét</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<circle cx="136" cy="200" r="76" fill="#f3f4f6"/>
+<circle cx="360" cy="200" r="76" fill="#f3f4f6"/>
+<circle cx="584" cy="200" r="76" fill="#f3f4f6"/>
+<line x1="222" y1="200" x2="276" y2="200" stroke="#7c8594" stroke-width="4"/>
+<polygon points="284,200 270,192 270,208" fill="#7c8594"/>
+<line x1="446" y1="200" x2="500" y2="200" stroke="#7c8594" stroke-width="4"/>
+<polygon points="508,200 494,192 494,208" fill="#7c8594"/>
+<rect x="106" y="170" width="60" height="60" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<circle cx="136" cy="200" r="10" fill="#7c8594"/>
+<rect x="350" y="186" width="7" height="28" fill="#7c8594"/>
+<rect x="363" y="186" width="7" height="28" fill="#7c8594"/>
+<circle cx="584" cy="200" r="28" fill="none" stroke="#7c8594" stroke-width="6"/>
+<path d="M 584 172 A 28 28 0 0 1 608.2 186" fill="none" stroke="#f05a14" stroke-width="6"/>
+<polygon points="611.2,191.2 610.4,177.8 599.2,183.8" fill="#f05a14"/>
+<text x="136" y="318" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Bấm nửa cò</text>
+<text x="136" y="356" text-anchor="middle" font-size="26" fill="#4a5260">Máy lấy nét</text>
+<text x="360" y="318" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Giữ nguyên</text>
+<text x="360" y="356" text-anchor="middle" font-size="26" fill="#4a5260">Không nhả nửa cò</text>
+<text x="584" y="318" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Xoay vòng</text>
+<text x="584" y="356" text-anchor="middle" font-size="26" fill="#4a5260">Chỉnh nét tinh</text>
+</svg>

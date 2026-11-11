@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Chế độ S trên ZV-E10: tốc độ cố định, ISO đổi trong dải</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="110" font-size="26" font-weight="600" text-anchor="middle" fill="#b43f00">Chế độ S</text>
+<rect x="32" y="150" width="280" height="180" rx="24" fill="#f3f4f6" stroke="#f05a14" stroke-width="4"/>
+<rect x="408" y="150" width="280" height="180" rx="24" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<g font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">
+<text x="172" y="236">Tốc độ cố định</text>
+<text x="548" y="236">ISO thay đổi</text>
+</g>
+<g font-size="24" text-anchor="middle" fill="#4a5260">
+<text x="172" y="284">Bạn đặt, máy giữ</text>
+<text x="548" y="284">Trong dải đã đặt</text>
+</g>
+<text x="360" y="400" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Dải ISO AUTO</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480">
+<title>Hai chủ thể ngang sức chia đôi ảnh và một vai chính rõ</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="40" y="60" width="300" height="300" rx="24" fill="#f3f4f6"/>
+<circle cx="130" cy="170" r="34" fill="#4a5260"/>
+<rect x="90" y="212" width="80" height="118" rx="24" fill="#4a5260"/>
+<circle cx="240" cy="170" r="34" fill="#4a5260"/>
+<rect x="200" y="212" width="80" height="118" rx="24" fill="#4a5260"/>
+<text x="190" y="420" text-anchor="middle" font-family="Noto Sans, system-ui, sans-serif" font-size="26" font-weight="600" fill="#c8261b">Chia đôi, không rõ</text>
+<rect x="380" y="60" width="300" height="300" rx="24" fill="#f3f4f6"/>
+<circle cx="620" cy="150" r="18" fill="#e3e6eb"/>
+<rect x="600" y="172" width="40" height="60" rx="14" fill="#e3e6eb"/>
+<circle cx="470" cy="160" r="44" fill="#4a5260"/>
+<rect x="420" y="212" width="100" height="132" rx="30" fill="#4a5260"/>
+<rect x="406" y="100" width="128" height="250" rx="14" fill="none" stroke="#f05a14" stroke-width="4"/>
+<text x="530" y="420" text-anchor="middle" font-family="Noto Sans, system-ui, sans-serif" font-size="26" font-weight="600" fill="#127a3a">Một vai chính rõ</text>
+</svg>

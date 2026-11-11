@@ -1,0 +1,9 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Khung APS-C nằm trong khung full-frame của A7C II</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="135" y="110" width="450" height="300" rx="14" fill="none" stroke="#7c8594" stroke-width="3"/>
+<rect x="210" y="160" width="300" height="200" rx="8" fill="#f3f4f6" stroke="#f05a14" stroke-width="4"/>
+<text x="135" y="92" font-size="26" font-weight="600" fill="#0b0d12">Khung full-frame</text>
+<text x="360" y="268" font-size="28" font-weight="600" fill="#b43f00" text-anchor="middle">Vùng APS-C</text>
+<text x="360" y="438" font-size="28" font-weight="600" fill="#0b0d12" text-anchor="middle">50 mm như khoảng 75 mm</text>
+</svg>

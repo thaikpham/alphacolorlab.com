@@ -1,0 +1,18 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg">
+<title>Khung rõ và khung mờ khi chủ thể đều nét</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="40" y="60" width="300" height="290" rx="14" fill="#ffffff" stroke="#e3e6eb" stroke-width="2"/>
+<rect x="380" y="60" width="300" height="290" rx="14" fill="#ffffff" stroke="#e3e6eb" stroke-width="2"/>
+<rect x="100" y="120" width="180" height="170" fill="#f3f4f6"/>
+<rect x="440" y="120" width="180" height="170" fill="#f3f4f6"/>
+<circle cx="190" cy="180" r="28" fill="#0b0d12"/>
+<path d="M130 290 Q130 230 190 226 Q250 230 250 290 Z" fill="#0b0d12"/>
+<circle cx="530" cy="180" r="28" fill="#0b0d12"/>
+<path d="M470 290 Q470 230 530 226 Q590 230 590 290 Z" fill="#0b0d12"/>
+<rect x="160" y="146" width="60" height="70" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<rect x="500" y="146" width="60" height="70" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<path fill-rule="evenodd" fill="#4a5260" d="M60 80 H320 V330 H60 Z M100 120 V290 H280 V120 Z"/>
+<path fill-rule="evenodd" fill="#e3e6eb" d="M400 80 H660 V330 H400 Z M440 120 V290 H620 V120 Z"/>
+<text x="190" y="392" text-anchor="middle" font-family="Noto Sans, system-ui, sans-serif" font-size="26" font-weight="600" fill="#0b0d12">Khung rõ, khép khẩu</text>
+<text x="530" y="392" text-anchor="middle" font-family="Noto Sans, system-ui, sans-serif" font-size="26" font-weight="600" fill="#0b0d12">Khung mờ, mở khẩu</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ambient and flash đổi cả nền lẫn flash, Ambient only chỉ đổi nền</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="40" y="100" width="280" height="300" rx="14" fill="#f3f4f6"/>
+<text x="64" y="156" font-size="26" font-weight="600" fill="#0b0d12">Ambient&amp;flash</text>
+<text x="64" y="226" font-size="26" fill="#0b0d12">Nền: đổi</text>
+<rect x="64" y="244" width="232" height="14" rx="7" fill="#f05a14"/>
+<text x="64" y="306" font-size="26" fill="#0b0d12">Flash: đổi</text>
+<rect x="64" y="324" width="232" height="14" rx="7" fill="#f05a14"/>
+<rect x="400" y="100" width="280" height="300" rx="14" fill="#f3f4f6"/>
+<text x="424" y="156" font-size="26" font-weight="600" fill="#0b0d12">Ambient only</text>
+<text x="424" y="226" font-size="26" fill="#0b0d12">Nền: đổi</text>
+<rect x="424" y="244" width="232" height="14" rx="7" fill="#f05a14"/>
+<text x="424" y="306" font-size="26" fill="#0b0d12">Flash: giữ</text>
+<rect x="424" y="324" width="232" height="14" rx="7" fill="#e3e6eb"/>
+</svg>

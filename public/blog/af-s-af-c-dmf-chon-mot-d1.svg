@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Ba kiểu lấy nét: khung cố định, tự đổi, bám liên tục</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="56" y="80" width="608" height="108" rx="14" fill="#f3f4f6"/>
+<rect x="56" y="204" width="608" height="108" rx="14" fill="#f3f4f6"/>
+<rect x="56" y="328" width="608" height="108" rx="14" fill="#f3f4f6"/>
+<rect x="108" y="102" width="64" height="64" rx="8" fill="none" stroke="#7c8594" stroke-width="4"/>
+<circle cx="140" cy="134" r="14" fill="#7c8594"/>
+<rect x="108" y="226" width="64" height="64" rx="8" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="140" cy="258" r="14" fill="#7c8594"/>
+<rect x="108" y="350" width="64" height="64" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<circle cx="140" cy="382" r="14" fill="#7c8594"/>
+<text x="216" y="130" font-size="30" font-weight="600" fill="#0b0d12">AF một lần</text>
+<text x="216" y="164" font-size="26" fill="#4a5260">Chủ thể đứng yên</text>
+<text x="216" y="254" font-size="30" font-weight="600" fill="#0b0d12">AF tự động</text>
+<text x="216" y="288" font-size="26" fill="#4a5260">Đổi theo chuyển động</text>
+<text x="216" y="378" font-size="30" font-weight="600" fill="#0b0d12">AF liên tục</text>
+<text x="216" y="412" font-size="26" fill="#4a5260">Bám khi chuyển động</text>
+</svg>

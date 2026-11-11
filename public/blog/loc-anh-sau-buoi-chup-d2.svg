@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Năm phần của tên thư mục ảnh</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="32" y="32" width="656" height="72" rx="14" fill="#ffffff" stroke="#0b0d12" stroke-width="2"/>
+<text x="360" y="76" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">20261108 - DaLat - Day 1 - Card 1 - Wedding</text>
+<circle cx="72" cy="162" r="20" fill="#f05a14"/>
+<text x="72" y="169" text-anchor="middle" font-size="24" font-weight="600" fill="#ffffff">1</text>
+<rect x="108" y="136" width="216" height="52" rx="14" fill="#f3f4f6"/>
+<text x="216" y="170" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">20261108</text>
+<text x="344" y="170" font-size="26" fill="#0b0d12">Ngày viết liền</text>
+<circle cx="72" cy="226" r="20" fill="#f05a14"/>
+<text x="72" y="233" text-anchor="middle" font-size="24" font-weight="600" fill="#ffffff">2</text>
+<rect x="108" y="200" width="216" height="52" rx="14" fill="#f3f4f6"/>
+<text x="216" y="234" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">DaLat</text>
+<text x="344" y="234" font-size="26" fill="#0b0d12">Địa điểm</text>
+<circle cx="72" cy="290" r="20" fill="#f05a14"/>
+<text x="72" y="297" text-anchor="middle" font-size="24" font-weight="600" fill="#ffffff">3</text>
+<rect x="108" y="264" width="216" height="52" rx="14" fill="#f3f4f6"/>
+<text x="216" y="298" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Day 1</text>
+<text x="344" y="298" font-size="26" fill="#0b0d12">Ngày thứ mấy</text>
+<circle cx="72" cy="354" r="20" fill="#f05a14"/>
+<text x="72" y="361" text-anchor="middle" font-size="24" font-weight="600" fill="#ffffff">4</text>
+<rect x="108" y="328" width="216" height="52" rx="14" fill="#f3f4f6"/>
+<text x="216" y="362" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Card 1</text>
+<text x="344" y="362" font-size="26" fill="#0b0d12">Số thẻ</text>
+<circle cx="72" cy="418" r="20" fill="#f05a14"/>
+<text x="72" y="425" text-anchor="middle" font-size="24" font-weight="600" fill="#ffffff">5</text>
+<rect x="108" y="392" width="216" height="52" rx="14" fill="#f3f4f6"/>
+<text x="216" y="426" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Wedding</text>
+<text x="344" y="426" font-size="26" fill="#0b0d12">Chi tiết buổi chụp</text>
+</svg>

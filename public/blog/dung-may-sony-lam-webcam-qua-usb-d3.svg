@@ -1,0 +1,18 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>A7C II: cổng USB 2.0 chỉ cho HD 720p, cổng USB 3.2 cho 4K hoặc HD 1080p</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="88" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">Cổng USB quyết định mức hình</text>
+<rect x="32" y="150" width="200" height="84" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<text x="132" y="201" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">USB 2.0</text>
+<line x1="236" y1="192" x2="290" y2="192" stroke="#0b0d12" stroke-width="3"/>
+<polygon points="290,184 302,192 290,200" fill="#0b0d12"/>
+<rect x="306" y="150" width="382" height="84" rx="14" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
+<text x="497" y="201" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">HD(720p)</text>
+<rect x="32" y="284" width="200" height="84" rx="14" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<text x="132" y="318" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">USB 3.2</text>
+<text x="132" y="352" text-anchor="middle" font-size="24" fill="#4a5260">5 Gbps</text>
+<line x1="236" y1="326" x2="290" y2="326" stroke="#f05a14" stroke-width="4"/>
+<polygon points="290,318 302,326 290,334" fill="#f05a14"/>
+<rect x="306" y="284" width="382" height="84" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="4"/>
+<text x="497" y="335" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">4K(2160p) hoặc HD(1080p)</text>
+</svg>

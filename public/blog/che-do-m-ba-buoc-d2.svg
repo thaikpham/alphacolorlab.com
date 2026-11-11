@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Thước M.M. chỉ độ sáng so với mức đúng</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="170" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Thước M.M.</text>
+<text x="150" y="216" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Tối hơn</text>
+<text x="570" y="216" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">Sáng hơn</text>
+<rect x="72" y="230" width="576" height="40" rx="20" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<line x1="144" y1="236" x2="144" y2="264" stroke="#7c8594" stroke-width="2"/>
+<line x1="216" y1="236" x2="216" y2="264" stroke="#7c8594" stroke-width="2"/>
+<line x1="288" y1="236" x2="288" y2="264" stroke="#7c8594" stroke-width="2"/>
+<line x1="432" y1="236" x2="432" y2="264" stroke="#7c8594" stroke-width="2"/>
+<line x1="504" y1="236" x2="504" y2="264" stroke="#7c8594" stroke-width="2"/>
+<line x1="576" y1="236" x2="576" y2="264" stroke="#7c8594" stroke-width="2"/>
+<line x1="360" y1="226" x2="360" y2="274" stroke="#0b0d12" stroke-width="3"/>
+<circle cx="360" cy="250" r="14" fill="#f05a14"/>
+<text x="360" y="326" font-size="26" font-weight="600" text-anchor="middle" fill="#0b0d12">0 là đúng sáng</text>
+</svg>

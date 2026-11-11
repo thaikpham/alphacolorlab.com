@@ -1,0 +1,1784 @@
+{
+  "zve10": {
+    "name": "ZV-E10",
+    "headerModel": "ZV-E10",
+    "settings": [
+      {
+        "id": "focusMode",
+        "label": {
+          "vi": "Chế độ lấy nét",
+          "en": "Focus Mode"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Chế độ lấy nét",
+          "en": "MENU › Camera Settings1 › Focus Mode"
+        },
+        "values": [
+          {
+            "id": "MF",
+            "label": {
+              "vi": "Chế độ lấy nét thủ công",
+              "en": "Manual Focus"
+            }
+          },
+          {
+            "id": "AF-S",
+            "label": {
+              "vi": "AF một lần",
+              "en": "Single-shot AF"
+            }
+          },
+          {
+            "id": "AF-C",
+            "label": {
+              "vi": "AF liên tục",
+              "en": "Continuous AF"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "focusArea",
+        "label": {
+          "vi": "Vùng lấy nét",
+          "en": "Focus Area"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Vùng lấy nét",
+          "en": "MENU › Camera Settings1 › Focus Area"
+        },
+        "values": [
+          {
+            "id": "wide",
+            "label": {
+              "vi": "Rộng",
+              "en": "Wide"
+            }
+          },
+          {
+            "id": "zone",
+            "label": {
+              "vi": "Khu vực",
+              "en": "Zone"
+            }
+          },
+          {
+            "id": "flexible-spot-l",
+            "label": {
+              "vi": "Điểm linh hoạt: Lớn",
+              "en": "Flexible Spot: Large"
+            }
+          },
+          {
+            "id": "tracking-zone",
+            "label": {
+              "vi": "Theo dõi: Khu vực",
+              "en": "Tracking: Zone"
+            }
+          },
+          {
+            "id": "tracking-flexible-spot-l",
+            "label": {
+              "vi": "Theo dõi: Điểm linh hoạt lớn",
+              "en": "Tracking: Flexible Spot Large"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "metering",
+        "label": {
+          "vi": "Chế độ đo sáng",
+          "en": "Metering Mode"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Chế độ đo sáng",
+          "en": "MENU › Camera Settings1 › Metering Mode"
+        },
+        "values": [
+          {
+            "id": "multi",
+            "label": {
+              "vi": "Trung bình toàn khung",
+              "en": "Entire Screen Avg."
+            }
+          },
+          {
+            "id": "center",
+            "label": {
+              "vi": "Trung bình trung tâm",
+              "en": "Center-weighted Avg."
+            }
+          },
+          {
+            "id": "spot-standard",
+            "label": {
+              "vi": "Điểm",
+              "en": "Spot: Standard"
+            }
+          },
+          {
+            "id": "spot-large",
+            "label": {
+              "vi": "Điểm: Lớn",
+              "en": "Spot: Large"
+            }
+          },
+          {
+            "id": "entire",
+            "label": {
+              "vi": "Vùng sáng",
+              "en": "Highlight Weighted"
+            }
+          },
+          {
+            "id": "highlight",
+            "label": {
+              "vi": "Vùng sáng",
+              "en": "Highlight"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "facePriority",
+        "label": {
+          "vi": "Ưu tiên mặt trong Trung bình",
+          "en": "Face Priority in Multi Seg"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Ưu tiên mặt",
+          "en": "MENU › Camera Settings1 › Face Priority"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "softSkin",
+        "label": {
+          "vi": "Làm mịn da",
+          "en": "Soft Skin Effect"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › Làm mịn da",
+          "en": "MENU › Camera Settings2 › Soft Skin Effect"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "low",
+            "label": {
+              "vi": "Thấp",
+              "en": "Low"
+            }
+          },
+          {
+            "id": "mid",
+            "label": {
+              "vi": "Trung bình",
+              "en": "Mid"
+            }
+          },
+          {
+            "id": "high",
+            "label": {
+              "vi": "Cao",
+              "en": "High"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "autoReview",
+        "label": {
+          "vi": "Tự động xem lại",
+          "en": "Auto Review"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › Tự động xem lại",
+          "en": "MENU › Camera Settings2 › Auto Review"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "2s",
+            "label": {
+              "vi": "2 giây",
+              "en": "2 seconds"
+            }
+          },
+          {
+            "id": "5s",
+            "label": {
+              "vi": "5 giây",
+              "en": "5 seconds"
+            }
+          },
+          {
+            "id": "10s",
+            "label": {
+              "vi": "10 giây",
+              "en": "10 seconds"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "flash-mode",
+        "label": {
+          "vi": "Chế độ flash",
+          "en": "Flash Mode"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Chế độ flash",
+          "en": "MENU › Camera Settings1 › Flash Mode"
+        },
+        "values": [
+          {
+            "id": "fill-flash",
+            "label": {
+              "vi": "Đèn flash cưỡng bức",
+              "en": "Fill-flash"
+            }
+          },
+          {
+            "id": "slow-sync",
+            "label": {
+              "vi": "Đồng bộ chậm",
+              "en": "Slow Sync."
+            }
+          },
+          {
+            "id": "rear-sync",
+            "label": {
+              "vi": "Đồng bộ sau",
+              "en": "Rear Sync."
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "exp-comp-set",
+        "label": {
+          "vi": "Cài đặt bù sáng",
+          "en": "Exp.comp.set"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Cài đặt bù sáng",
+          "en": "MENU › Camera Settings1 › Exp.comp.set"
+        },
+        "values": [
+          {
+            "id": "ambient-flash",
+            "label": {
+              "vi": "Môi trường & flash",
+              "en": "Ambient&flash"
+            }
+          },
+          {
+            "id": "ambient-only",
+            "label": {
+              "vi": "Chỉ môi trường",
+              "en": "Ambient only"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "e-front-curtain",
+        "label": {
+          "vi": "Màn trập trước điện tử",
+          "en": "e-Front Curtain Shutter"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › Màn trập trước điện tử",
+          "en": "MENU › Camera Settings2 › e-Front Curtain Shutter"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "pre-af",
+        "label": {
+          "vi": "Pre-AF",
+          "en": "Pre-AF"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Pre-AF",
+          "en": "MENU › Camera Settings1 › Pre-AF"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "steady-shot",
+        "label": {
+          "vi": "SteadyShot",
+          "en": "SteadyShot"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › SteadyShot",
+          "en": "MENU › Camera Settings2 › SteadyShot"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "awb-priority",
+        "label": {
+          "vi": "Ưu tiên trong AWB",
+          "en": "Priority Set in AWB"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Ưu tiên trong AWB",
+          "en": "MENU › Camera Settings1 › Priority Set in AWB"
+        },
+        "values": [
+          {
+            "id": "standard",
+            "label": {
+              "vi": "Chuẩn",
+              "en": "Standard"
+            }
+          },
+          {
+            "id": "ambience",
+            "label": {
+              "vi": "Môi trường",
+              "en": "Ambience"
+            }
+          },
+          {
+            "id": "white",
+            "label": {
+              "vi": "Trắng",
+              "en": "White"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "live-view-display",
+        "label": {
+          "vi": "Hiển thị Live View",
+          "en": "Live View Display"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › Hiển thị Live View",
+          "en": "MENU › Camera Settings2 › Live View Display"
+        },
+        "values": [
+          {
+            "id": "setting-effect-on",
+            "label": {
+              "vi": "Bật hiệu ứng cài đặt",
+              "en": "Setting Effect ON"
+            }
+          },
+          {
+            "id": "setting-effect-off",
+            "label": {
+              "vi": "Tắt hiệu ứng cài đặt",
+              "en": "Setting Effect OFF"
+            }
+          }
+        ],
+        "decoded": true
+      },
+      {
+        "id": "wb",
+        "label": {
+          "vi": "Cân bằng trắng",
+          "en": "White Balance"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Cân bằng trắng",
+          "en": "MENU › Camera Settings1 › White Balance"
+        },
+        "values": [
+          {
+            "id": "daylight",
+            "label": {
+              "vi": "Nắng",
+              "en": "Daylight"
+            }
+          },
+          {
+            "id": "shade",
+            "label": {
+              "vi": "Bóng",
+              "en": "Shade"
+            }
+          },
+          {
+            "id": "cloudy",
+            "label": {
+              "vi": "Mây",
+              "en": "Cloudy"
+            }
+          },
+          {
+            "id": "incandescent",
+            "label": {
+              "vi": "Incandescent",
+              "en": "Incandescent"
+            }
+          },
+          {
+            "id": "fluorescent-1",
+            "label": {
+              "vi": "Huỳnh quang W",
+              "en": "Fluorescent: Warm White"
+            }
+          },
+          {
+            "id": "fluorescent-2",
+            "label": {
+              "vi": "Huỳnh quang N",
+              "en": "Fluorescent: Cool White"
+            }
+          },
+          {
+            "id": "fluorescent-3",
+            "label": {
+              "vi": "Huỳnh quang D",
+              "en": "Fluorescent: Daylight"
+            }
+          },
+          {
+            "id": "fluorescent-4",
+            "label": {
+              "vi": "Huỳnh quang H",
+              "en": "Fluorescent: Daylight (HID)"
+            }
+          },
+          {
+            "id": "flash",
+            "label": {
+              "vi": "Flash",
+              "en": "Flash"
+            }
+          },
+          {
+            "id": "underwater",
+            "label": {
+              "vi": "Dưới nước Auto",
+              "en": "Underwater Auto"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "isoMin",
+        "label": {
+          "vi": "ISO AUTO Min",
+          "en": "ISO AUTO Minimum"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Cài đặt ISO › ISO AUTO Min",
+          "en": "MENU › Camera Settings1 › ISO Settings › ISO AUTO Min"
+        },
+        "values": [
+          {
+            "id": "100",
+            "label": {
+              "vi": "100",
+              "en": "100"
+            }
+          },
+          {
+            "id": "200",
+            "label": {
+              "vi": "200",
+              "en": "200"
+            }
+          },
+          {
+            "id": "400",
+            "label": {
+              "vi": "400",
+              "en": "400"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "isoMax",
+        "label": {
+          "vi": "ISO AUTO Max",
+          "en": "ISO AUTO Maximum"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Cài đặt ISO › ISO AUTO Max",
+          "en": "MENU › Camera Settings1 › ISO Settings › ISO AUTO Max"
+        },
+        "values": [
+          {
+            "id": "1600",
+            "label": {
+              "vi": "1600",
+              "en": "1600"
+            }
+          },
+          {
+            "id": "3200",
+            "label": {
+              "vi": "3200",
+              "en": "3200"
+            }
+          },
+          {
+            "id": "6400",
+            "label": {
+              "vi": "6400",
+              "en": "6400"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "dro",
+        "label": {
+          "vi": "D-Range / Auto HDR",
+          "en": "D-Range / Auto HDR"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Độ phục hồi khung / Auto HDR",
+          "en": "MENU › Camera Settings1 › D-Range / Auto HDR"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "dro-auto",
+            "label": {
+              "vi": "D-Range Opt. Auto",
+              "en": "D-Range Optimizer Auto"
+            }
+          },
+          {
+            "id": "hdrauto",
+            "label": {
+              "vi": "Auto HDR",
+              "en": "Auto HDR"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "expComp",
+        "label": {
+          "vi": "Bù phơi sáng",
+          "en": "Exposure Compensation"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Bù phơi sáng",
+          "en": "MENU › Camera Settings1 › Exposure Comp."
+        },
+        "values": [
+          {
+            "id": "minus-1.0",
+            "label": {
+              "vi": "−1.0",
+              "en": "−1.0"
+            }
+          },
+          {
+            "id": "plus-1.0",
+            "label": {
+              "vi": "+1.0",
+              "en": "+1.0"
+            }
+          }
+        ],
+        "decoded": false
+      }
+    ]
+  },
+  "a6400": {
+    "name": "ILCE-6400",
+    "headerModel": "ILCE-6400",
+    "settings": [
+      {
+        "id": "focusMode",
+        "label": {
+          "vi": "Chế độ lấy nét",
+          "en": "Focus Mode"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Chế độ lấy nét",
+          "en": "MENU › Camera Settings1 › Focus Mode"
+        },
+        "values": [
+          {
+            "id": "MF",
+            "label": {
+              "vi": "Chế độ lấy nét thủ công",
+              "en": "Manual Focus"
+            }
+          },
+          {
+            "id": "AF-S",
+            "label": {
+              "vi": "AF một lần",
+              "en": "Single-shot AF"
+            }
+          },
+          {
+            "id": "AF-C",
+            "label": {
+              "vi": "AF liên tục",
+              "en": "Continuous AF"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "focusArea",
+        "label": {
+          "vi": "Vùng lấy nét",
+          "en": "Focus Area"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Vùng lấy nét",
+          "en": "MENU › Camera Settings1 › Focus Area"
+        },
+        "values": [
+          {
+            "id": "wide",
+            "label": {
+              "vi": "Rộng",
+              "en": "Wide"
+            }
+          },
+          {
+            "id": "zone",
+            "label": {
+              "vi": "Khu vực",
+              "en": "Zone"
+            }
+          },
+          {
+            "id": "flexible-spot-l",
+            "label": {
+              "vi": "Điểm linh hoạt: Lớn",
+              "en": "Flexible Spot: Large"
+            }
+          },
+          {
+            "id": "tracking-zone",
+            "label": {
+              "vi": "Theo dõi: Khu vực",
+              "en": "Tracking: Zone"
+            }
+          },
+          {
+            "id": "tracking-flexible-spot-l",
+            "label": {
+              "vi": "Theo dõi: Điểm linh hoạt lớn",
+              "en": "Tracking: Flexible Spot Large"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "metering",
+        "label": {
+          "vi": "Chế độ đo sáng",
+          "en": "Metering Mode"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh › Chế độ đo sáng",
+          "en": "MENU › Camera Settings › Metering Mode"
+        },
+        "values": [
+          {
+            "id": "multi",
+            "label": {
+              "vi": "Trung bình toàn khung",
+              "en": "Entire Screen Avg."
+            }
+          },
+          {
+            "id": "center",
+            "label": {
+              "vi": "Trung bình trung tâm",
+              "en": "Center-weighted Avg."
+            }
+          },
+          {
+            "id": "spot-standard",
+            "label": {
+              "vi": "Điểm",
+              "en": "Spot: Standard"
+            }
+          },
+          {
+            "id": "spot-large",
+            "label": {
+              "vi": "Điểm: Lớn",
+              "en": "Spot: Large"
+            }
+          },
+          {
+            "id": "entire",
+            "label": {
+              "vi": "Vùng sáng",
+              "en": "Highlight Weighted"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "facePriority",
+        "label": {
+          "vi": "Ưu tiên mặt trong Trung bình",
+          "en": "Face Priority in Multi Seg"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh › Ưu tiên mặt",
+          "en": "MENU › Camera Settings › Face Priority"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "softSkin",
+        "label": {
+          "vi": "Làm mịn da",
+          "en": "Soft Skin Effect"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh › Làm mịn da",
+          "en": "MENU › Camera Settings › Soft Skin Effect"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "low",
+            "label": {
+              "vi": "Thấp",
+              "en": "Low"
+            }
+          },
+          {
+            "id": "mid",
+            "label": {
+              "vi": "Trung bình",
+              "en": "Mid"
+            }
+          },
+          {
+            "id": "high",
+            "label": {
+              "vi": "Cao",
+              "en": "High"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "autoReview",
+        "label": {
+          "vi": "Tự động xem lại",
+          "en": "Auto Review"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh › Tự động xem lại",
+          "en": "MENU › Camera Settings › Auto Review"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "2s",
+            "label": {
+              "vi": "2 giây",
+              "en": "2 seconds"
+            }
+          },
+          {
+            "id": "5s",
+            "label": {
+              "vi": "5 giây",
+              "en": "5 seconds"
+            }
+          },
+          {
+            "id": "10s",
+            "label": {
+              "vi": "10 giây",
+              "en": "10 seconds"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "flash-mode",
+        "label": {
+          "vi": "Chế độ flash",
+          "en": "Flash Mode"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Chế độ flash",
+          "en": "MENU › Camera Settings › Flash Mode"
+        },
+        "values": [
+          {
+            "id": "fill-flash",
+            "label": {
+              "vi": "Đèn flash cưỡng bức",
+              "en": "Fill-flash"
+            }
+          },
+          {
+            "id": "slow-sync",
+            "label": {
+              "vi": "Đồng bộ chậm",
+              "en": "Slow Sync."
+            }
+          },
+          {
+            "id": "rear-sync",
+            "label": {
+              "vi": "Đồng bộ sau",
+              "en": "Rear Sync."
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "exp-comp-set",
+        "label": {
+          "vi": "Cài đặt bù sáng",
+          "en": "Exp.comp.set"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Cài đặt bù sáng",
+          "en": "MENU › Camera Settings › Exp.comp.set"
+        },
+        "values": [
+          {
+            "id": "ambient-flash",
+            "label": {
+              "vi": "Môi trường & flash",
+              "en": "Ambient&flash"
+            }
+          },
+          {
+            "id": "ambient-only",
+            "label": {
+              "vi": "Chỉ môi trường",
+              "en": "Ambient only"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "e-front-curtain",
+        "label": {
+          "vi": "Màn trập trước điện tử",
+          "en": "e-Front Curtain Shutter"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › Màn trập trước điện tử",
+          "en": "MENU › Camera Settings › e-Front Curtain Shutter"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "dial-wheel-ev-comp",
+        "label": {
+          "vi": "Vòng xoay/bánh xe bù sáng",
+          "en": "Dial/Wheel Ev Comp"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › Vòng xoay/bánh xe bù sáng",
+          "en": "MENU › Camera Settings › Dial/Wheel Ev Comp"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "wheel",
+            "label": {
+              "vi": "Bánh xe",
+              "en": "Wheel"
+            }
+          },
+          {
+            "id": "dial",
+            "label": {
+              "vi": "Vòng xoay",
+              "en": "Dial"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "pre-af",
+        "label": {
+          "vi": "Pre-AF",
+          "en": "Pre-AF"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Pre-AF",
+          "en": "MENU › Camera Settings › Pre-AF"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "steady-shot",
+        "label": {
+          "vi": "SteadyShot",
+          "en": "SteadyShot"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › SteadyShot",
+          "en": "MENU › Camera Settings › SteadyShot"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "awb-priority",
+        "label": {
+          "vi": "Ưu tiên trong AWB",
+          "en": "Priority Set in AWB"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh1 › Ưu tiên trong AWB",
+          "en": "MENU › Camera Settings › Priority Set in AWB"
+        },
+        "values": [
+          {
+            "id": "standard",
+            "label": {
+              "vi": "Chuẩn",
+              "en": "Standard"
+            }
+          },
+          {
+            "id": "ambience",
+            "label": {
+              "vi": "Môi trường",
+              "en": "Ambience"
+            }
+          },
+          {
+            "id": "white",
+            "label": {
+              "vi": "Trắng",
+              "en": "White"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "live-view-display",
+        "label": {
+          "vi": "Hiển thị Live View",
+          "en": "Live View Display"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh2 › Hiển thị Live View",
+          "en": "MENU › Camera Settings › Live View Display"
+        },
+        "values": [
+          {
+            "id": "setting-effect-on",
+            "label": {
+              "vi": "Bật hiệu ứng cài đặt",
+              "en": "Setting Effect ON"
+            }
+          },
+          {
+            "id": "setting-effect-off",
+            "label": {
+              "vi": "Tắt hiệu ứng cài đặt",
+              "en": "Setting Effect OFF"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "wb",
+        "label": {
+          "vi": "Cân bằng trắng",
+          "en": "White Balance"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh › Cân bằng trắng",
+          "en": "MENU › Camera Settings › White Balance"
+        },
+        "values": [
+          {
+            "id": "daylight",
+            "label": {
+              "vi": "Nắng",
+              "en": "Daylight"
+            }
+          },
+          {
+            "id": "shade",
+            "label": {
+              "vi": "Bóng",
+              "en": "Shade"
+            }
+          },
+          {
+            "id": "cloudy",
+            "label": {
+              "vi": "Mây",
+              "en": "Cloudy"
+            }
+          },
+          {
+            "id": "incandescent",
+            "label": {
+              "vi": "Incandescent",
+              "en": "Incandescent"
+            }
+          },
+          {
+            "id": "fluorescent-1",
+            "label": {
+              "vi": "Huỳnh quang W",
+              "en": "Fluorescent: Warm White"
+            }
+          },
+          {
+            "id": "fluorescent-2",
+            "label": {
+              "vi": "Huỳnh quang N",
+              "en": "Fluorescent: Cool White"
+            }
+          },
+          {
+            "id": "fluorescent-3",
+            "label": {
+              "vi": "Huỳnh quang D",
+              "en": "Fluorescent: Daylight"
+            }
+          },
+          {
+            "id": "fluorescent-4",
+            "label": {
+              "vi": "Huỳnh quang H",
+              "en": "Fluorescent: Daylight (HID)"
+            }
+          },
+          {
+            "id": "flash",
+            "label": {
+              "vi": "Flash",
+              "en": "Flash"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "dro",
+        "label": {
+          "vi": "D-Range / Auto HDR",
+          "en": "D-Range / Auto HDR"
+        },
+        "path": {
+          "vi": "MENU › Cài đặt máy ảnh › Độ phục hồi khung / Auto HDR",
+          "en": "MENU › Camera Settings › D-Range / Auto HDR"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "dro-auto",
+            "label": {
+              "vi": "D-Range Opt. Auto",
+              "en": "D-Range Optimizer Auto"
+            }
+          },
+          {
+            "id": "hdrauto",
+            "label": {
+              "vi": "Auto HDR",
+              "en": "Auto HDR"
+            }
+          }
+        ],
+        "decoded": false
+      }
+    ]
+  },
+  "a7c2": {
+    "name": "A7C II",
+    "headerModel": "ILCE-7CM2",
+    "settings": [
+      {
+        "id": "focusMode",
+        "label": {
+          "vi": "Chế độ lấy nét",
+          "en": "Focus Mode"
+        },
+        "path": {
+          "vi": "MENU › Lấy nét › AF/MF › Chế độ lấy nét",
+          "en": "MENU › Focus › AF/MF › Focus Mode"
+        },
+        "values": [
+          {
+            "id": "MF",
+            "label": {
+              "vi": "Lấy nét thủ công",
+              "en": "Manual Focus"
+            }
+          },
+          {
+            "id": "AF-S",
+            "label": {
+              "vi": "AF đơn",
+              "en": "Single-shot AF"
+            }
+          },
+          {
+            "id": "AF-C",
+            "label": {
+              "vi": "AF liên tục",
+              "en": "Continuous AF"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "focusArea",
+        "label": {
+          "vi": "Vùng lấy nét",
+          "en": "Focus Area"
+        },
+        "path": {
+          "vi": "MENU › Lấy nét › Vùng lấy nét › Vùng lấy nét",
+          "en": "MENU › Focus › Focus Area › Focus Area"
+        },
+        "values": [
+          {
+            "id": "wide",
+            "label": {
+              "vi": "Rộng",
+              "en": "Wide"
+            }
+          },
+          {
+            "id": "zone",
+            "label": {
+              "vi": "Vùng",
+              "en": "Zone"
+            }
+          },
+          {
+            "id": "center-fix",
+            "label": {
+              "vi": "Cố định giữa",
+              "en": "Center Fix"
+            }
+          },
+          {
+            "id": "spot-l",
+            "label": {
+              "vi": "Điểm: L",
+              "en": "Spot: L"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "metering",
+        "label": {
+          "vi": "Chế độ đo sáng",
+          "en": "Metering Mode"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Đo sáng › Chế độ đo sáng",
+          "en": "MENU › Exposure/Color › Metering › Metering Mode"
+        },
+        "values": [
+          {
+            "id": "multi",
+            "label": {
+              "vi": "Đa điểm",
+              "en": "Multi"
+            }
+          },
+          {
+            "id": "center",
+            "label": {
+              "vi": "Trung tâm",
+              "en": "Center"
+            }
+          },
+          {
+            "id": "spot-standard",
+            "label": {
+              "vi": "Điểm: tiêu chuẩn",
+              "en": "Spot: Standard"
+            }
+          },
+          {
+            "id": "spot-large",
+            "label": {
+              "vi": "Điểm: lớn",
+              "en": "Spot: Large"
+            }
+          },
+          {
+            "id": "entire",
+            "label": {
+              "vi": "TB toàn màn hình",
+              "en": "Entire Screen Avg."
+            }
+          },
+          {
+            "id": "highlight",
+            "label": {
+              "vi": "Vùng sáng",
+              "en": "Highlight"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "facePriority",
+        "label": {
+          "vi": "Ưu tiên mặt (đa điểm)",
+          "en": "Face Priority in Multi Metering"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Đo sáng › Ưu tiên mặt (đa điểm)",
+          "en": "MENU › Exposure/Color › Metering › Face Priority in Multi Metering"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "softSkin",
+        "label": {
+          "vi": "Làm mịn da",
+          "en": "Soft Skin Effect"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Màu/tông màu › Làm mịn da",
+          "en": "MENU › Exposure/Color › Color/Tone › Soft Skin Effect"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "low",
+            "label": {
+              "vi": "Bật: Thấp",
+              "en": "On: Low"
+            }
+          },
+          {
+            "id": "mid",
+            "label": {
+              "vi": "Bật: Trung bình",
+              "en": "On: Mid"
+            }
+          },
+          {
+            "id": "high",
+            "label": {
+              "vi": "Bật: Cao",
+              "en": "On: High"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "flash-mode",
+        "label": {
+          "vi": "Chế độ flash",
+          "en": "Flash Mode"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Đèn flash › Chế độ flash",
+          "en": "MENU › Exposure/Color › Flash › Flash Mode"
+        },
+        "values": [
+          {
+            "id": "fill-flash",
+            "label": {
+              "vi": "Đèn flash cưỡng bức",
+              "en": "Fill-flash"
+            }
+          },
+          {
+            "id": "slow-sync",
+            "label": {
+              "vi": "Đồng bộ chậm",
+              "en": "Slow Sync."
+            }
+          },
+          {
+            "id": "rear-sync",
+            "label": {
+              "vi": "Đồng bộ sau",
+              "en": "Rear Sync."
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "exp-comp-set",
+        "label": {
+          "vi": "Cài đặt bù sáng",
+          "en": "Exp.comp.set"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Đèn flash › Cài đặt bù sáng",
+          "en": "MENU › Exposure/Color › Flash › Exp.comp.set"
+        },
+        "values": [
+          {
+            "id": "ambient-flash",
+            "label": {
+              "vi": "Môi trường & flash",
+              "en": "Ambient&flash"
+            }
+          },
+          {
+            "id": "ambient-only",
+            "label": {
+              "vi": "Chỉ môi trường",
+              "en": "Ambient only"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "pre-af",
+        "label": {
+          "vi": "Pre-AF",
+          "en": "Pre-AF"
+        },
+        "path": {
+          "vi": "MENU › Lấy nét › AF/MF › Pre-AF",
+          "en": "MENU › Focus › AF/MF › Pre-AF"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "steady-shot",
+        "label": {
+          "vi": "SteadyShot",
+          "en": "SteadyShot"
+        },
+        "path": {
+          "vi": "MENU › Chụp › Ổn định ảnh › SteadyShot",
+          "en": "MENU › Shooting › Image Stabilization › SteadyShot"
+        },
+        "values": [
+          {
+            "id": "on",
+            "label": {
+              "vi": "Bật",
+              "en": "On"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "awb-priority",
+        "label": {
+          "vi": "Ưu tiên trong AWB",
+          "en": "Priority Set in AWB"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Cân bằng trắng › Ưu tiên trong AWB",
+          "en": "MENU › Exposure/Color › White Balance › Priority Set in AWB"
+        },
+        "values": [
+          {
+            "id": "standard",
+            "label": {
+              "vi": "Chuẩn",
+              "en": "Standard"
+            }
+          },
+          {
+            "id": "ambience",
+            "label": {
+              "vi": "Môi trường",
+              "en": "Ambience"
+            }
+          },
+          {
+            "id": "white",
+            "label": {
+              "vi": "Trắng",
+              "en": "White"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "live-view-display",
+        "label": {
+          "vi": "Hiển thị Live View",
+          "en": "Live View Display"
+        },
+        "path": {
+          "vi": "MENU › Chụp › Hiển thị khi chụp › Cài đặt hiển thị Live View › Hiển thị Live View",
+          "en": "MENU › Shooting › Shooting Display › Live View Display Set. › Live View Display"
+        },
+        "values": [
+          {
+            "id": "setting-effect-on",
+            "label": {
+              "vi": "Bật hiệu ứng cài đặt",
+              "en": "Setting Effect ON"
+            }
+          },
+          {
+            "id": "setting-effect-off",
+            "label": {
+              "vi": "Tắt hiệu ứng cài đặt",
+              "en": "Setting Effect OFF"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "shutter-type",
+        "label": {
+          "vi": "Loại màn trập",
+          "en": "Shutter Type"
+        },
+        "path": {
+          "vi": "MENU › Chụp › Màn trập/im lặng › Loại màn trập",
+          "en": "MENU › Shooting › Shutter/Silent › Shutter Type"
+        },
+        "values": [
+          {
+            "id": "mechanical",
+            "label": {
+              "vi": "Màn trập cơ",
+              "en": "Mechanical Shutter"
+            }
+          },
+          {
+            "id": "electronic",
+            "label": {
+              "vi": "Màn trập điện tử",
+              "en": "Electronic Shutter"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "wb",
+        "label": {
+          "vi": "Cân bằng trắng",
+          "en": "White Balance"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Cân bằng trắng › Cân bằng trắng",
+          "en": "MENU › Exposure/Color › White Balance › White Balance"
+        },
+        "values": [
+          {
+            "id": "daylight",
+            "label": {
+              "vi": "Ánh sáng ban ngày",
+              "en": "Daylight"
+            }
+          },
+          {
+            "id": "shade",
+            "label": {
+              "vi": "Bóng râm",
+              "en": "Shade"
+            }
+          },
+          {
+            "id": "cloudy",
+            "label": {
+              "vi": "Trời nhiều mây",
+              "en": "Cloudy"
+            }
+          },
+          {
+            "id": "incandescent",
+            "label": {
+              "vi": "Đèn sợi đốt",
+              "en": "Incandescent"
+            }
+          }
+        ],
+        "decoded": false
+      },
+      {
+        "id": "dro",
+        "label": {
+          "vi": "Tối ưu dải động",
+          "en": "D-Range Optimizer"
+        },
+        "path": {
+          "vi": "MENU › Phơi sáng/màu › Màu/tông màu › Tối ưu dải động",
+          "en": "MENU › Exposure/Color › Color/Tone › D-Range Optimizer"
+        },
+        "values": [
+          {
+            "id": "off",
+            "label": {
+              "vi": "Tắt",
+              "en": "Off"
+            }
+          },
+          {
+            "id": "dro-auto",
+            "label": {
+              "vi": "Tối ưu dải động: tự động",
+              "en": "D-Range Optimizer: Auto"
+            }
+          }
+        ],
+        "decoded": false
+      }
+    ]
+  }
+}

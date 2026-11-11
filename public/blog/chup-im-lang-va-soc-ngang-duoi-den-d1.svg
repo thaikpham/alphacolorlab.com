@@ -1,0 +1,27 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+<title>Các thiết lập bị khóa khi Silent Mode bật trên A7C II</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<line x1="96" y1="96" x2="96" y2="384" stroke="#e3e6eb" stroke-width="4"/>
+<rect x="160" y="56" width="512" height="80" rx="14" fill="#f3f4f6"/>
+<rect x="160" y="152" width="512" height="80" rx="14" fill="#f3f4f6"/>
+<rect x="160" y="248" width="512" height="80" rx="14" fill="#f3f4f6"/>
+<rect x="160" y="344" width="512" height="80" rx="14" fill="#f3f4f6"/>
+<circle cx="96" cy="96" r="30" fill="#f05a14"/>
+<circle cx="96" cy="192" r="30" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<circle cx="96" cy="288" r="30" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<circle cx="96" cy="384" r="30" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
+<path d="M90 191V185A6 6 0 0 1 102 185V191" fill="none" stroke="#7c8594" stroke-width="3"/>
+<rect x="88" y="191" width="16" height="14" rx="3" fill="#7c8594"/>
+<path d="M90 287V281A6 6 0 0 1 102 281V287" fill="none" stroke="#7c8594" stroke-width="3"/>
+<rect x="88" y="287" width="16" height="14" rx="3" fill="#7c8594"/>
+<path d="M90 383V377A6 6 0 0 1 102 377V383" fill="none" stroke="#7c8594" stroke-width="3"/>
+<rect x="88" y="383" width="16" height="14" rx="3" fill="#7c8594"/>
+<text x="184" y="90" font-size="26" font-weight="600" fill="#0b0d12">Silent Mode</text>
+<text x="184" y="118" font-size="24" font-weight="600" fill="#b43f00">On</text>
+<text x="184" y="186" font-size="26" font-weight="600" fill="#0b0d12">Shutter Type</text>
+<text x="184" y="214" font-size="24" fill="#4a5260">Khóa ở Electronic Shutter</text>
+<text x="184" y="282" font-size="26" font-weight="600" fill="#0b0d12">Audio Signal</text>
+<text x="184" y="310" font-size="24" fill="#4a5260">Khóa ở Off</text>
+<text x="184" y="378" font-size="26" font-weight="600" fill="#0b0d12">Flash shooting</text>
+<text x="184" y="406" font-size="24" fill="#4a5260">Không dùng được</text>
+</svg>

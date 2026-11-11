@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Quay phim trên ZV-E10: chỉ AF liên tục và lấy nét tay</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<text x="360" y="96" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Khi quay phim</text>
+<rect x="56" y="124" width="296" height="312" rx="14" fill="#f3f4f6" stroke="#f05a14" stroke-width="4"/>
+<rect x="368" y="124" width="296" height="312" rx="14" fill="#f3f4f6"/>
+<text x="204" y="180" text-anchor="middle" font-size="28" font-weight="600" fill="#b43f00">Được dùng</text>
+<text x="516" y="180" text-anchor="middle" font-size="28" font-weight="600" fill="#4a5260">Không dùng được</text>
+<text x="204" y="262" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">AF liên tục</text>
+<text x="204" y="342" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Lấy nét tay</text>
+<text x="516" y="262" text-anchor="middle" font-size="30" font-weight="600" fill="#4a5260">AF một lần</text>
+<text x="516" y="342" text-anchor="middle" font-size="30" font-weight="600" fill="#4a5260">AF tự động</text>
+<text x="516" y="422" text-anchor="middle" font-size="30" font-weight="600" fill="#4a5260">DMF</text>
+</svg>

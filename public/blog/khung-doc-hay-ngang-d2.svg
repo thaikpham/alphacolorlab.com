@@ -1,0 +1,13 @@
+<svg viewBox="0 0 720 480" width="720" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans, system-ui, sans-serif">
+  <title>Bốn tỷ lệ 3:2, 4:3, 16:9 và 1:1 cùng chiều rộng, tỷ lệ càng vuông thì khung càng cao</title>
+  <rect width="720" height="480" fill="#ffffff"/>
+  <line x1="32" y1="300" x2="688" y2="300" stroke="#e3e6eb" stroke-width="2"/>
+  <rect x="35" y="207" width="140" height="93" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+  <rect x="205" y="195" width="140" height="105" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+  <rect x="375" y="221" width="140" height="79" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+  <rect x="545" y="160" width="140" height="140" rx="8" fill="#f3f4f6" stroke="#f05a14" stroke-width="4"/>
+  <text x="105" y="352" font-size="28" font-weight="600" fill="#0b0d12" text-anchor="middle">3:2</text>
+  <text x="275" y="352" font-size="28" font-weight="600" fill="#0b0d12" text-anchor="middle">4:3</text>
+  <text x="445" y="352" font-size="28" font-weight="600" fill="#0b0d12" text-anchor="middle">16:9</text>
+  <text x="615" y="352" font-size="28" font-weight="600" fill="#b43f00" text-anchor="middle">1:1</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
+<title>Hai vòng chọn ảnh: bỏ ảnh hỏng, giữ ảnh tốt nhất</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<rect x="48" y="60" width="624" height="88" rx="44" fill="#f3f4f6"/>
+<text x="360" y="114" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">Tất cả khung</text>
+<line x1="360" y1="152" x2="360" y2="182" stroke="#7c8594" stroke-width="3"/>
+<polygon points="350,180 370,180 360,190" fill="#7c8594"/>
+<text x="384" y="176" font-size="24" fill="#4a5260">Vòng một</text>
+<rect x="136" y="190" width="448" height="88" rx="44" fill="#f3f4f6"/>
+<text x="360" y="244" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">Còn ảnh dùng được</text>
+<line x1="360" y1="282" x2="360" y2="312" stroke="#7c8594" stroke-width="3"/>
+<polygon points="350,310 370,310 360,320" fill="#7c8594"/>
+<text x="384" y="306" font-size="24" fill="#4a5260">Vòng hai</text>
+<rect x="216" y="320" width="288" height="88" rx="44" fill="#f05a14"/>
+<text x="360" y="374" text-anchor="middle" font-size="28" font-weight="600" fill="#ffffff">Giữ ảnh tốt nhất</text>
+</svg>

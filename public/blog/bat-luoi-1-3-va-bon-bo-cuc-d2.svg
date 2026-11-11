@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480">
+<title>Chân trời ở đường dưới cho trời hai phần ba, ở đường trên cho đất hai phần ba</title>
+<rect width="720" height="480" fill="#ffffff"/>
+<g font-family="Noto Sans, system-ui, sans-serif" font-size="28" font-weight="600" fill="#0b0d12" text-anchor="middle">
+<text x="188" y="100">Trời chiếm 2/3</text>
+<text x="532" y="100">Đất chiếm 2/3</text>
+<text x="188" y="428">Đường dưới</text>
+<text x="532" y="428">Đường trên</text>
+</g>
+<path d="M48 134 Q48 120 62 120 H314 Q328 120 328 134 V296 H48 Z" fill="#f3f4f6"/>
+<path d="M48 296 H328 V370 Q328 384 314 384 H62 Q48 384 48 370 Z" fill="#7c8594"/>
+<path d="M392 134 Q392 120 406 120 H658 Q672 120 672 134 V208 H392 Z" fill="#f3f4f6"/>
+<path d="M392 208 H672 V370 Q672 384 658 384 H406 Q392 384 392 370 Z" fill="#7c8594"/>
+<g stroke="#0b0d12" stroke-width="2" stroke-dasharray="8 6">
+<line x1="48" y1="208" x2="328" y2="208"/>
+<line x1="392" y1="296" x2="672" y2="296"/>
+</g>
+<g stroke="#f05a14" stroke-width="4">
+<line x1="48" y1="296" x2="328" y2="296"/>
+<line x1="392" y1="208" x2="672" y2="208"/>
+</g>
+<rect x="48" y="120" width="280" height="264" rx="14" fill="none" stroke="#0b0d12" stroke-width="3"/>
+<rect x="392" y="120" width="280" height="264" rx="14" fill="none" stroke="#0b0d12" stroke-width="3"/>
+</svg>
