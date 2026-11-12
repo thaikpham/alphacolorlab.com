@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { kolSets, alphaConsole as C } from "@/app/content";
 import { BackLink } from "@/app/components/BackLink";
-import { PresetSetList } from "@/app/components/PresetSets";
+import { PresetSetList } from "@/app/components/PresetSetList";
 import { validatePresetSets } from "@/lib/presetSets";
 import presetSetsJson from "@/data/preset-sets.json";
 import { SITE_URL } from "@/lib/site";

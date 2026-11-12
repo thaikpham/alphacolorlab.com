@@ -18,7 +18,7 @@ const LAYOUT: readonly [number, number, number][] = [
   [0x491, 0x7aa, -2],
 ];
 
-function toA6400Offset(zveOffset: number): number {
+export function toA6400Offset(zveOffset: number): number {
   for (const [start, end, shift] of LAYOUT) {
     if (zveOffset >= start && zveOffset <= end) return zveOffset + shift;
   }

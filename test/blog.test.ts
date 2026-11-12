@@ -4,6 +4,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const projectRoot = process.cwd();
+const rules = JSON.parse(readFileSync(join(projectRoot, "data/article-rules.json"), "utf-8"));
 
 test("Blog", async (t) => {
   await t.test("should have at least 27 articles with unique ids and no standalone posts (both became articles 2026-11-10)", () => {
@@ -18,7 +19,7 @@ test("Blog", async (t) => {
 
   await t.test("should have valid block types", () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, "data/articles.json"), "utf-8"));
-    const validBlockTypes = new Set(["tldr", "h", "p", "menu", "table", "callout", "compare", "checklist", "figure", "embed", "faq"]);
+    const validBlockTypes = new Set<string>(rules.blockTypes);
     const invalidBlocks: string[] = [];
 
     for (const article of articles) {
@@ -73,8 +74,8 @@ test("Blog", async (t) => {
 
   await t.test("should have valid topic and level values", () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, "data/articles.json"), "utf-8"));
-    const validTopics = new Set(["af", "exposure", "composition", "gear", "color", "video"]);
-    const validLevels = new Set(["newbie", "mid", "pro"]);
+    const validTopics = new Set<string>(rules.topics);
+    const validLevels = new Set<string>(rules.levels);
     const invalid: string[] = [];
 
     for (const article of articles) {
@@ -90,8 +91,9 @@ test("Blog", async (t) => {
 
   await t.test("should cite the ZV-E10 or A6400 Help Guide in every article", () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, "data/articles.json"), "utf-8"));
+    const sourcePattern = new RegExp(rules.requiredSourcePattern);
     const missing = (articles as Array<{ id: string; meta: { sources: Array<{ url: string }> } }>)
-      .filter((a) => !a.meta.sources.some((s) => /^https:\/\/helpguide\.sony\.net\/ilc\/(2070|1810)\/v1\/en\/contents\/TP\w+\.html$/.test(s.url)))
+      .filter((a) => !a.meta.sources.some((s) => sourcePattern.test(s.url)))
       .map((a) => a.id);
     assert.deepStrictEqual(missing, []);
   });
@@ -99,12 +101,15 @@ test("Blog", async (t) => {
   await t.test("should give menu blocks a Legacy Menu path, and Vietnamese tab names in oldVi", () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, "data/articles.json"), "utf-8"));
     const bad: string[] = [];
+    const oldPrefix = new RegExp(rules.menuPrefixes.old);
+    const oldViPrefix = new RegExp(rules.menuPrefixes.oldVi);
+    const englishTab = new RegExp(rules.menuPrefixes.englishTabs);
     for (const article of articles) {
       for (const block of article.blocks) {
         if (block.t !== "menu") continue;
-        if (!/^MENU → (Camera Settings[12]|Playback) → /.test(block.old)) bad.push(`${article.id}: old "${block.old}"`);
-        if (block.oldVi !== undefined && !/^MENU → (Cài đặt máy ảnh[12]|Xem lại) → /.test(block.oldVi)) bad.push(`${article.id}: oldVi "${block.oldVi}"`);
-        if (block.oldVi !== undefined && /Camera Settings|Playback/.test(block.oldVi)) bad.push(`${article.id}: English tab in oldVi "${block.oldVi}"`);
+        if (!oldPrefix.test(block.old)) bad.push(`${article.id}: old "${block.old}"`);
+        if (block.oldVi !== undefined && !oldViPrefix.test(block.oldVi)) bad.push(`${article.id}: oldVi "${block.oldVi}"`);
+        if (block.oldVi !== undefined && englishTab.test(block.oldVi)) bad.push(`${article.id}: English tab in oldVi "${block.oldVi}"`);
       }
     }
     assert.deepStrictEqual(bad, []);
@@ -112,7 +117,7 @@ test("Blog", async (t) => {
 
   await t.test("should have valid categories for articles", () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, "data/articles.json"), "utf-8"));
-    const validCategories = new Set(["ky-thuat", "ky-nang"]);
+    const validCategories = new Set<string>(rules.categories);
     const invalid: string[] = [];
 
     for (const article of articles) {

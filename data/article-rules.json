@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "$comment": "Hợp đồng luật bài viết, đọc bởi scripts/article-check.ts, test/blog.test.ts và công cụ colorlab_article của alphaskill. Sửa luật ở đây, không sửa trong code.",
+  "topics": ["af", "exposure", "composition", "gear", "color", "video"],
+  "levels": ["newbie", "mid", "pro"],
+  "categories": ["ky-thuat", "ky-nang"],
+  "blockTypes": ["tldr", "h", "p", "menu", "table", "callout", "compare", "checklist", "figure", "embed", "faq"],
+  "menuPrefixes": {
+    "old": "^MENU → (Camera Settings[12]|Playback) → ",
+    "oldVi": "^MENU → (Cài đặt máy ảnh[12]|Xem lại) → ",
+    "englishTabs": "Camera Settings|Playback"
+  },
+  "requiredSourcePattern": "^https://helpguide\\.sony\\.net/ilc/(2070|1810)/v1/en/contents/TP\\w+\\.html$",
+  "readPattern": "^\\d+ phút đọc$",
+  "limits": {
+    "dekChars": [120, 155],
+    "tldrItems": 3,
+    "tldrWords": [40, 70],
+    "faqItems": [4, 6],
+    "faqAnswerWords": [40, 70]
+  },
+  "bannedPhrases": [
+    { "id": "creative-look", "pattern": "Creative (Look|Style)", "flags": "i", "message": "có Creative Look/Style" },
+    { "id": "gia-ban", "pattern": "\\bgiá (bán|niêm yết|tham khảo|hiện tại)|VNĐ|triệu đồng|\\bUSD\\b", "flags": "i", "message": "có giá" },
+    { "id": "dau-chan-than", "pattern": "!", "flags": "", "on": "plain", "message": "có dấu chấm than" },
+    { "id": "emoji", "pattern": "\\p{Extended_Pictographic}", "flags": "u", "message": "có emoji" },
+    { "id": "gach-dai", "pattern": "—", "flags": "", "message": "có gạch dài (—), viết lại bằng dấu chấm, phẩy hoặc hai chấm" },
+    { "id": "dau-cau-loi", "pattern": " ,|,\\.|[^ ] {2,}\\S|\\s$|[,:;]$", "flags": "", "message": "dấu câu lỗi (\" ,\", \",.\", hai dấu cách, hoặc câu bị cắt)" },
+    { "id": "cau-don", "pattern": "Điều này (rất )?quan trọng|Kỹ thuật này (yêu cầu|đòi hỏi)|Hiểu rõ các khía cạnh|đóng vai trò quan trọng|không chỉ .{1,40} mà còn|một cách hiệu quả|đơn giản nhưng (rất )?hiệu quả|hãy cùng|tuyệt vời", "flags": "i", "message": "câu độn" },
+    { "id": "da-doc-sau-trang", "pattern": "(các )?trang\\b[^.!?;]{0,30}đã đọc", "flags": "i", "on": "plain", "message": "cụm \"đã đọc\" đi sau \"trang\"" },
+    { "id": "da-kiem-tra-trang", "pattern": "đã kiểm tra (lại )?(với |trong |trên |qua |các |những )*(trang|Help Guide)", "flags": "i", "on": "plain", "message": "\"đã kiểm tra\" nói về trang hoặc Help Guide" },
+    { "id": "khong-phai-thong-so", "pattern": "không phải thông số (Sony|của máy|máy)", "flags": "i", "on": "plain", "message": "cụm \"không phải thông số\" bị cấm" },
+    { "id": "theo-nguyen-ly", "pattern": "theo nguyên lý", "flags": "i", "on": "plain", "message": "cụm \"theo nguyên lý\" bị cấm" },
+    { "id": "suy-doan", "pattern": "suy đoán", "flags": "i", "on": "plain", "message": "cụm \"suy đoán\" bị cấm" },
+    { "id": "day-la-suy-luan", "pattern": "Đây là suy luận", "flags": "i", "on": "plain", "message": "cụm \"Đây là suy luận\" bị cấm" },
+    { "id": "kinh-nghiem-chu-khong-phai", "pattern": "kinh nghiệm chụp chứ không phải", "flags": "i", "on": "plain", "message": "cụm \"kinh nghiệm chụp chứ không phải\" bị cấm" },
+    { "id": "help-guide-khong-neu", "pattern": "Help Guide( của [^.;:,]{1,25})? không (nêu|ghi|nói|liệt kê)", "flags": "i", "on": "plain", "max": 1, "scope": "blocks", "message": "Help Guide không nêu, tối đa một lần cả bài" },
+    { "id": "help-guide-nhac", "pattern": "Help Guide", "flags": "", "on": "plain", "max": 3, "scope": "blocks", "message": "Help Guide được nhắc quá nhiều trong thân bài" }
+  ],
+  "faqAnswerBanned": [
+    { "id": "khong-tu-dung", "pattern": "xem ở trên|như đã nói|đã đề cập", "flags": "i", "message": "không tự đứng được" }
+  ],
+  "sectionLeadBanned": [
+    { "id": "cau-sao", "pattern": "^(Trong phần này|Hãy cùng|Ở phần này|Bài viết này)", "flags": "i", "message": "mở bằng câu sáo" }
+  ],
+  "headingBanned": [
+    { "id": "tieu-de-faq", "pattern": "^(FAQ|Câu hỏi thường gặp|Hỏi đáp)", "flags": "i", "message": "khối faq cuối bài tự có tiêu đề" }
+  ]
+}

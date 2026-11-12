@@ -81,7 +81,7 @@ export type Knowledge = {
   readonly summary: string
   readonly level: 'cơ bản' | 'nâng cao'
   readonly body: string
-  readonly group: 'merged' | 'post' | 'menu-terms' | 'concepts' | 'camera'
+  readonly group: 'merged' | 'post' | 'menu-terms' | 'concepts' | 'camera' | 'specs'
   readonly home?: 'blog' | 'knowledge' | 'product'
   readonly mergedInto?: string
   readonly category?: string
@@ -120,14 +120,22 @@ export function isPublished(item: { draft?: boolean }): boolean {
   return !item.draft || process.env.NODE_ENV !== 'production'
 }
 
-export type IndexItem = { href: string; title: string; read?: string; steps?: number }
+/** Ảnh đầu bài: khối figure đầu tiên. svg hiện nguyên (object-contain), còn lại là ảnh raster (object-cover). */
+export type Thumb = { src: string; svg: boolean }
+
+export type IndexItem = { href: string; title: string; read?: string; steps?: number; image?: Thumb }
+
+export function thumbOf(a: Article): Thumb | undefined {
+  const figure = a.blocks.find((b): b is Extract<Block, { t: 'figure' }> => b.t === 'figure')
+  return figure ? { src: figure.src, svg: figure.src.endsWith('.svg') } : undefined
+}
 
 const levelRank: Record<string, number> = { newbie: 0, 'cơ bản': 0, mid: 1, 'nâng cao': 1, pro: 2 }
 
 /** Left column of /blog: articles and posts grouped by level (Căn bản, Nâng cao, Chuyên nghiệp), then learning paths (drafts only outside production). */
 export function blogIndex(): { group: string; items: IndexItem[] }[] {
   const ranked = [
-    ...list().map((a) => ({ level: a.level as string, item: { href: `/blog/${a.id}`, title: a.title, read: a.read } })),
+    ...list().map((a) => ({ level: a.level as string, item: { href: `/blog/${a.id}`, title: a.title, read: a.read, image: thumbOf(a) } })),
     ...posts().map((p) => ({ level: p.level as string, item: { href: `/blog/${p.slug}`, title: p.title } })),
   ].sort((a, b) => a.item.title.localeCompare(b.item.title, 'vi'))
   const levelOf = (l: string) => (['newbie', 'mid', 'pro'] as const)[levelRank[l] ?? 0]

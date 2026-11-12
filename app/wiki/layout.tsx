@@ -1,6 +1,6 @@
 import { wiki } from "@/app/content";
 import { SplitLayout } from "@/app/components/SplitLayout";
-import { ProductIndex } from "@/app/components/ProductIndex";
+import { ProductBrowseProvider, ProductIndex } from "@/app/components/ProductIndex";
 import { CompareDock } from "@/app/components/Compare";
 import { products, productHref } from "@/lib/wiki";
 import { productDetail } from "@/lib/productSpecs";
@@ -20,19 +20,18 @@ const items = products().map((p) => ({
 
 export default function WikiLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <ProductBrowseProvider items={items}>
       <SplitLayout
         header={
           <>
             <h1 className="text-display font-light">{wiki.product.title}</h1>
           </>
         }
-        index={<ProductIndex items={items} />}
-       
+        index={<ProductIndex />}
       >
         {children}
       </SplitLayout>
       <CompareDock />
-    </>
+    </ProductBrowseProvider>
   );
 }

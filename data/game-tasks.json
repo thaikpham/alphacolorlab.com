@@ -721,7 +721,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "focusArea",
@@ -770,7 +770,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "metering",
@@ -817,9 +817,16 @@
               "vi": "Vùng sáng",
               "en": "Highlight Weighted"
             }
+          },
+          {
+            "id": "highlight",
+            "label": {
+              "vi": "Vùng sáng",
+              "en": "Highlight"
+            }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "facePriority",
@@ -847,7 +854,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "softSkin",
@@ -889,7 +896,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "autoReview",
@@ -931,7 +938,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "flash-mode",
@@ -966,7 +973,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "exp-comp-set",
@@ -994,7 +1001,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "e-front-curtain",
@@ -1022,7 +1029,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "dial-wheel-ev-comp",
@@ -1085,7 +1092,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "steady-shot",
@@ -1113,7 +1120,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "awb-priority",
@@ -1148,7 +1155,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "live-view-display",
@@ -1176,7 +1183,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "wb",
@@ -1329,7 +1336,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "focusArea",
@@ -1368,6 +1375,13 @@
             "label": {
               "vi": "Điểm: L",
               "en": "Spot: L"
+            }
+          },
+          {
+            "id": "tracking-zone",
+            "label": {
+              "vi": "Theo dõi: Khu vực",
+              "en": "Tracking: Zone"
             }
           }
         ],
@@ -1427,7 +1441,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "facePriority",
@@ -1455,7 +1469,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "softSkin",
@@ -1497,7 +1511,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "flash-mode",
@@ -1560,7 +1574,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "pre-af",
@@ -1588,7 +1602,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "steady-shot",
@@ -1616,7 +1630,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "awb-priority",
@@ -1651,7 +1665,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "live-view-display",
@@ -1679,7 +1693,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       },
       {
         "id": "shutter-type",
@@ -1747,6 +1761,13 @@
               "vi": "Đèn sợi đốt",
               "en": "Incandescent"
             }
+          },
+          {
+            "id": "flash",
+            "label": {
+              "vi": "Flash",
+              "en": "Flash"
+            }
           }
         ],
         "decoded": false
@@ -1777,7 +1798,7 @@
             }
           }
         ],
-        "decoded": false
+        "decoded": true
       }
     ]
   }

@@ -11,6 +11,8 @@
     "test": "node --experimental-strip-types --test 'test/**/*.test.ts'",
     "check:design": "node scripts/check-design.mjs",
     "sync:skill": "node --experimental-strip-types scripts/sync-alphaskill.ts",
+    "check:sources": "node --experimental-strip-types scripts/check-sources.ts",
+    "decode:scan": "node --experimental-strip-types scripts/decode-scan.ts",
     "lighthouse": "node scripts/lighthouse.mjs"
   },
   "dependencies": {

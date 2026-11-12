@@ -9,7 +9,7 @@ const redirects = legacyRedirects();
 
 // Every page path this app serves that a redirect may point at.
 const pages = new Set([
-  "/", "/blog", "/blog/kien-thuc", "/search", "/colors", "/wiki", "/wiki/san-pham/so-sanh",
+  "/", "/blog", "/blog/kien-thuc", "/search", "/colors", "/wiki", "/wiki/san-pham/so-sanh", "/tai-khoan",
   ...["console", "colors", "wiki", "blog"].map((app) => `/do-thi/${app}`),
   ...list().map((a) => `/blog/${a.id}`),
   ...posts().map((p) => `/blog/${p.slug}`),

@@ -2,41 +2,47 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { parseGear, toggleGear, pickModel, entryModel, EMPTY_BAG, type GearBag } from "../lib/gear.ts";
-import { gearCatalog, compatible, nearGear } from "../lib/gearCatalog.ts";
+import { gearCatalog, compatible, nearGear, validIdsByCategory } from "../lib/gearCatalog.ts";
 import type { ModelId } from "../lib/model.ts";
 
 const accessories = JSON.parse(readFileSync(new URL("../data/accessories.json", import.meta.url), "utf8"));
+const gearIds = validIdsByCategory();
 
 test("gear: parseGear handles bad JSON", () => {
-  assert.deepEqual(parseGear(null), EMPTY_BAG);
-  assert.deepEqual(parseGear("not json"), EMPTY_BAG);
-  assert.deepEqual(parseGear('{"invalid"}'), EMPTY_BAG);
+  assert.deepEqual(parseGear(null, gearIds), EMPTY_BAG);
+  assert.deepEqual(parseGear("not json", gearIds), EMPTY_BAG);
+  assert.deepEqual(parseGear('{"invalid"}', gearIds), EMPTY_BAG);
 });
 
 test("gear: parseGear drops unknown ids", () => {
-  const bag = parseGear(JSON.stringify({ body: ["zv-e10", "unknown-camera"], lens: [], acc: [] }));
+  const bag = parseGear(JSON.stringify({ body: ["zv-e10", "unknown-camera"], lens: [], acc: [] }), gearIds);
   assert.equal(bag.body.length, 1);
   assert.ok(bag.body.includes("zv-e10"));
   assert.ok(!bag.body.includes("unknown-camera"));
+});
+
+test("gear: parseGear keeps well-formed ids while the catalog is not loaded yet", () => {
+  const bag = parseGear(JSON.stringify({ body: ["zv-e10", "unknown-camera"], lens: [], acc: [] }), null);
+  assert.deepEqual(bag.body, ["zv-e10", "unknown-camera"]);
 });
 
 test("gear: parseGear drops miscategorised ids", () => {
   const catalog = gearCatalog();
   const lensId = catalog.lens[0]?.id;
   if (lensId) {
-    const bag = parseGear(JSON.stringify({ body: [lensId], lens: [], acc: [] }));
+    const bag = parseGear(JSON.stringify({ body: [lensId], lens: [], acc: [] }), gearIds);
     assert.equal(bag.body.length, 0, "lens id in body should be dropped");
   }
 });
 
 test("gear: parseGear deduplicates", () => {
-  const bag = parseGear(JSON.stringify({ body: ["zv-e10", "zv-e10", "a6400"], lens: [], acc: [] }));
+  const bag = parseGear(JSON.stringify({ body: ["zv-e10", "zv-e10", "a6400"], lens: [], acc: [] }), gearIds);
   assert.equal(bag.body.length, 2);
 });
 
 test("gear: parseGear keeps any number of items (no slot limit)", () => {
   const ids = gearCatalog().body.map((b) => b.id).slice(0, 10);
-  const bag = parseGear(JSON.stringify({ body: ids, lens: [], acc: [] }));
+  const bag = parseGear(JSON.stringify({ body: ids, lens: [], acc: [] }), gearIds);
   assert.equal(bag.body.length, 10);
 });
 

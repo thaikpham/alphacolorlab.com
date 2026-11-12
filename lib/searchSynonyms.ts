@@ -23,6 +23,7 @@ export const synonymGroups: string[][] = [
   ['tieu cu', 'focal length'],
   ['do sang', 'metering'],
   ['phoi sang', 'exposure'],
+  ['quay phim', 'video', 'quay video'],
 ]
 
 /** Sony writes generations both ways: A7 IV = ILCE-7M4, ZV-E10 II = ZV-E10M2. */

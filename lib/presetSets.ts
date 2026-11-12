@@ -79,6 +79,11 @@ function num(v: unknown, field: string, min: number, max: number): number {
   return v;
 }
 
+/** Một giá trị Picture Profile theo PP_FIELDS: enum theo danh sách, số theo khoảng. Dùng chung với lib/ppMods.ts. */
+export function ppValue(f: (typeof PP_FIELDS)[number], v: unknown, field: string): string | number {
+  return f.kind === "enum" ? oneOf(v, f.options as readonly string[], field) : num(v, field, f.min!, f.max!);
+}
+
 function validateSlot(raw: unknown, field: string): SlotDraft {
   if (!raw || typeof raw !== "object") throw new PresetError(`${field}: thiếu cài đặt`);
   const r = raw as Record<string, unknown>;
@@ -124,7 +129,7 @@ function validateSlot(raw: unknown, field: string): SlotDraft {
       for (const f of PP_FIELDS) {
         const v = (r.pp as Record<string, unknown>)[f.key];
         if (v === undefined) continue;
-        pp[f.key] = f.kind === "enum" ? oneOf(v, f.options as readonly string[], `${field}.pp.${f.key}`) : num(v, `${field}.pp.${f.key}`, f.min!, f.max!);
+        pp[f.key] = ppValue(f, v, `${field}.pp.${f.key}`);
       }
       out.pp = pp;
     } else throw new PresetError(`${field}.pp: cần "keep" hoặc bộ thông số PP`);
@@ -141,7 +146,7 @@ function validateSlot(raw: unknown, field: string): SlotDraft {
         for (const f of PP_FIELDS) {
           const v = (bank as Record<string, unknown>)[f.key];
           if (v === undefined) continue;
-          bankObj[f.key] = f.kind === "enum" ? oneOf(v, f.options as readonly string[], `${field}.ppBanks.${k}.${f.key}`) : num(v, `${field}.ppBanks.${k}.${f.key}`, f.min!, f.max!);
+          bankObj[f.key] = ppValue(f, v, `${field}.ppBanks.${k}.${f.key}`);
         }
         ppBanks[k] = bankObj;
       }

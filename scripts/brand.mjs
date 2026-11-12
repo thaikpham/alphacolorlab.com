@@ -1,4 +1,5 @@
 // Sinh bộ logo alphacolorlab (SVG + PNG + ICO) vào brand/<hướng>/. Chạy: node scripts/brand.mjs
+// sharp is not in package.json; it resolves only through next's dependencies.
 import sharp from "sharp";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 

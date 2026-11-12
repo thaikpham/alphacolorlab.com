@@ -167,6 +167,8 @@ export function legacyRedirects(): Redirect[] {
     // Old graph routes → graph pages (opened from the user menu)
     ...anyLocale("/graph", "/do-thi/blog"),
     ...anyLocale("/colors/graph", "/do-thi/colors"),
+    // KOL manager moved into the account page (307: /kol/sua still matches /kol/[handle], keep browsers from caching it)
+    ...anyLocale("/kol/sua", "/tai-khoan", false),
     // Wiki restructuring: /wiki/san-pham → /wiki, /wiki/kien-thuc → /blog/kien-thuc
     ...anyLocale("/wiki/san-pham", "/wiki"),
     ...anyLocale("/wiki/kien-thuc", "/blog/kien-thuc"),

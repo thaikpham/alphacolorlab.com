@@ -4,7 +4,7 @@
 CREATE TABLE IF NOT EXISTS public.submissions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   created_at TIMESTAMPTZ DEFAULT now(),
-  model TEXT NOT NULL CHECK (model IN ('zve10', 'a6400')),
+  model TEXT NOT NULL CHECK (model IN ('zve10', 'a6400', 'a7c2')),
   firmware TEXT CHECK (CHAR_LENGTH(firmware) <= 16),
   region TEXT CHECK (region IN ('pal', 'ntsc')),
   nickname TEXT CHECK (CHAR_LENGTH(nickname) <= 32),
@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS public.submissions (
   duration_ms INT CHECK (duration_ms >= 0 AND duration_ms <= 86400000),
   retries INT CHECK (retries >= 0 AND retries <= 20),
   app_version TEXT CHECK (CHAR_LENGTH(app_version) <= 32),
+  -- payload cap 150000 bytes. Each file is sent as base64 (4/3 of its size). A7C II test files:
+  -- 4 x 13948 bytes (test/fixtures/a7c2) -> 4 x 18600 = 74400 bytes, fits. If real A7C II files were ~56 KB each,
+  -- 4 files would be ~299 KB in base64 and every insert would be rejected: raise the cap before that.
   payload JSONB NOT NULL CHECK (octet_length(payload::text) < 150000)
 );
 

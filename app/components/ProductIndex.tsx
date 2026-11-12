@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { wiki } from "@/app/content";
+import { useIndexView } from "@/lib/indexView";
 import { matchLenses } from "@/lib/lensTags";
+import { IndexViewSwitch } from "./IndexViewSwitch";
 import { InfoTip } from "./InfoTip";
 
 const P = wiki.product;
@@ -17,8 +19,24 @@ type Group = { key: string; title: string; items: IndexItem[] };
 const CAMERA_TITLE = { "full-frame": "fullframe", "aps-c": "apsc", compact: "compact", cinema: "cinema" } as const;
 const row = "flex items-center gap-3 min-h-11 px-4 py-2 transition-colors hover:bg-fill active:bg-fill-strong";
 
-/** Product Wiki index column: kind segmented control, lens filter (collapsed), grouped list with small photos. */
-export function ProductIndex({ items }: { items: IndexItem[] }) {
+type Browse = {
+  items: IndexItem[];
+  kind: Kind;
+  setKind: (k: Kind) => void;
+  on: Set<string>;
+  toggle: (id: string) => void;
+  clear: () => void;
+};
+const BrowseContext = createContext<Browse | null>(null);
+
+function useBrowse(): Browse {
+  const ctx = useContext(BrowseContext);
+  if (!ctx) throw new Error("ProductBrowseProvider is missing");
+  return ctx;
+}
+
+/** Trạng thái chung của Product Wiki (loại, bộ lọc ống kính) cho cột index và lưới ở cột phải. Layout bọc quanh cả hai. */
+export function ProductBrowseProvider({ items, children }: { items: IndexItem[]; children: ReactNode }) {
   const pathname = usePathname();
   const current = items.find((i) => i.href === pathname);
   const [kind, setKind] = useState<Kind>(current?.kind ?? "camera");
@@ -35,12 +53,11 @@ export function ProductIndex({ items }: { items: IndexItem[] }) {
       if (!next.delete(id)) next.add(id);
       return next;
     });
+  return <BrowseContext.Provider value={{ items, kind, setKind, on, toggle, clear: () => setOn(new Set()) }}>{children}</BrowseContext.Provider>;
+}
 
-  const list = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    list.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: "nearest" });
-  }, [pathname, kind]);
-
+/** Nhóm món theo loại và bộ lọc; dùng chung cho cột index và lưới. */
+function browse(items: IndexItem[], kind: Kind, on: Set<string>) {
   const of = (k: Kind) => items.filter((i) => i.kind === k);
   const lenses = of("lens");
   const shown = matchLenses(lenses, on, F.groups);
@@ -62,9 +79,41 @@ export function ProductIndex({ items }: { items: IndexItem[] }) {
                 items: lenses.filter((i) => i.group === f.id && i.tags.includes(se.id)),
               })),
             );
+  return { lenses, shown, groups };
+}
+
+function ProductCard({ item, active, eager }: { item: IndexItem; active: boolean; eager: boolean }) {
+  return (
+    <Link href={item.href} aria-current={active ? "page" : undefined} className="group block overflow-hidden rounded-card bg-card shadow-card">
+      <div className="relative aspect-[4/3] bg-card">
+        <Image src={item.image} alt="" fill sizes="(min-width: 1024px) 22vw, 45vw" preload={eager} className="object-contain p-4" />
+      </div>
+      <div className={`border-t border-separator px-4 py-3 transition-colors ${active ? "bg-fill" : "group-hover:bg-fill"}`}>
+        <p className="truncate text-subhead font-semibold text-label">{item.name}</p>
+        <p className="truncate text-footnote text-secondary">{item.code}</p>
+      </div>
+    </Link>
+  );
+}
+
+/** Product Wiki index column: kind segmented control, lens filter (collapsed), grouped list. Lưới: thẻ thay danh sách dưới md. */
+export function ProductIndex() {
+  const { items, kind, setKind, on, toggle, clear } = useBrowse();
+  const view = useIndexView();
+  const pathname = usePathname();
+  const list = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    // Lưới và danh sách cùng có mục đang mở trong DOM; chỉ cuộn tới cái đang hiện
+    const shown = Array.from(list.current?.querySelectorAll<HTMLElement>('[aria-current="page"]') ?? []);
+    shown.find((el) => el.offsetParent !== null)?.scrollIntoView({ block: "nearest" });
+  }, [pathname, kind, view]);
+
+  const { lenses, shown, groups } = browse(items, kind, on);
+  const grid = view === "grid";
 
   return (
     <div className="space-y-6">
+      <IndexViewSwitch />
       <div className="flex gap-1 rounded-control bg-fill p-1">
         {(Object.keys(P.tabs) as Kind[]).map((k) => (
           <button
@@ -121,7 +170,7 @@ export function ProductIndex({ items }: { items: IndexItem[] }) {
               </div>
             ))}
             {on.size > 0 && (
-              <button type="button" onClick={() => setOn(new Set())} className="h-11 text-subhead font-semibold text-accent-text hover:underline">
+              <button type="button" onClick={clear} className="h-11 text-subhead font-semibold text-accent-text hover:underline">
                 {F.clear}
               </button>
             )}
@@ -146,10 +195,19 @@ export function ProductIndex({ items }: { items: IndexItem[] }) {
 
       <div ref={list} className="space-y-6" aria-live={on.size ? "polite" : undefined}>
         {groups.some((g) => g.items.length) ? (
-          groups.filter((g) => g.items.length).map((g) => (
+          groups.filter((g) => g.items.length).map((g, gi) => (
             <section key={g.key} id={kind === "accessory" ? `acc-${g.key}` : undefined}>
-              <h2 className="mb-2 px-4 text-footnote text-secondary">{g.title}</h2>
-              <div className="overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator">
+              <h2 className={`mb-2 text-footnote text-secondary ${grid ? "md:px-4" : "px-4"}`}>{g.title}</h2>
+              {grid && (
+                <ul className="grid grid-cols-2 gap-4 md:hidden">
+                  {g.items.map((i, n) => (
+                    <li key={i.slug}>
+                      <ProductCard item={i} active={i.href === pathname} eager={gi === 0 && n < 2} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className={`overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator ${grid ? "hidden md:block" : ""}`}>
                 {g.items.map((i) => (
                   <Link key={i.slug} href={i.href} aria-current={i.href === pathname ? "page" : undefined} className={`${row} ${i.href === pathname ? "bg-fill" : ""}`}>
                     <Image src={i.image} alt="" width={96} height={72} sizes="48px" className="h-9 w-12 flex-shrink-0 object-contain" />
@@ -166,6 +224,34 @@ export function ProductIndex({ items }: { items: IndexItem[] }) {
           <p className="rounded-card bg-card p-4 text-subhead text-secondary shadow-card">{F.empty}</p>
         )}
       </div>
+    </div>
+  );
+}
+
+/** Lưới ở cột phải (md+) khi chưa chọn sản phẩm nào và đang chọn Lưới. Cùng loại và bộ lọc với cột index. */
+export function ProductGrid() {
+  const { items, kind, on } = useBrowse();
+  const view = useIndexView();
+  if (view !== "grid") return null;
+  const shown = browse(items, kind, on).groups.filter((g) => g.items.length);
+  return (
+    <div className="space-y-6">
+      {shown.length ? (
+        shown.map((g, gi) => (
+          <section key={g.key}>
+            <h2 className="mb-2 text-footnote text-secondary">{g.title}</h2>
+            <ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+              {g.items.map((i, n) => (
+                <li key={i.slug}>
+                  <ProductCard item={i} active={false} eager={gi === 0 && n < 2} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      ) : (
+        <p className="rounded-card bg-card p-4 text-subhead text-secondary shadow-card">{F.empty}</p>
+      )}
     </div>
   );
 }

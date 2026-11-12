@@ -183,7 +183,7 @@ export function GearManager({ showList = true, title, secondary, compact }: { sh
           const suggestions = nearGear(missing);
           return suggestions.length > 0 ? (
             <div className="mt-5">
-              <p className="text-footnote font-semibold text-secondary">Gợi ý gần nhất:</p>
+              <p className="text-footnote font-semibold text-secondary">{T.suggest}</p>
               <ul className="mt-3 space-y-2">
                 {suggestions.map((s) => (
                   <li key={s.item.id}>
@@ -202,7 +202,7 @@ export function GearManager({ showList = true, title, secondary, compact }: { sh
         })()}
         <div className="mt-5 flex flex-col gap-2">
           <a href="/wiki" className="inline-flex h-11 items-center justify-center rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong">
-            Duyệt Product Wiki
+            {T.productWiki}
           </a>
           <form method="dialog">
             <button type="submit" className="w-full inline-flex h-11 items-center justify-center rounded-full px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill">

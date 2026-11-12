@@ -1,6 +1,6 @@
 # Bàn giao phiên làm việc 2026-11-09: Redesign "Kính ngắm trong studio"
 
-Dự án **không phải git repo**. Bản sao lưu trước khi làm lại giao diện: `~/backups/alpha-console-before-redesign-20261109-1816.tgz`.
+Dự án là git repo, nhánh `main`. Bản sao lưu trước khi làm lại giao diện: `~/backups/alpha-console-before-redesign-20261109-1816.tgz`.
 
 Trạng thái lần chạy cuối:
 - `npm test`: 520/520 pass.
@@ -137,3 +137,36 @@ npm run check:design
 npm test
 npm run build
 ```
+
+## 9. Bố cục
+- `data/`: `articles.json`, `products.json`, `knowledge.json` (sinh bởi import), `knowledge.lock.json` (mục 11), `article-rules.json` (mục 12).
+- `scripts/`: công cụ chạy bằng `node --experimental-strip-types`. Đáng chú ý: `sync-alphaskill.ts`, `import-knowledge.ts`, `knowledge-vault.ts`, `article-check.ts`, `check-sources.ts`.
+- `test/`: `node:test`, chạy bằng `npm test`.
+- `alphaskill/skill/` và `alphaskill/portable/`: bản sao trong dự án, do `sync:skill` sinh ra. Không sửa tay.
+- `.github/workflows/sources.yml`: chạy kiểm tra link nguồn (mục 13).
+- Repo `alphaskill` nằm cạnh dự án tại `../alphaskill`. Nguồn skill là `skills/sony-alpha-viet`, nguồn portable là `portable/`, vault tri thức là `data/knowledge/1 Kiến thức`.
+
+## 10. Đồng bộ skill (`npm run sync:skill`)
+- Xóa `alphaskill/`, chép `skills/sony-alpha-viet/*` vào `alphaskill/skill/` và `portable/*` vào `alphaskill/portable/`, rồi sinh `references/san-pham-sony.md` và `knowledge/san-pham-sony.md` từ `data/products.json`.
+- Đường dẫn repo alphaskill lấy từ `ALPHASKILL_DIR`, mặc định `../alphaskill`. Ví dụ: `ALPHASKILL_DIR=/đường/dẫn npm run sync:skill`.
+- Sửa skill ở repo alphaskill thì chạy lại lệnh này. Quên chạy thì `test/knowledge-drift.test.ts` báo lệch.
+
+## 11. Nhập tri thức (`scripts/import-knowledge.ts`)
+- Chạy: `node --experimental-strip-types scripts/import-knowledge.ts`.
+- Chỉ đọc `<alphaskill>/data/knowledge/1 Kiến thức`. Các thư mục khác trong vault không vào.
+- Ghi `data/knowledge.json` (dựng lại từ đầu) và `data/knowledge.lock.json` (`vaultSha256`, `noteFiles`).
+- Thiếu thư mục thì thoát 1 và in đường dẫn đã thử. Đặt `ALPHASKILL_DIR` để trỏ đúng repo.
+- Lock chỉ phủ vault. Hai nguồn sửa trong repo, `KNOWLEDGE_EDITS` trong script và `scripts/knowledge-link-edits.json`, nằm ngoài hash. Sửa hai nguồn này mà không chạy lại import thì test drift không báo.
+
+## 12. Luật bài viết (`data/article-rules.json`)
+- Chứa luật kiểm tra bài: câu cấm (`bannedPhrases`, `faqAnswerBanned`, `sectionLeadBanned`, `headingBanned`), giới hạn (`limits`), chủ đề, cấp độ, danh mục, loại khối, tiền tố menu, mẫu nguồn bắt buộc.
+- Mỗi luật có `id`, `pattern`, `flags`, `message`. Tùy chọn: `on` (`plain` hoặc `raw`), `max` (đếm số lần, báo khi vượt), `scope` (`all` hoặc `blocks`).
+- `scripts/article-check.ts` đọc từ file này. `test/article-rules.test.ts` kiểm tra danh sách khớp kiểu `Article` trong `lib/blog.ts` và nhãn có trong `app/content.ts`.
+- Phía alphaskill (`colorlab_article` trong `src/sony_alpha_viet/server.py`) chưa đọc file này. Chưa đồng bộ luật bên đó.
+
+## 13. Kiểm tra link nguồn (`npm run check:sources`)
+- Quét `meta.sources[].url` trong `data/articles.json` và `source` trong `data/products.json`, mỗi URL kiểm một lần. Ảnh sản phẩm không kiểm.
+- Cần mạng. Thử HEAD trước, lỗi thì thử GET. Tối đa 8 yêu cầu cùng lúc, timeout 15 giây.
+- Link chết = 404, 410 hoặc tên miền không phân giải. 401, 403, 429, 5xx và timeout là "unverified", không tính lỗi, vì sony.jp có thể chặn bot.
+- Chỉ báo cáo, không tự thay link. Có link chết thì thoát 1 và in từng URL kèm trang đang dùng.
+- `.github/workflows/sources.yml` chạy thứ Hai 03:00 UTC và chạy tay được. Không nằm trong `npm test` hay `npm run build`.

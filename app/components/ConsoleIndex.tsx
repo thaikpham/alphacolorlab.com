@@ -7,7 +7,7 @@ import { ModelPicker } from "./ModelPicker";
 import { LinkRow } from "./LinkRow";
 import { useCart } from "@/lib/cart";
 import { setModel } from "@/lib/model";
-import { decodeProgress } from "@/lib/decodeProgress";
+import { decodeProgress, showDecodeStatus } from "@/lib/decodeProgress";
 
 const decoded = new Set(sonyBodies.filter((b) => b.decoded).map((b) => b.id));
 const decodedIds = cameraModels.filter((m) => decoded.has(m.id)).map((m) => m.id).join(" ");
@@ -61,7 +61,7 @@ export function ConsoleIndex() {
         {row(
           "/giai-ma",
           C.decode,
-          perModel((id) => <span className="tabular-nums">{decodeProgress(id).percent}%</span>),
+          showDecodeStatus ? perModel((id) => <span className="tabular-nums">{decodeProgress(id).percent}%</span>) : undefined,
         )}
       </div>
     </nav>

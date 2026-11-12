@@ -4,10 +4,10 @@
 type Lens = { name: string; group: string; specs: Record<string, any> }
 
 /** APS-C lenses are judged by their full-frame equivalent focal length. */
-export const APSC_CROP = 1.5
+const APSC_CROP = 1.5
 
 /** The owner's focal ranges (mm, full-frame equivalent), inclusive at both ends: a 35mm lens is both street and daily. */
-export const FOCAL_NEEDS = [
+const FOCAL_NEEDS = [
   { id: 'wide', min: 0, max: 23.9 }, // dưới 24mm: phong cảnh, hành động
   { id: 'street', min: 24, max: 35 },
   { id: 'daily', min: 35, max: 50 },

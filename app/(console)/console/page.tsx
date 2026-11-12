@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { hero, appInfo, seo, kolSets } from "@/app/content";
-import { PresetSetList } from "@/app/components/PresetSets";
+import { PresetSetList } from "@/app/components/PresetSetList";
 import { validatePresetSets } from "@/lib/presetSets";
 import presetSetsJson from "@/data/preset-sets.json";
 import { SITE_URL } from "@/lib/site";

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { kol, kolSets } from "@/app/content";
-import { BackLink } from "@/app/components/BackLink";
 import { RemoteKolView } from "@/app/components/RemoteKolView";
 import { listedSets, validatePresetSets, type PresetAuthor } from "@/lib/presetSets";
 import presetSetsJson from "@/data/preset-sets.json";
@@ -29,10 +28,5 @@ export default async function KolPage({ params }: { params: Promise<{ handle: st
   const { handle } = await params;
   const author = AUTHORS.find((a) => a.handle === handle);
 
-  return (
-    <div className="px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 md:pt-6">
-      <BackLink href="/bo-m1-m4">{kolSets.title}</BackLink>
-      <RemoteKolView handle={handle} author={author ?? null} repoSets={LISTED.filter((s) => s.author?.handle === handle)} repoIds={REPO_IDS} />
-    </div>
-  );
+  return <RemoteKolView handle={handle} author={author ?? null} repoSets={LISTED.filter((s) => s.author?.handle === handle)} repoIds={REPO_IDS} />;
 }

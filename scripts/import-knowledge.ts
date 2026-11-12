@@ -2,16 +2,17 @@
 /**
  * Auto-discover all vault knowledge notes and assign home/group.
  * Builds knowledge.json from scratch; unknown slugs fail import.
+ * Vault: ALPHASKILL_DIR (default ../alphaskill). Writes data/knowledge.json and data/knowledge.lock.json.
  */
 
 import fs from 'fs'
 import path from 'path'
 // First-mention [[links]] added on 2026-11-10; applied after KNOWLEDGE_EDITS, same exact-replacement format
 import LINK_EDITS from './knowledge-link-edits.json' with { type: 'json' }
+import { alphaskillRoot, hashNotes, notesDir } from './knowledge-vault.ts'
 
 const PROJECT_ROOT = path.resolve(import.meta.dirname, '..')
-// alphaskill nằm cạnh dự án này trong thư mục mẹ AlphaColorLab.com
-const VAULT_ROOT = path.resolve(PROJECT_ROOT, '..', 'alphaskill', 'data', 'knowledge')
+const ALPHASKILL_ROOT = alphaskillRoot(PROJECT_ROOT)
 
 // Do not import these notes
 const EXCLUDE_NOTES = new Set(['creative-look', 'khac-biet-zv-e10-a6400-va-a7c-ii']) // user removed the comparison note 2026-11-08
@@ -255,7 +256,12 @@ function removeCreativeLookFromMenu(fm: Record<string, any>): Record<string, any
 
 async function main() {
   // Discover all vault notes
-  const knowledgeDir = path.join(VAULT_ROOT, '1 Kiến thức')
+  const knowledgeDir = notesDir(ALPHASKILL_ROOT)
+  if (!fs.existsSync(knowledgeDir)) {
+    console.error(`❌ Vault not found: ${knowledgeDir}. Set ALPHASKILL_DIR to the alphaskill folder (default: ../alphaskill).`)
+    process.exit(1)
+  }
+  const vault = hashNotes(knowledgeDir)
   const entries: KnowledgeEntry[] = []
   const processedSlugs = new Set<string>()
 
@@ -348,6 +354,11 @@ async function main() {
   const outputPath = path.join(PROJECT_ROOT, 'data/knowledge.json')
   fs.writeFileSync(outputPath, JSON.stringify(entries, null, 2))
   console.log(`✓ Wrote ${outputPath} with ${entries.length} entries`)
+
+  // Lock the vault state this knowledge.json was built from; test/knowledge-drift.test.ts compares it
+  const lockPath = path.join(PROJECT_ROOT, 'data/knowledge.lock.json')
+  fs.writeFileSync(lockPath, JSON.stringify({ version: 1, vaultSha256: vault.sha256, noteFiles: vault.noteFiles }, null, 2) + '\n')
+  console.log(`✓ Wrote ${lockPath} (${vault.noteFiles} notes)`)
   console.log('✅ Knowledge import complete!')
 }
 

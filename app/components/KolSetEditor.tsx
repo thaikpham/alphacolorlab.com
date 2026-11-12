@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { kolSets, kolStudio } from "@/app/content";
-import { KolError, saveSet, type RemoteSet } from "@/lib/kol";
+import { KolError, saveSet, SET_LIMIT_ERROR, type RemoteSet } from "@/lib/kol";
 import { cloneSlots, defaultSet, PresetError, validatePresetSets, type PresetSet, type PresetSlot } from "@/lib/presetSets";
 import presetSetsJson from "@/data/preset-sets.json";
 import { InfoTip } from "./InfoTip";
@@ -10,7 +10,13 @@ import { SlotCard } from "./SlotCard";
 
 const SET_ID = /^[a-z0-9-]{1,40}$/;
 const SET_ID_MAX = 40;
-const field = "h-11 w-full rounded-control border border-separator bg-card px-3 text-callout text-label placeholder:text-secondary focus-visible:outline-2 focus-visible:outline-accent";
+// Trùng ràng buộc char_length trong supabase/kol.sql (kol_sets.name, kol_sets.description).
+const SET_NAME_MAX = 60;
+const SET_DESCRIPTION_MAX = 240;
+const fieldBase = "h-11 w-full rounded-control border border-separator px-3 text-callout text-label placeholder:text-secondary focus-visible:outline-2 focus-visible:outline-accent";
+const field = `${fieldBase} bg-card`;
+// Đường dẫn bộ đã tạo: chỉ đọc, nền xám để thấy là đang khóa.
+const fieldLocked = `${fieldBase} bg-fill`;
 const primary = "inline-flex h-11 items-center rounded-full bg-accent px-5 text-subhead font-semibold text-on-accent transition-colors hover:bg-accent/90 disabled:opacity-40";
 const secondary = "inline-flex h-11 shrink-0 items-center rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong";
 const segment = (on: boolean) => `flex-1 h-11 rounded-badge text-subhead font-medium transition ${on ? "bg-card shadow-thumb font-semibold text-label" : "text-label hover:bg-fill-strong"}`;
@@ -58,6 +64,8 @@ export function KolSetEditor({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Đường dẫn không đổi sau khi tạo: bộ khác đã sưu tầm và link /bo-m1-m4/<id> đang trỏ vào nó.
+  const locked = Boolean(initial);
   const cleanId = id.replace(/^-+|-+$/g, "");
   const idTaken = taken.has(cleanId);
   const valid = name.trim() !== "" && SET_ID.test(cleanId) && !idTaken && !busy;
@@ -78,21 +86,23 @@ export function KolSetEditor({
       onDone();
     } catch (e) {
       setBusy(false);
-      setError(e instanceof PresetError ? e.message : e instanceof KolError && e.status === 409 ? kolStudio.setIdTaken : kolStudio.setSaveFailed);
+      if (e instanceof PresetError) setError(e.message);
+      else if (e instanceof KolError && e.message === SET_LIMIT_ERROR) setError(kolStudio.setLimit);
+      else setError(e instanceof KolError && e.status === 409 ? kolStudio.setIdTaken : kolStudio.setSaveFailed);
     }
   };
 
   return (
     <section aria-labelledby={`${uid}-t`} className="mt-6">
-      <h2 id={`${uid}-t`} className="text-title3 font-normal">
+      <h2 id={`${uid}-t`} className="text-title3 font-medium">
         {initial ? kolStudio.editorEdit : kolStudio.editorNew}
       </h2>
-      <div className="mt-4 max-w-2xl space-y-5 rounded-card bg-card p-6 shadow-card sm:p-8">
+      <div className="mt-4 space-y-5 rounded-card bg-card p-6 shadow-card sm:p-8">
         <div>
           <label htmlFor={`${uid}-n`} className="text-subhead font-semibold text-label">
             {kolStudio.setName}
           </label>
-          <input id={`${uid}-n`} value={name} onChange={(e) => rename(e.target.value)} className={`${field} mt-2`} />
+          <input id={`${uid}-n`} value={name} maxLength={SET_NAME_MAX} onChange={(e) => rename(e.target.value)} className={`${field} mt-2`} />
         </div>
 
         <div>
@@ -103,6 +113,7 @@ export function KolSetEditor({
             id={`${uid}-d`}
             rows={2}
             value={description}
+            maxLength={SET_DESCRIPTION_MAX}
             onChange={(e) => setDescription(e.target.value)}
             className="mt-2 block w-full rounded-control border border-separator bg-card px-3 py-2.5 text-callout text-label placeholder:text-secondary focus-visible:outline-2 focus-visible:outline-accent"
           />
@@ -119,12 +130,14 @@ export function KolSetEditor({
             id={`${uid}-i`}
             value={id}
             maxLength={SET_ID_MAX}
+            readOnly={locked}
+            aria-readonly={locked}
             aria-invalid={idTaken}
             onChange={(e) => {
               setIdTouched(true);
               setId(toSlug(e.target.value, SET_ID_MAX));
             }}
-            className={`${field} mt-2 max-w-md`}
+            className={`${locked ? fieldLocked : field} mt-2`}
           />
           {idTaken && <p className="mt-2 text-footnote font-medium text-danger">{kolStudio.setIdTaken}</p>}
         </div>

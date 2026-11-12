@@ -3,14 +3,15 @@
 import { useId, useRef, useState } from "react";
 import { useModel, setModel, type ModelId } from "@/lib/model";
 import { guide, sonyBodies } from "@/app/content";
-import { decodeProgress } from "@/lib/decodeProgress";
+import { decodeProgress, showDecodeStatus } from "@/lib/decodeProgress";
 import { InfoTip } from "./InfoTip";
 
 const copy = guide.modelPicker;
 type Menu = (typeof copy.groups)[number]["menu"];
 
-/** Decode status chip: Đã giải mã / Đang giải mã / Chưa giải mã (lib/decodeProgress.ts). */
+/** Decode status chip: Đã giải mã / Đang giải mã / Chưa giải mã (lib/decodeProgress.ts). Chỉ hiện khi showDecodeStatus (npm run dev). */
 export function Status({ id }: { id?: string }) {
+  if (!showDecodeStatus) return null;
   const state = decodeProgress(id).state;
   const [label, tone] =
     state === "decoded" ? [copy.decoded, "bg-success-fill text-success font-semibold"]
@@ -28,7 +29,7 @@ export function UseModelButton({ id, children }: { id: ModelId; children: React.
   );
 }
 
-/** Chọn máy: hàng tóm tắt mở ra bộ lọc hệ menu; chọn hệ rồi mới hiện danh sách máy Sony ngàm E của hệ đó, kèm trạng thái giải mã. Chỉ máy có hướng dẫn chọn được. */
+/** Chọn máy: hàng tóm tắt mở ra bộ lọc hệ menu; chọn hệ rồi mới hiện danh sách máy Sony ngàm E của hệ đó (kèm trạng thái giải mã khi showDecodeStatus). Chỉ máy có hướng dẫn chọn được. */
 export function ModelPicker() {
   const model = useModel();
   const name = useId(); // trang có hai bộ chọn máy (hướng dẫn, tạo preset): mỗi bộ một nhóm radio riêng
@@ -36,6 +37,7 @@ export function ModelPicker() {
   const [menu, setMenu] = useState<Menu | null>(null);
   const current = sonyBodies.find((b) => b.id === model)!;
   const group = copy.groups.find((g) => g.menu === menu);
+  const menuLines = copy.groups.map((g) => ({ k: `${g.title}:`, t: g.footer }));
 
   return (
     <details ref={box} className="disclosure group max-w-xl">
@@ -69,7 +71,7 @@ export function ModelPicker() {
               </button>
             ))}
           </div>
-          <InfoTip entry={{ term: copy.infoTerm, lines: [...copy.groups.map((g) => ({ k: `${g.title}:`, t: g.footer })), { t: copy.legend }] }} />
+          <InfoTip entry={showDecodeStatus ? { term: copy.infoTerm, lines: [...menuLines, { t: copy.legend }] } : { term: copy.infoTermMenu, lines: menuLines }} />
         </div>
 
         {group ? (

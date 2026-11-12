@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useReducer, useRef, useState, useSyncExternalStore } from "react";
-import { game, cameraModels } from "@/app/content";
+import { game, cameraModels, decodeConsole } from "@/app/content";
 import { useModel } from "@/lib/model";
-import type { GameModel, Lang, CardFile, Mission, Verification, Score } from "@/lib/game/types";
+import type { GameModel, Lang, CardFile, Mission, Verification, Score, Finding, RoundFile } from "@/lib/game/types";
 import { isSupported, mapError } from "@/lib/cardWriter";
 import { readSettingFiles, settingDir } from "@/lib/game/card";
 import { readFirmware } from "@/lib/game/firmware";
-import { generateMission } from "@/lib/game/mission";
+import { planMission } from "@/lib/game/plan";
+import { analyzeRound, localFindings } from "@/lib/game/analyze";
+import { addLocal, readLocal } from "@/app/components/decode/localStore";
 import { verify, scoreOf } from "@/lib/game/verify";
 import { buildSubmission, submit, downloadableLog } from "@/lib/game/submit";
 import { labelOf, settingOf, getCatalog } from "@/lib/game/catalog";
@@ -35,6 +37,7 @@ type GameState = {
   verification: Verification | null;
   verifyError: string | null;
   score: Score | null;
+  findings: Finding[] | null; // analyzeRound(...) của lần kiểm tra gần nhất
   retries: number;
   submitLoading: boolean;
   submitError: string | null;
@@ -57,7 +60,7 @@ type GameAction =
   | { type: "slotSaved"; slot: number }
   | { type: "toVerify" }
   | { type: "verifyLoading" }
-  | { type: "verifySuccess"; verification: Verification; score: Score; files: CardFile[] }
+  | { type: "verifySuccess"; verification: Verification; score: Score; files: CardFile[]; findings: Finding[] }
   | { type: "verifyError"; error: string }
   | { type: "retryVerify" }
   | { type: "submitLoading" }
@@ -88,18 +91,34 @@ const initialState: GameState = {
   verification: null,
   verifyError: null,
   score: null,
+  findings: null,
   retries: 0,
   submitLoading: false,
   submitError: null,
   restoringBackup: false,
 };
 
+// Bắt đầu lượt mới: xóa thẻ, đề bài, kết quả; giữ máy, ngôn ngữ và thông tin người chơi đã nhập
+function freshRound(state: GameState, model: GameModel = state.model): GameState {
+  return {
+    ...initialState,
+    lang: state.lang,
+    model,
+    nickname: state.nickname,
+    firmware: state.firmware,
+    detectedFirmware: state.detectedFirmware,
+    agreeChecked: state.agreeChecked,
+  };
+}
+
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "setLang":
       return { ...state, lang: action.lang };
     case "setModel":
-      return { ...state, model: action.model };
+      // Đổi máy thì lượt đang làm (đề bài, thẻ, kết quả) không còn dùng được
+      if (state.model === action.model) return state;
+      return { ...freshRound(state, action.model), firmware: null, detectedFirmware: null };
     case "setFirmware":
       return { ...state, firmware: action.firmware };
     case "setDetectedFirmware":
@@ -139,6 +158,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         verification: action.verification,
         score: action.score,
         cardFilesAfter: action.files,
+        findings: action.findings,
       };
     case "verifyError":
       return { ...state, verifyLoading: false, verifyError: action.error };
@@ -155,7 +175,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case "restoreSuccess":
       return { ...state, restoringBackup: false };
     case "resetGame":
-      return initialState;
+      return freshRound(state);
     default:
       return state;
   }
@@ -171,7 +191,16 @@ function CloseIcon() {
 
 const noop = () => () => {};
 
-export function GameDialog() {
+// mission: lượt do bảng giải mã lập (nếu đúng máy); onRoundDone: báo khi lượt đạt và đã lưu phát hiện
+export function GameDialog({
+  mission,
+  onRoundDone,
+  devSave,
+}: {
+  mission?: Mission | null;
+  onRoundDone?: (findings: Finding[]) => void;
+  devSave?: boolean; // nút lưu lượt vào dự án: chỉ trang admin, và chỉ khi npm run dev
+} = {}) {
   const [state, dispatch] = useReducer(gameReducer, initialState);
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -226,7 +255,11 @@ export function GameDialog() {
       <dialog
         ref={dialogRef}
         className="m-auto fixed inset-0 z-50 p-4 sm:p-6 rounded-card bg-card shadow-card w-full max-w-dialog h-fit max-h-dvh overflow-y-auto"
-        onClose={() => setOpen(false)}
+        onClose={() => {
+          // Lượt đã đạt thì lần mở sau bắt đầu lượt mới (lượt kế tiếp của bảng giải mã)
+          if (state.verification?.ok) dispatch({ type: "resetGame" });
+          setOpen(false);
+        }}
         onCancel={(e) => e.preventDefault()}
       >
         {/* Header */}
@@ -266,7 +299,7 @@ export function GameDialog() {
 
         {/* Backup Screen */}
         {state.screen === "backup" && (
-          <BackupScreen state={state} dispatch={dispatch} lang={state.lang} />
+          <BackupScreen state={state} dispatch={dispatch} lang={state.lang} plannedMission={mission} />
         )}
 
         {/* Mission Screen */}
@@ -276,7 +309,7 @@ export function GameDialog() {
 
         {/* Verify Screen */}
         {state.screen === "verify" && (
-          <VerifyScreen state={state} dispatch={dispatch} lang={state.lang} />
+          <VerifyScreen state={state} dispatch={dispatch} lang={state.lang} onRoundDone={onRoundDone} devSave={devSave} />
         )}
       </dialog>
     </>
@@ -389,10 +422,12 @@ function BackupScreen({
   state,
   dispatch,
   lang,
+  plannedMission,
 }: {
   state: GameState;
   dispatch: (a: GameAction) => void;
   lang: Lang;
+  plannedMission?: Mission | null;
 }) {
   const t = game[lang];
 
@@ -504,7 +539,12 @@ function BackupScreen({
         <button
           onClick={() => {
             if (state.mission === null) {
-              dispatch({ type: "missionReady", mission: generateMission(state.model) });
+              // Lượt của bảng giải mã nếu đúng máy; không thì lập lượt mới từ phát hiện đã lưu
+              const picked =
+                plannedMission && plannedMission.model === state.model
+                  ? plannedMission
+                  : planMission(state.model, { local: readLocal(), seed: Date.now() });
+              dispatch({ type: "missionReady", mission: picked });
             }
             dispatch({ type: "toMission" });
           }}
@@ -606,14 +646,157 @@ function MissionScreen({
   );
 }
 
+// File của lượt theo tên CAMPR0{ô}{N|P}.DAT (ô là số sau CAMPR0); file khác bị bỏ
+function toRoundFiles(files: CardFile[]): RoundFile[] {
+  return files.flatMap((f) => {
+    const m = /^CAMPR0([1-4])[NP]\.DAT$/i.exec(f.name);
+    return m ? [{ slot: Number(m[1]), bytes: f.bytes }] : [];
+  });
+}
+
+type FindingOf<K extends Finding["kind"]> = Extract<Finding, { kind: K }>;
+
+// Kết quả giải mã của một lượt: giá trị xác nhận, mã mới, vị trí tìm được, lỗi cần làm lại
+function FindingsBlock({ model, findings }: { model: GameModel; findings: Finding[] }) {
+  const c = decodeConsole.round;
+  const name = (settingId: string) => settingOf(model, settingId)?.label.vi ?? settingId;
+  const value = (settingId: string, valueId: string) => labelOf(model, settingId, valueId, "vi") ?? valueId;
+  if (findings.length === 0) {
+    return <div className="rounded-control bg-fill px-3 py-2.5 text-footnote text-secondary">{c.empty}</div>;
+  }
+  const confirms = findings.filter((f): f is FindingOf<"confirm"> => f.kind === "confirm");
+  const codes = findings.filter((f): f is FindingOf<"code"> => f.kind === "code");
+  const locates = findings.filter((f): f is FindingOf<"locate"> => f.kind === "locate");
+  const problems = findings.filter(
+    (f): f is FindingOf<"mismatch"> | FindingOf<"ambiguous"> => f.kind === "mismatch" || f.kind === "ambiguous"
+  );
+  return (
+    <div className="rounded-control bg-fill px-3 py-2.5 text-footnote text-label space-y-3">
+      <p className="font-semibold">{c.title}</p>
+      {confirms.length > 0 && (
+        <div className="space-y-1">
+          <p className="font-medium">{c.confirmed(confirms.length, confirms.filter((f) => f.isNew).length)}</p>
+          <ul className="space-y-1">
+            {confirms.map((f, i) => (
+              <li key={i} className="flex flex-wrap items-center gap-2">
+                <span>{`M${f.slot} · ${name(f.settingId)}: ${value(f.settingId, f.valueId)}`}</span>
+                {f.isNew && (
+                  <span className="rounded-badge bg-success-fill text-success font-semibold px-2 py-0.5">{c.newMark}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {codes.length > 0 && (
+        <div className="space-y-1">
+          <p className="font-medium">{c.learned(codes.length)}</p>
+          <ul className="space-y-1">
+            {codes.map((f, i) => (
+              <li key={i}>{`M${f.slot} · ${name(f.settingId)}: ${value(f.settingId, f.valueId)} (${c.codeOf} ${String(f.raw)})`}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {locates.length > 0 && (
+        <div className="space-y-1">
+          <p className="font-medium">{c.located(locates.length)}</p>
+          <ul className="space-y-1">
+            {locates.map((f, i) => (
+              <li key={i}>
+                {c.locatedLine(
+                  name(f.settingId),
+                  f.slot,
+                  f.candidates.slice(0, 4).map((x) => x.where).join(", "),
+                  f.candidates.length
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {problems.length > 0 && (
+        <div className="space-y-1">
+          <p className="font-medium">{c.problems(problems.length)}</p>
+          <ul className="space-y-1">
+            {problems.map((f, i) =>
+              f.kind === "mismatch" ? (
+                <li key={i}>
+                  {c.mismatch(
+                    f.slot,
+                    name(f.settingId),
+                    value(f.settingId, f.valueId),
+                    f.actual ? value(f.settingId, f.actual) : null
+                  )}
+                </li>
+              ) : (
+                <li key={i}>{c.ambiguous(f.slot, f.settingIds.map(name).join(", "))}</li>
+              )
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Chỉ khi npm run dev: lưu lượt (đề bài + 4 file) vào test/fixtures/rounds, xem app/admin/decode/api/route.ts
+function DevSaveRound({ mission, files }: { mission: Mission; files: CardFile[] }) {
+  const [msg, setMsg] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  if (process.env.NODE_ENV === "production") return null;
+  const c = decodeConsole.round;
+  return (
+    <div className="space-y-2">
+      <button
+        disabled={busy}
+        onClick={async () => {
+          setBusy(true);
+          setMsg(null);
+          try {
+            const list = files.flatMap((f) =>
+              /^CAMPR0[1-4][NP]\.DAT$/i.test(f.name) ? [{ name: f.name.toUpperCase(), base64: toBase64(f.bytes) }] : []
+            );
+            const res = await fetch("/admin/decode/api", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ mission, files: list }),
+            });
+            const data = await res.json().catch(() => null);
+            setMsg(data?.ok ? c.devSaved(String(data.dir)) : c.devFailed(String(data?.error ?? res.status)));
+          } catch {
+            setMsg(c.devFailed(c.devNetwork));
+          } finally {
+            setBusy(false);
+          }
+        }}
+        className="h-11 px-4 rounded-full bg-fill text-subhead font-semibold text-label hover:bg-fill-strong transition-colors disabled:opacity-40"
+      >
+        {c.devSave}
+      </button>
+      {msg && <p className="text-footnote text-secondary">{msg}</p>}
+    </div>
+  );
+}
+
+function toBase64(bytes: Uint8Array): string {
+  let s = "";
+  for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+  return btoa(s);
+}
+
 function VerifyScreen({
   state,
   dispatch,
   lang,
+  onRoundDone,
+  devSave,
 }: {
   state: GameState;
   dispatch: (a: GameAction) => void;
   lang: Lang;
+  onRoundDone?: (findings: Finding[]) => void;
+  devSave?: boolean;
 }) {
   const t = game[lang];
   const [showRestoreConfirm, setShowRestoreConfirm] = useState(false);
@@ -628,7 +811,17 @@ function VerifyScreen({
           const durationMs = state.missionStartTime ? Date.now() - state.missionStartTime : 0;
           const v = verify(state.mission!, filesAfter, lang, state.beforeFiles || undefined);
           const s = scoreOf(v, durationMs, state.retries);
-          dispatch({ type: "verifySuccess", verification: v, score: s, files: filesAfter });
+          const findings = analyzeRound(
+            state.mission!,
+            toRoundFiles(filesAfter),
+            state.beforeFiles ? toRoundFiles(state.beforeFiles) : undefined
+          );
+          // Chỉ lưu phát hiện của lượt đạt. Lượt chưa đạt được làm lại và tính lại từ đầu
+          if (v.ok) {
+            addLocal(localFindings(findings));
+            onRoundDone?.(findings);
+          }
+          dispatch({ type: "verifySuccess", verification: v, score: s, files: filesAfter, findings });
         } catch (e: any) {
           dispatch({ type: "verifyError", error: "generic" });
         }
@@ -689,6 +882,11 @@ function VerifyScreen({
           ))}
         </div>
 
+        {state.findings && <FindingsBlock model={state.model} findings={state.findings} />}
+        {devSave && state.mission && state.cardFilesAfter && (
+          <DevSaveRound mission={state.mission} files={state.cardFilesAfter} />
+        )}
+
         {state.verification.retrySlots.length > 0 && (
           <div className="bg-fill rounded-control px-3 py-2.5 text-footnote text-label">
             <p>{t.verify.retryMsg.replace("{0}", state.verification.retrySlots.map((s) => `M${s}`).join(", "))}</p>
@@ -730,6 +928,11 @@ function VerifyScreen({
           </div>
         </div>
 
+        {state.findings && <FindingsBlock model={state.model} findings={state.findings} />}
+        {devSave && state.mission && state.cardFilesAfter && (
+          <DevSaveRound mission={state.mission} files={state.cardFilesAfter} />
+        )}
+
         {state.submitError && (
           <div className="bg-danger-fill rounded-control px-3 py-2.5 text-footnote text-label space-y-2">
             <p>{state.submitError}</p>
@@ -750,7 +953,8 @@ function VerifyScreen({
                     state.score,
                     state.missionStartTime ? Date.now() - state.missionStartTime : 0,
                     state.retries,
-                    "0.1.0"
+                    "0.1.0",
+                    state.findings ?? undefined
                   )
                 )
               )}`}
@@ -784,7 +988,8 @@ function VerifyScreen({
                   state.score,
                   state.missionStartTime ? Date.now() - state.missionStartTime : 0,
                   state.retries,
-                  "0.1.0"
+                  "0.1.0",
+                  state.findings ?? undefined
                 );
                 const result = await submit(submission);
                 if (result.ok) {

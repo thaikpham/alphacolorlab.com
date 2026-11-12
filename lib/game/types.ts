@@ -40,6 +40,20 @@ export type Verification = {
 };
 export type Score = { accuracy: number; speed: number; total: number }; // 0–700, 0–300, 0–1000
 
+// Một byte (ZV-E10, α6400: where = "0x…") hoặc một bản ghi (A7C II: where = "ID 0x…") đã đổi giữa hai ô
+export type FindingChange = { where: string; from: number | string | null; to: number | string };
+
+// Phát hiện từ một lượt chơi (analyze.ts tạo ra; gửi kèm bài nộp nếu có)
+export type Finding =
+  | { kind: "confirm"; model: GameModel; slot: number; settingId: string; valueId: string; isNew: boolean }
+  | { kind: "code"; model: GameModel; slot: number; settingId: string; valueId: string; raw: number | string; where: string }
+  | { kind: "mismatch"; model: GameModel; slot: number; settingId: string; valueId: string; actual: string | null; raw: number | string | null }
+  | { kind: "locate"; model: GameModel; slot: number; settingId: string; valueId: string; fromValueId: string | null; candidates: FindingChange[] }
+  | { kind: "ambiguous"; model: GameModel; slot: number; settingIds: string[]; candidates: FindingChange[] };
+
+// File của một ô trong lượt chơi (bytes của file máy đã lưu)
+export type RoundFile = { slot: number; bytes: Uint8Array };
+
 export type Submission = {
   missionId: string;
   model: GameModel;
@@ -54,6 +68,7 @@ export type Submission = {
   durationMs: number;
   retries: number;
   appVersion: string;
+  findings?: Finding[]; // analyzeRound(...) của lượt chơi, nếu có
 };
 
 export type SubmitResult = { ok: true } | { ok: false; error: string };

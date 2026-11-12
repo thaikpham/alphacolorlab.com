@@ -1,7 +1,8 @@
 import type { Mission, CardFile, Verification, Score, CheckResult, StructuralCheck, Lang } from "./types.ts";
 import { labelOf, getCatalog } from "./catalog.ts";
-import { decodeDat, parseDat } from "../zve10/dat.ts";
+import { parseDat } from "../zve10/dat.ts";
 import { parseA7c2 } from "../a7c2/dat.ts";
+import { adaptersFor } from "../decode/adapters.ts";
 
 function extractDate(bytes: Uint8Array): string | null {
   // Try ASCII "YYYYMMDD_HHMMSS" near 0x18, within first 0x40 bytes
@@ -264,70 +265,46 @@ export function verify(
     }
   }
 
-  // ZV-E10: decode and check controls
-  if (mission.model === "zve10") {
-    let totalControls = 0;
-    let correctControls = 0;
+  // Ô điều khiển đọc qua adapter (lib/decode/adapters.ts), mọi máy
+  const adapters = new Map(adaptersFor(mission.model).map(a => [a.settingId, a] as const));
+  for (let slot = 1; slot <= 4; slot++) {
+    const file = filesBySlot[slot];
+    if (!file) continue;
 
-    for (let slot = 1; slot <= 4; slot++) {
-      const file = filesBySlot[slot];
-      if (!file) continue;
+    const slotTask = mission.slots.find(s => s.slot === slot as 1 | 2 | 3 | 4);
+    if (!slotTask) continue;
 
-      let decoded;
-      try {
-        decoded = decodeDat(file.bytes);
-      } catch (e) {
-        continue;
-      }
+    for (const step of slotTask.steps) {
+      if (step.role !== "control") continue;
 
-      const slotTask = mission.slots.find(s => s.slot === slot as 1 | 2 | 3 | 4);
-      if (!slotTask) continue;
+      // Skip steady-shot from controls (only selectable with OSS lenses)
+      if (step.settingId === "steady-shot") continue;
 
-      const settingIdToField: Record<string, string> = {
-        focusMode: "focus",
-        focusArea: "focusArea",
-        metering: "metering",
-        facePriority: "facePriority",
-        softSkin: "softSkin",
-        autoReview: "autoReview",
-        "flash-mode": "flashMode",
-        "exp-comp-set": "expCompSet",
-        "awb-priority": "awbPriority",
-        "pre-af": "preAF",
-        "e-front-curtain": "eFrontCurtain",
-        "live-view-display": "liveView",
-      };
+      const adapter = adapters.get(step.settingId);
+      if (!adapter) continue;
+      // Máy khác ZV-E10 chỉ kiểm ô đã hiệu chỉnh hoặc giá trị đã xác nhận tĩnh; giá trị còn lại là dự đoán (GameDialog dùng generateMission cho mọi máy)
+      if (mission.model !== "zve10" && adapter.calibrated !== true && !adapter.staticConfirmed.includes(step.valueId)) continue;
 
-      for (const step of slotTask.steps) {
-        if (step.role !== "control") continue;
+      // Ô không đọc được (file lỗi) thì bỏ qua, không tính vào tổng
+      const read = adapter.read(file.bytes);
+      if (!read) continue;
 
-        // Skip steady-shot from controls (only selectable with OSS lenses)
-        if (step.settingId === "steady-shot") continue;
+      const actual = read.valueId;
+      const ok = actual === step.valueId;
+      if (!ok) retrySlots.push(slot);
 
-        totalControls++;
-        let actual: string | null = null;
-        let ok = false;
-
-        const fieldName = settingIdToField[step.settingId];
-        if (fieldName && fieldName in decoded) {
-          actual = (decoded as any)[fieldName] ?? null;
-          ok = actual === step.valueId;
-        }
-
-        if (ok) correctControls++;
-        else retrySlots.push(slot);
-
-        checks.push({
-          slot,
-          settingId: step.settingId,
-          expected: labelOf(mission.model, step.settingId, step.valueId, lang) || step.valueId,
-          actual: actual ? (labelOf(mission.model, step.settingId, actual, lang) || actual) : null,
-          ok
-        });
-      }
+      checks.push({
+        slot,
+        settingId: step.settingId,
+        expected: labelOf(mission.model, step.settingId, step.valueId, lang) || step.valueId,
+        actual: actual ? (labelOf(mission.model, step.settingId, actual, lang) || actual) : null,
+        ok
+      });
     }
-  } else {
-    // Máy chưa giải mã: báo nếu một ô giống hệt ô trước (không chặn). A7C II so từ 0x3C vì header có giờ lưu và checksum
+  }
+
+  if (mission.model !== "zve10") {
+    // Báo nếu một ô giống hệt ô trước (không chặn). A7C II so từ 0x3C vì header có giờ lưu và checksum
     const bodyStart = mission.model === "a7c2" ? 0x3c : 0x28;
     for (let slot = 2; slot <= 4; slot++) {
       const file1 = filesBySlot[slot - 1];

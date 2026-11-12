@@ -4,16 +4,17 @@ import { AUTH_KEY, AUTH_URL, getSession } from "./auth.ts";
 import { parseCart, writeCart } from "./cart.ts";
 import { parseCompare, writeCompare } from "./compare.ts";
 import { setModel, type ModelId } from "./model.ts";
-import { parseGear, writeGear } from "./gear.ts";
+import { loadGearIds, parseGear, writeGear } from "./gear.ts";
 import { parseProfileRaw, writeProfile } from "./profile.ts";
 import { parseSaved, writeSaved } from "./savedSets.ts";
+import { parseMods, writeMods } from "./ppMods.ts";
 
-// What a signed-in reader did, kept per Google account: the M1–M4 cart, the compare pick, gear bag, profile (username, bio, links), chosen camera and saved M1–M4 sets.
+// What a signed-in reader did, kept per Google account: the M1–M4 cart, the compare pick, gear bag, profile (username, bio, links), chosen camera, saved M1–M4 sets and PP mods.
 // localStorage stays the working copy; this mirrors it to the AUTH project's user_state table (supabase/community.sql).
 // Conflicts: the newer side wins as a whole (last change on any device).
 
 /** localStorage key = the event each store fires on change. */
-export const SYNCED = ["color-bank-cart", "wiki-compare", "gear-bag", "user-profile", "camera-model", "saved-sets"] as const;
+export const SYNCED = ["color-bank-cart", "wiki-compare", "gear-bag", "user-profile", "camera-model", "saved-sets", "pp-mods"] as const;
 export type Snapshot = Partial<Record<(typeof SYNCED)[number], string>>;
 const STAMP = "user-state-updated-at";
 
@@ -24,19 +25,23 @@ export function plan(localAt: number, serverAt: number | null): "pull" | "push" 
 
 const readLocal = (): Snapshot => Object.fromEntries(SYNCED.flatMap((k) => (localStorage.getItem(k) == null ? [] : [[k, localStorage.getItem(k)!]])));
 
-let applying = false;
-function applyLocal(s: Snapshot) {
-  applying = true;
+let applying = 0;
+async function applyLocal(s: Snapshot) {
+  applying++;
   try {
+    // The gear bag is checked against the catalog before it is written; the catalog loads only when a bag is synced.
+    const gear = s["gear-bag"];
+    const gearIds = gear != null ? await loadGearIds() : null;
     // Through each store's own writer, so values are validated and every open view updates.
     if (s["color-bank-cart"] != null) writeCart(parseCart(s["color-bank-cart"]));
     if (s["wiki-compare"] != null) writeCompare(parseCompare(s["wiki-compare"]));
-    if (s["gear-bag"] != null) writeGear(parseGear(s["gear-bag"]));
+    if (gear != null && gearIds) writeGear(parseGear(gear, gearIds));
     if (s["user-profile"] != null) writeProfile(parseProfileRaw(s["user-profile"]));
     if (s["camera-model"] != null) setModel(s["camera-model"] as ModelId);
     if (s["saved-sets"] != null) writeSaved(parseSaved(s["saved-sets"]));
+    if (s["pp-mods"] != null) writeMods(parseMods(s["pp-mods"]));
   } finally {
-    applying = false;
+    applying--;
   }
 }
 
@@ -66,7 +71,7 @@ async function reconcile() {
   const serverAt = row ? Date.parse(row.updated_at) : null;
   const step = plan(Number(localStorage.getItem(STAMP) ?? 0), serverAt);
   if (step === "pull" && row) {
-    applyLocal(row.data);
+    await applyLocal(row.data);
     localStorage.setItem(STAMP, String(serverAt));
   } else if (step === "push") await push();
 }

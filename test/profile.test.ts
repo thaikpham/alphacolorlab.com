@@ -20,13 +20,21 @@ test("profile: parse caps bio, drops bad and duplicate links, keeps 5", () => {
   assert.deepEqual(p.links, ["https://a.vn/", "https://b.vn/", "https://c.vn/", "https://d.vn/", "https://e.vn/"]);
 });
 
-test("profile: share link round-trips Vietnamese text and validates what comes back", () => {
+test("profile: share link round-trips Vietnamese text and validates what comes back", async () => {
   const shared = { name: "Thái Phạm", avatar: "https://lh3.googleusercontent.com/a/x", username: "thai", bio: "Chụp phố bằng A6400", links: ["https://a.vn/"], gear: { body: ["a6400"], lens: [], acc: [] } };
-  assert.deepEqual(decodeShare(encodeShare(shared)), shared);
+  assert.deepEqual(await decodeShare(encodeShare(shared)), shared);
   const evil = encodeShare({ ...shared, avatar: "javascript:x", links: ["javascript:x"], gear: { body: ["not-a-camera"], lens: [], acc: [] } });
-  const back = decodeShare(evil)!;
+  const back = (await decodeShare(evil))!;
   assert.equal(back.avatar, null);
   assert.deepEqual(back.links, []);
   assert.deepEqual(back.gear.body, []);
-  assert.equal(decodeShare("%%%"), null);
+  assert.equal(await decodeShare("%%%"), null);
+});
+
+test("profile: host:port links get https://, scheme links stay rejected", () => {
+  assert.equal(cleanLink("example.com:8080/x"), "https://example.com:8080/x");
+  assert.equal(cleanLink("a.vn:443"), "https://a.vn/");
+  assert.equal(cleanLink("javascript:alert(1)"), null);
+  assert.equal(cleanLink("data:1,hi"), null);
+  assert.equal(cleanLink("javascript:1.vn/x"), null);
 });

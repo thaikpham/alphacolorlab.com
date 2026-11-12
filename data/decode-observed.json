@@ -1,0 +1,2905 @@
+{
+  "candidates": [],
+  "files": [
+    {
+      "file": "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+      "model": "a6400",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+      "model": "a6400",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+      "model": "a6400",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+      "model": "a6400",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a6400/sample/CAMPR01P.DAT",
+      "model": "a6400",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/a7c2/run9/CAMPR04P.DAT",
+      "model": "a7c2",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/auto-review/CAMPR01P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/auto-review/CAMPR02P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/auto-review/CAMPR03P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/auto-review/CAMPR04P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/focus-area/CAMPR01P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/focus-area/CAMPR02P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/focus-area/CAMPR03P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/focus-area/CAMPR04P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/metering/CAMPR01P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/metering/CAMPR02P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/metering/CAMPR03P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/metering/CAMPR04P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/new8/CAMPR01P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/new8/CAMPR02P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/new8/CAMPR03P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/new8/CAMPR04P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/values/CAMPR01P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/values/CAMPR02P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/values/CAMPR03P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/values/CAMPR04P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/zve10/CAMPR01P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/zve10/CAMPR04P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/zve10/CAMPR05N.DAT",
+      "model": "zve10",
+      "readable": false
+    },
+    {
+      "file": "test/fixtures/zve10/CAMPR06N.DAT",
+      "model": "zve10",
+      "readable": false
+    }
+  ],
+  "raws": {
+    "a6400": {
+      "aperture": {
+        "4864": [
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "5376": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT"
+        ],
+        "5632": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT"
+        ],
+        "5888": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ]
+      },
+      "flash-mode": {
+        "0": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "focusArea": {
+        "1": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "focusMode": {
+        "2": [
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "iso": {
+        "0": [
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "17": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT"
+        ],
+        "20": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT"
+        ],
+        "23": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ]
+      },
+      "ppLevels": {
+        "0": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "5": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT"
+        ],
+        "251": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ]
+      },
+      "shutter": {
+        "5632": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "5888": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT"
+        ],
+        "6144": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ]
+      },
+      "wb": {
+        "1": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "14": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT"
+        ]
+      },
+      "wbKelvin": {
+        "43": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ],
+        "55": [
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      }
+    },
+    "a7c2": {
+      "aperture": {
+        "5": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT"
+        ],
+        "8": [
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT"
+        ],
+        "11": [
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT"
+        ],
+        "3.5": [
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT"
+        ],
+        "5.6": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "iso": {
+        "0": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT"
+        ],
+        "11": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT"
+        ],
+        "14": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "isoAutoMax": {
+        "20": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "26": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT"
+        ]
+      },
+      "isoAutoMin": {
+        "8": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT"
+        ],
+        "11": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "isoUpper": {
+        "11": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT"
+        ],
+        "14": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "20": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT"
+        ],
+        "26": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT"
+        ]
+      },
+      "ppLevels": {
+        "0": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "2": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT"
+        ]
+      },
+      "shootMode": {
+        "2": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT"
+        ],
+        "3": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT"
+        ],
+        "4": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT"
+        ]
+      },
+      "shutter": {
+        "0.5\"": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "1/250": [
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT"
+        ],
+        "1/50": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT"
+        ],
+        "1/60": [
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT"
+        ],
+        "2\"": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT"
+        ]
+      },
+      "wbKelvin": {
+        "7": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT"
+        ],
+        "31": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "33": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT"
+        ]
+      },
+      "wbShiftAuto": {
+        "0": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "3000": [
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT"
+        ],
+        "-1000": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT"
+        ]
+      },
+      "wbShiftCTemp": {
+        "0": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT"
+        ],
+        "1000": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT"
+        ],
+        "2000": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT"
+        ],
+        "-2000": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      }
+    },
+    "zve10": {
+      "aperture": {
+        "4543": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "5295": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "5297": [
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT"
+        ]
+      },
+      "flash-mode": {
+        "0": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "iso": {
+        "0": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "17": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ]
+      },
+      "pictureProfile": {
+        "0": [
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "1": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "2": [
+          "test/fixtures/zve10/CAMPR01P.DAT"
+        ]
+      },
+      "ppLevels": {
+        "0": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "253": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "shutter": {
+        "5546": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "5802": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ]
+      },
+      "wb": {
+        "1": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "14": [
+          "test/fixtures/zve10/CAMPR01P.DAT"
+        ]
+      },
+      "wbKelvin": {
+        "50": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "70": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      }
+    }
+  },
+  "values": {
+    "a6400": {
+      "autoReview": {
+        "off": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "awb-priority": {
+        "ambience": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT"
+        ],
+        "standard": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "white": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT"
+        ]
+      },
+      "e-front-curtain": {
+        "on": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "exp-comp-set": {
+        "ambient-flash": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "facePriority": {
+        "on": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "focusMode": {
+        "AF-C": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ],
+        "AF-S": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT"
+        ],
+        "MF": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT"
+        ]
+      },
+      "live-view-display": {
+        "setting-effect-on": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "metering": {
+        "multi": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "ppColorMode": {
+        "Cinema": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT"
+        ],
+        "ITU709 Matrix": [
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT"
+        ],
+        "Movie": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "Pro": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ]
+      },
+      "ppGamma": {
+        "Cine2": [
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT"
+        ],
+        "Cine3": [
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT"
+        ],
+        "Movie": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ],
+        "Still": [
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT"
+        ]
+      },
+      "pre-af": {
+        "on": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "shootMode": {
+        "M": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "softSkin": {
+        "off": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      },
+      "steady-shot": {
+        "on": [
+          "test/fixtures/a6400/dot1/CAMPR01P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR02P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR03P.DAT",
+          "test/fixtures/a6400/dot1/CAMPR04P.DAT",
+          "test/fixtures/a6400/sample/CAMPR01P.DAT"
+        ]
+      }
+    },
+    "a7c2": {
+      "awb-priority": {
+        "ambience": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "standard": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT"
+        ],
+        "white": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT"
+        ]
+      },
+      "dro": {
+        "dro-auto": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT"
+        ],
+        "off": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "exp-comp-set": {
+        "ambient-flash": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "ambient-only": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT"
+        ]
+      },
+      "facePriority": {
+        "off": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "on": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT"
+        ]
+      },
+      "flash-mode": {
+        "autoflash": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT"
+        ],
+        "fill-flash": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT"
+        ],
+        "rear-sync": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "focusArea": {
+        "spot-l": [
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT"
+        ],
+        "tracking-spot-l": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "tracking-zone": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT"
+        ],
+        "wide": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT"
+        ],
+        "zone": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT"
+        ]
+      },
+      "focusMode": {
+        "AF-A": [
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT"
+        ],
+        "AF-C": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "AF-S": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT"
+        ],
+        "MF": [
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT"
+        ]
+      },
+      "isoAutoMinSS": {
+        "fast": [
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT"
+        ],
+        "standard": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "isoAutoMinSSSpeed": {
+        "1/125": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT"
+        ],
+        "1/250": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT"
+        ],
+        "preset": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "live-view-display": {
+        "setting-effect-off": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "setting-effect-on": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT"
+        ]
+      },
+      "metering": {
+        "center": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT"
+        ],
+        "entire": [
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT"
+        ],
+        "highlight": [
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "multi": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT"
+        ],
+        "spot-large": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT"
+        ],
+        "spot-standard": [
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT"
+        ]
+      },
+      "pictureProfile": {
+        "PP1": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT"
+        ],
+        "PP2": [
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "off": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT"
+        ]
+      },
+      "ppColorMode": {
+        "Cinema": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT"
+        ],
+        "Movie": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "Still": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT"
+        ]
+      },
+      "ppGamma": {
+        "Cine4": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT"
+        ],
+        "Movie": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "Still": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT"
+        ]
+      },
+      "pre-af": {
+        "off": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT"
+        ],
+        "on": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ]
+      },
+      "shootMode": {
+        "A": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT"
+        ],
+        "M": [
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "P": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT"
+        ],
+        "S": [
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT"
+        ]
+      },
+      "softSkin": {
+        "high": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT"
+        ],
+        "low": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "mid": [
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT"
+        ],
+        "off": [
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT"
+        ]
+      },
+      "steady-shot": {
+        "off": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "on": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT"
+        ]
+      },
+      "wb": {
+        "auto": [
+          "test/fixtures/a7c2/CAMPR01P.DAT",
+          "test/fixtures/a7c2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run2/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run7/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run8/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run9/CAMPR04P.DAT"
+        ],
+        "c-temp": [
+          "test/fixtures/a7c2/run10b/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10b/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10d/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10e/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run10f2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run6/CAMPR02P.DAT"
+        ],
+        "underwater-auto": [
+          "test/fixtures/a7c2/run2/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run3/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR01P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR02P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR03P.DAT",
+          "test/fixtures/a7c2/run4/CAMPR04P.DAT",
+          "test/fixtures/a7c2/run5/CAMPR01P.DAT"
+        ]
+      }
+    },
+    "zve10": {
+      "autoReview": {
+        "10s": [
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "2s": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "5s": [
+          "test/fixtures/values/CAMPR01P.DAT"
+        ],
+        "off": [
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT"
+        ]
+      },
+      "awb-priority": {
+        "ambience": [
+          "test/fixtures/new8/CAMPR02P.DAT"
+        ],
+        "standard": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "white": [
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT"
+        ]
+      },
+      "e-front-curtain": {
+        "off": [
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT"
+        ],
+        "on": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "exp-comp-set": {
+        "ambient-flash": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "ambient-only": [
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT"
+        ]
+      },
+      "facePriority": {
+        "off": [
+          "test/fixtures/metering/CAMPR01P.DAT"
+        ],
+        "on": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "flash-mode": {
+        "fill-flash": [
+          "test/fixtures/new8/CAMPR01P.DAT"
+        ],
+        "rear-sync": [
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT"
+        ],
+        "slow-sync": [
+          "test/fixtures/new8/CAMPR03P.DAT"
+        ]
+      },
+      "focusArea": {
+        "flexible-spot-l": [
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "tracking-flexible-spot-l": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT"
+        ],
+        "tracking-zone": [
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "wide": [
+          "test/fixtures/focus-area/CAMPR01P.DAT"
+        ],
+        "zone": [
+          "test/fixtures/focus-area/CAMPR02P.DAT"
+        ]
+      },
+      "focusMode": {
+        "AF-C": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "live-view-display": {
+        "setting-effect-off": [
+          "test/fixtures/new8/CAMPR01P.DAT"
+        ],
+        "setting-effect-on": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "metering": {
+        "center": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT"
+        ],
+        "entire": [
+          "test/fixtures/values/CAMPR03P.DAT"
+        ],
+        "highlight": [
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "multi": [
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "spot-large": [
+          "test/fixtures/values/CAMPR02P.DAT"
+        ],
+        "spot-standard": [
+          "test/fixtures/values/CAMPR01P.DAT"
+        ]
+      },
+      "ppColorMode": {
+        "Cinema": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "Movie": [
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT"
+        ],
+        "Pro": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "ppGamma": {
+        "Cine3": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "ITU709": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "Movie": [
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT"
+        ]
+      },
+      "pre-af": {
+        "off": [
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT"
+        ],
+        "on": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "shootMode": {
+        "A": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "M": [
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT"
+        ]
+      },
+      "softSkin": {
+        "high": [
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "low": [
+          "test/fixtures/values/CAMPR01P.DAT"
+        ],
+        "mid": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "off": [
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT"
+        ]
+      },
+      "steady-shot": {
+        "off": [
+          "test/fixtures/new8/CAMPR04P.DAT"
+        ],
+        "on": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT",
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      }
+    }
+  },
+  "version": 1
+}

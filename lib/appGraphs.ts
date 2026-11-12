@@ -1,6 +1,7 @@
 import type { AppId, CGraph, CNode, CEdge } from "./constellation.ts";
 import { layout3d } from "./layout3d.ts";
-import { hubIdFromValue, generateSiteGraph } from "./graph.ts";
+import { generateSiteGraph } from "./graph.ts";
+import { hubIdFromValue } from "./hubId.ts";
 import { entryHref, productHref, products } from "./wiki.ts";
 import { sections, sonyBodies, cameraModels, colorBank, wiki } from "../app/content.ts";
 import { fold } from "./fold.ts";

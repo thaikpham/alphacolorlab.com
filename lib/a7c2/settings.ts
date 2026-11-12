@@ -123,7 +123,7 @@ export function readA7c2Setting(dat: A7c2Dat, key: A7c2SettingKey): string | nul
 // Picture Profile: 25 tham số theo thứ tự menu (như bộ giải mã ZV-E10), mỗi tham số là mảng PP1–PP11 ở 0x04E7 + k × 0x42
 // (cộng 2 bản sao cách nhau 0x16). Số nguyên lưu đúng giá trị trên menu (4 byte, có dấu); phần trăm lưu nhân 100 (97,5% → 9750);
 // lựa chọn lưu theo mã. Mã gamma và chế độ màu theo danh sách nội bộ của Sony (có cả mục A7C II không cho chọn).
-// `A7C2_PP_CONFIRMED`: tham số đã đổi thử trên máy và thấy đúng mảng; mã lựa chọn chỉ ghi những mã đã thấy trong file máy lưu.
+// Tham số PP đã đổi thử trên máy và thấy đúng mảng; mã lựa chọn chỉ ghi những mã đã thấy trong file máy lưu.
 // PP7 mặc định mang mã gamma 15 và màu 11, chưa rõ là gì.
 const PP_KEYS = [
   "blackLevel", "gamma", "blackGammaRange", "blackGammaLevel", "kneeMode", "kneeAutoMax", "kneeAutoSens", "kneePoint", "kneeSlope",
@@ -143,8 +143,6 @@ export const A7C2_PP_CODES = {
   detailMode: { Auto: 0, Manual: 1 },
   detailBW: { Type1: 0, Type2: 1, Type3: 2, Type4: 3, Type5: 4 },
 } as const;
-
-export const A7C2_PP_CONFIRMED: readonly A7c2PpParam[] = PP_KEYS;
 
 /** Mã ba bản ghi của một tham số PP. */
 export function a7c2PpIds(key: A7c2PpParam): number[] {

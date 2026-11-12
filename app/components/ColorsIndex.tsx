@@ -5,6 +5,7 @@ import Link from "next/link";
 import { colorBank } from "@/app/content";
 import { useModel } from "@/lib/model";
 import { useCart, writeCart, toggle, placeOf } from "@/lib/cart";
+import { useMods } from "@/lib/ppMods";
 import { useSelectedLayoutSegments } from "next/navigation";
 
 interface ColorsIndexProps {
@@ -14,6 +15,7 @@ interface ColorsIndexProps {
 export function ColorsIndex({ presets: allPresets }: ColorsIndexProps) {
   const model = useModel();
   const cart = useCart();
+  const mods = useMods();
   const segments = useSelectedLayoutSegments();
   const activeId = segments?.[segments.length - 1];
 
@@ -31,6 +33,26 @@ export function ColorsIndex({ presets: allPresets }: ColorsIndexProps) {
 
   return (
     <div className="space-y-6">
+      {mods.length > 0 && (
+        <section>
+          <h2 className="mb-2 px-4 text-footnote text-secondary">{colorBank.mod.mine}</h2>
+          <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
+            {mods.map((mod) => {
+              const base = allPresets.find((p) => p.id === mod.base);
+              return (
+                <Link
+                  key={mod.id}
+                  href={`/colors/${mod.base}#mod-${mod.id}`}
+                  className="px-4 py-3 hover:bg-fill transition-colors active:bg-fill-strong flex items-center justify-between gap-2"
+                >
+                  <span className="min-w-0 truncate text-subhead font-semibold text-label">{mod.name}</span>
+                  {base && <span className="flex-shrink-0 text-footnote text-secondary">{base.name}</span>}
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
       {Array.from(groups.entries()).map(([group, items]) => (
         <section key={group}>
           <h2 className="mb-2 px-4 text-footnote text-secondary">

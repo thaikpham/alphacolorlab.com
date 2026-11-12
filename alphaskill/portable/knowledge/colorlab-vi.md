@@ -1,6 +1,6 @@
 # Xuất bài sang Alpha ColorLab (alphacolorlab.com)
 
-Site là nơi bài được đăng: `/blog/<id>` (kind `article`) và `/learn/<id>` (kind `knowledge`). Bài gồm đúng 10 loại khối (`tldr`, `h`, `p`, `menu`, `table`, `callout`, `compare`, `checklist`, `figure`, `embed`); nội dung không vừa loại nào thì viết thành đoạn văn. Cổng kiểm của site (`packs.test.ts`) là chuẩn cuối cùng.
+Site là nơi bài được đăng: `/blog/<id>` (kind `article`) và `/learn/<id>` (kind `knowledge`). Bài gồm đúng 11 loại khối (`tldr`, `h`, `p`, `menu`, `table`, `callout`, `compare`, `checklist`, `figure`, `embed`, `faq`); nội dung không vừa loại nào thì viết thành đoạn văn. Khối `faq` luôn đứng cuối bài. Cổng kiểm của site (`packs.test.ts`) là chuẩn cuối cùng.
 
 Công cụ:
 - `colorlab_article(bài.md)`: chuyển bài, trả `problems` theo đúng mã của site.
@@ -11,10 +11,10 @@ Công cụ:
 ```markdown
 ---
 title: "Lấy nét bằng ngón tay cái: bỏ nửa cò, dùng AF-ON"
-dek: "Câu dưới tiêu đề, tối đa 220 ký tự."
+dek: "Câu dưới tiêu đề, 120 đến 155 ký tự."
 slug: "lay-net-bang-ngon-tay-cai"
 read: "7 phút đọc"
-topic: af            # setup color af exposure composition lens body video audio post gear firmware
+topic: af            # theo "topics" của data/article-rules.json: af exposure composition gear color video
 level: mid           # newbie mid pro
 archetype: technique # setup-guide versus technique explainer fix gear recipe
 author: "Thai Pham"
@@ -52,30 +52,33 @@ https://www.youtube.com/watch?v=<id>
 
 *Chú thích video.*
 
-## Câu hỏi thường gặp
-### Câu hỏi người ta thật sự tìm?
-Một đoạn trả lời tự đứng được.
-
 **Kiểm tra trước khi chụp:**
 - [ ] 3 đến 6 mục kiểm được bằng mắt trên máy
+
+## Câu hỏi thường gặp
+### Câu hỏi người ta thật sự tìm?
+Một đoạn trả lời tự đứng được, 40 đến 70 từ.
 
 ## Nguồn tham khảo
 - [Tên trang Help Guide](https://helpguide.sony.net/…)
 ```
 
 ## Luật của site (khác chế độ C thông thường)
-- Bài thường: 8–16 khối, mở bằng `tldr` rồi đến `p`, **kết bằng checklist**. Vì vậy FAQ đặt trước checklist; heading "Câu hỏi thường gặp" bị bỏ, mỗi câu hỏi tính 2 khối. Bài nên có 2–3 câu hỏi, phần còn lại để ở trang kiến thức.
+- Luật đầy đủ (bố cục, SEO/AIO, SVG, báo cáo): [colorlab-article-brief.md](colorlab-article-brief.md). Ngưỡng số liệu lấy từ `data/article-rules.json` của repo site.
+- Bài thường: 8–16 khối, mở bằng `tldr` rồi đến `p`. Khối `faq` luôn là khối cuối, 4 đến 6 câu hỏi, mỗi câu trả lời 40 đến 70 từ và tự đứng được.
+- Bài trên site không bắt buộc kết bằng KANDO hay bằng checklist. Nếu có checklist, đặt trước mục "Câu hỏi thường gặp".
 - Không hai khối cùng loại liền nhau, trừ `menu`. Hai đoạn liền nhau sẽ bị gộp thành một.
 - Không có danh sách gạch đầu dòng thường: công cụ gộp danh sách thành một đoạn và báo lại để viết lại thành văn xuôi.
 - Bảng đúng 3 cột, 3–6 dòng, có chú thích. Bảng so sánh nhiều thông số thì tách thành nhiều bảng hoặc đưa sang trang kiến thức.
 - Không dùng emoji, `!`, `[cần xác minh]`, `[CẦN BỔ SUNG`. Ảnh (`figure`) tải lên sau từ trang Sửa trên site; báo cáo ghi rõ ảnh nào cần thêm ở mục nào.
+- Trạng thái kiểm chứng (đã kiểm tra, suy đoán) không viết trong câu chữ người đọc. Ghi trong báo cáo, xem brief mục (e).
 - **Tên mục menu giữ đúng tiếng Anh in trên máy** (`AF w/ Shutter`, `Creative Look`) theo ADR 0004 của site. Phần giải thích viết tiếng Việt. Chuẩn này khác chế độ A và B (dùng tên Menu OSD tiếng Việt).
 - Thông số máy chỉ lấy từ `src/lib/camera/constants.ts` của site, hoặc từ trang Help Guide đã đọc trong ngày (`npx tsx scripts/research/sony-source.ts <url>`). Mỗi URL phải trả 200.
 - Nguyên tắc vàng vẫn áp dụng: bảo vệ Sony, không kết luận đối thủ tốt hơn.
 
 ## Quy trình
 1. Viết hoặc sửa bài theo mẫu trên (Obsidian `6 Blog/`).
-2. Chạy `colorlab_article`, sửa đến khi `problems` rỗng. Đọc thêm `notes`: đoạn bị gộp, danh sách bị chuyển thành đoạn, ảnh cần tải lên.
+2. Chạy `colorlab_article`, sửa đến khi `problems` rỗng. Đọc thêm `notes`: đoạn bị gộp, danh sách bị chuyển thành đoạn, ảnh cần tải lên. Trong repo site, `node --experimental-strip-types scripts/article-check.ts <id>` phải pass (brief mục b).
 3. Chạy `colorlab_html` rồi xem bản trên điện thoại và máy tính.
 4. Chạy `colorlab_pack` để ghi pack vào repo site.
 5. Tạo nhánh và PR theo `.github/pull_request_template.md` của site. Gửi chủ site các lệnh sau:

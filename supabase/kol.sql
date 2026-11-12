@@ -1,4 +1,4 @@
--- KOL: người được duyệt tự đăng trang KOL và bộ M1–M4 (/kol/[handle], /kol/sua, /bo-m1-m4).
+-- KOL: người được duyệt tự đăng trang KOL và bộ M1–M4 (/kol/[handle], /tai-khoan, /bo-m1-m4).
 -- AUTH project (nqeedlgzaewccqztqvik), cùng project với community.sql. Chạy tay trong SQL editor, CHƯA áp dụng.
 -- Phụ thuộc: public.admin_emails, public.is_comment_admin() từ supabase/community.sql (chạy community.sql trước).
 -- Trình duyệt gọi PostgREST và Storage bằng session của chính người dùng, nên RLS + grant dưới đây là toàn bộ ranh giới bảo mật.
@@ -19,15 +19,25 @@ $$;
 revoke all on function public.is_kol() from public, anon;
 grant execute on function public.is_kol() to authenticated;
 
--- Ảnh mẫu trong jsonb: mỗi phần tử là chuỗi https trỏ vào bucket kol (CHECK không chứa subquery nên dùng hàm).
+-- Ảnh mẫu trong jsonb: mỗi phần tử là chuỗi https tối đa 300 ký tự (có thể là link tới bất kỳ đâu), hoặc đối tượng {url, ...ghi chú}
+-- với url như vậy. Ghi chú không giới hạn riêng từng ảnh; tổng dưới 16384 byte là giới hạn. Kiểm tra chi tiết ghi chú nằm ở lib/kol.ts (cleanNote, cleanMod); lệnh này chỉ là lớp thứ hai (CHECK không chứa subquery nên dùng hàm).
+-- Ảnh đại diện và ảnh bìa vẫn chỉ nhận bucket kol. Chủ dự án chạy lại lệnh này bằng tay trong SQL editor, không tự áp dụng.
 create or replace function public.kol_photos_ok(p jsonb) returns boolean
 language sql immutable set search_path = '' as $$
   select jsonb_typeof(p) = 'array'
     and jsonb_array_length(p) <= 12
-    and octet_length(p::text) < 4096
+    and octet_length(p::text) < 16384
     and not exists (
       select 1 from jsonb_array_elements(p) e
-      where jsonb_typeof(e) <> 'string' or (e #>> '{}') !~ '^https://[a-z0-9.-]+/storage/v1/object/public/kol/'
+      where not (
+        (jsonb_typeof(e) = 'string' and (e #>> '{}') ~ '^https://' and char_length(e #>> '{}') <= 300)
+        or (
+          jsonb_typeof(e) = 'object'
+          and jsonb_typeof(e -> 'url') = 'string'
+          and (e ->> 'url') ~ '^https://'
+          and char_length(e ->> 'url') <= 300
+        )
+      )
     );
 $$;
 
@@ -61,6 +71,8 @@ create table if not exists public.kol_sets (
   updated_at  timestamptz not null default now()
 );
 create index if not exists kol_sets_user_idx on public.kol_sets (user_id);
+-- Mỗi KOL một bộ: chặn ở DB, nên hai lần tạo đồng thời vẫn chỉ có một bộ. Bảng đã có user nhiều bộ thì lệnh này báo lỗi, xóa bớt trước.
+create unique index if not exists kol_sets_one_per_user on public.kol_sets (user_id);
 
 alter table public.kol_profiles enable row level security;
 alter table public.kol_sets enable row level security;

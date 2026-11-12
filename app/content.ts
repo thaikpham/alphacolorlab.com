@@ -100,9 +100,9 @@ export const alphaConsole = {
   },
   notDecoded: {
     title: "Bộ M1–M4 hiện tạo được cho ZV-E10",
-    text: (name: string) => `${name} chưa giải mã xong, nên trang chưa tạo được file cho máy này. Bạn vẫn cài tay được theo 4 chương bên cạnh.`,
+    text: (name: string) => `${name} chưa tạo được file M1–M4 trên trang này. Bạn vẫn cài tay được theo 4 chương bên cạnh.`,
     useZve10: "Tôi dùng ZV-E10",
-    contribute: "Góp file để giải mã máy này",
+    contribute: "Góp file cho máy này",
   },
   decodePage: { title: "Giải mã ô nhớ M1–M4", all: "Tiến độ các máy", game: "Mini game giải mã" },
   // Nút trên trang sản phẩm Product Wiki (máy có hướng dẫn) → /?model=<id>
@@ -120,14 +120,18 @@ export const kolSets = {
   save: "Sưu tầm",
   saved: "Đã sưu tầm",
   remove: "Bỏ sưu tầm",
+  viewSet: "Xem bộ",
   slots: "Cài đặt từng ô",
   slotName: (n: number) => `M${n}`,
   savedTitle: "Bộ đã sưu tầm",
+  savedEmpty: "Chưa có bộ nào được sưu tầm. Bấm Sưu tầm ở một bộ chia sẻ.",
   onlyZve10: "Bộ này gồm file cho ZV-E10. Máy khác chưa có file để tải.",
   description: (name: string) => `${name}: bộ Memory Recall M1–M4 cho ZV-E10, tải về rồi chép vào thẻ nhớ.`,
   loading: "Đang tải bộ…",
   notFound: "Không tìm thấy bộ này. Bộ có thể đã được gỡ hoặc chưa công khai.",
   empty: "Chưa có bộ nào được chia sẻ.",
+  fromKol: "Bộ từ KOL",
+  fromSite: "Bộ có sẵn",
 };
 
 // Trang KOL công khai /kol/[handle]: KOL có trong repo lấy từ bộ preset; KOL khác lấy từ AUTH Supabase
@@ -138,45 +142,52 @@ export const kol = {
   noSets: "Chưa có bộ nào công khai.",
   photos: "Ảnh mẫu",
   photoAlt: (n: number, name: string) => `Ảnh mẫu ${n} của ${name}`,
-  prev: "Ảnh trước",
-  next: "Ảnh sau",
+  prev: "Trước",
+  next: "Sau",
   close: "Đóng",
   description: (name: string) => `Trang KOL của ${name}: bộ Memory Recall M1–M4 và ảnh mẫu.`,
+  title: (name: string) => `${name} · ${seo.siteName}`,
+  stats: (sets: number, photos: number) => [`${sets} bộ`, `${photos} ảnh mẫu`],
+  info: "Thông tin ảnh",
+  noteEmpty: "Ảnh này chưa có ghi chú.",
+  noteBadge: "Có ghi chú",
+  aperture: "Khẩu độ",
+  shutter: "Tốc độ màn trập",
+  iso: "ISO",
+  lens: "Ống kính",
+  slot: "Ô M1–M4",
+  recipe: "Công thức Color Bank",
+  mod: "Mod PP",
+  modFrom: (v: string) => `gốc ${v}`,
+  text: "Lời ghi",
 };
 
-// Trang /kol/sua: KOL tự quản lý hồ sơ và bộ. Tài khoản chưa được duyệt chỉ thấy một dòng trung tính.
+// Khối KOL trong /tai-khoan: hồ sơ (mục Giới thiệu), ảnh mẫu, bộ M1–M4. Tài khoản chưa được duyệt không thấy các mục này.
 export const kolStudio = {
-  title: "Trang KOL của tôi",
-  description: "Quản lý hồ sơ KOL và bộ M1–M4 của bạn.",
-  signedOut: "Đăng nhập Google để quản lý trang KOL của bạn.",
-  signIn: "Đăng nhập bằng Google",
-  notKol: "Tài khoản này chưa được mở quyền quản lý trang KOL.",
   loadFailed: "Chưa tải được dữ liệu.",
   retry: "Thử lại",
-  back: "Quay lại",
-  profileTitle: "Hồ sơ",
   handle: "Tên đường dẫn",
   handleTaken: "Tên đường dẫn này đã có người dùng.",
-  handleReserved: "Tên đường dẫn này dành riêng cho trang quản lý.",
+  handleReserved: "Tên đường dẫn này đã được dành riêng.",
   name: "Tên hiển thị",
-  bio: "Giới thiệu",
-  link: "Liên kết",
   avatar: "Ảnh đại diện",
-  cover: "Ảnh bìa",
+  coverChange: "Đổi ảnh bìa",
   photoList: "Ảnh mẫu",
+  photosNoProfile: "Tạo hồ sơ KOL ở mục Giới thiệu trước khi thêm ảnh mẫu.",
   photoLimit: "Tối đa 12 ảnh mẫu.",
+  photoCount: (n: number, max: number) => `${n}/${max}`,
   imageType: "Chỉ nhận ảnh JPEG, PNG hoặc WebP.",
   imageSize: "Ảnh tối đa 5 MB.",
   uploadFailed: "Không tải ảnh lên được. Thử lại.",
-  save: "Lưu hồ sơ",
   saved: "Đã lưu hồ sơ",
+  saving: "Đang lưu…",
   saveFailed: "Chưa lưu được. Kiểm tra mạng rồi thử lại.",
-  mySets: "Bộ của tôi",
-  newSet: "Tạo bộ mới",
-  emptySets: "Chưa có bộ nào. Bấm Tạo bộ mới để bắt đầu.",
-  filterAll: "Tất cả",
-  filterDraft: "Nháp",
-  filterPublic: "Công khai",
+  mySets: "Bộ M1–M4 của tôi",
+  newSet: "Tạo bộ M1–M4",
+  emptySets: "Mỗi tài khoản KOL có một bộ M1–M4. Bộ của bạn chưa được tạo.",
+  wallNoProfile: "Tạo hồ sơ KOL ở mục Giới thiệu trước khi đăng bộ M1–M4.",
+  viewSet: "Xem bộ",
+  viewPublic: "Xem trang công khai",
   draft: "Nháp",
   public: "Công khai",
   edit: "Sửa",
@@ -191,6 +202,24 @@ export const kolStudio = {
   removeImage: "Bỏ ảnh",
   uploading: "Đang tải ảnh…",
   removePhoto: (n: number) => `Xóa ảnh ${n}`,
+  photoLink: "Link ảnh",
+  addPhoto: "Thêm ảnh",
+  photoNeedsHttps: "Link phải bắt đầu bằng https:// và trỏ thẳng tới file ảnh.",
+  photoDuplicate: "Ảnh này đã có trong danh sách.",
+  photoNotImage: "Không mở được link này như ảnh. Kiểm tra lại link.",
+  photoChecking: "Đang kiểm tra ảnh…",
+  photosSaved: "Đã lưu",
+  note: "Ghi chú",
+  noteOf: (n: number) => `Ghi chú ảnh ${n}`,
+  noteClear: "Xóa ghi chú",
+  noteSave: "Lưu ghi chú",
+  noteNone: "Không",
+  noteNoRecipe: "Không chọn",
+  noteNoMod: "Không dùng",
+  noteSavedMod: (name: string) => `${name} (đã lưu)`,
+  noteCount: (n: number, max: number) => `${n}/${max}`,
+  noteTooLong: "Ghi chú làm danh sách ảnh quá dài. Rút ngắn lời ghi rồi thử lại.",
+  noteModTip: { term: "Mod PP", lines: [{ t: "Mod được chụp lại lúc bấm Lưu ghi chú. Sửa mod trong máy sau đó không đổi ghi chú của ảnh này." }] },
   editorNew: "Bộ mới",
   editorEdit: "Sửa bộ",
   setName: "Tên bộ",
@@ -203,9 +232,10 @@ export const kolStudio = {
   slotNote: "Ghi chú",
   setSave: "Lưu bộ",
   setSaveFailed: "Chưa lưu được bộ. Kiểm tra mạng rồi thử lại.",
+  setLimit: "Mỗi tài khoản chỉ có một bộ. Hãy sửa bộ hiện có.",
   handleTip: { term: "Tên đường dẫn", lines: [{ t: "Dùng trong địa chỉ trang KOL của bạn. Chỉ chữ thường không dấu, số và dấu gạch ngang, tối đa 30 ký tự." }] },
-  photoTip: { term: "Ảnh mẫu", lines: [{ t: "Tối đa 12 ảnh, JPEG, PNG hoặc WebP, mỗi ảnh tối đa 5 MB." }] },
-  setIdTip: { term: "Đường dẫn bộ", lines: [{ t: "Dùng trong địa chỉ /bo-m1-m4/<đường dẫn>. Không trùng bộ có sẵn trong repo." }] },
+  photoTip: { term: "Ảnh mẫu", lines: [{ t: "Tối đa 12 ảnh, JPEG, PNG hoặc WebP, mỗi ảnh tối đa 5 MB." }, { t: "Link phải là https và trỏ thẳng tới file ảnh. Ảnh vẫn nằm trên máy chủ của link đó." }] },
+  setIdTip: { term: "Đường dẫn bộ", lines: [{ t: "Dùng trong địa chỉ /bo-m1-m4/<đường dẫn>. Không trùng bộ có sẵn trong repo. Sau khi tạo thì không đổi được." }] },
   setPublishTip: { term: "Nháp và công khai", lines: [{ t: "Nháp chỉ bạn thấy. Công khai thì bộ hiện ở /bo-m1-m4 và trên trang KOL của bạn." }] },
 };
 
@@ -229,18 +259,19 @@ export const guide = {
       { menu: "new" as const, title: "New-gen Menu", footer: "Bắt đầu từ A7S III (2020): tab Chụp, Phơi sáng/màu, Lấy nét, Cài đặt." },
     ],
     infoTerm: "Hệ menu và trạng thái giải mã",
+    infoTermMenu: "Hệ menu",
     decoded: "Đã giải mã",
     decoding: "Đang giải mã",
     notDecoded: "Chưa giải mã",
     hasGuide: "Có hướng dẫn",
     legend: "Đã giải mã: trang tạo được file M1–M4 cho máy đó. Đang giải mã: đã có file mẫu, còn thiếu dữ liệu. Máy có hướng dẫn chọn được; máy khác liệt kê để bạn biết tiến độ.",
   },
-  // Thẻ mini game cạnh "Máy của bạn", hiện với mọi máy: tiến độ giải mã (lib/decodeProgress.ts) và nút chơi để góp file mẫu
+  // Khối theo từng máy trên /giai-ma: tiến độ (lib/decodeProgress.ts) chỉ khi showDecodeStatus (npm run dev), và mini game để góp file mẫu
   contribute: {
     title: (name: string) => `Giải mã ${name}`,
     progressLabel: (name: string) => `Tiến độ giải mã ${name}`,
     basis: {
-      decoded: (done: number, total: number) => `${done}/${total} mục mà ô nhớ lưu được đã giải mã. Trang tạo được file M1–M4 cho máy này.`,
+      decoded: (done: number, total: number) => `${done}/${total} giá trị menu đã thấy trong file máy lưu. Trang tạo được file M1–M4 cho máy này.`,
       decoding: (done: number, total: number) => `${done}/${total} giá trị menu đã thấy trong file máy lưu. Bộ tạo file đã gọi lại đúng trên máy thật, trang chưa mở công cụ cho máy này.`,
       experimental: (done: number, total: number) => `${done}/${total} trường đã có giá trị từ file α6400 máy thật. Chỉ đọc thử nghiệm, chưa tạo được file M1–M4 cho máy này.`,
       none: "Chưa có file mẫu của máy này.",
@@ -258,7 +289,7 @@ export type PresetSupport = { item: string; status: 'co' | 'chua' | 'khong'; not
 
 export const presetSupport: PresetSupport[] = [
   { item: "Chế độ chụp", status: "co" },
-  { item: "ISO AUTO", status: "co", note: "giới hạn Min/Max chưa giải mã" },
+  { item: "ISO AUTO", status: "co", note: "giới hạn Min/Max chưa xác nhận" },
   { item: "Tốc độ tối thiểu ISO AUTO", status: "khong", note: "ZV-E10 không có mục này" },
   { item: "Tự động xem lại", status: "co", note: "Tắt, 2, 5, 10 giây" },
   { item: "Chế độ lấy nét AF-C", status: "co" },
@@ -276,7 +307,7 @@ export const presetSupport: PresetSupport[] = [
   { item: "Vòng xoay/bánh xe bù sáng", status: "khong", note: "máy không lưu mục này vào ô nhớ, cài tay một lần" },
   { item: "Độ sáng màn hình", status: "khong", note: "máy không lưu mục này vào ô nhớ, cài tay một lần" },
   { item: "Chất lượng hiển thị", status: "khong", note: "máy không lưu mục này vào ô nhớ, cài tay một lần" },
-  { item: "Cân bằng trắng AWB / Nhiệt độ màu + Shift A-B, G-M", status: "co", note: "WB đặt sẵn Daylight/Cloudy chưa giải mã" },
+  { item: "Cân bằng trắng AWB / Nhiệt độ màu + Shift A-B, G-M", status: "co", note: "WB đặt sẵn Daylight/Cloudy chưa xác nhận" },
   { item: "Picture Profile PP1 25 mục, hoặc Tắt PP", status: "co", note: "PP2–PP10 nạp từ giỏ Color Bank; chưa thử gọi lại trên máy thật" },
   { item: "Khẩu / Tốc / ISO cố định", status: "co" },
 ];
@@ -777,7 +808,7 @@ export const ppBanksUI = {
 // Thanh tab trên cùng. match: các đường dẫn làm tab sáng lên ("/" chỉ khớp đúng trang chủ)
 // Thanh điều hướng: logo, 4 tab app (điện thoại: thanh tab ở đáy), tìm kiếm, túi đồ, tài khoản.
 export const nav = {
-  siteName: "alphacolorlab.app",
+  siteName: "alphacolorlab.com",
   tabBarLabel: "Ứng dụng",
   skipLink: "Bỏ qua đến nội dung",
   apps: [
@@ -790,11 +821,7 @@ export const nav = {
 
 // Trang tài khoản /tai-khoan: mở từ avatar trên thanh điều hướng, chứa túi đồ
 export const account = {
-  title: "Tài khoản",
   guest: "Khách",
-  syncTerm: "Lưu túi đồ",
-  syncSignedOut: "Chưa đăng nhập: túi đồ chỉ lưu trên máy này. Đăng nhập Google để mở trên máy khác vẫn còn.",
-  toConsole: "Xem Alpha Console",
   // Menu thả xuống của nút avatar trên thanh điều hướng
   menu: "Menu người dùng",
   bag: "Hồ sơ và túi đồ",
@@ -870,6 +897,11 @@ export const help = {
         {
           q: "Ai được đăng bộ M1–M4 và trang KOL?",
           a: "Chỉ người được duyệt mới đăng được trang KOL và bộ M1–M4 của riêng mình. Ai cũng tải và sưu tầm được các bộ đã công khai ở Bộ M1–M4 chia sẻ.",
+        },
+        {
+          q: "Giải mã hoạt động thế nào?",
+          link: { href: "/giai-ma", label: "Mở Giải mã" },
+          a: "Mỗi lượt là một đề bài trong mini game: làm theo các bước để máy ảnh lưu file, rồi trang đọc file và báo kết quả ngay dưới lượt. Xác nhận: giá trị đọc đúng từ file máy lưu. Học được: mã mới chưa có trong dự án. Định vị: biết cài đặt nằm ở ô nào. Cần làm lại: ô máy lưu không khớp hoặc chưa phân biệt được các mục. Kết quả lưu trong trình duyệt này, lượt sau ưu tiên mục còn thiếu nhiều nhất.",
         },
       ],
     },
@@ -950,6 +982,8 @@ export const gearManager = {
   removed: (name: string) => `Đã bỏ ${name}`,
   remove: (name: string) => `Bỏ ${name}`,
   groups: { body: "Máy ảnh", lens: "Ống kính", acc: "Phụ kiện" },
+  suggest: "Gợi ý gần nhất:",
+  productWiki: "Duyệt Product Wiki",
 };
 
 // Trang hồ sơ /tai-khoan (chủ hồ sơ) và /ho-so#… (link chia sẻ, chỉ xem)
@@ -960,11 +994,11 @@ export const profile = {
   save: "Lưu",
   cancel: "Hủy",
   share: "Chia sẻ hồ sơ",
-  copied: "Đã chép liên kết hồ sơ",
   shareText: (name: string) => `Túi đồ Sony của ${name}`,
   username: "Tên người dùng",
   bio: "Giới thiệu",
   bioPlaceholder: "Bạn chụp gì, quay gì với bộ máy này?",
+  noIntro: "Chưa có giới thiệu hoặc liên kết.",
   links: "Liên kết",
   linkPlaceholder: "instagram.com/ten-ban",
   addLink: "Thêm liên kết",
@@ -981,35 +1015,102 @@ export const profile = {
   makeYours: "Tạo túi đồ của bạn",
   shareInfo: "Liên kết chia sẻ chứa sẵn tên, ảnh đại diện, giới thiệu, liên kết và túi đồ của bạn lúc bấm chia sẻ. Sửa hồ sơ sau đó thì chia sẻ lại để có liên kết mới.",
   shared: "Đã chép hồ sơ",
-};
-
-export const gear = {
-  sectionBody: "Body",
-  sectionLens: "Ống kính",
-  sectionAcc: "Phụ kiện",
-  sectionApsC: "APS-C",
-  sectionFullFrame: "Full-frame",
-  guideInfoTerm: "Có hướng dẫn",
-  guideInfoText: "Máy này có bước cài đặt chi tiết trên trang.",
-  expandMore: "Xem thêm",
-  expandLess: "Ẩn bớt",
-  fullError: (cat: string) => `Tối đa 6 ${cat === "body" ? "body" : cat === "lens" ? "ống kính" : "phụ kiện"}. Bỏ bớt một món trước.`,
-  bagTitle: "Túi đồ",
-  bagRemove: (name: string) => `Bỏ ${name}`,
-  bagSummary: (body: number, lens: number, acc: number) => `${body} body · ${lens} ống kính · ${acc} phụ kiện`,
-  announced: (name: string, cat: string, count: number) => `Đã thêm ${name}, ${count}/6 ${cat === "body" ? "body" : cat === "lens" ? "ống kính" : "phụ kiện"}`,
-  removed: (name: string) => `Đã bỏ ${name}`,
+  syncTerm: "Đồng bộ tài khoản",
 };
 
 // PWA: tên và mô tả khi cài trang thành ứng dụng
 export const appInfo = {
-  name: "alphacolorlab.app",
-  shortName: "alphacolorlab.app",
+  name: "alphacolorlab.com",
+  shortName: "alphacolorlab.com",
   description: "Cài máy ảnh Sony Alpha đúng theo menu trên máy, kèm bộ cài đặt tạo sẵn và hệ thống kiến thức sản phẩm, ánh sáng, màu sắc nối với nhau bằng từ khóa. Chạy cả khi không có mạng.",
 };
 
 // Giải thích thuật ngữ cho người mới, hiện trong nút "i" (InfoTip). Tên chế độ theo bộ nhớ dịch ILDC; tốc độ khung hình theo Help Guide ZV-E10.
 export type GlossaryEntry = { term: string; lines: { k?: string; t: string }[] };
+
+// Trang /giai-ma (công khai): lượt tiếp theo, kết quả sau mỗi lượt (tiến độ chỉ khi showDecodeStatus). Bảng tham số chỉ ở /admin/decode (chỉ dev). (app/components/decode/*, app/admin/decode/*, app/components/game/GameDialog.tsx)
+export const decodeConsole = {
+  round: {
+    title: "Kết quả giải mã",
+    empty: "Lượt này chưa đọc được giá trị nào từ file máy lưu.",
+    confirmed: (n: number, fresh: number) =>
+      fresh > 0 ? `Xác nhận ${n} giá trị, trong đó ${fresh} giá trị mới` : `Xác nhận ${n} giá trị`,
+    newMark: "mới",
+    codeOf: "mã",
+    learned: (n: number) => `Học được ${n} mã mới`,
+    located: (n: number) => `Định vị ${n} cài đặt`,
+    locatedLine: (name: string, slot: number, wheres: string, total: number) =>
+      `${name}, M${slot}: ${wheres}${total > 4 ? ` và ${total - 4} vị trí khác` : ""}`,
+    problems: (n: number) => `${n} mục cần làm lại`,
+    mismatch: (slot: number, name: string, expected: string, actual: string | null) =>
+      `M${slot} · ${name}: cài ${expected}, máy lưu ${actual ?? "không đọc được"}`,
+    ambiguous: (slot: number, names: string) => `M${slot}: chưa phân biệt được ${names}`,
+    devSave: "Lưu lượt này vào dự án",
+    devSaved: (dir: string) => `Đã lưu vào ${dir}`,
+    devFailed: (err: string) => `Chưa lưu được: ${err}`,
+    devNetwork: "không kết nối được máy chủ dev",
+  },
+  table: {
+    title: "Bảng tham số",
+    setting: "Mục",
+    all: "Tất cả",
+    missing: "Còn thiếu",
+    noMissing: "Không còn mục nào thiếu.",
+    cell: (name: string, camera: string, confirmed: number, total: number) =>
+      `${name} trên ${camera}: ${confirmed}/${total} giá trị đã xác nhận`,
+    absent: "Không có trên máy này",
+    detailsOf: (name: string) => `Chi tiết ${name}`,
+    legend: {
+      confirmed: "Đã xác nhận",
+      predicted: "Có mã, chưa thấy",
+      pending: "Đã định vị, chưa có mã",
+      unknown: "Chưa định vị",
+    },
+    where: "Vị trí",
+    notLocated: "Chưa định vị",
+    evidence: "File máy thật",
+    noEvidence: "Chưa có file máy thật",
+    codecOnly: "Chỉ có trong codec",
+    priority: "Ưu tiên ở lượt tới",
+    priorityOn: "Đang ưu tiên",
+    numeric: "Cài đặt số: không đếm theo giá trị",
+    scale: "Thang số",
+    candidates: {
+      title: "Mã và vị trí ứng viên từ các lượt đã lưu",
+      none: "Chưa có ứng viên nào. Lưu một lượt có mục chưa có mã hoặc chưa định vị để thấy ở đây.",
+      code: (value: string, raw: string, where: string) => `${value}: mã ${raw} tại ${where}`,
+      locate: (value: string, changes: string) => `${value}: đổi ở ${changes}`,
+      ambiguous: (changes: string) => `Chưa tách được, nhiều mục cùng đổi: ${changes}`,
+      mismatch: (value: string, actual: string) => `Đề yêu cầu ${value}, file ghi ${actual}`,
+      round: "Lượt",
+    },
+    cellLegend: { done: "Đủ giá trị", partial: "Còn thiếu giá trị", none: "Chưa định vị", scale: "Thang số: đã định vị" },
+    observed: (n: number) => `Đã thấy ${n} giá trị khác nhau`,
+  },
+  strip: {
+    located: (n: number, total: number) => `Định vị ${n}/${total} cài đặt`,
+    confirmed: (n: number, total: number) => `Xác nhận ${n}/${total} giá trị`,
+    roundsLeft: (n: number) => `Còn khoảng ${n} lượt`,
+    roundsDone: "Đã đủ, không cần thêm lượt",
+    roundsUnknown: "Chưa đủ dữ liệu để ước lượng số lượt",
+  },
+  next: {
+    title: "Lượt giải mã tiếp theo",
+    need: "Cần giải mã",
+    keep: "Giữ để kiểm tra",
+    emptySlot: "Ô này không có mục để giải mã.",
+    yield: (confirm: number, learn: number, locate: number, steps: number) =>
+      `Dự kiến xác nhận ${confirm} giá trị, học ${learn} mã mới ở ${locate} cài đặt, trong ${steps} bước.`,
+    another: "Lập lượt khác",
+  },
+  admin: {
+    title: "Bảng tham số giải mã",
+    lead: "Chỉ chạy trên npm run dev: bảng tham số theo từng máy và lưu lượt vào dự án. Trang này không có trên bản phát hành.",
+    camera: "Máy",
+    toPresets: "Quản lý bộ preset",
+    toDecode: "Bảng tham số giải mã",
+  },
+};
 
 // Mini game: góp mẫu máy, chơi và học menu
 export const game = {
@@ -1191,7 +1292,7 @@ export const game = {
   },
 };
 
-export const glossary: Record<"system" | "shootMode" | "aperture" | "shutter" | "iso" | "focus" | "focusArea" | "metering" | "facePriority" | "softSkin" | "autoReview" | "preAF" | "flashMode" | "expCompSet" | "awbPriority" | "steadyShot" | "eFrontCurtain" | "liveViewDisplay" | "dialWheelEvComp", GlossaryEntry> = {
+export const glossary: Record<"system" | "shootMode" | "aperture" | "shutter" | "iso" | "focus" | "focusArea" | "metering" | "facePriority" | "softSkin" | "autoReview" | "preAF" | "flashMode" | "expCompSet" | "awbPriority" | "steadyShot" | "eFrontCurtain" | "liveViewDisplay", GlossaryEntry> = {
   system: {
     term: "PAL và NTSC",
     lines: [
@@ -1356,15 +1457,23 @@ export const glossary: Record<"system" | "shootMode" | "aperture" | "shutter" | 
       { t: "Khi dùng flash studio, chọn Tắt để màn hình không bị tối." },
     ],
   },
-  dialWheelEvComp: {
-    term: "Vòng xoay/bánh xe bù sáng",
-    lines: [
-      { k: "Vòng xoay:", t: "Bù sáng bằng vòng xoay điều khiển." },
-      { k: "Bánh xe:", t: "Bù sáng bằng bánh xe điều khiển." },
-      { k: "Tắt:", t: "Không gán bù sáng cho vòng xoay hay bánh xe." },
-      { t: "Chức năng gốc của nút được gán chuyển sang nút còn lại. Không dùng được ở chế độ M khi ISO là ISO AUTO." },
-    ],
-  },
+};
+
+// Nhãn tiếng Việt cho cài đặt chỉ có trong codec (bảng tham số ở /admin/decode). Id không có trong map: dùng nhãn gốc của hàng.
+export const codecSettingLabels: Record<string, string> = {
+  shootMode: glossary.shootMode.term,
+  aperture: glossary.aperture.term,
+  shutter: glossary.shutter.term,
+  iso: glossary.iso.term,
+  wbKelvin: "Nhiệt độ màu (K)",
+  pictureProfile: "Picture Profile",
+  ppGamma: "Gamma (Picture Profile)",
+  ppColorMode: "Chế độ màu (Picture Profile)",
+  ppLevels: "Mức đen (Picture Profile)",
+  isoAutoMinSS: "ISO tự động: tốc độ tối thiểu",
+  isoAutoMinSSSpeed: "ISO tự động: mức tốc độ",
+  meteringSpotSize: "Kích thước vùng đo điểm",
+  softSkinLevel: `Mức ${glossary.softSkin.term.toLowerCase()}`,
 };
 
 // Đọc file .DAT đã lưu trên máy (app/components/DatImport.tsx, lib/datImport.ts). Chỉ đọc; ảnh ZV-E10 mới nạp được vào ô M1–M4.
@@ -1377,7 +1486,7 @@ export const datImport = {
       { k: "ZV-E10 ảnh:", t: "nạp được vào ô M1–M4 đang sửa. Mục không nạp được hiện ở dòng Không nạp được." },
       { k: "ZV-E10 phim:", t: "chỉ đọc để xem." },
       { k: "α6400:", t: "đọc thử nghiệm, chưa tạo được file M1–M4." },
-      { k: "A7C II:", t: "hiện các cài đặt đã giải mã, chưa nạp vào công cụ tạo bộ." },
+      { k: "A7C II:", t: "hiện các cài đặt đã xác nhận, chưa nạp vào công cụ tạo bộ." },
     ],
   },
   pick: "Chọn file .DAT",
@@ -1389,7 +1498,7 @@ export const datImport = {
   unsupported: "Phim này không đọc được vì phần kiểm tra cuối file bị sai. Hãy lưu lại trên máy rồi chọn file vừa lưu.",
   movieNote: "Phim (CAMPR05–08) chỉ đọc để xem, không nạp vào M1–M4.",
   a6400Note: "α6400 đang đọc thử nghiệm. Giá trị dưới đây chưa kiểm chứng đủ, và chưa tạo được file M1–M4 cho máy này.",
-  a7c2Note: "A7C II: chỉ hiện các cài đặt đã giải mã. Trang chưa tạo file M1–M4 cho máy này.",
+  a7c2Note: "A7C II: chỉ hiện các cài đặt đã xác nhận. Trang chưa tạo file M1–M4 cho máy này.",
   unconfirmed: "Chưa xác nhận",
   off: "Tắt",
   badge: {
@@ -1501,6 +1610,36 @@ export const colorBank = {
     noteTerm: "Giỏ M1–M4",
     note: "Mỗi ô M1–M4 nhận tối đa 10 công thức, xếp lần lượt vào PP1–PP10. Máy chỉ lưu một cân bằng trắng cho mỗi ô: của công thức PP1.",
   },
+  // Bản mod PP: chỉnh một công thức, lưu riêng trên máy và đồng bộ tài khoản
+  mod: {
+    create: "Tạo bản mod",
+    editNew: "Bản mod mới",
+    editOld: "Sửa bản mod",
+    nameLabel: "Tên bản mod",
+    nameRequired: "Đặt tên cho bản mod trước khi lưu.",
+    noChange: "Chưa đổi giá trị nào so với công thức gốc.",
+    invalid: "Có giá trị không hợp lệ. Sửa lại rồi lưu.",
+    mine: "Bản mod của tôi",
+    useForSlots: "Dùng cho M1–M4",
+    edit: "Sửa",
+    remove: "Xóa",
+    removeAsk: "Xóa bản mod này?",
+    removeConfirm: "Xóa",
+    keep: "Giữ lại",
+    baseValue: (v: string | number) => `gốc ${v}`,
+    limit: {
+      term: "Giới hạn bản mod",
+      lines: [{ t: "Tối đa 20 bản mod. Xóa bớt một bản để tạo bản mới." }],
+    },
+  },
+  ppForm: { save: "Lưu", cancel: "Hủy" },
+};
+
+// Danh sách / Lưới: kiểu hiển thị của cột index (Product Wiki, /blog)
+export const indexView = {
+  label: "Kiểu hiển thị",
+  list: "Danh sách",
+  grid: "Lưới",
 };
 
 // Blog: chữ của trang /blog và /blog/[id]
@@ -1774,15 +1913,6 @@ export const wiki = {
   },
   // Back button
   graphHubs: { accessory: "Phụ kiện" },
-  back: "Wiki",
-};
-
-// Đồ thị kiến thức /graph (ghi chú, bài viết, máy ảnh)
-export const siteGraph = {
-  title: "Đồ thị kiến thức",
-  description: "Bài viết và ghi chú kiến thức chụp ảnh, nối với nhau qua liên kết.",
-  lead: "Bài viết và ghi chú kiến thức nối với nhau qua liên kết. Chọn một nút để xem các trang liền kề.",
-  backLink: "Wiki",
 };
 
 // Tìm kiếm /search
@@ -1851,10 +1981,9 @@ export const community = {
 };
 
 export const seo = {
-  siteName: "alphacolorlab.app",
+  siteName: "alphacolorlab.com",
   homeTitle: "Cài đặt và kiến thức máy ảnh Sony Alpha",
   blogTitle: "Blog · Bài viết và kiến thức chụp ảnh",
-  wikiTitle: "Product Wiki · Máy ảnh và phụ kiện",
   searchTitle: "Tìm kiếm",
   blogSuffix: " · Blog",
   wikiSuffix: " · Product Wiki",

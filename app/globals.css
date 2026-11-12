@@ -167,13 +167,6 @@ html[data-scrolling] ::-webkit-scrollbar-thumb {
     scrollbar-color: var(--color-tertiary) transparent;
   }
 }
-.scrollbar-hide {
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
 /* Nav trượt lên khi cuộn xuống, hiện lại khi cuộn lên */
 .site-nav {
   transition: transform 0.35s var(--ease-ios);

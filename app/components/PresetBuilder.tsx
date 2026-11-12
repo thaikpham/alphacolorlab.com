@@ -14,6 +14,7 @@ import { resolveE10Dir, readExisting, writeAndVerify, mapError, isSupported, typ
 import { useModel } from "@/lib/model";
 import { cartToSlots, readCart } from "@/lib/cart";
 import { summaryRows, FOCUS_AREA_LABELS, METERING_LABELS, FACE_PRIORITY_LABELS, SOFT_SKIN_LABELS, AUTO_REVIEW_LABELS } from "@/lib/presetSummary";
+import { MODS_KEY, baseRecipe, parseMods, patchOf } from "@/lib/ppMods";
 
 interface PreviewRow {
   slot: number;
@@ -93,26 +94,38 @@ export function PresetBuilder() {
     setSlotSettings(cloneSlots(picked));
   }, []);
 
-  // Color Bank "Dùng cho M1–M4" (/tao-m1-m4?recipe=<id> or ?cart): first slot still on "Giữ PP gốc", else M1.
+  // Color Bank "Dùng cho M1–M4" (/tao-m1-m4?recipe=<id>, ?mod=<id> or ?cart): first slot still on "Giữ PP gốc", else M1.
   // Read params first, then delete and apply state. Param is removed before applying, so Strict Mode's second effect run is a no-op.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const hasRecipe = params.has("recipe");
     const recipeId = params.get("recipe");
+    const hasMod = params.has("mod");
+    const modId = params.get("mod");
     const hasCart = params.has("cart");
-    if (!hasRecipe && !hasCart) return;
+    if (!hasRecipe && !hasMod && !hasCart) return;
 
     params.delete("recipe");
+    params.delete("mod");
     params.delete("cart");
     window.history.replaceState(null, "", `${window.location.pathname}${params.toString() ? "?" + params : ""}${window.location.hash}`);
+
+    const takeFirstKeep = (draft: Partial<SlotDraft>) =>
+      setSlotSettings((slots) => {
+        const i = Math.max(0, slots.findIndex((s) => !s.recipeId && s.ppOn !== false && (s.pp ?? "keep") === "keep"));
+        return slots.map((s, j) => (j === i ? { ...s, ...draft, ppOn: undefined } : s));
+      });
 
     if (hasRecipe) {
       const preset = presets.find((p) => p.id === recipeId && !p.blocked);
       if (!preset) return;
-      setSlotSettings((slots) => {
-        const i = Math.max(0, slots.findIndex((s) => !s.recipeId && s.ppOn !== false && (s.pp ?? "keep") === "keep"));
-        return slots.map((s, j) => (j === i ? { ...s, recipeId: preset.id, pp: preset.pp, wb: { ...preset.wb }, ppOn: undefined } : s));
-      });
+      takeFirstKeep({ recipeId: preset.id, pp: preset.pp, wb: { ...preset.wb } });
+    } else if (hasMod) {
+      // ?mod=<id>: PP = công thức gốc + phần đã đổi trong mod, WB lấy từ công thức gốc. Mod đọc từ máy này; id lạ thì bỏ qua.
+      const mod = parseMods(localStorage.getItem(MODS_KEY)).find((m) => m.id === modId);
+      const base = mod ? baseRecipe(mod.base) : null;
+      if (!mod || !base || base.blocked) return;
+      takeFirstKeep({ recipeId: "custom", pp: { ...base.pp, ...patchOf(mod) }, wb: { ...base.wb } });
     } else if (hasCart) {
       const cart = readCart();
       const slotDrafts = cartToSlots(cart, (id) => {
@@ -515,7 +528,7 @@ export function PresetBuilder() {
           {presetSupport.map((item, i) => {
             const statusMap = {
               co: { label: "Có trong file", color: "bg-success-fill text-success" },
-              chua: { label: "Chưa giải mã", color: "bg-warning-fill text-warning" },
+              chua: { label: "Chưa xác nhận", color: "bg-warning-fill text-warning" },
               khong: { label: "Ngoài Memory Recall", color: "bg-fill text-secondary" },
             };
             const status = statusMap[item.status];

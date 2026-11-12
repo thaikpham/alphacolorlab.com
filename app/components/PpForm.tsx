@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PP_FIELDS } from "@/lib/zve10/dat";
+import { colorBank } from "@/app/content";
 
 export function PpForm({
   initialPreset,
@@ -65,13 +66,13 @@ export function PpForm({
             onClick={() => onApply(pp)}
             className="flex-1 h-11 bg-accent text-on-accent font-semibold rounded-full text-subhead hover:bg-accent/90 transition"
           >
-            Lưu
+            {colorBank.ppForm.save}
           </button>
           <button
             onClick={onClose}
             className="flex-1 h-11 bg-fill text-label font-semibold rounded-full text-subhead hover:bg-fill-strong transition"
           >
-            Hủy
+            {colorBank.ppForm.cancel}
           </button>
         </div>
       )}

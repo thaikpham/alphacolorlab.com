@@ -637,7 +637,7 @@ export function SlotCard({
                   <div className="text-right flex-shrink-0">
                     <div className="text-footnote text-label mb-1">{step.value}</div>
                     <span className="text-footnote text-secondary bg-fill rounded-badge px-2 py-1 inline-block whitespace-nowrap">
-                      {step.memory === "absent" ? "ZV-E10 không có" : step.memory === "notStored" ? "Cài tay, không lưu vào ô nhớ" : "Chờ giải mã từ máy"}
+                      {step.memory === "absent" ? "ZV-E10 không có" : step.memory === "notStored" ? "Cài tay, không lưu vào ô nhớ" : "Chờ xác nhận từ máy"}
                     </span>
                   </div>
                 </div>

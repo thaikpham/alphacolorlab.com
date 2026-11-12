@@ -129,3 +129,13 @@ test('every synonym group has a phrase that occurs in the index', () => {
   const text = index.map((i) => ` ${[i.title, i.extra, i.summary].map((s) => fold(s).split(/[^\p{L}\p{N}]+/u).filter(Boolean).join(' ')).join(' | ')} `)
   for (const group of synonymGroups) assert.ok(group.some((p) => text.some((t) => t.includes(` ${p} `))), group.join(' / '))
 })
+
+test('article topic label is searchable: quay phim, video, quay video find every video-topic article', async () => {
+  const { default: articles } = await import('../data/articles.json', { with: { type: 'json' } })
+  const videoHrefs = articles.filter((a) => a.topic === 'video').map((a) => `/blog/${a.id}`)
+  assert(videoHrefs.length > 0, 'expected video-topic articles in data')
+  for (const q of ['quay phim', 'video', 'quay video']) {
+    const hrefs = searchIndex(index, q).map((r) => r.href)
+    for (const href of videoHrefs) assert.ok(hrefs.includes(href), `"${q}" should find ${href}`)
+  }
+})

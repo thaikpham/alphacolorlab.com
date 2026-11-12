@@ -4,7 +4,6 @@ import { useSyncExternalStore } from "react";
 import type { ModelId } from "./model.ts";
 import { setModel } from "./model.ts";
 import { cameraModels } from "../app/content.ts";
-import { validIdsByCategory } from "./gearCatalog.ts";
 
 function readCurrentModel(): ModelId {
   if (typeof window === "undefined") return "zve10";
@@ -29,17 +28,36 @@ const GUIDE_TO_MODEL: Record<string, ModelId> = {
   "a7c-ii": "a7c2",
 };
 
-export function parseGear(raw: string | null): GearBag {
+export interface GearIds {
+  body: Set<string>;
+  lens: Set<string>;
+  acc: Set<string>;
+}
+
+let ids: GearIds | null = null;
+let loading: Promise<GearIds> | null = null;
+
+/** Nạp danh mục sản phẩm (data/products.json) để kiểm id. Chỉ gọi khi có túi đồ cần kiểm nên không nằm trong bundle chung. */
+export function loadGearIds(): Promise<GearIds> {
+  loading ??= import("./gearCatalog.ts").then((m) => {
+    ids = m.validIdsByCategory();
+    if (typeof window !== "undefined") window.dispatchEvent(new Event(EVENT));
+    return ids;
+  });
+  return loading;
+}
+
+/** valid = null khi danh mục chưa nạp: giữ mọi id đúng dạng, id lạ bị bỏ khi danh mục về. */
+export function parseGear(raw: string | null, valid: GearIds | null): GearBag {
   try {
     const g = JSON.parse(raw ?? "");
-    const valid = validIdsByCategory();
     const bag = { body: [], lens: [], acc: [] } as GearBag;
     const seen = new Set<string>();
 
     for (const cat of ["body", "lens", "acc"] as const) {
       if (Array.isArray(g?.[cat])) {
         for (const id of g[cat]) {
-          if (typeof id === "string" && !seen.has(id) && valid[cat].has(id)) {
+          if (typeof id === "string" && !seen.has(id) && (!valid || valid[cat].has(id))) {
             seen.add(id);
             bag[cat].push(id);
           }
@@ -85,18 +103,22 @@ export function toggleGear(
 }
 
 let raw: string | null | undefined;
+let rawIds: GearIds | null = null;
 let cached = EMPTY_BAG;
 
 function snapshot(): GearBag {
   const r = localStorage.getItem(STORAGE_KEY);
-  if (r !== raw) {
+  if (r !== raw || ids !== rawIds) {
     raw = r;
-    cached = parseGear(r);
+    rawIds = ids;
+    cached = parseGear(r, ids);
   }
   return cached;
 }
 
 function subscribe(callback: () => void) {
+  // Người chưa có túi đồ không tải danh mục sản phẩm.
+  if (localStorage.getItem(STORAGE_KEY) != null) void loadGearIds();
   window.addEventListener("storage", callback);
   window.addEventListener(EVENT, callback);
   return () => {

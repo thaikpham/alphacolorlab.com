@@ -1,0 +1,35 @@
+{
+  "models": {
+    "a6400": {
+      "confirmed": 24,
+      "located": 14,
+      "pending": 11,
+      "predicted": 45,
+      "roundsLeft": 5,
+      "settings": 16,
+      "unknown": 6,
+      "values": 86
+    },
+    "a7c2": {
+      "confirmed": 66,
+      "located": 13,
+      "pending": 2,
+      "predicted": 34,
+      "roundsLeft": 2,
+      "settings": 14,
+      "unknown": 2,
+      "values": 104
+    },
+    "zve10": {
+      "confirmed": 48,
+      "located": 14,
+      "pending": 12,
+      "predicted": 21,
+      "roundsLeft": 4,
+      "settings": 18,
+      "unknown": 11,
+      "values": 92
+    }
+  },
+  "version": 1
+}

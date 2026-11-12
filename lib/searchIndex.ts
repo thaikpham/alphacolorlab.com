@@ -3,7 +3,7 @@ import knowledge from '../data/knowledge.json' with { type: 'json' }
 import articles from '../data/articles.json' with { type: 'json' }
 import products from '../data/products.json' with { type: 'json' }
 import presets from './zve10/presets.json' with { type: 'json' }
-import { sections } from '../app/content.ts'
+import { blog, sections } from '../app/content.ts'
 import { entryHref, productHref } from './wiki.ts'
 import type { SearchItem } from './search.ts'
 
@@ -25,8 +25,10 @@ export function buildIndex(): SearchItem[] {
       })
   }
 
+  // Chủ đề của bài (nhãn tiếng Việt trong blog.topics) là từ khóa của bài viết
+  const topicLabels = blog.topics as Record<string, string>
   for (const a of articles)
-    items.push({ kind: 'article', title: a.title, extra: (mergedTerms.get(a.id) ?? []).join(', '), summary: a.dek, href: `/blog/${a.id}` })
+    items.push({ kind: 'article', title: a.title, extra: [topicLabels[a.topic], ...(mergedTerms.get(a.id) ?? [])].filter(Boolean).join(', '), summary: a.dek, href: `/blog/${a.id}` })
 
   // Products: name, code, short spec summary
   for (const p of products) {

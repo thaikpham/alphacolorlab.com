@@ -1,4 +1,4 @@
-import type { CardFile, GameModel, Submission, SubmitResult } from "./types.ts";
+import type { CardFile, Finding, GameModel, Submission, SubmitResult } from "./types.ts";
 
 export function buildSubmission(
   missionId: string,
@@ -13,7 +13,8 @@ export function buildSubmission(
   score: any,
   durationMs: number,
   retries: number,
-  appVersion: string
+  appVersion: string,
+  findings?: Finding[]
 ): Submission {
   const filesBase64 = files.map(f => ({
     folder: f.folder,
@@ -34,7 +35,8 @@ export function buildSubmission(
     score,
     durationMs,
     retries,
-    appVersion
+    appVersion,
+    ...(findings ? { findings } : {})
   };
 }
 

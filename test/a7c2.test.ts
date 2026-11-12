@@ -67,7 +67,8 @@ test("A7C II game: a slot with a broken checksum or another camera's file must b
   files[2] = slotFile(3, (b) => b.set(new TextEncoder().encode("ILCE-7M4\0"), 5));
   const v = verify(generateMission("a7c2", 7), files, "en");
   assert.strictEqual(v.ok, false);
-  assert.deepStrictEqual([...v.retrySlots].sort(), [2, 3]);
+  // Ô 1 cũng làm lại: file lấy nét và đo sáng không khớp đề bài (ô 1 có ô điều khiển, A7C II nay được kiểm)
+  assert.deepStrictEqual([...v.retrySlots].sort(), [1, 2, 3]);
 });
 
 test("missions for undecoded cameras never ask for two values of one setting, or a greyed-out item, in slot 1", () => {

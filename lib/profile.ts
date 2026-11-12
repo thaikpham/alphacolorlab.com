@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { parseGear, type GearBag } from "./gear.ts";
+import { loadGearIds, parseGear, type GearBag } from "./gear.ts";
 
 // Hồ sơ người dùng ở /tai-khoan: username, bio, link. Lưu trong localStorage ("user-profile"), đồng bộ theo tài khoản (lib/userState).
 // Chia sẻ hồ sơ không cần server: cả hồ sơ + túi đồ nén vào phần # của link /ho-so (không gửi lên máy chủ khi mở).
@@ -19,7 +19,7 @@ export interface SharedProfile extends Profile {
 }
 
 const KEY = "user-profile";
-export const EMPTY_PROFILE: Profile = { username: "", bio: "", links: [] };
+const EMPTY_PROFILE: Profile = { username: "", bio: "", links: [] };
 export const LIMITS = { username: 30, bio: 160, links: 5, name: 60 };
 
 export const cleanUsername = (s: string) =>
@@ -34,7 +34,8 @@ export function cleanLink(s: string): string | null {
   const t = s.trim();
   if (!t) return null;
   try {
-    const u = new URL(/^[a-z][a-z0-9+.-]*:/i.test(t) ? t : `https://${t}`);
+    // "example.com:8080/x" có dấu hai chấm nhưng sau nó là số (cổng), không phải giao thức
+    const u = new URL(/^[a-z][a-z0-9+.-]*:(?!\d)/i.test(t) ? t : `https://${t}`);
     return (u.protocol === "https:" || u.protocol === "http:") && u.hostname.includes(".") ? u.href : null;
   } catch {
     return null;
@@ -70,11 +71,11 @@ export function encodeShare(p: SharedProfile): string {
 }
 
 /** Đọc hồ sơ từ link chia sẻ. Mọi trường được kiểm lại như dữ liệu người lạ gửi: link chỉ http(s), ảnh chỉ https, món lạ bị bỏ. */
-export function decodeShare(s: string): SharedProfile | null {
+export async function decodeShare(s: string): Promise<SharedProfile | null> {
   try {
     const d = JSON.parse(fromB64(s)) as Record<string, unknown>;
     const avatar = typeof d.a === "string" && cleanLink(d.a)?.startsWith("https:") ? cleanLink(d.a) : null;
-    return { name: str(d.n, LIMITS.name), avatar, ...parseProfile({ username: d.u, bio: d.b, links: d.l }), gear: parseGear(JSON.stringify(d.g ?? null)) };
+    return { name: str(d.n, LIMITS.name), avatar, ...parseProfile({ username: d.u, bio: d.b, links: d.l }), gear: parseGear(JSON.stringify(d.g ?? null), await loadGearIds()) };
   } catch {
     return null;
   }

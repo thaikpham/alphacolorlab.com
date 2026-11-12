@@ -19,6 +19,11 @@ const SPIN = 0.12;
 /** Lề khi tự vừa khung (đồ thị tràn viền): chừa vừa đủ cho nhãn hai bên và nút zoom phía dưới (px) */
 const FIT_PAD_X = 48, FIT_PAD_Y = 52;
 const CORNERS = [[-1, -1], [1, -1], [1, 1], [-1, 1]] as const;
+/** Lề ngoài khung (px) khi bỏ qua nút và cạnh nằm ngoài màn hình, đủ rộng cho nét và vòng chọn */
+const CULL = 8;
+/** Thời gian vẽ một khung (ms) quá ngưỡng này thì máy coi là chậm: đồ thị đứng yên, chỉ vẽ lại khi có tương tác */
+const SLOW_MS = 12;
+const PROBE_MS = 25;
 
 interface Node extends Body {
   id: string;
@@ -173,6 +178,12 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
       nb[j].push(i);
     }
     const pairs = edges.map(([a, b]) => [a, b] as [number, number]);
+    // Cạnh kề từng nút (chỉ số trong edges), dựng một lần để sinh tín hiệu không quét lại cả đồ thị
+    const incident: number[][] = graph.nodes.map(() => []);
+    edges.forEach(([a, b], k) => {
+      incident[a].push(k);
+      incident[b].push(k);
+    });
     const N: Node[] = graph.nodes.map((n) => ({
       id: n.id,
       label: short(n.label),
@@ -201,10 +212,29 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
     // Lọc theo app (chú giải): nút ngoài app mờ đi
     let onlyApp: string | null = null;
     const off = (i: number) => onlyApp !== null && N[i].app !== onlyApp;
+    // Zoom lúc chờ so với vừa khung; đang lọc theo app thì không vượt quá vừa khung, để cụm của app không bị cắt mép
+    const idleZoom = () => (onlyApp !== null ? Math.min(zoomRef.current, 1) : zoomRef.current);
+    // Tâm camera lúc chờ: gốc toạ độ, hoặc tâm cụm nút của app đang lọc (để cụm đó nằm giữa và vừa khung)
+    const home = (): Point3 => {
+      const c = { x: 0, y: 0, z: 0 };
+      let k = 0;
+      if (onlyApp !== null)
+        for (const n of N) {
+          if (n.app !== onlyApp) continue;
+          c.x += n.x;
+          c.y += n.y;
+          c.z += n.z;
+          k++;
+        }
+      return k ? { x: c.x / k, y: c.y / k, z: c.z / k } : c;
+    };
     const e: Engine = { yaw: 0.4, pitch: -0.15, zoom: 1, cam: { x: 0, y: 0, z: 0 }, tYaw: null, tPitch: null, tZoom: null, tCam: null, alpha: 0, sel: -1, hov: -1, ringR: 75, lockT: 0, rip: null, T: 0, W: 0, H: 0, touch: false, tapped: false, idle: true, fit: 0, spinResumeT: null };
 
     // Vòng vẽ: chạy liên tục khi có đung đưa và đồ thị đang hiện; khi giảm chuyển động thì chỉ chạy lúc có thay đổi
-    let raf = 0, dirty = true, inView = true, opened = false, dragN = -1, lastT = 0, fitted = false;
+    // Đung đưa, tự xoay và tín hiệu chỉ chạy sau khi trang tải xong và trình duyệt rảnh (xem armLater)
+    let raf = 0, dirty = true, inView = true, armed = false, opened = false, dragN = -1, lastT = 0, fitted = false;
+    // Thời gian vẽ: lần đầu đo ngay, sau đó là trung bình trượt. Vượt SLOW_MS thì tắt động nền và không bật lại
+    let drawn = false, slow = false, cost = 0, probing = 0, probeNow = 0;
     const ctrlX = new Float32Array(edges.length), ctrlY = new Float32Array(edges.length);
     const signals: Signal[] = [];
     const endIdle = () => {
@@ -216,6 +246,11 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
       dirty = true;
       if (!raf && visible()) raf = requestAnimationFrame(frame);
     };
+    const arm = () => {
+      if (slow || armed || reduce.matches) return;
+      probing = 1;
+      kick();
+    };
 
     const size = { width: 0, height: 0 };
     const scratch: Point3 = { x: 0, y: 0, z: 0 };
@@ -225,12 +260,29 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
 
     // Đung đưa chỉ cộng lúc chiếu, không ghi vào vị trí
     const sway = (n: Node, i: number): Point3 => {
-      if (reduce.matches || i === e.sel) return n;
+      if (reduce.matches || !armed || i === e.sel) return n;
       const a = n.t ? 1.6 : 2.6, w = e.T * n.f;
       scratch.x = n.x + Math.sin(w + n.ph[0]) * a;
       scratch.y = n.y + Math.sin(w * 1.13 + n.ph[1]) * a;
       scratch.z = n.z + Math.sin(w * 0.87 + n.ph[2]) * a;
       return scratch;
+    };
+
+    // Bề rộng nhãn chỉ phụ thuộc chữ và cỡ chữ: nhớ theo từng nút, đo lại khi cỡ đổi; ctx.font chỉ gán lại khi cỡ đổi
+    const labelFs = new Float64Array(N.length).fill(-1), labelW = new Float64Array(N.length);
+    let fontFs = -1;
+    const setFs = (fs: number) => {
+      if (fs === fontFs) return;
+      ctx.font = `400 ${fs}px ${font}`;
+      fontFs = fs;
+    };
+    const textWidth = (i: number, fs: number) => {
+      if (labelFs[i] !== fs) {
+        setFs(fs);
+        labelW[i] = ctx.measureText(N[i].label).width;
+        labelFs[i] = fs;
+      }
+      return labelW[i];
     };
 
     const draw = () => {
@@ -246,15 +298,17 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
       for (let k = 0; k < edges.length; k++) {
         const [a, b, ph] = edges[k];
         const hi = a === e.sel || b === e.sel, A = N[a].q, B = N[b].q;
+        const dx = B.x - A.x, dy = B.y - A.y, L = Math.hypot(dx, dy) || 1;
+        const bend = rm ? L * 0.06 : L * (0.06 + 0.05 * Math.sin(e.T * 0.7 + ph));
+        ctrlX[k] = (A.x + B.x) / 2 - (dy / L) * bend;
+        ctrlY[k] = (A.y + B.y) / 2 + (dx / L) * bend;
+        // Đường Bezier nằm trong bao lồi của hai đầu và điểm điều khiển: cạnh nằm hẳn ngoài khung thì không vẽ
+        if (Math.max(A.x, B.x, ctrlX[k]) < -CULL || Math.min(A.x, B.x, ctrlX[k]) > W + CULL || Math.max(A.y, B.y, ctrlY[k]) < -CULL || Math.min(A.y, B.y, ctrlY[k]) > H + CULL) continue;
         // Cạnh xa mảnh và nhạt hơn cạnh gần (phối cảnh)
         const dz = (A.z + B.z) / 2;
         ctx.globalAlpha = hi ? 0.95 : act || off(a) || off(b) ? 0.08 : 0.55 * depthFog(dz);
         ctx.strokeStyle = hi ? N[e.sel].tone : color.tertiary;
         ctx.lineWidth = (hi ? 2.2 : 1.6) * depthScale(dz);
-        const dx = B.x - A.x, dy = B.y - A.y, L = Math.hypot(dx, dy) || 1;
-        const bend = rm ? L * 0.06 : L * (0.06 + 0.05 * Math.sin(e.T * 0.7 + ph));
-        ctrlX[k] = (A.x + B.x) / 2 - (dy / L) * bend;
-        ctrlY[k] = (A.y + B.y) / 2 + (dx / L) * bend;
         ctx.beginPath();
         ctx.moveTo(A.x, A.y);
         ctx.quadraticCurveTo(ctrlX[k], ctrlY[k], B.x, B.y);
@@ -291,6 +345,7 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
         const n = N[i], q = n.q, sel = i === e.sel;
         const pulse = sel && !rm ? 1 + 0.06 * Math.sin(e.T * 2.2) : 1;
         n.r = (n.hub ? 6.5 : 3.8) * Math.sqrt(e.zoom) * depthScale(q.z) * (sel ? 1.35 * pulse : 1);
+        if (q.x + n.r + CULL < 0 || q.x - n.r - CULL > W || q.y + n.r + CULL < 0 || q.y - n.r - CULL > H) continue;
         ctx.globalAlpha = act ? (act.has(i) ? 1 : 0.12) : off(i) ? 0.12 : depthFog(q.z);
         ctx.fillStyle = sel || n.hub ? n.tone : act ? color.label : color.tertiary;
         ctx.beginPath();
@@ -360,7 +415,6 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
         const n = N[i], q = n.q, sel = i === e.sel;
         let x = q.x + n.r + 7, y = q.y, align: CanvasTextAlign = "left";
         const fs = sel ? 15 : depthFont(q.z);
-        ctx.font = `400 ${fs}px ${font}`;
         if (sel) {
           x = q.x;
           y = q.y - n.r - 22;
@@ -369,7 +423,7 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
           x = q.x - n.r - 7;
           align = "right";
         }
-        const w = ctx.measureText(n.label).width;
+        const w = textWidth(i, fs);
         // Nhãn sắp tràn khỏi khung thì lật sang phía bên kia nút (nhãn giữa thì kẹp vào trong), không để bị cắt cụt ở mép
         if (align === "left" && x + w > W - 4 && q.x - n.r - 7 - w >= 4) {
           x = q.x - n.r - 7;
@@ -390,7 +444,7 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
       for (const ld of labelData) {
         if (!renderSet.has(ld.idx)) continue;
         ctx.globalAlpha = ld.sel || act ? 1 : depthFog(N[ld.idx].q.z);
-        ctx.font = `400 ${ld.fs}px ${font}`;
+        setFs(ld.fs);
         ctx.textAlign = ld.align;
         const label = N[ld.idx].label;
         ctx.strokeText(label, ld.x, ld.y);
@@ -411,21 +465,40 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
         tip.classList.toggle("opacity-100", show);
       }
 
-      // Zoom vừa khung: điểm xa nhất so với nửa khung (trừ lề); kích thước chiếu tỉ lệ thuận với zoom nên chia là ra zoom cần
+      // Zoom vừa khung: điểm xa nhất so với nửa khung (trừ lề); kích thước chiếu tỉ lệ thuận với zoom nên chia là ra zoom cần.
+      // Đang lọc theo app thì chỉ tính nút của app đó: cụm của nó lấp khung, phần mờ có thể tràn ra ngoài.
       let far = 0;
-      for (const n of N) far = Math.max(far, Math.abs(n.q.x - W / 2) / Math.max(40, W / 2 - padX), Math.abs(n.q.y - H / 2) / Math.max(40, H / 2 - padY));
+      for (let i = 0; i < N.length; i++) {
+        if (off(i)) continue;
+        const n = N[i];
+        far = Math.max(far, Math.abs(n.q.x - W / 2) / Math.max(40, W / 2 - padX), Math.abs(n.q.y - H / 2) / Math.max(40, H / 2 - padY));
+      }
       e.fit = far > 0 ? e.zoom / far : 0;
     };
 
     function frame(now: number) {
       raf = 0;
-      if (!visible() || !e.W) return;
+      if (!visible() || !e.W) {
+        if (probing) probing = 1;
+        return;
+      }
+      const t0 = performance.now();
+      // Thử máy trước khi bật động nền: vẽ một khung tĩnh rồi đo khoảng cách tới khung kế. Quá PROBE_MS là máy không giữ nổi nhịp, để đồ thị đứng yên
+      if (probing === 2) {
+        probing = 0;
+        if (now - probeNow > PROBE_MS) slow = true;
+        else armed = true;
+      } else if (probing === 1) {
+        probing = 2;
+        probeNow = now;
+        dirty = true;
+      }
       e.T = now / 1000;
       const dt = lastT ? Math.min(0.05, e.T - lastT) : 0;
       lastT = e.T;
-      let busy = !reduce.matches || !!e.rip || (e.sel >= 0 && e.T - e.lockT < LOCK);
+      let busy = (armed && !reduce.matches) || !!e.rip || (e.sel >= 0 && e.T - e.lockT < LOCK);
       if (e.idle) {
-        if (!reduce.matches) {
+        if (armed && !reduce.matches) {
           let spinRate = SPIN;
           // Ease-in spin resumption: ramp up from 0 over 0.4 seconds
           if (e.spinResumeT !== null && e.T - e.spinResumeT < 0.4) {
@@ -436,14 +509,14 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
           }
           e.yaw += dt * spinRate;
         }
-        const z = clamp(e.fit * zoomRef.current, ZMIN, ZMAX);
+        const z = clamp(e.fit * idleZoom(), ZMIN, ZMAX);
         // lần đầu nhảy thẳng tới zoom vừa khung, sau đó bám theo mềm khi xoay
         if (e.fit && Math.abs(z - e.zoom) > 0.002) e.zoom = reduce.matches || !fitted ? z : ease(e.zoom, z, 0.08);
         if (e.fit) fitted = true;
       }
       // Sinh tín hiệu ngẫu nhiên; đang chọn nút thì phần lớn chạy trên liên kết của nút đó
-      if (!reduce.matches && edges.length && signals.length < Math.min(36, Math.ceil(edges.length / 5)) && Math.random() < 0.3) {
-        const own = e.sel >= 0 && nb[e.sel].length && Math.random() < 0.7 ? edges.flatMap((ed, k) => (ed[0] === e.sel || ed[1] === e.sel ? [k] : [])) : null;
+      if (armed && !reduce.matches && edges.length && signals.length < Math.min(36, Math.ceil(edges.length / 5)) && Math.random() < 0.3) {
+        const own = e.sel >= 0 && nb[e.sel].length && Math.random() < 0.7 ? incident[e.sel] : null;
         signals.push({
           edge: own ? own[Math.floor(Math.random() * own.length)] : Math.floor(Math.random() * edges.length),
           dir: Math.random() < 0.5 ? 1 : -1,
@@ -510,10 +583,23 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
         opened = true;
         router.push(href);
       }
-      if (busy || dirty) draw();
+      if (busy || dirty) {
+        draw();
+        const ms = performance.now() - t0;
+        cost = drawn ? cost * 0.9 + ms * 0.1 : ms;
+        if (cost > SLOW_MS) slow = true;
+        if (slow) {
+          armed = false;
+          signals.length = 0;
+        }
+        if (!drawn) {
+          drawn = true;
+          armLater();
+        }
+      }
       dirty = false;
-      if (e.idle && e.fit && Math.abs(clamp(e.fit * zoomRef.current, ZMIN, ZMAX) - e.zoom) > 0.002) busy = true;
-      if (busy && !raf) raf = requestAnimationFrame(frame);
+      if (e.idle && e.fit && Math.abs(clamp(e.fit * idleZoom(), ZMIN, ZMAX) - e.zoom) > 0.002) busy = true;
+      if ((busy || probing) && !raf) raf = requestAnimationFrame(frame);
     }
 
     // Giảm chuyển động: nhảy thẳng tới đích thay vì nội suy
@@ -556,7 +642,7 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
       }
       e.sel = -1;
       e.tapped = false;
-      e.tCam = { x: 0, y: 0, z: 0 };
+      e.tCam = home();
       e.tZoom = 1;
       e.alpha = Math.max(e.alpha, 0.35);
       e.idle = true;
@@ -734,7 +820,15 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
       clear,
       open,
       setOnly: (app) => {
+        if (app === onlyApp) return kick();
         onlyApp = app;
+        // Chưa chọn nút nào: về trạng thái chờ, camera bay tới tâm cụm của app và zoom vừa khung cụm đó (bỏ lọc thì về toàn cảnh)
+        if (e.sel < 0) {
+          e.tCam = home();
+          e.tZoom = null;
+          if (!e.idle) e.spinResumeT = e.T;
+          e.idle = true;
+        }
         kick();
       },
       zoomBy: (k) => {
@@ -766,10 +860,31 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
         kick();
       },
     };
+    // Khung đầu vẽ ngay (tĩnh); tự xoay, đung đưa và tín hiệu bật sau khi vẽ xong lần đầu, sau sự kiện load và khi trình duyệt rảnh.
+    // Máy chậm không đặt hẹn nào. Hai đường gọi armLater (vẽ xong, load xong) luôn có một đường đến sau cùng, nên chỉ đặt một hẹn.
+    let armCancel = () => {};
+    let loaded = document.readyState === "complete";
+    const armLater = () => {
+      if (!loaded || !drawn || slow || armed) return;
+      if (typeof window.requestIdleCallback === "function") {
+        const id = requestIdleCallback(arm, { timeout: 1500 });
+        armCancel = () => cancelIdleCallback(id);
+      } else {
+        const id = window.setTimeout(arm, 300);
+        armCancel = () => clearTimeout(id);
+      }
+    };
+    const onLoad = () => {
+      loaded = true;
+      armLater();
+    };
+    if (!loaded) window.addEventListener("load", onLoad, { once: true });
     kick();
 
     return () => {
       cancelAnimationFrame(raf);
+      armCancel();
+      window.removeEventListener("load", onLoad);
       ro.disconnect();
       io.disconnect();
       document.removeEventListener("visibilitychange", kick);
@@ -974,4 +1089,3 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
   );
 }
 
-export default Constellation;

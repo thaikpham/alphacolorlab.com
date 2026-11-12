@@ -1,13 +1,15 @@
 "use client";
 
+import { useId, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { gearManager, profile as T } from "@/app/content";
+import { gearManager, kolSets, profile as T } from "@/app/content";
 import type { GearBag } from "@/lib/gear";
 import { gearCatalog, type Item } from "@/lib/gearCatalog";
+import { IntroCard, ProfileShell } from "./ProfileShell";
+import { ProfileTabPanel, ProfileTabs, useActiveTab, type TabItem } from "./ProfileTabs";
 
 const CATS = ["body", "lens", "acc"] as const;
-const AF = ["top-0 left-0 border-t-2 border-l-2", "top-0 right-0 border-t-2 border-r-2", "bottom-0 left-0 border-b-2 border-l-2", "bottom-0 right-0 border-b-2 border-r-2"];
 
 export interface ProfileData {
   name: string;
@@ -18,79 +20,46 @@ export interface ProfileData {
   gear: GearBag;
 }
 
-const host = (url: string) => {
-  const u = new URL(url);
-  return (u.hostname.replace(/^www\./, "") + u.pathname).replace(/\/$/, "");
-};
+/** Tab thêm của trang (KOL: Ảnh mẫu), đặt sau các tab gốc. */
+export type ProfileExtraTab = { id: string; label: string; count?: number | string; body: ReactNode };
 
-/** Hồ sơ người dùng: avatar trong khung lấy nét, tên, @username, giới thiệu, liên kết, đếm túi đồ, rồi lưới các món có ảnh.
- * Dùng cho /tai-khoan (chủ hồ sơ: actions, onRemove, children = form sửa và ô thêm đồ) và /ho-so (link chia sẻ, chỉ xem). */
-export function ProfileView({ data, actions, onRemove, children }: { data: ProfileData; actions?: React.ReactNode; onRemove?: (cat: keyof GearBag, id: string) => void; children?: React.ReactNode }) {
+/** Hồ sơ người dùng kiểu trang mạng xã hội (khung ở ProfileShell). Tab "Túi đồ" và, khi có bộ đã sưu tầm, "Bộ đã sưu tầm" nằm ở đáy thẻ tiêu đề; extra thêm tab sau đó.
+ * Cột trái: thẻ Giới thiệu (chủ hồ sơ: luôn hiện, intro thay phần đọc khi sửa; introFooter: hàng cuối thẻ khi đang đọc, vd. link xem trang công khai của KOL) và account. Cột phải: panel của tab đang mở; túi đồ gồm gearTop (ô thêm đồ, thông báo hoàn tác) rồi các nhóm món.
+ * Dùng cho /tai-khoan (owner) và /ho-so (chỉ xem: không tab, thẻ Giới thiệu chỉ hiện khi có dữ liệu).
+ * cover và coverAction (nút đổi ảnh bìa) đặt trên ProfileShell.
+ * wall (chỉ owner KOL) nằm trên cùng cột phải, ngoài tab. Khi wallEditing (đang soạn bộ trên tường) thì ẩn tab, nút đổi ảnh bìa và các panel, giữ mounted. */
+export function ProfileView({ data, owner = false, actions, intro, introFooter, account, gearTop, onRemove, saved, wall, wallEditing = false, cover, coverAction, extra = [] }: { data: ProfileData; owner?: boolean; actions?: ReactNode; intro?: ReactNode; introFooter?: ReactNode; account?: ReactNode; gearTop?: ReactNode; onRemove?: (cat: keyof GearBag, id: string) => void; saved?: { count: number; list: ReactNode }; wall?: ReactNode; wallEditing?: boolean; cover?: string; coverAction?: ReactNode; extra?: ProfileExtraTab[] }) {
+  const base = useId();
   const catalog = gearCatalog();
   const items = (cat: keyof GearBag) => data.gear[cat].flatMap((id) => catalog[cat].filter((i) => i.id === id));
   const total = data.gear.body.length + data.gear.lens.length + data.gear.acc.length;
   const stats = T.stats(data.gear.body.length, data.gear.lens.length, data.gear.acc.length);
+  const tabs: TabItem[] = [{ id: "gear", label: gearManager.title, count: total }, ...(saved ? [{ id: "saved", label: kolSets.savedTitle, count: saved.count }] : []), ...extra.map((e) => ({ id: e.id, label: e.label, count: e.count }))];
+  const [active, select] = useActiveTab(tabs.map((t) => t.id));
+  const tabbed = !!saved || extra.length > 0;
+  const showIntro = owner || !!data.bio || data.links.length > 0;
+  const aside = showIntro ? (
+    <IntroCard bio={data.bio} links={data.links} empty={T.noIntro} footer={introFooter}>
+      {intro}
+    </IntroCard>
+  ) : undefined;
+  // Ảnh trang trí cho bìa khi chưa có ảnh bìa: thân máy trước, rồi ống kính, phụ kiện; trùng thì bỏ, tối đa 4.
+  const kit = [...new Set(CATS.flatMap((cat) => items(cat).map((i) => i.image)))].filter((src): src is string => !!src).slice(0, 4);
 
-  return (
-    <main className="mx-auto max-w-page px-4 pt-8 pb-16 sm:px-6 lg:pt-12">
-      <section aria-labelledby="profile-name" className="rounded-card bg-card p-6 shadow-card sm:p-8">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-          <div className="relative size-28 shrink-0 p-2">
-            {AF.map((c) => (
-              <span key={c} aria-hidden="true" className={`pointer-events-none absolute size-5 border-accent ${c}`} />
-            ))}
-            {data.avatar ? (
-              <img src={data.avatar} alt="" width={96} height={96} referrerPolicy="no-referrer" className="size-24 rounded-full bg-fill object-cover" />
-            ) : (
-              <span aria-hidden="true" className="grid size-24 place-items-center rounded-full bg-fill text-title font-normal text-label">
-                {data.name.slice(0, 1).toUpperCase()}
-              </span>
-            )}
-          </div>
-
-          <div className="min-w-0 flex-1">
-            <h1 id="profile-name" className="text-title font-normal text-balance">
-              {data.name}
-            </h1>
-            {data.username && <p className="mt-1 text-callout font-semibold text-secondary">@{data.username}</p>}
-            {data.bio && <p className="mt-4 max-w-2xl text-body text-label">{data.bio}</p>}
-            {data.links.length > 0 && (
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {data.links.map((url) => (
-                  <li key={url}>
-                    <a href={url} target="_blank" rel="noopener noreferrer nofollow ugc" className="inline-flex h-11 items-center gap-2 rounded-full bg-fill px-4 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-                        <path d="M6.5 9.5l3-3M7 4.5l1-1a2.8 2.8 0 014 4l-1 1M9 11.5l-1 1a2.8 2.8 0 01-4-4l1-1" />
-                      </svg>
-                      {host(url)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <p className="mt-5 flex flex-wrap gap-x-4 gap-y-1 text-subhead font-semibold text-label tabular-nums">
-              {stats.map((s) => (
-                <span key={s}>{s}</span>
-              ))}
-            </p>
-            {actions && <div className="mt-6 flex flex-wrap items-center gap-3">{actions}</div>}
-          </div>
-        </div>
-      </section>
-
-      {children}
-
+  const gear = (
+    <div className="flex flex-col gap-6">
+      {gearTop}
       {total === 0 ? (
-        <p role="status" className="mt-12 text-center text-callout text-label">
+        <p role="status" className="py-8 text-center text-callout text-label">
           {T.empty}
         </p>
       ) : (
         CATS.filter((cat) => data.gear[cat].length).map((cat) => (
-          <section key={cat} aria-labelledby={`bag-${cat}`} className="mt-12">
-            <h2 id={`bag-${cat}`} className="text-title3 font-medium">
-              {gearManager.groups[cat]} <span className="text-secondary tabular-nums">{data.gear[cat].length}</span>
-            </h2>
-            <ul className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <section key={cat} aria-labelledby={`${base}-bag-${cat}`}>
+            <h3 id={`${base}-bag-${cat}`} className="text-subhead font-semibold">
+              {gearManager.groups[cat]} <span className="font-normal text-secondary tabular-nums">{data.gear[cat].length}</span>
+            </h3>
+            <ul className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3">
               {items(cat).map((item) => (
                 <GearCard key={item.id} item={item} cat={cat} onRemove={onRemove} />
               ))}
@@ -98,7 +67,42 @@ export function ProfileView({ data, actions, onRemove, children }: { data: Profi
           </section>
         ))
       )}
-    </main>
+    </div>
+  );
+
+  return (
+    <ProfileShell
+      name={data.name}
+      handle={data.username}
+      avatar={data.avatar}
+      cover={cover}
+      coverAction={wallEditing ? undefined : coverAction}
+      kit={kit}
+      stats={stats}
+      actions={actions}
+      tabs={tabbed && !wallEditing ? <ProfileTabs base={base} label={T.title} tabs={tabs} active={active} onSelect={select} /> : undefined}
+      aside={aside}
+      asideBottom={account}
+    >
+      <div className="flex flex-col gap-6">
+        {wall}
+        <div hidden={wallEditing}>
+          <ProfileTabPanel base={base} id="gear" tabbed={tabbed} active={active === "gear"}>
+            {gear}
+          </ProfileTabPanel>
+          {saved && (
+            <ProfileTabPanel base={base} id="saved" tabbed active={active === "saved"}>
+              {saved.list}
+            </ProfileTabPanel>
+          )}
+          {extra.map((e) => (
+            <ProfileTabPanel key={e.id} base={base} id={e.id} tabbed active={active === e.id}>
+              {e.body}
+            </ProfileTabPanel>
+          ))}
+        </div>
+      </div>
+    </ProfileShell>
   );
 }
 

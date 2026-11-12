@@ -1,8 +1,10 @@
 import type { GameModel, Mission, SlotTask, SlotStep } from "./types.ts";
 import { getCatalog } from "./catalog.ts";
+import { allowsControl, baselineSkips, baselineValues, BASELINE_ORDER } from "./rules.ts";
+import type { BaselineContext } from "./rules.ts";
 
 // Mulberry32 PRNG: seeded, deterministic
-function mulberry32(seed: number) {
+export function mulberry32(seed: number) {
   return () => {
     let t = (seed += 0x6d2b79f5);
     t = Math.imul(t ^ (t >>> 15), 1 | t);
@@ -14,7 +16,8 @@ function mulberry32(seed: number) {
 export function generateMission(
   model: GameModel,
   seed: number = Date.now(),
-  counts?: Record<string, number>
+  counts?: Record<string, number>,
+  createdAt: number = Date.now()
 ): Mission {
   const rng = mulberry32(seed);
   const catalog = getCatalog();
@@ -100,32 +103,13 @@ export function generateMission(
         // Pick a value
         let value = setting.values[Math.floor(rng() * setting.values.length)];
 
-        // Enforce dependencies
-        let valid = true;
+        // Enforce dependencies (rules.ts)
         const pendingSteps = new Map<string, string>();
         for (const step of steps) {
           pendingSteps.set(step.settingId, step.valueId);
         }
 
-        // facePriority requires metering=multi in same slot
-        if (setting.id === "facePriority") {
-          if (!pendingSteps.has("metering") || pendingSteps.get("metering") !== "multi") {
-            valid = false;
-          }
-        }
-
-        // focusArea needs an AF focusMode in the same slot (greyed in MF; the camera may be left in MF by an earlier slot); tracking needs AF-C
-        if (setting.id === "focusArea") {
-          const mode = pendingSteps.get("focusMode");
-          if (!mode || mode === "MF" || (value.id.startsWith("tracking-") && mode !== "AF-C")) valid = false;
-        }
-
-        // focusMode=MF cannot coexist with focusArea
-        if (setting.id === "focusMode" && value.id === "MF" && pendingSteps.has("focusArea")) {
-          valid = false;
-        }
-
-        if (!valid) continue;
+        if (!allowsControl(setting.id, value.id, pendingSteps)) continue;
 
         usedControlSettings.add(setting.id);
         steps.push({
@@ -140,20 +124,18 @@ export function generateMission(
       // Không đặt nền trùng mục tiêu ô 1; Vùng lấy nét cần chế độ AF (Theo dõi cần AF-C), máy làm mờ mục này khi đang MF;
       // Ưu tiên mặt (đa điểm) chỉ chọn được khi đo sáng là Đa điểm
       if (slot === 1) {
-        const needsAfC = slotTarget.settingId === "focusArea" && slotTarget.valueId.startsWith("tracking-");
-        const mfTarget = slotTarget.settingId === "focusMode" && slotTarget.valueId === "MF";
-        const faceTarget = targets.some((t) => t.settingId === "facePriority");
-        let mode = slotTarget.settingId === "focusMode" ? slotTarget.valueId : null;
-        for (const settingId of ["focusMode", "focusArea", "metering"]) {
-          if (settingId === slotTarget.settingId || (settingId === "focusArea" && mfTarget)) continue;
+        const ctx: BaselineContext = {
+          target: slotTarget,
+          faceTarget: targets.some((t) => t.settingId === "facePriority"),
+          mode: slotTarget.settingId === "focusMode" ? slotTarget.valueId : null,
+        };
+        for (const settingId of BASELINE_ORDER) {
+          if (baselineSkips(settingId, slotTarget)) continue;
           const setting = modelCat.settings.find(s => s.id === settingId);
           if (!setting) continue;
-          let values = setting.values;
-          if (settingId === "focusMode") values = values.filter((v) => (needsAfC ? v.id === "AF-C" : v.id !== "MF"));
-          if (settingId === "focusArea") values = values.filter((v) => !v.id.startsWith("tracking-") || mode === "AF-C");
-          if (settingId === "metering" && faceTarget) values = values.filter((v) => v.id === "multi");
+          const values = baselineValues(settingId, setting.values, ctx);
           const value = values[Math.floor(rng() * values.length)];
-          if (settingId === "focusMode") mode = value.id;
+          if (settingId === "focusMode") ctx.mode = value.id;
           steps.push({
             settingId,
             valueId: value.id,
@@ -183,7 +165,7 @@ export function generateMission(
     id: `mission_${seed}`,
     model,
     seed,
-    createdAt: Date.now(),
+    createdAt,
     slots
   };
 }
