@@ -5,12 +5,14 @@ import { PpForm } from "./PpForm";
 import presets from "@/lib/zve10/presets";
 import { APERTURES, SHUTTERS, ISOS, FOCUS_AREAS, METERING_MODES, FACE_PRIORITY, SOFT_SKIN, AUTO_REVIEW, FLASH_MODES, EXP_COMP_SETS, AWB_PRIORITIES, PRE_AF, STEADY_SHOT, E_FRONT_CURTAIN, LIVE_VIEW } from "@/lib/zve10/dat";
 import { type SlotDraft } from "@/lib/presetSets";
+import { addBank, bankEntries, editBank, freeBankNumbers, removeBank } from "@/lib/ppBanks";
 
 type Term = ComponentProps<typeof InfoTip>["entry"];
 type GroupId = (typeof presetConsole.groups)[number]["id"];
 
 const SELECT = "w-full h-11 rounded-control border border-separator bg-card px-3 text-callout text-label";
 const GRID = "grid gap-x-4 gap-y-5 sm:grid-cols-2 items-start";
+const DASH_GRID = "grid gap-x-4 gap-y-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 items-start";
 
 function Field({ id, label, term, children }: { id?: string; label: string; term?: Term; children: ReactNode }) {
   return (
@@ -26,18 +28,28 @@ function Field({ id, label, term, children }: { id?: string; label: string; term
   );
 }
 
+/**
+ * Bốn nhóm cài đặt của một ô. dashboard: mọi nhóm mở sẵn cạnh nhau (không tab), bank PP2–PP10 sửa được, hướng dẫn nằm trong khung đóng (implies full).
+ */
 export function SlotCard({
   settings,
   onChange,
-  full,
+  full: fullProp,
+  dashboard,
 }: {
   settings: SlotDraft;
   onChange: (settings: SlotDraft) => void;
   full?: boolean;
+  dashboard?: boolean;
 }) {
+  const full = Boolean(fullProp || dashboard);
   const uid = useId();
   const [showPpForm, setShowPpForm] = useState(false);
   const [group, setGroup] = useState<GroupId>("exposure");
+  const [addK, setAddK] = useState<number | null>(null);
+  const [addRecipe, setAddRecipe] = useState<string>("");
+  const grid = dashboard ? DASH_GRID : GRID;
+  const span = dashboard ? "sm:col-span-2 xl:col-span-4" : "sm:col-span-2";
 
   const presetsByGroup = presets.reduce(
     (acc, p) => {
@@ -50,6 +62,10 @@ export function SlotCard({
   );
 
   const selectedPreset = presets.find((p) => p.id === settings.recipeId);
+  // Form thêm bank: số đầu tiên còn trống và công thức đầu tiên không bị chặn (đúng thứ tự hiện trong select)
+  const freeBanks = freeBankNumbers(settings);
+  const bankNumber = addK !== null && freeBanks.includes(addK) ? addK : freeBanks[0];
+  const bankRecipe = addRecipe || presets.find((p) => !p.blocked)?.id || "";
 
   const handlePresetChange = (recipeId: string) => {
     if (recipeId === "custom") {
@@ -108,7 +124,7 @@ export function SlotCard({
 
   const panels: Record<GroupId, ReactNode> = {
     exposure: (
-      <div className={GRID}>
+      <div className={grid}>
         <Field label="Chế độ chụp" term={glossary.shootMode}>
           <div className="flex gap-1 rounded-control bg-fill p-1">
             {["Giữ", "P", "A", "S", "M"].map((m) => {
@@ -239,7 +255,7 @@ export function SlotCard({
     ),
 
     focus: (
-      <div className={GRID}>
+      <div className={grid}>
         <Field id={`${uid}-focus`} label="Chế độ lấy nét" term={glossary.focus}>
           <select
             id={`${uid}-focus`}
@@ -320,7 +336,7 @@ export function SlotCard({
     ),
 
     color: (
-      <div className={GRID}>
+      <div className={grid}>
         {recipeSelect}
 
         {settings.ppOn === false ? (
@@ -329,7 +345,7 @@ export function SlotCard({
           <div className="sm:col-span-2 text-footnote text-secondary">Chọn công thức màu để chỉnh từng thông số Picture Profile.</div>
         ) : (
           (full || showPpForm) && (
-            <div className="sm:col-span-2">
+            <div className={span}>
               <PpForm
                 initialPreset={full ? { pp: settings.pp } : selectedPreset}
                 onApply={(pp) => {
@@ -338,13 +354,79 @@ export function SlotCard({
                 }}
                 onClose={() => setShowPpForm(false)}
                 live={full}
+                dashboard={dashboard}
               />
             </div>
           )
         )}
 
+        {/* PP2–PP10 banks, bảng dashboard: sửa được từng bank */}
+        {dashboard && (
+          <div className={`${span} space-y-3 border-t border-separator pt-4`}>
+            <div className="text-footnote text-secondary">{ppBanksUI.note}</div>
+            {bankEntries(settings).length === 0 && <div className="text-footnote text-secondary">{ppBanksUI.empty}</div>}
+            {bankEntries(settings).map(({ k, pp, recipeId }) => (
+              <details key={k} className="rounded-control bg-fill">
+                <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-3 px-3 text-subhead text-label">
+                  <span>{ppBanksUI.bankLabel(k, recipeId ? presets.find((p) => p.id === recipeId)?.name || "—" : ppBanksUI.customName)}</span>
+                  <span className="text-footnote text-secondary">{ppBanksUI.edit}</span>
+                </summary>
+                <div className="space-y-3 px-3 pb-3">
+                  <PpForm initialPreset={{ pp }} live dashboard onApply={(next) => onChange(editBank(settings, k, next))} />
+                  <button
+                    type="button"
+                    onClick={() => onChange(removeBank(settings, k))}
+                    className="h-11 rounded-full bg-card px-5 text-subhead font-semibold text-danger transition hover:bg-fill-strong"
+                  >
+                    {ppBanksUI.removeBank(k)}
+                  </button>
+                </div>
+              </details>
+            ))}
+            {freeBanks.length > 0 && (
+              <div className="grid gap-3 sm:grid-cols-3 sm:items-end">
+                <Field id={`${uid}-bk`} label={ppBanksUI.addNumber}>
+                  <select id={`${uid}-bk`} value={bankNumber} onChange={(e) => setAddK(Number(e.target.value))} className={SELECT}>
+                    {freeBanks.map((n) => (
+                      <option key={n} value={n}>
+                        PP{n}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <Field id={`${uid}-br`} label={ppBanksUI.addRecipe}>
+                  <select id={`${uid}-br`} value={bankRecipe} onChange={(e) => setAddRecipe(e.target.value)} className={SELECT}>
+                    {Object.entries(presetsByGroup).map(([group, groupPresets]) => (
+                      <optgroup key={group} label={group}>
+                        {groupPresets.map((p) => (
+                          <option key={p.id} value={p.id}>
+                            {p.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                    ))}
+                  </select>
+                </Field>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const recipe = presets.find((p) => p.id === bankRecipe);
+                    if (!recipe || bankNumber === undefined) return;
+                    onChange(addBank(settings, bankNumber, recipe.pp, recipe.id));
+                    setAddK(null);
+                  }}
+                  disabled={!bankRecipe || bankNumber === undefined}
+                  className="h-11 justify-self-start rounded-full bg-fill px-5 text-subhead font-semibold text-label transition hover:bg-fill-strong disabled:opacity-40"
+                >
+                  {ppBanksUI.add}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* PP2–PP10 banks */}
-        {settings.ppBanks && Object.keys(settings.ppBanks).length > 0 && (
+        {!dashboard && settings.ppBanks && Object.keys(settings.ppBanks).length > 0 && (
           <div className="sm:col-span-2 space-y-2 border-t border-separator pt-4">
             <div className="text-footnote text-secondary mb-2">{ppBanksUI.note}</div>
             {Object.entries(settings.ppBanks).map(([kStr]) => {
@@ -495,7 +577,7 @@ export function SlotCard({
     ),
 
     camera: (
-      <div className={GRID}>
+      <div className={grid}>
         <Field id={`${uid}-review`} label="Tự động xem lại" term={glossary.autoReview}>
           <select
             id={`${uid}-review`}
@@ -569,30 +651,65 @@ export function SlotCard({
     ),
   };
 
+  const stepRows = (
+    <div className="divide-y divide-separator border-y border-separator">
+      {sections.flatMap((section) =>
+        section.steps.filter((step) => step.memory !== "ready").map((step) => (
+          <div key={step.n} className="py-3 flex items-start justify-between gap-4">
+            <div>
+              <div className="text-subhead text-label">{step.title}</div>
+              <div className="text-footnote text-secondary">{step.en}</div>
+            </div>
+            <div className="text-right flex-shrink-0">
+              <div className="text-footnote text-label mb-1">{step.value}</div>
+              <span className="text-footnote text-secondary bg-fill rounded-badge px-2 py-1 inline-block whitespace-nowrap">
+                {step.memory === "absent" ? "ZV-E10 không có" : step.memory === "notStored" ? "Cài tay, không lưu vào ô nhớ" : "Chờ xác nhận từ máy"}
+              </span>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  );
+
   return (
     <div className="space-y-5">
-      <div role="group" aria-label={presetConsole.slotEditor} className="flex gap-1 rounded-control bg-fill p-1">
-        {presetConsole.groups.map((g) => (
-          <button
-            key={g.id}
-            type="button"
-            onClick={() => setGroup(g.id)}
-            aria-pressed={group === g.id}
-            className={`flex-1 h-11 rounded-badge text-subhead font-medium transition ${
-              group === g.id ? "bg-card shadow-thumb font-semibold text-label" : "text-label hover:bg-fill-strong"
-            }`}
-          >
-            {g.label}
-          </button>
-        ))}
-      </div>
+      {dashboard ? (
+        // Bốn nhóm mở cạnh nhau, không tab: mọi thông số thấy được cùng lúc
+        presetConsole.groups.map((g) => (
+          <section key={g.id} aria-labelledby={`${uid}-g-${g.id}`} className="space-y-4 border-t border-separator pt-5">
+            <h4 id={`${uid}-g-${g.id}`} className="text-subhead font-semibold text-label">
+              {g.label}
+            </h4>
+            {panels[g.id]}
+          </section>
+        ))
+      ) : (
+        <>
+          <div role="group" aria-label={presetConsole.slotEditor} className="flex gap-1 rounded-control bg-fill p-1">
+            {presetConsole.groups.map((g) => (
+              <button
+                key={g.id}
+                type="button"
+                onClick={() => setGroup(g.id)}
+                aria-pressed={group === g.id}
+                className={`flex-1 h-11 rounded-badge text-subhead font-medium transition ${
+                  group === g.id ? "bg-card shadow-thumb font-semibold text-label" : "text-label hover:bg-fill-strong"
+                }`}
+              >
+                {g.label}
+              </button>
+            ))}
+          </div>
 
-      {/* Mỗi nhóm giữ DOM khi chuyển tab để PpForm không mất chỉnh sửa dở */}
-      {presetConsole.groups.map((g) => (
-        <div key={g.id} hidden={group !== g.id}>
-          {panels[g.id]}
-        </div>
-      ))}
+          {/* Mỗi nhóm giữ DOM khi chuyển tab để PpForm không mất chỉnh sửa dở */}
+          {presetConsole.groups.map((g) => (
+            <div key={g.id} hidden={group !== g.id}>
+              {panels[g.id]}
+            </div>
+          ))}
+        </>
+      )}
 
       {/* Quick Apply */}
       <button
@@ -624,27 +741,12 @@ export function SlotCard({
       </button>
 
       {/* Các mục khác trong hướng dẫn (full mode only) */}
-      {full && (
-        <div>
-          <div className="divide-y divide-separator border-y border-separator">
-            {sections.flatMap((section) =>
-              section.steps.filter((step) => step.memory !== "ready").map((step) => (
-                <div key={step.n} className="py-3 flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-subhead text-label">{step.title}</div>
-                    <div className="text-footnote text-secondary">{step.en}</div>
-                  </div>
-                  <div className="text-right flex-shrink-0">
-                    <div className="text-footnote text-label mb-1">{step.value}</div>
-                    <span className="text-footnote text-secondary bg-fill rounded-badge px-2 py-1 inline-block whitespace-nowrap">
-                      {step.memory === "absent" ? "ZV-E10 không có" : step.memory === "notStored" ? "Cài tay, không lưu vào ô nhớ" : "Chờ xác nhận từ máy"}
-                    </span>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
+      {full && !dashboard && <div>{stepRows}</div>}
+      {dashboard && (
+        <details className="rounded-control bg-fill px-4 py-3">
+          <summary className="cursor-pointer text-subhead font-semibold text-label">{presetConsole.notStoredTitle}</summary>
+          <div className="mt-3">{stepRows}</div>
+        </details>
       )}
     </div>
   );

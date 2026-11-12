@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { importDat } from "@/lib/datImport";
+import { verifyAdmin } from "@/lib/adminAuth";
 import { writeScan } from "@/lib/decode/scanFs";
 import type { GameModel, Mission, SlotTask } from "@/lib/game/types";
 
-// Lưu một lượt mini game (mission + 4 file máy đã lưu) vào test/fixtures/rounds/<model>/<id>/ rồi quét lại dự án. Chỉ chạy khi npm run dev.
+// Lưu một lượt mini game (mission + 4 file máy đã lưu) vào test/fixtures/rounds/<model>/<id>/ rồi quét lại dự án. Chỉ chạy khi npm run dev
+// và khi verifyAdmin xác nhận tài khoản quản trị (Bearer là phiên Google).
 // Mọi đầu vào được kiểm tra trước khi ghi đĩa. Lượt đã có thư mục thì trả 409, không ghi đè.
 
 const MODEL_IDS: readonly GameModel[] = ["zve10", "a6400", "a7c2"];
@@ -99,6 +101,9 @@ export async function POST(req: NextRequest) {
   if (process.env.NODE_ENV === "production") {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
+
+  const auth = await verifyAdmin(req);
+  if (!auth.ok) return NextResponse.json({ ok: false }, { status: auth.status });
 
   // CSRF guard: như app/admin/api/route.ts, chỉ nhận Origin localhost hoặc 127.0.0.1
   const origin = req.headers.get("origin");

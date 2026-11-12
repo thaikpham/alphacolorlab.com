@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { guide, cameraModels, alphaConsole as C, datImport } from "@/app/content";
 import { decodeProgress, showDecodeStatus } from "@/lib/decodeProgress";
 import { NextRound } from "@/app/components/decode/NextRound";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   title: C.decodePage.title,
   description: guide.contribute.lead,
   alternates: { canonical: `${SITE_URL}/giai-ma` },
+  robots: { index: false },
 };
 
 function Bar({ id, label, thin }: { id: string; label: string; thin?: boolean }) {
@@ -27,6 +29,8 @@ function Bar({ id, label, thin }: { id: string; label: string; thin?: boolean })
 }
 
 export default function DecodePage() {
+  // Khách không cần biết tới việc giải mã: trang này chỉ có khi npm run dev, bản production trả 404 (như /admin)
+  if (process.env.NODE_ENV === "production") notFound();
   const P = guide.contribute;
   return (
     <div className="px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 md:pt-6">

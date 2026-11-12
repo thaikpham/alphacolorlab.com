@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { cameraModels, sonyBodies, alphaConsole as C } from "@/app/content";
 import { PresetBuilder } from "@/app/components/PresetBuilder";
 import { UseModelButton } from "@/app/components/ModelPicker";
@@ -27,12 +26,8 @@ export default function PresetPage() {
       {notDecoded.map((m) => (
         <section key={m.id} data-model-only={m.id} className="mt-4 max-w-xl rounded-card bg-card p-4 shadow-card sm:p-5">
           <h1 className="text-title3 font-medium">{C.notDecoded.title}</h1>
-          <p className="mt-2 text-body text-secondary text-pretty">{C.notDecoded.text(m.name)}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <UseModelButton id="zve10">{C.notDecoded.useZve10}</UseModelButton>
-            <Link href="/giai-ma" className="inline-flex h-11 items-center rounded-full px-5 text-subhead font-semibold text-accent-text transition-colors hover:bg-accent/10">
-              {C.notDecoded.contribute}
-            </Link>
           </div>
         </section>
       ))}

@@ -20,7 +20,7 @@ type Editing = { set?: RemoteSet } | null;
 /**
  * Bộ M1–M4 của tài khoản KOL, ở tường /tai-khoan (KolWall). Mỗi KOL có một bộ: chưa có thì mời tạo; có bộ thì hiện thẻ của bộ.
  * Nhiều hơn một bộ (dữ liệu cũ) thì vẫn hiện đủ từng hàng, không ẩn, không có nút tạo. Mỗi lần mở tải lại; lỗi thì báo, không hiện danh sách rỗng.
- * Soạn bộ thay phần danh sách: danh sách vẫn mounted, chỉ ẩn bằng hidden. Lưu xong hoặc hủy thì đóng trình soạn, tải lại danh sách và trả focus về nút đã mở (hoặc tiêu đề nếu nút đó không còn).
+ * Soạn bộ mở trong một <dialog> toàn màn hình (showModal), danh sách nằm dưới và vẫn mounted. Esc hoạt động như Hủy. Lưu xong hoặc hủy thì đóng trình soạn, tải lại danh sách và trả focus về nút đã mở (hoặc tiêu đề nếu nút đó không còn).
  * hasProfile false: không tải danh sách, chỉ có một dòng chỉ dẫn lên mục Giới thiệu.
  * onEditingChange báo khi trình soạn mở hoặc đóng. Không khóa theo form hồ sơ: các trình soạn mở cùng lúc được.
  */
@@ -33,9 +33,9 @@ export function KolSetModule({ userId, hasProfile, onEditingChange }: { userId: 
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState<Editing>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const editor = useRef<HTMLDialogElement>(null); // trình soạn toàn màn hình
   const opener = useRef<HTMLElement | null>(null); // nút vừa mở trình soạn, nhận lại focus khi đóng
   const heading = useRef<HTMLHeadingElement>(null);
-  const editorBox = useRef<HTMLDivElement>(null);
   const wasEditing = useRef(false);
 
   useEffect(() => {
@@ -56,8 +56,8 @@ export function KolSetModule({ userId, hasProfile, onEditingChange }: { userId: 
 
   useEffect(() => {
     if (editing === null && wasEditing.current) (opener.current?.isConnected ? opener.current : heading.current)?.focus();
-    // Mở trình soạn thì đưa focus vào ô đầu tiên của nó, không để focus rơi về body.
-    if (editing !== null && !wasEditing.current) editorBox.current?.querySelector<HTMLElement>("input, textarea")?.focus();
+    // Mở trình soạn thì đưa focus vào ô đầu tiên của nó, không để focus rơi về nút Hủy của hộp thoại.
+    if (editing !== null && !wasEditing.current) editor.current?.querySelector<HTMLElement>("input, textarea")?.focus();
     wasEditing.current = editing !== null;
   }, [editing]);
 
@@ -65,10 +65,12 @@ export function KolSetModule({ userId, hasProfile, onEditingChange }: { userId: 
 
   const edit = (el: HTMLElement, next: Exclude<Editing, null>) => {
     opener.current = el;
+    editor.current?.showModal();
     setEditing(next);
     onEditingChange?.(true);
   };
   const close = () => {
+    editor.current?.close();
     setEditing(null);
     onEditingChange?.(false);
   };
@@ -109,10 +111,17 @@ export function KolSetModule({ userId, hasProfile, onEditingChange }: { userId: 
 
   return (
     <>
-      <div ref={editorBox} hidden={editing === null}>
+      <dialog
+        ref={editor}
+        onCancel={(e) => {
+          e.preventDefault();
+          close();
+        }}
+        className="m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overscroll-contain bg-bg p-0 text-label"
+      >
         {editing && <KolSetEditor key={editing.set?.id ?? "new"} userId={userId} initial={editing.set} taken={TAKEN} onDone={saved} onCancel={close} />}
-      </div>
-      <section aria-labelledby={`${uid}-s`} hidden={editing !== null}>
+      </dialog>
+      <section aria-labelledby={`${uid}-s`}>
         <h2 ref={heading} tabIndex={-1} id={`${uid}-s`} className="text-title3 font-medium">
           {kolStudio.mySets}
         </h2>

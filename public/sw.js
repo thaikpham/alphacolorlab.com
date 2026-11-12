@@ -1,4 +1,4 @@
-const VERSION = "1.2.0"; // tăng khi đổi danh sách precache hoặc chiến lược cache
+const VERSION = "1.2.1"; // tăng khi đổi danh sách precache hoặc chiến lược cache
 const CACHE_NAME = `zve10-pwa-${VERSION}`;
 
 const PRECACHE_URLS = [
@@ -57,6 +57,9 @@ self.addEventListener("fetch", (event) => {
 
   // Only handle GET requests from this origin
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
+
+  // Trang và dữ liệu quản trị (/admin/decode/data) không lưu vào cache, để người khác dùng chung máy không đọc được offline
+  if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return;
 
   // Navigations (HTML): network-first, cache successful responses, fallback to cached copy or /
   if (request.mode === "navigate") {

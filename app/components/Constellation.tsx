@@ -93,6 +93,8 @@ interface Api {
   enter(): void;
   setMine(ids: Set<string>): void;
   setOnly(app: string | null): void;
+  /** Về trạng thái chờ (bỏ chọn nút, bỏ zoom tay). Trả về true nếu vừa phải làm vậy, false nếu đã ở trạng thái chờ sẵn */
+  overview(): boolean;
 }
 
 export interface ConstellationProps {
@@ -107,12 +109,18 @@ export interface ConstellationProps {
   controls?: boolean;
   /** Hệ số zoom ở trạng thái chờ so với vừa khung (1.3³ ≈ bấm + 3 lần) */
   zoom?: number;
-  /** Chú giải màu ở đáy (đồ thị tổng hợp): 4 chấm + tên app, bấm để làm nổi cụm nút của app đó, bấm lại để bỏ */
+  /** Chú giải màu ở góc trên trái (đồ thị tổng hợp): 4 chấm + tên app, bấm để làm nổi cụm nút của app đó, bấm lại để bỏ */
   legend?: boolean;
+  /** Nút đặt ở góc trên phải, chừa chỗ sát mép cho nút avatar của landing (dưới sm: dưới chú giải), trước nút chế độ xem (landing: nút kính lúp mở ô tìm). Có thì hiện cả nút xem toàn bộ. */
+  tools?: React.ReactNode;
+  /** Đặt ở góc dưới phải (landing: nút cam vào dự án); nhận app đang xem ở chú giải, null khi đang xem toàn bộ */
+  legendAction?: (app: AppId | null) => React.ReactNode;
   /** Bớt nhãn khi chờ (đồ thị tổng hợp ở landing): mỗi app chỉ hiện nhãn vài nút chính nhiều liên kết nhất; đang lọc theo app thì hiện đủ nút chính của app đó */
   quietLabels?: boolean;
 }
 
+/** Mức phóng to của chế độ xem 2 so với vừa khung */
+const ZOOM_IN = 1.6;
 const LEGEND: AppId[] = ["console", "colors", "wiki", "blog"];
 const LEGEND_DOT: Record<AppId, string> = { console: "bg-app-console", colors: "bg-app-colors", wiki: "bg-app-wiki", blog: "bg-app-blog" };
 
@@ -120,7 +128,7 @@ const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 const ease = (a: number, b: number, k: number) => a + (b - a) * k;
 const short = (s: string) => (s.length > MAX_LABEL ? `${s.slice(0, MAX_LABEL - 1)}…` : s);
 
-export function Constellation({ graph, title, mine, header, controls = true, zoom = 1, legend = false, quietLabels = false }: ConstellationProps) {
+export function Constellation({ graph, title, mine, header, controls = true, zoom = 1, legend = false, legendAction, tools, quietLabels = false }: ConstellationProps) {
   const router = useRouter();
   const boxRef = useRef<HTMLDivElement>(null);
   const cvRef = useRef<HTMLCanvasElement>(null);
@@ -135,10 +143,18 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
   const [only, setOnly] = useState<AppId | null>(null);
   // Zoom lúc chờ đọc qua ref: landing đổi zoom theo mốc cuộn mà không dựng lại engine
   const zoomRef = useRef(zoom);
+  // Ba chế độ xem (nút ở góc dưới phải): 1 toàn bộ đồ thị vừa khung, 2 phóng to, 3 chỉ một app vừa khung.
+  // Chế độ 3 chính là lọc theo app (only), nên bấm chú giải cũng vào chế độ 3; lastApp nhớ app xem gần nhất.
+  const [zoomed, setZoomed] = useState(false);
+  const zoomedRef = useRef(false);
+  const lastApp = useRef<AppId>("console");
+  const mode = only ? 3 : zoomed ? 2 : 1;
   useEffect(() => {
     zoomRef.current = zoom;
+    zoomedRef.current = zoomed;
+    if (only) lastApp.current = only;
     api.current?.setOnly(only);
-  }, [zoom, only]);
+  }, [zoom, only, zoomed]);
   const uid = useId();
   const hintSeenKey = `graph-hint-seen-${graph.app}`;
   const hintOn = useRef(false);
@@ -209,23 +225,27 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
     // Lọc theo app (chú giải): nút ngoài app mờ đi
     let onlyApp: string | null = null;
     const off = (i: number) => onlyApp !== null && N[i].app !== onlyApp;
-    // Zoom lúc chờ so với vừa khung; đang lọc theo app thì không vượt quá vừa khung, để cụm của app không bị cắt mép
-    const idleZoom = () => (onlyApp !== null ? Math.min(zoomRef.current, 1) : zoomRef.current);
-    // Tâm camera lúc chờ: gốc toạ độ, hoặc tâm cụm nút của app đang lọc (để cụm đó nằm giữa và vừa khung)
+    // Zoom lúc chờ so với vừa khung: đang xem một app thì vừa khung cụm của app đó (không vượt quá vừa khung);
+    // còn lại theo zoom của trang, chế độ phóng to nhân thêm ZOOM_IN
+    const idleZoom = () => (onlyApp !== null ? Math.min(zoomRef.current, 1) : zoomRef.current * (zoomedRef.current ? ZOOM_IN : 1));
+    // Tâm camera lúc chờ: tâm các nút màu (nút chính), đang lọc theo app thì chỉ nút màu của app đó. Mọi mức zoom đều xoay quanh tâm này.
+    // Không có nút màu nào thì lấy tâm mọi nút đang hiện, rồi mới tới gốc toạ độ.
     const home = (): Point3 => {
-      const c = { x: 0, y: 0, z: 0 };
-      let k = 0;
-      if (onlyApp !== null)
+      for (const hubOnly of [true, false]) {
+        const c = { x: 0, y: 0, z: 0 };
+        let k = 0;
         for (const n of N) {
-          if (n.app !== onlyApp) continue;
+          if ((hubOnly && !n.hub) || (onlyApp !== null && n.app !== onlyApp)) continue;
           c.x += n.x;
           c.y += n.y;
           c.z += n.z;
           k++;
         }
-      return k ? { x: c.x / k, y: c.y / k, z: c.z / k } : c;
+        if (k) return { x: c.x / k, y: c.y / k, z: c.z / k };
+      }
+      return { x: 0, y: 0, z: 0 };
     };
-    const e: Engine = { yaw: 0.4, pitch: -0.15, zoom: 1, cam: { x: 0, y: 0, z: 0 }, tYaw: null, tPitch: null, tZoom: null, tCam: null, alpha: 0, sel: -1, hov: -1, ringR: 75, lockT: 0, rip: null, T: 0, W: 0, H: 0, touch: false, tapped: false, idle: true, fit: 0, spinResumeT: null };
+    const e: Engine = { yaw: 0.4, pitch: -0.15, zoom: 1, cam: home(), tYaw: null, tPitch: null, tZoom: null, tCam: null, alpha: 0, sel: -1, hov: -1, ringR: 75, lockT: 0, rip: null, T: 0, W: 0, H: 0, touch: false, tapped: false, idle: true, fit: 0, spinResumeT: null };
 
     // Vòng vẽ: chạy liên tục khi có đung đưa và đồ thị đang hiện; khi giảm chuyển động thì chỉ chạy lúc có thay đổi
     // Đung đưa, tự xoay và tín hiệu chỉ chạy sau khi trang tải xong và trình duyệt rảnh (xem armLater)
@@ -816,6 +836,19 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
       focus,
       clear,
       open,
+      overview: () => {
+        if (e.sel >= 0) {
+          clear();
+          return true;
+        }
+        if (e.idle) return false;
+        e.idle = true;
+        e.tCam = home();
+        e.tZoom = null;
+        e.spinResumeT = e.T;
+        kick();
+        return true;
+      },
       setOnly: (app) => {
         if (app === onlyApp) return kick();
         onlyApp = app;
@@ -969,12 +1002,6 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
             .sort((a, b) => a.at - b.at || Number(!!b.n.hub) - Number(!!a.n.hub) || a.n.label.length - b.n.label.length)
             .map(({ n }) => ({ id: n.id, label: n.label }));
         },
-        show: (id) => {
-          const a = api.current, i = a?.index(id) ?? -1;
-          if (!a || i < 0) return false;
-          if (id !== focusRef.current) a.focus(i);
-          return true;
-        },
         pick: (id) => {
           const a = api.current, i = a?.index(id) ?? -1;
           if (!a || i < 0) return;
@@ -1034,9 +1061,41 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
         </button>
       </div>}
 
+      {tools && (
+        <div className="graph-legend absolute top-28 right-2 z-20 flex transition-opacity duration-300 ease-ios sm:top-2 sm:right-14 md:top-4 md:right-16">
+          {tools}
+          <button
+            type="button"
+            aria-label={C.viewMode(C.viewModes[mode - 1])}
+            onClick={() => {
+              dismissHint();
+              // Đang chọn nút hoặc đã zoom tay: lần bấm đầu chỉ đưa về chế độ xem hiện tại; đang chờ sẵn thì sang mức kế
+              if (api.current?.overview()) return;
+              if (mode === 1) setZoomed(true);
+              else if (mode === 2) {
+                setZoomed(false);
+                setOnly(lastApp.current);
+              } else setOnly(null);
+            }}
+            className="group grid h-11 place-items-center rounded-full px-1.5 text-label"
+          >
+            <span className="flex h-8 items-center gap-2 rounded-full bg-card px-2.5 shadow-thumb transition-colors group-hover:bg-fill group-active:bg-fill-strong">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M2 5V2h3M9 2h3v3M12 9v3H9M5 12H2V9" />
+              </svg>
+              <span aria-hidden="true" className="flex gap-1">
+                {C.viewModes.map((name, i) => (
+                  <span key={name} className={`size-1 rounded-full ${i < mode ? "bg-accent" : "bg-fill-strong"}`} />
+                ))}
+              </span>
+            </span>
+          </button>
+        </div>
+      )}
+
       {legend && (
-        <div role="group" aria-label={C.legend} className="graph-legend absolute inset-x-2 bottom-4 z-10 flex justify-center transition-opacity duration-300 ease-ios">
-          <div className="grid grid-cols-2 rounded-card bg-card p-1 shadow-thumb sm:flex">
+        <div className="graph-legend absolute top-2 left-2 z-10 flex flex-wrap items-center gap-2 transition-opacity duration-300 ease-ios md:top-4 md:left-4">
+          <div role="group" aria-label={C.legend} className="grid grid-cols-2 rounded-card bg-card p-1 shadow-thumb sm:flex">
             {LEGEND.map((app) => (
               <button
                 key={app}
@@ -1044,6 +1103,7 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
                 aria-pressed={only === app}
                 onClick={() => {
                   dismissHint();
+                  setZoomed(false);
                   setOnly(only === app ? null : app);
                 }}
                 className={`inline-flex h-11 items-center gap-2 rounded-full px-3 text-footnote font-semibold text-label transition-colors ${only === app ? "bg-fill-strong" : "hover:bg-fill"}`}
@@ -1055,6 +1115,7 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
           </div>
         </div>
       )}
+      {legendAction && <div className="graph-legend absolute right-2 bottom-2 z-20 transition-opacity duration-300 ease-ios md:right-4 md:bottom-4">{legendAction(only)}</div>}
 
       {showFirstHint && (
         <p

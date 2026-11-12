@@ -32,7 +32,7 @@ export function CompareToggle({ item }: { item: CompareItem }) {
 /** Bottom tray with the current pick, shown only when something is picked (same pattern as CartTray). */
 export function CompareDock() {
   const compare = useCompare();
-  const wide = useWideBrowse(usePathname()); // Blog/Wiki ở Lưới không có thanh dọc: khay chạy từ mép trái
+  const wide = useWideBrowse(usePathname()); // Blog/Wiki ở Lưới và /admin không có thanh dọc: khay chạy từ mép trái
   if (compare.items.length === 0) return null;
   return (
     <>

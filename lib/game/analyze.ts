@@ -14,8 +14,8 @@
 import type { Finding, FindingChange, GameModel, Mission, RoundFile } from "../game/types.ts";
 import { adaptersFor } from "../decode/adapters.ts";
 import type { SettingAdapter } from "../decode/adapters.ts";
-import { statusRows } from "../decode/status.ts";
-import type { LocalFindings } from "../decode/status.ts";
+import { rowsFor } from "../decode/statusCore.ts";
+import type { LocalFindings } from "../decode/statusCore.ts";
 import { parseA7c2, diffA7c2 } from "../a7c2/dat.ts";
 import type { A7c2Dat } from "../a7c2/dat.ts";
 
@@ -94,7 +94,7 @@ export function analyzeRound(
   const byId = new Map(list.map((a) => [a.settingId, a] as const));
   const owned = new Set(list.filter((a) => a.located).flatMap((a) => a.owns));
   const confirmedBefore = new Map(
-    statusRows(model, {}, false).map((r) => [r.settingId, new Map(r.cells.map((c) => [c.valueId, c.status === "confirmed"] as const))] as const)
+    rowsFor(model, {}, null).map((r) => [r.settingId, new Map(r.cells.map((c) => [c.valueId, c.status === "confirmed"] as const))] as const)
   );
   const isNew = (settingId: string, valueId: string) => !confirmedBefore.get(settingId)?.get(valueId);
   const out: Finding[] = [];

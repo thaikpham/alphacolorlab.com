@@ -84,6 +84,7 @@
   --spacing-sidebar-head: 7rem; /* phần đầu thanh dọc: launcher + avatar h-14, tìm kiếm h-11, phần còn lại (gồm viền dưới) làm lề; index của app bắt đầu ngay dưới */
   --spacing-viewport: 100dvh; /* một màn hình: landing kéo lớp giới thiệu lên phủ đồ thị sticky (-mt-viewport) */
   --spacing-stage-phone: calc(100dvh - 7.5rem - env(safe-area-inset-bottom)); /* sân khấu đồ thị trên điện thoại: trừ thêm thanh tab dưới (4rem + safe area) */
+  --spacing-tabbar: calc(4rem + env(safe-area-inset-bottom)); /* thanh tab dưới (dưới lg) cộng vùng an toàn; thanh lưu của /admin đặt ngay trên */
 }
 
 /* Noto Sans (SIL OFL 1.1, public/fonts/OFL.txt): biến thiên 100–900, tách theo bảng chữ; trình duyệt chỉ tải phần cần. */
@@ -296,12 +297,6 @@ dialog::backdrop {
   }
 }
 
-/* Landing: mũi tên gợi ý cuộn (trắng, có glow; viền tối mờ để nổi trên nền sáng) và nhún nhảy.
-   Ngoại lệ có chủ đích của luật "không glow", người dùng yêu cầu 2026-11-10. */
-.scroll-hint {
-  color: var(--color-label);
-  filter: drop-shadow(0 0 3px var(--color-card)) drop-shadow(0 0 8px var(--color-card));
-}
 /* Chữ "color" trong tiêu đề giới thiệu: dải màu Alpha + 4 app chạy ngang và đổi sắc độ. Ngoại lệ "không gradient", người dùng yêu cầu. */
 .hue-text {
   background-image: linear-gradient(90deg, var(--color-accent), var(--color-app-colors), var(--color-app-wiki), var(--color-app-blog), var(--color-accent));
@@ -312,15 +307,8 @@ dialog::backdrop {
   text-shadow: none; /* bóng chữ sẽ đè lên nền gradient đã cắt theo chữ */
 }
 @media (prefers-reduced-motion: no-preference) {
-  .scroll-hint svg {
-    animation: hint-bounce 1.6s ease-in-out infinite;
-  }
   .hue-text {
     animation: hue-pan 6s linear infinite;
-  }
-  @keyframes hint-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
   }
   @keyframes hue-pan {
     from { background-position: 0% 50%; filter: hue-rotate(0deg); }
@@ -354,22 +342,22 @@ dialog::backdrop {
   pointer-events: none;
 }
 
-/* Landing: chỉ dẫn lần đầu của đồ thị tổng hợp chỉ hiện khi đang đứng ở mốc đồ thị (ScrollHint đặt data-graph-view trên html),
+/* Landing: chỉ dẫn lần đầu của đồ thị tổng hợp chỉ hiện ở bước 3 của flow landing (LandingFlow đặt data-step),
    không lộ dưới lớp giới thiệu */
-html:has(#gioi-thieu):not([data-graph-view]) .graph-hint {
+.landing-flow:not([data-step="3"]) .graph-hint {
   opacity: 0;
 }
-/* Chú giải màu và ô tìm trên đồ thị tổng hợp của landing: cũng chỉ hiện và bấm được ở mốc đồ thị */
-html:has(#gioi-thieu):not([data-graph-view]) .graph-legend {
+/* Chú giải màu và ô tìm trên đồ thị tổng hợp của landing: cũng chỉ hiện và bấm được ở bước 3 */
+.landing-flow:not([data-step="3"]) .graph-legend {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0s 0.3s;
 }
 
-/* Thanh điều hướng dọc (AppSidebar, lg+): khi có nó (mọi trang trừ landing và Blog/Wiki ở Lưới), nội dung lùi sang phải đúng bề rộng thanh.
+/* Thanh điều hướng dọc (AppSidebar, lg+): khi có nó (mọi trang trừ landing, /admin và Blog/Wiki ở Lưới), nội dung lùi sang phải đúng bề rộng thanh.
    Không còn thanh trên cùng nên cột split và sân khấu đồ thị cao hết màn hình.
-   Blog/Wiki ở Lưới (`.site-nav-wide`, SiteHeader) có thanh trên cùng h-14 cả từ lg: cột split và sân khấu trừ đúng 3.5rem. */
+   Blog/Wiki ở Lưới và /admin (`.site-nav-wide`, SiteHeader) có thanh trên cùng h-14 cả từ lg: cột split và sân khấu trừ đúng 3.5rem. */
 @media (width >= 64rem) {
   body:has(> .app-sidebar) #main-content {
     margin-left: var(--spacing-sidebar);

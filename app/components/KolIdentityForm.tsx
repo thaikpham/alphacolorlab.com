@@ -7,7 +7,7 @@ import { cleanLink, LIMITS, useProfile, writeProfile } from "@/lib/profile";
 import { draftIdentity, HANDLE, HANDLE_MAX, imageProblem, type IdentityDraft, KOL_IMAGE_TYPES, KOL_LIMITS, KolError, saveProfile, uploadImage } from "@/lib/kol";
 import { InfoTip } from "./InfoTip";
 import { useKol } from "./KolContext";
-import { toSlug } from "./KolSetEditor";
+import { toSlug } from "@/lib/slug";
 
 // Đường dẫn /kol/sua đã thành chuyển hướng, nhưng tên này vẫn bị giữ (xem lib/legacyRedirects.ts).
 const RESERVED = "sua";

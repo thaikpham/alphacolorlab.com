@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 import { blog } from "@/app/content";
 import type { IndexItem } from "@/lib/blog";
 import { useIndexView } from "@/lib/indexView";
+import { keepRelated } from "@/lib/personal";
+import { usePersonal } from "@/lib/usePersonal";
+import { PersonalBar } from "./PersonalToggle";
 import { IndexRow } from "./IndexRow";
 
 export type ArticleGroup = { key: string; label: string; items: IndexItem[] };
@@ -16,12 +19,17 @@ const LIST_ONLY = "lo-trinh";
 const detailOf = (i: IndexItem) => i.read ?? (i.steps ? blog.split.steps(i.steps) : undefined);
 
 /** Index của /blog: bài theo cấp độ (rồi lộ trình). Lưới: chỉ thẻ; Danh sách: chỉ dòng. */
-export function ArticleIndex({ groups }: { groups: ArticleGroup[] }) {
+export function ArticleIndex({ groups: all }: { groups: ArticleGroup[] }) {
   const view = useIndexView("blog");
+  // Cá nhân hóa: chỉ giữ bài nối với túi đồ; không bài nào nối thì hiện đủ
+  const personal = usePersonal();
+  const kept = new Set(keepRelated(all.flatMap((g) => g.items), (i) => i.href, personal.hrefs));
+  const groups = all.map((g) => ({ ...g, items: g.items.filter((i) => kept.has(i)) })).filter((g) => g.items.length);
   const pathname = usePathname();
   const grid = view === "grid";
   return (
     <div className="space-y-6">
+      <PersonalBar state={personal} />
       {groups.map((g, gi) => {
         const cards = grid && g.key !== LIST_ONLY;
         return (

@@ -85,9 +85,7 @@ export const alphaConsole = {
   summaryTitle: "Tóm tắt cài đặt",
   skipped: "Bỏ qua",
   tools: "Công cụ",
-  decode: "Giải mã",
   cartCount: (k: number) => `${k} công thức`,
-  onlyZve10: "Chỉ ZV-E10",
   back: "Alpha Console",
   prev: "Chương trước",
   next: "Chương tiếp",
@@ -99,10 +97,9 @@ export const alphaConsole = {
     lead: "Không cần nhập tay từng mục. Chọn cài đặt cho M1–M4, tải file, chép vào thẻ nhớ, rồi gọi lại trên máy.",
   },
   notDecoded: {
-    title: "Bộ M1–M4 hiện tạo được cho ZV-E10",
+    title: "Công cụ này dùng cho ZV-E10",
     text: (name: string) => `${name} chưa tạo được file M1–M4 trên trang này. Bạn vẫn cài tay được theo 4 chương bên cạnh.`,
     useZve10: "Tôi dùng ZV-E10",
-    contribute: "Góp file cho máy này",
   },
   decodePage: { title: "Giải mã ô nhớ M1–M4", all: "Tiến độ các máy", game: "Mini game giải mã" },
   // Nút trên trang sản phẩm Product Wiki (máy có hướng dẫn) → /?model=<id>
@@ -248,7 +245,7 @@ export const consoleHashRoutes: Record<string, string> = {
   "tom-tat": "/cai-tay/tom-tat",
   "huong-dan": "/cai-tay/phoi-sang",
   "tao-preset": "/tao-m1-m4",
-  "choi-game": "/giai-ma",
+  "choi-game": "/console",
 };
 
 export const guide = {
@@ -258,13 +255,11 @@ export const guide = {
       { menu: "legacy" as const, title: "Legacy Menu", footer: "Menu theo tab Cài đặt máy ảnh1, Cài đặt máy ảnh2 như ZV-E10, A6400; máy đời trước có menu cũ hơn nữa." },
       { menu: "new" as const, title: "New-gen Menu", footer: "Bắt đầu từ A7S III (2020): tab Chụp, Phơi sáng/màu, Lấy nét, Cài đặt." },
     ],
-    infoTerm: "Hệ menu và trạng thái giải mã",
     infoTermMenu: "Hệ menu",
     decoded: "Đã giải mã",
     decoding: "Đang giải mã",
     notDecoded: "Chưa giải mã",
     hasGuide: "Có hướng dẫn",
-    legend: "Đã giải mã: trang tạo được file M1–M4 cho máy đó. Đang giải mã: đã có file mẫu, còn thiếu dữ liệu. Máy có hướng dẫn chọn được; máy khác liệt kê để bạn biết tiến độ.",
   },
   // Khối theo từng máy trên /giai-ma: tiến độ (lib/decodeProgress.ts) chỉ khi showDecodeStatus (npm run dev), và mini game để góp file mẫu
   contribute: {
@@ -764,6 +759,7 @@ export const presetConsole = {
   },
   slotEdited: "Đã chỉnh",
   supportTitle: "Mục nào ghi được vào file?",
+  notStoredTitle: "Các bước không lưu được vào ô nhớ",
   noBase: "Chưa tải được file mẫu. Kiểm tra kết nối mạng rồi quay lại bước Hệ máy.",
   downloadZip: "Tải ZIP (4 file)",
   downloadOne: (n: number) => `Tải M${n}`,
@@ -800,6 +796,12 @@ export const presetConsole = {
 
 // PP2–PP10 banks (Color Bank recipes for M1–M4; max 9 per slot)
 export const ppBanksUI = {
+  empty: "Chưa có bank nào. Thêm bank để dùng PP2–PP10.",
+  addNumber: "Số bank",
+  addRecipe: "Công thức",
+  add: "Thêm bank",
+  edit: "Chỉnh thông số",
+  customName: "Tự chỉnh",
   removeBank: (k: number) => `Xóa PP${k}`,
   bankLabel: (k: number, name: string) => `PP${k} · ${name}`,
   note: "Máy ảnh giữ một cân bằng trắng cho cả ô nhớ; file lưu WB của PP1. Khi bật PP2–PP10 trên máy, bạn cần chỉnh WB tay theo danh sách dưới.",
@@ -844,8 +846,12 @@ export const help = {
           a: "Cài tay hỗ trợ ZV-E10, A6400 và A7C II, đường dẫn menu theo đúng từng máy. Tạo file Memory Recall M1–M4 hiện chỉ dành cho ZV-E10.",
         },
         {
+          q: "\"Của tôi\" và \"Tất cả\" khác nhau thế nào?",
+          a: "Ở trang chủ, thêm máy và ống kính vào túi đồ, bấm Lưu túi đồ, cuộn xuống đồ thị rồi bấm Tối ưu nội dung và Truy cập. Từ đó Blog, Color Bank và các đồ thị chỉ hiện nội dung nối với sản phẩm của bạn: bài viết, bước cài, công thức màu. Product Wiki luôn hiện đủ sản phẩm. Chọn Tất cả ở đầu danh sách hoặc trong menu avatar để xem toàn bộ. Mục nào không có nội dung nối với túi đồ thì vẫn hiện đủ.",
+        },
+        {
           q: "Có cần đăng nhập Google không?",
-          a: "Không. Cài tay, Color Bank, Product Wiki, Blog, đồ thị và Tạo bộ M1–M4 đều mở khi chưa đăng nhập. Đăng nhập Google chỉ để đồng bộ túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn sang máy khác.",
+          a: "Ở trang chủ, bước 2 yêu cầu lưu ít nhất một sản phẩm vào túi đồ và đăng nhập Google rồi mới sang được bước 3. Các trang Cài tay, Color Bank, Product Wiki, Blog, đồ thị và Tạo bộ M1–M4 vẫn mở được bằng đường dẫn trực tiếp khi chưa đăng nhập. Đăng nhập còn để đồng bộ túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn sang máy khác.",
         },
       ],
     },
@@ -882,7 +888,7 @@ export const help = {
         {
           q: "Nạp file máy đã lưu vào công cụ thế nào?",
           link: { href: "/tao-m1-m4", label: "Tạo bộ M1–M4" },
-          a: "Mục Đọc file đã lưu trên máy (ở Giải mã và Tạo bộ M1–M4) đọc file CAMPR0xP.DAT mà máy đã lưu. File ZV-E10 ảnh nạp được vào ô M1–M4 đang sửa; mục không nạp được hiện ở dòng Không nạp được. File phim (CAMPR05–08) chỉ đọc để xem. α6400 chỉ đọc thử nghiệm, chưa tạo được file M1–M4 cho máy này.",
+          a: "Mục Đọc file đã lưu trên máy (ở Tạo bộ M1–M4) đọc file CAMPR0xP.DAT mà máy đã lưu. File ZV-E10 ảnh nạp được vào ô M1–M4 đang sửa; mục không nạp được hiện ở dòng Không nạp được. File phim (CAMPR05–08) chỉ đọc để xem.",
         },
         {
           q: "Bộ M1–M4 chia sẻ là gì và lấy ở đâu?",
@@ -897,11 +903,6 @@ export const help = {
         {
           q: "Ai được đăng bộ M1–M4 và trang KOL?",
           a: "Chỉ người được duyệt mới đăng được trang KOL và bộ M1–M4 của riêng mình. Ai cũng tải và sưu tầm được các bộ đã công khai ở Bộ M1–M4 chia sẻ.",
-        },
-        {
-          q: "Giải mã hoạt động thế nào?",
-          link: { href: "/giai-ma", label: "Mở Giải mã" },
-          a: "Mỗi lượt là một đề bài trong mini game: làm theo các bước để máy ảnh lưu file, rồi trang đọc file và báo kết quả ngay dưới lượt. Xác nhận: giá trị đọc đúng từ file máy lưu. Học được: mã mới chưa có trong dự án. Định vị: biết cài đặt nằm ở ô nào. Cần làm lại: ô máy lưu không khớp hoặc chưa phân biệt được các mục. Kết quả lưu trong trình duyệt này, lượt sau ưu tiên mục còn thiếu nhiều nhất.",
         },
       ],
     },
@@ -925,11 +926,9 @@ export const help = {
 // Landing "/": lớp giới thiệu trên đồ thị tổng hợp, đồ thị tổng hợp toàn màn hình, rồi một màn gộp túi đồ, đăng nhập và danh sách 4 app kèm nút vào dự án
 export const landing = {
   graphLabel: "Đồ thị tổng hợp: máy, ống kính, bước cài đặt, công thức màu, bài viết và kiến thức, nối với nhau",
-  aboutTitle: "Một bản đồ, bốn ứng dụng",
-  scrollHint: "Cuộn xuống để xem đồ thị",
   // Tiêu đề lớp giới thiệu: "color" tô dải màu đổi sắc
   intro: {
-    title: ["alpha", "color", "lab.app"] as const,
+    title: ["alpha", "color", "lab.com"] as const,
     // Mỗi đoạn 2 dòng, xuống hàng đúng chỗ ngắt ý (từ md); điện thoại thì chảy tự nhiên
     lines: [
       ["Cài máy ảnh Sony Alpha đúng theo menu trên máy, nhanh và chính xác,", "kèm bộ cài đặt tạo sẵn để nạp thẳng vào máy."],
@@ -937,32 +936,60 @@ export const landing = {
     ],
   },
   // Màn cuối: thêm máy vào túi đồ ngay ở landing, đăng nhập Google để đồng bộ
+  // Flow 3 bước của landing (LandingFlow)
+  flow: {
+    nav: "Các bước",
+    steps: ["Giới thiệu", "Túi đồ và đăng nhập", "Nội dung của bạn"],
+    stepOf: (n: number, name: string) => `Bước ${n}/3: ${name}`,
+    count: (n: number, of: number) => `${n}/${of}`,
+    start: "Bắt đầu",
+    next: "Tiếp tục",
+    back: "Quay lại bước trước",
+    missing: {
+      bag: "lưu ít nhất một sản phẩm vào túi đồ",
+      login: "đăng nhập bằng Google",
+      lead: (items: string[]) => `Để tiếp tục, bạn cần ${items.join(" và ")}.`,
+    },
+  },
   start: {
     title: "Bắt đầu với bộ máy của bạn",
     signedIn: (name: string) => `Đã đăng nhập: ${name}`,
-    onGraph: "Xem túi đồ trên đồ thị",
+    note: "Nội dung trang web hiển thị sẽ được tối ưu theo những sản phẩm Sony Alpha mà bạn đang sở hữu.",
     syncTip: {
       term: "Đăng nhập Google",
       lines: [
-        { t: "Không bắt buộc. Chưa đăng nhập thì túi đồ chỉ lưu trên máy này." },
+        { t: "Cần đăng nhập để sang bước xem nội dung của bạn." },
         { t: "Đăng nhập để túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn mở trên máy khác vẫn còn." },
         { t: "Món trong túi đồ có vòng chấm trên đồ thị." },
       ],
     },
   },
-  apps: {
-    console: "Cài tay từng bước theo đúng menu trên máy Sony Alpha của bạn, kèm công cụ tạo file Memory Recall M1–M4.",
-    colors: "Công thức màu Picture Profile kèm cân bằng trắng. Chọn vào giỏ M1–M4 để nạp thẳng vào máy.",
-    wiki: "Thông số máy ảnh, ống kính và phụ kiện Sony, so sánh tối đa 4 món.",
-    blog: "Bài viết và ghi chú kiến thức chụp ảnh: phơi sáng, lấy nét, màu, ống kính.",
-  },
 };
 
 // Landing: nút vào dự án (Alpha Console) và h1 cho trình đọc màn hình
+// Cá nhân hóa theo túi đồ: nút bật/tắt trên đồ thị và đầu các danh sách
+export const personal = {
+  label: "Nội dung hiển thị",
+  // Nhãn ngắn cho hàng trong menu avatar (menu hẹp)
+  short: "Nội dung",
+  mine: "Của tôi",
+  all: "Tất cả",
+  tip: {
+    term: "Của tôi",
+    lines: [
+      { t: "Chỉ hiện nội dung nối với sản phẩm trong túi đồ của bạn: bài viết, bước cài, công thức màu. Product Wiki luôn hiện đủ sản phẩm." },
+      { t: "Chọn Tất cả để xem toàn bộ. Đổi túi đồ ở trang Hồ sơ và túi đồ." },
+    ],
+  },
+};
+
 export const access = {
   enter: "Mở Alpha Console",
-  // Túi đồ có máy được hướng dẫn: vào thẳng máy đó. Người quay lại (đã chọn máy từ trước): tiếp tục với máy đó.
-  setup: (camera: string) => `Cài ${camera}`,
+  // Túi đồ có món: bật cá nhân hóa rồi vào dự án
+  optimize: "Tối ưu nội dung và Truy cập",
+  // Túi trống mà đang xem một app ở chú giải: mở thẳng app đó
+  open: (app: string) => `Mở ${app}`,
+  // Người quay lại (đã chọn máy từ trước, túi trống): tiếp tục với máy đó
   resume: (camera: string) => `Tiếp tục với ${camera}`,
   pageTitle: "Bản đồ kiến thức máy ảnh Sony",
 };
@@ -973,7 +1000,10 @@ export const gearManager = {
   inputLabel: "Tên hoặc mã sản phẩm",
   placeholder: "Ví dụ: A6400, ILCE-7CM2, FE 50mm F1.8",
   add: "Thêm",
-  inBag: (names: string) => `Trong túi: ${names}`,
+  save: "Lưu túi đồ",
+  saved: "Đã lưu túi đồ",
+  removed: (name: string) => `Đã bỏ ${name}`,
+  remove: (name: string) => `Bỏ ${name}`,
   unsupportedTitle: "Sản phẩm này chưa được hỗ trợ",
   unsupported: (q: string) => `"${q}" chưa có trong dự án. Thử gõ đúng tên hoặc mã Sony, ví dụ A7 IV hoặc ILCE-7M4.`,
   close: "Đóng",
@@ -1026,7 +1056,7 @@ export const appInfo = {
 // Giải thích thuật ngữ cho người mới, hiện trong nút "i" (InfoTip). Tên chế độ theo bộ nhớ dịch ILDC; tốc độ khung hình theo Help Guide ZV-E10.
 export type GlossaryEntry = { term: string; lines: { k?: string; t: string }[] };
 
-// Trang /giai-ma (công khai): lượt tiếp theo, kết quả sau mỗi lượt (tiến độ chỉ khi showDecodeStatus). Bảng tham số chỉ ở /admin/decode (chỉ dev). (app/components/decode/*, app/admin/decode/*, app/components/game/GameDialog.tsx)
+// Trang /giai-ma (công khai): lượt tiếp theo, kết quả sau mỗi lượt (tiến độ chỉ khi showDecodeStatus). Bảng tham số chỉ ở /admin/decode (tài khoản trong ADMIN_EMAILS). (app/components/decode/*, app/admin/decode/*, app/components/game/GameDialog.tsx)
 export const decodeConsole = {
   round: {
     title: "Kết quả giải mã",
@@ -1047,6 +1077,7 @@ export const decodeConsole = {
     devSaved: (dir: string) => `Đã lưu vào ${dir}`,
     devFailed: (err: string) => `Chưa lưu được: ${err}`,
     devNetwork: "không kết nối được máy chủ dev",
+    devNotAdmin: "Cần đăng nhập đúng tài khoản quản trị để lưu lượt này.",
   },
   table: {
     title: "Bảng tham số",
@@ -1100,13 +1131,25 @@ export const decodeConsole = {
     yield: (confirm: number, learn: number, locate: number, steps: number) =>
       `Dự kiến xác nhận ${confirm} giá trị, học ${learn} mã mới ở ${locate} cài đặt, trong ${steps} bước.`,
     another: "Lập lượt khác",
+    loading: "Đang lập lượt...",
+    planError: "Chưa lập được lượt. Thử lập lượt khác.",
   },
   admin: {
     title: "Bảng tham số giải mã",
-    lead: "Chỉ chạy trên npm run dev: bảng tham số theo từng máy và lưu lượt vào dự án. Trang này không có trên bản phát hành.",
     camera: "Máy",
     toPresets: "Quản lý bộ preset",
     toDecode: "Bảng tham số giải mã",
+    gate: {
+      noBuild: "Trang này chưa được cấu hình đăng nhập nên chưa mở được.",
+      loading: "Đang kiểm tra quyền truy cập…",
+      signedOut: "Chỉ tài khoản quản trị mới xem được trang này.",
+      signIn: "Đăng nhập bằng Google",
+      forbidden: "Tài khoản này không có quyền xem trang này.",
+      missing: "Không tìm thấy trang này.",
+      error: "Chưa tải được dữ liệu.",
+      retry: "Thử lại",
+      signOut: "Đăng xuất",
+    },
   },
 };
 
@@ -1562,6 +1605,9 @@ export const constellation = {
   zoomIn: "Phóng to",
   zoomOut: "Thu nhỏ",
   legend: "Làm nổi nút của một ứng dụng",
+  viewModes: ["Toàn bộ đồ thị", "Phóng to", "Một ứng dụng"],
+  viewMode: (name: string) => `Chế độ xem: ${name}. Bấm để đổi`,
+  openSearch: "Tìm nút hoặc trang",
   focusHint: "Chạm lần nữa để mở",
   focusHintMouse: "Bấm lần nữa để mở",
   firstInteractionHint: "Chạm một nút để chọn, chạm lần nữa để mở",

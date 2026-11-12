@@ -69,7 +69,7 @@ function Logo({ className }: { className?: string }) {
   );
 }
 
-/** Thanh trên cùng: dưới lg, và từ lg chỉ khi `wide` (Blog/Wiki ở Lưới, không có thanh dọc). Dưới lg: logo trái, tìm kiếm + avatar phải.
+/** Thanh trên cùng: dưới lg, và từ lg chỉ khi `wide` (Blog/Wiki ở Lưới và /admin, không có thanh dọc). Dưới lg: logo trái, tìm kiếm + avatar phải.
  * Từ lg khi wide: ba vùng cùng hàng h-14, logo trái đúng chỗ như thanh dọc, tìm kiếm giữa (cột 28rem), avatar phải.
  * Avatar luôn bọc một div (không đổi cây DOM khi bấm núm Danh sách/Lưới, menu không đóng); `lg:contents` để tìm kiếm và avatar thành ô của lưới. */
 export function AppNav() {
@@ -93,7 +93,7 @@ export function AppNav() {
 /** Thanh điều hướng dọc (từ lg): launcher + avatar, tìm kiếm, cao đúng `h-sidebar-head`.
  * Thanh trong suốt, không nhận chuột (chỉ phần đầu có nền) và nằm trên index (z-50) để gợi ý tìm kiếm không bị che.
  * Phần dưới là index của app đang mở: cột index của SplitLayout cố định ngay dưới (`top-sidebar-head`). Landing không có.
- * Blog và Wiki ở Lưới cũng không có (`wide`): thanh trên cùng của AppNav thay chỗ từ lg. */
+ * Blog và Wiki ở Lưới và /admin cũng không có (`wide`): thanh trên cùng của AppNav thay chỗ từ lg. */
 export function AppSidebar() {
   const pathname = usePathname();
   const lg = useLg();

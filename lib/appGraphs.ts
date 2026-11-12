@@ -66,7 +66,6 @@ function buildConsoleGraph(): CGraph {
   // Add tool hubs
   addNode("tao-m1-m4", "Tạo bộ M1–M4", "tool", true, "/tao-m1-m4");
   addNode("bo-m1-m4", "Bộ M1–M4 chia sẻ", "tool", true, "/bo-m1-m4");
-  addNode("giai-ma", "Giải mã", "tool", true, "/giai-ma");
 
   // Add steps
   for (const section of sections) {
@@ -112,8 +111,6 @@ function buildConsoleGraph(): CGraph {
       addEdge(cameraId, "tao-m1-m4");
       addEdge(cameraId, "bo-m1-m4");
     }
-    // Giải mã tool linked to all 3 cameras
-    addEdge(cameraId, "giai-ma");
   }
 
   // Link M1–M4 tool to PP1 step (step n=14 in mau-da section)

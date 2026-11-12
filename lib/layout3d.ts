@@ -16,7 +16,9 @@ export interface Body {
 
 /** Bán kính khối đồ thị sau khi chuẩn hóa, đơn vị thế giới. Constellation đặt camera theo số này. */
 export const RADIUS = 170;
-const REST = 58, REPEL = 2400, SPRING = 0.05, CENTER = 0.012, DAMP = 0.6, DECAY = 0.985;
+// CENTER: lực hút về tâm. Với lực đẩy 1/d², hút tuyến tính càng mạnh thì mật độ trong khối càng đều (cụm dày bị ép giãn, vùng thưa được lấp).
+// 0.1 đo trên đồ thị tổng hợp: độ lệch mật độ giữa các ô (CV) 0.66 → 0.22, hình chiếu 0.69 → 0.38, không còn ô trống; 0.012 cũ để lõi dày, rìa thưa.
+const REST = 58, REPEL = 2400, SPRING = 0.05, CENTER = 0.1, DAMP = 0.6, DECAY = 0.985;
 /** Nhiệt độ của nhịp dàn lại cuối cùng, bằng mức đồ thị dùng khi người dùng bấm Toàn cảnh */
 const RELAX = 0.35;
 

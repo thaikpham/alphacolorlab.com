@@ -3,13 +3,14 @@
 import { useEffect, useReducer, useRef, useState, useSyncExternalStore } from "react";
 import { game, cameraModels, decodeConsole } from "@/app/content";
 import { useModel } from "@/lib/model";
+import { getSession } from "@/lib/auth";
 import type { GameModel, Lang, CardFile, Mission, Verification, Score, Finding, RoundFile } from "@/lib/game/types";
 import { isSupported, mapError } from "@/lib/cardWriter";
 import { readSettingFiles, settingDir } from "@/lib/game/card";
 import { readFirmware } from "@/lib/game/firmware";
-import { planMission } from "@/lib/game/plan";
 import { analyzeRound, localFindings } from "@/lib/game/analyze";
 import { addLocal, readLocal } from "@/app/components/decode/localStore";
+import { fetchPlan } from "@/app/components/decode/planClient";
 import { verify, scoreOf } from "@/lib/game/verify";
 import { buildSubmission, submit, downloadableLog } from "@/lib/game/submit";
 import { labelOf, settingOf, getCatalog } from "@/lib/game/catalog";
@@ -430,6 +431,38 @@ function BackupScreen({
   plannedMission?: Mission | null;
 }) {
   const t = game[lang];
+  const [planning, setPlanning] = useState(false);
+  const [planError, setPlanError] = useState(false);
+  const planCtrl = useRef<AbortController | null>(null);
+  // Đóng màn hình khi đang lập lượt: hủy yêu cầu để không dispatch sau khi unmount
+  useEffect(() => () => planCtrl.current?.abort(), []);
+
+  // Lượt của bảng giải mã nếu đúng máy; không thì xin server lập một lượt mới từ phát hiện đã lưu
+  const onNext = async () => {
+    if (state.mission !== null) {
+      dispatch({ type: "toMission" });
+      return;
+    }
+    if (plannedMission && plannedMission.model === state.model) {
+      dispatch({ type: "missionReady", mission: plannedMission });
+      dispatch({ type: "toMission" });
+      return;
+    }
+    const ctrl = new AbortController();
+    planCtrl.current = ctrl;
+    setPlanning(true);
+    setPlanError(false);
+    try {
+      const plan = await fetchPlan({ model: state.model, seed: Date.now(), focus: [], local: readLocal() }, ctrl.signal);
+      if (ctrl.signal.aborted) return;
+      dispatch({ type: "missionReady", mission: plan.mission });
+      dispatch({ type: "toMission" });
+    } catch {
+      if (!ctrl.signal.aborted) setPlanError(true);
+    } finally {
+      if (!ctrl.signal.aborted) setPlanning(false);
+    }
+  };
 
   const handleSelectCard = async () => {
     dispatch({ type: "cardLoading" });
@@ -529,6 +562,8 @@ function BackupScreen({
         </div>
       )}
 
+      {planError && <p className="text-footnote text-danger">{decodeConsole.next.planError}</p>}
+
       <div className="flex gap-3">
         <button
           onClick={() => dispatch({ type: "toBackup" })}
@@ -537,18 +572,9 @@ function BackupScreen({
           {t.backup.back}
         </button>
         <button
-          onClick={() => {
-            if (state.mission === null) {
-              // Lượt của bảng giải mã nếu đúng máy; không thì lập lượt mới từ phát hiện đã lưu
-              const picked =
-                plannedMission && plannedMission.model === state.model
-                  ? plannedMission
-                  : planMission(state.model, { local: readLocal(), seed: Date.now() });
-              dispatch({ type: "missionReady", mission: picked });
-            }
-            dispatch({ type: "toMission" });
-          }}
-          className="flex-1 h-12 px-6 rounded-full bg-accent text-on-accent text-subhead font-semibold hover:bg-accent/90 active:scale-98 transition"
+          onClick={onNext}
+          disabled={planning}
+          className="flex-1 h-12 px-6 rounded-full bg-accent text-on-accent text-subhead font-semibold hover:bg-accent/90 active:scale-98 transition disabled:opacity-50"
         >
           {t.backup.next}
         </button>
@@ -740,7 +766,8 @@ function FindingsBlock({ model, findings }: { model: GameModel; findings: Findin
   );
 }
 
-// Chỉ khi npm run dev: lưu lượt (đề bài + 4 file) vào test/fixtures/rounds, xem app/admin/decode/api/route.ts
+// Chỉ khi npm run dev: lưu lượt (đề bài + 4 file) vào test/fixtures/rounds, xem app/admin/decode/api/route.ts.
+// Gửi Bearer của phiên Google (getSession làm mới token); máy chủ kiểm tài khoản quản trị.
 function DevSaveRound({ mission, files }: { mission: Mission; files: CardFile[] }) {
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -757,11 +784,16 @@ function DevSaveRound({ mission, files }: { mission: Mission; files: CardFile[] 
             const list = files.flatMap((f) =>
               /^CAMPR0[1-4][NP]\.DAT$/i.test(f.name) ? [{ name: f.name.toUpperCase(), base64: toBase64(f.bytes) }] : []
             );
+            const token = (await getSession()).session?.accessToken;
             const res = await fetch("/admin/decode/api", {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
+              headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}) },
               body: JSON.stringify({ mission, files: list }),
             });
+            if (res.status === 401 || res.status === 403) {
+              setMsg(c.devNotAdmin);
+              return;
+            }
             const data = await res.json().catch(() => null);
             setMsg(data?.ok ? c.devSaved(String(data.dir)) : c.devFailed(String(data?.error ?? res.status)));
           } catch {

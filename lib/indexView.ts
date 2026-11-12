@@ -53,11 +53,16 @@ export function browseAppOf(pathname: string): IndexApp | null {
   return null;
 }
 
-/** Đang ở Blog hoặc Wiki và app đó ở Lưới: không có thanh dọc (AppSidebar), thanh trên cùng (AppNav) có tìm kiếm giữa. */
-export function useWideBrowse(pathname: string): boolean {
-  // Gọi cả hai app để đúng thứ tự hook; chỉ app của đường dẫn hiện tại quyết định
-  const blog = useIndexView("blog");
-  const wiki = useIndexView("wiki");
+/** Không có thanh dọc (AppSidebar), chỉ thanh trên cùng: /admin và các trang con (/admin/decode) luôn vậy; Blog hoặc Wiki đang ở Lưới cũng vậy. */
+export function wideBrowseOf(pathname: string, blog: IndexView, wiki: IndexView): boolean {
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) return true;
   const app = browseAppOf(pathname);
   return (app === "blog" && blog === "grid") || (app === "wiki" && wiki === "grid");
+}
+
+export function useWideBrowse(pathname: string): boolean {
+  // Gọi cả hai app để đúng thứ tự hook; đường dẫn hiện tại quyết định qua wideBrowseOf
+  const blog = useIndexView("blog");
+  const wiki = useIndexView("wiki");
+  return wideBrowseOf(pathname, blog, wiki);
 }

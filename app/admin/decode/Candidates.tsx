@@ -1,14 +1,12 @@
 "use client";
 
-// Mã và vị trí ứng viên mà bộ phân tích rút ra từ các lượt đã lưu (data/decode-observed.json). Chỉ dùng ở /admin/decode.
+// Mã và vị trí ứng viên mà bộ phân tích rút ra từ các lượt đã lưu (qua /admin/decode/data). Chỉ dùng ở /admin/decode.
 // Ứng viên chưa phải kết luận: đưa vào codec (lib/zve10, lib/a6400, lib/a7c2) rồi mới tính là đã giải mã.
-import observedJson from "@/data/decode-observed.json";
 import { cameraModels, codecSettingLabels, decodeConsole } from "@/app/content";
 import { labelOf, settingOf } from "@/lib/game/catalog";
 import type { Finding, GameModel } from "@/lib/game/types";
 
-type Candidate = Finding & { missionId: string };
-const candidates = (observedJson as unknown as { candidates: Candidate[] }).candidates;
+export type Candidate = Finding & { missionId: string };
 
 const settingName = (model: GameModel, id: string) => settingOf(model, id)?.label.vi ?? codecSettingLabels[id] ?? id;
 const valueName = (model: GameModel, id: string, value: string) => labelOf(model, id, value, "vi") ?? value;
@@ -24,7 +22,7 @@ function line(c: Candidate): string {
   return "";
 }
 
-export function Candidates() {
+export function Candidates({ candidates }: { candidates: Candidate[] }) {
   const t = decodeConsole.table.candidates;
   // Giá trị chỉ xác nhận lại thì đã nằm trong bảng; ở đây chỉ liệt kê điều cần người xem xét
   const list = candidates.filter((c) => c.kind !== "confirm");

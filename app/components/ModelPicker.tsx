@@ -1,15 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import { useModel, setModel, type ModelId } from "@/lib/model";
-import { guide, sonyBodies } from "@/app/content";
+import { guide, sonyBodies, alphaConsole as C } from "@/app/content";
 import { decodeProgress, showDecodeStatus } from "@/lib/decodeProgress";
 import { InfoTip } from "./InfoTip";
 
 const copy = guide.modelPicker;
 type Menu = (typeof copy.groups)[number]["menu"];
 
-/** Decode status chip: Đã giải mã / Đang giải mã / Chưa giải mã (lib/decodeProgress.ts). Chỉ hiện khi showDecodeStatus (npm run dev). */
+/** Decode status chip: Đã giải mã / Đang giải mã / Chưa giải mã (lib/decodeProgress.ts). Chỉ hiện khi showDecodeStatus (npm run dev), chỉ trên /giai-ma. */
 export function Status({ id }: { id?: string }) {
   if (!showDecodeStatus) return null;
   const state = decodeProgress(id).state;
@@ -29,7 +30,7 @@ export function UseModelButton({ id, children }: { id: ModelId; children: React.
   );
 }
 
-/** Chọn máy: hàng tóm tắt mở ra bộ lọc hệ menu; chọn hệ rồi mới hiện danh sách máy Sony ngàm E của hệ đó (kèm trạng thái giải mã khi showDecodeStatus). Chỉ máy có hướng dẫn chọn được. */
+/** Chọn máy: hàng tóm tắt mở ra bộ lọc hệ menu; chọn hệ rồi mới hiện danh sách máy Sony ngàm E của hệ đó. Máy đã giải mã có nút "Tạo bộ M1–M4" cạnh hàng tóm tắt. Chỉ máy có hướng dẫn chọn được. */
 export function ModelPicker() {
   const model = useModel();
   const name = useId(); // trang có hai bộ chọn máy (hướng dẫn, tạo preset): mỗi bộ một nhóm radio riêng
@@ -40,83 +41,89 @@ export function ModelPicker() {
   const menuLines = copy.groups.map((g) => ({ k: `${g.title}:`, t: g.footer }));
 
   return (
-    <details ref={box} className="disclosure group max-w-xl">
-      <summary className="flex min-h-11 cursor-pointer items-center gap-3 rounded-card bg-card px-4 py-3 shadow-card">
-        <span className="min-w-0 flex-1">
-          <span className="block text-body font-semibold">{current.name}</span>
-          <span className="block text-footnote text-secondary">
-            {copy.groups.find((g) => g.menu === current.menu)!.title} · <span className="whitespace-nowrap">{current.code}</span>
+    <div className="flex max-w-xl flex-wrap items-center gap-3">
+      <details ref={box} className="disclosure group min-w-48 flex-1">
+        <summary className="flex min-h-11 cursor-pointer items-center gap-3 rounded-card bg-card px-4 py-3 shadow-card">
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-body font-semibold">{current.name}</span>
+            <span className="flex min-w-0 gap-1 text-footnote text-secondary">
+              <span className="min-w-0 truncate">{copy.groups.find((g) => g.menu === current.menu)!.title}</span>
+              <span className="shrink-0 whitespace-nowrap">· {current.code}</span>
+            </span>
           </span>
-        </span>
-        <Status id={current.id} />
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="shrink-0 text-tertiary transition-transform duration-300 ease-ios group-open:rotate-180">
-          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </summary>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="shrink-0 text-tertiary transition-transform duration-300 ease-ios group-open:rotate-180">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </summary>
 
-      <div className="space-y-4 pt-4">
-        <div className="flex items-center gap-3">
-          <div className="flex flex-1 gap-1 rounded-control bg-fill p-1">
-            {copy.groups.map((g) => (
-              <button
-                key={g.menu}
-                type="button"
-                onClick={() => setMenu(g.menu)}
-                aria-pressed={menu === g.menu}
-                className={`flex-1 h-11 rounded-badge text-subhead font-medium transition ${
-                  menu === g.menu ? "bg-card shadow-thumb font-semibold text-label" : "text-label hover:bg-fill-strong"
-                }`}
-              >
-                {g.title}
-              </button>
-            ))}
-          </div>
-          <InfoTip entry={showDecodeStatus ? { term: copy.infoTerm, lines: [...menuLines, { t: copy.legend }] } : { term: copy.infoTermMenu, lines: menuLines }} />
-        </div>
-
-        {group ? (
-          <div>
-            <ul role="radiogroup" aria-label={group.title} className="overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator">
-              {sonyBodies.filter((b) => b.menu === group.menu).map((b) => (
-                <li key={b.code}>
-                  <label
-                    className={`flex min-h-11 items-center gap-3 px-4 py-2.5 has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-accent ${
-                      b.id ? "cursor-pointer transition-colors hover:bg-fill" : ""
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name={name}
-                      className="sr-only"
-                      disabled={!b.id}
-                      checked={b.id === model}
-                      onChange={() => {
-                        setModel(b.id!);
-                        box.current!.open = false;
-                      }}
-                    />
-                    <span className="min-w-0 flex-1">
-                      <span className={`block text-subhead font-semibold ${b.id ? "text-label" : "text-secondary"}`}>{b.name}</span>
-                      <span className="block text-footnote text-secondary">
-                        {b.code}
-                        {b.id && ` · ${copy.hasGuide}`}
-                      </span>
-                    </span>
-                    <Status id={b.id} />
-                    <span className="grid size-4 shrink-0 place-items-center text-accent-text">
-                      {b.id === model && (
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                          <path d="M13 4l-7.5 8L3 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      )}
-                    </span>
-                  </label>
-                </li>
+        <div className="space-y-4 pt-4">
+          <div className="flex items-center gap-3">
+            <div className="flex flex-1 gap-1 rounded-control bg-fill p-1">
+              {copy.groups.map((g) => (
+                <button
+                  key={g.menu}
+                  type="button"
+                  onClick={() => setMenu(g.menu)}
+                  aria-pressed={menu === g.menu}
+                  className={`flex-1 h-11 rounded-badge text-subhead font-medium transition ${
+                    menu === g.menu ? "bg-card shadow-thumb font-semibold text-label" : "text-label hover:bg-fill-strong"
+                  }`}
+                >
+                  {g.title}
+                </button>
               ))}
-            </ul>
+            </div>
+            <InfoTip entry={{ term: copy.infoTermMenu, lines: menuLines }} />
           </div>
-        ) : null}
-      </div>
-    </details>
+
+          {group ? (
+            <div>
+              <ul role="radiogroup" aria-label={group.title} className="overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator">
+                {sonyBodies.filter((b) => b.menu === group.menu).map((b) => (
+                  <li key={b.code}>
+                    <label
+                      className={`flex min-h-11 items-center gap-3 px-4 py-2.5 has-focus-visible:ring-2 has-focus-visible:ring-inset has-focus-visible:ring-accent ${
+                        b.id ? "cursor-pointer transition-colors hover:bg-fill" : ""
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name={name}
+                        className="sr-only"
+                        disabled={!b.id}
+                        checked={b.id === model}
+                        onChange={() => {
+                          setModel(b.id!);
+                          box.current!.open = false;
+                        }}
+                      />
+                      <span className="min-w-0 flex-1">
+                        <span className={`block text-subhead font-semibold ${b.id ? "text-label" : "text-secondary"}`}>{b.name}</span>
+                        <span className="block text-footnote text-secondary">
+                          {b.code}
+                          {b.id && ` · ${copy.hasGuide}`}
+                        </span>
+                      </span>
+                      <span className="grid size-4 shrink-0 place-items-center text-accent-text">
+                        {b.id === model && (
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M13 4l-7.5 8L3 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        )}
+                      </span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
+      </details>
+      {current.decoded && (
+        <Link href="/tao-m1-m4" className="inline-flex h-11 shrink-0 items-center whitespace-nowrap rounded-full bg-fill px-4 text-subhead font-semibold text-accent-text transition-colors hover:bg-fill-strong">
+          {C.makeSet}
+        </Link>
+      )}
+    </div>
   );
 }

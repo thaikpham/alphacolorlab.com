@@ -5,7 +5,7 @@ import { useWideBrowse } from "@/lib/indexView";
 import { AppNav } from "./AppNav";
 
 /** Thanh trên cùng dưới lg; landing ("/") không có. Từ lg tìm kiếm và avatar nằm trong thanh dọc AppSidebar,
- * trừ Blog và Wiki ở Lưới (`wide`): thanh này hiện cả từ lg (`site-nav-wide`, CSS trong globals.css). */
+ * trừ Blog và Wiki ở Lưới và /admin (`wide`): thanh này hiện cả từ lg (`site-nav-wide`, CSS trong globals.css). */
 export function SiteHeader() {
   const pathname = usePathname();
   const wide = useWideBrowse(pathname);

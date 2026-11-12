@@ -2,6 +2,7 @@
 // Không import app/content.ts ở đây (chữ hướng dẫn truyền vào từ ngoài) để test node chạy được.
 import { buildSet, type BuiltSet, type SlotSettings } from "./zve10/dat.ts";
 import { makeZip, type ZipEntry } from "./zve10/zip.ts";
+import type { SlotDraft } from "./presetSets.ts";
 
 /** Thư mục trong thẻ nhớ mà máy đọc bộ Memory Recall. */
 export const CARD_PATH_PREFIX = "PRIVATE/SONY/SETTING/E10/";
@@ -33,6 +34,13 @@ export function buildPresetFiles(
 ): { files: BuiltSet[]; zip: Uint8Array } {
   const files = buildSet(base, settings, undefined, undefined, headers);
   return { files, zip: cardZip(files, guideText) };
+}
+
+/** Tải ZIP 4 file từ 4 ô cài đặt (bộ đã lưu hoặc bản đang soạn) theo hệ đã chọn. Chữ hướng dẫn do người gọi truyền vào. Chỉ gọi trên trình duyệt. */
+export async function downloadSetZip(slots: SlotDraft[], system: PresetSystem, guideText: string): Promise<void> {
+  const { base, headers } = await loadPresetBase(system);
+  const { zip } = buildPresetFiles(structuredClone(slots), base, headers, guideText);
+  saveFile(zip, ZIP_FILENAME, "application/zip");
 }
 
 /** Tải về qua thẻ a tạm. Chỉ gọi trên trình duyệt. */

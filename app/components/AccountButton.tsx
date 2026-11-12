@@ -9,6 +9,7 @@ import { useGear } from "@/lib/gear";
 import { startSync } from "@/lib/userState";
 import type { AppId } from "@/lib/constellation";
 import { IndexViewSwitch } from "./IndexViewSwitch";
+import { PersonalMenuRow } from "./PersonalToggle";
 
 const APP_OF: [string, AppId][] = [["/colors", "colors"], ["/wiki", "wiki"], ["/blog", "blog"], ["/console", "console"], ["/cai-tay", "console"], ["/tao-m1-m4", "console"], ["/bo-m1-m4", "console"], ["/giai-ma", "console"], ["/kol", "console"]];
 const HOME: Record<AppId, string> = { console: "/console", colors: "/colors", wiki: "/wiki", blog: "/blog" };
@@ -22,9 +23,10 @@ function graphTarget(pathname: string): { app: AppId; href: string } | null {
   return { app, href: `/do-thi/${app}${last ? `?n=${encodeURIComponent(last)}` : ""}` };
 }
 
-/** Nút avatar trên thanh điều hướng (ảnh Google, hoặc icon người khi chưa đăng nhập), mở menu: túi đồ, xem đồ thị, Danh sách/Lưới của Blog và Product Wiki (IndexViewSwitch, lưu trên máy), đăng nhập/đăng xuất.
+/** Nút avatar trên thanh điều hướng (ảnh Google, hoặc icon người khi chưa đăng nhập), mở menu: túi đồ, xem đồ thị, Danh sách/Lưới của Blog và Product Wiki (IndexViewSwitch, lưu trên máy), "Của tôi / Tất cả" khi túi đồ có món (PersonalMenuRow), đăng nhập/đăng xuất.
  * Khi đăng nhập, túi đồ, giỏ, danh sách so sánh và máy đang chọn đồng bộ theo tài khoản. Bấm núm Danh sách/Lưới không đóng menu. */
-export function AccountButton() {
+/** previewPersonal (landing): hàng "Nội dung" đọc trạng thái xem trước như đồ thị ở landing (mặc định "Của tôi" khi túi có món). */
+export function AccountButton({ previewPersonal = false }: { previewPersonal?: boolean } = {}) {
   const session = useSession();
   const pathname = usePathname();
   const bag = useGear();
@@ -101,6 +103,7 @@ export function AccountButton() {
             <div className="mt-2 border-t border-separator pt-2 pb-2">
               <IndexViewSwitch app="blog" label={appName("/blog")} />
               <IndexViewSwitch app="wiki" label={appName("/wiki")} />
+              <PersonalMenuRow preview={previewPersonal} />
             </div>
           </li>
           {authReady && (

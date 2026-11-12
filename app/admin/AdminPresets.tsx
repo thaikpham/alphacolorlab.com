@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { PresetSet, PresetError, validatePresetSets } from "@/lib/presetSets";
+import { useEffect, useId, useState } from "react";
+import { PRESET_LIMITS, PresetSet, PresetError, PresetSlot, validatePresetSets, type SlotDraft } from "@/lib/presetSets";
+import { toSlug } from "@/lib/slug";
+import { SlotDashboard } from "@/app/components/SlotDashboard";
+import { InfoTip } from "@/app/components/InfoTip";
 import { adminCopy } from "./copy";
-import { SlotCard } from "@/app/components/SlotCard";
-import { SlotDraft } from "@/lib/presetSets";
 
 const DEFAULT_SLOT_SETTINGS: SlotDraft = {
   mode: "A",
@@ -13,32 +14,49 @@ const DEFAULT_SLOT_SETTINGS: SlotDraft = {
   wb: { mode: "awb", priority: "standard", ab: 0, gm: 0 },
 };
 
-function slugify(name: string): string {
-  return name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "") // Remove diacritics
-    .replace(/đ/g, "d") // Special case for Vietnamese đ
-    .replace(/\D+/g, "-") // Replace non-word chars with hyphens
-    .replace(/^-+|-+$/g, "") // Trim hyphens
-    .slice(0, 40);
-}
+// Bước di chuyển khi bấm phím mũi tên trong nhóm chọn bộ
+const ARROW_STEP: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
 
+const inputBox = "h-11 w-full rounded-control border border-separator bg-card px-3 text-callout text-label placeholder:text-secondary focus-visible:outline-2 focus-visible:outline-accent";
+const textBox = "block w-full rounded-control border border-separator bg-card px-3 py-2.5 text-callout text-label placeholder:text-secondary focus-visible:outline-2 focus-visible:outline-accent";
+const labelCls = "text-subhead font-semibold text-label";
+const card = "rounded-card bg-card p-6 shadow-card sm:p-8";
+const bar = "rounded-card bg-card p-4 shadow-card sm:p-6";
+const secondary = "inline-flex h-11 shrink-0 items-center rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong disabled:opacity-40";
+const primary = "inline-flex h-11 shrink-0 items-center rounded-full bg-accent px-6 text-subhead font-semibold text-on-accent transition-colors hover:bg-accent/90 disabled:opacity-40";
+const chip = (on: boolean) => `inline-flex min-h-11 items-center gap-2 rounded-badge px-4 py-2 text-subhead transition ${on ? "bg-card shadow-thumb font-semibold text-label" : "font-medium text-label hover:bg-fill-strong"}`;
+const badge = "shrink-0 rounded-badge bg-fill px-2 py-0.5 text-footnote font-medium text-label";
+
+/**
+ * Quản lý bộ M1–M4 của data/preset-sets.json (chỉ chạy khi npm run dev). Chọn bộ theo vị trí trong danh sách, không theo tên hay id.
+ * Id tự lấy từ tên chỉ cho bộ thêm hoặc nhân bản trong phiên này, đến khi sửa id bằng tay hoặc lưu xong.
+ * Bốn ô M1–M4 soạn bằng SlotDashboard (dùng chung với editor bộ KOL).
+ */
 export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
+  const uid = useId();
   const [sets, setSets] = useState<PresetSet[]>(initialSets);
-  const [selectedSetId, setSelectedSetId] = useState(sets[0].id);
+  const [selected, setSelected] = useState(0);
   const [editedSets, setEditedSets] = useState<PresetSet[] | null>(null);
-  const [selectedSlotIndex, setSelectedSlotIndex] = useState(0);
-  const [error, setError] = useState<string>("");
-  const [lastSaveTime, setLastSaveTime] = useState<string>("");
+  const [autoIds, setAutoIds] = useState<ReadonlySet<string>>(() => new Set<string>());
+  const [error, setError] = useState("");
+  const [lastSaveTime, setLastSaveTime] = useState("");
 
   const isDirty = editedSets !== null;
   const currentSets = editedSets ?? sets;
-  const selectedSet = currentSets.find((s) => s.id === selectedSetId);
+  const set = currentSets[selected];
 
-  const handleAddSet = () => {
-    const newSet: PresetSet = {
-      id: `bо-moi-${Date.now()}`,
+  const patchSet = (p: Partial<PresetSet>) => setEditedSets(currentSets.map((s, i) => (i === selected ? { ...s, ...p } : s)) as PresetSet[]);
+  const withAuto = (edit: (ids: Set<string>) => void) =>
+    setAutoIds((prev) => {
+      const next = new Set(prev);
+      edit(next);
+      return next;
+    });
+
+  const addSet = () => {
+    const id = `bo-moi-${Date.now()}`;
+    const added: PresetSet = {
+      id,
       name: adminCopy.newSetName,
       description: adminCopy.newSetDesc,
       slots: [
@@ -48,156 +66,63 @@ export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
         { label: adminCopy.slotName(4), settings: structuredClone(DEFAULT_SLOT_SETTINGS) },
       ],
     };
-    const updated = [...currentSets, newSet];
-    setEditedSets(updated);
-    setSelectedSetId(newSet.id);
-    setSelectedSlotIndex(0);
+    setEditedSets([...currentSets, added]);
+    withAuto((ids) => ids.add(id));
+    setSelected(currentSets.length);
   };
 
-  const handleSetNameChange = (name: string) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) =>
-      s.id === selectedSetId ? { ...s, name, id: slugify(name) || s.id } : s
-    ) as PresetSet[];
-    setEditedSets(updated);
-    setSelectedSetId(updated.find((s) => s.name === name)?.id || selectedSetId);
+  const duplicateSet = () => {
+    const id = `${set.id.slice(0, 20).replace(/-+$/, "")}-copy-${Date.now().toString(36)}`;
+    setEditedSets([...currentSets, { ...structuredClone(set), id, recommended: false }]);
+    withAuto((ids) => ids.add(id));
+    setSelected(currentSets.length);
   };
 
-  const handleSetDescriptionChange = (description: string) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) =>
-      s.id === selectedSetId ? { ...s, description } : s
-    ) as PresetSet[];
-    setEditedSets(updated);
+  const deleteSet = () => {
+    if (currentSets.length <= 1 || !window.confirm(adminCopy.deleteConfirm)) return;
+    const next = currentSets.filter((_, i) => i !== selected);
+    setEditedSets(next);
+    setSelected(Math.min(selected, next.length - 1));
   };
 
-  const handleSetIdChange = (id: string) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) =>
-      s.id === selectedSetId ? { ...s, id } : s
-    ) as PresetSet[];
-    setEditedSets(updated);
-    setSelectedSetId(id);
+  // Tên đổi thì id đổi theo chỉ khi bộ còn trong danh sách tự lấy id
+  const changeName = (name: string) => {
+    const auto = autoIds.has(set.id);
+    const id = auto ? toSlug(name, PRESET_LIMITS.id).replace(/^-+|-+$/g, "") || set.id : set.id;
+    patchSet({ name, id });
+    if (auto) withAuto((ids) => {
+      ids.delete(set.id);
+      ids.add(id);
+    });
+  };
+
+  // Sửa id bằng tay thì bộ thoát khỏi danh sách tự lấy id
+  const changeId = (raw: string) => {
+    patchSet({ id: toSlug(raw, PRESET_LIMITS.id) });
+    withAuto((ids) => ids.delete(set.id));
   };
 
   // Ô trống không ghi vào bộ; cả 4 ô trống thì bỏ hẳn author
-  const handleSetAuthorChange = (field: "name" | "handle" | "avatar" | "link", value: string) => {
-    if (!selectedSet) return;
-    const a = { name: "", handle: "", avatar: "", link: "", ...selectedSet.author, [field]: value };
+  const setAuthor = (field: "name" | "handle" | "avatar" | "link", value: string) => {
+    const a = { name: "", handle: "", avatar: "", link: "", ...set.author, [field]: value };
     const author = a.name || a.handle || a.avatar || a.link
       ? { name: a.name, handle: a.handle, ...(a.avatar ? { avatar: a.avatar } : {}), ...(a.link ? { link: a.link } : {}) }
       : undefined;
-    const updated = currentSets.map((s) => (s.id === selectedSetId ? { ...s, author } : s)) as PresetSet[];
-    setEditedSets(updated);
+    patchSet({ author });
   };
 
-  const handleSetDefault = (isDefault: boolean) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) => ({
-      ...s,
-      recommended: s.id === selectedSetId ? isDefault : false,
-    })) as PresetSet[];
-    setEditedSets(updated);
-  };
+  const setRecommended = (on: boolean) => setEditedSets(currentSets.map((s, i) => ({ ...s, recommended: i === selected ? on : false })) as PresetSet[]);
 
-  const handleSetUnlisted = (isUnlisted: boolean) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) => (s.id === selectedSetId ? { ...s, unlisted: isUnlisted } : s)) as PresetSet[];
-    setEditedSets(updated);
-  };
+  const setSlots = (slots: PresetSlot[]) => patchSet({ slots: slots as PresetSet["slots"] });
 
-  const handleSlotLabelChange = (label: string) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) =>
-      s.id === selectedSetId
-        ? {
-            ...s,
-            slots: s.slots.map((sl, i) =>
-              i === selectedSlotIndex ? { ...sl, label } : sl
-            ) as typeof s.slots,
-          }
-        : s
-    ) as PresetSet[];
-    setEditedSets(updated);
-  };
-
-  const handleSlotNoteChange = (note: string) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) =>
-      s.id === selectedSetId
-        ? {
-            ...s,
-            slots: s.slots.map((sl, i) =>
-              i === selectedSlotIndex ? { ...sl, note: note || undefined } : sl
-            ) as typeof s.slots,
-          }
-        : s
-    ) as PresetSet[];
-    setEditedSets(updated);
-  };
-
-  const handleSlotSettingsChange = (settings: SlotDraft) => {
-    if (!selectedSet) return;
-    const updated = currentSets.map((s) =>
-      s.id === selectedSetId
-        ? {
-            ...s,
-            slots: s.slots.map((sl, i) =>
-              i === selectedSlotIndex ? { ...sl, settings } : sl
-            ) as typeof s.slots,
-          }
-        : s
-    ) as PresetSet[];
-    setEditedSets(updated);
-  };
-
-  const handleCopySlotFrom = (sourceIndex: number) => {
-    if (!selectedSet) return;
-    const sourcSettings = selectedSet.slots[sourceIndex].settings;
-    const updated = currentSets.map((s) =>
-      s.id === selectedSetId
-        ? {
-            ...s,
-            slots: s.slots.map((sl, i) =>
-              i === selectedSlotIndex
-                ? { ...sl, settings: structuredClone(sourcSettings) }
-                : sl
-            ) as typeof s.slots,
-          }
-        : s
-    ) as PresetSet[];
-    setEditedSets(updated);
-  };
-
-  const handleDuplicateSet = () => {
-    if (!selectedSet) return;
-    const newSet: PresetSet = {
-      ...structuredClone(selectedSet),
-      id: `${selectedSet.id}-copy-${Date.now()}`,
-      recommended: false,
-    };
-    const updated = [...currentSets, newSet];
-    setEditedSets(updated);
-    setSelectedSetId(newSet.id);
-  };
-
-  const handleDeleteSet = () => {
-    if (!selectedSet || currentSets.length <= 1) {
-      if (currentSets.length <= 1) alert(adminCopy.cantDeleteLast);
-      return;
-    }
-    if (!window.confirm(adminCopy.deleteConfirm)) return;
-    const updated = currentSets.filter((s) => s.id !== selectedSetId) as PresetSet[];
-    setEditedSets(updated);
-    setSelectedSetId(updated[0].id);
-  };
-
-  const handleUndo = () => {
+  const undo = () => {
     setEditedSets(null);
+    setAutoIds(new Set<string>());
+    setSelected((i) => Math.min(i, sets.length - 1));
     setError("");
   };
 
-  const handleDownloadJson = () => {
+  const downloadJson = () => {
     const jsonStr = JSON.stringify(currentSets, null, 2);
     const blob = new Blob([jsonStr + "\n"], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -208,7 +133,7 @@ export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
     URL.revokeObjectURL(url);
   };
 
-  const handleSave = async () => {
+  const save = async () => {
     try {
       setError("");
       validatePresetSets(currentSets);
@@ -223,10 +148,9 @@ export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
       }
       setSets(currentSets);
       setEditedSets(null);
+      setAutoIds(new Set<string>());
       const now = new Date();
-      setLastSaveTime(
-        `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`
-      );
+      setLastSaveTime(`${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`);
     } catch (err) {
       setError(err instanceof PresetError ? err.message : String(err));
     }
@@ -243,256 +167,149 @@ export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, [isDirty]);
 
-  if (!selectedSet) return null;
+  if (!set) return null;
+
+  // Một ô tác giả: nhãn ngắn, lời dặn nằm trong nút "i"
+  const authorField = (key: "name" | "handle" | "avatar" | "link", text: string, tip: string, max: number) => (
+    <div key={key}>
+      <div className="flex items-center gap-1.5">
+        <label htmlFor={`${uid}-${key}`} className={labelCls}>
+          {text}
+        </label>
+        <InfoTip entry={{ term: text, lines: [{ t: tip }] }} />
+      </div>
+      <input id={`${uid}-${key}`} value={set.author?.[key] ?? ""} maxLength={max} onChange={(e) => setAuthor(key, e.target.value)} className={`${inputBox} mt-2`} />
+    </div>
+  );
 
   return (
-    <div className="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] gap-6 pb-32">
-      {/* Left: Set list */}
-      <div className="hidden lg:block">
-        <div className="rounded-card bg-card shadow-card overflow-hidden divide-y divide-separator">
-          {currentSets.map((set) => (
-            <button
-              key={set.id}
-              onClick={() => {
-                setSelectedSetId(set.id);
-                setSelectedSlotIndex(0);
-              }}
-              className={`w-full text-left p-4 transition ${
-                set.id === selectedSetId ? "bg-fill" : "hover:bg-fill"
-              }`}
-            >
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex-1 min-w-0">
-                  <div className="text-subhead font-semibold truncate">{set.name}</div>
-                  <div className="text-footnote text-secondary truncate">
-                    {set.description || "(tên)"}
-                  </div>
-                </div>
-                {set.recommended && (
-                  <span className="text-footnote font-medium px-2 py-1 rounded-badge bg-accent/10 text-accent-text whitespace-nowrap flex-shrink-0">
-                    {adminCopy.defaultChip}
-                  </span>
-                )}
-              </div>
+    <div className="space-y-6 pb-48 lg:pb-32">
+      {/* Thanh chọn bộ */}
+      <div className={bar}>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div role="radiogroup" aria-label={adminCopy.setList} className="flex max-w-full flex-wrap gap-1 rounded-control bg-fill p-1">
+            {currentSets.map((s, i) => (
+              <button
+                key={i}
+                type="button"
+                role="radio"
+                aria-checked={i === selected}
+                tabIndex={i === selected ? 0 : -1}
+                onClick={() => setSelected(i)}
+                onKeyDown={(e) => {
+                  const step = ARROW_STEP[e.key];
+                  if (!step) return;
+                  e.preventDefault();
+                  const next = (i + step + currentSets.length) % currentSets.length;
+                  setSelected(next);
+                  (e.currentTarget.parentElement?.children[next] as HTMLElement | undefined)?.focus();
+                }}
+                className={chip(i === selected)}
+              >
+                <span className="min-w-0 break-words">{s.name || s.id}</span>
+                {s.recommended && <span className={badge}>{adminCopy.defaultChip}</span>}
+                {s.unlisted && <span className={badge}>{adminCopy.unlistedChip}</span>}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={addSet} className={secondary}>
+              {adminCopy.addSet}
             </button>
-          ))}
+            <button type="button" onClick={duplicateSet} className={secondary}>
+              {adminCopy.duplicateSet}
+            </button>
+            <button
+              type="button"
+              onClick={deleteSet}
+              disabled={currentSets.length <= 1}
+              className="inline-flex h-11 shrink-0 items-center rounded-full px-5 text-subhead font-semibold text-danger transition-colors hover:bg-danger-fill disabled:opacity-40"
+            >
+              {adminCopy.deleteSet}
+            </button>
+          </div>
         </div>
-        <button
-          onClick={handleAddSet}
-          className="mt-3 w-full h-11 rounded-full bg-accent/10 text-accent-text text-subhead font-semibold hover:bg-accent/15 transition"
-        >
-          {adminCopy.addSet}
-        </button>
       </div>
 
-      {/* Right: Editor */}
-      <div className="space-y-6">
-        {/* Set info */}
-        <div>
-          <h3 className="text-footnote font-medium text-secondary mb-3">{adminCopy.setInfo}</h3>
-          <div className="rounded-card bg-card shadow-card overflow-hidden divide-y divide-separator">
-            <div className="p-4">
-              <label className="text-footnote font-medium text-secondary block mb-1.5">
-                {adminCopy.setName}
-              </label>
-              <input
-                type="text"
-                maxLength={60}
-                value={selectedSet.name}
-                onChange={(e) => handleSetNameChange(e.target.value)}
-                className="w-full h-11 rounded-control border border-separator bg-card px-3 text-callout text-label"
-              />
-            </div>
-            <div className="p-4">
-              <label className="text-footnote font-medium text-secondary block mb-1.5">
-                {adminCopy.setDescription}
-              </label>
-              <textarea
-                maxLength={240}
-                value={selectedSet.description}
-                onChange={(e) => handleSetDescriptionChange(e.target.value)}
-                className="w-full rounded-control border border-separator bg-card px-3 py-2 text-callout text-label resize-none"
-                rows={3}
-              />
-            </div>
-            <div className="p-4">
-              <label className="text-footnote font-medium text-secondary block mb-1.5">
+      {/* Thông tin bộ */}
+      <section aria-labelledby={`${uid}-info`} className={card}>
+        <h3 id={`${uid}-info`} className="text-title3 font-medium">
+          {adminCopy.setInfo}
+        </h3>
+        <div className="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div>
+            <label htmlFor={`${uid}-n`} className={labelCls}>
+              {adminCopy.setName}
+            </label>
+            <input id={`${uid}-n`} value={set.name} maxLength={PRESET_LIMITS.name} onChange={(e) => changeName(e.target.value)} className={`${inputBox} mt-2`} />
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5">
+              <label htmlFor={`${uid}-i`} className={labelCls}>
                 {adminCopy.setId}
               </label>
-              <input
-                type="text"
-                maxLength={40}
-                value={selectedSet.id}
-                onChange={(e) => handleSetIdChange(e.target.value)}
-                className="w-full h-11 rounded-control border border-separator bg-card px-3 text-callout text-label font-mono"
-              />
+              <InfoTip entry={{ term: adminCopy.setId, lines: [{ t: adminCopy.setIdTip }] }} />
             </div>
-            {([
-              ["name", adminCopy.authorName, 60],
-              ["handle", adminCopy.authorHandle, 30],
-              ["avatar", adminCopy.authorAvatar, 300],
-              ["link", adminCopy.authorLink, 300],
-            ] as const).map(([field, label, max]) => (
-              <div key={field} className="p-4">
-                <label className="text-footnote font-medium text-secondary block mb-1.5">
-                  {label}
-                </label>
-                <input
-                  type="text"
-                  maxLength={max}
-                  value={selectedSet.author?.[field] ?? ""}
-                  onChange={(e) => handleSetAuthorChange(field, e.target.value)}
-                  className="w-full h-11 rounded-control border border-separator bg-card px-3 text-callout text-label"
-                />
-              </div>
-            ))}
-            <label className="p-4 flex items-center gap-3 cursor-pointer hover:bg-fill transition">
-              <input
-                type="checkbox"
-                checked={selectedSet.recommended ?? false}
-                onChange={(e) => handleSetDefault(e.target.checked)}
-                className="w-5 h-5"
-              />
-              <span className="text-callout text-label">{adminCopy.makeDefault}</span>
+            <input id={`${uid}-i`} value={set.id} maxLength={PRESET_LIMITS.id} onChange={(e) => changeId(e.target.value)} className={`${inputBox} mt-2 font-mono`} />
+          </div>
+          {authorField("name", adminCopy.authorName, adminCopy.authorNameTip, PRESET_LIMITS.authorName)}
+          {authorField("handle", adminCopy.authorHandle, adminCopy.authorHandleTip, PRESET_LIMITS.authorHandle)}
+          <div className="sm:col-span-2">
+            <label htmlFor={`${uid}-d`} className={labelCls}>
+              {adminCopy.setDescription}
             </label>
-            <label className="p-4 flex items-center gap-3 cursor-pointer hover:bg-fill transition">
-              <input
-                type="checkbox"
-                checked={selectedSet.unlisted ?? false}
-                onChange={(e) => handleSetUnlisted(e.target.checked)}
-                className="w-5 h-5"
-              />
-              <span className="text-callout text-label">{adminCopy.unlisted}</span>
+            <textarea id={`${uid}-d`} rows={2} value={set.description} maxLength={PRESET_LIMITS.description} onChange={(e) => patchSet({ description: e.target.value })} className={`${textBox} mt-2`} />
+          </div>
+          {authorField("avatar", adminCopy.authorAvatar, adminCopy.authorAvatarTip, PRESET_LIMITS.url)}
+          {authorField("link", adminCopy.authorLink, adminCopy.authorLinkTip, PRESET_LIMITS.url)}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 sm:col-span-2 xl:col-span-4">
+            <label className="flex min-h-11 cursor-pointer items-center gap-3 text-callout text-label">
+              <input type="checkbox" checked={set.recommended ?? false} onChange={(e) => setRecommended(e.target.checked)} className="h-5 w-5" />
+              <span>{adminCopy.makeDefault}</span>
+            </label>
+            <label className="flex min-h-11 cursor-pointer items-center gap-3 text-callout text-label">
+              <input type="checkbox" checked={set.unlisted ?? false} onChange={(e) => patchSet({ unlisted: e.target.checked })} className="h-5 w-5" />
+              <span>{adminCopy.unlisted}</span>
             </label>
           </div>
         </div>
+      </section>
 
-        {/* Slots */}
-        <div>
-          <h3 className="text-footnote font-medium text-secondary mb-3">{adminCopy.slots}</h3>
-          <div className="rounded-card bg-card shadow-card overflow-hidden divide-y divide-separator">
-            {/* Segmented control for slots */}
-            <div className="p-1 flex gap-1 bg-fill rounded-control m-4 h-11">
-              {selectedSet.slots.map((slot, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelectedSlotIndex(i)}
-                  className={`flex-1 h-11 rounded-badge text-subhead font-medium transition ${
-                    i === selectedSlotIndex
-                      ? "bg-card shadow-thumb text-label"
-                      : "text-label hover:bg-fill-strong"
-                  }`}
-                >
-                  <div>M{i + 1}</div>
-                  <div className="text-footnote text-secondary truncate">{slot.label}</div>
-                </button>
-              ))}
-            </div>
-
-            {/* Slot editor */}
-            <div className="p-4 space-y-4">
-              <div>
-                <label className="text-footnote font-medium text-secondary block mb-1.5">
-                  {adminCopy.slotLabel}
-                </label>
-                <input
-                  type="text"
-                  maxLength={40}
-                  value={selectedSet.slots[selectedSlotIndex].label}
-                  onChange={(e) => handleSlotLabelChange(e.target.value)}
-                  className="w-full h-11 rounded-control border border-separator bg-card px-3 text-callout text-label"
-                />
-              </div>
-
-              <div>
-                <label className="text-footnote font-medium text-secondary block mb-1.5">
-                  {adminCopy.slotNote}
-                </label>
-                <textarea
-                  maxLength={160}
-                  value={selectedSet.slots[selectedSlotIndex].note || ""}
-                  onChange={(e) => handleSlotNoteChange(e.target.value)}
-                  className="w-full rounded-control border border-separator bg-card px-3 py-2 text-callout text-label resize-none"
-                  rows={2}
-                />
-              </div>
-
-              {/* Copy from other slots */}
-              <div className="flex gap-2">
-                {[0, 1, 2, 3].map((i) => (
-                  i !== selectedSlotIndex && (
-                    <button
-                      key={i}
-                      onClick={() => handleCopySlotFrom(i)}
-                      className="flex-1 h-10 rounded-full bg-accent/10 text-accent-text text-footnote font-medium hover:bg-accent/15 transition"
-                    >
-                      {adminCopy.copyFromM1.replace("M1", `M${i + 1}`)}
-                    </button>
-                  )
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* SlotCard */}
-          <div className="mt-6 rounded-card bg-card shadow-card p-4">
-            <SlotCard
-              settings={selectedSet.slots[selectedSlotIndex].settings}
-              onChange={handleSlotSettingsChange}
-              full
-            />
-          </div>
+      {/* Bốn ô nhớ */}
+      <section aria-labelledby={`${uid}-slots`} className={card}>
+        <h3 id={`${uid}-slots`} className="text-title3 font-medium">
+          {adminCopy.slots}
+        </h3>
+        <div className="mt-5">
+          <SlotDashboard key={selected} setName={set.name} slots={set.slots} onChange={setSlots} />
         </div>
+      </section>
 
-        {/* Set actions */}
-        <div className="rounded-card bg-card shadow-card p-4 flex gap-2">
-          <button
-            onClick={handleDuplicateSet}
-            className="flex-1 h-11 rounded-full bg-accent/10 text-accent-text text-subhead font-semibold hover:bg-accent/15 transition"
-          >
-            {adminCopy.duplicateSet}
-          </button>
-          <button
-            onClick={handleDeleteSet}
-            disabled={currentSets.length <= 1}
-            className="flex-1 h-11 rounded-full text-danger text-subhead font-semibold hover:bg-danger-fill transition disabled:opacity-40"
-          >
-            {adminCopy.deleteSet}
-          </button>
-        </div>
-      </div>
-
-      {/* Sticky save bar */}
-      <div className="fixed bottom-0 left-0 right-0 border-t border-separator bg-card safe-area-pad">
-        <div className="max-w-page mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
-          <div className="text-footnote">
-            {error && <span className="text-danger">{adminCopy.errorPrefix} {error}</span>}
-            {!error && isDirty && <span className="text-warning">{adminCopy.unsavedChanges}</span>}
-            {!error && !isDirty && lastSaveTime && (
-              <span className="text-success">
+      {/* Thanh lưu: nằm trên thanh tab dưới (dưới lg), đáy màn hình từ lg */}
+      <div className="fixed bottom-tabbar left-0 right-0 z-30 border-t border-separator bg-card lg:bottom-0">
+        {/* Dồn về bên phải: góc dưới trái là chỗ nút công cụ dev của Next */}
+        <div className="mx-auto flex max-w-page flex-wrap items-center justify-end gap-x-4 gap-y-2 px-4 py-3 sm:px-6 lg:px-8">
+          <div className="text-footnote font-medium">
+            {error ? (
+              <p role="alert" className="text-danger">
+                {adminCopy.errorPrefix} {error}
+              </p>
+            ) : isDirty ? (
+              <p className="text-warning">{adminCopy.unsavedChanges}</p>
+            ) : lastSaveTime ? (
+              <p className="text-success">
                 {adminCopy.savedAt} {lastSaveTime}
-              </span>
-            )}
+              </p>
+            ) : null}
           </div>
           <div className="flex gap-2">
-            <button
-              onClick={handleUndo}
-              disabled={!isDirty}
-              className="h-11 px-4 rounded-full text-accent-text text-subhead font-semibold hover:bg-accent/10 transition disabled:opacity-40"
-            >
+            <button type="button" onClick={undo} disabled={!isDirty} className={secondary}>
               {adminCopy.undo}
             </button>
-            <button
-              onClick={handleDownloadJson}
-              className="h-11 px-4 rounded-full bg-accent/10 text-accent-text text-subhead font-semibold hover:bg-accent/15 transition"
-            >
+            <button type="button" onClick={downloadJson} className={secondary}>
               {adminCopy.downloadJson}
             </button>
-            <button
-              onClick={handleSave}
-              disabled={!isDirty}
-              className="h-11 px-6 rounded-full bg-accent text-on-accent text-subhead font-semibold hover:bg-accent/90 transition disabled:opacity-40"
-            >
+            <button type="button" onClick={save} disabled={!isDirty} className={primary}>
               {adminCopy.save}
             </button>
           </div>

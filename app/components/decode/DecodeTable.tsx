@@ -1,13 +1,13 @@
 "use client";
 
-// Bảng tham số giải mã. Chỉ import từ app/admin/decode (chỉ dev), không import từ /giai-ma.
-import { Fragment, useMemo, useState } from "react";
+// Bảng tham số giải mã. Chỉ dùng trong AdminDecode (sau cổng /admin/decode); không import từ /giai-ma.
+// Nhận rows và summaries qua props (dữ liệu từ /admin/decode/data), không đọc lib/decode lúc chạy.
+import { Fragment, useState } from "react";
 import { cameraModels, codecSettingLabels, decodeConsole } from "@/app/content";
-import { decodeTable } from "@/lib/decode/table";
 import type { TableCell, TableRow } from "@/lib/decode/table";
-import { ROUNDS_CAP, modelSummary } from "@/lib/decode/matrix";
+import { ROUNDS_CAP } from "@/lib/decode/cap";
 import type { ModelSummary } from "@/lib/decode/matrix";
-import type { LocalFindings, ValueStatus } from "@/lib/decode/status";
+import type { ValueStatus } from "@/lib/decode/status";
 import type { GameModel } from "@/lib/game/types";
 
 const VALUE_TONE: Record<ValueStatus, string> = {
@@ -137,12 +137,14 @@ function RowDetail({
 }
 
 export function DecodeTable({
-  local,
+  rows,
+  summaries,
   focus,
   onToggleFocus,
   current,
 }: {
-  local: LocalFindings;
+  rows: TableRow[];
+  summaries: Record<GameModel, ModelSummary>;
   focus: string[];
   onToggleFocus: (settingId: string) => void;
   current: GameModel;
@@ -151,11 +153,6 @@ export function DecodeTable({
   const [filter, setFilter] = useState<"all" | "missing">("all");
   const [open, setOpen] = useState<string | null>(null);
 
-  const rows = useMemo(() => decodeTable(local), [local]);
-  const summaries = useMemo(
-    () => Object.fromEntries(cameraModels.map((c) => [c.id, modelSummary(c.id, local)])) as Record<GameModel, ModelSummary>,
-    [local]
-  );
   const visible = filter === "missing" ? rows.filter(hasMissing) : rows;
 
   return (

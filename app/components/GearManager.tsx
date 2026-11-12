@@ -1,17 +1,35 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import Image from "next/image";
 import { gearManager as T } from "@/app/content";
-import { useGear, toggleGear, writeGear, type GearBag } from "@/lib/gear";
-import { findGear, gearCatalog, nearGear, suggestGear, type GearHit } from "@/lib/gearCatalog";
+import { parseGear, useGear, toggleGear, writeGear, type GearBag } from "@/lib/gear";
+import { findGear, gearCatalog, nearGear, suggestGear, type GearHit, type Item } from "@/lib/gearCatalog";
 
 const CATS = ["body", "lens", "acc"] as const;
+const DRAFT_KEY = "gear-draft";
 
 /** Quản lý túi đồ: gõ tên hoặc mã, bấm Thêm. Không giới hạn số món, không liệt kê cả catalog.
  * Món không có trong dự án thì báo "Sản phẩm này chưa được hỗ trợ". */
-/** compact (landing): thay danh sách món bằng một dòng "Trong túi: …" cắt gọn, để thẻ không cao thêm; bỏ món thì sang /tai-khoan. */
+/** compact (landing): món nhập vào nằm trong bản nháp, hiện thành lưới ảnh nhỏ theo phân loại (bấm một món để bỏ);
+ * chỉ khi bấm "Lưu túi đồ" mới ghi vào túi đồ thật (đồ thị, nút vào dự án và đồng bộ tài khoản dùng túi đã lưu). */
 export function GearManager({ title, compact }: { title: string; compact?: boolean }) {
-  const bag = useGear();
+  const saved = useGear();
+  // Bản nháp của landing: null = chưa sửa gì, đang hiện túi đã lưu
+  const [draft, setDraftState] = useState<GearBag | null>(null);
+  // Bản nháp giữ trong sessionStorage: đăng nhập Google rời trang rồi quay lại thì món vừa nhập chưa lưu vẫn còn
+  const setDraft = (next: GearBag | null) => {
+    setDraftState(next);
+    if (next) sessionStorage.setItem(DRAFT_KEY, JSON.stringify(next));
+    else sessionStorage.removeItem(DRAFT_KEY);
+  };
+  useEffect(() => {
+    const raw = compact ? sessionStorage.getItem(DRAFT_KEY) : null;
+    if (raw) setDraftState(parseGear(raw, null));
+  }, [compact]);
+  const bag = compact ? draft ?? saved : saved;
+  const commit = (next: GearBag) => (compact ? setDraft(next) : writeGear(next));
+  const dirty = !!draft && JSON.stringify(draft) !== JSON.stringify(saved);
   const catalog = gearCatalog();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -35,7 +53,7 @@ export function GearManager({ title, compact }: { title: string; compact?: boole
     }
     if (bag[hit.cat].includes(hit.item.id)) setLive(T.already(hit.item.name));
     else {
-      writeGear(toggleGear(bag, hit.cat, hit.item.id));
+      commit(toggleGear(bag, hit.cat, hit.item.id));
       setLive(T.added(hit.item.name));
     }
     setQuery("");
@@ -44,7 +62,7 @@ export function GearManager({ title, compact }: { title: string; compact?: boole
   };
 
   const addFromSuggestion = (hit: GearHit) => {
-    writeGear(toggleGear(bag, hit.cat, hit.item.id));
+    commit(toggleGear(bag, hit.cat, hit.item.id));
     setLive(T.added(hit.item.name));
     dialog.current?.close();
   };
@@ -126,9 +144,68 @@ export function GearManager({ title, compact }: { title: string; compact?: boole
       </form>
 
       {compact && count > 0 && (
-        <p className="mt-4 truncate text-subhead font-semibold text-label">
-          {T.inBag(CATS.flatMap((cat) => bag[cat].map((id) => nameOf(cat, id))).join(", "))}
-        </p>
+        <div className="mt-4 max-h-72 space-y-3 overflow-y-auto">
+          {CATS.filter((cat) => bag[cat].length).map((cat) => (
+            <div key={cat}>
+              <h3 className="text-footnote font-semibold text-secondary">
+                {T.groups[cat]} <span className="tabular-nums">{bag[cat].length}</span>
+              </h3>
+              <ul className="mt-2 grid grid-cols-4 gap-2 sm:grid-cols-6">
+                {bag[cat].map((id) => {
+                  const item: Item | undefined = catalog[cat].find((i) => i.id === id);
+                  const name = item?.name ?? id;
+                  return (
+                    <li key={id}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          commit(toggleGear(bag, cat, id));
+                          setLive(T.removed(name));
+                        }}
+                        aria-label={T.remove(name)}
+                        className="group relative block w-full overflow-hidden rounded-control border border-separator bg-card text-left transition-colors hover:bg-fill"
+                      >
+                        <span className="relative block aspect-[4/3]">
+                          {item?.image ? (
+                            <Image src={item.image} alt="" fill sizes="120px" className="object-contain p-1.5" />
+                          ) : (
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className="absolute inset-0 m-auto size-8 text-tertiary">
+                              <rect x="8" y="14" width="32" height="22" rx="4" />
+                              <circle cx="24" cy="25" r="6" />
+                            </svg>
+                          )}
+                        </span>
+                        <span className="block truncate px-2 pb-2 text-footnote font-semibold text-label">{name}</span>
+                        <span aria-hidden="true" className="absolute top-1 right-1 grid size-5 place-items-center rounded-full bg-fill-strong text-label">
+                          <svg width="8" height="8" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                            <path d="M3 3l6 6M9 3l-6 6" />
+                          </svg>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+      {compact && (count > 0 || dirty) && (
+        <div className="mt-4 flex justify-end">
+          <button
+            type="button"
+            disabled={!dirty}
+            onClick={() => {
+              if (!draft) return;
+              writeGear(draft);
+              setDraft(null);
+              setLive(T.saved);
+            }}
+            className="inline-flex h-11 items-center rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong disabled:text-secondary disabled:hover:bg-fill"
+          >
+            {dirty ? T.save : T.saved}
+          </button>
+        </div>
       )}
 
       <p aria-live="polite" className="sr-only">

@@ -14,7 +14,7 @@ import { parseMods, writeMods } from "./ppMods.ts";
 // Conflicts: the newer side wins as a whole (last change on any device).
 
 /** localStorage key = the event each store fires on change. */
-export const SYNCED = ["color-bank-cart", "wiki-compare", "gear-bag", "user-profile", "camera-model", "saved-sets", "pp-mods"] as const;
+export const SYNCED = ["color-bank-cart", "wiki-compare", "gear-bag", "user-profile", "camera-model", "saved-sets", "pp-mods", "personalized"] as const;
 export type Snapshot = Partial<Record<(typeof SYNCED)[number], string>>;
 const STAMP = "user-state-updated-at";
 

@@ -7,11 +7,13 @@ export function PpForm({
   onApply,
   onClose,
   live,
+  dashboard,
 }: {
   initialPreset?: any;
   onApply: (pp: Record<string, any>) => void;
   onClose?: () => void;
   live?: boolean;
+  dashboard?: boolean;
 }) {
   const [ppState, setPp] = useState<Record<string, any>>(initialPreset?.pp || {});
   // live: controlled by the parent so a recipe switch shows its values without remounting (keeps input focus)
@@ -24,7 +26,7 @@ export function PpForm({
 
   return (
     <div className={live ? "" : "mt-4 p-4 rounded-control bg-fill"}>
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className={`grid gap-3 md:grid-cols-2 ${dashboard ? "xl:grid-cols-4" : ""}`.trimEnd()}>
         {PP_FIELDS.map((field) => {
           const value = pp[field.key];
           return (

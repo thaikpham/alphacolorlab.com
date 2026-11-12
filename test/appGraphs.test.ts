@@ -139,10 +139,9 @@ describe("appGraphs", () => {
       }
     });
 
-    it("contains M1–M4 and Giải mã tools", () => {
+    it("contains the M1–M4 tool", () => {
       const toolIds = new Set(graph.nodes.filter((n) => n.kind === "tool").map((n) => n.id));
       assert(toolIds.has("tao-m1-m4"), "Missing M1–M4 tool");
-      assert(toolIds.has("giai-ma"), "Missing Giải mã tool");
     });
 
     it("chapter hrefs match section ids", () => {
@@ -163,8 +162,6 @@ describe("appGraphs", () => {
       const shared = graph.nodes.find((n) => n.id === "bo-m1-m4");
       assert.strictEqual(shared?.href, "/bo-m1-m4");
       assert(graph.edges.some((e) => (e[0] === "zv-e10" && e[1] === "bo-m1-m4") || (e[1] === "zv-e10" && e[0] === "bo-m1-m4")), "Bộ M1–M4 chia sẻ không nối với ZV-E10");
-      const decode = graph.nodes.find((n) => n.id === "giai-ma");
-      assert.strictEqual(decode?.href, "/giai-ma");
     });
 
     it("camera node ids match product slugs", () => {

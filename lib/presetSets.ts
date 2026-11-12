@@ -21,6 +21,18 @@ export type PresetSet = {
 
 export class PresetError extends Error {}
 
+/** Giới hạn độ dài chữ của bộ, dùng cho validate và maxLength ở /admin và editor KOL. id, name, description trùng supabase/kol.sql. */
+export const PRESET_LIMITS = {
+  id: 40,
+  name: 60,
+  description: 240,
+  slotLabel: 40,
+  slotNote: 160,
+  authorHandle: 30,
+  authorName: 60,
+  url: 300,
+} as const;
+
 const MODES = ["P", "A", "S", "M", "keep"];
 const FOCUS = ["MF", "AF-S", "AF-C", "keep"];
 const FOCUS_AREA_VALUES = ["keep", ...FOCUS_AREAS];
@@ -47,7 +59,7 @@ function text(v: unknown, field: string, max: number, required = true): string {
 
 /** Đường dẫn đầy đủ, chỉ các giao thức cho phép. Không import lib/profile.ts (có "use client", file này chạy cả trên server). */
 function webUrl(v: unknown, field: string, protocols: string[]): string {
-  const s = text(v, field, 300);
+  const s = text(v, field, PRESET_LIMITS.url);
   let u: URL;
   try {
     u = new URL(s);
@@ -61,11 +73,11 @@ function webUrl(v: unknown, field: string, protocols: string[]): string {
 function validateAuthor(raw: unknown, field: string): PresetAuthor {
   if (!raw || typeof raw !== "object") throw new PresetError(`${field}: cần tên và handle`);
   const r = raw as Record<string, unknown>;
-  const handle = text(r.handle, `${field}.handle`, 30);
+  const handle = text(r.handle, `${field}.handle`, PRESET_LIMITS.authorHandle);
   if (!/^[a-z0-9-]+$/.test(handle)) throw new PresetError(`${field}.handle: chỉ dùng chữ thường không dấu, số và dấu gạch ngang`);
   const avatar = r.avatar === undefined ? undefined : webUrl(r.avatar, `${field}.avatar`, ["https:"]);
   const link = r.link === undefined ? undefined : webUrl(r.link, `${field}.link`, ["http:", "https:"]);
-  return { name: text(r.name, `${field}.name`, 60), handle, ...(avatar ? { avatar } : {}), ...(link ? { link } : {}) };
+  return { name: text(r.name, `${field}.name`, PRESET_LIMITS.authorName), handle, ...(avatar ? { avatar } : {}), ...(link ? { link } : {}) };
 }
 
 function oneOf<T extends string>(v: unknown, options: readonly T[], field: string): T {
@@ -188,7 +200,7 @@ export function validatePresetSets(raw: unknown): PresetSet[] {
     const f = `Bộ ${i + 1}`;
     if (!s || typeof s !== "object") throw new PresetError(`${f}: dữ liệu không hợp lệ`);
     const r = s as Record<string, unknown>;
-    const id = text(r.id, `${f}.id`, 40);
+    const id = text(r.id, `${f}.id`, PRESET_LIMITS.id);
     if (!/^[a-z0-9-]+$/.test(id)) throw new PresetError(`${f}.id: chỉ dùng chữ thường không dấu, số và dấu gạch ngang`);
     if (ids.has(id)) throw new PresetError(`${f}.id: trùng "${id}"`);
     ids.add(id);
@@ -197,13 +209,13 @@ export function validatePresetSets(raw: unknown): PresetSet[] {
     const slots = r.slots.map((sl, j) => {
       const sf = `${f}.M${j + 1}`;
       const o = (sl ?? {}) as Record<string, unknown>;
-      const note = text(o.note, `${sf}.note`, 160, false);
-      return { label: text(o.label, `${sf}.label`, 40), ...(note ? { note } : {}), settings: validateSlot(o.settings, sf) };
+      const note = text(o.note, `${sf}.note`, PRESET_LIMITS.slotNote, false);
+      return { label: text(o.label, `${sf}.label`, PRESET_LIMITS.slotLabel), ...(note ? { note } : {}), settings: validateSlot(o.settings, sf) };
     }) as PresetSet["slots"];
     return {
       id,
-      name: text(r.name, `${f}.name`, 60),
-      description: text(r.description, `${f}.description`, 240),
+      name: text(r.name, `${f}.name`, PRESET_LIMITS.name),
+      description: text(r.description, `${f}.description`, PRESET_LIMITS.description),
       ...(r.recommended ? { recommended: true } : {}),
       ...(r.unlisted === true ? { unlisted: true } : {}),
       ...(r.author !== undefined ? { author: validateAuthor(r.author, `${f}.author`) } : {}),

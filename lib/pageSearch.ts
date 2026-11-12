@@ -11,7 +11,7 @@ export interface PageHit {
   label: string;
 }
 
-export type PageSearch = { kind: "pick"; placeholder: string; active(): boolean; find(query: string): PageHit[]; pick(id: string): void; /** Chọn nút mà không bao giờ mở trang (pick lần hai vào nút đang chọn thì mở) */ show?(id: string): boolean };
+export type PageSearch = { kind: "pick"; placeholder: string; active(): boolean; find(query: string): PageHit[]; pick(id: string): void };
 
 const sources = new Set<PageSearch>();
 const listeners = new Set<() => void>();

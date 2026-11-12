@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { browseAppOf, parseIndexView, readIndexView, setIndexView } from '../lib/indexView.ts'
+import { browseAppOf, parseIndexView, readIndexView, setIndexView, wideBrowseOf } from '../lib/indexView.ts'
 
 test('browseAppOf: /blog, /wiki và trang con là app tương ứng, các đường khác là null', () => {
   assert.equal(browseAppOf('/blog'), 'blog')
@@ -14,6 +14,20 @@ test('browseAppOf: /blog, /wiki và trang con là app tương ứng, các đư�
   assert.equal(browseAppOf('/colors'), null)
   assert.equal(browseAppOf('/console'), null)
   assert.equal(browseAppOf(''), null)
+})
+
+test('wideBrowseOf: /admin và trang con luôn rộng; Blog và Wiki rộng khi ở Lưới, không rộng khi ở Danh sách', () => {
+  assert.equal(wideBrowseOf('/admin', 'list', 'list'), true)
+  assert.equal(wideBrowseOf('/admin', 'grid', 'grid'), true)
+  assert.equal(wideBrowseOf('/admin/decode', 'list', 'list'), true)
+  assert.equal(wideBrowseOf('/administrator', 'grid', 'grid'), false)
+  assert.equal(wideBrowseOf('/blog', 'grid', 'list'), true)
+  assert.equal(wideBrowseOf('/blog/kien-thuc', 'grid', 'list'), true)
+  assert.equal(wideBrowseOf('/blog', 'list', 'grid'), false)
+  assert.equal(wideBrowseOf('/wiki/a7c-ii', 'list', 'grid'), true)
+  assert.equal(wideBrowseOf('/wiki', 'grid', 'list'), false)
+  assert.equal(wideBrowseOf('/console', 'grid', 'grid'), false)
+  assert.equal(wideBrowseOf('/', 'grid', 'grid'), false)
 })
 
 test('parseIndexView: chỉ "list" là danh sách, mọi giá trị khác là lưới', () => {

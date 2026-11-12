@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { kolSets, glossary, recallGuideText } from "@/app/content";
-import { cloneSlots, type PresetSet } from "@/lib/presetSets";
-import { buildPresetFiles, loadPresetBase, saveFile, ZIP_FILENAME, type PresetSystem } from "@/lib/presetDownload";
+import type { PresetSet } from "@/lib/presetSets";
+import { downloadSetZip, type PresetSystem } from "@/lib/presetDownload";
 import { InfoTip } from "./InfoTip";
 
 /** Tải ZIP 4 file của bộ (theo hệ PAL/NTSC đã chọn) và nút "Dùng bộ này" mở Tạo bộ M1–M4 với bộ đó. Chỉ hiện cho ZV-E10. */
@@ -15,10 +15,7 @@ export function PresetSetActions({ set }: { set: PresetSet }) {
   const download = async () => {
     setFailed(false);
     try {
-      const { base, headers } = await loadPresetBase(system);
-      const guide = recallGuideText({ setName: set.name, labels: set.slots.map((s) => s.label) });
-      const { zip } = buildPresetFiles(cloneSlots(set), base, headers, guide);
-      saveFile(zip, ZIP_FILENAME, "application/zip");
+      await downloadSetZip(set.slots.map((s) => s.settings), system, recallGuideText({ setName: set.name, labels: set.slots.map((s) => s.label) }));
     } catch {
       setFailed(true);
     }

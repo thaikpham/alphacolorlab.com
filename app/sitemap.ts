@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...sections.map((s): Entry => [`/cai-tay/${s.id}`, 0.7]),
     ["/cai-tay/tom-tat", 0.7],
     ["/tao-m1-m4", 0.7],
-    ["/giai-ma", 0.7],
     ["/colors", 0.8],
     ...presets.map((p): Entry => [`/colors/${p.id}`, 0.6]),
     ["/wiki", 0.8],

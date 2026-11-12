@@ -7,15 +7,13 @@ import { ModelPicker } from "./ModelPicker";
 import { LinkRow } from "./LinkRow";
 import { useCart } from "@/lib/cart";
 import { setModel } from "@/lib/model";
-import { decodeProgress, showDecodeStatus } from "@/lib/decodeProgress";
 
 const decoded = new Set(sonyBodies.filter((b) => b.decoded).map((b) => b.id));
 const decodedIds = cameraModels.filter((m) => decoded.has(m.id)).map((m) => m.id).join(" ");
-const others = cameraModels.filter((m) => !decoded.has(m.id)).map((m) => m.id).join(" ");
 const card = "overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator";
 const heading = "mb-1.5 px-4 text-footnote font-medium text-secondary";
 
-/** Alpha Console index column: camera picker, the 4 chapters + summary, then the tools. Model-dependent text renders every variant with data-model-only (no hydration mismatch). */
+/** Alpha Console index column: camera picker, the Công cụ block (only for decoded cameras), then the 4 chapters + summary. Model-dependent text renders every variant with data-model-only (no hydration mismatch). */
 export function ConsoleIndex() {
   const pathname = usePathname();
   const router = useRouter();
@@ -40,33 +38,6 @@ export function ConsoleIndex() {
   const perModel = (render: (id: ModelId) => React.ReactNode) =>
     cameraModels.map((m) => <span key={m.id} data-model-only={m.id}>{render(m.id)}</span>);
 
-  // Decoded cameras: tools first (making M1–M4 is the main job); others: the manual guide first, tools after
-  // showShared: chỉ máy đã giải mã (ZV-E10) có "Bộ M1–M4 chia sẻ"; nhóm máy chưa giải mã không hiện dòng này
-  const tools = (id: string, only: string, showShared: boolean) => (
-    <nav aria-labelledby={id} data-model-only={only}>
-      <h2 id={id} className={heading}>{C.tools}</h2>
-      <div className={card}>
-        {row(
-          "/tao-m1-m4",
-          C.makeSet,
-          cameraModels.map((m) =>
-            decoded.has(m.id) ? (
-              cartCount > 0 && <span key={m.id} data-model-only={m.id} className="rounded-full bg-accent/10 px-2.5 py-1 font-semibold text-accent-text tabular-nums">{C.cartCount(cartCount)}</span>
-            ) : (
-              <span key={m.id} data-model-only={m.id}>{C.onlyZve10}</span>
-            ),
-          ),
-        )}
-        {showShared && row("/bo-m1-m4", kolSets.title)}
-        {row(
-          "/giai-ma",
-          C.decode,
-          showDecodeStatus ? perModel((id) => <span className="tabular-nums">{decodeProgress(id).percent}%</span>) : undefined,
-        )}
-      </div>
-    </nav>
-  );
-
   return (
     <div className="space-y-6">
       <div>
@@ -74,7 +45,18 @@ export function ConsoleIndex() {
         <ModelPicker />
       </div>
 
-      {tools("tools-top", decodedIds, true)}
+      {/* Công cụ chỉ hiện cho máy đã giải mã (ZV-E10); máy khác không có mục này */}
+      <nav aria-labelledby="tools" data-model-only={decodedIds}>
+        <h2 id="tools" className={heading}>{C.tools}</h2>
+        <div className={card}>
+          {row(
+            "/tao-m1-m4",
+            C.makeSet,
+            cartCount > 0 ? <span className="rounded-full bg-accent/10 px-2.5 py-1 font-semibold text-accent-text tabular-nums">{C.cartCount(cartCount)}</span> : undefined,
+          )}
+          {row("/bo-m1-m4", kolSets.title)}
+        </div>
+      </nav>
 
       <nav aria-labelledby="guide-heading">
         <h2 id="guide-heading" className={heading}>{perModel((id) => C.guideGroup(getStepCount(id)))}</h2>
@@ -85,8 +67,6 @@ export function ConsoleIndex() {
           {row("/cai-tay/tom-tat", C.summary)}
         </div>
       </nav>
-
-      {tools("tools-bottom", others, false)}
     </div>
   );
 }

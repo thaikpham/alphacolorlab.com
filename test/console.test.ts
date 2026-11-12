@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { sections, cameraModels, sonyBodies, consoleHashRoutes } from '../app/content.ts'
 
-const routes = new Set([...sections.map((s) => `/cai-tay/${s.id}`), '/cai-tay/tom-tat', '/tao-m1-m4', '/giai-ma'])
+const routes = new Set([...sections.map((s) => `/cai-tay/${s.id}`), '/cai-tay/tom-tat', '/tao-m1-m4', '/console'])
 
 test('old one-page hashes land on a console route', () => {
   for (const h of [...sections.map((s) => s.id), 'tom-tat', 'huong-dan', 'tao-preset', 'choi-game']) {

@@ -1,19 +1,27 @@
 "use client";
 
-// Trang /admin/decode (chỉ dev): chọn máy, bảng tham số, rồi lượt tiếp theo có nút lưu lượt vào dự án.
-import { useMemo, useState, useSyncExternalStore } from "react";
+// Nội dung /admin/decode sau cổng AdminGate: chọn máy, bảng tham số, ứng viên, rồi lượt tiếp theo có nút lưu lượt vào dự án.
+// rows, summaries và candidates do AdminGate nhận từ /admin/decode/data; trang công khai không có dữ liệu này.
+import { useState } from "react";
 import { cameraModels, decodeConsole } from "@/app/content";
 import { DecodeTable, segment } from "@/app/components/decode/DecodeTable";
 import { NextRound } from "@/app/components/decode/NextRound";
-import { getLocalRaw, parseLocal, subscribeLocal } from "@/app/components/decode/localStore";
 import { setModel, useModel } from "@/lib/model";
+import type { TableRow } from "@/lib/decode/table";
+import type { ModelSummary } from "@/lib/decode/matrix";
+import type { GameModel } from "@/lib/game/types";
 import { Candidates } from "./Candidates";
+import type { Candidate } from "./Candidates";
 
-export function AdminDecode() {
+export type AdminData = {
+  rows: TableRow[];
+  summaries: Record<GameModel, ModelSummary>;
+  candidates: Candidate[];
+};
+
+export function AdminDecode({ rows, summaries, candidates }: AdminData) {
   const model = useModel();
   const a = decodeConsole.admin;
-  const raw = useSyncExternalStore(subscribeLocal, getLocalRaw, () => "");
-  const local = useMemo(() => parseLocal(raw), [raw]);
   const [focus, setFocus] = useState<string[]>([]);
   const toggleFocus = (settingId: string) =>
     setFocus((f) => (f.includes(settingId) ? f.filter((x) => x !== settingId) : [...f, settingId]));
@@ -33,8 +41,8 @@ export function AdminDecode() {
           </button>
         ))}
       </div>
-      <DecodeTable local={local} focus={focus} onToggleFocus={toggleFocus} current={model} />
-      <Candidates />
+      <DecodeTable rows={rows} summaries={summaries} focus={focus} onToggleFocus={toggleFocus} current={model} />
+      <Candidates candidates={candidates} />
       <NextRound model={model} focus={focus} showDevSave />
     </div>
   );

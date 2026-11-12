@@ -1,5 +1,8 @@
 "use client";
 
+import { keepRelated } from "@/lib/personal";
+import { usePersonal } from "@/lib/usePersonal";
+import { PersonalBar } from "./PersonalToggle";
 import { useMemo } from "react";
 import Link from "next/link";
 import { colorBank } from "@/app/content";
@@ -12,7 +15,10 @@ interface ColorsIndexProps {
   presets: typeof import("@/lib/zve10/presets").default;
 }
 
-export function ColorsIndex({ presets: allPresets }: ColorsIndexProps) {
+export function ColorsIndex({ presets: every }: ColorsIndexProps) {
+  // Cá nhân hóa: chỉ giữ công thức nối với túi đồ; không công thức nào nối thì hiện đủ
+  const personal = usePersonal();
+  const allPresets = useMemo(() => [...keepRelated(every, (p) => `/colors/${p.id}`, personal.hrefs)], [every, personal.hrefs]);
   const model = useModel();
   const cart = useCart();
   const mods = useMods();
@@ -33,6 +39,7 @@ export function ColorsIndex({ presets: allPresets }: ColorsIndexProps) {
 
   return (
     <div className="space-y-6">
+      <PersonalBar state={personal} />
       {mods.length > 0 && (
         <section>
           <h2 className="mb-2 px-4 text-footnote text-secondary">{colorBank.mod.mine}</h2>

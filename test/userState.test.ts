@@ -12,6 +12,6 @@ test("user state: the newer side wins as a whole", () => {
 });
 
 test("user state: synced keys are the stores' own localStorage keys and events", async () => {
-  const sources = await Promise.all(["cart", "compare", "gear", "profile", "model", "savedSets", "ppMods"].map((f) => import("node:fs").then((fs) => fs.readFileSync(new URL(`../lib/${f}.ts`, import.meta.url), "utf8"))));
+  const sources = await Promise.all(["cart", "compare", "gear", "profile", "model", "savedSets", "ppMods", "usePersonal"].map((f) => import("node:fs").then((fs) => fs.readFileSync(new URL(`../lib/${f}.ts`, import.meta.url), "utf8"))));
   for (const key of SYNCED) assert.ok(sources.some((src) => src.includes(`"${key}"`)), key);
 });

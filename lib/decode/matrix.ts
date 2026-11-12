@@ -11,12 +11,13 @@ import type { GameModel } from "../game/types.ts";
 import { planMission, yieldTargets } from "../game/plan.ts";
 import { catalogRows, statusRows } from "./status.ts";
 import type { LocalFindings, MatrixRow, ValueStatus } from "./status.ts";
+import { ROUNDS_CAP } from "./cap.ts";
 
 export type { LocalFindings, MatrixCell, MatrixRow, ValueStatus } from "./status.ts";
 
 export const MODELS: readonly GameModel[] = ["zve10", "a6400", "a7c2"];
-// Số lượt mô phỏng tối đa; roundsLeft bằng ROUNDS_CAP nghĩa là chưa hết trong giới hạn hoặc không còn mục tiêu tiến được
-export const ROUNDS_CAP = 12;
+// Số lượt mô phỏng tối đa (định nghĩa ở cap.ts); roundsLeft bằng ROUNDS_CAP nghĩa là chưa hết trong giới hạn hoặc không còn mục tiêu tiến được
+export { ROUNDS_CAP };
 
 export type ModelSummary = {
   settings: number;
