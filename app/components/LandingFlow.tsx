@@ -41,6 +41,17 @@ export function LandingFlow({ graph }: { graph: CGraph }) {
   // Không đủ điều kiện thì không đứng ở bước 3 (ví dụ vừa khôi phục bước từ phiên trước rồi đăng xuất)
   const shown: Step = step === 3 && !ready ? 2 : step;
   const missing = [!hasBag && T.missing.bag, !signedIn && T.missing.login].filter(Boolean) as string[];
+  // Bản chưa bật đăng nhập thì không có dòng đăng nhập
+  const needs = [{ label: T.needs.bag, ok: hasBag }, ...(authReady ? [{ label: T.needs.login, ok: !!session }] : [])];
+  const blocked = shown === 2 && !ready;
+  // Bấm "Tiếp tục" khi còn thiếu: hiện cảnh báo cạnh nút (mỗi lần bấm tăng 1 để hẹn giờ lại), tự ẩn sau 6 giây
+  const [warn, setWarn] = useState(0);
+  const needsList = useRef<HTMLUListElement>(null);
+  useEffect(() => {
+    if (!warn) return;
+    const t = setTimeout(() => setWarn(0), 6000);
+    return () => clearTimeout(t);
+  }, [warn]);
 
   const go = (s: Step) => {
     // Sang bước 3 thì luôn mở ở "Của tôi", dù trước đó đã chọn "Tất cả"
@@ -79,14 +90,17 @@ export function LandingFlow({ graph }: { graph: CGraph }) {
           <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col justify-center gap-4">
             <GearManager title={landing.start.title} compact />
             <LandingStart />
-            <div className="rounded-control bg-fill px-4 py-3 text-subhead text-label text-pretty">
-              <p>{landing.start.note}</p>
-              {missing.length > 0 && (
-                <p id="flow-missing" className="mt-2 font-semibold">
-                  {T.missing.lead(missing)}
-                </p>
-              )}
-            </div>
+            <p className="rounded-control bg-fill px-4 py-3 text-subhead text-label text-pretty">{landing.start.note}</p>
+            <ul ref={needsList} id="flow-missing" aria-label={T.needs.label} className="rounded-card bg-card shadow-card divide-y divide-separator">
+              {needs.map((n) => (
+                <li key={n.label} className="flex min-h-11 items-center justify-between gap-3 px-4 py-2 text-callout">
+                  <span className="text-pretty">{n.label}</span>
+                  <span className={`shrink-0 rounded-badge px-2 py-0.5 text-footnote font-semibold ${n.ok ? "bg-success-fill text-success" : "bg-warning-fill text-warning"}`}>
+                    {n.ok ? T.needs.done : T.needs.todo}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       )}
@@ -112,13 +126,26 @@ export function LandingFlow({ graph }: { graph: CGraph }) {
       </nav>
 
       {shown < 3 && (
-        <div className="absolute right-2 bottom-2 z-30 md:right-4 md:bottom-4">
+        <div className="absolute right-2 bottom-2 z-30 flex flex-col items-end gap-2 md:right-4 md:bottom-4">
+          {/* Vùng báo luôn có trong DOM để trình đọc màn hình đọc được chữ vừa thêm vào */}
+          <div role="alert">
+            {blocked && warn > 0 && (
+              <p className="w-72 rounded-control bg-card px-4 py-3 text-subhead font-semibold text-warning text-pretty shadow-thumb">{T.missing.lead(missing)}</p>
+            )}
+          </div>
+          {/* Còn thiếu thì nút vẫn bấm được (aria-disabled, không disabled): bấm để biết đang thiếu gì */}
           <button
             type="button"
-            disabled={shown === 2 && !ready}
-            aria-describedby={shown === 2 && !ready ? "flow-missing" : undefined}
-            onClick={() => go((shown + 1) as Step)}
-            className="inline-flex h-12 items-center gap-2 rounded-full bg-accent px-7 text-callout font-semibold text-on-accent transition-colors hover:bg-accent/90 disabled:bg-fill-strong disabled:text-secondary"
+            aria-disabled={blocked || undefined}
+            aria-describedby={blocked ? "flow-missing" : undefined}
+            onClick={() => {
+              if (!blocked) return go((shown + 1) as Step);
+              setWarn((n) => n + 1);
+              needsList.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+            }}
+            className={`inline-flex h-12 items-center gap-2 rounded-full px-7 text-callout font-semibold transition-colors ${
+              blocked ? "bg-fill-strong text-secondary" : "bg-accent text-on-accent hover:bg-accent/90"
+            }`}
           >
             {shown === 1 ? T.start : T.next}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

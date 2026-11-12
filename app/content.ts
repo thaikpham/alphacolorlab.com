@@ -950,6 +950,14 @@ export const landing = {
       login: "đăng nhập bằng Google",
       lead: (items: string[]) => `Để tiếp tục, bạn cần ${items.join(" và ")}.`,
     },
+    // Danh sách điều kiện ở bước 2: mỗi dòng một điều kiện kèm trạng thái
+    needs: {
+      label: "Điều kiện để tiếp tục",
+      bag: "Lưu ít nhất một sản phẩm vào túi đồ",
+      login: "Đăng nhập bằng Google",
+      todo: "Còn thiếu",
+      done: "Đã xong",
+    },
   },
   start: {
     title: "Bắt đầu với bộ máy của bạn",
