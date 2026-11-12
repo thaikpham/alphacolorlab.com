@@ -2,14 +2,14 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { parseIndexView, setIndexView } from '../lib/indexView.ts'
 
-test('parseIndexView: chỉ "grid" là lưới, mọi giá trị khác là danh sách', () => {
-  assert.equal(parseIndexView('grid'), 'grid')
+test('parseIndexView: chỉ "list" là danh sách, mọi giá trị khác là lưới', () => {
   assert.equal(parseIndexView('list'), 'list')
-  assert.equal(parseIndexView(null), 'list')
-  assert.equal(parseIndexView(undefined), 'list')
-  assert.equal(parseIndexView(''), 'list')
-  assert.equal(parseIndexView('GRID'), 'list')
-  assert.equal(parseIndexView('{"view":"grid"}'), 'list')
+  assert.equal(parseIndexView('grid'), 'grid')
+  assert.equal(parseIndexView(null), 'grid')
+  assert.equal(parseIndexView(undefined), 'grid')
+  assert.equal(parseIndexView(''), 'grid')
+  assert.equal(parseIndexView('LIST'), 'grid')
+  assert.equal(parseIndexView('{"view":"list"}'), 'grid')
 })
 
 test('setIndexView: ghi localStorage và báo đổi; không có window thì không làm gì', () => {

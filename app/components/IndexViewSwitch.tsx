@@ -5,7 +5,7 @@ import { setIndexView, useIndexView, type IndexView } from "@/lib/indexView";
 
 const VIEWS: IndexView[] = ["list", "grid"];
 
-/** Danh sách / Lưới: kiểu hiển thị của cột index (lưu trên máy này). */
+/** Danh sách / Lưới: kiểu hiển thị của bài viết (/blog) và sản phẩm (/wiki). Nằm trong thẻ Cài đặt của /tai-khoan (ProfilePage); lưu trên máy này. */
 export function IndexViewSwitch() {
   const view = useIndexView();
   return (

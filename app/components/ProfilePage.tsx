@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { account, community, kolSets, kolStudio, profile as T } from "@/app/content";
+import { account, community, indexView, kolSets, kolStudio, profile as T } from "@/app/content";
 import { authReady, signIn, signOut, useSession } from "@/lib/auth";
 import { toggleGear, useGear, writeGear, type GearBag } from "@/lib/gear";
 import { cleanLink, cleanUsername, encodeShare, LIMITS, useProfile, writeProfile, type Profile } from "@/lib/profile";
@@ -11,6 +11,7 @@ import { listedSets, validatePresetSets } from "@/lib/presetSets";
 import { readSaved, toggleSaved, useSavedSets, writeSaved } from "@/lib/savedSets";
 import presetSetsJson from "@/data/preset-sets.json";
 import { GearManager } from "./GearManager";
+import { IndexViewSwitch } from "./IndexViewSwitch";
 import { InfoTip } from "./InfoTip";
 import { KolCoverButton } from "./KolCoverButton";
 import { KolLoadState, KolProvider, useKol } from "./KolContext";
@@ -27,7 +28,7 @@ const SETS = validatePresetSets(presetSetsJson);
 const REPO_IDS: ReadonlySet<string> = new Set(SETS.map((s) => s.id));
 
 /** /tai-khoan: hồ sơ của chính người dùng để khoe túi đồ. Sửa username, giới thiệu, liên kết; chia sẻ bằng link /ho-so#…
- * Khung ProfileView (kiểu trang mạng xã hội): thẻ tiêu đề có Chia sẻ, Sửa và, với KOL có hồ sơ, Xem trang công khai; KOL thêm nút Đổi ảnh bìa ở góc bìa. Cột trái là thẻ Giới thiệu (form sửa thay phần đọc) và tài khoản;
+ * Khung ProfileView (kiểu trang mạng xã hội): thẻ tiêu đề có Chia sẻ, Sửa và, với KOL có hồ sơ, Xem trang công khai; KOL thêm nút Đổi ảnh bìa ở góc bìa. Cột trái là thẻ Giới thiệu (form sửa thay phần đọc), thẻ Cài đặt (kiểu Danh sách/Lưới, luôn hiện) và tài khoản;
  * cột phải có tường bộ M1–M4 (KOL, ngoài tab) rồi các tab: Túi đồ, Bộ đã sưu tầm (khi có bộ), và với KOL thêm Ảnh mẫu. KOL sửa cả hồ sơ trong một form ở thẻ Giới thiệu (KolIdentityForm), lưu vào hồ sơ KOL rồi mới ghi máy.
  * KolProvider tải hồ sơ KOL một lần, chỉ khi is_kol đúng; người không phải KOL hoặc chưa đăng nhập không gọi hồ sơ hay bộ KOL. */
 export function ProfilePage() {
@@ -262,6 +263,22 @@ function ProfileBody({ isKol }: { isKol: boolean }) {
         }
       : undefined;
 
+  // Thẻ Cài đặt: kiểu hiển thị Danh sách/Lưới của Blog và Product Wiki. Luôn hiện, kể cả chưa đăng nhập hoặc không phải KOL.
+  const settingsCard = (
+    <section aria-labelledby={`${uid}-settings`} className="rounded-card bg-card p-5 shadow-card sm:p-6">
+      <h2 id={`${uid}-settings`} className="text-title3 font-medium">
+        {indexView.settings}
+      </h2>
+      <div className="mt-3 flex items-center gap-2">
+        <p className="text-subhead font-semibold text-label">{indexView.label}</p>
+        <InfoTip entry={{ term: indexView.label, lines: [{ t: indexView.info }] }} />
+      </div>
+      <div className="mt-2">
+        <IndexViewSwitch />
+      </div>
+    </section>
+  );
+
   const accountCard = authReady ? (
     <section aria-labelledby={`${uid}-account`} className="rounded-card bg-card p-5 shadow-card sm:p-6">
       <div className="flex items-center gap-2">
@@ -296,7 +313,7 @@ function ProfileBody({ isKol }: { isKol: boolean }) {
           </a>
         ) : undefined
       }
-      account={accountCard}
+      account={<div className="space-y-6">{settingsCard}{accountCard}</div>}
       onRemove={editing ? removeGear : undefined}
       saved={savedTab}
       extra={kolTabs}

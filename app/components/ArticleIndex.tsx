@@ -7,7 +7,6 @@ import { blog } from "@/app/content";
 import type { IndexItem } from "@/lib/blog";
 import { useIndexView } from "@/lib/indexView";
 import { IndexRow } from "./IndexRow";
-import { IndexViewSwitch } from "./IndexViewSwitch";
 
 export type ArticleGroup = { key: string; label: string; items: IndexItem[] };
 
@@ -23,7 +22,6 @@ export function ArticleIndex({ groups }: { groups: ArticleGroup[] }) {
   const grid = view === "grid";
   return (
     <div className="space-y-6">
-      <IndexViewSwitch />
       {groups.map((g, gi) => {
         const cards = grid && g.key !== LIST_ONLY;
         return (

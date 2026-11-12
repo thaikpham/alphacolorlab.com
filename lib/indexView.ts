@@ -7,13 +7,13 @@ export type IndexView = "list" | "grid";
 const STORAGE_KEY = "index-view";
 const CHANGE_EVENT = "index-view-change";
 
-/** Giá trị lưu trong localStorage thành kiểu hiển thị. Rỗng hoặc lạ thì là "list". */
+/** Giá trị lưu trong localStorage thành kiểu hiển thị. Chỉ "list" là danh sách; rỗng hoặc lạ thì là "grid". */
 export function parseIndexView(stored: string | null | undefined): IndexView {
-  return stored === "grid" ? "grid" : "list";
+  return stored === "list" ? "list" : "grid";
 }
 
 function getSnapshot(): IndexView {
-  if (typeof window === "undefined") return "list";
+  if (typeof window === "undefined") return "grid";
   return parseIndexView(localStorage.getItem(STORAGE_KEY));
 }
 
@@ -34,5 +34,5 @@ export function setIndexView(view: IndexView) {
 }
 
 export function useIndexView(): IndexView {
-  return useSyncExternalStore(subscribe, getSnapshot, () => "list");
+  return useSyncExternalStore(subscribe, getSnapshot, () => "grid");
 }

@@ -7,7 +7,6 @@ import { createContext, useContext, useEffect, useRef, useState, type ReactNode 
 import { wiki } from "@/app/content";
 import { useIndexView } from "@/lib/indexView";
 import { matchLenses } from "@/lib/lensTags";
-import { IndexViewSwitch } from "./IndexViewSwitch";
 import { InfoTip } from "./InfoTip";
 
 const P = wiki.product;
@@ -113,7 +112,6 @@ export function ProductIndex() {
 
   return (
     <div className="space-y-6">
-      <IndexViewSwitch />
       <div className="flex gap-1 rounded-control bg-fill p-1">
         {(Object.keys(P.tabs) as Kind[]).map((k) => (
           <button
