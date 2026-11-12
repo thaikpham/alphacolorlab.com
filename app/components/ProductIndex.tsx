@@ -85,7 +85,7 @@ function ProductCard({ item, active, eager }: { item: IndexItem; active: boolean
   return (
     <Link href={item.href} aria-current={active ? "page" : undefined} className="group block overflow-hidden rounded-card bg-card shadow-card">
       <div className="relative aspect-[4/3] bg-card">
-        <Image src={item.image} alt="" fill sizes="(min-width: 1024px) 22vw, 45vw" preload={eager} className="object-contain p-4" />
+        <Image src={item.image} alt="" fill sizes="(min-width: 1536px) 14vw, (min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 31vw, 46vw" preload={eager} className="object-contain p-4" />
       </div>
       <div className={`border-t border-separator px-4 py-3 transition-colors ${active ? "bg-fill" : "group-hover:bg-fill"}`}>
         <p className="truncate text-subhead font-semibold text-label">{item.name}</p>
@@ -95,14 +95,14 @@ function ProductCard({ item, active, eager }: { item: IndexItem; active: boolean
   );
 }
 
-/** Product Wiki index column: kind segmented control, lens filter (collapsed), grouped list. Lưới: thẻ thay danh sách dưới md. */
+/** Index của Product Wiki: núm loại, bộ lọc ống kính (thu gọn), nhóm món. Lưới: chỉ thẻ; Danh sách: chỉ dòng. Khi Lưới, cột này hiện ở mọi kích thước (SplitLayout browse). */
 export function ProductIndex() {
   const { items, kind, setKind, on, toggle, clear } = useBrowse();
   const view = useIndexView();
   const pathname = usePathname();
   const list = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // Lưới và danh sách cùng có mục đang mở trong DOM; chỉ cuộn tới cái đang hiện
+    // Chỉ một kiểu (thẻ hoặc dòng) được render; chỉ cuộn tới mục đang mở khi cột này hiện (ở chi tiết Lưới thì bị ẩn)
     const shown = Array.from(list.current?.querySelectorAll<HTMLElement>('[aria-current="page"]') ?? []);
     shown.find((el) => el.offsetParent !== null)?.scrollIntoView({ block: "nearest" });
   }, [pathname, kind, view]);
@@ -112,7 +112,7 @@ export function ProductIndex() {
 
   return (
     <div className="space-y-6">
-      <div className="flex gap-1 rounded-control bg-fill p-1">
+      <div className={`flex gap-1 rounded-control bg-fill p-1 ${grid ? "md:max-w-md" : ""}`}>
         {(Object.keys(P.tabs) as Kind[]).map((k) => (
           <button
             key={k}
@@ -129,7 +129,7 @@ export function ProductIndex() {
       </div>
 
       {kind === "lens" && (
-        <details className="disclosure group rounded-card bg-card shadow-card">
+        <details className={`disclosure group rounded-card bg-card shadow-card ${grid ? "md:max-w-2xl" : ""}`}>
           <summary className="flex min-h-11 cursor-pointer items-center gap-3 px-4 py-2">
             <span className="flex-1 text-subhead font-semibold">{F.label}</span>
             {on.size > 0 && <span className="rounded-full bg-accent px-2 py-0.5 text-footnote font-semibold text-on-accent tabular-nums">{on.size}</span>}
@@ -195,61 +195,34 @@ export function ProductIndex() {
         {groups.some((g) => g.items.length) ? (
           groups.filter((g) => g.items.length).map((g, gi) => (
             <section key={g.key} id={kind === "accessory" ? `acc-${g.key}` : undefined}>
-              <h2 className={`mb-2 text-footnote text-secondary ${grid ? "md:px-4" : "px-4"}`}>{g.title}</h2>
-              {grid && (
-                <ul className="grid grid-cols-2 gap-4 md:hidden">
+              <h2 className={`mb-2 text-footnote text-secondary ${grid ? "" : "px-4"}`}>{g.title}</h2>
+              {grid ? (
+                <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                   {g.items.map((i, n) => (
                     <li key={i.slug}>
                       <ProductCard item={i} active={i.href === pathname} eager={gi === 0 && n < 2} />
                     </li>
                   ))}
                 </ul>
+              ) : (
+                <div className="overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator">
+                  {g.items.map((i) => (
+                    <Link key={i.slug} href={i.href} aria-current={i.href === pathname ? "page" : undefined} className={`${row} ${i.href === pathname ? "bg-fill" : ""}`}>
+                      <Image src={i.image} alt="" width={96} height={72} sizes="48px" className="h-9 w-12 flex-shrink-0 object-contain" />
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-subhead font-semibold text-label">{i.name}</span>
+                        <span className="block truncate text-footnote text-secondary">{i.detail ? `${i.code} · ${i.detail}` : i.code}</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               )}
-              <div className={`overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator ${grid ? "hidden md:block" : ""}`}>
-                {g.items.map((i) => (
-                  <Link key={i.slug} href={i.href} aria-current={i.href === pathname ? "page" : undefined} className={`${row} ${i.href === pathname ? "bg-fill" : ""}`}>
-                    <Image src={i.image} alt="" width={96} height={72} sizes="48px" className="h-9 w-12 flex-shrink-0 object-contain" />
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-subhead font-semibold text-label">{i.name}</span>
-                      <span className="block truncate text-footnote text-secondary">{i.detail ? `${i.code} · ${i.detail}` : i.code}</span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
             </section>
           ))
         ) : (
           <p className="rounded-card bg-card p-4 text-subhead text-secondary shadow-card">{F.empty}</p>
         )}
       </div>
-    </div>
-  );
-}
-
-/** Lưới ở cột phải (md+) khi chưa chọn sản phẩm nào và đang chọn Lưới. Cùng loại và bộ lọc với cột index. */
-export function ProductGrid() {
-  const { items, kind, on } = useBrowse();
-  const view = useIndexView();
-  if (view !== "grid") return null;
-  const shown = browse(items, kind, on).groups.filter((g) => g.items.length);
-  return (
-    <div className="space-y-6">
-      {shown.length ? (
-        shown.map((g, gi) => (
-          <section key={g.key}>
-            <h2 className="mb-2 text-footnote text-secondary">{g.title}</h2>
-            <ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
-              {g.items.map((i, n) => (
-                <li key={i.slug}>
-                  <ProductCard item={i} active={false} eager={gi === 0 && n < 2} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      ) : (
-        <p className="rounded-card bg-card p-4 text-subhead text-secondary shadow-card">{F.empty}</p>
-      )}
     </div>
   );
 }

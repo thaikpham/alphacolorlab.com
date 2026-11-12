@@ -12,6 +12,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
       }
       index={<BlogIndex />}
       lists={["kien-thuc"]}
+      browse
      
     >
       {children}

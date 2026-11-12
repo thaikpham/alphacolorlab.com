@@ -28,6 +28,7 @@ export default function WikiLayout({ children }: { children: React.ReactNode }) 
           </>
         }
         index={<ProductIndex />}
+        browse
       >
         {children}
       </SplitLayout>

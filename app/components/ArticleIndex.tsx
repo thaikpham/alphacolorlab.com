@@ -15,7 +15,7 @@ const LIST_ONLY = "lo-trinh";
 
 const detailOf = (i: IndexItem) => i.read ?? (i.steps ? blog.split.steps(i.steps) : undefined);
 
-/** Cột index của /blog: bài theo cấp độ (rồi lộ trình). Lưới: thẻ thay danh sách dưới md. */
+/** Index của /blog: bài theo cấp độ (rồi lộ trình). Lưới: chỉ thẻ; Danh sách: chỉ dòng. */
 export function ArticleIndex({ groups }: { groups: ArticleGroup[] }) {
   const view = useIndexView();
   const pathname = usePathname();
@@ -26,47 +26,26 @@ export function ArticleIndex({ groups }: { groups: ArticleGroup[] }) {
         const cards = grid && g.key !== LIST_ONLY;
         return (
           <section key={g.key}>
-            <h2 className={`mb-2 text-footnote text-secondary ${cards ? "md:px-4" : "px-4"}`}>{g.label}</h2>
-            {cards && (
-              <ul className="grid grid-cols-2 gap-4 md:hidden">
+            <h2 className={`mb-2 text-footnote text-secondary ${cards ? "" : "px-4"}`}>{g.label}</h2>
+            {cards ? (
+              <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                 {g.items.map((i, n) => (
                   <li key={i.href}>
                     <ArticleCard item={i} active={i.href === pathname} eager={gi === 0 && n < 2} />
                   </li>
                 ))}
               </ul>
+            ) : (
+              // Lộ trình trong Lưới: danh sách không kéo hết chiều rộng trang
+              <div className={`overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator ${grid ? "md:max-w-2xl" : ""}`}>
+                {g.items.map((i) => (
+                  <IndexRow key={i.href} href={i.href} title={i.title} detail={detailOf(i)} />
+                ))}
+              </div>
             )}
-            <div className={`overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator ${cards ? "hidden md:block" : ""}`}>
-              {g.items.map((i) => (
-                <IndexRow key={i.href} href={i.href} title={i.title} detail={detailOf(i)} />
-              ))}
-            </div>
           </section>
         );
       })}
-    </div>
-  );
-}
-
-/** Lưới bài ở cột phải /blog (md+) khi chưa chọn bài và đang chọn Lưới. Lộ trình không vào lưới. */
-export function ArticleGrid({ groups }: { groups: ArticleGroup[] }) {
-  const view = useIndexView();
-  if (view !== "grid") return null;
-  const shown = groups.filter((g) => g.key !== LIST_ONLY && g.items.length);
-  return (
-    <div className="space-y-6">
-      {shown.map((g, gi) => (
-        <section key={g.key}>
-          <h2 className="mb-2 text-footnote text-secondary">{g.label}</h2>
-          <ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
-            {g.items.map((i, n) => (
-              <li key={i.href}>
-                <ArticleCard item={i} active={false} eager={gi === 0 && n < 2} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
     </div>
   );
 }
@@ -81,7 +60,7 @@ function ArticleCard({ item, active, eager }: { item: IndexItem; active: boolean
             src={img.src}
             alt=""
             fill
-            sizes="(min-width: 1024px) 22vw, 45vw"
+            sizes="(min-width: 1536px) 14vw, (min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 31vw, 46vw"
             preload={eager}
             unoptimized={img.svg}
             className={img.svg ? "object-contain p-4" : "object-cover"}
