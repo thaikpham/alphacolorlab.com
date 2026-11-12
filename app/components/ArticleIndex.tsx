@@ -17,7 +17,7 @@ const detailOf = (i: IndexItem) => i.read ?? (i.steps ? blog.split.steps(i.steps
 
 /** Index của /blog: bài theo cấp độ (rồi lộ trình). Lưới: chỉ thẻ; Danh sách: chỉ dòng. */
 export function ArticleIndex({ groups }: { groups: ArticleGroup[] }) {
-  const view = useIndexView();
+  const view = useIndexView("blog");
   const pathname = usePathname();
   const grid = view === "grid";
   return (

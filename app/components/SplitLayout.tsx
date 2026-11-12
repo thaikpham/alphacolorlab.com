@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useSelectedLayoutSegments } from "next/navigation";
-import { useIndexView } from "@/lib/indexView";
+import { useIndexView, type IndexApp } from "@/lib/indexView";
 
 /**
  * Master–detail like iPadOS Settings. md+: index column (sticky, scrolls on its own) beside the selected item.
@@ -13,11 +13,12 @@ import { useIndexView } from "@/lib/indexView";
  * (cards at all widths); a detail route is only its children. The index stays mounted (hidden) on detail routes so its filters survive.
  * Danh sách (list) view and every other layout keep the split above.
  */
-export function SplitLayout({ header, index, children, lists = [], browse = false }: { header: ReactNode; index: ReactNode; children: ReactNode; lists?: string[]; browse?: boolean }) {
+export function SplitLayout({ header, index, children, lists = [], browse }: { header: ReactNode; index: ReactNode; children: ReactNode; lists?: string[]; browse?: IndexApp }) {
   // `lists`: child routes that are another list (e.g. /blog/kien-thuc), shown like the index route on phones
   const segments = useSelectedLayoutSegments();
   const detail = segments.length > 0 && !(segments.length === 1 && lists.includes(segments[0]));
-  const view = useIndexView();
+  // Hook luôn gọi; `browse` chưa đặt thì app "blog" chỉ để giữ thứ tự hook, không dùng kết quả
+  const view = useIndexView(browse ?? "blog");
   if (browse && view === "grid") {
     return (
       <main className="max-w-page mx-auto">

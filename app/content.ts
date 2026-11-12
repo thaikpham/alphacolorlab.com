@@ -1633,13 +1633,11 @@ export const colorBank = {
   ppForm: { save: "Lưu", cancel: "Hủy" },
 };
 
-// Danh sách / Lưới: kiểu hiển thị của Blog và Product Wiki. Núm nằm trong thẻ Cài đặt của /tai-khoan; mặc định là lưới.
+// Danh sách / Lưới: kiểu hiển thị của Blog và Product Wiki. Mỗi app một núm trong menu avatar; mặc định là lưới.
 export const indexView = {
-  settings: "Cài đặt",
   label: "Kiểu hiển thị",
   list: "Danh sách",
   grid: "Lưới",
-  info: "Chọn cách Blog và Product Wiki hiện bài viết, sản phẩm: danh sách hoặc lưới ảnh. Lựa chọn lưu trên máy này, không đồng bộ theo tài khoản.",
 };
 
 // Blog: chữ của trang /blog và /blog/[id]

@@ -3,18 +3,27 @@
 import { useSyncExternalStore } from "react";
 
 export type IndexView = "list" | "grid";
+/** Mỗi app có núm Danh sách / Lưới riêng trong menu avatar. */
+export type IndexApp = "blog" | "wiki";
 
-const STORAGE_KEY = "index-view";
+/** Khóa chung cũ của mọi app; chỉ còn là dự phòng khi app chưa có khóa riêng. */
+const LEGACY_KEY = "index-view";
 const CHANGE_EVENT = "index-view-change";
+const keyOf = (app: IndexApp) => `index-view-${app}`;
 
 /** Giá trị lưu trong localStorage thành kiểu hiển thị. Chỉ "list" là danh sách; rỗng hoặc lạ thì là "grid". */
 export function parseIndexView(stored: string | null | undefined): IndexView {
   return stored === "list" ? "list" : "grid";
 }
 
-function getSnapshot(): IndexView {
+/** Khóa riêng của app thắng; chưa có thì lấy khóa chung cũ (ai đã chọn Danh sách trước đó thì giữ cho cả hai app). */
+export function readIndexView(app: IndexApp, getItem: (key: string) => string | null): IndexView {
+  return parseIndexView(getItem(keyOf(app)) ?? getItem(LEGACY_KEY));
+}
+
+function getSnapshot(app: IndexApp): IndexView {
   if (typeof window === "undefined") return "grid";
-  return parseIndexView(localStorage.getItem(STORAGE_KEY));
+  return readIndexView(app, (key) => localStorage.getItem(key));
 }
 
 function subscribe(callback: () => void) {
@@ -26,13 +35,13 @@ function subscribe(callback: () => void) {
   };
 }
 
-/** Lưu trên máy này, không đồng bộ theo tài khoản. */
-export function setIndexView(view: IndexView) {
+/** Lưu trên máy này, không đồng bộ theo tài khoản. Chỉ ghi khóa riêng của app đó. */
+export function setIndexView(app: IndexApp, view: IndexView) {
   if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, view);
+  localStorage.setItem(keyOf(app), view);
   window.dispatchEvent(new Event(CHANGE_EVENT));
 }
 
-export function useIndexView(): IndexView {
-  return useSyncExternalStore(subscribe, getSnapshot, () => "grid");
+export function useIndexView(app: IndexApp): IndexView {
+  return useSyncExternalStore(subscribe, () => getSnapshot(app), () => "grid");
 }

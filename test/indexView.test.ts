@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { parseIndexView, setIndexView } from '../lib/indexView.ts'
+import { parseIndexView, readIndexView, setIndexView } from '../lib/indexView.ts'
 
 test('parseIndexView: chỉ "list" là danh sách, mọi giá trị khác là lưới', () => {
   assert.equal(parseIndexView('list'), 'list')
@@ -12,13 +12,28 @@ test('parseIndexView: chỉ "list" là danh sách, mọi giá trị khác là l�
   assert.equal(parseIndexView('{"view":"list"}'), 'grid')
 })
 
-test('setIndexView: ghi localStorage và báo đổi; không có window thì không làm gì', () => {
+test('readIndexView: khóa riêng của app thắng, thiếu thì lấy khóa chung cũ, mặc định là lưới', () => {
+  const read = (data: Record<string, string>, app: 'blog' | 'wiki') => readIndexView(app, (k) => data[k] ?? null)
+  assert.equal(read({}, 'blog'), 'grid')
+  assert.equal(read({}, 'wiki'), 'grid')
+  // Người đã chọn Danh sách trước khi có núm riêng: giữ cho cả hai app
+  assert.equal(read({ 'index-view': 'list' }, 'blog'), 'list')
+  assert.equal(read({ 'index-view': 'list' }, 'wiki'), 'list')
+  // Khóa riêng có mặt thì thắng khóa chung
+  assert.equal(read({ 'index-view': 'list', 'index-view-blog': 'grid' }, 'blog'), 'grid')
+  assert.equal(read({ 'index-view': 'list', 'index-view-blog': 'grid' }, 'wiki'), 'list')
+  assert.equal(read({ 'index-view': 'grid', 'index-view-wiki': 'list' }, 'wiki'), 'list')
+  // Khóa riêng có mặt nhưng lạ (rỗng) là lưới, không rơi về khóa chung
+  assert.equal(read({ 'index-view': 'list', 'index-view-wiki': '' }, 'wiki'), 'grid')
+})
+
+test('setIndexView: chỉ ghi khóa của app đó và báo đổi; không có window thì không làm gì', () => {
   const g = globalThis as Record<string, unknown>
   const hadWindow = 'window' in g
   const hadStorage = 'localStorage' in g
 
   // Không có window (chạy trên server): không ném lỗi, không ghi gì
-  setIndexView('grid')
+  setIndexView('blog', 'grid')
 
   const store = new Map<string, string>()
   const events: string[] = []
@@ -32,11 +47,15 @@ test('setIndexView: ghi localStorage và báo đổi; không có window thì kh�
     removeEventListener() {},
   }
   try {
-    setIndexView('grid')
-    assert.equal(store.get('index-view'), 'grid')
+    setIndexView('blog', 'grid')
+    assert.equal(store.get('index-view-blog'), 'grid')
+    assert.equal(store.has('index-view'), false)
     assert.deepEqual(events, ['index-view-change'])
-    setIndexView('list')
-    assert.equal(store.get('index-view'), 'list')
+    setIndexView('wiki', 'list')
+    assert.equal(store.get('index-view-wiki'), 'list')
+    assert.equal(store.get('index-view-blog'), 'grid')
+    assert.equal(store.has('index-view'), false)
+    assert.deepEqual(events, ['index-view-change', 'index-view-change'])
   } finally {
     if (hadWindow) g.window = undefined
     else delete g.window

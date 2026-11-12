@@ -13,7 +13,7 @@ const HREF: Record<Part, string> = { articles: "/blog", knowledge: "/blog/kien-t
  * the other list is on its own route, so crawlers still reach every link. Lưới: núm không kéo hết trang, ghi chú xếp nhiều cột. */
 export function BlogParts({ lists }: { lists: Record<Part, ReactNode> }) {
   const active: Part = usePathname().startsWith(HREF.knowledge) ? "knowledge" : "articles";
-  const grid = useIndexView() === "grid";
+  const grid = useIndexView("blog") === "grid";
   const columns = grid && active === "knowledge";
   return (
     <>

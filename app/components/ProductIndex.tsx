@@ -98,7 +98,7 @@ function ProductCard({ item, active, eager }: { item: IndexItem; active: boolean
 /** Index của Product Wiki: núm loại, bộ lọc ống kính (thu gọn), nhóm món. Lưới: chỉ thẻ; Danh sách: chỉ dòng. Khi Lưới, cột này hiện ở mọi kích thước (SplitLayout browse). */
 export function ProductIndex() {
   const { items, kind, setKind, on, toggle, clear } = useBrowse();
-  const view = useIndexView();
+  const view = useIndexView("wiki");
   const pathname = usePathname();
   const list = useRef<HTMLDivElement>(null);
   useEffect(() => {
