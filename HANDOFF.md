@@ -79,7 +79,7 @@ Tôi viết lại engine từ mockup đã duyệt; hai lần giao cho agent đ�
   - Lăn chuột để cuộn trang, zoom bằng Ctrl/⌘ + lăn.
   - Trên cảm ứng: vuốt dọc cuộn trang, vuốt ngang xoay.
 - **Prop:**
-  - `graph`, `title`, `mine`, `autoFocus` (hiện không ai dùng), `header`, `className`.
+  - `graph`, `title`, `mine`, `header`.
   - `controls` (tắt 2 nút zoom; nút zoom mặt 32px, vùng chạm 44px).
   - Wrapper `MineConstellation` tự lấy `mine` từ túi đồ và giỏ màu.
 - **Tìm nút:** qua thanh tìm kiếm chung (`lib/pageSearch.ts`, nhóm gợi ý "Trên đồ thị").
@@ -101,7 +101,7 @@ Tôi viết lại engine từ mockup đã duyệt; hai lần giao cho agent đ�
   - Phụ kiện gồm 6 món từ Wiki (có ảnh) và 7 món nhập tay trong `data/accessories.json` (chưa đối chiếu nguồn).
   - `findGear` khớp lỏng theo tên hoặc mã.
   - `suggestGear` cho gợi ý khi gõ.
-- **`GearManager`:** ô nhập kèm gợi ý và nút Thêm. Món không có thì hiện hộp thoại "Sản phẩm này chưa được hỗ trợ". Prop `showList`, `title`, `secondary`.
+- **`GearManager`:** ô nhập kèm gợi ý và nút Thêm. Món không có thì hiện hộp thoại "Sản phẩm này chưa được hỗ trợ". Prop `title`, `compact`.
 - **Hồ sơ** (`lib/profile.ts`, localStorage `user-profile`):
   - Lưu username, bio, link.
   - `cleanLink` chỉ nhận http/https.

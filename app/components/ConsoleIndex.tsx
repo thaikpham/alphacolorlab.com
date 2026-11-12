@@ -30,7 +30,7 @@ export function ConsoleIndex() {
       url.searchParams.delete("model");
       window.history.replaceState(null, "", url);
     }
-    const to = (url.pathname === "/" || url.pathname === "/console") && consoleHashRoutes[url.hash.slice(1)];
+    const to = url.pathname === "/console" && consoleHashRoutes[url.hash.slice(1)];
     if (to) router.replace(to);
   }, [router]);
 

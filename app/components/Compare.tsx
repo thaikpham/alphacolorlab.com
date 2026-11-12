@@ -8,7 +8,7 @@ import { blocked, compareHref, readCompare, toggle, useCompare, writeCompare, ty
 const t = wiki.product.compare;
 
 /** So sánh / Đã chọn button; disabled with the reason when the pick is full or holds the other kind. */
-export function CompareToggle({ item, className = "" }: { item: CompareItem; className?: string }) {
+export function CompareToggle({ item }: { item: CompareItem }) {
   const compare = useCompare();
   const picked = compare.items.some((i) => i.slug === item.slug);
   const reason = picked ? null : blocked(compare, item.kind);
@@ -20,7 +20,7 @@ export function CompareToggle({ item, className = "" }: { item: CompareItem; cla
       aria-pressed={picked}
       className={`h-11 px-4 rounded-control text-subhead font-medium transition disabled:text-tertiary ${
         picked ? "bg-accent text-on-accent font-semibold" : "bg-fill text-label hover:bg-fill-strong disabled:hover:bg-fill"
-      } ${className}`}
+      }`}
     >
       {picked ? t.added : reason === "full" ? t.full : reason === "kind" ? t.otherKind : t.add}
     </button>

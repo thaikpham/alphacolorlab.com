@@ -11,7 +11,6 @@ import { KolSetEditor } from "./KolSetEditor";
 // Id bộ đã có trong repo: bộ KOL không được trùng.
 const TAKEN: ReadonlySet<string> = new Set(validatePresetSets(presetSetsJson).map((s) => s.id));
 
-const primary = "inline-flex h-11 items-center rounded-full bg-accent px-5 text-subhead font-semibold text-on-accent transition-colors hover:bg-accent/90 disabled:opacity-40";
 const secondary = "inline-flex h-11 shrink-0 items-center rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong disabled:opacity-40";
 const card = "overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator";
 const badge = "shrink-0 rounded-badge px-2 py-1 text-footnote font-semibold";
@@ -22,10 +21,10 @@ type Editing = { set?: RemoteSet } | null;
  * Bộ M1–M4 của tài khoản KOL, ở tường /tai-khoan (KolWall). Mỗi KOL có một bộ: chưa có thì mời tạo; có bộ thì hiện thẻ của bộ.
  * Nhiều hơn một bộ (dữ liệu cũ) thì vẫn hiện đủ từng hàng, không ẩn, không có nút tạo. Mỗi lần mở tải lại; lỗi thì báo, không hiện danh sách rỗng.
  * Soạn bộ thay phần danh sách: danh sách vẫn mounted, chỉ ẩn bằng hidden. Lưu xong hoặc hủy thì đóng trình soạn, tải lại danh sách và trả focus về nút đã mở (hoặc tiêu đề nếu nút đó không còn).
- * hasProfile false: không tải danh sách, chỉ có một dòng chỉ dẫn lên mục Giới thiệu. createAccent: nút tạo bộ là nút cam (false thì xám).
+ * hasProfile false: không tải danh sách, chỉ có một dòng chỉ dẫn lên mục Giới thiệu.
  * onEditingChange báo khi trình soạn mở hoặc đóng. Không khóa theo form hồ sơ: các trình soạn mở cùng lúc được.
  */
-export function KolSetModule({ userId, hasProfile, createAccent = true, onEditingChange }: { userId: string; hasProfile: boolean; createAccent?: boolean; onEditingChange?: (editing: boolean) => void }) {
+export function KolSetModule({ userId, hasProfile, onEditingChange }: { userId: string; hasProfile: boolean; onEditingChange?: (editing: boolean) => void }) {
   const uid = useId();
   const [rev, setRev] = useState(0);
   const [loaded, setLoaded] = useState<{ rev: number; sets: RemoteSet[] | null } | null>(null);
@@ -123,14 +122,14 @@ export function KolSetModule({ userId, hasProfile, createAccent = true, onEditin
           ) : sets === null ? (
             <div className="space-y-4">
               <p className="text-body text-secondary">{kolStudio.loadFailed}</p>
-              <button type="button" onClick={() => setRev((r) => r + 1)} className={createAccent ? primary : secondary}>
+              <button type="button" onClick={() => setRev((r) => r + 1)} className={secondary}>
                 {kolStudio.retry}
               </button>
             </div>
           ) : sets.length === 0 ? (
             <div className="space-y-4">
               <p className="text-body text-secondary">{kolStudio.emptySets}</p>
-              <button type="button" onClick={(e) => edit(e.currentTarget, {})} className={createAccent ? primary : secondary}>
+              <button type="button" onClick={(e) => edit(e.currentTarget, {})} className={secondary}>
                 {kolStudio.newSet}
               </button>
             </div>
@@ -212,5 +211,5 @@ export function KolWall({ userId, onEditingChange }: { userId: string; onEditing
       </section>
     );
 
-  return <KolSetModule userId={userId} hasProfile={profile !== null} createAccent={false} onEditingChange={onEditingChange} />;
+  return <KolSetModule userId={userId} hasProfile={profile !== null} onEditingChange={onEditingChange} />;
 }

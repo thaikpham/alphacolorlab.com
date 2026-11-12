@@ -100,9 +100,7 @@ export interface ConstellationProps {
   /** Tên của đồ thị cho trình đọc màn hình */
   title: string;
   /** Nút của người dùng (túi đồ, giỏ màu): vòng chấm ngoài và nhãn luôn hiện */
-  mine?: string[];
-  /** Nút chọn sẵn khi URL không có ?n= */
-  autoFocus?: string;
+  mine: string[];
   /** Đặt ở góc trên trái, đè lên canvas */
   header?: React.ReactNode;
   /** Nút zoom −/+ ở góc dưới phải. Tắt cho đồ thị tổng hợp ở landing: vẫn zoom được bằng chụm hoặc Ctrl + lăn */
@@ -113,7 +111,6 @@ export interface ConstellationProps {
   legend?: boolean;
   /** Bớt nhãn khi chờ (đồ thị tổng hợp ở landing): mỗi app chỉ hiện nhãn vài nút chính nhiều liên kết nhất; đang lọc theo app thì hiện đủ nút chính của app đó */
   quietLabels?: boolean;
-  className?: string;
 }
 
 const LEGEND: AppId[] = ["console", "colors", "wiki", "blog"];
@@ -123,7 +120,7 @@ const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 const ease = (a: number, b: number, k: number) => a + (b - a) * k;
 const short = (s: string) => (s.length > MAX_LABEL ? `${s.slice(0, MAX_LABEL - 1)}…` : s);
 
-export function Constellation({ graph, title, mine = [], autoFocus, header, controls = true, zoom = 1, legend = false, quietLabels = false, className }: ConstellationProps) {
+export function Constellation({ graph, title, mine, header, controls = true, zoom = 1, legend = false, quietLabels = false }: ConstellationProps) {
   const router = useRouter();
   const boxRef = useRef<HTMLDivElement>(null);
   const cvRef = useRef<HTMLCanvasElement>(null);
@@ -913,18 +910,18 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
     setShowFirstHint(true);
   }, [hintSeenKey]);
 
-  // Nút chọn sẵn: ?n= trong URL lúc mở trang, không có thì autoFocus. Đọc URL ngay khi effect chạy, trước effect ghi ?n= bên dưới.
+  // Nút chọn sẵn: ?n= trong URL lúc mở trang. Đọc URL ngay khi effect chạy, trước effect ghi ?n= bên dưới.
   const initial = useRef<{ graph: CGraph; n: string | null } | null>(null);
   useEffect(() => {
     if (initial.current?.graph !== graph) initial.current = { graph, n: new URLSearchParams(location.search).get("n") };
-    const id = initial.current.n ?? autoFocus;
+    const id = initial.current.n;
     if (!id) return;
     const timer = setTimeout(() => {
       const a = api.current, i = a?.index(id) ?? -1;
       if (a && i >= 0 && !focusRef.current) a.focus(i);
     }, 450);
     return () => clearTimeout(timer);
-  }, [graph, autoFocus]);
+  }, [graph]);
 
   // ?n= theo nút đang chọn, để từ trang chi tiết quay lại đúng chỗ. Bỏ qua lần chạy đầu để không xóa ?n= lúc mở trang.
   const firstSync = useRef(true);
@@ -1007,7 +1004,7 @@ export function Constellation({ graph, title, mine = [], autoFocus, header, cont
   const roundFace = "grid size-8 place-items-center rounded-full bg-card shadow-thumb transition-colors group-hover:bg-fill group-active:bg-fill-strong";
 
   return (
-    <div ref={boxRef} className={`relative overflow-hidden bg-bg ${className ?? "h-full"}`}>
+    <div ref={boxRef} className="relative overflow-hidden bg-bg h-full">
       <canvas
         ref={cvRef}
         role="application"

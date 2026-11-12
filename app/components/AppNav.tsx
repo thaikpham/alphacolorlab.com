@@ -8,7 +8,7 @@ import { SearchField } from "./SearchField";
 import { AccountButton } from "./AccountButton";
 
 const isActive = (pathname: string, match: string[]) =>
-  match.some((m) => (m === "/" ? pathname === "/" : pathname === m || pathname.startsWith(`${m}/`)));
+  match.some((m) => pathname === m || pathname.startsWith(`${m}/`));
 
 const appColors = {
   "/console": "bg-app-console",

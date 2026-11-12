@@ -24,7 +24,7 @@ export function LandingGraph({ graph }: { graph: CGraph }) {
   }, []);
   return (
     <div className="relative h-full">
-      <MineConstellation graph={graph} title={landing.graphLabel} controls={false} zoom={zoom} legend quietLabels className="h-full" />
+      <MineConstellation graph={graph} title={landing.graphLabel} controls={false} zoom={zoom} legend quietLabels />
       <div className="graph-legend absolute inset-x-4 top-4 z-10 mx-auto flex max-w-md justify-center transition-opacity duration-300 ease-ios">
         <SearchField />
       </div>

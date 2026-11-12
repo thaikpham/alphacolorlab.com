@@ -68,7 +68,7 @@ export default function Landing() {
         </h2>
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-start gap-6 lg:grid-cols-2">
           <div className="space-y-4">
-            <GearManager title={landing.start.title} secondary compact />
+            <GearManager title={landing.start.title} compact />
             <div className="flex flex-wrap items-center gap-3">
               <BagOnGraph />
               <LandingStart />

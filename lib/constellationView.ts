@@ -9,11 +9,6 @@ export interface Point3 {
   z: number;
 }
 
-export interface Point2 {
-  x: number;
-  y: number;
-}
-
 export interface View3 {
   /** Camera world position */
   cam: Point3;

@@ -25,7 +25,7 @@ export function AppGraph({ app, graph }: { app: AppId; graph: CGraph }) {
 
   return (
     <main className="h-stage-phone lg:h-stage" aria-label={nav.apps.find((a) => a.href === HOME[app])?.label}>
-      <MineConstellation graph={graph} title={t.graph} header={header} className="h-full" />
+      <MineConstellation graph={graph} title={t.graph} header={header} />
     </main>
   );
 }

@@ -979,8 +979,6 @@ export const gearManager = {
   close: "Đóng",
   added: (name: string) => `Đã thêm ${name}`,
   already: (name: string) => `${name} đã có trong túi`,
-  removed: (name: string) => `Đã bỏ ${name}`,
-  remove: (name: string) => `Bỏ ${name}`,
   groups: { body: "Máy ảnh", lens: "Ống kính", acc: "Phụ kiện" },
   suggest: "Gợi ý gần nhất:",
   productWiki: "Duyệt Product Wiki",

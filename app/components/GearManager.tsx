@@ -9,9 +9,8 @@ const CATS = ["body", "lens", "acc"] as const;
 
 /** Quản lý túi đồ: gõ tên hoặc mã, bấm Thêm. Không giới hạn số món, không liệt kê cả catalog.
  * Món không có trong dự án thì báo "Sản phẩm này chưa được hỗ trợ". */
-/** secondary: nút Thêm dùng nền xám khi trang đã có nút cam khác (hồ sơ: Chia sẻ hồ sơ).
- * compact (landing): thay danh sách món bằng một dòng "Trong túi: …" cắt gọn, để thẻ không cao thêm; bỏ món thì sang /tai-khoan. */
-export function GearManager({ showList = true, title, secondary, compact }: { showList?: boolean; title?: string; secondary?: boolean; compact?: boolean } = {}) {
+/** compact (landing): thay danh sách món bằng một dòng "Trong túi: …" cắt gọn, để thẻ không cao thêm; bỏ món thì sang /tai-khoan. */
+export function GearManager({ title, compact }: { title: string; compact?: boolean }) {
   const bag = useGear();
   const catalog = gearCatalog();
   const [query, setQuery] = useState("");
@@ -50,10 +49,6 @@ export function GearManager({ showList = true, title, secondary, compact }: { sh
     dialog.current?.close();
   };
   const submit = () => add(shown && active >= 0 ? hits[active] : findGear(query));
-  const remove = (cat: keyof GearBag, id: string) => {
-    writeGear(toggleGear(bag, cat, id));
-    setLive(T.removed(nameOf(cat, id)));
-  };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") return setOpen(false);
@@ -72,7 +67,7 @@ export function GearManager({ showList = true, title, secondary, compact }: { sh
   return (
     <section aria-labelledby={`${uid}-title`} className="rounded-card bg-card p-5 shadow-card sm:p-6">
       <h2 id={`${uid}-title`} className="text-title3 font-medium">
-        {title ?? T.title}
+        {title}
       </h2>
 
       <form
@@ -122,7 +117,7 @@ export function GearManager({ showList = true, title, secondary, compact }: { sh
             ))}
           </ul>
         </div>
-        <button type="submit" className={`inline-flex h-11 shrink-0 items-center gap-1.5 rounded-full px-5 text-subhead font-semibold transition-colors ${secondary ? "bg-fill text-label hover:bg-fill-strong" : "bg-accent text-on-accent hover:bg-accent/90"}`}>
+        <button type="submit" className="inline-flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
             <path d="M8 3v10M3 8h10" />
           </svg>
@@ -134,35 +129,6 @@ export function GearManager({ showList = true, title, secondary, compact }: { sh
         <p className="mt-4 truncate text-subhead font-semibold text-label">
           {T.inBag(CATS.flatMap((cat) => bag[cat].map((id) => nameOf(cat, id))).join(", "))}
         </p>
-      )}
-
-      {!showList || compact || count === 0 ? null : (
-        <div className="mt-5 space-y-4">
-          {CATS.filter((cat) => bag[cat].length).map((cat) => (
-            <div key={cat}>
-              <h3 className="text-subhead font-semibold text-label">
-                {T.groups[cat]} <span className="text-secondary tabular-nums">{bag[cat].length}</span>
-              </h3>
-              <ul className="mt-2 flex flex-wrap gap-2">
-                {bag[cat].map((id) => (
-                  <li key={id}>
-                    <button
-                      type="button"
-                      onClick={() => remove(cat, id)}
-                      aria-label={T.remove(nameOf(cat, id))}
-                      className="inline-flex h-11 items-center gap-1.5 rounded-full bg-fill px-4 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong"
-                    >
-                      {nameOf(cat, id)}
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-                        <path d="M3 3l6 6M9 3l-6 6" />
-                      </svg>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
       )}
 
       <p aria-live="polite" className="sr-only">

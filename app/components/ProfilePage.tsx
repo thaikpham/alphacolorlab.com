@@ -302,7 +302,7 @@ function ProfileBody({ isKol }: { isKol: boolean }) {
       extra={kolTabs}
       gearTop={
         <>
-          <GearManager showList={false} title={T.addTitle} secondary />
+          <GearManager title={T.addTitle} />
           {undo && (
             <div aria-live="polite" className="flex items-center justify-between gap-4 rounded-card bg-fill p-4 shadow-card sm:p-5">
               <span className="text-body text-label">{T.removed(undo.name)}</span>
