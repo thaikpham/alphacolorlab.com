@@ -4,6 +4,7 @@ import { useId, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { nav } from "@/app/content";
+import { useWideBrowse } from "@/lib/indexView";
 import { SearchField } from "./SearchField";
 import { AccountButton } from "./AccountButton";
 
@@ -68,16 +69,22 @@ function Logo({ className }: { className?: string }) {
   );
 }
 
-/** Thanh trên cùng (dưới lg; từ lg mọi thứ nằm trong thanh dọc AppSidebar): logo trái, tìm kiếm + avatar phải. */
+/** Thanh trên cùng: dưới lg, và từ lg chỉ khi `wide` (Blog/Wiki ở Lưới, không có thanh dọc). Dưới lg: logo trái, tìm kiếm + avatar phải.
+ * Từ lg khi wide: ba vùng cùng hàng h-14, logo trái đúng chỗ như thanh dọc, tìm kiếm giữa (cột 28rem), avatar phải.
+ * Avatar luôn bọc một div (không đổi cây DOM khi bấm núm Danh sách/Lưới, menu không đóng); `lg:contents` để tìm kiếm và avatar thành ô của lưới. */
 export function AppNav() {
   const pathname = usePathname();
-  if (useLg()) return null;
+  const lg = useLg();
+  const wide = useWideBrowse(pathname);
+  if (lg && !wide) return null;
   return (
-    <div className="mx-auto flex h-14 max-w-page items-center gap-1 px-4 sm:px-6 md:gap-4">
-      <Logo />
-      <div className="ml-auto flex min-w-0 items-center gap-1">
+    <div className={`mx-auto flex h-14 max-w-page items-center gap-1 px-4 sm:px-6 md:gap-4 ${wide ? "lg:grid lg:max-w-none lg:grid-cols-[1fr_minmax(0,28rem)_1fr] lg:px-3" : ""}`}>
+      <Logo className={wide ? "lg:justify-self-start" : undefined} />
+      <div className={`ml-auto flex min-w-0 items-center gap-1 ${wide ? "lg:contents" : ""}`}>
         {pathname !== "/search" && <SearchField />}
-        <AccountButton />
+        <div className={wide ? "lg:justify-self-end" : undefined}>
+          <AccountButton />
+        </div>
       </div>
     </div>
   );
@@ -85,11 +92,13 @@ export function AppNav() {
 
 /** Thanh điều hướng dọc (từ lg): launcher + avatar, tìm kiếm, cao đúng `h-sidebar-head`.
  * Thanh trong suốt, không nhận chuột (chỉ phần đầu có nền) và nằm trên index (z-50) để gợi ý tìm kiếm không bị che.
- * Phần dưới là index của app đang mở: cột index của SplitLayout cố định ngay dưới (`top-sidebar-head`). Landing không có. */
+ * Phần dưới là index của app đang mở: cột index của SplitLayout cố định ngay dưới (`top-sidebar-head`). Landing không có.
+ * Blog và Wiki ở Lưới cũng không có (`wide`): thanh trên cùng của AppNav thay chỗ từ lg. */
 export function AppSidebar() {
   const pathname = usePathname();
   const lg = useLg();
-  if (pathname === "/") return null;
+  const wide = useWideBrowse(pathname);
+  if (pathname === "/" || wide) return null;
   return (
     <aside className="app-sidebar pointer-events-none fixed inset-y-0 left-0 z-50 hidden w-sidebar border-r border-separator lg:block">
       <div className="pointer-events-auto flex h-sidebar-head flex-col border-b border-separator bg-bg px-3">

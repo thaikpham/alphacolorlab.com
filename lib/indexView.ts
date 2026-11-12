@@ -45,3 +45,19 @@ export function setIndexView(app: IndexApp, view: IndexView) {
 export function useIndexView(app: IndexApp): IndexView {
   return useSyncExternalStore(subscribe, () => getSnapshot(app), () => "grid");
 }
+
+/** App có núm Danh sách / Lưới theo đường dẫn: `/blog`, `/wiki` và trang con của chúng; còn lại là null. */
+export function browseAppOf(pathname: string): IndexApp | null {
+  if (pathname === "/blog" || pathname.startsWith("/blog/")) return "blog";
+  if (pathname === "/wiki" || pathname.startsWith("/wiki/")) return "wiki";
+  return null;
+}
+
+/** Đang ở Blog hoặc Wiki và app đó ở Lưới: không có thanh dọc (AppSidebar), thanh trên cùng (AppNav) có tìm kiếm giữa. */
+export function useWideBrowse(pathname: string): boolean {
+  // Gọi cả hai app để đúng thứ tự hook; chỉ app của đường dẫn hiện tại quyết định
+  const blog = useIndexView("blog");
+  const wiki = useIndexView("wiki");
+  const app = browseAppOf(pathname);
+  return (app === "blog" && blog === "grid") || (app === "wiki" && wiki === "grid");
+}

@@ -367,8 +367,9 @@ html:has(#gioi-thieu):not([data-graph-view]) .graph-legend {
   transition: opacity 0.3s, visibility 0s 0.3s;
 }
 
-/* Thanh điều hướng dọc (AppSidebar, lg+): khi có nó (mọi trang trừ landing), nội dung lùi sang phải đúng bề rộng thanh.
-   Không còn thanh trên cùng nên cột split và sân khấu đồ thị cao hết màn hình. */
+/* Thanh điều hướng dọc (AppSidebar, lg+): khi có nó (mọi trang trừ landing và Blog/Wiki ở Lưới), nội dung lùi sang phải đúng bề rộng thanh.
+   Không còn thanh trên cùng nên cột split và sân khấu đồ thị cao hết màn hình.
+   Blog/Wiki ở Lưới (`.site-nav-wide`, SiteHeader) có thanh trên cùng h-14 cả từ lg: cột split và sân khấu trừ đúng 3.5rem. */
 @media (width >= 64rem) {
   body:has(> .app-sidebar) #main-content {
     margin-left: var(--spacing-sidebar);
@@ -377,10 +378,19 @@ html:has(#gioi-thieu):not([data-graph-view]) .graph-legend {
     --spacing-split: 100dvh;
     --spacing-stage: 100dvh;
   }
-  .account-menu {
+  :root:has(.site-nav-wide) {
+    --spacing-split: calc(100dvh - 3.5rem);
+    --spacing-stage: calc(100dvh - 3.5rem);
+  }
+  /* Menu avatar dưới thanh dọc, góc trên trái (chỉ khi có thanh dọc) */
+  body:has(> .app-sidebar) .account-menu {
     top: 3.5rem;
     left: 0.75rem;
     right: auto;
     transform-origin: top left;
+  }
+  /* Thanh trên cùng ở Lưới có px-3: nút avatar cách mép phải 0.75rem, menu thẳng theo */
+  :root:has(.site-nav-wide) .account-menu {
+    right: 0.75rem;
   }
 }

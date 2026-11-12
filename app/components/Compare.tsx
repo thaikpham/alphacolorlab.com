@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { wiki } from "@/app/content";
 import { blocked, compareHref, readCompare, toggle, useCompare, writeCompare, type CompareItem } from "@/lib/compare";
+import { useWideBrowse } from "@/lib/indexView";
 
 const t = wiki.product.compare;
 
@@ -30,10 +32,11 @@ export function CompareToggle({ item }: { item: CompareItem }) {
 /** Bottom tray with the current pick, shown only when something is picked (same pattern as CartTray). */
 export function CompareDock() {
   const compare = useCompare();
+  const wide = useWideBrowse(usePathname()); // Blog/Wiki ở Lưới không có thanh dọc: khay chạy từ mép trái
   if (compare.items.length === 0) return null;
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-separator pb-safe lg:left-sidebar">
+      <div className={`fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-separator pb-safe ${wide ? "" : "lg:left-sidebar"}`}>
         <div className="max-w-page mx-auto px-4 sm:px-6 py-3 space-y-3">
           <p className="text-subhead text-secondary truncate">
             <span className="font-semibold text-label">{t.count(compare.items.length)}</span> · {compare.items.map((i) => i.name).join(", ")}

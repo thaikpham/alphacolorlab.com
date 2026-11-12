@@ -1,6 +1,20 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { parseIndexView, readIndexView, setIndexView } from '../lib/indexView.ts'
+import { browseAppOf, parseIndexView, readIndexView, setIndexView } from '../lib/indexView.ts'
+
+test('browseAppOf: /blog, /wiki và trang con là app tương ứng, các đường khác là null', () => {
+  assert.equal(browseAppOf('/blog'), 'blog')
+  assert.equal(browseAppOf('/blog/kien-thuc'), 'blog')
+  assert.equal(browseAppOf('/wiki'), 'wiki')
+  assert.equal(browseAppOf('/wiki/a7c-ii/some-lens'), 'wiki')
+  assert.equal(browseAppOf('/blogs'), null)
+  assert.equal(browseAppOf('/wikipedia'), null)
+  assert.equal(browseAppOf('/blog-x/y'), null)
+  assert.equal(browseAppOf('/'), null)
+  assert.equal(browseAppOf('/colors'), null)
+  assert.equal(browseAppOf('/console'), null)
+  assert.equal(browseAppOf(''), null)
+})
 
 test('parseIndexView: chỉ "list" là danh sách, mọi giá trị khác là lưới', () => {
   assert.equal(parseIndexView('list'), 'list')
