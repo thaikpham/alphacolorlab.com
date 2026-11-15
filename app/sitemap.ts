@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...list().map((a): Entry => [`/blog/${a.id}`, 0.7, a.updatedAt]),
     ...posts().map((p): Entry => [`/blog/${p.slug}`, 0.6]),
     ...publishedLearningPaths().map((p): Entry => [`/blog/lo-trinh/${p.slug}`, 0.6]),
+    ...["console", "colors", "wiki", "blog"].map((app): Entry => [`/do-thi/${app}`, 0.4]),
     ["/search", 0.4],
     ["/skill", 0.5],
   ];

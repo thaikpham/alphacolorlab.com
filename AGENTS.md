@@ -86,7 +86,7 @@ Header 0x00–0x37 (ngày, tên ô, byte 0x35 chưa giải mã) phải lấy ngu
 
 ## Hiệu năng (Lighthouse 100)
 
-Đo bằng `npm run build`, `npm run start`, rồi `npm run lighthouse -- http://localhost:3000 --all` (báo cáo JSON ở `/tmp/lh`; `LH_ROUTES='/a /b'` để đo vài trang). Mọi trang đạt 100 ở cả bốn hạng mục, trừ SEO của trang `noindex` có chủ đích (`/tai-khoan`, `/ho-so`, `/do-thi/[app]`).
+Đo bằng `npm run build`, `npm run start`, rồi `npm run lighthouse -- http://localhost:3000 --all` (báo cáo JSON ở `/tmp/lh`; `LH_ROUTES='/a /b'` để đo vài trang). Mọi trang đạt 100 ở cả bốn hạng mục. Trang có nội dung không đặt `noindex` (Lighthouse trừ SEO); `noindex` chỉ dành cho trang chỉ có ở `npm run dev` (`/admin`, `/giai-ma`) và trang không tìm thấy (`/kol/[handle]`, `/bo-m1-m4/[id]` lạ). Mỗi trang tự đặt `alternates.canonical`: layout gốc đặt canonical là trang chủ, trang quên đặt sẽ bị Google gộp vào trang chủ.
 
 - LCP trên điện thoại phải là chữ có sẵn trong HTML và vẽ ngay lần đầu. Khi LCP là ảnh, hoặc chữ chỉ hiện sau khi chạy JS, Lighthouse (mô phỏng) cộng cả thời gian tải và chạy JS vào LCP (khoảng 3 giây trên điện thoại). Ảnh trong màn đầu của điện thoại phải nhỏ hơn một khối chữ (thẻ ngang ở Lưới dưới sm). Chữ chờ tải phải là cùng phần tử với chữ thay vào sau (chỉ đổi nội dung), như `KolSetGroups` và `/ho-so`.
 - JS tải ngay của thanh điều hướng và landing không kéo theo dữ liệu lớn (bảng preset, codec `.DAT`, danh mục sản phẩm): dùng `import()` hoặc `next/dynamic` khi cần (`lib/useAccountSync.ts`, `GearManager` ở landing). `test/clientBundle.test.ts` kiểm.

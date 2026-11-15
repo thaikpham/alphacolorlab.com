@@ -1,172 +1,102 @@
-# Bàn giao phiên làm việc 2026-11-09: Redesign "Kính ngắm trong studio"
+# Bàn giao 2026-11-16
 
-Dự án là git repo, nhánh `main`. Bản sao lưu trước khi làm lại giao diện: `~/backups/alpha-console-before-redesign-20261109-1816.tgz`.
+File này ghi trạng thái và việc còn mở cho AI làm tiếp. Luật dự án nằm ở `AGENTS.md`, luật giao diện ở `DESIGN.md`. Hai file đó là nguồn đúng: đọc trước khi sửa bất cứ gì, và khi file này lệch với chúng thì tin chúng.
 
-Trạng thái lần chạy cuối:
-- `npm test`: 520/520 pass.
-- `npm run check:design`: sạch.
-- `npm run build`: thành công.
+## 1. Trạng thái
 
-Luật thiết kế: `DESIGN.md`. Luật dự án: `AGENTS.md`. Cả hai đã cập nhật theo mọi thay đổi bên dưới.
+- Repo git, nhánh `main`, remote `origin` = github.com/thaikpham/alphacolorlab.com (public).
+- **Push lên `main` là phát hành production**: Vercel project `sonyalphacolorlab` tự deploy. Tên miền chính `www.alphacolorlab.com`. `sonycolorlab.app` là tên miền cũ của ColorLab 2.0, giữ lại để chuyển hướng người dùng cũ. Không bao giờ viết "alphacolorlab.app".
+- Mỗi lần push cần chủ dự án đồng ý rõ ràng. Việc dọn dẹp trong repo (xóa code chết, đặt tên, commit cục bộ) thì tự quyết rồi báo lại một dòng.
+- Lần chạy cuối (2026-11-16): `npm test` 747/747 pass, `npm run check:design` sạch, `npm run build` thành công.
+- Lighthouse (bản build production, mobile và desktop): mọi trang đo được đạt 100 ở Performance, Accessibility, Best Practices và SEO, kể cả `/tai-khoan`, `/ho-so`, `/do-thi/*` sau khi bỏ `noindex` (mục 3).
+- Các nhánh `chore/dead-code-cleanup`, `chore/ui-audit-no-tab-bar`, `fix/landing-step2-missing` đã nằm trọn trong `main`, xóa được.
 
-## 1. Nền tảng thiết kế
-- **Chỉ giao diện sáng.** Token trong `app/globals.css` (`@theme`):
-  - Màu nền và chữ: `bg` #f3f4f6, `card` #fff, `label` #0b0d12, `secondary` #4a5260.
-  - `tertiary` #7c8594, chỉ dùng trang trí.
-  - Màu nhấn: `accent` #f05a14 (cam Alpha); `on-accent` gần đen (chữ trên nền cam); `accent-text` #b43f00.
-  - Màu từng app: `app-console`, `app-colors`, `app-wiki`, `app-blog`.
-  - Chiều cao: `h-stage`, `h-stage-phone`.
-- **Font Noto Sans tự host:** `public/fonts/*.woff2` và `OFL.txt`. Preload trong `app/layout.tsx`, đã thêm vào precache của `public/sw.js`.
-- **Service worker:** `sw.js` VERSION 1.2.0.
-- **Kiểm tra thiết kế:** `scripts/check-design.mjs` cấm `text-white`. Mọi `text-white` đã đổi thành `text-on-accent`.
-- **Luật người dùng nhấn mạnh** (đã lưu trong memory):
-  - Không chữ xám nhạt.
-  - **Không bao giờ thêm dòng giải thích/gợi ý màu xám** dưới nút, bước, tiêu đề, ô nhập hay module. Cần giải thích thì dùng nút "i" (`InfoTip`).
-  - Không "dấu vết AI": không gradient, glow, emoji, ký tự làm icon, câu chữ quảng cáo.
+## 2. Lịch sử gần đây
 
-## 2. Cấu trúc trang hiện tại
-| Route | Nội dung |
-|---|---|
-| `/` | **Landing**, không có thanh điều hướng. Thứ tự: h1 ẩn (sr-only); "Một bản đồ, bốn ứng dụng"; đồ thị tổng hợp tràn viền; 4 app, mỗi app có đồ thị riêng ở trên, tên và mô tả ở dưới, không nút zoom; cuối trang khối **Bắt đầu** (`#bat-dau`) chỉ có nút cam "Truy cập dự án" → `/console`. |
-| `/console` | Alpha Console, danh sách 2 cột (`SplitLayout`, `lists={["console"]}`). Trước đây ở `/`. |
-| `/cai-tay/[chuong]`, `/tao-m1-m4`, `/giai-ma` | Như cũ, nút quay lại trỏ về `/console`. |
-| `/colors`, `/wiki`, `/blog` | Danh sách 2 cột, trang chủ lấy lại từ bản sao lưu. |
-| `/do-thi/[app]` | Đồ thị riêng của từng app, mở từ menu avatar ("Xem đồ thị" hoặc "Xem trang này trên đồ thị" kèm `?n=<id>`). |
-| `/tai-khoan` | **Hồ sơ**: avatar Google trong khung lấy nét, tên, @username, bio, tối đa 5 link, đếm túi đồ, Chia sẻ hồ sơ (nút cam), Sửa hồ sơ, Đăng nhập/xuất, ô Thêm đồ, lưới thẻ món có ảnh. |
-| `/ho-so#<dữ liệu>` | Hồ sơ người khác chia sẻ, chỉ xem. Dữ liệu nén trong phần `#`, không cần server. |
+| Ngày | Commit | Nội dung |
+|---|---|---|
+| 11-11 | `438fa04` | Next.js 16 thay codebase ColorLab 2.0. |
+| 11-12 | `da8a2fc` … `d2269f9` | Bàn giải mã (chỉ admin), bộ M1–M4 của KOL, Lưới/Danh sách cho Blog và Wiki, `supabase/cleanup.sql`. |
+| 11-12 | `d913436`, `b8cf68e` | Landing 3 bước, cá nhân hóa theo túi đồ, bước 2 báo rõ còn thiếu gì. |
+| 11-16 | `3ba541e` | Rà UI: bỏ thanh tab ở đáy điện thoại, sửa route, xóa code chết. |
+| 11-16 | `2058019` | Lighthouse 100 (mục 3). |
+| 11-16 | commit sau `2058019` | Mở chỉ mục `/tai-khoan`, `/ho-so`, `/do-thi/*`; sửa dữ liệu phụ kiện (mục 3, cuối). |
 
-**Thanh điều hướng** (`AppNav`, `SiteHeader`):
-- Logo chấm 3×3.
-- 4 tab app có chấm màu, chỉ hiện từ `lg`. Dưới `lg` có thanh tab ở đáy (`AppTabBar`, đặt ngoài header).
-- Một ô tìm kiếm duy nhất (`SearchField`).
-- Nút avatar mở menu: Hồ sơ và túi đồ, Xem đồ thị, Đăng nhập/Đăng xuất.
+## 3. Phiên 2026-11-16: Lighthouse 100
 
-**Trang chi tiết:**
-- Bài viết, ghi chú kiến thức, bài đăng: trải hết cột phải (bỏ `max-w-2xl`, lề `xl:px-12`).
-- Trang sản phẩm Wiki: một cột duy nhất, ảnh khung `aspect-[21/9]`.
+Luật để giữ điểm đã ghi trong `AGENTS.md`, mục "Hiệu năng (Lighthouse 100)". Tóm tắt những gì đã đổi:
 
-## 3. Không có cổng đăng nhập
-- Mọi trang mở tự do, kể cả `/tao-m1-m4` và `/tai-khoan`. Đã xóa `lib/access.ts`, `AccessGate`, `AccessPanel`, `SignInModule`, `test/access.test.ts`.
-- Đăng nhập Google là tùy chọn, chỉ để đồng bộ theo tài khoản (mục 5). Chỗ đăng nhập: menu avatar (`AccountButton`) và `/tai-khoan`.
-- Túi đồ chỉ thêm ở `/tai-khoan`.
+- **Font:** `unicode-range` của bản latin-ext từng chồng lên bản tiếng Việt, nên trang nào cũng tải thêm 168 KB trước LCP. Đã tách hẳn, `test/fontRanges.test.ts` chặn tái phát.
+- **JS chung:** `AccountButton` và `LandingStart` bật đồng bộ qua `lib/useAccountSync.ts` (`import()` khi đã đăng nhập). `GearManager` ở landing tải bằng `next/dynamic`. Bảng preset, codec `.DAT` và danh mục sản phẩm không còn trong JS tải ngay; `test/clientBundle.test.ts` kiểm.
+- **LCP là chữ có sẵn trong HTML.** Lighthouse mô phỏng cộng cả thời gian JS vào LCP khi LCP là ảnh hoặc chữ hiện sau hydrate (khoảng 3 giây trên điện thoại). Vì vậy:
+  - Lưới `/wiki`, `/blog` dưới sm là thẻ ngang một cột, ảnh 80px bên trái.
+  - Trang sản phẩm dưới sm: tóm tắt và ảnh 112px đứng cạnh nhau. Dòng mã ẩn khi trùng tên.
+  - `/ho-so` và danh sách "Bộ từ KOL" render dòng chờ trong HTML rồi chỉ đổi chữ trong cùng phần tử.
+- **Lưới ẩn:** mở thẳng trang chi tiết `/wiki/*`, `/blog/*` thì `SplitLayout` không dựng lưới index ẩn (trang phụ kiện giảm từ 443 KB xuống 114 KB HTML). Đã mở trang danh sách thì lưới vẫn giữ mount như cũ để giữ bộ lọc. Index ẩn không còn preload ảnh.
+- **Đồ thị landing:** prop `backdrop` của `Constellation` dùng ở bước 1–2 (dpr 1, mọi cạnh một nét liền nhạt). Lần vẽ đầu đã tính sẵn zoom vừa khung, nên mở trang chỉ vẽ một khung. Bước 3 vẽ lại đủ nét chấm. Trong Lighthouse canvas rasterize bằng CPU; nét chấm ở dpr thiết bị từng làm một khung dài hơn 100 ms.
+- **Sửa nhỏ:** `PresetBuilder` bỏ kết quả tải file mẫu cũ khi đổi PAL/NTSC nhanh; id menu avatar lấy từ `useId`; chữ nút So sánh khi khóa dùng `secondary`.
+- **SEO (chủ dự án yêu cầu):** `/tai-khoan`, `/ho-so`, `/do-thi/[app]` bỏ `noindex`, có mô tả riêng (`profile.description`, `profile.sharedDescription`, `appHome[app].graph`) và canonical của chính trang. `/do-thi/*` vào sitemap; `/tai-khoan`, `/ho-so` không vào vì khách chưa đăng nhập chỉ thấy hồ sơ trống. `/ho-so` mở không kèm `#` thì hiện `profile.noShare` (giới thiệu trang) thay vì báo link hỏng. Layout gốc đặt canonical là trang chủ, nên trang nào quên đặt `alternates.canonical` sẽ bị Google gộp vào trang chủ: `/search` từng bị vậy, đã sửa.
+- **Dữ liệu phụ kiện (đối chiếu sony.jp 2026-11-16):** "積載カメラ質量" là tải trọng, không phải khối lượng. GP-VPT1 nặng 116 g (tải 1 kg), VCT-MP1 nặng 935 g (tải 2 kg, khối lượng chỉ có ở `feature_1.html`, ghi trong `FEATURE_WEIGHT`). ADP-AMA và ADP-MAA là シューアダプター, sang nhóm mới `shoe-adapter` ("Bộ chuyển đế đèn"). Sửa ở `scripts/product-specs.ts` (`MASS`, `CATEGORY_GROUP`) rồi chạy lại từ cache; `test/products.test.ts` chốt các giá trị này.
 
-## 4. Đồ thị (`app/components/Constellation.tsx`): engine canvas tự viết
-Tôi viết lại engine từ mockup đã duyệt; hai lần giao cho agent đều hỏng. Logic như sau:
-- **Cấu trúc:** một object engine trong `useEffect([graph, router])` và một vòng `requestAnimationFrame`. React chỉ giữ phần giao diện phủ lên, không render lại mỗi khung hình.
-- **Toán:** chiếu 3D, kéo nút, xếp vòng nút kề ở `lib/constellationView.ts` (có test).
-- **Bố cục:** `lib/layout3d.ts` tính sẵn lúc build, theo các bước:
-  1. Chạy mô phỏng lực.
-  2. Trải đều các nút trong khối cầu theo thứ hạng khoảng cách.
-  3. Cho lực dàn lại thêm một nhịp (`RELAX` 0.35).
-  4. Co về bán kính 170.
-- **Tương tác:**
-  - Chọn nút: camera bay tới, khung lấy nét 4 góc thu dần vào nút, nút kề xếp thành vòng, phần còn lại mờ đi.
-  - Bấm hoặc chạm lần hai thì mở trang, kèm hiệu ứng gợn; chỉ dẫn "Bấm lần nữa để mở".
-  - Kéo nền để xoay, kéo nút để dời, chụm hai ngón hoặc lăn chuột để zoom.
-  - Bàn phím: mũi tên đi qua nút kề, Enter chọn rồi mở, Esc bỏ chọn.
-  - Đồng bộ `?n=` trên URL.
-- **Hình ảnh:**
-  - Nhãn chữ thường, nét 400.
-  - Cạnh là đường chấm cong, độ đậm 55%.
-  - **Tín hiệu kiểu xung thần kinh** chạy ngẫu nhiên trên cạnh, màu ngẫu nhiên trong bảng màu.
-  - Nút trong túi đồ có vòng chấm ngoài.
-  - Nút đung đưa nhẹ.
-- **Trạng thái chờ:**
-  - Tự xoay quanh trục đứng (`SPIN` 0.12 rad/s) và luôn vừa khung.
-  - Dừng khi người dùng tương tác. Không còn nút Toàn cảnh, nên sau khi dừng chỉ tải lại trang mới xoay lại.
-  - Không tự chọn nút nào, trừ khi URL có `?n=`.
-- **Trang cuộn được** (landing):
-  - Lăn chuột để cuộn trang, zoom bằng Ctrl/⌘ + lăn.
-  - Trên cảm ứng: vuốt dọc cuộn trang, vuốt ngang xoay.
-- **Prop:**
-  - `graph`, `title`, `mine`, `header`.
-  - `controls` (tắt 2 nút zoom; nút zoom mặt 32px, vùng chạm 44px).
-  - Wrapper `MineConstellation` tự lấy `mine` từ túi đồ và giỏ màu.
-- **Tìm nút:** qua thanh tìm kiếm chung (`lib/pageSearch.ts`, nhóm gợi ý "Trên đồ thị").
-- Mọi đồ thị **tràn viền, không khung**.
+Cách đo lại:
 
-**Dữ liệu** (`lib/appGraphs.ts`):
-- `consoleGraph`, `colorsGraph`, `wikiGraph`, `blogGraph`.
-- `allGraph()`: 286 nút, 700 cạnh. Các id dùng chung giữa app được gộp làm một nút; nút `lay-net` bị trùng nghĩa giữa console và blog được đổi thành `blog/lay-net`.
-- Id nút = đoạn cuối của URL.
-- Test: `test/appGraphs.test.ts`.
+```bash
+npm run build
+npm run start -- -p 3200
+npm run lighthouse -- http://localhost:3200 --all
+```
 
-## 5. Túi đồ và hồ sơ
-- **Lưu trữ túi đồ:** `lib/gear.ts`, localStorage `gear-bag`.
-  - **Không giới hạn số món.**
-  - `toggleGear` trả về `GearBag`.
-  - `pickModel` tự chọn máy có hướng dẫn.
-- **Catalog:** `lib/gearCatalog.ts`.
-  - 36 body và 82 lens có ảnh.
-  - Phụ kiện gồm 6 món từ Wiki (có ảnh) và 7 món nhập tay trong `data/accessories.json` (chưa đối chiếu nguồn).
-  - `findGear` khớp lỏng theo tên hoặc mã.
-  - `suggestGear` cho gợi ý khi gõ.
-- **`GearManager`:** ô nhập kèm gợi ý và nút Thêm. Món không có thì hiện hộp thoại "Sản phẩm này chưa được hỗ trợ". Prop `title`, `compact`.
-- **Hồ sơ** (`lib/profile.ts`, localStorage `user-profile`):
-  - Lưu username, bio, link.
-  - `cleanLink` chỉ nhận http/https.
-  - `encodeShare`/`decodeShare` cho link `/ho-so#…`; mọi trường được kiểm lại khi đọc.
-- **Đồng bộ theo tài khoản:** `lib/userState.ts`, `SYNCED` gồm `color-bank-cart`, `wiki-compare`, `gear-bag`, `user-profile`, `camera-model`.
-- **Component:** `ProfilePage`, `ProfileView`, `SharedProfile`.
+`LH_ROUTES='/a /b'` để đo vài trang, `--every` để đo mọi trang prerender (rất lâu). Báo cáo JSON ở `/tmp/lh`. Khi điểm tụt: xem `network-requests` trước LCP quan sát, `lcp-breakdown-insight` và `metrics` (so `observedFirstContentfulPaintTs` với `observedLargestContentfulPaintTs`) trong JSON. Quy tắc Lantern nằm ở `node_modules/@paulirish/trace_engine/models/trace/lantern/metrics/LargestContentfulPaint.js`. Đôi khi một lượt ra 98–99 vì FCP và LCP rơi vào hai khung vẽ khác nhau; đo lại vài lần trước khi sửa.
 
-## 6. File đã xóa hoặc thay
-- **Đã xóa:**
-  - Trang cũ `app/graph`, `app/colors/graph`.
-  - Component `GraphClient`, `GearLanding`, `GearButton`, `GearPicker`, `AccountPage`, `AppHome`.
-  - Đồ thị 2D cũ trong `lib/graph.ts` (chỉ giữ `generateSiteGraph`, `hubIdFromValue`).
-  - Ô lọc riêng của Color Bank.
-- **Redirect:** `/graph` → `/do-thi/blog`; `/colors/graph` → `/do-thi/colors` (`lib/legacyRedirects.ts`).
-- **Link cũ** `/?model=` và `/#tao-preset` được `LegacyHomeLinks` chuyển sang `/console`.
+## 4. Môi trường
 
-## 7. Việc còn mở và rủi ro
-1. **Chưa thử đăng nhập Google thật từ đầu đến cuối.** Mới thử bằng một phiên giả trong localStorage.
-2. **Chưa xem kỹ ở 390px và 840px:** landing mới, khối Bắt đầu, trang hồ sơ, trang sản phẩm một cột.
-3. **Công cụ chụp màn hình** của khung trình duyệt trả ảnh trắng khi trang đã cuộn. Phần dưới landing mới được xác nhận bằng cách đọc DOM và kiểm tra điểm ảnh canvas.
-4. **Hiệu năng:** landing chạy 5 canvas cùng lúc (đồ thị nào khuất màn hình thì ngừng vẽ). Chưa đo trên điện thoại thật.
-5. **Đồ thị dày** (Color Bank, đồ thị tổng hợp): vài nhãn vẫn nằm sát nhau khi xoay.
-6. **Giao diện chưa đồng nhất:** trang chủ 4 app (danh sách 2 cột) vẫn kiểu cũ (`text-display font-bold`), khác với landing, hồ sơ và trang đồ thị.
-7. **Dữ liệu chưa xác minh:** mã màu cam Sony là ước lượng; `data/accessories.json` chưa đối chiếu nguồn.
-8. **Hai server đang chạy trong thư mục dự án:**
-    - Bản production `npm run start` ở cổng 3200 (cấu hình `prod`, autoPort, trong `.claude/launch.json`).
-    - Một `next dev` cổng 3000 của phiên khác.
-    - Cổng 3100 là dự án khác (`~/lhbuild`).
+- `.claude/launch.json`: `web` (`npm run dev`, cổng 3000) và `prod` (`npm run start`, cổng 3200).
+- Biến môi trường (giá trị trong `.env.local`, không đưa vào repo): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (project nội dung), `NEXT_PUBLIC_AUTH_SUPABASE_URL`, `NEXT_PUBLIC_AUTH_SUPABASE_ANON_KEY` (project AUTH: đăng nhập, đồng bộ, KOL), `NEXT_PUBLIC_SITE_URL`, `ADMIN_EMAILS` (chỉ server, đặt trên máy deploy; trống thì `/admin/decode` trả 404).
+- `scripts/push-supabase.ts --apply` cần file env ở `~/Desktop/ColorLab 2.0/.env.local` (chạy từ gốc repo với `--env-file="../../ColorLab 2.0/.env.local"`); `.env.local` của repo không có khóa ghi nội dung.
+- **SQL Supabase do chủ dự án chạy tay** trong SQL editor. AI chỉ viết file `.sql` và hỏi, không bao giờ tự áp dụng.
+  - `supabase/kol.sql`: chủ dự án đã chạy (2026-11-11). Chưa rõ đã chạy lại phần `kol_photos_ok` (ảnh mẫu là link https) chưa.
+  - `supabase/cleanup.sql`: xóa bảng cũ của ColorLab 2.0, không hoàn tác được, đã được duyệt 2026-11-12. Chưa rõ đã chạy chưa.
 
-## 8. Lệnh kiểm tra
+## 5. Việc còn mở và rủi ro
+
+1. **Dữ liệu chưa đối chiếu nguồn:** `data/accessories.json` (7 món chọn tay) và mã màu cam Sony (ước lượng). 44/146 phụ kiện trong `data/products.json` không có khối lượng vì sony.jp không in ở trang sản phẩm hoặc trang thông số.
+2. **Nội dung đổi sau hydrate:** snapshot phía server của máy đang chọn (`lib/model.ts`, luôn ZV-E10), Lưới/Danh sách (`lib/indexView.ts`, luôn Lưới) và cá nhân hóa (`lib/usePersonal.ts`, luôn tắt). Người dùng A6400/A7C II hoặc chọn Danh sách thấy giao diện đổi sau khi tải. Sửa bằng cookie sẽ làm trang thành động và mất prerender, nên cần cân nhắc với điểm Lighthouse.
+3. **Chữ viết cứng trong component:** `PresetBuilder.tsx` còn vài câu tiếng Việt chưa chuyển vào `app/content.ts`.
+4. **Đăng nhập Google và KOL:** đã thử đăng nhập, lưu hồ sơ, lưu bộ nháp. Chưa thử tải ảnh, công khai bộ, xóa bộ.
+5. **Luật bài viết:** `colorlab_article` phía alphaskill (`src/sony_alpha_viet/server.py`) chưa đọc `data/article-rules.json`.
+6. **Đồ thị dày** (Color Bank, đồ thị tổng hợp): vài nhãn vẫn sát nhau khi xoay.
+
+## 6. Quyết định của chủ dự án cần giữ
+
+- Không chữ xám nhạt, không dòng gợi ý màu xám dưới tiêu đề, nút hay ô nhập; cần giải thích thì dùng `InfoTip`. Không gradient, glow, emoji, ký tự làm icon, câu quảng cáo (trừ chữ "color" chạy màu và quầng trắng sau tiêu đề ở landing, chủ dự án yêu cầu).
+- Lưu một bộ M1–M4 gọi là "sưu tầm", không phải "lưu".
+- Mỗi tài khoản KOL có đúng một bộ M1–M4. Bộ KOL công khai được đưa lên đầu danh sách ở `/console` và `/bo-m1-m4`, không ở landing.
+- KOL quản lý mọi thứ ngay trên `/tai-khoan` (một form hồ sơ gộp). Không làm lại trang quản lý KOL riêng; `/kol/sua` chỉ chuyển về `/tai-khoan`.
+- Trang hồ sơ (người dùng và KOL) theo kiểu Facebook: ảnh bìa, avatar tròn đè lên bìa, thanh tab, cột "Giới thiệu" bên trái.
+- Ảnh mẫu của KOL là link https dán vào và lưu ngay; ảnh đại diện và ảnh bìa vẫn chỉ từ bucket `kol`.
+- "Mod PP" là bản chỉnh riêng của người dùng, lưu theo tài khoản, không chia sẻ công khai. Ghi chú ảnh mẫu do KOL tự gõ, không đọc EXIF.
+
+## 7. Tri thức và skill
+
+- `npm run sync:skill`: chép `skills/sony-alpha-viet` và `portable/` từ repo alphaskill (`ALPHASKILL_DIR`, mặc định `../alphaskill`) vào `alphaskill/` của dự án, sinh `san-pham-sony.md` từ `data/products.json`. Không sửa tay `alphaskill/`; quên chạy thì `test/knowledge-drift.test.ts` báo lệch.
+- `node --experimental-strip-types scripts/import-knowledge.ts`: chỉ đọc `<alphaskill>/data/knowledge/1 Kiến thức`, ghi `data/knowledge.json` và `data/knowledge.lock.json`. Hai nguồn sửa trong repo (`KNOWLEDGE_EDITS` trong script, `scripts/knowledge-link-edits.json`) nằm ngoài hash: sửa mà không import lại thì test drift không báo. Ghi chú tri thức sửa ở repo `../alphaskill/data` (remote `alphaskill-data`).
+- `data/article-rules.json`: luật kiểm bài, đọc bởi `scripts/article-check.ts`, kiểm bởi `test/article-rules.test.ts`.
+- `npm run check:sources`: kiểm link nguồn của bài và sản phẩm (cần mạng, chỉ báo cáo). `.github/workflows/sources.yml` chạy thứ Hai 03:00 UTC.
+
+## 8. Bố cục
+
+- `app/`: route và component; `app/content.ts` chứa toàn bộ chữ; `app/globals.css` chứa token `@theme` và mọi CSS.
+- `lib/`: logic thuần, codec `.DAT` (`lib/zve10`, `lib/a7c2`, `lib/a6400`), đồ thị, đồng bộ, KOL.
+- `data/`: 272 sản phẩm, 39 bài, 39 ghi chú tri thức, bộ preset M1–M4, luật bài.
+- `scripts/`: chạy bằng `node --experimental-strip-types`. `test/`: `node:test`, chạy bằng `npm test`.
+- `supabase/`: file SQL chạy tay (mục 4).
+
+## 9. Trước khi báo xong
+
 ```bash
 npm run check:design
 npm test
 npm run build
 ```
 
-## 9. Bố cục
-- `data/`: `articles.json`, `products.json`, `knowledge.json` (sinh bởi import), `knowledge.lock.json` (mục 11), `article-rules.json` (mục 12).
-- `scripts/`: công cụ chạy bằng `node --experimental-strip-types`. Đáng chú ý: `sync-alphaskill.ts`, `import-knowledge.ts`, `knowledge-vault.ts`, `article-check.ts`, `check-sources.ts`.
-- `test/`: `node:test`, chạy bằng `npm test`.
-- `alphaskill/skill/` và `alphaskill/portable/`: bản sao trong dự án, do `sync:skill` sinh ra. Không sửa tay.
-- `.github/workflows/sources.yml`: chạy kiểm tra link nguồn (mục 13).
-- Repo `alphaskill` nằm cạnh dự án tại `../alphaskill`. Nguồn skill là `skills/sony-alpha-viet`, nguồn portable là `portable/`, vault tri thức là `data/knowledge/1 Kiến thức`.
-
-## 10. Đồng bộ skill (`npm run sync:skill`)
-- Xóa `alphaskill/`, chép `skills/sony-alpha-viet/*` vào `alphaskill/skill/` và `portable/*` vào `alphaskill/portable/`, rồi sinh `references/san-pham-sony.md` và `knowledge/san-pham-sony.md` từ `data/products.json`.
-- Đường dẫn repo alphaskill lấy từ `ALPHASKILL_DIR`, mặc định `../alphaskill`. Ví dụ: `ALPHASKILL_DIR=/đường/dẫn npm run sync:skill`.
-- Sửa skill ở repo alphaskill thì chạy lại lệnh này. Quên chạy thì `test/knowledge-drift.test.ts` báo lệch.
-
-## 11. Nhập tri thức (`scripts/import-knowledge.ts`)
-- Chạy: `node --experimental-strip-types scripts/import-knowledge.ts`.
-- Chỉ đọc `<alphaskill>/data/knowledge/1 Kiến thức`. Các thư mục khác trong vault không vào.
-- Ghi `data/knowledge.json` (dựng lại từ đầu) và `data/knowledge.lock.json` (`vaultSha256`, `noteFiles`).
-- Thiếu thư mục thì thoát 1 và in đường dẫn đã thử. Đặt `ALPHASKILL_DIR` để trỏ đúng repo.
-- Lock chỉ phủ vault. Hai nguồn sửa trong repo, `KNOWLEDGE_EDITS` trong script và `scripts/knowledge-link-edits.json`, nằm ngoài hash. Sửa hai nguồn này mà không chạy lại import thì test drift không báo.
-
-## 12. Luật bài viết (`data/article-rules.json`)
-- Chứa luật kiểm tra bài: câu cấm (`bannedPhrases`, `faqAnswerBanned`, `sectionLeadBanned`, `headingBanned`), giới hạn (`limits`), chủ đề, cấp độ, danh mục, loại khối, tiền tố menu, mẫu nguồn bắt buộc.
-- Mỗi luật có `id`, `pattern`, `flags`, `message`. Tùy chọn: `on` (`plain` hoặc `raw`), `max` (đếm số lần, báo khi vượt), `scope` (`all` hoặc `blocks`).
-- `scripts/article-check.ts` đọc từ file này. `test/article-rules.test.ts` kiểm tra danh sách khớp kiểu `Article` trong `lib/blog.ts` và nhãn có trong `app/content.ts`.
-- Phía alphaskill (`colorlab_article` trong `src/sony_alpha_viet/server.py`) chưa đọc file này. Chưa đồng bộ luật bên đó.
-
-## 13. Kiểm tra link nguồn (`npm run check:sources`)
-- Quét `meta.sources[].url` trong `data/articles.json` và `source` trong `data/products.json`, mỗi URL kiểm một lần. Ảnh sản phẩm không kiểm.
-- Cần mạng. Thử HEAD trước, lỗi thì thử GET. Tối đa 8 yêu cầu cùng lúc, timeout 15 giây.
-- Link chết = 404, 410 hoặc tên miền không phân giải. 401, 403, 429, 5xx và timeout là "unverified", không tính lỗi, vì sony.jp có thể chặn bot.
-- Chỉ báo cáo, không tự thay link. Có link chết thì thoát 1 và in từng URL kèm trang đang dùng.
-- `.github/workflows/sources.yml` chạy thứ Hai 03:00 UTC và chạy tay được. Không nằm trong `npm test` hay `npm run build`.
+Xem trang ở 390px, 840px và 1440px. Đổi giao diện hoặc dữ liệu lớn thì đo lại Lighthouse theo mục 3.

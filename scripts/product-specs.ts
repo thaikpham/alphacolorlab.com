@@ -33,7 +33,7 @@ const CODE_GROUP: [RegExp, string][] = [
 const CATEGORY_GROUP: [RegExp, string][] = [
   [/マイクロホン/, "mic"], [/ポータブルデータトランスミッター/, "wireless"], [/フラッシュ/, "flash"],
   [/リモートコマンダー/, "remote"], [/バッテリー/, "battery"], [/グリップ/, "grip"], [/LCDモニター/, "monitor"],
-  [/ファインダー/, "viewfinder"], [/マウントアダプター|シューアダプター/, "adapter"],
+  [/ファインダー/, "viewfinder"], [/シューアダプター/, "shoe-adapter"], [/マウントアダプター/, "adapter"],
   [/ケース|レンズフード|ストラップ|レインカバー|液晶アクセサリー/, "case"], [/三脚/, "tripod"],
 ];
 const MEDIA_NOT_IN_SCOPE = /^(DVM|DMR|DMW|BNE|BNR|5BNR|MDW|MMD)/; // tapes, optical discs and MiniDisc (録音用ミニディスク, MD DATA)
@@ -325,7 +325,7 @@ const GROUP_FIELDS: Record<string, [string, RegExp, (v?: string) => unknown][]> 
   "dc-coupler": [["battery", /付属品/, (v?: string) => v?.match(/(NP-[A-Z0-9]+)用/)?.[1]]],
 };
 // Accessory groups whose body is hardware: they get 大きさ / 外形寸法 (not case, straps or cards)
-const DIMENSIONED = new Set(["mic", "headphone", "flash", "monitor", "battery", "charger", "dc-coupler", "card-reader", "remote", "grip", "viewfinder", "adapter", "tripod", "xlr", "wireless", "other"]);
+const DIMENSIONED = new Set(["mic", "headphone", "flash", "monitor", "battery", "charger", "dc-coupler", "card-reader", "remote", "grip", "viewfinder", "adapter", "shoe-adapter", "tripod", "xlr", "wireless", "other"]);
 // Fields read from the page text rather than a label line; "text" is the top page plus the spec page, cleaned.
 function textFields(group: string, text: string): Record<string, unknown> {
   if (group === "charger") {
@@ -353,15 +353,19 @@ function textFields(group: string, text: string): Record<string, unknown> {
   if (group === "dc-coupler") return present({ battery: text.match(/リチャージャブルバッテリーパック\s*(NP-[A-Z0-9]+)に対応/)?.[1] });
   return {};
 }
+// The product's own weight. "積載カメラ質量:1kg以下" (GP-VPT1, VCT-MP1) is the camera it carries, not its weight.
+const MASS = /^(?!.*積載).*質量|^重量$/;
+// Weights printed only on a feature page (VCT-MP1 feature_1.html: "質量:約935g", checked 2026-11-16).
+const FEATURE_WEIGHT: Record<string, number> = { "VCT-MP1": 935 };
 function accessorySpecs(group: string, r: Row[], text = "") {
   const fields: [string, RegExp, (v?: string) => unknown][] = [
     ...(GROUP_FIELDS[group] ?? []),
-    ["weightG", /質量|^重量$/, grams],
+    ["weightG", MASS, grams],
   ];
   const fromRows = present(Object.fromEntries(fields.map(([key, re, parse]) => [key, parse(first(r, re))])));
   // Weight can sit inside another value: "外形寸法(約): 19mm×66mm×30mm、質量(約):19g"
   // The unit can sit in the label instead: "質量 約 (g)" = 88 (LA-EA5)
-  const weightRow = r.find((x) => /質量|^重量$/.test(x.label));
+  const weightRow = r.find((x) => MASS.test(x.label));
   const weight = fromRows.weightG ?? grams(r.map((x) => x.value).find((v) => /質量/.test(v))?.split("質量")[1]) ?? (weightRow && /\(g\)/.test(weightRow.label) ? numberOf(weightRow.value) : undefined);
   // Size from the 外形寸法 row (label too: "外形寸法 最大径x長さ (mm)" = "66.0 x 31.7"), else from the first 外形寸法 phrase of the page text (the top page has no label line for it)
   // "サイズ(高さ×幅×厚さ)" lists height first (PDT-FP1: 約 170 mm x 80 mm x 26.6 mm), so width and height swap to match dimensionsMm
@@ -550,7 +554,8 @@ for (const c of todo) {
     const group = cinema ? "cinema" : groupOf(c);
     // Accessory specs: the spec table first, then the label lines of the top page (text fields read the cleaned top and spec pages).
     const text = clean(`${prod ?? ""} ${spec ?? ""}`);
-    const specs = cinema ? { ...cinemaText(text), ...cinemaSpecs(r) } : SERIES.has(c.code) ? seriesSpecs(text) : accessorySpecs(group, [...r, ...specLines(prod ?? "")], text);
+    const specs: Record<string, unknown> = cinema ? { ...cinemaText(text), ...cinemaSpecs(r) } : SERIES.has(c.code) ? seriesSpecs(text) : accessorySpecs(group, [...r, ...specLines(prod ?? "")], text);
+    if (FEATURE_WEIGHT[c.code] && specs.weightG === undefined) specs.weightG = FEATURE_WEIGHT[c.code];
     // Image: the first og:image (product page, then spec page) on www.sony.jp that names the code, else the picture named after the code.
     // Separators are ignored when comparing, because sony.jp files drop or swap them (RM_VPR1.jpg for RM-VPR1, VENICE2.jpg for VENICE_2).
     // Headphone pictures often carry a short model or id instead of the code, so the og:image of a headphone page is trusted (checked on www.sony.jp).

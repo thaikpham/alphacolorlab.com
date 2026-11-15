@@ -3532,26 +3532,6 @@
     "source": "https://www.sony.jp/ichigan/products/SEL2470Z/spec.html"
   },
   {
-    "code": "ADP-AMA",
-    "slug": "adp-ama",
-    "name": "ADP-AMA",
-    "kind": "accessory",
-    "group": "adapter",
-    "specs": {},
-    "image": "https://www.sony.jp/products/picture/ADP-AMA.jpg",
-    "source": "https://www.sony.jp/ichigan/products/ADP-AMA/"
-  },
-  {
-    "code": "ADP-MAA",
-    "slug": "adp-maa",
-    "name": "ADP-MAA",
-    "kind": "accessory",
-    "group": "adapter",
-    "specs": {},
-    "image": "https://www.sony.jp/products/picture/ADP-MAA.jpg",
-    "source": "https://www.sony.jp/ichigan/products/ADP-MAA/"
-  },
-  {
     "code": "LA-EA4",
     "slug": "la-ea4",
     "name": "LA-EA4",
@@ -4477,7 +4457,7 @@
     "kind": "accessory",
     "group": "grip",
     "specs": {
-      "weightG": 1000
+      "weightG": 116
     },
     "image": "https://www.sony.jp/products/picture/GP-VPT1.jpg",
     "source": "https://www.sony.jp/handycam/products/GP-VPT1/"
@@ -5387,6 +5367,26 @@
     "source": "https://www.sony.jp/ichigan/products/RMT-VP2/"
   },
   {
+    "code": "ADP-AMA",
+    "slug": "adp-ama",
+    "name": "ADP-AMA",
+    "kind": "accessory",
+    "group": "shoe-adapter",
+    "specs": {},
+    "image": "https://www.sony.jp/products/picture/ADP-AMA.jpg",
+    "source": "https://www.sony.jp/ichigan/products/ADP-AMA/"
+  },
+  {
+    "code": "ADP-MAA",
+    "slug": "adp-maa",
+    "name": "ADP-MAA",
+    "kind": "accessory",
+    "group": "shoe-adapter",
+    "specs": {},
+    "image": "https://www.sony.jp/products/picture/ADP-MAA.jpg",
+    "source": "https://www.sony.jp/ichigan/products/ADP-MAA/"
+  },
+  {
     "code": "SL-M",
     "slug": "sl-m",
     "name": "SL-M",
@@ -5411,7 +5411,7 @@
     "kind": "accessory",
     "group": "tripod",
     "specs": {
-      "weightG": 2000
+      "weightG": 935
     },
     "image": "https://www.sony.jp/products/picture/VCT-MP1.jpg",
     "source": "https://www.sony.jp/handycam/products/VCT-MP1/"

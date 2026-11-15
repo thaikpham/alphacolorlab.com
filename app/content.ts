@@ -1025,6 +1025,9 @@ export const gearManager = {
 // Trang hồ sơ /tai-khoan (chủ hồ sơ) và /ho-so#… (link chia sẻ, chỉ xem)
 export const profile = {
   title: "Hồ sơ",
+  /** Mô tả trang /tai-khoan và /ho-so cho công cụ tìm kiếm */
+  description: "Hồ sơ túi đồ Sony: máy ảnh, ống kính và phụ kiện bạn đang dùng, kèm giới thiệu và liên kết, chia sẻ bằng một đường link.",
+  sharedDescription: "Xem túi đồ Sony mà người khác chia sẻ qua link: máy ảnh, ống kính và phụ kiện họ đang dùng.",
   sharedTitle: (name: string) => `Túi đồ của ${name}`,
   edit: "Sửa hồ sơ",
   save: "Lưu",
@@ -1050,6 +1053,8 @@ export const profile = {
   /** Đang đọc dữ liệu trong link (có sẵn trong HTML, cùng phần tử với badShare) */
   opening: "Đang mở hồ sơ…",
   badShare: "Liên kết hồ sơ không đọc được. Nhờ người gửi chia sẻ lại.",
+  /** /ho-so mở không kèm link chia sẻ (cùng phần tử với opening) */
+  noShare: "Trang này hiện túi đồ Sony mà người khác chia sẻ qua link. Bạn cũng có thể tạo hồ sơ túi đồ của mình rồi chia sẻ.",
   makeYours: "Tạo túi đồ của bạn",
   shareInfo: "Liên kết chia sẻ chứa sẵn tên, ảnh đại diện, giới thiệu, liên kết và túi đồ của bạn lúc bấm chia sẻ. Sửa hồ sơ sau đó thì chia sẻ lại để có liên kết mới.",
   shared: "Đã chép hồ sơ",
@@ -1936,6 +1941,7 @@ export const wiki = {
       grip: { title: "Tay cầm", role: "tay cầm Sony" },
       viewfinder: { title: "Kính ngắm", role: "kính ngắm Sony" },
       adapter: { title: "Bộ chuyển ngàm", role: "bộ chuyển ngàm Sony" },
+      "shoe-adapter": { title: "Bộ chuyển đế đèn", role: "bộ chuyển đế gắn phụ kiện (đèn, micro) Sony" },
       case: { title: "Túi và hộp đựng", role: "túi, hộp đựng Sony" },
       tripod: { title: "Chân máy", role: "chân máy Sony" },
       xlr: { title: "Bộ chuyển XLR", role: "bộ chuyển XLR Sony" },

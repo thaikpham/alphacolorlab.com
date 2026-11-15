@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { appHome } from "@/app/content";
+import { SITE_URL } from "@/lib/site";
 import { graphFor } from "@/lib/appGraphs";
 import type { AppId } from "@/lib/constellation";
 import { AppGraph } from "@/app/components/AppGraph";
@@ -11,7 +12,13 @@ export const generateStaticParams = () => APPS.map((app) => ({ app }));
 
 export async function generateMetadata({ params }: { params: Promise<{ app: string }> }): Promise<Metadata> {
   const { app } = await params;
-  return APPS.includes(app as AppId) ? { title: `${appHome.views.graph} ${appHome[app as AppId].title}`, robots: { index: false } } : {};
+  if (!APPS.includes(app as AppId)) return {};
+  const id = app as AppId;
+  return {
+    title: `${appHome.views.graph} ${appHome[id].title}`,
+    description: appHome[id].graph,
+    alternates: { canonical: new URL(`/do-thi/${id}`, SITE_URL).href },
+  };
 }
 
 /** Đồ thị của một app, mở từ menu người dùng ("Xem đồ thị"). Trang chính của app vẫn là danh sách 2 cột. */

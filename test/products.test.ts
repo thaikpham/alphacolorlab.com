@@ -66,6 +66,14 @@ test("products: cinema specs come from the right rows", () => {
   assert.deepEqual(by("ILME-FR7"), { sensorFormat: "full-frame", sensorType: "CMOS" });
 });
 
+// Checked on sony.jp 2026-11-16: "積載カメラ質量:1kg以下" is the camera load, "質量:約116g" the grip itself;
+// ADP-AMA and ADP-MAA are シューアダプター (accessory shoe), not mount adapters.
+test("products: load ratings are not weights; shoe adapters are not mount adapters", () => {
+  assert.deepEqual([by("GP-VPT1").weightG, by("VCT-MP1").weightG], [116, 935]);
+  const groups = Object.fromEntries(products.map((p) => [p.code, p.group]));
+  assert.deepEqual([groups["ADP-AMA"], groups["ADP-MAA"], groups["LA-EA5"]], ["shoe-adapter", "shoe-adapter", "adapter"]);
+});
+
 test("products: every product group has a Product Wiki heading", async () => {
   const { wiki } = await import("../app/content.ts");
   const cameras = new Set(Object.keys(wiki.product.cameras));

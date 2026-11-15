@@ -1,11 +1,13 @@
 import { Suspense } from 'react'
 import { buildIndex } from '@/lib/searchIndex'
 import { search, seo } from '@/app/content'
+import { SITE_URL } from '@/lib/site'
 import { SearchClient } from '@/app/components/SearchClient'
 
 export const metadata = {
   title: seo.searchTitle,
   description: search.lead,
+  alternates: { canonical: new URL('/search', SITE_URL).href },
 }
 
 export default async function SearchPage() {
