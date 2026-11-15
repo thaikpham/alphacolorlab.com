@@ -41,7 +41,6 @@ export function GearManager({ title, compact }: { title: string; compact?: boole
 
   const hits = suggestGear(query);
   const shown = open && hits.length > 0;
-  const nameOf = (cat: keyof GearBag, id: string) => catalog[cat].find((i) => i.id === id)?.name ?? id;
 
   const add = (hit: GearHit | null) => {
     const q = query.trim();

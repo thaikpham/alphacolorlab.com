@@ -28,9 +28,15 @@ export default async function SharedSetPage({ params }: { params: Promise<{ id: 
   const set = LISTED.find((s) => s.id === id);
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 md:pt-6">
+    <div className="px-4 sm:px-6 md:px-8 pt-6 pb-16 sm:pt-8 md:pt-6">
       <BackLink href="/bo-m1-m4">{kolSets.title}</BackLink>
-      {set ? <SetDetail set={set} /> : REPO_IDS.has(id) ? <p className="mt-4 text-body text-secondary">{kolSets.notFound}</p> : <RemoteSetView id={id} />}
+      {/* Không có bộ để hiện: h1 ẩn để trang vẫn có đúng một h1 (SetDetail tự có h1) */}
+      {set ? <SetDetail set={set} /> : REPO_IDS.has(id) ? (
+        <>
+          <h1 className="sr-only">{kolSets.title}</h1>
+          <p className="mt-4 text-body text-secondary">{kolSets.notFound}</p>
+        </>
+      ) : <RemoteSetView id={id} />}
     </div>
   );
 }

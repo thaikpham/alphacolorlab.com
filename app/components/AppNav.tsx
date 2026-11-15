@@ -31,7 +31,8 @@ const useLg = () =>
     () => false,
   );
 
-/** Nút launcher: logo chấm 3×3 (chấm giữa cam) + tên app đang dùng (chưa ở app nào thì tên dự án), bấm bung popover 4 app (chấm màu + tên). */
+/** Nút launcher: logo chấm 3×3 (chấm giữa cam) + tên app đang dùng (chưa ở app nào thì tên dự án, ẩn dưới sm cho khỏi bị cắt), bấm bung popover 4 app (chấm màu + tên).
+ * Dưới lg đây là lối đổi app duy nhất (không có thanh tab ở đáy), nên tên app hiện cả trên điện thoại. */
 function Logo({ className }: { className?: string }) {
   const id = useId(); // thanh trên và thanh dọc cùng mount một launcher, id phải khác nhau
   const pathname = usePathname();
@@ -49,7 +50,7 @@ function Logo({ className }: { className?: string }) {
             <div key={i} className={`size-1 rounded-full ${i === 4 ? "bg-accent" : "bg-label"}`} />
           ))}
         </div>
-        <span className="hidden text-subhead font-semibold text-label sm:inline">{current?.label ?? nav.siteName}</span>
+        <span className={`text-subhead font-semibold text-label ${current ? "max-w-28 truncate sm:max-w-none" : "hidden sm:inline"}`}>{current?.label ?? nav.siteName}</span>
       </button>
       <nav id={id} popover="auto" aria-label={nav.tabBarLabel} className="app-launcher rounded-card border border-separator bg-card p-2 text-label shadow-card">
         {nav.apps.map((app) => (
@@ -69,7 +70,8 @@ function Logo({ className }: { className?: string }) {
   );
 }
 
-/** Thanh trên cùng: dưới lg, và từ lg chỉ khi `wide` (Blog/Wiki ở Lưới và /admin, không có thanh dọc). Dưới lg: logo trái, tìm kiếm + avatar phải.
+/** Thanh trên cùng: dưới lg, và từ lg chỉ khi `wide` (Blog/Wiki ở Lưới và /admin, không có thanh dọc). Dưới lg: launcher trái, tìm kiếm + avatar phải;
+ * đổi app bằng launcher, không có thanh tab ở đáy.
  * Từ lg khi wide: ba vùng cùng hàng h-14, logo trái đúng chỗ như thanh dọc, tìm kiếm giữa (cột 28rem), avatar phải.
  * Avatar luôn bọc một div (không đổi cây DOM khi bấm núm Danh sách/Lưới, menu không đóng); `lg:contents` để tìm kiếm và avatar thành ô của lưới. */
 export function AppNav() {
@@ -109,37 +111,5 @@ export function AppSidebar() {
       {lg && pathname !== "/search" && <div className="flex"><SearchField /></div>}
       </div>
     </aside>
-  );
-}
-
-/** Thanh tab 4 app ở đáy (dưới lg). Đặt ngoài <header>: header có backdrop-filter, sẽ thành khối chứa của phần tử fixed bên trong. */
-export function AppTabBar() {
-  const pathname = usePathname();
-  if (pathname === "/") return null; // landing không có thanh điều hướng
-  const current = nav.apps.find((app) => isActive(pathname, app.match));
-  return (
-    <nav
-      className="fixed bottom-0 left-0 right-0 lg:hidden bg-card border-t border-separator flex justify-around items-stretch z-40 pb-safe"
-      aria-label={nav.tabBarLabel}
-    >
-      {nav.apps.map((app) => {
-        const active = app === current;
-        return (
-          <Link
-            key={app.href}
-            href={app.href}
-            aria-current={active ? "page" : undefined}
-            className={`flex flex-col items-center justify-center gap-1 flex-1 min-h-16 transition-colors ${
-              active
-                ? "text-label"
-                : "text-secondary hover:text-label"
-            }`}
-          >
-            <span className={`size-2 rounded-full ${appColors[app.href as keyof typeof appColors]}`} />
-            <span className="text-footnote font-semibold">{app.label}</span>
-          </Link>
-        );
-      })}
-    </nav>
   );
 }

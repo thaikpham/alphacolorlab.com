@@ -20,6 +20,9 @@ export async function generateStaticParams() {
   ];
 }
 
+// This page only redirects or returns 404 (no UI to stream), so it opts out of instant validation.
+export const instant = false;
+
 export default async function WikiSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
 

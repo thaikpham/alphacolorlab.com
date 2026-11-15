@@ -808,7 +808,7 @@ export const ppBanksUI = {
 };
 
 // Thanh tab trên cùng. match: các đường dẫn làm tab sáng lên ("/" chỉ khớp đúng trang chủ)
-// Thanh điều hướng: logo, 4 tab app (điện thoại: thanh tab ở đáy), tìm kiếm, túi đồ, tài khoản.
+// Thanh điều hướng: launcher 4 app, tìm kiếm, túi đồ, tài khoản.
 export const nav = {
   siteName: "alphacolorlab.com",
   tabBarLabel: "Ứng dụng",
@@ -1639,7 +1639,7 @@ export const colorBank = {
     kelvin: (k: number) => `${k}K`,
     shift: (type: "A" | "B" | "G" | "M", value: number) => `${type}${Math.abs(value)}`,
     pictureProfile: "Picture Profile (PP1)",
-    menuPath: "MENU › Cài đặt máy ảnh1 › Picture Profile",
+    menuPath: ["MENU", "Cài đặt máy ảnh1", "Picture Profile"],
     useForSlots: "Dùng cho M1–M4",
     blocked: (reason: string) => `Chưa tạo được file Memory Recall cho công thức này. ${reason} Cài tay theo các giá trị ở trên.`,
   },
@@ -1974,7 +1974,7 @@ export const search = {
   graphGroup: "Trên đồ thị",
   graphPlaceholder: "Tìm nút hoặc trang",
   lead: "Tìm kiếm bài viết, sản phẩm, kiến thức và công thức màu.",
-  placeholder: "Nhập từ khóa, ví dụ: lấy nét, Picture Profile, A7C",
+  placeholder: "Ví dụ: lấy nét, Picture Profile, A7C",
   empty: "Không tìm thấy kết quả.",
   didYouMean: "Có phải bạn muốn tìm",
   hint: "Nhập từ khóa ở trên để tìm kiếm.",

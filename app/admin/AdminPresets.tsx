@@ -183,7 +183,7 @@ export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
   );
 
   return (
-    <div className="space-y-6 pb-48 lg:pb-32">
+    <div className="space-y-6 pb-32">
       {/* Thanh chọn bộ */}
       <div className={bar}>
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -233,9 +233,9 @@ export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
 
       {/* Thông tin bộ */}
       <section aria-labelledby={`${uid}-info`} className={card}>
-        <h3 id={`${uid}-info`} className="text-title3 font-medium">
+        <h2 id={`${uid}-info`} className="text-title3 font-medium">
           {adminCopy.setInfo}
-        </h3>
+        </h2>
         <div className="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           <div>
             <label htmlFor={`${uid}-n`} className={labelCls}>
@@ -277,16 +277,16 @@ export function AdminPresets({ initialSets }: { initialSets: PresetSet[] }) {
 
       {/* Bốn ô nhớ */}
       <section aria-labelledby={`${uid}-slots`} className={card}>
-        <h3 id={`${uid}-slots`} className="text-title3 font-medium">
+        <h2 id={`${uid}-slots`} className="text-title3 font-medium">
           {adminCopy.slots}
-        </h3>
+        </h2>
         <div className="mt-5">
           <SlotDashboard key={selected} setName={set.name} slots={set.slots} onChange={setSlots} />
         </div>
       </section>
 
-      {/* Thanh lưu: nằm trên thanh tab dưới (dưới lg), đáy màn hình từ lg */}
-      <div className="fixed bottom-tabbar left-0 right-0 z-30 border-t border-separator bg-card lg:bottom-0">
+      {/* Thanh lưu: dính đáy màn hình */}
+      <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-separator bg-card pb-safe">
         {/* Dồn về bên phải: góc dưới trái là chỗ nút công cụ dev của Next */}
         <div className="mx-auto flex max-w-page flex-wrap items-center justify-end gap-x-4 gap-y-2 px-4 py-3 sm:px-6 lg:px-8">
           <div className="text-footnote font-medium">

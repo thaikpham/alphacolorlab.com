@@ -38,6 +38,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return note ? { title: `${note.title}${seo.wikiSuffix}`, description: note.summary, alternates: { canonical: `${SITE_URL}/wiki/san-pham/${slug}` } } : {};
 }
 
+// Blocking route: notFound() runs before the response starts, so an unknown product keeps its 404 status.
+export const instant = false;
+
 export default async function ProductSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const product = productBySlug(slug);
@@ -57,7 +60,7 @@ export default async function ProductSlugPage({ params }: { params: Promise<{ sl
 
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-16 pb-24 sm:pt-24 md:pt-6">
+      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
         <BackLink href="/wiki">{wiki.product.title}</BackLink>
         {/* One column, full width of the detail pane: title, summary, photo, specs, review, mentions, comments. Text before the photo keeps text the LCP on phones. */}
         <div className="flex flex-wrap items-end justify-between gap-4 mt-4 mb-6">

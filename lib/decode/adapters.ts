@@ -10,7 +10,7 @@
  */
 import type { GameModel } from "../game/types.ts";
 import { getCatalog } from "../game/catalog.ts";
-import { decodeDat, FOCUS_PROFILE, FOCUS_AREA_PROFILE, METERING_PROFILE, FACE_PRIORITY_PROFILE, SOFT_SKIN_PROFILE, AUTO_REVIEW_PROFILE, FLASH_MODE_PROFILE, EXP_COMP_SET_PROFILE, AWB_PRIORITY_PROFILE, PRE_AF_PROFILE, STEADY_SHOT_PROFILE, E_FRONT_CURTAIN_PROFILE, LIVE_VIEW_PROFILE, PROFILE, APERTURES, SHUTTERS, ISOS, GAMMAS, COLOR_MODES, apexU16, avThirds, tvThirds } from "../zve10/dat.ts";
+import { decodeDat, FOCUS_PROFILE, FOCUS_AREA_PROFILE, METERING_PROFILE, FACE_PRIORITY_PROFILE, SOFT_SKIN_PROFILE, AUTO_REVIEW_PROFILE, FLASH_MODE_PROFILE, EXP_COMP_SET_PROFILE, AWB_PRIORITY_PROFILE, PRE_AF_PROFILE, STEADY_SHOT_PROFILE, E_FRONT_CURTAIN_PROFILE, LIVE_VIEW_PROFILE, PROFILE, GAMMAS, COLOR_MODES } from "../zve10/dat.ts";
 import type { DecodedSettings } from "../zve10/dat.ts";
 import { parseA6400, toA6400Offset, decodeA6400, A6400_FIELDS } from "../a6400/dat.ts";
 import type { A6400FieldKey } from "../a6400/dat.ts";
@@ -370,17 +370,6 @@ function codecRow(s: Pick<Codec, "settingId" | "where" | "owns" | "codecValues" 
 }
 
 const atOffset = (off: number, width: number) => ({ where: hex(off), owns: width === 2 ? [off, off + 1] : [off] });
-
-// Mã ISO trong byte 404 (cùng công thức isoCode của zve10/dat.ts): AUTO là profile.auto, còn lại theo nấc 1/3 EV
-const isoByte = (label: string): number | null => {
-  const c = PROFILE.exposure.iso;
-  if (!ISOS.includes(label)) return null;
-  return label === "AUTO" ? (c.auto ?? 0) : (c.base ?? 11) + Math.round(3 * Math.log2(parseInt(label, 10) / 100));
-};
-
-// Mã APEX của khẩu độ hoặc tốc độ (cùng công thức decodeDat đảo lại)
-const apexCode = (list: readonly string[], thirds: (s: string) => number) => (v: string): number | null =>
-  list.includes(v) ? apexU16(thirds(v)) : null;
 
 // Mã lựa chọn theo bảng profile.json (nhãn → mã); nhãn không có trong bảng (S-Cinetone ở ZV-E10) thì null: pending
 const tableCode = (table: Record<string, number>) => (v: string): number | null => table[v] ?? null;

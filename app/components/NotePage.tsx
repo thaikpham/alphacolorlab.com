@@ -16,7 +16,7 @@ export function NotePage({ note, back }: { note: Knowledge; back: { href: string
 
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-16 pb-24 sm:pt-24 md:pt-6">
+      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
         <BackLink href={back.href}>{back.label}</BackLink>
         <h1 className="text-title font-normal mb-3">{note.title}</h1>
 

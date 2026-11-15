@@ -45,6 +45,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return post ? { title: `${post.title}${seo.blogSuffix}`, description: post.summary, alternates: { canonical: `${SITE_URL}/blog/${id}` } } : {};
 }
 
+// Blocking route: notFound() runs before the response starts, so an unknown article keeps its 404 status.
+export const instant = false;
+
 export default async function BlogDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const article = byId(id);
@@ -69,7 +72,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
 
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-16 pb-24 sm:pt-24 md:pt-6">
+      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
         <BackLink href="/blog">{blog.detail.back}</BackLink>
 
         <div className="mb-8">
@@ -193,7 +196,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
 function PostPage({ post }: { post: ReturnType<typeof posts>[number] }) {
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-16 pb-24 sm:pt-24 md:pt-6">
+      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
         <BackLink href="/blog">{blog.detail.back}</BackLink>
 
         <div className="mb-8">

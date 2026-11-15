@@ -10,6 +10,7 @@ import { hubIdFromValue } from "@/lib/hubId";
 import { MOD_LIMITS, changesOf, cleanPatch, newModId, patchOf, useMods, writeMods, type PpMod } from "@/lib/ppMods";
 import { InfoTip } from "./InfoTip";
 import { PpForm } from "./PpForm";
+import { ChevronIcon } from "./ChevronIcon";
 
 const InfoIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
@@ -143,7 +144,18 @@ export function RecipeDetailContent({ preset }: { preset: (typeof presets)[0] })
       {/* Picture Profile */}
       <section className="mb-8 xl:col-start-2 xl:row-span-4 xl:row-start-1">
         <h2 className="text-title3 font-medium mb-3">{colorBank.recipe.pictureProfile}</h2>
-        <div className="text-footnote text-secondary mb-3">{colorBank.recipe.menuPath}</div>
+        <div className="flex flex-wrap items-center gap-x-1 gap-y-0.5 text-footnote text-secondary mb-3">
+          {colorBank.recipe.menuPath.map((segment, idx) => (
+            <span key={idx} className="inline-flex items-center gap-1">
+              {idx > 0 && (
+                <span className="text-tertiary">
+                  <ChevronIcon />
+                </span>
+              )}
+              <span>{segment}</span>
+            </span>
+          ))}
+        </div>
         <div className="rounded-card bg-card shadow-card divide-y divide-separator">
           {PP_FIELDS.map((field) => {
             const value = preset.pp[field.key];
@@ -151,7 +163,7 @@ export function RecipeDetailContent({ preset }: { preset: (typeof presets)[0] })
             const valueStr = String(value);
             const hubId = field.key === "gamma" || field.key === "color_mode" ? hubIdFromValue(field.key, valueStr) : null;
             const displayValue = hubId ? (
-              <Link href={`/do-thi/colors?n=${hubId}`} className="text-footnote font-semibold text-accent-text hover:underline">
+              <Link href={`/do-thi/colors?n=${hubId}`} className="relative text-footnote font-semibold text-accent-text hover:underline after:absolute after:-inset-x-2 after:-inset-y-3.5">
                 {valueStr}
               </Link>
             ) : (

@@ -33,7 +33,7 @@ export default function DecodePage() {
   if (process.env.NODE_ENV === "production") notFound();
   const P = guide.contribute;
   return (
-    <div className="px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 md:pt-6">
+    <div className="px-4 sm:px-6 md:px-8 pt-6 pb-16 sm:pt-8 md:pt-6">
       <BackLink href="/console">{C.back}</BackLink>
       <h1 className="mt-4 mb-8 text-title font-normal">{C.decodePage.title}</h1>
       <div className="max-w-2xl space-y-8">

@@ -24,7 +24,6 @@ describe("appGraphs", () => {
         graph = builder();
         buildTime = performance.now() - start;
         assert(buildTime < 2000, `${name} took ${buildTime.toFixed(1)}ms`);
-        console.log(`  ${name}: ${graph.nodes.length} nodes, ${graph.edges.length} edges, ${buildTime.toFixed(1)}ms`);
       });
 
       it("has unique node ids", () => {

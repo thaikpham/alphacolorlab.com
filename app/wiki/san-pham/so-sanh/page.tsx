@@ -18,7 +18,7 @@ export const metadata: Metadata = { title: t.title, description: t.description, 
 export default function ComparePage({ searchParams }: { searchParams: Search }) {
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 pt-16 pb-24 sm:pt-24 md:pt-6">
+      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 pt-6 pb-24 sm:pt-8 md:pt-6">
         <BackLink href="/wiki">{wiki.product.title}</BackLink>
         <h1 className="text-display font-light mt-4 mb-8">{t.title}</h1>
         <Suspense fallback={null}>

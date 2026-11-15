@@ -3,6 +3,7 @@ import { learningPathBySlug, publishedLearningPaths, byId, isPublished } from "@
 import { knowledgeBySlug } from "@/lib/wiki";
 import { entryHref } from "@/lib/wikilinks";
 import Link from "next/link";
+import { BackLink } from "@/app/components/BackLink";
 import { Community } from "@/app/components/Community";
 import { blog, seo } from "@/app/content";
 import { JsonLdScript } from "@/app/components/JsonLdScript";
@@ -34,6 +35,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+// Blocking route: notFound() runs before the response starts, so a missing path keeps its 404 status.
+export const instant = false;
+
 export default async function LearningPathPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const path = learningPathBySlug(slug);
@@ -44,10 +48,8 @@ export default async function LearningPathPage({ params }: { params: Promise<{ s
 
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 pt-16 pb-8 sm:pt-24 md:pt-6">
-        <Link href="/blog" className="inline-flex items-center gap-1 text-subhead font-semibold text-accent-text hover:underline">
-          Blog
-        </Link>
+      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 pt-6 pb-8 sm:pt-8 md:pt-6">
+        <BackLink href="/blog">{blog.detail.back}</BackLink>
         <h1 className="text-display font-light mb-4 mt-4">{path.title}</h1>
         <p className="text-body text-secondary max-w-2xl mb-8">{path.lead}</p>
 
@@ -84,7 +86,7 @@ export default async function LearningPathPage({ params }: { params: Promise<{ s
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <h3 className="text-subhead font-semibold mb-1">{title}</h3>
+                    <h2 className="text-subhead font-semibold mb-1">{title}</h2>
                     <p className="text-footnote text-secondary mb-2">{detail}</p>
                     <p className="text-footnote text-secondary italic">{step.reason}</p>
                   </div>

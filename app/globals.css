@@ -82,9 +82,7 @@
   --spacing-stage: calc(100dvh - 3.5rem); /* sân khấu đồ thị (md+): cao màn hình trừ thanh điều hướng h-14 */
   --spacing-sidebar: 20rem; /* thanh điều hướng dọc (lg+), chứa luôn index của app; nội dung lùi vào đúng bằng chừng này */
   --spacing-sidebar-head: 7rem; /* phần đầu thanh dọc: launcher + avatar h-14, tìm kiếm h-11, phần còn lại (gồm viền dưới) làm lề; index của app bắt đầu ngay dưới */
-  --spacing-viewport: 100dvh; /* một màn hình: landing kéo lớp giới thiệu lên phủ đồ thị sticky (-mt-viewport) */
-  --spacing-stage-phone: calc(100dvh - 7.5rem - env(safe-area-inset-bottom)); /* sân khấu đồ thị trên điện thoại: trừ thêm thanh tab dưới (4rem + safe area) */
-  --spacing-tabbar: calc(4rem + env(safe-area-inset-bottom)); /* thanh tab dưới (dưới lg) cộng vùng an toàn; thanh lưu của /admin đặt ngay trên */
+  --spacing-stage-phone: calc(100dvh - 3.5rem - env(safe-area-inset-bottom)); /* sân khấu đồ thị dưới lg: trừ thanh trên cùng h-14 và vùng an toàn đáy */
 }
 
 /* Noto Sans (SIL OFL 1.1, public/fonts/OFL.txt): biến thiên 100–900, tách theo bảng chữ; trình duyệt chỉ tải phần cần. */
@@ -154,7 +152,7 @@ a {
 }
 ::-webkit-scrollbar-thumb {
   background: transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-control);
 }
 html[data-scrolling] ::-webkit-scrollbar-thumb {
   background: var(--color-tertiary);

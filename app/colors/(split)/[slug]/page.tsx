@@ -25,6 +25,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+// Blocking route: notFound() runs before the response starts, so an unknown recipe keeps its 404 status.
+export const instant = false;
+
 export default async function RecipeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const preset = presets.find((p) => p.id === slug);
@@ -33,7 +36,7 @@ export default async function RecipeDetailPage({ params }: { params: Promise<{ s
 
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 sm:pb-24 md:pt-6">
+      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 pt-6 pb-16 sm:pt-8 sm:pb-24 md:pt-6">
         <div className="md:hidden">
           <BackLink href="/colors">{colorBank.recipe.backLink}</BackLink>
         </div>

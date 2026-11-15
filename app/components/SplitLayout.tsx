@@ -22,7 +22,7 @@ export function SplitLayout({ header, index, children, lists = [], browse }: { h
   if (browse && view === "grid") {
     return (
       <main className="max-w-page mx-auto">
-        <div className={`${detail ? "hidden" : ""} px-4 sm:px-6 md:px-8 xl:px-12 pt-16 pb-24 sm:pt-24 md:pt-6`}>
+        <div className={`${detail ? "hidden" : ""} px-4 sm:px-6 md:px-8 xl:px-12 pt-8 pb-24 sm:pt-10 md:pt-6`}>
           <div className="mb-8">{header}</div>
           {index}
         </div>
@@ -32,7 +32,7 @@ export function SplitLayout({ header, index, children, lists = [], browse }: { h
   }
   return (
     <main className="max-w-page mx-auto md:grid md:grid-cols-[17rem_1fr] md:gap-2 md:px-6 lg:block">
-      <div className={`${detail ? "hidden md:block" : ""} px-4 pt-16 pb-16 sm:px-6 sm:pt-24 md:sticky md:top-14 md:h-split md:overflow-y-auto md:px-0 md:pt-6 md:pb-6 lg:fixed lg:top-sidebar-head lg:bottom-0 lg:left-0 lg:z-40 lg:block lg:h-auto lg:w-sidebar lg:border-r lg:border-separator lg:bg-bg lg:px-3 lg:pt-3`}>
+      <div className={`${detail ? "hidden md:block" : ""} px-4 pt-8 pb-16 sm:px-6 sm:pt-10 md:sticky md:top-14 md:h-split md:overflow-y-auto md:px-0 md:pt-6 md:pb-6 lg:fixed lg:top-sidebar-head lg:bottom-0 lg:left-0 lg:z-40 lg:block lg:h-auto lg:w-sidebar lg:border-r lg:border-separator lg:bg-bg lg:px-3 lg:pt-3`}>
         <div className="mb-8 md:hidden">{header}</div>
         {index}
       </div>

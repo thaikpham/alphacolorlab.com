@@ -935,7 +935,7 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
     api.current?.setMine(new Set(mineKey.split(" ")));
   }, [mineKey, graph]);
 
-  // Chỉ dẫn lần đầu: hiện khi chưa thấy bao giờ; ở landing CSS chỉ cho hiện khi đang đứng ở mốc đồ thị (.graph-hint, data-graph-view)
+  // Chỉ dẫn lần đầu: hiện khi chưa thấy bao giờ; ở landing CSS chỉ cho hiện ở bước 3 (.graph-hint, `.landing-flow[data-step]`)
   useEffect(() => {
     if (localStorage.getItem(hintSeenKey)) return;
     hintOn.current = true;

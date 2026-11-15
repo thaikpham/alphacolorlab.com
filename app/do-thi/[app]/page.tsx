@@ -15,6 +15,9 @@ export async function generateMetadata({ params }: { params: Promise<{ app: stri
 }
 
 /** Đồ thị của một app, mở từ menu người dùng ("Xem đồ thị"). Trang chính của app vẫn là danh sách 2 cột. */
+// Route chặn: notFound() chạy trước khi phản hồi bắt đầu, app lạ vẫn trả 404; bốn trang đã dựng tĩnh nên không cần shell tức thì.
+export const instant = false;
+
 export default async function GraphPage({ params }: { params: Promise<{ app: string }> }) {
   const { app } = await params;
   if (!APPS.includes(app as AppId)) notFound();

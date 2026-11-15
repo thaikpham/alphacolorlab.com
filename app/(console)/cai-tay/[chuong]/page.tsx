@@ -21,6 +21,9 @@ export async function generateMetadata({ params }: { params: Promise<{ chuong: s
 
 const pill = "inline-flex h-11 items-center rounded-full px-5 text-subhead font-semibold text-accent-text transition-colors";
 
+// Route chặn: notFound() chạy trước khi phản hồi bắt đầu, chương lạ vẫn trả 404; trang đã dựng tĩnh nên không cần shell tức thì.
+export const instant = false;
+
 export default async function GuidePage({ params }: { params: Promise<{ chuong: string }> }) {
   const { chuong } = await params;
   const i = chapters.findIndex((c) => c.id === chuong);
@@ -29,7 +32,7 @@ export default async function GuidePage({ params }: { params: Promise<{ chuong: 
   const next = chapters[i + 1];
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 md:pt-6">
+    <div className="px-4 sm:px-6 md:px-8 pt-6 pb-16 sm:pt-8 md:pt-6">
       <BackLink href="/console">{C.back}</BackLink>
       <div className="mt-4">{chuong === "tom-tat" ? <GuideSummary /> : <GuideChapter chapterId={chuong} />}</div>
 

@@ -20,7 +20,7 @@ const notDecoded = cameraModels.filter((m) => !decoded.has(m.id));
 // Danh sách chỉ cho máy decoded (Công cụ); máy khác thấy thẻ "Công cụ này dùng cho ZV-E10" như /tao-m1-m4.
 export default function SharedSetsPage() {
   return (
-    <div className="px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 md:pt-6">
+    <div className="px-4 sm:px-6 md:px-8 pt-6 pb-16 sm:pt-8 md:pt-6">
       <BackLink href="/console">{C.back}</BackLink>
       <section data-model-only={[...decoded].join(" ")} aria-labelledby="sets-heading" className="mt-4 max-w-xl">
         <h1 id="sets-heading" className="mb-6 text-title font-normal">{kolSets.title}</h1>

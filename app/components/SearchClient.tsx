@@ -46,7 +46,7 @@ export function SearchClient({ items }: { items: Item[] }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           autoFocus
-          className="w-full h-11 px-4 rounded-control bg-card border border-separator text-callout placeholder:text-tertiary"
+          className="w-full h-11 px-4 rounded-control bg-card border border-separator text-callout placeholder:text-secondary"
         />
       </div>
 

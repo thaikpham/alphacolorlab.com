@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Fragment } from "react";
 import { sections, type Step, type ModelId, cameraModels, alphaConsole } from "../content";
+import { ChevronIcon } from "./ChevronIcon";
 
 function InfoIcon() {
   return (
@@ -14,14 +15,6 @@ function InfoIcon() {
       <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
       <path d="M8 5.5v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       <circle cx="8" cy="11" r="0.5" fill="currentColor" />
-    </svg>
-  );
-}
-
-function ChevronIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
-      <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -153,6 +146,7 @@ export function GuideChapter({ chapterId }: { chapterId: string }) {
                 width={img.w}
                 height={img.h}
                 sizes="(min-width:768px) 40vw, 100vw"
+                loading={idx === 0 ? "eager" : "lazy"}
                 className="w-full h-auto rounded-card"
               />
               <figcaption className="text-footnote text-secondary mt-3">

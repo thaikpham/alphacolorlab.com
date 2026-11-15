@@ -492,7 +492,7 @@ export function SlotCard({
                       const wb = settings.wb as any;
                       onChange({ ...settings, wb: { ...wb, kelvin: parseInt(e.target.value) } });
                     }}
-                    className="w-full"
+                    className="h-11 w-full"
                   />
                 </div>
               )}
@@ -510,7 +510,7 @@ export function SlotCard({
                       const wb = settings.wb as any;
                       onChange({ ...settings, wb: { ...wb, ab: parseFloat(e.target.value) } });
                     }}
-                    className="w-full"
+                    className="h-11 w-full"
                   />
                 </div>
               )}
@@ -528,7 +528,7 @@ export function SlotCard({
                       const wb = settings.wb as any;
                       onChange({ ...settings, wb: { ...wb, gm: parseFloat(e.target.value) } });
                     }}
-                    className="w-full"
+                    className="h-11 w-full"
                   />
                 </div>
               )}
@@ -743,9 +743,9 @@ export function SlotCard({
       {/* Các mục khác trong hướng dẫn (full mode only) */}
       {full && !dashboard && <div>{stepRows}</div>}
       {dashboard && (
-        <details className="rounded-control bg-fill px-4 py-3">
-          <summary className="cursor-pointer text-subhead font-semibold text-label">{presetConsole.notStoredTitle}</summary>
-          <div className="mt-3">{stepRows}</div>
+        <details className="rounded-control bg-fill px-4">
+          <summary className="min-h-11 cursor-pointer py-3 text-subhead font-semibold text-label">{presetConsole.notStoredTitle}</summary>
+          <div className="mt-3 pb-3">{stepRows}</div>
         </details>
       )}
     </div>

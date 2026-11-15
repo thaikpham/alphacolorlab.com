@@ -17,7 +17,7 @@ const notDecoded = cameraModels.filter((m) => !decoded.has(m.id));
 // Builder stays mounted for every model (hidden by html[data-model]) so a Color Bank handoff (?recipe, ?cart) survives "Tôi dùng ZV-E10".
 export default function PresetPage() {
   return (
-    <div className="px-4 sm:px-6 md:px-8 pt-16 pb-16 sm:pt-24 md:pt-6">
+    <div className="px-4 sm:px-6 md:px-8 pt-6 pb-16 sm:pt-8 md:pt-6">
       <BackLink href="/console">{C.back}</BackLink>
       <section data-model-only={[...decoded].join(" ")} aria-labelledby="preset-heading" className="mt-4">
         <h1 id="preset-heading" className="mb-6 text-title font-normal">{C.preset.title}</h1>

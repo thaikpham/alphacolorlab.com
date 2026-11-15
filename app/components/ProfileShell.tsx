@@ -36,6 +36,8 @@ export function ProfileShell({ lead, name, handle, cover, coverAction, avatar = 
           <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between md:gap-6">
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:gap-6">
               <Avatar name={name ?? ""} src={avatar} className="-mt-12 size-28 shrink-0 ring-4 ring-card sm:-mt-16 sm:size-36" />
+              {/* Chưa có tên (đang tải, link hỏng): h1 ẩn để trang vẫn có đúng một h1 */}
+              {name === undefined && <h1 className="sr-only">{T.title}</h1>}
               {name !== undefined && (
                 <div className="min-w-0 pb-1 sm:pt-4">
                   <h1 className="text-title font-normal text-balance">{name}</h1>

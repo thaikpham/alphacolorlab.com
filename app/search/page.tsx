@@ -5,7 +5,7 @@ import { SearchClient } from '@/app/components/SearchClient'
 
 export const metadata = {
   title: seo.searchTitle,
-  description: 'Tìm kiếm bài viết, máy ảnh, kiến thức và công thức màu.',
+  description: search.lead,
 }
 
 export default async function SearchPage() {
@@ -13,9 +13,8 @@ export default async function SearchPage() {
 
   return (
     <main className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
-        <h1 className="text-display font-light mb-2">{search.title}</h1>
-        <p className="text-body text-secondary mb-8">{search.lead}</p>
+      <div className="max-w-page mx-auto px-4 sm:px-6 pt-6 pb-16 sm:pt-8 sm:pb-24">
+        <h1 className="text-display font-light mb-8">{search.title}</h1>
 
         <Suspense
           fallback={
@@ -25,7 +24,7 @@ export default async function SearchPage() {
                 disabled
                 aria-label={search.title}
                 placeholder={search.placeholder}
-                className="w-full h-11 px-4 rounded-control bg-card border border-separator text-callout placeholder:text-tertiary disabled:opacity-50"
+                className="w-full h-11 px-4 rounded-control bg-card border border-separator text-callout placeholder:text-secondary disabled:opacity-50"
               />
             </div>
           }

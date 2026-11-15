@@ -7,7 +7,7 @@ import { SITE_URL } from "@/lib/site";
 export async function generateStaticParams() {
   const allKnowledge = knowledge();
   return allKnowledge
-    .filter((k) => (k as any).home === 'knowledge')
+    .filter((k) => k.home === 'knowledge')
     .map((k) => ({ slug: k.slug }));
 }
 
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const slug = (await params).slug;
   const note = knowledgeBySlug(slug);
 
-  if (!note || (note as any).home !== 'knowledge') return {};
+  if (!note || note.home !== 'knowledge') return {};
 
   return {
     title: `${note.title}${seo.blogSuffix}`,
@@ -26,11 +26,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+// Blocking route: notFound() runs before the response starts, so a missing note keeps its 404 status.
+export const instant = false;
+
 export default async function KnowledgeSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const note = knowledgeBySlug(slug);
 
-  if (!note || (note as any).home !== 'knowledge') {
+  if (!note || note.home !== 'knowledge') {
     notFound();
   }
 

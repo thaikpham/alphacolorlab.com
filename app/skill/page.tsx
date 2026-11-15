@@ -17,7 +17,7 @@ const card = "rounded-card bg-card shadow-card divide-y divide-separator overflo
 export default function SkillPage() {
   return (
     <main className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 pt-16 pb-8 sm:pt-24">
+      <div className="max-w-page mx-auto px-4 sm:px-6 pt-6 pb-8 sm:pt-8">
         <div className="mb-8">
           <h1 className="text-display font-light mb-2">{skill.title}</h1>
           <p className="text-body text-secondary max-w-2xl">{skill.description}</p>

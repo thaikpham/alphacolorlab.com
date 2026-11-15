@@ -278,7 +278,7 @@ function Composer({ placeholder, onSend, onCancel, autoFocus }: { placeholder: s
         aria-label={placeholder}
         autoFocus={autoFocus}
         rows={3}
-        className="w-full resize-y rounded-control border border-separator bg-card px-3 py-2.5 text-callout text-label placeholder:text-tertiary"
+        className="w-full resize-y rounded-control border border-separator bg-card px-3 py-2.5 text-callout text-label placeholder:text-secondary"
       />
       {(tooLong || failed) && <p className="text-footnote text-danger">{tooLong ? t.tooLong(MAX_BODY) : t.sendFailed}</p>}
       <div className="mt-2 flex gap-2">
