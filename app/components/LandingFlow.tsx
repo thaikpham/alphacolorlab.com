@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { landing } from "@/app/content";
 import type { CGraph } from "@/lib/constellation";
 import { authReady, useSession } from "@/lib/auth";
 import { useGear } from "@/lib/gear";
 import { resetPersonalOff } from "@/lib/usePersonal";
-import { GearManager } from "./GearManager";
 import { LandingGraph } from "./LandingGraph";
 import { LandingStart } from "./LandingStart";
+
+// Túi đồ chỉ có ở bước 2 và kéo theo cả danh mục sản phẩm: tải khi tới bước 2, không nằm trong JS của lần mở trang đầu
+const GearManager = dynamic(() => import("./GearManager").then((m) => m.GearManager));
 
 const T = landing.flow;
 const STEP_KEY = "landing-step";

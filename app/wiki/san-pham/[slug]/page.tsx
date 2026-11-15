@@ -66,21 +66,27 @@ export default async function ProductSlugPage({ params }: { params: Promise<{ sl
         <div className="flex flex-wrap items-end justify-between gap-4 mt-4 mb-6">
           <div>
             <h1 className="text-display font-light">{product.name}</h1>
-            <p className="text-subhead text-secondary">{product.code}</p>
+            {product.code !== product.name && <p className="text-subhead text-secondary">{product.code}</p>}
           </div>
           {(product.kind === "camera" || product.kind === "lens") && (
             <CompareToggle item={{ slug: product.slug, kind: product.kind, name: product.name }} />
           )}
         </div>
-        <p className="mb-6 text-body">{productSummary(product)}</p>
-        {guided && (
-          <Link href={`/console?model=${guided}`} className="mb-6 inline-flex h-11 items-center rounded-full bg-accent/10 px-5 text-subhead font-semibold text-accent-text transition-colors hover:bg-accent/15">
-            {alphaConsole.productCta}
-          </Link>
-        )}
-        {/* Phones: a smaller photo than the summary above, so text stays the LCP (an image LCP waits on all JS in Lighthouse's mobile model) */}
-        <div className="relative mb-8 mx-auto w-1/2 aspect-[4/3] rounded-card bg-card shadow-card sm:mx-0 sm:w-full sm:aspect-[21/9]">
-          <Image src={product.image} alt={wiki.product.photo(product.name, product.code)} fill loading="eager" fetchPriority="high" sizes="(min-width: 768px) 70vw, (min-width: 640px) 100vw, 50vw" className="object-contain p-3 sm:p-6" />
+        {/* Phones: summary and a 112px photo side by side, so the summary wraps to several lines and stays larger than the photo:
+            text is the LCP (an image LCP waits on all JS in Lighthouse's mobile model), even for accessories whose summary is one sentence.
+            sm+: summary, Alpha Console link, then the full-width photo (order-last). */}
+        <div className="mb-8 flex flex-wrap items-start gap-x-4 gap-y-6 sm:flex-col sm:flex-nowrap sm:items-stretch">
+          <p className="min-w-0 flex-1 text-body sm:flex-none">{productSummary(product)}</p>
+          <div className="relative aspect-[4/3] w-28 shrink-0 rounded-card bg-card shadow-card sm:order-last sm:w-full sm:aspect-[21/9]">
+            <Image src={product.image} alt={wiki.product.photo(product.name, product.code)} fill loading="eager" fetchPriority="high" sizes="(min-width: 768px) 70vw, (min-width: 640px) 100vw, 112px" className="object-contain p-2 sm:p-6" />
+          </div>
+          {guided && (
+            <div className="basis-full sm:basis-auto">
+              <Link href={`/console?model=${guided}`} className="inline-flex h-11 items-center rounded-full bg-accent/10 px-5 text-subhead font-semibold text-accent-text transition-colors hover:bg-accent/15">
+                {alphaConsole.productCta}
+              </Link>
+            </div>
+          )}
         </div>
 
         <section>

@@ -147,13 +147,19 @@ export function PresetBuilder() {
   useEffect(() => {
     setBaseFile(null);
     setPreviewError("");
+    // Đổi PAL/NTSC nhanh: chỉ lần tải của hệ đang chọn được ghi, lần cũ về sau bị bỏ (không lẫn header của hệ kia)
+    let live = true;
     // Header từng ô lấy từ file do máy lưu cho đúng ô đó (đổi tên/ngày trong header làm máy báo File Error)
     loadPresetBase(system)
       .then(({ base, headers }) => {
+        if (!live) return;
         setSlotHeaders(headers);
         setBaseFile(base);
       })
-      .catch((e) => setPreviewError("Không tải được file mẫu: " + e.message));
+      .catch((e) => live && setPreviewError("Không tải được file mẫu: " + e.message));
+    return () => {
+      live = false;
+    };
   }, [system]);
   const step1Done = baseFile !== null && model === "zve10";
 

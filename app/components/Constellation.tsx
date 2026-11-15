@@ -95,6 +95,8 @@ interface Api {
   setOnly(app: string | null): void;
   /** Về trạng thái chờ (bỏ chọn nút, bỏ zoom tay). Trả về true nếu vừa phải làm vậy, false nếu đã ở trạng thái chờ sẵn */
   overview(): boolean;
+  /** Đo lại khung và độ phân giải canvas (đổi `backdrop`) rồi vẽ lại */
+  resize(): void;
 }
 
 export interface ConstellationProps {
@@ -117,6 +119,9 @@ export interface ConstellationProps {
   legendAction?: (app: AppId | null) => React.ReactNode;
   /** Bớt nhãn khi chờ (đồ thị tổng hợp ở landing): mỗi app chỉ hiện nhãn vài nút chính nhiều liên kết nhất; đang lọc theo app thì hiện đủ nút chính của app đó */
   quietLabels?: boolean;
+  /** Đồ thị chỉ làm nền dưới lớp phủ (landing bước 1, 2): vẽ ở độ phân giải CSS (dpr 1) và mọi cạnh là một nét liền mảnh, nhạt,
+   * thay vì nét chấm từng cạnh ở dpr thiết bị. Máy rasterize canvas bằng CPU thì khung vẽ rẻ hơn vài lần. Tắt thì vẽ lại đủ nét. */
+  backdrop?: boolean;
 }
 
 /** Mức phóng to của chế độ xem 2 so với vừa khung */
@@ -128,7 +133,7 @@ const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 const ease = (a: number, b: number, k: number) => a + (b - a) * k;
 const short = (s: string) => (s.length > MAX_LABEL ? `${s.slice(0, MAX_LABEL - 1)}…` : s);
 
-export function Constellation({ graph, title, mine, header, controls = true, zoom = 1, legend = false, legendAction, tools, quietLabels = false }: ConstellationProps) {
+export function Constellation({ graph, title, mine, header, controls = true, zoom = 1, legend = false, legendAction, tools, quietLabels = false, backdrop = false }: ConstellationProps) {
   const router = useRouter();
   const boxRef = useRef<HTMLDivElement>(null);
   const cvRef = useRef<HTMLCanvasElement>(null);
@@ -143,6 +148,13 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
   const [only, setOnly] = useState<AppId | null>(null);
   // Zoom lúc chờ đọc qua ref: landing đổi zoom theo mốc cuộn mà không dựng lại engine
   const zoomRef = useRef(zoom);
+  // Chế độ nền đọc qua ref như zoom: đổi thì chỉ đo lại canvas và vẽ lại, không dựng lại engine
+  const backdropRef = useRef(backdrop);
+  useEffect(() => {
+    if (backdropRef.current === backdrop) return;
+    backdropRef.current = backdrop;
+    api.current?.resize();
+  }, [backdrop]);
   // Ba chế độ xem (nút ở góc dưới phải): 1 toàn bộ đồ thị vừa khung, 2 phóng to, 3 chỉ một app vừa khung.
   // Chế độ 3 chính là lọc theo app (only), nên bấm chú giải cũng vào chế độ 3; lastApp nhớ app xem gần nhất.
   const [zoomed, setZoomed] = useState(false);
@@ -177,7 +189,8 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
     const tone = (app: string) => tones.get(app) ?? (tones.set(app, v(`app-${app}`)), tones.get(app)!);
     const font = getComputedStyle(cv).fontFamily;
     const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-    const dpr = Math.min(devicePixelRatio || 1, 2);
+    // Đặt lại mỗi lần đo khung (resize): dpr thiết bị (tối đa 2), hoặc 1 khi đồ thị chỉ làm nền
+    let dpr = 1;
     const padX = FIT_PAD_X, padY = FIT_PAD_Y;
 
     const at = new Map(graph.nodes.map((n, i) => [n.id, i]));
@@ -311,7 +324,14 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
       const act = e.sel >= 0 ? new Set([e.sel, ...nb[e.sel]]) : null;
 
       ctx.lineCap = "round";
-      ctx.setLineDash([0, 6]);
+      // Nền: mọi cạnh gom vào một nét liền, stroke một lần (không đổi màu, độ đậm theo từng cạnh)
+      const lite = backdropRef.current;
+      if (lite) {
+        ctx.globalAlpha = 0.3;
+        ctx.strokeStyle = color.tertiary;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+      } else ctx.setLineDash([0, 6]);
       for (let k = 0; k < edges.length; k++) {
         const [a, b, ph] = edges[k];
         const hi = a === e.sel || b === e.sel, A = N[a].q, B = N[b].q;
@@ -321,6 +341,11 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
         ctrlY[k] = (A.y + B.y) / 2 + (dx / L) * bend;
         // Đường Bezier nằm trong bao lồi của hai đầu và điểm điều khiển: cạnh nằm hẳn ngoài khung thì không vẽ
         if (Math.max(A.x, B.x, ctrlX[k]) < -CULL || Math.min(A.x, B.x, ctrlX[k]) > W + CULL || Math.max(A.y, B.y, ctrlY[k]) < -CULL || Math.min(A.y, B.y, ctrlY[k]) > H + CULL) continue;
+        if (lite) {
+          ctx.moveTo(A.x, A.y);
+          ctx.quadraticCurveTo(ctrlX[k], ctrlY[k], B.x, B.y);
+          continue;
+        }
         // Cạnh xa mảnh và nhạt hơn cạnh gần (phối cảnh)
         const dz = (A.z + B.z) / 2;
         ctx.globalAlpha = hi ? 0.95 : act || off(a) || off(b) ? 0.08 : 0.55 * depthFog(dz);
@@ -331,7 +356,8 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
         ctx.quadraticCurveTo(ctrlX[k], ctrlY[k], B.x, B.y);
         ctx.stroke();
       }
-      ctx.setLineDash([]);
+      if (lite) ctx.stroke();
+      else ctx.setLineDash([]);
 
       // Tín hiệu: chấm sáng kèm đuôi chạy theo đường cong của liên kết, chiều và màu ngẫu nhiên
       for (let i = signals.length - 1; i >= 0; i--) {
@@ -482,8 +508,13 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
         tip.classList.toggle("opacity-100", show);
       }
 
-      // Zoom vừa khung: điểm xa nhất so với nửa khung (trừ lề); kích thước chiếu tỉ lệ thuận với zoom nên chia là ra zoom cần.
-      // Đang lọc theo app thì chỉ tính nút của app đó: cụm của nó lấp khung, phần mờ có thể tràn ra ngoài.
+      measureFit();
+    };
+
+    // Zoom vừa khung: điểm xa nhất so với nửa khung (trừ lề); kích thước chiếu tỉ lệ thuận với zoom nên chia là ra zoom cần.
+    // Đang lọc theo app thì chỉ tính nút của app đó: cụm của nó lấp khung, phần mờ có thể tràn ra ngoài. Đọc vị trí chiếu (n.q) của lần chiếu gần nhất.
+    function measureFit() {
+      const { W, H } = e;
       let far = 0;
       for (let i = 0; i < N.length; i++) {
         if (off(i)) continue;
@@ -491,6 +522,19 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
         far = Math.max(far, Math.abs(n.q.x - W / 2) / Math.max(40, W / 2 - padX), Math.abs(n.q.y - H / 2) / Math.max(40, H / 2 - padY));
       }
       e.fit = far > 0 ? e.zoom / far : 0;
+    }
+    // Lần vẽ đầu: chiếu và tính zoom vừa khung trước (vài vòng, vì phối cảnh làm zoom cần đổi nhẹ theo zoom) rồi mới vẽ,
+    // để lúc mở trang chỉ vẽ một khung thay vì một khung lệch zoom rồi thêm vài khung bám theo
+    const settleFit = () => {
+      size.width = e.W;
+      size.height = e.H;
+      for (let k = 0; k < 4; k++) {
+        for (let i = 0; i < N.length; i++) N[i].q = project(sway(N[i], i), e, size);
+        measureFit();
+        const z = clamp(e.fit * idleZoom(), ZMIN, ZMAX);
+        if (!e.fit || Math.abs(z - e.zoom) <= 0.002) break;
+        e.zoom = z;
+      }
     };
 
     function frame(now: number) {
@@ -515,6 +559,7 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
       lastT = e.T;
       let busy = (armed && !reduce.matches) || !!e.rip || (e.sel >= 0 && e.T - e.lockT < LOCK);
       if (e.idle) {
+        if (!fitted) settleFit();
         if (armed && !reduce.matches) {
           let spinRate = SPIN;
           // Ease-in spin resumption: ramp up from 0 over 0.4 seconds
@@ -808,11 +853,12 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
     cv.addEventListener("pointerleave", onLeave);
     cv.addEventListener("wheel", onWheel, { passive: false });
 
-    const ro = new ResizeObserver(() => {
+    const resize = () => {
       // Kích thước bố cục (không tính transform): thẻ ở landing có thể đang thu nhỏ trong hoạt ảnh tách lúc đồ thị được dựng,
       // đo bằng getBoundingClientRect sẽ kẹt canvas ở độ phân giải thấp và chữ mờ khi thẻ về đúng cỡ
       const w = box.clientWidth, h = box.clientHeight;
       if (!w || !h) return;
+      dpr = backdropRef.current ? 1 : Math.min(devicePixelRatio || 1, 2);
       e.W = w;
       e.H = h;
       cv.width = Math.round(w * dpr);
@@ -821,7 +867,8 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
       // Màn cảm ứng: trang cuộn được thì vuốt dọc cuộn trang; đồ thị toàn màn hình thì vuốt xoay
       cv.style.touchAction = pageScrolls() ? "pan-y" : "none";
       kick();
-    });
+    };
+    const ro = new ResizeObserver(resize);
     ro.observe(box);
     const io = new IntersectionObserver(([en]) => {
       inView = en.isIntersecting;
@@ -832,6 +879,7 @@ export function Constellation({ graph, title, mine, header, controls = true, zoo
     reduce.addEventListener("change", kick);
 
     api.current = {
+      resize,
       index: (id) => at.get(id) ?? -1,
       focus,
       clear,

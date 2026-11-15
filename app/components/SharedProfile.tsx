@@ -27,14 +27,16 @@ export function SharedProfile() {
     if (data) document.title = T.sharedTitle(data.name);
   }, [data]);
 
-  if (data === undefined) return <ProfileShell />;
+  // Đang đọc và link hỏng dùng chung một <p> (chỉ đổi chữ): dòng chữ có sẵn trong HTML từ máy chủ nên là LCP ngay lần vẽ đầu
   if (!data)
     return (
       <ProfileShell>
-        <p className="text-body text-label">{T.badShare}</p>
-        <Link href="/tai-khoan" className="mt-6 inline-flex h-11 items-center rounded-full bg-accent px-5 text-subhead font-semibold text-on-accent transition-colors hover:bg-accent/90">
-          {T.makeYours}
-        </Link>
+        <p className="text-body text-label">{data === undefined ? T.opening : T.badShare}</p>
+        {data === null && (
+          <Link href="/tai-khoan" className="mt-6 inline-flex h-11 items-center rounded-full bg-accent px-5 text-subhead font-semibold text-on-accent transition-colors hover:bg-accent/90">
+            {T.makeYours}
+          </Link>
+        )}
       </ProfileShell>
     );
   return (

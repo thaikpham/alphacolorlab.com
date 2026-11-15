@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { account, community, landing } from "@/app/content";
 import { authReady, getSession, signIn, useSession } from "@/lib/auth";
-import { startSync } from "@/lib/userState";
+import { useAccountSync } from "@/lib/useAccountSync";
 import { InfoTip } from "./InfoTip";
 
 const button = "inline-flex h-11 items-center rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong";
@@ -15,7 +15,7 @@ export function LandingStart() {
   const session = useSession();
   useEffect(() => void getSession(), []);
   const userId = session?.user.id;
-  useEffect(() => (userId ? startSync() : undefined), [userId]);
+  useAccountSync(userId);
 
   if (!authReady) return null;
   if (session)

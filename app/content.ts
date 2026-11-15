@@ -1047,6 +1047,8 @@ export const profile = {
   removed: (name: string) => `Đã bỏ ${name}`,
   undo: "Hoàn tác",
   view: (name: string) => `Xem ${name} trong Product Wiki`,
+  /** Đang đọc dữ liệu trong link (có sẵn trong HTML, cùng phần tử với badShare) */
+  opening: "Đang mở hồ sơ…",
   badShare: "Liên kết hồ sơ không đọc được. Nhờ người gửi chia sẻ lại.",
   makeYours: "Tạo túi đồ của bạn",
   shareInfo: "Liên kết chia sẻ chứa sẵn tên, ảnh đại diện, giới thiệu, liên kết và túi đồ của bạn lúc bấm chia sẻ. Sửa hồ sơ sau đó thì chia sẻ lại để có liên kết mới.",

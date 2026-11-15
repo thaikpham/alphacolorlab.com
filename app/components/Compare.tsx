@@ -20,7 +20,7 @@ export function CompareToggle({ item }: { item: CompareItem }) {
       onClick={() => writeCompare(toggle(readCompare(), item))}
       disabled={reason !== null}
       aria-pressed={picked}
-      className={`h-11 px-4 rounded-control text-subhead font-medium transition disabled:text-tertiary ${
+      className={`h-11 px-4 rounded-control text-subhead font-medium transition disabled:text-secondary ${
         picked ? "bg-accent text-on-accent font-semibold" : "bg-fill text-label hover:bg-fill-strong disabled:hover:bg-fill"
       }`}
     >

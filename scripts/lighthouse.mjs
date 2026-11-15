@@ -17,7 +17,8 @@ const notePath = (k) => (k.home === 'knowledge' ? `/blog/kien-thuc/${k.slug}` : 
 const notes = knowledge.map(notePath).filter(Boolean);
 // Learning paths stay drafts until the user approves them: none may be published yet.
 const published = paths.filter((p) => !p.draft).map((p) => `/blog/lo-trinh/${p.slug}`);
-const TEMPLATES = ['/', '/cai-tay/phoi-sang', '/tao-m1-m4', '/giai-ma', '/colors', '/colors/pp-001', '/colors/graph', '/wiki', `/wiki/san-pham/${products[0].slug}`, `/wiki/san-pham/so-sanh?sp=${products[0].slug},${products[1].slug}`, '/blog/kien-thuc', notes[0], '/blog', `/blog/${articles[0].id}`, ...published.slice(0, 1), '/graph', '/search', '/skill'];
+// /giai-ma and /admin are 404 in production, so they are not measured.
+const TEMPLATES = ['/', '/console', '/cai-tay/phoi-sang', '/tao-m1-m4', '/bo-m1-m4', '/colors', '/colors/pp-001', '/wiki', `/wiki/san-pham/${products[0].slug}`, `/wiki/san-pham/so-sanh?sp=${products[0].slug},${products[1].slug}`, '/blog/kien-thuc', notes[0], '/blog', `/blog/${articles[0].id}`, ...published.slice(0, 1), '/do-thi/console', '/search', '/skill', '/huong-dan', '/tai-khoan', '/ho-so'];
 const EVERY = [
   ...new Set([...TEMPLATES, ...presets.map((p) => `/colors/${p.id}`), ...products.map((p) => `/wiki/san-pham/${p.slug}`), ...notes, ...articles.map((a) => `/blog/${a.id}`), ...published]),
 ];

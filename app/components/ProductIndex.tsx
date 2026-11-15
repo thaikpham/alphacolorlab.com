@@ -81,13 +81,15 @@ function browse(items: IndexItem[], kind: Kind, on: Set<string>) {
   return { lenses, shown, groups };
 }
 
+/** Thẻ sản phẩm. Dưới sm là thẻ ngang (ảnh 80px bên trái): ảnh nhỏ hơn tiêu đề trang nên LCP trên điện thoại là chữ có sẵn trong HTML.
+ * Từ sm là thẻ dọc, ảnh `aspect-[4/3]` ở trên. */
 function ProductCard({ item, active, eager }: { item: IndexItem; active: boolean; eager: boolean }) {
   return (
-    <Link href={item.href} aria-current={active ? "page" : undefined} className="group block overflow-hidden rounded-card bg-card shadow-card">
-      <div className="relative aspect-[4/3] bg-card">
-        <Image src={item.image} alt="" fill sizes="(min-width: 1536px) 14vw, (min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 31vw, 46vw" preload={eager} className="object-contain p-4" />
+    <Link href={item.href} aria-current={active ? "page" : undefined} className="group flex overflow-hidden rounded-card bg-card shadow-card sm:block">
+      <div className="relative w-20 shrink-0 bg-card sm:aspect-[4/3] sm:w-auto">
+        <Image src={item.image} alt="" fill sizes="(min-width: 1536px) 14vw, (min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 31vw, (min-width: 640px) 46vw, 80px" preload={eager} className="object-contain p-2 sm:p-4" />
       </div>
-      <div className={`border-t border-separator px-4 py-3 transition-colors ${active ? "bg-fill" : "group-hover:bg-fill"}`}>
+      <div className={`min-w-0 flex-1 border-l border-separator px-4 py-3 transition-colors sm:border-t sm:border-l-0 ${active ? "bg-fill" : "group-hover:bg-fill"}`}>
         <p className="truncate text-subhead font-semibold text-label">{item.name}</p>
         <p className="truncate text-footnote text-secondary">{item.code}</p>
       </div>
@@ -198,10 +200,10 @@ export function ProductIndex() {
             <section key={g.key} id={kind === "accessory" ? `acc-${g.key}` : undefined}>
               <h2 className={`mb-2 text-footnote text-secondary ${grid ? "" : "px-4"}`}>{g.title}</h2>
               {grid ? (
-                <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+                <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                   {g.items.map((i, n) => (
                     <li key={i.slug}>
-                      <ProductCard item={i} active={i.href === pathname} eager={gi === 0 && n < 2} />
+                      <ProductCard item={i} active={i.href === pathname} eager={pathname === "/wiki" && gi === 0 && n < 2} />
                     </li>
                   ))}
                 </ul>

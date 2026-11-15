@@ -50,14 +50,15 @@ function resolveSpec(from: string, spec: string): string | null {
   throw new Error(`Không tìm thấy "${spec}" (từ ${rel(from)})`);
 }
 
-function importsOf(file: string): string[] {
+// staticOnly: bỏ import() động (tải sau, không nằm trong JS của lần mở trang)
+function importsOf(file: string, staticOnly = false): string[] {
   const src = stripComments(readFileSync(file, "utf8"));
   const specs: string[] = [];
   for (const m of src.matchAll(STATIC)) {
     if (!typeOnly(m[2])) specs.push(m[3]);
   }
   for (const m of src.matchAll(SIDE_EFFECT)) specs.push(m[1]);
-  for (const m of src.matchAll(DYNAMIC)) specs.push(m[1]);
+  if (!staticOnly) for (const m of src.matchAll(DYNAMIC)) specs.push(m[1]);
   return specs.map((s) => resolveSpec(file, s)).filter((p): p is string => p !== null);
 }
 
@@ -75,7 +76,7 @@ function clientRoots(): string[] {
 }
 
 // BFS từ các gốc; trả về bản đồ file -> file cha (gốc có cha null)
-function reachable(roots: string[]): Map<string, string | null> {
+function reachable(roots: string[], staticOnly = false): Map<string, string | null> {
   const parent = new Map<string, string | null>();
   const queue: string[] = [];
   for (const r of roots) {
@@ -83,7 +84,7 @@ function reachable(roots: string[]): Map<string, string | null> {
     queue.push(r);
   }
   for (let i = 0; i < queue.length; i++) {
-    for (const dep of importsOf(queue[i])) {
+    for (const dep of importsOf(queue[i], staticOnly)) {
       if (parent.has(dep)) continue;
       parent.set(dep, queue[i]);
       queue.push(dep);
@@ -111,4 +112,17 @@ test("bundle client không kéo tới data/decode-observed.json hay bộ lập l
 test("lib/game/analyze.ts (client-safe) vẫn đi tới được từ file client", () => {
   const parent = reachable(clientRoots());
   assert.ok(parent.has(join(ROOT, "lib/game/analyze.ts")), "lib/game/analyze.ts không đi tới được: kiểm tra lại đồ thị");
+});
+
+// Thanh điều hướng có ở mọi trang (AppNav, SiteHeader, nút avatar bên trong) và landing: JS tải ngay khi mở trang không được kéo theo
+// bảng preset, codec .DAT hay danh mục sản phẩm. Những phần đó chỉ được tải bằng import() khi cần (đồng bộ tài khoản, túi đồ ở bước 2).
+const SHELL = ["app/components/AppNav.tsx", "app/components/SiteHeader.tsx", "app/components/LandingFlow.tsx"];
+const HEAVY = ["lib/zve10/presets.json", "lib/zve10/profile.json", "data/products.json"];
+
+test("JS tải ngay của thanh điều hướng và landing không kéo theo dữ liệu lớn", () => {
+  const parent = reachable(SHELL.map((f) => join(ROOT, f)), true);
+  for (const bad of HEAVY) {
+    const abs = join(ROOT, bad);
+    if (parent.has(abs)) assert.fail(`${bad} nằm trong JS tải ngay của shell:\n  ${chainTo(parent, abs)}`);
+  }
 });

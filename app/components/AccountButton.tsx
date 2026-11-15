@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useId } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { account, community, nav } from "@/app/content";
 import { authReady, getSession, signIn, signOut, useSession } from "@/lib/auth";
 import { useGear } from "@/lib/gear";
-import { startSync } from "@/lib/userState";
+import { useAccountSync } from "@/lib/useAccountSync";
 import type { AppId } from "@/lib/constellation";
 import { IndexViewSwitch } from "./IndexViewSwitch";
 import { PersonalMenuRow } from "./PersonalToggle";
@@ -33,9 +33,11 @@ export function AccountButton({ previewPersonal = false }: { previewPersonal?: b
   // Finishes a Google round trip on whatever page it lands on, and refreshes an expiring token.
   useEffect(() => void getSession(), []);
   const userId = session?.user.id;
-  useEffect(() => (userId ? startSync() : undefined), [userId]);
+  useAccountSync(userId);
+  // id riêng cho mỗi lần mount: hai nút avatar cùng trang (nếu có) không trùng id menu
+  const menuId = useId();
   // Đổi trang thì đóng menu
-  useEffect(() => document.getElementById("account-menu")?.hidePopover(), [pathname]);
+  useEffect(() => document.getElementById(menuId)?.hidePopover(), [pathname, menuId]);
 
   const name = session?.user.name ?? account.guest;
   const target = graphTarget(pathname);
@@ -46,7 +48,7 @@ export function AccountButton({ previewPersonal = false }: { previewPersonal?: b
     <>
       <button
         type="button"
-        popoverTarget="account-menu"
+        popoverTarget={menuId}
         aria-label={`${account.menu}: ${name}`}
         className="grid size-11 shrink-0 place-items-center rounded-full text-label transition-colors hover:bg-fill active:bg-fill-strong"
       >
@@ -64,7 +66,7 @@ export function AccountButton({ previewPersonal = false }: { previewPersonal?: b
           </svg>
         )}
       </button>
-      <nav id="account-menu" popover="auto" aria-label={account.menu} className="account-menu rounded-card border border-separator bg-card p-2 text-label shadow-card">
+      <nav id={menuId} popover="auto" aria-label={account.menu} className="account-menu rounded-card border border-separator bg-card p-2 text-label shadow-card">
         <p className="truncate px-3 pt-2 pb-3 text-subhead font-semibold">{name}</p>
         <ul className="space-y-0.5 border-t border-separator pt-2">
           <li>
@@ -111,7 +113,7 @@ export function AccountButton({ previewPersonal = false }: { previewPersonal?: b
               <button
                 type="button"
                 onClick={() => {
-                  document.getElementById("account-menu")?.hidePopover();
+                  document.getElementById(menuId)?.hidePopover();
                   if (session) signOut();
                   else signIn();
                 }}
