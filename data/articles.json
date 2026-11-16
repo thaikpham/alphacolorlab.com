@@ -11615,5 +11615,505 @@
     },
     "updatedAt": "2026-11-11",
     "category": "ky-nang"
+  },
+  {
+    "id": "zv-e10-may-hybrid-aps-c",
+    "kind": "article",
+    "topic": "gear",
+    "level": "newbie",
+    "archetype": "explainer",
+    "read": "10 phút đọc",
+    "title": "ZV-E10 được định vị lại: máy hybrid APS-C giá tốt nhất hiện tại",
+    "dek": "ZV-E10 không còn chỉ là máy vlog: cảm biến APS-C crop 1,5, màn trập cơ đồng bộ flash 1/160 giây và bộ M1–M4 cài sẵn cho người vừa chụp vừa quay.",
+    "blocks": [
+      {
+        "t": "tldr",
+        "items": [
+          "[[ZV-E10]] được định vị lại là máy hybrid nhập môn: vừa chụp vừa quay, mức giá tốt nhất trong các thân APS-C ngàm E.",
+          "Cảm biến 23,5 × 15,6 mm rộng hơn khổ crop 1,6 khoảng 10%; màn trập cơ đồng bộ flash ở 1/160 giây.",
+          "Bộ ZV-E10 Hybrid nạp sẵn bốn ô M1–M4: đời thường, chân dung, livestream và chụp với flash."
+        ]
+      },
+      {
+        "t": "p",
+        "text": "ZV-E10 là máy ảnh không gương lật ngàm E của Sony, dùng cảm biến Exmor CMOS khổ APS-C 24,2 MP do Sony tự phát triển. Máy ra mắt với vai trò máy vlog, nay được định vị lại là máy hybrid nhập môn. Thân máy 343 g này dành cho người mới muốn chụp ảnh và quay phim đều tốt, với chi phí bắt đầu thấp nhất trong hệ APS-C ngàm E. Mục tiêu là một trải nghiệm nhiếp ảnh trọn vẹn với ngân sách tối ưu."
+      },
+      {
+        "t": "figure",
+        "caption": "ZV-E10 gắn ống kit E PZ 16-50mm và lông chắn gió cho micro. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-1.jpg",
+        "alt": "Sony ZV-E10 màu đen nhìn chéo từ phía trước, gắn ống kit 16-50mm và lông chắn gió",
+        "width": 705,
+        "height": 470
+      },
+      {
+        "t": "h",
+        "text": "ZV-E10 đứng ở đâu trong bốn thân máy APS-C ngàm E?"
+      },
+      {
+        "t": "p",
+        "text": "ZV-E10 là máy hybrid nhập môn của [[Hệ menu Legacy và New-gen|hệ menu cũ]], đứng cạnh [[A6400]] thiên về chụp ảnh có ống ngắm. Hệ menu mới có [[A6700]] cho nhu cầu hybrid cao cấp và [[ZV-E10 II]] cho người quay là chính. Cả bốn dùng cảm biến khổ APS-C và chung ngàm E, nên ống kính mua hôm nay vẫn gắn được khi bạn đổi thân máy. Trong bốn máy, ZV-E10 có mức giá dễ tiếp cận nhất."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Thông số",
+          "ZV-E10",
+          "Ý nghĩa khi dùng"
+        ],
+        "rows": [
+          [
+            "Cảm biến",
+            "APS-C 23,5 × 15,6 mm, 24,2 MP",
+            "Ảnh đủ chi tiết để in lớn và cắt lại khung"
+          ],
+          [
+            "Lấy nét",
+            "425 điểm theo pha, AF-C bám chủ thể",
+            "Giữ nét khi người di chuyển, cả lúc chụp lẫn lúc quay"
+          ],
+          [
+            "Màn trập",
+            "Cơ và điện tử, 1/4000 đến 30 giây",
+            "Đồng bộ flash ở 1/160 giây"
+          ],
+          [
+            "Quay phim",
+            "4K 30p, Full HD 120p",
+            "Đủ cho vlog, clip ngắn và quay chậm"
+          ],
+          [
+            "Pin và khối lượng",
+            "NP-FW50, khoảng 440 ảnh, 343 g",
+            "Mang cả ngày, cổng USB-C"
+          ]
+        ],
+        "caption": "Thông số chính của ZV-E10 theo Sony công bố; 343 g gồm pin và thẻ nhớ. Bảng đầy đủ nằm ở trang [[ZV-E10]] trong Product Wiki."
+      },
+      {
+        "t": "h",
+        "text": "Cảm biến crop 1,5 lớn hơn khổ crop 1,6 bao nhiêu?"
+      },
+      {
+        "t": "p",
+        "text": "Cảm biến của ZV-E10 rộng hơn khoảng 10% so với cảm biến APS-C hệ số crop 1,6. Kích thước 23,5 × 15,6 mm cho diện tích khoảng 367 mm², còn khổ crop 1,6 phổ biến là 22,3 × 14,9 mm, khoảng 332 mm². Hệ số crop là tỉ lệ giữa đường chéo khổ full-frame và đường chéo [[Cảm biến hình ảnh|cảm biến]]: số càng nhỏ, cảm biến càng lớn."
+      },
+      {
+        "t": "figure",
+        "caption": "Hai khổ cảm biến vẽ cùng tỉ lệ: khung cam là 23,5 × 15,6 mm của ZV-E10, khung xám là khổ crop 1,6.",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-d1.svg",
+        "alt": "Sơ đồ so sánh diện tích cảm biến APS-C crop 1,5 và crop 1,6, chênh khoảng 10%",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "t": "p",
+        "text": "Diện tích lớn hơn mang lại ba lợi thế. Thứ nhất, cùng khung hình và cùng khẩu độ, cảm biến thu nhiều ánh sáng hơn khoảng 10%, nên ảnh ở ISO cao sạch hơn một chút. Thứ hai, cùng một ống kính cho góc nhìn rộng hơn: ống 16 mm tương đương 24 mm thay vì 25,6 mm, dễ tự quay và chụp phòng hẹp hơn. Thứ ba, phông mờ hơn ở cùng khung hình: F1.8 trên crop 1,5 cho độ [[Độ sâu trường ảnh và xóa phông|xóa phông]] như F2.7 trên full-frame, còn trên crop 1,6 là F2.9."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Tiêu cự trên ống",
+          "Trên crop 1,5",
+          "Trên crop 1,6"
+        ],
+        "rows": [
+          [
+            "11 mm",
+            "16,5 mm",
+            "17,6 mm"
+          ],
+          [
+            "16 mm",
+            "24 mm",
+            "25,6 mm"
+          ],
+          [
+            "35 mm",
+            "52,5 mm",
+            "56 mm"
+          ],
+          [
+            "50 mm",
+            "75 mm",
+            "80 mm"
+          ]
+        ],
+        "caption": "Tiêu cự tương đương full-frame của cùng một ống kính trên hai khổ cảm biến."
+      },
+      {
+        "t": "h",
+        "text": "Màn trập cơ đồng bộ flash 1/160 giây giúp gì khi chụp trong nhà?"
+      },
+      {
+        "t": "p",
+        "text": "Màn trập cơ của ZV-E10 đồng bộ với đèn flash ở tốc độ tối đa 1/160 giây, con số Sony công bố với đèn flash của hãng. Nhờ vậy máy chụp được với đèn gắn trên đế phụ kiện mà ảnh không bị dải tối cắt ngang. Tốc độ đồng bộ flash là [[Tốc độ màn trập|tốc độ màn trập]] nhanh nhất mà toàn bộ cảm biến còn lộ sáng cùng lúc để nhận trọn ánh đèn. Chụp nhanh hơn mức này, một phần khung hình bị màn trập che và tối đi."
+      },
+      {
+        "t": "figure",
+        "caption": "Đế phụ kiện Multi Interface trên đỉnh máy là chỗ gắn đèn flash rời. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-2.jpg",
+        "alt": "Sony ZV-E10 nhìn từ trên xuống, thấy đế phụ kiện, micro tích hợp và nút quay phim",
+        "width": 705,
+        "height": 470
+      },
+      {
+        "t": "p",
+        "text": "Godox iM20 là đèn flash chỉnh tay nặng khoảng 31 g, kích thước 39 × 38 × 29,5 mm, có năm mức công suất. Mỗi lần sạc qua cổng USB-C, đèn nháy được khoảng 440 lần ở mức tối đa. Đèn chỉ có một tiếp điểm trên chân đế, nên máy không tự đo sáng cho đèn. Cách dùng gọn nhất: để máy lo ánh sáng nền bằng ISO AUTO, bù sáng khoảng −0,7 EV, rồi chọn mức đèn cho khuôn mặt."
+      },
+      {
+        "t": "table",
+        "head": [
+          "ISO máy hiển thị",
+          "Mức đèn",
+          "Khoảng cách tới chủ thể"
+        ],
+        "rows": [
+          [
+            "100",
+            "1/1",
+            "Khoảng 1,5 m"
+          ],
+          [
+            "200",
+            "1/2",
+            "Khoảng 1,5 m"
+          ],
+          [
+            "400",
+            "1/4",
+            "Khoảng 1,5 m"
+          ],
+          [
+            "800",
+            "1/8",
+            "Khoảng 1,5 m"
+          ],
+          [
+            "1600",
+            "1/16",
+            "Khoảng 1,5 m"
+          ],
+          [
+            "3200 đến 6400",
+            "1/16",
+            "Lùi xa 2 đến 3 m, hoặc che đèn bằng khăn giấy"
+          ]
+        ],
+        "caption": "Mức đèn Godox iM20 theo ISO, ở khẩu F4. ISO tăng gấp đôi thì giảm một mức đèn. Luôn đứng cách chủ thể từ 1 m trở lên."
+      },
+      {
+        "t": "callout",
+        "label": "Nếu ảnh có dải tối ở một cạnh",
+        "text": "Tốc độ màn trập đang nhanh hơn 1/160 giây. Chuyển sang chế độ S hoặc M rồi đặt 1/160 giây. Đèn flash không dùng được khi quay phim, và không nháy khi máy đang bật chụp im lặng."
+      },
+      {
+        "t": "h",
+        "text": "Picture Profile Colorlab là gì và hợp với ZV-E10 ở điểm nào?"
+      },
+      {
+        "t": "p",
+        "text": "Picture Profile Colorlab là bộ công thức màu của Alpha ColorLab, chỉnh riêng trên ZV-E10 và lưu vào [[Picture Profile]] của máy. Mỗi công thức đặt sẵn đường gamma, chế độ màu, độ bão hòa và cân bằng trắng, nên ảnh JPEG và video ra màu hoàn chỉnh ngay trên máy, không cần hậu kỳ. [Color Bank](/colors) chia công thức thành bốn nhóm Ấm, Trung tính, Lạnh và Đen trắng; phần lớn nạp được qua file M1–M4, số còn lại cài tay theo bảng thông số. Từ một công thức, bạn tạo được bản mod của riêng mình rồi đưa vào ô nhớ."
+      },
+      {
+        "t": "h",
+        "text": "Bốn ô nhớ M1–M4 cài sẵn dùng vào việc gì?"
+      },
+      {
+        "t": "p",
+        "text": "Bộ ZV-E10 Hybrid là bốn ô [[Bộ nhớ cài đặt và Memory Recall|Memory Recall]] soạn sẵn cho bốn tình huống của người mới, mỗi ô đi kèm một công thức Colorlab. Gọi lại một ô là máy đổi cùng lúc chế độ chụp, lấy nét, đo sáng, làm mịn da và màu. Cả bốn ô lưu ở chế độ chụp ảnh, nên ô M3 lo ảnh sản phẩm và ảnh bìa của buổi livestream."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Ô nhớ",
+          "Dùng khi nào, cài gì",
+          "Công thức màu"
+        ],
+        "rows": [
+          [
+            "M1 Đời thường",
+            "Ảnh hằng ngày, đi chơi, quán cà phê: chế độ A, AF-C theo dõi vùng, ISO AUTO, cân bằng trắng tự động.",
+            "[[PP-049-Neutral Dark Rich|PP-049 Neutral Dark Rich]]"
+          ],
+          [
+            "M2 Chân dung",
+            "Chân dung ở bóng râm hoặc cạnh cửa sổ: vùng lấy nét Rộng, ưu tiên khuôn mặt, làm mịn da Trung bình.",
+            "[[PP-075-Warm Bright Muted|PP-075 Warm Bright Muted]]"
+          ],
+          [
+            "M3 Livestream",
+            "Ảnh sản phẩm và ảnh bìa trước giờ lên sóng: cân bằng trắng ưu tiên trắng, SteadyShot tắt để đặt chân máy.",
+            "[[PP-047-Neutral Deep Vivid|PP-047 Neutral Deep Vivid]]"
+          ],
+          [
+            "M4 Chụp với flash",
+            "Chụp trong nhà với Godox iM20: chế độ S ở 1/160 giây, ISO AUTO, xem lại ảnh 2 giây.",
+            "[[PP-050-Neutral Soft Rich|PP-050 Neutral Soft Rich]]"
+          ]
+        ],
+        "caption": "Bốn ô của bộ ZV-E10 Hybrid. Ở M4, bạn tự bù sáng −0,7 EV trên máy sau khi gọi ô."
+      },
+      {
+        "t": "set",
+        "id": "zv-e10-hybrid"
+      },
+      {
+        "t": "p",
+        "text": "Chọn hệ PAL cho máy bán tại Việt Nam rồi bấm Tải ZIP 4 file. Giải nén, chép thư mục PRIVATE vào gốc thẻ nhớ, lắp thẻ vào máy rồi gọi từng ô tại MENU → Camera Settings1 → Shoot Mode → MR, theo file hướng dẫn kèm trong ZIP. Muốn đổi cài đặt hay thay công thức màu, bấm Dùng bộ này để mở [Tạo bộ M1–M4](/tao-m1-m4?set=zv-e10-hybrid) trong Alpha Console: chỉnh từng ô, đưa bản mod Picture Profile của bạn vào, rồi tải ZIP hoặc ghi thẳng vào thẻ nhớ bằng Chrome hay Edge trên máy tính."
+      },
+      {
+        "t": "figure",
+        "caption": "Mặt sau ZV-E10: nút MENU và bánh xe điều khiển dùng để gọi lại ô nhớ. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-3.jpg",
+        "alt": "Sony ZV-E10 nhìn từ phía sau với màn hình, nút MENU, nút Fn và bánh xe điều khiển",
+        "width": 705,
+        "height": 470
+      },
+      {
+        "t": "h",
+        "text": "Livestream bằng ZV-E10 cần chuẩn bị gì ngoài ô M3?"
+      },
+      {
+        "t": "p",
+        "text": "Hình phát trực tiếp đi qua chế độ quay phim, còn bộ M1–M4 là ô nhớ của chế độ chụp ảnh. Vì vậy ô M3 lo phần ảnh sản phẩm và ảnh bìa, còn hình lên sóng bạn bật USB Streaming theo bài [[dung-may-sony-lam-webcam-qua-usb|dùng máy Sony làm webcam qua USB]]. Muốn hình phát cùng màu với ảnh, chọn lại đúng Picture Profile đó khi máy ở chế độ quay phim. Cắm micro ngoài vào cổng 3,5 mm và nghe kiểm tra tiếng bằng tai nghe ở cổng bên cạnh."
+      },
+      {
+        "t": "figure",
+        "caption": "Cạnh trái ZV-E10: cổng micro, USB-C, micro HDMI và tai nghe cho buổi livestream. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-4.jpg",
+        "alt": "Cạnh bên Sony ZV-E10 mở nắp, thấy cổng micro, USB Type-C, HDMI micro và tai nghe",
+        "width": 705,
+        "height": 470
+      },
+      {
+        "t": "h",
+        "text": "Ống kính ngàm E nào hợp với ZV-E10?"
+      },
+      {
+        "t": "p",
+        "text": "Xác định mình chụp gì nhiều nhất trước, rồi mới chọn ống kính. ZV-E10 không có chống rung trên thân máy, nên ống có chữ [[OSS]] là lựa chọn an toàn khi chụp cầm tay; lúc quay phim, máy có thêm [[Chống rung điện tử|SteadyShot chủ động]]. Máy gắn được cả ống E dành cho APS-C lẫn ống FE dành cho full-frame, và tiêu cự in trên ống nhân 1,5 để ra [[Tiêu cự|tiêu cự tương đương]]. Mỗi nhu cầu dưới đây có ba lựa chọn, xếp từ ống khởi đầu đến ống đáng nâng cấp."
+      },
+      {
+        "t": "h",
+        "text": "Chụp đời thường và du lịch nên chọn ống nào?"
+      },
+      {
+        "t": "p",
+        "text": "Ống kit E PZ 16-50mm F3.5-5.6 OSS II là điểm bắt đầu hợp lý nhất cho đời thường: nhỏ, nhẹ và phủ từ góc rộng đến chân dung nhẹ. Khi cần một ống cho cả chuyến đi, chọn ống có dải zoom dài hơn và vẫn có OSS."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Ống kính",
+          "Tương đương",
+          "Đánh giá"
+        ],
+        "rows": [
+          [
+            "[[E PZ 16-50mm F3.5-5.6 OSS II]]",
+            "24–75 mm",
+            "Khởi đầu: 107 g, zoom điện, có OSS, đi kèm bộ kit nên chi phí thấp nhất."
+          ],
+          [
+            "[[E 18-135mm F3.5-5.6 OSS]]",
+            "27–202,5 mm",
+            "Một ống cho cả chuyến đi: zoom 7,5 lần, có OSS, 325 g."
+          ],
+          [
+            "[[E PZ 18-105mm F4 G OSS]]",
+            "27–157,5 mm",
+            "Khẩu F4 suốt dải zoom, zoom điện mượt khi quay, có OSS; nặng 427 g."
+          ]
+        ],
+        "caption": "Ống kính cho đời thường và du lịch, xếp từ khởi đầu đến nâng cấp."
+      },
+      {
+        "t": "h",
+        "text": "Chụp chân dung nên chọn ống nào?"
+      },
+      {
+        "t": "p",
+        "text": "Chân dung cần [[Khẩu độ|khẩu độ]] lớn để tách chủ thể khỏi nền, nên ống fix F1.8 cho khác biệt rõ nhất so với ống kit. Trên ZV-E10, ống 50 mm cho góc tương đương 75 mm, đúng khoảng tiêu cự chân dung quen thuộc."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Ống kính",
+          "Tương đương",
+          "Đánh giá"
+        ],
+        "rows": [
+          [
+            "[[E 50mm F1.8 OSS]]",
+            "75 mm",
+            "Khởi đầu cho chân dung xóa phông: F1.8, có OSS, 202 g."
+          ],
+          [
+            "[[E 35mm F1.8 OSS]]",
+            "52,5 mm",
+            "Góc gần với mắt nhìn, hợp chân dung kèm bối cảnh và ảnh đời thường; có OSS, 154 g."
+          ],
+          [
+            "[[FE 85mm F1.8]]",
+            "127,5 mm",
+            "Ống FE cho chân dung ngoài trời, tách phông mạnh; không có OSS nên chụp ở tốc độ màn trập nhanh."
+          ]
+        ],
+        "caption": "Ống kính chân dung cho ZV-E10. Ống FE dùng tiếp được khi bạn lên thân máy full-frame."
+      },
+      {
+        "t": "h",
+        "text": "Quay vlog và livestream nên chọn ống nào?"
+      },
+      {
+        "t": "p",
+        "text": "Tự quay cầm tay cần góc rộng từ 16 đến 24 mm tương đương, vì [[active-steadyshot-cat-bao-nhieu-khung-hinh|SteadyShot chủ động làm hẹp khung hình]] khi bật. Ống càng rộng, bạn càng dễ giữ cả khuôn mặt lẫn bối cảnh trong khung."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Ống kính",
+          "Tương đương",
+          "Đánh giá"
+        ],
+        "rows": [
+          [
+            "[[E PZ 16-50mm F3.5-5.6 OSS II]]",
+            "24–75 mm",
+            "Khởi đầu: zoom điện mượt, đủ rộng để tự quay ở 16 mm."
+          ],
+          [
+            "[[E 11mm F1.8]]",
+            "16,5 mm",
+            "Cầm tay tự quay vẫn thấy cả bối cảnh; F1.8 cho cảnh trong nhà, 181 g."
+          ],
+          [
+            "[[E 15mm F1.4 G]]",
+            "22,5 mm",
+            "F1.4 và chất lượng dòng G, vừa vlog vừa chân dung kèm bối cảnh; 219 g."
+          ]
+        ],
+        "caption": "Ống kính cho vlog và livestream."
+      },
+      {
+        "t": "checklist",
+        "label": "Kiểm trên máy sau khi nạp bộ ZV-E10 Hybrid",
+        "items": [
+          "Gọi M1: màn hình hiện chế độ A, ISO AUTO và AF-C.",
+          "Gọi M2: khung lấy nét bám theo khuôn mặt khi có người trong khung.",
+          "Gọi M4: màn hình hiện chế độ S và tốc độ 1/160.",
+          "Gắn Godox iM20, bật đèn rồi chụp thử: đèn nháy và ảnh không có dải tối.",
+          "Bù sáng ở M4 đã chỉnh về −0,7 EV."
+        ]
+      },
+      {
+        "t": "faq",
+        "items": [
+          {
+            "q": "ZV-E10 có hợp với người mới vừa chụp vừa quay không?",
+            "a": "Có. ZV-E10 dùng cảm biến APS-C 24,2 MP, lấy nét 425 điểm theo pha, quay 4K 30p và nặng 343 g kể cả pin và thẻ nhớ. Máy có màn trập cơ để chụp với đèn flash, cổng micro và tai nghe để quay rõ tiếng. Máy dùng chung ngàm E với các thân Sony cao hơn, nên ống kính không phải mua lại khi nâng cấp."
+          },
+          {
+            "q": "Cảm biến crop 1,5 của ZV-E10 lớn hơn crop 1,6 bao nhiêu?",
+            "a": "Khoảng 10% về diện tích. Cảm biến ZV-E10 đo 23,5 × 15,6 mm, khoảng 367 mm², còn khổ crop 1,6 phổ biến là 22,3 × 14,9 mm, khoảng 332 mm². Với cùng ống kính, crop 1,5 cho góc nhìn rộng hơn: ống 16 mm tương đương 24 mm thay vì 25,6 mm, có lợi khi tự quay và chụp không gian hẹp."
+          },
+          {
+            "q": "ZV-E10 đồng bộ flash ở tốc độ bao nhiêu?",
+            "a": "Tốc độ đồng bộ flash của ZV-E10 là 1/160 giây, theo thông số Sony công bố với đèn flash của hãng. Khi gắn đèn chỉnh tay như Godox iM20, đặt chế độ S hoặc M ở 1/160 giây hoặc chậm hơn để ảnh không có dải tối. Đèn flash không dùng được khi quay phim và không nháy khi bật chụp im lặng."
+          },
+          {
+            "q": "Bộ M1–M4 ZV-E10 Hybrid gồm những gì?",
+            "a": "Bộ gồm bốn file Memory Recall cho ZV-E10: M1 Đời thường, M2 Chân dung, M3 Livestream và M4 Chụp với flash. Mỗi ô lưu chế độ chụp, lấy nét, đo sáng, làm mịn da và một công thức Picture Profile của Color Bank. Tải ZIP về, chép vào thẻ nhớ rồi gọi lại trên máy, hoặc mở Tạo bộ M1–M4 để chỉnh trước khi tải."
+          },
+          {
+            "q": "ZV-E10 có chống rung trên thân máy không?",
+            "a": "Không. ZV-E10 không có chống rung trên thân máy, nên khi chụp ảnh hãy ưu tiên ống kính có OSS như E PZ 16-50mm F3.5-5.6 OSS II, E 35mm F1.8 OSS hoặc E 50mm F1.8 OSS. Khi quay phim, máy có SteadyShot chủ động bằng điện tử, khung hình hẹp lại một chút. Cần chống rung trên thân máy, A6700 là lựa chọn trong cùng ngàm E."
+          },
+          {
+            "q": "Ống FE full-frame gắn lên ZV-E10 được không?",
+            "a": "Được. ZV-E10 dùng ngàm E, nên gắn được cả ống E cho APS-C lẫn ống FE cho full-frame mà không cần ngàm chuyển. Tiêu cự in trên ống nhân 1,5 để ra góc nhìn tương đương: FE 85mm F1.8 cho góc như 127,5 mm. Ống FE dùng tiếp được khi bạn chuyển lên thân máy full-frame của Sony."
+          }
+        ]
+      }
+    ],
+    "meta": {
+      "authorName": null,
+      "reviewedAt": "2026-11-16",
+      "section": null,
+      "order": null,
+      "concepts": [],
+      "related": [
+        {
+          "kind": "knowledge",
+          "id": "cam-bien-hinh-anh"
+        },
+        {
+          "kind": "knowledge",
+          "id": "picture-profile"
+        },
+        {
+          "kind": "knowledge",
+          "id": "bo-nho-cai-dat-va-memory-recall"
+        },
+        {
+          "kind": "knowledge",
+          "id": "oss"
+        },
+        {
+          "kind": "article",
+          "id": "dung-may-sony-lam-webcam-qua-usb"
+        },
+        {
+          "kind": "article",
+          "id": "body-ev-vs-flash-ev-sony-flash-ttl"
+        },
+        {
+          "kind": "article",
+          "id": "xoa-phong-voi-ong-kit"
+        }
+      ],
+      "prerequisites": [],
+      "sources": [
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP1000201578.html",
+          "title": "ZV-E10 Help Guide: Specifications",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001140422.html",
+          "title": "ZV-E10 Help Guide: Using flash (sold separately)",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001116942.html",
+          "title": "ZV-E10 Help Guide: Recall Camera Set.",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001211745.html",
+          "title": "ZV-E10 Help Guide: Picture Profile",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://www.sony.jp/ichigan/products/ZV-E10/spec.html",
+          "title": "VLOGCAM ZV-E10: thông số chính và ảnh sản phẩm",
+          "publisher": "Sony Marketing (Japan)",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://www.godox.com/product-a/iM20-iM22.html",
+          "title": "Godox iM20/iM22: thông số",
+          "publisher": "Godox",
+          "checkedAt": "2026-11-16"
+        }
+      ]
+    },
+    "updatedAt": "2026-11-16",
+    "category": "ky-thuat"
   }
 ]

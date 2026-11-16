@@ -4,7 +4,7 @@
   "topics": ["af", "exposure", "composition", "gear", "color", "video"],
   "levels": ["newbie", "mid", "pro"],
   "categories": ["ky-thuat", "ky-nang"],
-  "blockTypes": ["tldr", "h", "p", "menu", "table", "callout", "compare", "checklist", "figure", "embed", "faq"],
+  "blockTypes": ["tldr", "h", "p", "menu", "table", "callout", "compare", "checklist", "figure", "embed", "faq", "set"],
   "menuPrefixes": {
     "old": "^MENU → (Camera Settings[12]|Playback) → ",
     "oldVi": "^MENU → (Cài đặt máy ảnh[12]|Xem lại) → ",

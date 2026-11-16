@@ -115,5 +115,221 @@
         }
       }
     ]
+  },
+  {
+    "id": "zv-e10-hybrid",
+    "name": "ZV-E10 Hybrid",
+    "description": "Bốn ô nhớ cho người mới dùng ZV-E10: đời thường, chân dung, livestream và chụp với đèn flash. Mỗi ô đi kèm một công thức màu của Color Bank.",
+    "author": {
+      "name": "Thai K. Pham",
+      "handle": "thaikpham"
+    },
+    "slots": [
+      {
+        "label": "Đời thường",
+        "note": "Chế độ A, ISO AUTO, AF-C bám chủ thể. Màu trung tính, cân bằng trắng tự động để dùng cả trong nhà lẫn ngoài trời.",
+        "settings": {
+          "mode": "A",
+          "focus": "AF-C",
+          "focusArea": "tracking-zone",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "off",
+          "iso": "auto",
+          "wb": {
+            "mode": "awb",
+            "ab": 0,
+            "gm": 0,
+            "priority": "standard"
+          },
+          "awbPriority": "standard",
+          "preAF": "on",
+          "steadyShot": "on",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-on",
+          "recipeId": "pp-049",
+          "pp": {
+            "black_level": -2,
+            "gamma": "Still",
+            "black_gamma_range": "Narrow",
+            "black_gamma_level": -1,
+            "knee_mode": "Manual",
+            "color_mode": "Still",
+            "saturation": 6,
+            "color_phase": 0,
+            "depth_r": -1,
+            "depth_g": 1,
+            "depth_b": 2,
+            "depth_c": 1,
+            "depth_m": 0,
+            "depth_y": -1,
+            "detail_level": 0,
+            "detail_mode": "Manual",
+            "detail_vh": 0,
+            "detail_bw": "Type3",
+            "detail_limit": 5,
+            "detail_crisp": 3,
+            "detail_hilight": 2,
+            "knee_point": 95,
+            "knee_slope": 1
+          }
+        }
+      },
+      {
+        "label": "Chân dung",
+        "note": "Chế độ A, lấy nét vùng Rộng ưu tiên khuôn mặt, làm mịn da Trung bình. Màu pastel ấm, hợp bóng râm và ánh sáng cửa sổ.",
+        "settings": {
+          "mode": "A",
+          "focus": "AF-C",
+          "focusArea": "wide",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "off",
+          "iso": "auto",
+          "wb": {
+            "mode": "ctemp",
+            "kelvin": 6200,
+            "ab": 0.5,
+            "gm": 0,
+            "priority": "standard"
+          },
+          "preAF": "on",
+          "steadyShot": "on",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-on",
+          "recipeId": "pp-075",
+          "pp": {
+            "black_level": 4,
+            "gamma": "Cine1",
+            "black_gamma_range": "Wide",
+            "black_gamma_level": 3,
+            "knee_mode": "Manual",
+            "color_mode": "Cinema",
+            "saturation": -6,
+            "color_phase": 0,
+            "depth_r": -2,
+            "depth_g": -1,
+            "depth_b": -1,
+            "depth_c": 0,
+            "depth_m": -2,
+            "depth_y": -2,
+            "detail_level": -2,
+            "detail_mode": "Manual",
+            "detail_vh": -1,
+            "detail_bw": "Type3",
+            "detail_limit": 4,
+            "detail_crisp": 5,
+            "detail_hilight": 1,
+            "knee_point": 85,
+            "knee_slope": -1
+          }
+        }
+      },
+      {
+        "label": "Livestream",
+        "note": "Chụp ảnh sản phẩm và ảnh bìa trước giờ lên sóng. Màu thiết kế cho livestream, giữ tông da trung thực dưới đèn LED.",
+        "settings": {
+          "mode": "A",
+          "focus": "AF-C",
+          "focusArea": "wide",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "off",
+          "iso": "auto",
+          "wb": {
+            "mode": "awb",
+            "ab": -1,
+            "gm": 0.75,
+            "priority": "standard"
+          },
+          "awbPriority": "white",
+          "preAF": "on",
+          "steadyShot": "off",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-on",
+          "recipeId": "pp-047",
+          "pp": {
+            "black_level": -3,
+            "gamma": "Cine1",
+            "black_gamma_range": "Wide",
+            "black_gamma_level": -7,
+            "knee_mode": "Manual",
+            "color_mode": "Movie",
+            "saturation": 15,
+            "color_phase": 0,
+            "depth_r": -2,
+            "depth_g": -5,
+            "depth_b": 3,
+            "depth_c": 3,
+            "depth_m": -4,
+            "depth_y": 2,
+            "detail_level": 0,
+            "detail_mode": "Manual",
+            "detail_vh": 2,
+            "detail_bw": "Type3",
+            "detail_limit": 3,
+            "detail_crisp": 7,
+            "detail_hilight": 4,
+            "knee_point": 105,
+            "knee_slope": 2
+          }
+        }
+      },
+      {
+        "label": "Chụp với flash",
+        "note": "Chế độ S ở 1/160 giây, không vượt tốc độ đồng bộ. Bù sáng −0,7 EV bằng tay, chọn mức đèn theo ISO máy hiển thị.",
+        "settings": {
+          "mode": "S",
+          "shutter": "1/160",
+          "focus": "AF-C",
+          "focusArea": "wide",
+          "metering": "multi",
+          "facePriority": "on",
+          "softSkin": "mid",
+          "autoReview": "2s",
+          "iso": "auto",
+          "wb": {
+            "mode": "ctemp",
+            "kelvin": 5600,
+            "ab": -0.5,
+            "gm": 0,
+            "priority": "standard"
+          },
+          "flashMode": "fill-flash",
+          "expCompSet": "ambient-only",
+          "preAF": "on",
+          "steadyShot": "on",
+          "eFrontCurtain": "on",
+          "liveView": "setting-effect-off",
+          "recipeId": "pp-050",
+          "pp": {
+            "black_level": -1,
+            "gamma": "ITU709",
+            "black_gamma_range": "Middle",
+            "black_gamma_level": 1,
+            "knee_mode": "Auto",
+            "color_mode": "Pro",
+            "saturation": 4,
+            "color_phase": 0,
+            "depth_r": -1,
+            "depth_g": 0,
+            "depth_b": 1,
+            "depth_c": 1,
+            "depth_m": 0,
+            "depth_y": -1,
+            "detail_level": 1,
+            "detail_mode": "Manual",
+            "detail_vh": 0,
+            "detail_bw": "Type3",
+            "detail_limit": 5,
+            "detail_crisp": 4,
+            "detail_hilight": 2
+          }
+        }
+      }
+    ]
   }
 ]

@@ -22,7 +22,7 @@ test('data validation', async (t) => {
 
   await t.test('article blocks have valid types', () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, 'data/articles.json'), 'utf-8'))
-    const validTypes = new Set(['tldr', 'h', 'p', 'menu', 'table', 'callout', 'compare', 'checklist', 'figure', 'embed', 'faq'])
+    const validTypes = new Set(['tldr', 'h', 'p', 'menu', 'table', 'callout', 'compare', 'checklist', 'figure', 'embed', 'faq', 'set'])
     for (const article of articles) {
       for (const block of article.blocks) {
         assert(validTypes.has(block.t), `Invalid block type: ${block.t}`)

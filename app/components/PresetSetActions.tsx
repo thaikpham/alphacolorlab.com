@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { kolSets, glossary, recallGuideText } from "@/app/content";
 import type { PresetSet } from "@/lib/presetSets";
-import { downloadSetZip, type PresetSystem } from "@/lib/presetDownload";
+import type { PresetSystem } from "@/lib/presetDownload";
 import { InfoTip } from "./InfoTip";
 
 /** Tải ZIP 4 file của bộ (theo hệ PAL/NTSC đã chọn) và nút "Dùng bộ này" mở Tạo bộ M1–M4 với bộ đó. Chỉ hiện cho ZV-E10. */
@@ -15,6 +15,8 @@ export function PresetSetActions({ set }: { set: PresetSet }) {
   const download = async () => {
     setFailed(false);
     try {
+      // Import động: codec .DAT chỉ tải khi bấm, không nằm trong JS của bài viết
+      const { downloadSetZip } = await import("@/lib/presetDownload");
       await downloadSetZip(set.slots.map((s) => s.settings), system, recallGuideText({ setName: set.name, labels: set.slots.map((s) => s.label) }));
     } catch {
       setFailed(true);

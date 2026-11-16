@@ -25,6 +25,7 @@ export type Block =
       height?: number
     }
   | { t: 'embed'; provider: 'youtube' | 'vimeo'; id: string; caption: string }
+  | { t: 'set'; id: string }
 
 export type Source = {
   url: string

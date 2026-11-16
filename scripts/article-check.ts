@@ -5,6 +5,7 @@
 import { readFileSync } from 'node:fs'
 import articles from '../data/articles.json' with { type: 'json' }
 import rules from '../data/article-rules.json' with { type: 'json' }
+import presetSets from '../data/preset-sets.json' with { type: 'json' }
 import { resolve } from '../lib/wikilinks.ts'
 
 type Rule = {
@@ -80,6 +81,11 @@ export function checkArticle(a: any): string[] {
     else if (next?.t !== 'p') out.push(`mục "${b.text}" phải mở bằng một đoạn trả lời thẳng (p), đang là ${next?.t ?? 'trống'}`)
     else for (const r of sectionLeadBanned) if (matches(r, next.text)) out.push(`mục "${b.text}" ${r.message}`)
   })
+
+  // Khối set phải trỏ tới bộ công khai trong data/preset-sets.json (bộ unlisted không hiện trong bài)
+  for (const b of blocks) {
+    if (b.t === 'set' && !presetSets.some((s) => s.id === b.id && !s.unlisted)) out.push(`khối set: không có bộ "${b.id}" trong danh sách công khai`)
+  }
 
   const blockTexts = blocks.flatMap(texts)
   const all = [a.title, a.dek ?? '', ...blockTexts]

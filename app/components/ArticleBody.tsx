@@ -1,8 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Block } from "@/lib/blog";
-import { blog, seo } from "@/app/content";
+import { blog, kolSets, seo } from "@/app/content";
+import { listedSets, validatePresetSets, type PresetSet } from "@/lib/presetSets";
+import presetSetsJson from "@/data/preset-sets.json";
 import { RichText } from "./RichText";
 import { DataTable } from "./DataTable";
+import { SetActions } from "./SetDetail";
+
+// Chỉ bộ công khai mới nhúng được vào bài (khối set); bộ unlisted và id lạ không hiện
+const LISTED_SETS = new Map(listedSets(validatePresetSets(presetSetsJson)).map((s) => [s.id, s]));
 
 function MenuChevron() {
   return (
@@ -31,6 +38,29 @@ function renderMenuPath(path: string): React.ReactNode {
         </span>
       ))}
     </span>
+  );
+}
+
+function SetBlock({ set }: { set: PresetSet }) {
+  return (
+    <>
+      <h3 className="text-title3 font-medium">{set.name}</h3>
+      <div className="overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator">
+        {set.slots.map((slot, i) => (
+          <div key={i} className="px-4 py-3">
+            <div className="flex items-baseline gap-3">
+              <span className="shrink-0 text-footnote font-medium text-secondary">{kolSets.slotName(i + 1)}</span>
+              <span className="min-w-0 text-body font-semibold text-label">{slot.label}</span>
+            </div>
+            {slot.note && <p className="mt-1 text-footnote text-label">{slot.note}</p>}
+          </div>
+        ))}
+      </div>
+      <SetActions set={set} />
+      <Link href={`/bo-m1-m4/${set.id}`} className="inline-flex h-11 items-center text-subhead font-semibold text-accent-text underline underline-offset-2 hover:opacity-75">
+        {kolSets.viewSet}
+      </Link>
+    </>
   );
 }
 
@@ -202,6 +232,11 @@ export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
                 </div>
               </div>
             );
+
+          case "set": {
+            const set = LISTED_SETS.get(block.id);
+            return set ? <SetBlock key={idx} set={set} /> : null;
+          }
 
           default:
             return null;

@@ -81,7 +81,8 @@ test("unlisted: giữ khi true, bỏ khi false hoặc không có, từ chối kh
 });
 
 test("listedSets bỏ bộ unlisted, giữ thứ tự; bộ ẩn vẫn là bộ mặc định nếu được đánh dấu", () => {
-  const raw = ok();
+  // Chỉ lấy bộ đầu tiên: test không phụ thuộc số bộ trong data/preset-sets.json
+  const raw = [ok()[0]];
   raw[0].unlisted = true;
   const second = { ...raw[0], id: "night-1", name: "Đêm" };
   delete second.unlisted;

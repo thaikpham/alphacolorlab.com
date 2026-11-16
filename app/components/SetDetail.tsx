@@ -68,6 +68,15 @@ export function SetDetail({ set }: { set: PresetSet }) {
         ))}
       </div>
 
+      <SetActions set={set} />
+    </section>
+  );
+}
+
+/** Tải ZIP và Dùng bộ này (chỉ ZV-E10); máy khác thấy dòng "chỉ ZV-E10" và nút chuyển máy. Dùng chung cho trang bộ và bài viết. */
+export function SetActions({ set }: { set: PresetSet }) {
+  return (
+    <>
       <section data-model-only={[...decoded].join(" ")} className="mt-6">
         <PresetSetActions set={set} />
       </section>
@@ -79,6 +88,6 @@ export function SetDetail({ set }: { set: PresetSet }) {
           </div>
         </section>
       ))}
-    </section>
+    </>
   );
 }
