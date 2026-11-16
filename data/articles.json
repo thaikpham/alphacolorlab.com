@@ -31,7 +31,8 @@
       },
       {
         "t": "h",
-        "text": "Ba cài đặt, ba việc khác nhau"
+        "text": "Ba cài đặt, ba việc khác nhau",
+        "toc": "Ba cài đặt, ba việc"
       },
       {
         "t": "p",
@@ -69,7 +70,8 @@
       },
       {
         "t": "h",
-        "text": "Cài đặt từng bước trên từng máy"
+        "text": "Cài đặt từng bước trên từng máy",
+        "toc": "Cài trên từng máy"
       },
       {
         "t": "p",
@@ -102,7 +104,8 @@
       },
       {
         "t": "h",
-        "text": "Tracking bám theo chủ thể như thế nào"
+        "text": "Tracking bám theo chủ thể như thế nào",
+        "toc": "Tracking bám chủ thể"
       },
       {
         "t": "p",
@@ -126,7 +129,8 @@
       },
       {
         "t": "h",
-        "text": "Eye AF qua menu và qua nút tùy chỉnh"
+        "text": "Eye AF qua menu và qua nút tùy chỉnh",
+        "toc": "Eye AF: menu và nút"
       },
       {
         "t": "p",
@@ -146,7 +150,8 @@
       },
       {
         "t": "h",
-        "text": "Khi máy không tìm thấy mắt"
+        "text": "Khi máy không tìm thấy mắt",
+        "toc": "Khi không thấy mắt"
       },
       {
         "t": "p",
@@ -158,7 +163,8 @@
       },
       {
         "t": "h",
-        "text": "Bước tiếp theo"
+        "text": "Bước tiếp theo",
+        "toc": "Bước tiếp theo"
       },
       {
         "t": "p",
@@ -323,7 +329,8 @@
       },
       {
         "t": "h",
-        "text": "Các chế độ trong menu Focus Mode"
+        "text": "Các chế độ trong menu Focus Mode",
+        "toc": "Các chế độ Focus Mode"
       },
       {
         "t": "p",
@@ -343,7 +350,8 @@
       },
       {
         "t": "h",
-        "text": "AF một lần: khóa nét rồi bố cục lại"
+        "text": "AF một lần: khóa nét rồi bố cục lại",
+        "toc": "AF một lần"
       },
       {
         "t": "p",
@@ -355,7 +363,8 @@
       },
       {
         "t": "h",
-        "text": "AF liên tục: bám theo thứ đang chuyển động"
+        "text": "AF liên tục: bám theo thứ đang chuyển động",
+        "toc": "AF liên tục"
       },
       {
         "t": "p",
@@ -402,7 +411,8 @@
       },
       {
         "t": "h",
-        "text": "Cài đặt Focus Mode trên từng máy"
+        "text": "Cài đặt Focus Mode trên từng máy",
+        "toc": "Cài trên từng máy"
       },
       {
         "t": "p",
@@ -420,7 +430,8 @@
       },
       {
         "t": "h",
-        "text": "Khi quay phim"
+        "text": "Khi quay phim",
+        "toc": "Khi quay phim"
       },
       {
         "t": "p",
@@ -436,7 +447,8 @@
       },
       {
         "t": "h",
-        "text": "DMF: máy lấy nét, tay sửa nốt"
+        "text": "DMF: máy lấy nét, tay sửa nốt",
+        "toc": "DMF"
       },
       {
         "t": "p",
@@ -456,7 +468,8 @@
       },
       {
         "t": "h",
-        "text": "Hỗ trợ lấy nét tay: phóng to và tô viền nét"
+        "text": "Hỗ trợ lấy nét tay: phóng to và tô viền nét",
+        "toc": "Hỗ trợ lấy nét tay"
       },
       {
         "t": "p",
@@ -472,7 +485,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên lấy nét tay"
+        "text": "Khi nào nên lấy nét tay",
+        "toc": "Khi nào lấy nét tay"
       },
       {
         "t": "p",
@@ -484,7 +498,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập: ba chế độ trong một buổi chiều"
+        "text": "Bài tập: ba chế độ trong một buổi chiều",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -502,7 +517,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên đi xa hơn"
+        "text": "Khi nào nên đi xa hơn",
+        "toc": "Đi xa hơn"
       },
       {
         "t": "p",
@@ -661,7 +677,8 @@
       },
       {
         "t": "h",
-        "text": "Ảnh mờ do rung tay khác ảnh hụt nét thế nào?"
+        "text": "Ảnh mờ do rung tay khác ảnh hụt nét thế nào?",
+        "toc": "Rung tay hay hụt nét"
       },
       {
         "t": "p",
@@ -716,7 +733,8 @@
       },
       {
         "t": "h",
-        "text": "Tốc độ chụp bao nhiêu thì đủ để không rung tay?"
+        "text": "Tốc độ chụp bao nhiêu thì đủ để không rung tay?",
+        "toc": "Tốc độ đủ nhanh"
       },
       {
         "t": "p",
@@ -778,7 +796,8 @@
       },
       {
         "t": "h",
-        "text": "SteadyShot trên ZV-E10 và A6400 có tác dụng gì?"
+        "text": "SteadyShot trên ZV-E10 và A6400 có tác dụng gì?",
+        "toc": "SteadyShot"
       },
       {
         "t": "p",
@@ -809,7 +828,8 @@
       },
       {
         "t": "h",
-        "text": "Cầm máy thế nào để giảm rung tay?"
+        "text": "Cầm máy thế nào để giảm rung tay?",
+        "toc": "Cách cầm máy"
       },
       {
         "t": "p",
@@ -832,7 +852,8 @@
       },
       {
         "t": "h",
-        "text": "Thiếu sáng thì nên tăng ISO hay giữ tốc độ?"
+        "text": "Thiếu sáng thì nên tăng ISO hay giữ tốc độ?",
+        "toc": "Tăng ISO hay giữ tốc độ"
       },
       {
         "t": "p",
@@ -844,7 +865,8 @@
       },
       {
         "t": "h",
-        "text": "Cách tự tìm tốc độ an toàn của máy bạn?"
+        "text": "Cách tự tìm tốc độ an toàn của máy bạn?",
+        "toc": "Tìm tốc độ an toàn"
       },
       {
         "t": "p",
@@ -979,7 +1001,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao máy đo sáng làm ảnh bị tối hoặc cháy?"
+        "text": "Vì sao máy đo sáng làm ảnh bị tối hoặc cháy?",
+        "toc": "Vì sao ảnh tối, cháy"
       },
       {
         "t": "p",
@@ -1032,7 +1055,8 @@
       },
       {
         "t": "h",
-        "text": "Bù sáng dùng được ở chế độ nào trên máy Sony?"
+        "text": "Bù sáng dùng được ở chế độ nào trên máy Sony?",
+        "toc": "Chế độ dùng được bù sáng"
       },
       {
         "t": "p",
@@ -1040,7 +1064,8 @@
       },
       {
         "t": "h",
-        "text": "Bù sáng nằm ở đâu trên ZV-E10 và A6400?"
+        "text": "Bù sáng nằm ở đâu trên ZV-E10 và A6400?",
+        "toc": "Bù sáng nằm ở đâu"
       },
       {
         "t": "p",
@@ -1066,7 +1091,8 @@
       },
       {
         "t": "h",
-        "text": "Dial/Wheel Ev Comp trên ZV-E10 và A6400 dùng để làm gì?"
+        "text": "Dial/Wheel Ev Comp trên ZV-E10 và A6400 dùng để làm gì?",
+        "toc": "Dial/Wheel Ev Comp"
       },
       {
         "t": "p",
@@ -1074,7 +1100,8 @@
       },
       {
         "t": "h",
-        "text": "Làm sao đọc histogram để biết ảnh đã cháy hay tối?"
+        "text": "Làm sao đọc histogram để biết ảnh đã cháy hay tối?",
+        "toc": "Đọc histogram"
       },
       {
         "t": "p",
@@ -1121,7 +1148,8 @@
       },
       {
         "t": "h",
-        "text": "Ngược sáng thì bù sáng có đủ không?"
+        "text": "Ngược sáng thì bù sáng có đủ không?",
+        "toc": "Khi ngược sáng"
       },
       {
         "t": "p",
@@ -1129,7 +1157,8 @@
       },
       {
         "t": "h",
-        "text": "Tập bù sáng năm mức thì nhận ra khác biệt thế nào?"
+        "text": "Tập bù sáng năm mức thì nhận ra khác biệt thế nào?",
+        "toc": "Bài tập năm mức"
       },
       {
         "t": "p",
@@ -1148,7 +1177,8 @@
       },
       {
         "t": "h",
-        "text": "Lỗi nào hay gặp khi mới bù sáng?"
+        "text": "Lỗi nào hay gặp khi mới bù sáng?",
+        "toc": "Lỗi hay gặp"
       },
       {
         "t": "p",
@@ -1295,7 +1325,8 @@
       },
       {
         "t": "h",
-        "text": "Bật lưới 1/3 trên ZV-E10 và A6400 ở đâu?"
+        "text": "Bật lưới 1/3 trên ZV-E10 và A6400 ở đâu?",
+        "toc": "Bật lưới 1/3"
       },
       {
         "t": "p",
@@ -1321,7 +1352,8 @@
       },
       {
         "t": "h",
-        "text": "Đặt chủ thể và đường chân trời ở đâu trong khung?"
+        "text": "Đặt chủ thể và đường chân trời ở đâu trong khung?",
+        "toc": "Chủ thể và chân trời"
       },
       {
         "t": "p",
@@ -1341,7 +1373,8 @@
       },
       {
         "t": "h",
-        "text": "Bố cục trung tâm khi nào đúng?"
+        "text": "Bố cục trung tâm khi nào đúng?",
+        "toc": "Bố cục trung tâm"
       },
       {
         "t": "p",
@@ -1353,7 +1386,8 @@
       },
       {
         "t": "h",
-        "text": "Đường dẫn và đường chéo dùng thế nào?"
+        "text": "Đường dẫn và đường chéo dùng thế nào?",
+        "toc": "Đường dẫn, đường chéo"
       },
       {
         "t": "p",
@@ -1404,7 +1438,8 @@
       },
       {
         "t": "h",
-        "text": "Cắt khung chân dung ở đâu cho đẹp?"
+        "text": "Cắt khung chân dung ở đâu cho đẹp?",
+        "toc": "Cắt khung chân dung"
       },
       {
         "t": "p",
@@ -1544,7 +1579,8 @@
       },
       {
         "t": "h",
-        "text": "Chế độ A làm gì?"
+        "text": "Chế độ A làm gì?",
+        "toc": "Chế độ A làm gì"
       },
       {
         "t": "p",
@@ -1568,7 +1604,8 @@
       },
       {
         "t": "h",
-        "text": "Vào chế độ A trên từng máy"
+        "text": "Vào chế độ A trên từng máy",
+        "toc": "Vào chế độ A"
       },
       {
         "t": "p",
@@ -1611,7 +1648,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn số f theo vùng nét bạn muốn"
+        "text": "Chọn số f theo vùng nét bạn muốn",
+        "toc": "Chọn số f"
       },
       {
         "t": "p",
@@ -1649,7 +1687,8 @@
       },
       {
         "t": "h",
-        "text": "Đọc con số tốc độ trước khi chụp"
+        "text": "Đọc con số tốc độ trước khi chụp",
+        "toc": "Đọc tốc độ"
       },
       {
         "t": "p",
@@ -1669,7 +1708,8 @@
       },
       {
         "t": "h",
-        "text": "Ảnh tối hoặc sáng quá ở chế độ A"
+        "text": "Ảnh tối hoặc sáng quá ở chế độ A",
+        "toc": "Ảnh tối hoặc sáng quá"
       },
       {
         "t": "p",
@@ -1685,7 +1725,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập 20 phút với một chủ thể"
+        "text": "Bài tập 20 phút với một chủ thể",
+        "toc": "Bài tập 20 phút"
       },
       {
         "t": "p",
@@ -1704,7 +1745,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên rời chế độ A"
+        "text": "Khi nào nên rời chế độ A",
+        "toc": "Khi nào rời chế độ A"
       },
       {
         "t": "p",
@@ -1846,7 +1888,8 @@
       },
       {
         "t": "h",
-        "text": "Chế độ M khác chế độ A ở chỗ nào"
+        "text": "Chế độ M khác chế độ A ở chỗ nào",
+        "toc": "M khác A ở đâu"
       },
       {
         "t": "p",
@@ -1862,7 +1905,8 @@
       },
       {
         "t": "h",
-        "text": "Ba bước, theo đúng thứ tự"
+        "text": "Ba bước, theo đúng thứ tự",
+        "toc": "Ba bước"
       },
       {
         "t": "p",
@@ -1916,7 +1960,8 @@
       },
       {
         "t": "h",
-        "text": "Cài chế độ M và hai bánh xe trên máy"
+        "text": "Cài chế độ M và hai bánh xe trên máy",
+        "toc": "Cài trên máy"
       },
       {
         "t": "p",
@@ -1940,7 +1985,8 @@
       },
       {
         "t": "h",
-        "text": "ISO AUTO trong chế độ M"
+        "text": "ISO AUTO trong chế độ M",
+        "toc": "ISO AUTO"
       },
       {
         "t": "p",
@@ -1956,7 +2002,8 @@
       },
       {
         "t": "h",
-        "text": "Phơi sáng dài trong chế độ M"
+        "text": "Phơi sáng dài trong chế độ M",
+        "toc": "Phơi sáng dài"
       },
       {
         "t": "p",
@@ -1972,7 +2019,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập với một cảnh và ba bộ thông số"
+        "text": "Bài tập với một cảnh và ba bộ thông số",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -1991,7 +2039,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên dùng M, khi nào không"
+        "text": "Khi nào nên dùng M, khi nào không",
+        "toc": "Khi nào dùng M"
       },
       {
         "t": "p",
@@ -2187,7 +2236,8 @@
       },
       {
         "t": "h",
-        "text": "Máy đo sáng nhìn vào đâu"
+        "text": "Máy đo sáng nhìn vào đâu",
+        "toc": "Máy đo sáng ở đâu"
       },
       {
         "t": "p",
@@ -2199,7 +2249,8 @@
       },
       {
         "t": "h",
-        "text": "Năm chế độ đo sáng trên ZV-E10 và A6400"
+        "text": "Năm chế độ đo sáng trên ZV-E10 và A6400",
+        "toc": "Năm chế độ đo sáng"
       },
       {
         "t": "p",
@@ -2255,7 +2306,8 @@
       },
       {
         "t": "h",
-        "text": "Đo sáng Điểm cho cảnh ngược sáng"
+        "text": "Đo sáng Điểm cho cảnh ngược sáng",
+        "toc": "Đo sáng Điểm"
       },
       {
         "t": "p",
@@ -2284,7 +2336,8 @@
       },
       {
         "t": "h",
-        "text": "Vùng sáng: giữ chi tiết ở phần sáng nhất"
+        "text": "Vùng sáng: giữ chi tiết ở phần sáng nhất",
+        "toc": "Vùng sáng"
       },
       {
         "t": "p",
@@ -2292,7 +2345,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn chế độ đo theo tình huống"
+        "text": "Chọn chế độ đo theo tình huống",
+        "toc": "Chọn theo tình huống"
       },
       {
         "t": "p",
@@ -2340,7 +2394,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập: một cảnh ngược sáng, bốn chế độ"
+        "text": "Bài tập: một cảnh ngược sáng, bốn chế độ",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -2476,7 +2531,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao chủ thể thành bóng đen khi chụp ngược sáng?"
+        "text": "Vì sao chủ thể thành bóng đen khi chụp ngược sáng?",
+        "toc": "Vì sao thành bóng đen"
       },
       {
         "t": "p",
@@ -2484,7 +2540,8 @@
       },
       {
         "t": "h",
-        "text": "Nên đo sáng và bù sáng thế nào để trời không cháy?"
+        "text": "Nên đo sáng và bù sáng thế nào để trời không cháy?",
+        "toc": "Đo sáng và bù sáng"
       },
       {
         "t": "p",
@@ -2540,7 +2597,8 @@
       },
       {
         "t": "h",
-        "text": "Đặt chủ thể và góc máy thế nào để có viền rõ?"
+        "text": "Đặt chủ thể và góc máy thế nào để có viền rõ?",
+        "toc": "Chủ thể và góc máy"
       },
       {
         "t": "p",
@@ -2560,7 +2618,8 @@
       },
       {
         "t": "h",
-        "text": "Dáng nào cho silhouette rõ viền?"
+        "text": "Dáng nào cho silhouette rõ viền?",
+        "toc": "Dáng rõ viền"
       },
       {
         "t": "p",
@@ -2599,7 +2658,8 @@
       },
       {
         "t": "h",
-        "text": "Lấy nét thế nào khi chủ thể tối?"
+        "text": "Lấy nét thế nào khi chủ thể tối?",
+        "toc": "Lấy nét"
       },
       {
         "t": "p",
@@ -2607,7 +2667,8 @@
       },
       {
         "t": "h",
-        "text": "Cân bằng trắng nào giữ màu hoàng hôn?"
+        "text": "Cân bằng trắng nào giữ màu hoàng hôn?",
+        "toc": "Cân bằng trắng"
       },
       {
         "t": "p",
@@ -2621,7 +2682,8 @@
       },
       {
         "t": "h",
-        "text": "Silhouette bị trời cháy hay chủ thể xám thì sửa sao?"
+        "text": "Silhouette bị trời cháy hay chủ thể xám thì sửa sao?",
+        "toc": "Sửa lỗi"
       },
       {
         "t": "p",
@@ -2668,7 +2730,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập chụp silhouette lúc hoàng hôn gồm những gì?"
+        "text": "Bài tập chụp silhouette lúc hoàng hôn gồm những gì?",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -2825,7 +2888,8 @@
       },
       {
         "t": "h",
-        "text": "Màn trập, flash và vệt chuyển động"
+        "text": "Màn trập, flash và vệt chuyển động",
+        "toc": "Flash và vệt chuyển động"
       },
       {
         "t": "p",
@@ -2871,7 +2935,8 @@
       },
       {
         "t": "h",
-        "text": "Cài đặt trên máy"
+        "text": "Cài đặt trên máy",
+        "toc": "Cài trên máy"
       },
       {
         "t": "p",
@@ -2896,7 +2961,8 @@
       },
       {
         "t": "h",
-        "text": "Tốc độ, khẩu và ISO"
+        "text": "Tốc độ, khẩu và ISO",
+        "toc": "Tốc độ, khẩu, ISO"
       },
       {
         "t": "p",
@@ -2943,7 +3009,8 @@
       },
       {
         "t": "h",
-        "text": "Cân flash với ánh sáng nền"
+        "text": "Cân flash với ánh sáng nền",
+        "toc": "Cân flash với nền"
       },
       {
         "t": "p",
@@ -2955,7 +3022,8 @@
       },
       {
         "t": "h",
-        "text": "Giữ máy tới khi flash nổ"
+        "text": "Giữ máy tới khi flash nổ",
+        "toc": "Giữ máy tới khi flash nổ"
       },
       {
         "t": "p",
@@ -2982,7 +3050,8 @@
       },
       {
         "t": "h",
-        "text": "Sự cố thường gặp"
+        "text": "Sự cố thường gặp",
+        "toc": "Sự cố thường gặp"
       },
       {
         "t": "p",
@@ -3156,7 +3225,8 @@
       },
       {
         "t": "h",
-        "text": "AWB điều chỉnh màu thế nào và khi nào nó lệch"
+        "text": "AWB điều chỉnh màu thế nào và khi nào nó lệch",
+        "toc": "Khi nào AWB lệch"
       },
       {
         "t": "p",
@@ -3200,7 +3270,8 @@
       },
       {
         "t": "h",
-        "text": "Ưu tiên trong AWB: Standard, Ambience hay White"
+        "text": "Ưu tiên trong AWB: Standard, Ambience hay White",
+        "toc": "Ưu tiên trong AWB"
       },
       {
         "t": "p",
@@ -3226,7 +3297,8 @@
       },
       {
         "t": "h",
-        "text": "Nhiệt độ màu (C.Temp./Filter) chỉnh bằng vòng nào?"
+        "text": "Nhiệt độ màu (C.Temp./Filter) chỉnh bằng vòng nào?",
+        "toc": "Nhiệt độ màu"
       },
       {
         "t": "p",
@@ -3244,7 +3316,8 @@
       },
       {
         "t": "h",
-        "text": "Đèn thủy ngân hoặc natri có làm AWB sai không?"
+        "text": "Đèn thủy ngân hoặc natri có làm AWB sai không?",
+        "toc": "Đèn thủy ngân, natri"
       },
       {
         "t": "p",
@@ -3252,7 +3325,8 @@
       },
       {
         "t": "h",
-        "text": "Custom 1 đến 3: đo màu trắng rồi ghi nhớ"
+        "text": "Custom 1 đến 3: đo màu trắng rồi ghi nhớ",
+        "toc": "Custom 1 đến 3"
       },
       {
         "t": "p",
@@ -3276,7 +3350,8 @@
       },
       {
         "t": "h",
-        "text": "Ánh sáng hỗn hợp: chọn một nguồn làm chuẩn"
+        "text": "Ánh sáng hỗn hợp: chọn một nguồn làm chuẩn",
+        "toc": "Ánh sáng hỗn hợp"
       },
       {
         "t": "p",
@@ -3296,7 +3371,8 @@
       },
       {
         "t": "h",
-        "text": "A7C II: mở cân bằng trắng bằng nút C1"
+        "text": "A7C II: mở cân bằng trắng bằng nút C1",
+        "toc": "A7C II: nút C1"
       },
       {
         "t": "p",
@@ -3304,7 +3380,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập: một căn phòng, nhiều cách cân bằng trắng"
+        "text": "Bài tập: một căn phòng, nhiều cách cân bằng trắng",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -3470,7 +3547,8 @@
       },
       {
         "t": "h",
-        "text": "Khung dọc và khung ngang khác nhau thế nào?"
+        "text": "Khung dọc và khung ngang khác nhau thế nào?",
+        "toc": "Khung dọc và khung ngang"
       },
       {
         "t": "p",
@@ -3527,7 +3605,8 @@
       },
       {
         "t": "h",
-        "text": "Chủ thể cao hay dài thì chọn chiều nào?"
+        "text": "Chủ thể cao hay dài thì chọn chiều nào?",
+        "toc": "Chọn chiều theo chủ thể"
       },
       {
         "t": "p",
@@ -3539,7 +3618,8 @@
       },
       {
         "t": "h",
-        "text": "Tỷ lệ khung hình nào có trên từng máy?"
+        "text": "Tỷ lệ khung hình nào có trên từng máy?",
+        "toc": "Tỷ lệ khung hình"
       },
       {
         "t": "p",
@@ -3596,7 +3676,8 @@
       },
       {
         "t": "h",
-        "text": "A6400 có đổi khung lấy nét khi xoay máy không?"
+        "text": "A6400 có đổi khung lấy nét khi xoay máy không?",
+        "toc": "Khung lấy nét khi xoay máy"
       },
       {
         "t": "p",
@@ -3620,7 +3701,8 @@
       },
       {
         "t": "h",
-        "text": "Làm sao luyện chọn chiều khung?"
+        "text": "Làm sao luyện chọn chiều khung?",
+        "toc": "Luyện tập"
       },
       {
         "t": "p",
@@ -3639,7 +3721,8 @@
       },
       {
         "t": "h",
-        "text": "Lỗi hay gặp khi chụp khung dọc"
+        "text": "Lỗi hay gặp khi chụp khung dọc",
+        "toc": "Lỗi hay gặp"
       },
       {
         "t": "p",
@@ -3766,7 +3849,8 @@
       },
       {
         "t": "h",
-        "text": "Khung trong khung làm được gì"
+        "text": "Khung trong khung làm được gì",
+        "toc": "Khung trong khung"
       },
       {
         "t": "p",
@@ -3814,7 +3898,8 @@
       },
       {
         "t": "h",
-        "text": "Khung rõ và khung mờ khác nhau thế nào"
+        "text": "Khung rõ và khung mờ khác nhau thế nào",
+        "toc": "Khung rõ và khung mờ"
       },
       {
         "t": "p",
@@ -3865,7 +3950,8 @@
       },
       {
         "t": "h",
-        "text": "Lấy nét đúng chủ thể, không phải khung"
+        "text": "Lấy nét đúng chủ thể, không phải khung",
+        "toc": "Lấy nét đúng chủ thể"
       },
       {
         "t": "p",
@@ -3896,7 +3982,8 @@
       },
       {
         "t": "h",
-        "text": "Phơi sáng: để khung tối hơn chủ thể"
+        "text": "Phơi sáng: để khung tối hơn chủ thể",
+        "toc": "Phơi sáng"
       },
       {
         "t": "p",
@@ -3908,7 +3995,8 @@
       },
       {
         "t": "h",
-        "text": "Bố cục bên trong khung"
+        "text": "Bố cục bên trong khung",
+        "toc": "Bố cục trong khung"
       },
       {
         "t": "p",
@@ -3920,7 +4008,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập: năm khung trong một con phố"
+        "text": "Bài tập: năm khung trong một con phố",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -4104,7 +4193,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao cần lọc ảnh sau buổi chụp?"
+        "text": "Vì sao cần lọc ảnh sau buổi chụp?",
+        "toc": "Vì sao cần lọc ảnh"
       },
       {
         "t": "p",
@@ -4124,7 +4214,8 @@
       },
       {
         "t": "h",
-        "text": "Đánh sao trên ZV-E10 hay A6400 thế nào?"
+        "text": "Đánh sao trên ZV-E10 hay A6400 thế nào?",
+        "toc": "Đánh sao trên máy"
       },
       {
         "t": "p",
@@ -4151,7 +4242,8 @@
       },
       {
         "t": "h",
-        "text": "Đặt tên thư mục sau khi chép thẻ thế nào?"
+        "text": "Đặt tên thư mục sau khi chép thẻ thế nào?",
+        "toc": "Đặt tên thư mục"
       },
       {
         "t": "p",
@@ -4207,7 +4299,8 @@
       },
       {
         "t": "h",
-        "text": "Lọc ảnh hai vòng là gì và làm thế nào?"
+        "text": "Lọc ảnh hai vòng là gì và làm thế nào?",
+        "toc": "Lọc hai vòng"
       },
       {
         "t": "p",
@@ -4253,7 +4346,8 @@
       },
       {
         "t": "h",
-        "text": "Lọc RAW và JPEG trên máy tính thế nào?"
+        "text": "Lọc RAW và JPEG trên máy tính thế nào?",
+        "toc": "Lọc RAW và JPEG"
       },
       {
         "t": "p",
@@ -4265,7 +4359,8 @@
       },
       {
         "t": "h",
-        "text": "Làm sao tập lọc một buổi chụp trong 30 phút?"
+        "text": "Làm sao tập lọc một buổi chụp trong 30 phút?",
+        "toc": "Bài tập 30 phút"
       },
       {
         "t": "p",
@@ -4400,7 +4495,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao đổi độ cao đặt máy đổi cảm xúc ảnh"
+        "text": "Vì sao đổi độ cao đặt máy đổi cảm xúc ảnh",
+        "toc": "Độ cao máy và cảm xúc"
       },
       {
         "t": "p",
@@ -4412,7 +4508,8 @@
       },
       {
         "t": "h",
-        "text": "Ba góc máy cơ bản và cảm giác mỗi góc tạo ra"
+        "text": "Ba góc máy cơ bản và cảm giác mỗi góc tạo ra",
+        "toc": "Ba góc máy cơ bản"
       },
       {
         "t": "p",
@@ -4466,7 +4563,8 @@
       },
       {
         "t": "h",
-        "text": "Ngang tầm mắt là gì và khi nào nên chụp"
+        "text": "Ngang tầm mắt là gì và khi nào nên chụp",
+        "toc": "Ngang tầm mắt"
       },
       {
         "t": "p",
@@ -4478,7 +4576,8 @@
       },
       {
         "t": "h",
-        "text": "Góc cao là gì và khi nào nên dùng"
+        "text": "Góc cao là gì và khi nào nên dùng",
+        "toc": "Góc cao"
       },
       {
         "t": "p",
@@ -4490,7 +4589,8 @@
       },
       {
         "t": "h",
-        "text": "Góc thấp là gì và khi nào nên chụp"
+        "text": "Góc thấp là gì và khi nào nên chụp",
+        "toc": "Góc thấp"
       },
       {
         "t": "p",
@@ -4502,7 +4602,8 @@
       },
       {
         "t": "h",
-        "text": "Chạm để chọn điểm lấy nét trên ZV-E10 và A7C II"
+        "text": "Chạm để chọn điểm lấy nét trên ZV-E10 và A7C II",
+        "toc": "Chạm để lấy nét"
       },
       {
         "t": "p",
@@ -4520,7 +4621,8 @@
       },
       {
         "t": "h",
-        "text": "Bật lưới để kiểm tra khung ở mỗi góc"
+        "text": "Bật lưới để kiểm tra khung ở mỗi góc",
+        "toc": "Bật lưới"
       },
       {
         "t": "p",
@@ -4534,7 +4636,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập một chủ thể ba góc ba khoảng cách"
+        "text": "Bài tập một chủ thể ba góc ba khoảng cách",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -4553,7 +4656,8 @@
       },
       {
         "t": "h",
-        "text": "Bước tiếp theo sau khi đổi góc máy"
+        "text": "Bước tiếp theo sau khi đổi góc máy",
+        "toc": "Bước tiếp theo"
       },
       {
         "t": "p",
@@ -4696,7 +4800,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao nền thành vệt khi panning?"
+        "text": "Vì sao nền thành vệt khi panning?",
+        "toc": "Vì sao nền thành vệt"
       },
       {
         "t": "p",
@@ -4708,7 +4813,8 @@
       },
       {
         "t": "h",
-        "text": "Tốc màn trập khởi điểm cho panning là bao nhiêu?"
+        "text": "Tốc màn trập khởi điểm cho panning là bao nhiêu?",
+        "toc": "Tốc độ khởi điểm"
       },
       {
         "t": "p",
@@ -4764,7 +4870,8 @@
       },
       {
         "t": "h",
-        "text": "Cài đặt Shutter Priority trên ZV-E10 và A6400 thế nào?"
+        "text": "Cài đặt Shutter Priority trên ZV-E10 và A6400 thế nào?",
+        "toc": "Cài Shutter Priority"
       },
       {
         "t": "p",
@@ -4776,7 +4883,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn Focus Area nào cho panning trên Sony?"
+        "text": "Chọn Focus Area nào cho panning trên Sony?",
+        "toc": "Chọn Focus Area"
       },
       {
         "t": "p",
@@ -4794,7 +4902,8 @@
       },
       {
         "t": "h",
-        "text": "Động tác lia máy từ hông thế nào?"
+        "text": "Động tác lia máy từ hông thế nào?",
+        "toc": "Động tác lia máy"
       },
       {
         "t": "p",
@@ -4814,7 +4923,8 @@
       },
       {
         "t": "h",
-        "text": "Lỗi nào hay gặp khi panning và cách sửa?"
+        "text": "Lỗi nào hay gặp khi panning và cách sửa?",
+        "toc": "Lỗi hay gặp"
       },
       {
         "t": "p",
@@ -4866,7 +4976,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn nền và ánh sáng nào cho panning?"
+        "text": "Chọn nền và ánh sáng nào cho panning?",
+        "toc": "Nền và ánh sáng"
       },
       {
         "t": "p",
@@ -4878,7 +4989,8 @@
       },
       {
         "t": "h",
-        "text": "Lịch tập panning một buổi gồm những gì?"
+        "text": "Lịch tập panning một buổi gồm những gì?",
+        "toc": "Lịch tập"
       },
       {
         "t": "p",
@@ -5016,7 +5128,8 @@
       },
       {
         "t": "h",
-        "text": "Tốc độ nào hợp với từng chủ thể?"
+        "text": "Tốc độ nào hợp với từng chủ thể?",
+        "toc": "Tốc độ theo chủ thể"
       },
       {
         "t": "p",
@@ -5060,7 +5173,8 @@
       },
       {
         "t": "h",
-        "text": "Cài đặt nào để chụp phơi sáng dài trên Sony?"
+        "text": "Cài đặt nào để chụp phơi sáng dài trên Sony?",
+        "toc": "Cài đặt trên máy"
       },
       {
         "t": "p",
@@ -5078,7 +5192,8 @@
       },
       {
         "t": "h",
-        "text": "Lấy nét khi phơi lâu nên làm thế nào?"
+        "text": "Lấy nét khi phơi lâu nên làm thế nào?",
+        "toc": "Lấy nét"
       },
       {
         "t": "p",
@@ -5086,7 +5201,8 @@
       },
       {
         "t": "h",
-        "text": "BULB trên Sony là gì và dùng khi nào?"
+        "text": "BULB trên Sony là gì và dùng khi nào?",
+        "toc": "BULB"
       },
       {
         "t": "p",
@@ -5106,7 +5222,8 @@
       },
       {
         "t": "h",
-        "text": "Giảm nhiễu phơi sáng dài có làm chậm máy không?"
+        "text": "Giảm nhiễu phơi sáng dài có làm chậm máy không?",
+        "toc": "Giảm nhiễu phơi sáng dài"
       },
       {
         "t": "p",
@@ -5132,7 +5249,8 @@
       },
       {
         "t": "h",
-        "text": "Kính lọc ND dùng để làm gì?"
+        "text": "Kính lọc ND dùng để làm gì?",
+        "toc": "Kính lọc ND"
       },
       {
         "t": "p",
@@ -5183,7 +5301,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên chụp không cần ND?"
+        "text": "Khi nào nên chụp không cần ND?",
+        "toc": "Khi không cần ND"
       },
       {
         "t": "p",
@@ -5191,7 +5310,8 @@
       },
       {
         "t": "h",
-        "text": "Quy trình một buổi phơi sáng dài gồm những bước nào?"
+        "text": "Quy trình một buổi phơi sáng dài gồm những bước nào?",
+        "toc": "Quy trình một buổi"
       },
       {
         "t": "p",
@@ -5210,7 +5330,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao ảnh phơi sáng dài bị mờ?"
+        "text": "Vì sao ảnh phơi sáng dài bị mờ?",
+        "toc": "Vì sao ảnh bị mờ"
       },
       {
         "t": "p",
@@ -5254,7 +5375,8 @@
       },
       {
         "t": "h",
-        "text": "ZV-E10 có chụp phơi sáng dài tốt không?"
+        "text": "ZV-E10 có chụp phơi sáng dài tốt không?",
+        "toc": "Trên ZV-E10"
       },
       {
         "t": "p",
@@ -5410,7 +5532,8 @@
       },
       {
         "t": "h",
-        "text": "JPEG và RAW khác nhau ở đâu?"
+        "text": "JPEG và RAW khác nhau ở đâu?",
+        "toc": "JPEG khác RAW ở đâu"
       },
       {
         "t": "p",
@@ -5456,7 +5579,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào JPEG là đủ cho người mới?"
+        "text": "Khi nào JPEG là đủ cho người mới?",
+        "toc": "Khi JPEG là đủ"
       },
       {
         "t": "p",
@@ -5476,7 +5600,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào RAW cứu được ảnh?"
+        "text": "Khi nào RAW cứu được ảnh?",
+        "toc": "Khi RAW cứu được ảnh"
       },
       {
         "t": "p",
@@ -5493,7 +5618,8 @@
       },
       {
         "t": "h",
-        "text": "Cài RAW hay JPEG trên máy như thế nào?"
+        "text": "Cài RAW hay JPEG trên máy như thế nào?",
+        "toc": "Cài trên máy"
       },
       {
         "t": "p",
@@ -5523,7 +5649,8 @@
       },
       {
         "t": "h",
-        "text": "File RAW mở bằng phần mềm nào?"
+        "text": "File RAW mở bằng phần mềm nào?",
+        "toc": "Phần mềm mở RAW"
       },
       {
         "t": "p",
@@ -5535,7 +5662,8 @@
       },
       {
         "t": "h",
-        "text": "RAW hay JPEG nên chọn theo thói quen nào?"
+        "text": "RAW hay JPEG nên chọn theo thói quen nào?",
+        "toc": "Chọn theo thói quen"
       },
       {
         "t": "p",
@@ -5729,7 +5857,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao nên luyện săn màu và lớp cảnh?"
+        "text": "Vì sao nên luyện săn màu và lớp cảnh?",
+        "toc": "Vì sao nên luyện"
       },
       {
         "t": "p",
@@ -5741,7 +5870,8 @@
       },
       {
         "t": "h",
-        "text": "Bài 1: săn một màu trong mười phút thế nào?"
+        "text": "Bài 1: săn một màu trong mười phút thế nào?",
+        "toc": "Bài 1: săn một màu"
       },
       {
         "t": "p",
@@ -5761,7 +5891,8 @@
       },
       {
         "t": "h",
-        "text": "Bài 2: phối màu theo bánh xe màu thế nào?"
+        "text": "Bài 2: phối màu theo bánh xe màu thế nào?",
+        "toc": "Bài 2: phối màu"
       },
       {
         "t": "p",
@@ -5807,7 +5938,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn Picture Profile nào khi săn màu?"
+        "text": "Chọn Picture Profile nào khi săn màu?",
+        "toc": "Chọn Picture Profile"
       },
       {
         "t": "p",
@@ -5819,7 +5951,8 @@
       },
       {
         "t": "h",
-        "text": "Bài 3: xếp ba lớp cảnh thế nào?"
+        "text": "Bài 3: xếp ba lớp cảnh thế nào?",
+        "toc": "Bài 3: ba lớp cảnh"
       },
       {
         "t": "p",
@@ -5874,7 +6007,8 @@
       },
       {
         "t": "h",
-        "text": "Ghép ba bài thành buổi 30 phút thế nào?"
+        "text": "Ghép ba bài thành buổi 30 phút thế nào?",
+        "toc": "Buổi tập 30 phút"
       },
       {
         "t": "p",
@@ -6011,7 +6145,8 @@
       },
       {
         "t": "h",
-        "text": "Số f thật ra là một phép chia"
+        "text": "Số f thật ra là một phép chia",
+        "toc": "Số f là phép chia"
       },
       {
         "t": "p",
@@ -6023,7 +6158,8 @@
       },
       {
         "t": "h",
-        "text": "Dãy số f chuẩn và chuyện mỗi bước gấp đôi"
+        "text": "Dãy số f chuẩn và chuyện mỗi bước gấp đôi",
+        "toc": "Dãy số f chuẩn"
       },
       {
         "t": "p",
@@ -6080,7 +6216,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao ống kit có hai con số"
+        "text": "Vì sao ống kit có hai con số",
+        "toc": "Hai con số trên ống kit"
       },
       {
         "t": "p",
@@ -6105,7 +6242,8 @@
       },
       {
         "t": "h",
-        "text": "Zoom vào thì chuyện gì xảy ra với ảnh"
+        "text": "Zoom vào thì chuyện gì xảy ra với ảnh",
+        "toc": "Khi zoom vào"
       },
       {
         "t": "p",
@@ -6155,7 +6293,8 @@
       },
       {
         "t": "h",
-        "text": "Đặt f bao nhiêu thì ống kit sắc nhất"
+        "text": "Đặt f bao nhiêu thì ống kit sắc nhất",
+        "toc": "Số f sắc nhất"
       },
       {
         "t": "p",
@@ -6167,7 +6306,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập 15 phút với ống kit"
+        "text": "Bài tập 15 phút với ống kit",
+        "toc": "Bài tập 15 phút"
       },
       {
         "t": "p",
@@ -6186,7 +6326,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào ống kit không còn đủ"
+        "text": "Khi nào ống kit không còn đủ",
+        "toc": "Khi ống kit không đủ"
       },
       {
         "t": "p",
@@ -6319,7 +6460,8 @@
       },
       {
         "t": "h",
-        "text": "Những yếu tố nào làm nền nhòe khi xóa phông?"
+        "text": "Những yếu tố nào làm nền nhòe khi xóa phông?",
+        "toc": "Yếu tố làm nền nhòe"
       },
       {
         "t": "p",
@@ -6370,7 +6512,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao zoom về tiêu cự dài làm nền nhòe hơn?"
+        "text": "Vì sao zoom về tiêu cự dài làm nền nhòe hơn?",
+        "toc": "Tiêu cự dài"
       },
       {
         "t": "p",
@@ -6390,7 +6533,8 @@
       },
       {
         "t": "h",
-        "text": "Cách xóa phông bằng ống kit trên ZV-E10 và A6400"
+        "text": "Cách xóa phông bằng ống kit trên ZV-E10 và A6400",
+        "toc": "Cách làm trên máy"
       },
       {
         "t": "p",
@@ -6406,7 +6550,8 @@
       },
       {
         "t": "h",
-        "text": "Nút Background Defocus trên ZV-E10 làm gì?"
+        "text": "Nút Background Defocus trên ZV-E10 làm gì?",
+        "toc": "Nút Background Defocus"
       },
       {
         "t": "p",
@@ -6427,7 +6572,8 @@
       },
       {
         "t": "h",
-        "text": "Nền nào cho ảnh xóa phông đẹp?"
+        "text": "Nền nào cho ảnh xóa phông đẹp?",
+        "toc": "Chọn nền"
       },
       {
         "t": "p",
@@ -6443,7 +6589,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập ba khung: đổi khoảng cách tới nền"
+        "text": "Bài tập ba khung: đổi khoảng cách tới nền",
+        "toc": "Bài tập ba khung"
       },
       {
         "t": "p",
@@ -6462,7 +6609,8 @@
       },
       {
         "t": "h",
-        "text": "Lỗi hay gặp khi xóa phông bằng ống kit"
+        "text": "Lỗi hay gặp khi xóa phông bằng ống kit",
+        "toc": "Lỗi hay gặp"
       },
       {
         "t": "p",
@@ -6470,7 +6618,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên thêm ống fix khẩu lớn?"
+        "text": "Khi nào nên thêm ống fix khẩu lớn?",
+        "toc": "Thêm ống fix khẩu lớn"
       },
       {
         "t": "p",
@@ -6594,7 +6743,8 @@
       },
       {
         "t": "h",
-        "text": "Stop là đơn vị chung của khẩu, tốc và ISO"
+        "text": "Stop là đơn vị chung của khẩu, tốc và ISO",
+        "toc": "Stop là gì"
       },
       {
         "t": "p",
@@ -6606,7 +6756,8 @@
       },
       {
         "t": "h",
-        "text": "Ba dãy mốc nên thuộc lòng"
+        "text": "Ba dãy mốc nên thuộc lòng",
+        "toc": "Ba dãy mốc"
       },
       {
         "t": "p",
@@ -6644,7 +6795,8 @@
       },
       {
         "t": "h",
-        "text": "Những nấc ở giữa: 1/3 stop"
+        "text": "Những nấc ở giữa: 1/3 stop",
+        "toc": "Nấc 1/3 stop"
       },
       {
         "t": "p",
@@ -6705,7 +6857,8 @@
       },
       {
         "t": "h",
-        "text": "Cài bước phơi sáng trên máy"
+        "text": "Cài bước phơi sáng trên máy",
+        "toc": "Cài bước phơi sáng"
       },
       {
         "t": "p",
@@ -6718,7 +6871,8 @@
       },
       {
         "t": "h",
-        "text": "Đổi chéo trong chế độ M mà không nhìn thước đo"
+        "text": "Đổi chéo trong chế độ M mà không nhìn thước đo",
+        "toc": "Đổi chéo trong M"
       },
       {
         "t": "p",
@@ -6773,7 +6927,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập: đếm nấc trong chế độ M"
+        "text": "Bài tập: đếm nấc trong chế độ M",
+        "toc": "Bài tập"
       },
       {
         "t": "p",
@@ -6909,7 +7064,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao tách lấy nét khỏi nút chụp"
+        "text": "Vì sao tách lấy nét khỏi nút chụp",
+        "toc": "Vì sao tách lấy nét"
       },
       {
         "t": "p",
@@ -6950,7 +7106,8 @@
       },
       {
         "t": "h",
-        "text": "Cài trên A6400"
+        "text": "Cài trên A6400",
+        "toc": "Cài trên A6400"
       },
       {
         "t": "p",
@@ -6978,7 +7135,8 @@
       },
       {
         "t": "h",
-        "text": "Cài trên ZV-E10"
+        "text": "Cài trên ZV-E10",
+        "toc": "Cài trên ZV-E10"
       },
       {
         "t": "p",
@@ -6995,7 +7153,8 @@
       },
       {
         "t": "h",
-        "text": "Phím Tracking On: giữ để bám, nhả để về cũ"
+        "text": "Phím Tracking On: giữ để bám, nhả để về cũ",
+        "toc": "Phím Tracking On"
       },
       {
         "t": "p",
@@ -7019,7 +7178,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên dùng cách này"
+        "text": "Khi nào nên dùng cách này",
+        "toc": "Khi nào nên dùng"
       },
       {
         "t": "p",
@@ -7027,7 +7187,8 @@
       },
       {
         "t": "h",
-        "text": "Những lỗi hay gặp khi mới chuyển"
+        "text": "Những lỗi hay gặp khi mới chuyển",
+        "toc": "Lỗi hay gặp"
       },
       {
         "t": "p",
@@ -7061,7 +7222,8 @@
       },
       {
         "t": "h",
-        "text": "Luyện ba ngày trước buổi chụp quan trọng"
+        "text": "Luyện ba ngày trước buổi chụp quan trọng",
+        "toc": "Luyện ba ngày"
       },
       {
         "t": "p",
@@ -7232,7 +7394,8 @@
       },
       {
         "t": "h",
-        "text": "Hai nguồn sáng trong một khung"
+        "text": "Hai nguồn sáng trong một khung",
+        "toc": "Hai nguồn sáng"
       },
       {
         "t": "p",
@@ -7256,7 +7419,8 @@
       },
       {
         "t": "h",
-        "text": "Cài đặt bù sáng: Exp.comp.set"
+        "text": "Cài đặt bù sáng: Exp.comp.set",
+        "toc": "Bù sáng: Exp.comp.set"
       },
       {
         "t": "p",
@@ -7285,7 +7449,8 @@
       },
       {
         "t": "h",
-        "text": "Bù flash: Flash Comp."
+        "text": "Bù flash: Flash Comp.",
+        "toc": "Bù flash"
       },
       {
         "t": "p",
@@ -7305,7 +7470,8 @@
       },
       {
         "t": "h",
-        "text": "Đọc hai thanh trượt trên ảnh"
+        "text": "Đọc hai thanh trượt trên ảnh",
+        "toc": "Đọc hai thanh trượt"
       },
       {
         "t": "p",
@@ -7351,7 +7517,8 @@
       },
       {
         "t": "h",
-        "text": "Xem trước: Shot. Result Preview"
+        "text": "Xem trước: Shot. Result Preview",
+        "toc": "Xem trước kết quả"
       },
       {
         "t": "p",
@@ -7367,7 +7534,8 @@
       },
       {
         "t": "h",
-        "text": "Giới hạn đồng bộ 1/160 s"
+        "text": "Giới hạn đồng bộ 1/160 s",
+        "toc": "Đồng bộ 1/160 s"
       },
       {
         "t": "p",
@@ -7548,7 +7716,8 @@
       },
       {
         "t": "h",
-        "text": "ISO AUTO Min. SS hoạt động thế nào?"
+        "text": "ISO AUTO Min. SS hoạt động thế nào?",
+        "toc": "Cách hoạt động"
       },
       {
         "t": "p",
@@ -7560,7 +7729,8 @@
       },
       {
         "t": "h",
-        "text": "Năm mức trên A6400"
+        "text": "Năm mức trên A6400",
+        "toc": "Năm mức trên A6400"
       },
       {
         "t": "p",
@@ -7611,7 +7781,8 @@
       },
       {
         "t": "h",
-        "text": "Cách đặt trên A6400"
+        "text": "Cách đặt trên A6400",
+        "toc": "Đặt trên A6400"
       },
       {
         "t": "p",
@@ -7629,7 +7800,8 @@
       },
       {
         "t": "h",
-        "text": "Cách đặt trên A7C II"
+        "text": "Cách đặt trên A7C II",
+        "toc": "Đặt trên A7C II"
       },
       {
         "t": "p",
@@ -7641,7 +7813,8 @@
       },
       {
         "t": "h",
-        "text": "ZV-E10 có mục này không?"
+        "text": "ZV-E10 có mục này không?",
+        "toc": "ZV-E10 có không"
       },
       {
         "t": "p",
@@ -7649,7 +7822,8 @@
       },
       {
         "t": "h",
-        "text": "Cách giữ tốc độ trên ZV-E10"
+        "text": "Cách giữ tốc độ trên ZV-E10",
+        "toc": "Giữ tốc độ trên ZV-E10"
       },
       {
         "t": "p",
@@ -7670,7 +7844,8 @@
       },
       {
         "t": "h",
-        "text": "Khi ánh sáng vẫn thiếu"
+        "text": "Khi ánh sáng vẫn thiếu",
+        "toc": "Khi vẫn thiếu sáng"
       },
       {
         "t": "p",
@@ -7690,7 +7865,8 @@
       },
       {
         "t": "h",
-        "text": "Nên chọn mức nào theo cảnh?"
+        "text": "Nên chọn mức nào theo cảnh?",
+        "toc": "Chọn mức theo cảnh"
       },
       {
         "t": "p",
@@ -7817,7 +7993,8 @@
       },
       {
         "t": "h",
-        "text": "Ảnh chồng hoạt động thế nào"
+        "text": "Ảnh chồng hoạt động thế nào",
+        "toc": "Cách hoạt động"
       },
       {
         "t": "p",
@@ -7837,7 +8014,8 @@
       },
       {
         "t": "h",
-        "text": "Máy ZV-E10 và A6400 có chồng ảnh trong máy không?"
+        "text": "Máy ZV-E10 và A6400 có chồng ảnh trong máy không?",
+        "toc": "Chồng ảnh trong máy"
       },
       {
         "t": "p",
@@ -7859,7 +8037,8 @@
       },
       {
         "t": "h",
-        "text": "Khung 1: khuôn sáng, người tối trên nền trắng"
+        "text": "Khung 1: khuôn sáng, người tối trên nền trắng",
+        "toc": "Khung 1: người tối"
       },
       {
         "t": "p",
@@ -7871,7 +8050,8 @@
       },
       {
         "t": "h",
-        "text": "Khung 2: họa tiết tương phản mạnh"
+        "text": "Khung 2: họa tiết tương phản mạnh",
+        "toc": "Khung 2: họa tiết"
       },
       {
         "t": "p",
@@ -7910,7 +8090,8 @@
       },
       {
         "t": "h",
-        "text": "Ghép: lớp dưới, lớp trên và chế độ hòa trộn"
+        "text": "Ghép: lớp dưới, lớp trên và chế độ hòa trộn",
+        "toc": "Ghép hai lớp"
       },
       {
         "t": "p",
@@ -7972,7 +8153,8 @@
       },
       {
         "t": "h",
-        "text": "Chụp cả hai khung trong một buổi"
+        "text": "Chụp cả hai khung trong một buổi",
+        "toc": "Chụp trong một buổi"
       },
       {
         "t": "p",
@@ -7992,7 +8174,8 @@
       },
       {
         "t": "h",
-        "text": "Tiêu chí của một ảnh chồng đạt"
+        "text": "Tiêu chí của một ảnh chồng đạt",
+        "toc": "Tiêu chí đạt"
       },
       {
         "t": "p",
@@ -8121,7 +8304,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao ảnh đông thứ mà vẫn nhạt?"
+        "text": "Vì sao ảnh đông thứ mà vẫn nhạt?",
+        "toc": "Vì sao ảnh nhạt"
       },
       {
         "t": "p",
@@ -8129,7 +8313,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn chủ thể chính bằng một câu hỏi thế nào?"
+        "text": "Chọn chủ thể chính bằng một câu hỏi thế nào?",
+        "toc": "Chọn bằng một câu hỏi"
       },
       {
         "t": "p",
@@ -8177,7 +8362,8 @@
       },
       {
         "t": "h",
-        "text": "Dọn vai phụ và hậu cảnh trước khi bấm thế nào?"
+        "text": "Dọn vai phụ và hậu cảnh trước khi bấm thế nào?",
+        "toc": "Dọn vai phụ, hậu cảnh"
       },
       {
         "t": "p",
@@ -8206,7 +8392,8 @@
       },
       {
         "t": "h",
-        "text": "Đặt Vùng lấy nét lên chủ thể trên ZV-E10 và A6400 thế nào?"
+        "text": "Đặt Vùng lấy nét lên chủ thể trên ZV-E10 và A6400 thế nào?",
+        "toc": "Đặt Vùng lấy nét"
       },
       {
         "t": "p",
@@ -8230,7 +8417,8 @@
       },
       {
         "t": "h",
-        "text": "Với người, lấy nét mắt làm gì trên máy?"
+        "text": "Với người, lấy nét mắt làm gì trên máy?",
+        "toc": "Lấy nét mắt"
       },
       {
         "t": "p",
@@ -8242,7 +8430,8 @@
       },
       {
         "t": "h",
-        "text": "Hai chủ thể ngang sức thì chọn thế nào?"
+        "text": "Hai chủ thể ngang sức thì chọn thế nào?",
+        "toc": "Hai chủ thể ngang sức"
       },
       {
         "t": "p",
@@ -8262,7 +8451,8 @@
       },
       {
         "t": "h",
-        "text": "Bài tập năm phút thì làm thế nào?"
+        "text": "Bài tập năm phút thì làm thế nào?",
+        "toc": "Bài tập năm phút"
       },
       {
         "t": "p",
@@ -8280,7 +8470,8 @@
       },
       {
         "t": "h",
-        "text": "Sau khi chọn được chủ thể chính, đặt nó ở đâu?"
+        "text": "Sau khi chọn được chủ thể chính, đặt nó ở đâu?",
+        "toc": "Đặt chủ thể ở đâu"
       },
       {
         "t": "p",
@@ -8397,7 +8588,8 @@
       },
       {
         "t": "h",
-        "text": "Active và Standard trên ZV-E10"
+        "text": "Active và Standard trên ZV-E10",
+        "toc": "Active và Standard"
       },
       {
         "t": "p",
@@ -8417,7 +8609,8 @@
       },
       {
         "t": "h",
-        "text": "Đường đi tới SteadyShot"
+        "text": "Đường đi tới SteadyShot",
+        "toc": "Đường đi tới SteadyShot"
       },
       {
         "t": "p",
@@ -8435,7 +8628,8 @@
       },
       {
         "t": "h",
-        "text": "Mức trên A6400"
+        "text": "Mức trên A6400",
+        "toc": "Mức trên A6400"
       },
       {
         "t": "p",
@@ -8443,7 +8637,8 @@
       },
       {
         "t": "h",
-        "text": "Mức Dynamic active trên A7C II"
+        "text": "Mức Dynamic active trên A7C II",
+        "toc": "Dynamic active"
       },
       {
         "t": "p",
@@ -8489,7 +8684,8 @@
       },
       {
         "t": "h",
-        "text": "Đo phần ảnh bị cắt trên máy của bạn"
+        "text": "Đo phần ảnh bị cắt trên máy của bạn",
+        "toc": "Đo phần ảnh bị cắt"
       },
       {
         "t": "p",
@@ -8497,7 +8693,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào Active không chọn được trên A7C II"
+        "text": "Khi nào Active không chọn được trên A7C II",
+        "toc": "Khi không chọn được Active"
       },
       {
         "t": "p",
@@ -8635,7 +8832,8 @@
       },
       {
         "t": "h",
-        "text": "Bright Monitoring dùng để làm gì khi chụp ban đêm?"
+        "text": "Bright Monitoring dùng để làm gì khi chụp ban đêm?",
+        "toc": "Dùng để làm gì"
       },
       {
         "t": "p",
@@ -8651,7 +8849,8 @@
       },
       {
         "t": "h",
-        "text": "Bật Bright Monitoring trên ZV-E10 và A6400 thế nào?"
+        "text": "Bật Bright Monitoring trên ZV-E10 và A6400 thế nào?",
+        "toc": "Bật trên ZV-E10, A6400"
       },
       {
         "t": "p",
@@ -8665,7 +8864,8 @@
       },
       {
         "t": "h",
-        "text": "Bấm phím thế nào để bật và tắt?"
+        "text": "Bấm phím thế nào để bật và tắt?",
+        "toc": "Bấm phím bật, tắt"
       },
       {
         "t": "p",
@@ -8681,7 +8881,8 @@
       },
       {
         "t": "h",
-        "text": "Bright Monitoring có làm thay đổi phơi sáng không?"
+        "text": "Bright Monitoring có làm thay đổi phơi sáng không?",
+        "toc": "Ảnh hưởng tới phơi sáng"
       },
       {
         "t": "p",
@@ -8715,7 +8916,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào Bright Monitoring tự tắt trên ZV-E10 và A6400?"
+        "text": "Khi nào Bright Monitoring tự tắt trên ZV-E10 và A6400?",
+        "toc": "Khi nào tự tắt"
       },
       {
         "t": "p",
@@ -8723,7 +8925,8 @@
       },
       {
         "t": "h",
-        "text": "Trên A7C II, bật và tắt Bright Monitoring thế nào?"
+        "text": "Trên A7C II, bật và tắt Bright Monitoring thế nào?",
+        "toc": "Trên A7C II"
       },
       {
         "t": "p",
@@ -8731,7 +8934,8 @@
       },
       {
         "t": "h",
-        "text": "Focus Magnifier giúp kiểm tra nét trong cảnh tối thế nào?"
+        "text": "Focus Magnifier giúp kiểm tra nét trong cảnh tối thế nào?",
+        "toc": "Focus Magnifier"
       },
       {
         "t": "p",
@@ -8757,7 +8961,8 @@
       },
       {
         "t": "h",
-        "text": "Chỉnh độ sáng màn hình khi chụp trong nhà thế nào?"
+        "text": "Chỉnh độ sáng màn hình khi chụp trong nhà thế nào?",
+        "toc": "Độ sáng màn hình"
       },
       {
         "t": "p",
@@ -8945,7 +9150,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao Auto WB lệch khi có hai nguồn sáng?"
+        "text": "Vì sao Auto WB lệch khi có hai nguồn sáng?",
+        "toc": "Vì sao Auto WB lệch"
       },
       {
         "t": "p",
@@ -8953,7 +9159,8 @@
       },
       {
         "t": "h",
-        "text": "Priority Set in AWB chọn hướng nào?"
+        "text": "Priority Set in AWB chọn hướng nào?",
+        "toc": "Priority Set in AWB"
       },
       {
         "t": "p",
@@ -9005,7 +9212,8 @@
       },
       {
         "t": "h",
-        "text": "Custom WB chụp tờ trắng dưới đúng ánh sáng nào?"
+        "text": "Custom WB chụp tờ trắng dưới đúng ánh sáng nào?",
+        "toc": "Custom WB"
       },
       {
         "t": "p",
@@ -9036,7 +9244,8 @@
       },
       {
         "t": "h",
-        "text": "Shutter AWB Lock trên A7C II giữ WB khi nào?"
+        "text": "Shutter AWB Lock trên A7C II giữ WB khi nào?",
+        "toc": "Shutter AWB Lock"
       },
       {
         "t": "p",
@@ -9198,7 +9407,8 @@
       },
       {
         "t": "h",
-        "text": "Bóng râm mở cho ánh sáng mềm thế nào?"
+        "text": "Bóng râm mở cho ánh sáng mềm thế nào?",
+        "toc": "Bóng râm mở"
       },
       {
         "t": "p",
@@ -9214,7 +9424,8 @@
       },
       {
         "t": "h",
-        "text": "Chế độ đo sáng nào để đo đúng mặt?"
+        "text": "Chế độ đo sáng nào để đo đúng mặt?",
+        "toc": "Chế độ đo sáng"
       },
       {
         "t": "p",
@@ -9258,7 +9469,8 @@
       },
       {
         "t": "h",
-        "text": "Ngược sáng thì đo nền hay đo mặt?"
+        "text": "Ngược sáng thì đo nền hay đo mặt?",
+        "toc": "Khi ngược sáng"
       },
       {
         "t": "p",
@@ -9278,7 +9490,8 @@
       },
       {
         "t": "h",
-        "text": "DRO hay Auto HDR khi dải sáng quá rộng?"
+        "text": "DRO hay Auto HDR khi dải sáng quá rộng?",
+        "toc": "DRO hay Auto HDR"
       },
       {
         "t": "p",
@@ -9301,7 +9514,8 @@
       },
       {
         "t": "h",
-        "text": "Fill-flash lấp bóng mặt thế nào?"
+        "text": "Fill-flash lấp bóng mặt thế nào?",
+        "toc": "Fill-flash"
       },
       {
         "t": "p",
@@ -9327,7 +9541,8 @@
       },
       {
         "t": "h",
-        "text": "Kiểm tra gì trước khi chụp giữa trưa?"
+        "text": "Kiểm tra gì trước khi chụp giữa trưa?",
+        "toc": "Kiểm tra trước khi chụp"
       },
       {
         "t": "p",
@@ -9513,7 +9728,8 @@
       },
       {
         "t": "h",
-        "text": "Bật và tắt Silent Shooting trên ZV-E10 và A6400"
+        "text": "Bật và tắt Silent Shooting trên ZV-E10 và A6400",
+        "toc": "Silent Shooting"
       },
       {
         "t": "p",
@@ -9535,7 +9751,8 @@
       },
       {
         "t": "h",
-        "text": "Silent Mode trên A7C II khóa những gì"
+        "text": "Silent Mode trên A7C II khóa những gì",
+        "toc": "Silent Mode trên A7C II"
       },
       {
         "t": "p",
@@ -9551,7 +9768,8 @@
       },
       {
         "t": "h",
-        "text": "Sọc ngang xuất hiện khi nào"
+        "text": "Sọc ngang xuất hiện khi nào",
+        "toc": "Khi nào có sọc ngang"
       },
       {
         "t": "p",
@@ -9571,7 +9789,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn Mechanical Shutter hay Electronic Shutter"
+        "text": "Chọn Mechanical Shutter hay Electronic Shutter",
+        "toc": "Màn trập cơ hay điện tử"
       },
       {
         "t": "p",
@@ -9583,7 +9802,8 @@
       },
       {
         "t": "h",
-        "text": "So sánh hai chức năng chống nhấp nháy của A7C II"
+        "text": "So sánh hai chức năng chống nhấp nháy của A7C II",
+        "toc": "Chống nhấp nháy A7C II"
       },
       {
         "t": "p",
@@ -9626,7 +9846,8 @@
       },
       {
         "t": "h",
-        "text": "Kiểm tra trước khi chụp"
+        "text": "Kiểm tra trước khi chụp",
+        "toc": "Kiểm tra trước khi chụp"
       },
       {
         "t": "p",
@@ -9766,7 +9987,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao biển neon làm ảnh bị cháy hoặc tối?"
+        "text": "Vì sao biển neon làm ảnh bị cháy hoặc tối?",
+        "toc": "Vì sao ảnh cháy, tối"
       },
       {
         "t": "p",
@@ -9778,7 +10000,8 @@
       },
       {
         "t": "h",
-        "text": "Chế độ đo sáng nào hợp với biển neon?"
+        "text": "Chế độ đo sáng nào hợp với biển neon?",
+        "toc": "Chế độ đo sáng"
       },
       {
         "t": "p",
@@ -9808,7 +10031,8 @@
       },
       {
         "t": "h",
-        "text": "Bù sáng bao nhiêu EV khi chụp biển neon?"
+        "text": "Bù sáng bao nhiêu EV khi chụp biển neon?",
+        "toc": "Bù sáng bao nhiêu EV"
       },
       {
         "t": "p",
@@ -9834,7 +10058,8 @@
       },
       {
         "t": "h",
-        "text": "Cân bằng trắng dưới đèn natri và đèn thủy ngân thế nào?"
+        "text": "Cân bằng trắng dưới đèn natri và đèn thủy ngân thế nào?",
+        "toc": "Cân bằng trắng"
       },
       {
         "t": "p",
@@ -9865,7 +10090,8 @@
       },
       {
         "t": "h",
-        "text": "Bù sáng khác nhau thế nào giữa ZV-E10, A6400 và A7C II?"
+        "text": "Bù sáng khác nhau thế nào giữa ZV-E10, A6400 và A7C II?",
+        "toc": "Bù sáng trên ba máy"
       },
       {
         "t": "p",
@@ -9904,7 +10130,8 @@
       },
       {
         "t": "h",
-        "text": "Kiểm tra gì trước khi bấm chụp?"
+        "text": "Kiểm tra gì trước khi bấm chụp?",
+        "toc": "Kiểm tra trước khi chụp"
       },
       {
         "t": "p",
@@ -10092,7 +10319,8 @@
       },
       {
         "t": "h",
-        "text": "Gửi ảnh từ ZV-E10 sang điện thoại thế nào?"
+        "text": "Gửi ảnh từ ZV-E10 sang điện thoại thế nào?",
+        "toc": "Gửi từ ZV-E10"
       },
       {
         "t": "p",
@@ -10100,7 +10328,8 @@
       },
       {
         "t": "h",
-        "text": "Gửi ảnh từ A7C II sang điện thoại thế nào?"
+        "text": "Gửi ảnh từ A7C II sang điện thoại thế nào?",
+        "toc": "Gửi từ A7C II"
       },
       {
         "t": "p",
@@ -10108,7 +10337,8 @@
       },
       {
         "t": "h",
-        "text": "A6400 gửi ảnh qua PlayMemories Mobile thế nào?"
+        "text": "A6400 gửi ảnh qua PlayMemories Mobile thế nào?",
+        "toc": "Gửi từ A6400"
       },
       {
         "t": "p",
@@ -10116,7 +10346,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn nhiều ảnh để gửi một lần thế nào?"
+        "text": "Chọn nhiều ảnh để gửi một lần thế nào?",
+        "toc": "Gửi nhiều ảnh một lần"
       },
       {
         "t": "p",
@@ -10124,7 +10355,8 @@
       },
       {
         "t": "h",
-        "text": "Kích thước và định dạng ảnh gửi đi chọn ở đâu?"
+        "text": "Kích thước và định dạng ảnh gửi đi chọn ở đâu?",
+        "toc": "Kích thước, định dạng"
       },
       {
         "t": "p",
@@ -10140,7 +10372,8 @@
       },
       {
         "t": "h",
-        "text": "Gửi video sang điện thoại có giới hạn gì?"
+        "text": "Gửi video sang điện thoại có giới hạn gì?",
+        "toc": "Gửi video"
       },
       {
         "t": "p",
@@ -10148,7 +10381,8 @@
       },
       {
         "t": "h",
-        "text": "Điện thoại không ghép nối được thì làm sao?"
+        "text": "Điện thoại không ghép nối được thì làm sao?",
+        "toc": "Khi không ghép nối được"
       },
       {
         "t": "p",
@@ -10156,7 +10390,8 @@
       },
       {
         "t": "h",
-        "text": "Mỗi máy khác nhau ở ứng dụng và cách chọn ảnh nào?"
+        "text": "Mỗi máy khác nhau ở ứng dụng và cách chọn ảnh nào?",
+        "toc": "Khác biệt giữa các máy"
       },
       {
         "t": "p",
@@ -10307,7 +10542,8 @@
       },
       {
         "t": "h",
-        "text": "Clear Image Zoom khác zoom số thế nào?"
+        "text": "Clear Image Zoom khác zoom số thế nào?",
+        "toc": "Khác zoom số ở đâu"
       },
       {
         "t": "p",
@@ -10323,7 +10559,8 @@
       },
       {
         "t": "h",
-        "text": "Mức zoom rõ nét trên ZV-E10 và A6400 là bao nhiêu?"
+        "text": "Mức zoom rõ nét trên ZV-E10 và A6400 là bao nhiêu?",
+        "toc": "Mức zoom rõ nét"
       },
       {
         "t": "p",
@@ -10357,7 +10594,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn ảnh nhỏ thì zoom xa hơn có đáng không?"
+        "text": "Chọn ảnh nhỏ thì zoom xa hơn có đáng không?",
+        "toc": "Ảnh nhỏ, zoom xa hơn"
       },
       {
         "t": "p",
@@ -10365,7 +10603,8 @@
       },
       {
         "t": "h",
-        "text": "Khi nào nên bật zoom rõ nét?"
+        "text": "Khi nào nên bật zoom rõ nét?",
+        "toc": "Khi nào nên bật"
       },
       {
         "t": "p",
@@ -10373,7 +10612,8 @@
       },
       {
         "t": "h",
-        "text": "Zoom số có nên dùng thay cho zoom rõ nét không?"
+        "text": "Zoom số có nên dùng thay cho zoom rõ nét không?",
+        "toc": "Có nên dùng zoom số"
       },
       {
         "t": "p",
@@ -10381,7 +10621,8 @@
       },
       {
         "t": "h",
-        "text": "Bật zoom rõ nét trên ZV-E10 và A6400 thế nào?"
+        "text": "Bật zoom rõ nét trên ZV-E10 và A6400 thế nào?",
+        "toc": "Bật trên ZV-E10, A6400"
       },
       {
         "t": "p",
@@ -10395,7 +10636,8 @@
       },
       {
         "t": "h",
-        "text": "Có giới hạn nào khi bật zoom rõ nét?"
+        "text": "Có giới hạn nào khi bật zoom rõ nét?",
+        "toc": "Giới hạn"
       },
       {
         "t": "p",
@@ -10407,7 +10649,8 @@
       },
       {
         "t": "h",
-        "text": "Zoom ngoài quang học có khóa điểm lấy nét không?"
+        "text": "Zoom ngoài quang học có khóa điểm lấy nét không?",
+        "toc": "Điểm lấy nét khi zoom"
       },
       {
         "t": "p",
@@ -10427,7 +10670,8 @@
       },
       {
         "t": "h",
-        "text": "A7C II cắt khung APS-C thế nào?"
+        "text": "A7C II cắt khung APS-C thế nào?",
+        "toc": "A7C II cắt khung APS-C"
       },
       {
         "t": "p",
@@ -10447,7 +10691,8 @@
       },
       {
         "t": "h",
-        "text": "Zoom rõ nét trên A7C II khác gì khi chụp APS-C?"
+        "text": "Zoom rõ nét trên A7C II khác gì khi chụp APS-C?",
+        "toc": "Zoom rõ nét trên A7C II"
       },
       {
         "t": "p",
@@ -10597,7 +10842,8 @@
       },
       {
         "t": "h",
-        "text": "Vì sao đèn LED làm video nhấp nháy"
+        "text": "Vì sao đèn LED làm video nhấp nháy",
+        "toc": "Vì sao nhấp nháy"
       },
       {
         "t": "p",
@@ -10613,7 +10859,8 @@
       },
       {
         "t": "h",
-        "text": "Tốc độ màn trập nào tránh được sọc"
+        "text": "Tốc độ màn trập nào tránh được sọc",
+        "toc": "Tốc độ tránh sọc"
       },
       {
         "t": "p",
@@ -10652,7 +10899,8 @@
       },
       {
         "t": "h",
-        "text": "Chỉnh trên ZV-E10 và A6400"
+        "text": "Chỉnh trên ZV-E10 và A6400",
+        "toc": "Trên ZV-E10 và A6400"
       },
       {
         "t": "p",
@@ -10670,7 +10918,8 @@
       },
       {
         "t": "h",
-        "text": "Chỉnh trên A7C II"
+        "text": "Chỉnh trên A7C II",
+        "toc": "Trên A7C II"
       },
       {
         "t": "p",
@@ -10698,7 +10947,8 @@
       },
       {
         "t": "h",
-        "text": "Khi đèn vẫn gây sọc"
+        "text": "Khi đèn vẫn gây sọc",
+        "toc": "Khi vẫn còn sọc"
       },
       {
         "t": "p",
@@ -10706,7 +10956,8 @@
       },
       {
         "t": "h",
-        "text": "Quy trình kiểm tra trước buổi quay"
+        "text": "Quy trình kiểm tra trước buổi quay",
+        "toc": "Kiểm tra trước buổi quay"
       },
       {
         "t": "p",
@@ -10726,7 +10977,8 @@
       },
       {
         "t": "h",
-        "text": "Tóm tắt đường đi trên ba máy"
+        "text": "Tóm tắt đường đi trên ba máy",
+        "toc": "Tóm tắt ba máy"
       },
       {
         "t": "p",
@@ -10883,7 +11135,8 @@
       },
       {
         "t": "h",
-        "text": "Cách bật USB Streaming trên ZV-E10"
+        "text": "Cách bật USB Streaming trên ZV-E10",
+        "toc": "Bật trên ZV-E10"
       },
       {
         "t": "p",
@@ -10903,7 +11156,8 @@
       },
       {
         "t": "h",
-        "text": "Cách bật USB Streaming trên A7C II"
+        "text": "Cách bật USB Streaming trên A7C II",
+        "toc": "Bật trên A7C II"
       },
       {
         "t": "p",
@@ -10921,7 +11175,8 @@
       },
       {
         "t": "h",
-        "text": "Độ phân giải nào hợp với cổng USB"
+        "text": "Độ phân giải nào hợp với cổng USB",
+        "toc": "Độ phân giải"
       },
       {
         "t": "p",
@@ -10941,7 +11196,8 @@
       },
       {
         "t": "h",
-        "text": "Hai máy khác nhau ở điểm nào"
+        "text": "Hai máy khác nhau ở điểm nào",
+        "toc": "Hai máy khác nhau"
       },
       {
         "t": "p",
@@ -10985,7 +11241,8 @@
       },
       {
         "t": "h",
-        "text": "Kiểm gì trên máy trước khi họp?"
+        "text": "Kiểm gì trên máy trước khi họp?",
+        "toc": "Kiểm trước khi họp"
       },
       {
         "t": "p",
@@ -11006,7 +11263,8 @@
       },
       {
         "t": "h",
-        "text": "Nguồn điện, micro và nhiệt độ cần lưu ý gì?"
+        "text": "Nguồn điện, micro và nhiệt độ cần lưu ý gì?",
+        "toc": "Nguồn, micro, nhiệt độ"
       },
       {
         "t": "p",
@@ -11014,7 +11272,8 @@
       },
       {
         "t": "h",
-        "text": "Ngồi cạnh cửa kính lúc nắng gắt thì chỉnh gì?"
+        "text": "Ngồi cạnh cửa kính lúc nắng gắt thì chỉnh gì?",
+        "toc": "Ngồi cạnh cửa kính"
       },
       {
         "t": "p",
@@ -11022,7 +11281,8 @@
       },
       {
         "t": "h",
-        "text": "Máy nào có hạn chế gì khi làm webcam?"
+        "text": "Máy nào có hạn chế gì khi làm webcam?",
+        "toc": "Hạn chế từng máy"
       },
       {
         "t": "p",
@@ -11127,7 +11387,8 @@
       },
       {
         "t": "h",
-        "text": "Bật Proxy Recording trên ZV-E10"
+        "text": "Bật Proxy Recording trên ZV-E10",
+        "toc": "Bật trên ZV-E10"
       },
       {
         "t": "p",
@@ -11141,7 +11402,8 @@
       },
       {
         "t": "h",
-        "text": "Khi máy không ghi proxy"
+        "text": "Khi máy không ghi proxy",
+        "toc": "Khi không ghi proxy"
       },
       {
         "t": "p",
@@ -11149,7 +11411,8 @@
       },
       {
         "t": "h",
-        "text": "So sánh thông số proxy của ba máy"
+        "text": "So sánh thông số proxy của ba máy",
+        "toc": "Thông số ba máy"
       },
       {
         "t": "p",
@@ -11193,7 +11456,8 @@
       },
       {
         "t": "h",
-        "text": "Hai định dạng proxy trên A7C II"
+        "text": "Hai định dạng proxy trên A7C II",
+        "toc": "Định dạng trên A7C II"
       },
       {
         "t": "p",
@@ -11209,7 +11473,8 @@
       },
       {
         "t": "h",
-        "text": "Gửi proxy sang điện thoại"
+        "text": "Gửi proxy sang điện thoại",
+        "toc": "Gửi sang điện thoại"
       },
       {
         "t": "p",
@@ -11221,7 +11486,8 @@
       },
       {
         "t": "h",
-        "text": "Giới hạn ghi proxy trên A7C II"
+        "text": "Giới hạn ghi proxy trên A7C II",
+        "toc": "Giới hạn trên A7C II"
       },
       {
         "t": "p",
@@ -11229,7 +11495,8 @@
       },
       {
         "t": "h",
-        "text": "Xóa và bảo vệ clip có proxy"
+        "text": "Xóa và bảo vệ clip có proxy",
+        "toc": "Xóa và bảo vệ clip"
       },
       {
         "t": "p",
@@ -11237,7 +11504,8 @@
       },
       {
         "t": "h",
-        "text": "Kiểm trước khi quay"
+        "text": "Kiểm trước khi quay",
+        "toc": "Kiểm trước khi quay"
       },
       {
         "t": "p",
@@ -11361,7 +11629,8 @@
       },
       {
         "t": "h",
-        "text": "Chọn chế độ S&Q"
+        "text": "Chọn chế độ S&Q",
+        "toc": "Chọn chế độ S&Q"
       },
       {
         "t": "p",
@@ -11399,7 +11668,8 @@
       },
       {
         "t": "h",
-        "text": "Bảng tốc độ phát trên ZV-E10"
+        "text": "Bảng tốc độ phát trên ZV-E10",
+        "toc": "Bảng tốc độ phát"
       },
       {
         "t": "p",
@@ -11459,7 +11729,8 @@
       },
       {
         "t": "h",
-        "text": "Giới hạn khi chọn 120fps và 100fps"
+        "text": "Giới hạn khi chọn 120fps và 100fps",
+        "toc": "Giới hạn 120fps, 100fps"
       },
       {
         "t": "p",
@@ -11476,7 +11747,8 @@
       },
       {
         "t": "h",
-        "text": "Đường đi trên A6400 và A7C II"
+        "text": "Đường đi trên A6400 và A7C II",
+        "toc": "Trên A6400 và A7C II"
       },
       {
         "t": "p",
@@ -11488,7 +11760,8 @@
       },
       {
         "t": "h",
-        "text": "Chức năng không dùng được khi quay S&Q"
+        "text": "Chức năng không dùng được khi quay S&Q",
+        "toc": "Chức năng không dùng được"
       },
       {
         "t": "p",
@@ -11496,7 +11769,8 @@
       },
       {
         "t": "h",
-        "text": "Trước khi quay S&Q"
+        "text": "Trước khi quay S&Q",
+        "toc": "Trước khi quay"
       },
       {
         "t": "p",
@@ -11622,7 +11896,7 @@
     "topic": "gear",
     "level": "newbie",
     "archetype": "explainer",
-    "read": "10 phút đọc",
+    "read": "14 phút đọc",
     "title": "ZV-E10 được định vị lại: máy hybrid APS-C giá tốt nhất hiện tại",
     "dek": "ZV-E10 không còn chỉ là máy vlog: cảm biến APS-C crop 1,5, màn trập cơ đồng bộ flash 1/160 giây và bộ M1–M4 cài sẵn cho người vừa chụp vừa quay.",
     "blocks": [
@@ -11648,7 +11922,8 @@
       },
       {
         "t": "h",
-        "text": "ZV-E10 đứng ở đâu trong bốn thân máy APS-C ngàm E?"
+        "text": "ZV-E10 đứng ở đâu trong bốn thân máy APS-C ngàm E?",
+        "toc": "Vị trí của ZV-E10"
       },
       {
         "t": "p",
@@ -11692,7 +11967,8 @@
       },
       {
         "t": "h",
-        "text": "Cảm biến crop 1,5 lớn hơn khổ crop 1,6 bao nhiêu?"
+        "text": "Cảm biến crop 1,5 lớn hơn khổ crop 1,6 bao nhiêu?",
+        "toc": "Cảm biến crop 1,5"
       },
       {
         "t": "p",
@@ -11743,7 +12019,8 @@
       },
       {
         "t": "h",
-        "text": "Màn trập cơ đồng bộ flash 1/160 giây giúp gì khi chụp trong nhà?"
+        "text": "Màn trập cơ đồng bộ flash 1/160 giây giúp gì khi chụp trong nhà?",
+        "toc": "Đồng bộ flash 1/160 giây"
       },
       {
         "t": "p",
@@ -11759,7 +12036,128 @@
       },
       {
         "t": "p",
-        "text": "Godox iM20 là đèn flash chỉnh tay nặng khoảng 31 g, kích thước 39 × 38 × 29,5 mm, có năm mức công suất. Mỗi lần sạc qua cổng USB-C, đèn nháy được khoảng 440 lần ở mức tối đa. Đèn chỉ có một tiếp điểm trên chân đế, nên máy không tự đo sáng cho đèn. Cách dùng gọn nhất: để máy lo ánh sáng nền bằng ISO AUTO, bù sáng khoảng −0,7 EV, rồi chọn mức đèn cho khuôn mặt."
+        "text": "Godox iM20 là đèn flash chỉnh tay hình hộp nhỏ, nặng khoảng 31 g, kích thước 39 × 38 × 29,5 mm, có năm mức công suất từ 1/1 đến 1/16. Pin lithium trong đèn sạc đầy qua cổng USB-C trong khoảng 1 giờ 10 phút, đủ cho khoảng 440 lần nháy ở mức tối đa; mỗi lần nháy xong đèn cần khoảng 3 giây để nạp lại. Chân đèn chỉ có một tiếp điểm: máy ra lệnh nháy, còn sáng bao nhiêu là do bạn chọn bằng hai nút − và + ở mặt sau. Đèn không tự đo sáng và ô đèn không xoay được, nên cách dùng dưới đây dựa vào chính phép đo sáng của máy."
+      },
+      {
+        "t": "figure",
+        "caption": "Godox iM20 nhìn từ phía trước và phía sau: ô đèn ở mặt trước, cổng USB-C và nút nguồn ở cạnh bên, hai nút − và + cùng năm đèn báo mức ở mặt sau. Ảnh: Godox, đăng tại VJShop",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-9.jpg",
+        "alt": "Đèn flash Godox iM20 màu đen hình hộp nhỏ, nhìn từ phía trước và phía sau trên nền trắng",
+        "width": 1200,
+        "height": 800
+      },
+      {
+        "t": "h",
+        "text": "Chụp flash chỉnh tay ở chế độ A với phơi sáng tự động như thế nào?",
+        "toc": "Flash ở chế độ A"
+      },
+      {
+        "t": "p",
+        "text": "Để máy ở chế độ A với ISO AUTO cho máy tự phơi sáng phần nền, hạ [[Bù sáng|bù sáng]] xuống −0,7 EV, rồi tự chọn mức đèn cho khuôn mặt. Máy không biết có đèn trên đế phụ kiện, nên vẫn đo sáng và chọn tốc độ, ISO như lúc chưa gắn đèn. Lượng sáng của đèn do mức công suất và khoảng cách quyết định. Hai nguồn sáng tách nhau nên dễ chỉnh: nền tối hay sáng thì đổi bù sáng, mặt tối hay sáng thì đổi mức đèn. Cách phối hai thanh chỉnh này có trong bài [[body-ev-vs-flash-ev-sony-flash-ttl|Body EV và Flash EV]]."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Mục trên máy",
+          "Đặt",
+          "Tác dụng"
+        ],
+        "rows": [
+          [
+            "Shoot Mode",
+            "Aperture Priority, khẩu F4",
+            "Bạn chọn khẩu độ, máy tự chọn tốc độ màn trập."
+          ],
+          [
+            "ISO",
+            "ISO AUTO, từ 100 đến 6400",
+            "Máy tự nâng ISO để nền đủ sáng."
+          ],
+          [
+            "Exposure Comp.",
+            "−0,7 EV, tối đa −1,0 EV",
+            "Hạ ánh sáng nền để đèn làm sáng khuôn mặt mà không cháy."
+          ],
+          [
+            "Flash Mode",
+            "Rear Sync",
+            "Đèn nháy ngay trước khi màn trập đóng."
+          ],
+          [
+            "Drive Mode",
+            "Single Shooting",
+            "Đèn cần khoảng 3 giây nạp lại giữa hai tấm."
+          ],
+          [
+            "Silent Shooting",
+            "Off",
+            "Đang bật chụp im lặng thì đèn không nháy."
+          ],
+          [
+            "Live View Display",
+            "Setting Effect OFF",
+            "Màn hình luôn đủ sáng để bố cục trong phòng tối."
+          ]
+        ],
+        "caption": "Bảy mục cần đặt trước khi chụp với iM20. Năm mục đầu nằm ở MENU → Camera Settings1, hai mục cuối ở MENU → Camera Settings2. Ô M4 của bộ ZV-E10 Hybrid đặt sẵn chế độ A, ISO AUTO, Rear Sync và Setting Effect OFF."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Bước",
+          "Thao tác",
+          "Nhìn gì để kiểm"
+        ],
+        "rows": [
+          [
+            "1",
+            "Tắt máy, gắn iM20 vào đế phụ kiện và đẩy hết chân đèn, rồi bật máy và bật đèn bằng nút nguồn ở cạnh đèn.",
+            "Đèn báo mức ở mặt sau iM20 sáng."
+          ],
+          [
+            "2",
+            "Gọi ô M4, hoặc đặt máy theo bảng trên, rồi chọn khẩu F4 và chỉnh bù sáng về −0,7 EV.",
+            "Màn hình hiện chế độ A, F4 và mức bù −0,7."
+          ],
+          [
+            "3",
+            "Đứng cách chủ thể khoảng 1,5 m, nhấn nửa nút chụp để máy đo sáng.",
+            "Đọc ISO và tốc độ màn trập ở đáy màn hình."
+          ],
+          [
+            "4",
+            "Nếu tốc độ nhanh hơn 1/160, khép khẩu dần cho tới khi tốc độ về 1/160 hoặc chậm hơn.",
+            "Tốc độ hiện 1/160, 1/125, 1/60 hoặc chậm hơn."
+          ],
+          [
+            "5",
+            "Nhấn nút − hoặc + ở mặt sau iM20 để chọn mức đèn theo ISO máy vừa hiển thị.",
+            "Tra ở bảng mức đèn theo ISO bên dưới."
+          ],
+          [
+            "6",
+            "Chụp một tấm, xem lại rồi chỉnh: mặt cháy thì giảm một mức đèn, mặt tối thì tăng một mức, nền quá tối thì đưa bù sáng về −0,3 EV.",
+            "Mặt sáng đều, nền còn thấy rõ không gian."
+          ]
+        ],
+        "caption": "Sáu bước chụp một tấm với Godox iM20 ở chế độ A. Khi đổi khẩu độ, khoảng cách hoặc ánh sáng phòng, làm lại từ bước 3."
+      },
+      {
+        "t": "figure",
+        "caption": "iM20 nằm gọn trong lòng bàn tay. Hai nút − và + ở mặt sau đổi mức đèn, năm đèn báo ở giữa cho biết mức đang chọn; cổng USB-C để sạc nằm ở cạnh bên. Ảnh: Godox",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-8.jpg",
+        "alt": "Godox iM20 cầm trên tay, mặt sau có nút trừ, nút cộng và dãy đèn báo, đang cắm cáp USB-C",
+        "width": 705,
+        "height": 470
+      },
+      {
+        "t": "h",
+        "text": "Chọn mức đèn theo ISO và khoảng cách ra sao?",
+        "toc": "Mức đèn theo ISO"
+      },
+      {
+        "t": "p",
+        "text": "Ở khẩu F4 và khoảng cách 1,5 m, [[ISO]] 100 cần mức đèn 1/1, và cứ ISO tăng gấp đôi thì giảm một mức. Trong phòng buổi tối, ISO thường nằm trong khoảng 800 đến 3200, nên mức hay dùng là 1/8 và 1/16. Đo thực tế ở ISO 100, mức 1/1 của iM20 cho chỉ số GN khoảng 5,6: lấy 5,6 chia cho khẩu độ là ra khoảng cách đủ sáng tính bằng mét."
       },
       {
         "t": "table",
@@ -11800,16 +12198,72 @@
             "Lùi xa 2 đến 3 m, hoặc che đèn bằng khăn giấy"
           ]
         ],
-        "caption": "Mức đèn Godox iM20 theo ISO, ở khẩu F4. ISO tăng gấp đôi thì giảm một mức đèn. Luôn đứng cách chủ thể từ 1 m trở lên."
+        "caption": "Mức đèn Godox iM20 theo ISO, ở khẩu F4 và khoảng cách 1,5 m. ISO tăng gấp đôi thì giảm một mức đèn. Luôn đứng cách chủ thể từ 1 m trở lên."
       },
       {
-        "t": "callout",
-        "label": "Nếu ảnh có dải tối ở một cạnh",
-        "text": "Tốc độ màn trập đang nhanh hơn 1/160 giây. Chuyển sang chế độ S hoặc M rồi đặt 1/160 giây. Đèn flash không dùng được khi quay phim, và không nháy khi máy đang bật chụp im lặng."
+        "t": "figure",
+        "caption": "Khoảng cách đủ sáng của iM20 theo mức đèn ở ISO 800, khẩu F4, tính từ chỉ số GN 5,6. Vùng xám là khoảng dưới 1 m, gần hơn mức Sony khuyên khi chụp flash.",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-d2.svg",
+        "alt": "Biểu đồ khoảng cách đủ sáng của Godox iM20 theo năm mức đèn ở ISO 800, khẩu F4",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "t": "p",
+        "text": "Ba quy tắc đủ để tự tính khi điều kiện thay đổi. Tăng một mức đèn thì khoảng cách đủ sáng dài thêm 1,4 lần, tăng hai mức thì dài gấp đôi. Mở khẩu thêm một stop, ví dụ từ F4 xuống F2.8, thì giảm một mức đèn; khép một stop, từ F4 lên F5.6, thì tăng một mức. Với ống [[E 50mm F1.8 OSS]] ở F2, bạn giảm hai mức so với bảng."
       },
       {
         "t": "h",
-        "text": "Picture Profile Colorlab là gì và hợp với ZV-E10 ở điểm nào?"
+        "text": "Vì sao đặt Flash Mode ở Rear Sync khi chụp chế độ A?",
+        "toc": "Vì sao Rear Sync"
+      },
+      {
+        "t": "p",
+        "text": "Rear Sync cho đèn nháy ngay trước khi màn trập đóng, nên chủ thể được đèn giữ nét ở cuối thời gian phơi sáng. Ở chế độ A, khi phòng tối và ISO đã chạm mức tối đa, máy kéo tốc độ màn trập chậm dần để nền đủ sáng. Lúc đó ánh sáng nền ghi lại vệt mờ của chuyển động: với Rear Sync, vệt nằm phía sau chủ thể, đúng chiều chuyển động. Chi tiết có trong bài [[dong-bo-man-sau-voi-flash|đồng bộ màn sau với flash]]."
+      },
+      {
+        "t": "p",
+        "text": "Đặt tại MENU → Camera Settings1 → Flash Mode → Rear Sync. Vì đèn nháy ở cuối, hãy giữ máy yên cho tới khi thấy đèn nháy rồi mới hạ máy. Tốc độ chậm hơn 1/30 giây thì tì tay vào người, hoặc mở khẩu lớn hơn để máy chọn tốc độ nhanh lên."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Hiện tượng",
+          "Cách sửa"
+        ],
+        "rows": [
+          [
+            "Ảnh có dải tối ở một cạnh",
+            "Tốc độ màn trập nhanh hơn 1/160 giây. Khép khẩu, hoặc chuyển sang chế độ S ở 1/160 giây."
+          ],
+          [
+            "Mặt cháy, bóng gắt",
+            "Giảm một đến hai mức đèn, lùi xa hơn, hoặc che đèn bằng một lớp khăn giấy."
+          ],
+          [
+            "Mặt sáng, nền tối đen",
+            "Đưa bù sáng về −0,3 EV hoặc 0, hoặc mở khẩu lớn hơn."
+          ],
+          [
+            "Đèn không nháy",
+            "Đẩy hết chân đèn vào đế, bật nguồn đèn, sạc pin và tắt Silent Shooting."
+          ],
+          [
+            "Bóng đổ đậm sau lưng",
+            "Cho chủ thể đứng cách tường ít nhất 1 m."
+          ]
+        ],
+        "caption": "Năm lỗi thường gặp khi chụp với iM20 và cách sửa. Đèn flash không dùng được khi quay phim."
+      },
+      {
+        "t": "callout",
+        "label": "Ra ngoài trời nắng",
+        "text": "Ở chế độ A, máy đẩy tốc độ màn trập vượt 1/160 giây và ảnh có dải tối. Chuyển sang chế độ S, đặt 1/160 giây và giữ ISO AUTO. Đèn nhỏ chỉ đủ xóa bóng trên khuôn mặt khi chủ thể đứng trong bóng râm, cách máy khoảng 1 m, ở mức 1/1."
+      },
+      {
+        "t": "h",
+        "text": "Picture Profile Colorlab là gì và hợp với ZV-E10 ở điểm nào?",
+        "toc": "Picture Profile Colorlab"
       },
       {
         "t": "p",
@@ -11817,7 +12271,8 @@
       },
       {
         "t": "h",
-        "text": "Bốn ô nhớ M1–M4 cài sẵn dùng vào việc gì?"
+        "text": "Bốn ô nhớ M1–M4 cài sẵn dùng vào việc gì?",
+        "toc": "Bốn ô nhớ M1–M4"
       },
       {
         "t": "p",
@@ -11848,7 +12303,7 @@
           ],
           [
             "M4 Chụp với flash",
-            "Chụp trong nhà với Godox iM20: chế độ S ở 1/160 giây, ISO AUTO, xem lại ảnh 2 giây.",
+            "Chụp trong nhà với Godox iM20: chế độ A, ISO AUTO, Flash Mode ở Rear Sync, xem lại ảnh 2 giây.",
             "[[PP-050-Neutral Soft Rich|PP-050 Neutral Soft Rich]]"
           ]
         ],
@@ -11872,7 +12327,8 @@
       },
       {
         "t": "h",
-        "text": "Livestream bằng ZV-E10 cần chuẩn bị gì ngoài ô M3?"
+        "text": "Livestream bằng ZV-E10 cần chuẩn bị gì ngoài ô M3?",
+        "toc": "Livestream"
       },
       {
         "t": "p",
@@ -11888,7 +12344,8 @@
       },
       {
         "t": "h",
-        "text": "Ống kính ngàm E nào hợp với ZV-E10?"
+        "text": "Ống kính ngàm E nào hợp với ZV-E10?",
+        "toc": "Ống kính ngàm E"
       },
       {
         "t": "p",
@@ -11896,7 +12353,8 @@
       },
       {
         "t": "h",
-        "text": "Chụp đời thường và du lịch nên chọn ống nào?"
+        "text": "Chụp đời thường và du lịch nên chọn ống nào?",
+        "toc": "Ống đời thường, du lịch"
       },
       {
         "t": "p",
@@ -11929,8 +12387,17 @@
         "caption": "Ống kính cho đời thường và du lịch, xếp từ khởi đầu đến nâng cấp."
       },
       {
+        "t": "figure",
+        "caption": "Từ trái sang: E PZ 16-50mm F3.5-5.6 OSS II, E 18-135mm F3.5-5.6 OSS và E PZ 18-105mm F4 G OSS. Ảnh không theo tỉ lệ thật. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-5.jpg",
+        "alt": "Ba ống kính zoom Sony ngàm E đặt cạnh nhau trên nền trắng",
+        "width": 1200,
+        "height": 800
+      },
+      {
         "t": "h",
-        "text": "Chụp chân dung nên chọn ống nào?"
+        "text": "Chụp chân dung nên chọn ống nào?",
+        "toc": "Ống chân dung"
       },
       {
         "t": "p",
@@ -11963,8 +12430,17 @@
         "caption": "Ống kính chân dung cho ZV-E10. Ống FE dùng tiếp được khi bạn lên thân máy full-frame."
       },
       {
+        "t": "figure",
+        "caption": "Từ trái sang: E 50mm F1.8 OSS, E 35mm F1.8 OSS và FE 85mm F1.8. Ảnh không theo tỉ lệ thật. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-6.jpg",
+        "alt": "Ba ống kính một tiêu cự Sony đặt cạnh nhau trên nền trắng",
+        "width": 1200,
+        "height": 800
+      },
+      {
         "t": "h",
-        "text": "Quay vlog và livestream nên chọn ống nào?"
+        "text": "Quay vlog và livestream nên chọn ống nào?",
+        "toc": "Ống vlog, livestream"
       },
       {
         "t": "p",
@@ -11997,14 +12473,22 @@
         "caption": "Ống kính cho vlog và livestream."
       },
       {
+        "t": "figure",
+        "caption": "Từ trái sang: E PZ 16-50mm F3.5-5.6 OSS II, E 11mm F1.8 và E 15mm F1.4 G. Ảnh không theo tỉ lệ thật. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-7.jpg",
+        "alt": "Ống kit zoom điện và hai ống góc rộng Sony ngàm E đặt cạnh nhau trên nền trắng",
+        "width": 1200,
+        "height": 800
+      },
+      {
         "t": "checklist",
         "label": "Kiểm trên máy sau khi nạp bộ ZV-E10 Hybrid",
         "items": [
           "Gọi M1: màn hình hiện chế độ A, ISO AUTO và AF-C.",
           "Gọi M2: khung lấy nét bám theo khuôn mặt khi có người trong khung.",
-          "Gọi M4: màn hình hiện chế độ S và tốc độ 1/160.",
-          "Gắn Godox iM20, bật đèn rồi chụp thử: đèn nháy và ảnh không có dải tối.",
-          "Bù sáng ở M4 đã chỉnh về −0,7 EV."
+          "Gọi M4: màn hình hiện chế độ A, và Flash Mode trong menu đang ở Rear Sync.",
+          "Bù sáng ở M4 đã chỉnh về −0,7 EV.",
+          "Gắn Godox iM20, bật đèn rồi chụp thử trong nhà: đèn nháy và ảnh không có dải tối."
         ]
       },
       {
@@ -12020,7 +12504,7 @@
           },
           {
             "q": "ZV-E10 đồng bộ flash ở tốc độ bao nhiêu?",
-            "a": "Tốc độ đồng bộ flash của ZV-E10 là 1/160 giây, theo thông số Sony công bố với đèn flash của hãng. Khi gắn đèn chỉnh tay như Godox iM20, đặt chế độ S hoặc M ở 1/160 giây hoặc chậm hơn để ảnh không có dải tối. Đèn flash không dùng được khi quay phim và không nháy khi bật chụp im lặng."
+            "a": "Tốc độ đồng bộ flash của ZV-E10 là 1/160 giây, theo thông số Sony công bố với đèn flash của hãng. Khi gắn đèn chỉnh tay như Godox iM20 ở chế độ A, tốc độ màn trập nhanh hơn 1/160 giây thì khép khẩu, hoặc chuyển sang chế độ S ở 1/160 giây. Đèn không dùng được khi quay phim và không nháy khi bật chụp im lặng."
           },
           {
             "q": "Bộ M1–M4 ZV-E10 Hybrid gồm những gì?",
@@ -12071,6 +12555,14 @@
         {
           "kind": "article",
           "id": "xoa-phong-voi-ong-kit"
+        },
+        {
+          "kind": "article",
+          "id": "dong-bo-man-sau-voi-flash"
+        },
+        {
+          "kind": "knowledge",
+          "id": "bu-sang"
         }
       ],
       "prerequisites": [],
@@ -12100,6 +12592,36 @@
           "checkedAt": "2026-11-16"
         },
         {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001140424.html",
+          "title": "ZV-E10 Help Guide: Flash Mode",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001140445.html",
+          "title": "ZV-E10 Help Guide: Exposure Comp.",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001140455.html",
+          "title": "ZV-E10 Help Guide: ISO",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001117038.html",
+          "title": "ZV-E10 Help Guide: Live View Display",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001211759.html",
+          "title": "ZV-E10 Help Guide: Silent Shooting (still image)",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
           "url": "https://www.sony.jp/ichigan/products/ZV-E10/spec.html",
           "title": "VLOGCAM ZV-E10: thông số chính và ảnh sản phẩm",
           "publisher": "Sony Marketing (Japan)",
@@ -12109,6 +12631,12 @@
           "url": "https://www.godox.com/product-a/iM20-iM22.html",
           "title": "Godox iM20/iM22: thông số",
           "publisher": "Godox",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://vjshop.vn/flash/flash-mini-godox-im20",
+          "title": "Đèn Flash Mini Godox iM20: thông số và ảnh sản phẩm",
+          "publisher": "VJShop",
           "checkedAt": "2026-11-16"
         }
       ]

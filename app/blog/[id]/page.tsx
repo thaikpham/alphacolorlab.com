@@ -58,7 +58,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
   }
 
   // Same ids as ArticleBody gives headings
-  const toc = article.blocks.flatMap((b, i) => (b.t === "h" ? [{ id: `section-${i}`, text: b.text }] : []));
+  const toc = article.blocks.flatMap((b, i) => (b.t === "h" ? [{ id: `section-${i}`, text: b.toc ?? b.text }] : []));
+  const hasToc = toc.length > 1;
 
   const topicLabel = blog.topics[article.topic];
   const levelLabel = blog.levels[article.level];
@@ -97,28 +98,28 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
           </div>
         </div>
 
-        {/* xl+: article fills the column; contents and related links (18rem) sticky on the right. DOM order keeps phones reading body, related, sources, comments. */}
-        <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_18rem] xl:gap-x-12">
-        <div className="mb-16 xl:col-start-1 xl:row-start-1">
+        {/* Container ≥ 48rem (@3xl): contents in a sticky left column, article on the right. Phones: one column, contents hidden; DOM order body, related, sources, comments. */}
+        <div className="@container">
+        <div className={hasToc ? "@3xl:grid @3xl:grid-cols-[14rem_minmax(0,1fr)] @3xl:gap-x-8" : undefined}>
+        {hasToc && (
+        <aside className="hidden @3xl:block @3xl:sticky @3xl:top-navbar @3xl:self-start @3xl:max-h-split @3xl:overflow-y-auto">
+          <nav aria-labelledby="toc-heading">
+            <h2 id="toc-heading" className="mb-2 text-footnote font-medium text-label">{blog.detail.toc}</h2>
+            {toc.map((h) => (
+              <a key={h.id} href={`#${h.id}`} className="flex min-h-9 items-center text-footnote leading-snug text-secondary transition-colors hover:text-label focus-visible:text-label pointer-coarse:min-h-11">{h.text}</a>
+            ))}
+          </nav>
+        </aside>
+        )}
+
+        <div className="min-w-0">
+        <div className="mb-16">
           <ArticleBody blocks={article.blocks} />
         </div>
 
-        <aside className="xl:col-start-2 xl:row-span-2 xl:row-start-1 xl:sticky xl:top-0 xl:max-h-split xl:self-start xl:overflow-y-auto xl:-mt-6 xl:pt-6 xl:pb-6">
-        {/* Contents: wide screens only, phones read straight through */}
-        {toc.length > 1 && (
-          <nav aria-labelledby="toc-heading" className="mb-8 hidden xl:block">
-            <h2 id="toc-heading" className="mb-2 px-4 text-footnote text-secondary">{blog.detail.toc}</h2>
-            <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
-              {toc.map((h) => (
-                <a key={h.id} href={`#${h.id}`} className="flex min-h-11 items-center px-4 py-2.5 text-subhead text-label transition-colors hover:bg-fill">{h.text}</a>
-              ))}
-            </div>
-          </nav>
-        )}
-
         {/* Related knowledge */}
         {relatedKnowledge.length > 0 && (
-          <section className="mb-12 xl:mb-8">
+          <section className="mb-12">
             <h2 className="text-title3 font-medium mb-3">{blog.detail.relatedKnowledge}</h2>
             <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
               {relatedKnowledge.map((r) => {
@@ -138,7 +139,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
 
         {/* Related articles */}
         {relatedArticles.length > 0 && (
-          <section className="mb-12 xl:mb-0">
+          <section className="mb-12">
             <h2 className="text-title3 font-medium mb-3">{blog.detail.relatedArticles}</h2>
             <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
               {relatedArticles
@@ -157,9 +158,6 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
           </section>
         )}
 
-        </aside>
-
-        <div className="xl:col-start-1 xl:row-start-2">
         {/* Sources */}
         {article.meta.sources.length > 0 && (
           <section>
@@ -186,6 +184,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
         <JsonLdScript schema={faqLd(article.blocks)} />
         <JsonLdScript schema={breadcrumbLd([blog.list.title, "/blog"], [article.title, `/blog/${article.id}`])} />
         <Community page={`post/${article.id}`} title={article.title} />
+        </div>
         </div>
         </div>
       </div>

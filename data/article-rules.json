@@ -17,7 +17,8 @@
     "tldrItems": 3,
     "tldrWords": [40, 70],
     "faqItems": [4, 6],
-    "faqAnswerWords": [40, 70]
+    "faqAnswerWords": [40, 70],
+    "tocMax": 28
   },
   "bannedPhrases": [
     { "id": "creative-look", "pattern": "Creative (Look|Style)", "flags": "i", "message": "có Creative Look/Style" },

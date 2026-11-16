@@ -280,10 +280,9 @@
       },
       {
         "label": "Chụp với flash",
-        "note": "Chế độ S ở 1/160 giây, không vượt tốc độ đồng bộ. Bù sáng −0,7 EV bằng tay, chọn mức đèn theo ISO máy hiển thị.",
+        "note": "Chế độ A, ISO AUTO, đèn nháy cuối màn trập (Rear Sync). Bù sáng −0,7 EV bằng tay, chọn mức đèn theo ISO máy hiển thị, giữ tốc độ từ 1/160 giây trở xuống.",
         "settings": {
-          "mode": "S",
-          "shutter": "1/160",
+          "mode": "A",
           "focus": "AF-C",
           "focusArea": "wide",
           "metering": "multi",
@@ -298,7 +297,7 @@
             "gm": 0,
             "priority": "standard"
           },
-          "flashMode": "fill-flash",
+          "flashMode": "rear-sync",
           "expCompSet": "ambient-only",
           "preAF": "on",
           "steadyShot": "on",

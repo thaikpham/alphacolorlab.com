@@ -83,6 +83,7 @@
   --spacing-sidebar: 20rem; /* thanh điều hướng dọc (lg+), chứa luôn index của app; nội dung lùi vào đúng bằng chừng này */
   --spacing-sidebar-head: 7rem; /* phần đầu thanh dọc: launcher + avatar h-14, tìm kiếm h-11, phần còn lại (gồm viền dưới) làm lề; index của app bắt đầu ngay dưới */
   --spacing-stage-phone: calc(100dvh - 3.5rem - env(safe-area-inset-bottom)); /* sân khấu đồ thị dưới lg: trừ thanh trên cùng h-14 và vùng an toàn đáy */
+  --spacing-navbar: 3.5rem; /* mép trên của phần dính khi cuộn (mục lục bài): dưới thanh h-14; lg+ không có thanh thì 0 (xem media dưới) */
 }
 
 /* Noto Sans (SIL OFL 1.1, public/fonts/OFL.txt): biến thiên 100–900, tách theo bảng chữ; trình duyệt chỉ tải phần cần. */
@@ -117,6 +118,12 @@ html {
   color-scheme: light;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -365,10 +372,12 @@ dialog::backdrop {
   :root {
     --spacing-split: 100dvh;
     --spacing-stage: 100dvh;
+    --spacing-navbar: 0rem;
   }
   :root:has(.site-nav-wide) {
     --spacing-split: calc(100dvh - 3.5rem);
     --spacing-stage: calc(100dvh - 3.5rem);
+    --spacing-navbar: 3.5rem;
   }
   /* Menu avatar dưới thanh dọc, góc trên trái (chỉ khi có thanh dọc) */
   body:has(> .app-sidebar) .account-menu {

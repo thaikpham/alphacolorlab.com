@@ -8,7 +8,7 @@ import knowledgeData from '../data/knowledge.json' with { type: 'json' }
 
 export type Block =
   | { t: 'tldr'; items: readonly string[] }
-  | { t: 'h'; text: string }
+  | { t: 'h'; text: string; toc?: string }
   | { t: 'p'; text: string }
   | { t: 'menu'; old: string; new: string; oldVi?: string }
   | { t: 'table'; head: readonly string[]; rows: readonly (readonly string[])[]; caption: string }

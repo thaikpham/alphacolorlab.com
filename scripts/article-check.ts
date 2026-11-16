@@ -35,7 +35,8 @@ const matches = (r: Rule, s: string) => new RegExp(r.pattern, r.flags).test(subj
 /** Every reader-visible string of a block, for the style checks. */
 function texts(b: any): string[] {
   switch (b.t) {
-    case 'p': case 'h': return [b.text]
+    case 'p': return [b.text]
+    case 'h': return typeof b.toc === 'string' ? [b.text, b.toc] : [b.text]
     case 'tldr': return b.items
     case 'callout': return [b.label ?? '', b.text]
     case 'checklist': return [b.label ?? '', ...b.items]
@@ -75,6 +76,13 @@ export function checkArticle(a: any): string[] {
 
   blocks.forEach((b, i) => {
     if (b.t !== 'h') return
+    // Nhãn mục lục: không rỗng, không khoảng trắng thừa, tối đa tocMax ký tự, không kết thúc bằng dấu câu
+    if (b.toc !== undefined) {
+      const t = b.toc
+      if (typeof t !== 'string' || !t.trim() || t !== t.trim()) out.push(`nhãn mục lục rỗng hoặc thừa khoảng trắng: "${t}"`)
+      else if (t.length > L.tocMax) out.push(`nhãn mục lục dài quá ${L.tocMax} ký tự: "${t}"`)
+      else if (/[.?:!]$/.test(t)) out.push(`nhãn mục lục không được kết thúc bằng . ? : !: "${t}"`)
+    }
     const next = blocks[i + 1]
     const dup = headingBanned.find((r) => matches(r, b.text))
     if (next?.t === 'faq' || dup) out.push(`bỏ mục "${b.text}": ${dup?.message ?? 'khối faq cuối bài tự có tiêu đề'}`)

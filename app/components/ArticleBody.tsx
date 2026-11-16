@@ -90,7 +90,7 @@ export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
 
           case "h":
             return (
-              <h2 key={idx} className="text-title3 font-medium pt-8 scroll-mt-6" id={`section-${idx}`}>
+              <h2 key={idx} className="text-title3 font-medium pt-8 scroll-mt-20" id={`section-${idx}`}>
                 <RichText text={block.text} />
               </h2>
             );
