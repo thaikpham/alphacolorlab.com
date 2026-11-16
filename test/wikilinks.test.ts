@@ -10,7 +10,7 @@ const products = JSON.parse(readFileSync('data/products.json', 'utf8'))
 
 /** Every text field of an article block that can hold [[wikilinks]]. */
 function blockTexts(b: any): string[] {
-  return [b.text, b.label, b.caption, b.old, b.new, ...(b.items ?? []), ...(b.head ?? []), ...(b.rows ?? []).flat()].filter((s) => typeof s === 'string')
+  return [b.text, b.label, b.caption, b.old, b.new, ...(b.items ?? []), ...(b.t === 'steps' ? b.items.flatMap((i: any) => [i.text, i.check]) : []), ...(b.head ?? []), ...(b.rows ?? []).flat()].filter((s) => typeof s === 'string')
 }
 
 const unresolved = (where: string, text: string) =>

@@ -77,6 +77,8 @@
   /* Bố cục */
   --container-page: 100%; /* full width (chủ trang, 2026-11-09); đoạn văn dài tự giới hạn bằng max-w-2xl */
   --container-dialog: 672px; /* hộp thoại mini game, túi đồ */
+  --container-article: 52rem; /* cột đọc của bài viết (/blog/[id]): căn trái sát mục lục, phần còn lại bên phải là biên an toàn (chủ trang, 2026-11-16) */
+  --container-article-page: 90rem; /* trang bài viết: mục lục 14rem + 2rem, cột đọc 52rem, biên phải 16rem, lề xl:px-12; màn rộng hơn thì căn giữa */
   --spacing-safe: env(safe-area-inset-bottom);
   --spacing-split: calc(100dvh - 3.5rem); /* cột index master–detail (md+): cao màn hình trừ thanh điều hướng h-14 */
   --spacing-stage: calc(100dvh - 3.5rem); /* sân khấu đồ thị (md+): cao màn hình trừ thanh điều hướng h-14 */

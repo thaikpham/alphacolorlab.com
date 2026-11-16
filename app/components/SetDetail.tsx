@@ -45,31 +45,38 @@ export function SetDetail({ set }: { set: PresetSet }) {
       </div>
 
       <h2 className={`${heading} mt-6`}>{kolSets.slots}</h2>
-      <div className={card}>
-        {set.slots.map((slot, i) => (
-          <details key={i} open={i === 0} className="disclosure group px-4 py-3">
-            <summary className="flex min-h-11 cursor-pointer items-center gap-3">
-              <span className="shrink-0 text-footnote font-medium text-secondary">{kolSets.slotName(i + 1)}</span>
-              <span className="min-w-0 flex-1 text-body font-semibold text-label">{slot.label}</span>
-              <svg className="size-4 shrink-0 text-tertiary transition-transform group-open:rotate-90" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </summary>
-            {slot.note && <p className="mt-2 rounded-control bg-fill px-3 py-2.5 text-footnote text-label">{slot.note}</p>}
-            <dl className="mt-2 space-y-1 text-footnote">
-              {summaryRows(slot.settings, presetConsole.summary).map(([k, v]) => (
-                <div key={k} className="flex justify-between gap-4">
-                  <dt className="text-secondary">{k}</dt>
-                  <dd className="text-right text-label tabular-nums">{v}</dd>
-                </div>
-              ))}
-            </dl>
-          </details>
-        ))}
-      </div>
+      <SetSlots set={set} />
 
       <SetActions set={set} />
     </section>
+  );
+}
+
+/** Cài đặt từng ô: mục thu gọn, ô đầu mở sẵn. Dùng chung cho trang bộ và khối bộ trong bài viết. */
+export function SetSlots({ set }: { set: PresetSet }) {
+  return (
+    <div className={card}>
+      {set.slots.map((slot, i) => (
+        <details key={i} open={i === 0} className="disclosure group px-4 py-3">
+          <summary className="flex min-h-11 cursor-pointer items-center gap-3">
+            <span className="shrink-0 text-footnote font-medium text-secondary">{kolSets.slotName(i + 1)}</span>
+            <span className="min-w-0 flex-1 text-body font-semibold text-label">{slot.label}</span>
+            <svg className="size-4 shrink-0 text-tertiary transition-transform group-open:rotate-90" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </summary>
+          {slot.note && <p className="mt-2 rounded-control bg-fill px-3 py-2.5 text-footnote text-label">{slot.note}</p>}
+          <dl className="mt-2 space-y-1 text-footnote">
+            {summaryRows(slot.settings, presetConsole.summary).map(([k, v]) => (
+              <div key={k} className="flex justify-between gap-4">
+                <dt className="text-secondary">{k}</dt>
+                <dd className="text-right text-label tabular-nums">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </details>
+      ))}
+    </div>
   );
 }
 

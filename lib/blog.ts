@@ -15,6 +15,7 @@ export type Block =
   | { t: 'callout'; label: string; text: string }
   | { t: 'compare'; beforeLabel: string; afterLabel: string; caption: string }
   | { t: 'checklist'; label: string; items: readonly string[] }
+  | { t: 'steps'; caption: string; items: readonly { text: string; check?: string }[] }
   | { t: 'faq'; items: readonly { q: string; a: string }[] }
   | {
       t: 'figure'

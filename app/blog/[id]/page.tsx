@@ -73,7 +73,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
 
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
+      <div className="max-w-article-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
         <BackLink href="/blog">{blog.detail.back}</BackLink>
 
         <div className="mb-8">
@@ -112,7 +112,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
         </aside>
         )}
 
-        <div className="min-w-0">
+        {/* Reading column: at most max-w-article, left against the contents; what is left on the right is the safe margin */}
+        <div className="min-w-0 max-w-article">
         <div className="mb-16">
           <ArticleBody blocks={article.blocks} />
         </div>
@@ -195,7 +196,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
 function PostPage({ post }: { post: ReturnType<typeof posts>[number] }) {
   return (
     <div className="min-h-dvh bg-bg text-label">
-      <div className="max-w-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
+      <div className="max-w-article-page mx-auto px-4 sm:px-6 md:px-8 xl:px-12 pt-6 pb-24 sm:pt-8 md:pt-6">
         <BackLink href="/blog">{blog.detail.back}</BackLink>
 
         <div className="mb-8">
@@ -210,6 +211,7 @@ function PostPage({ post }: { post: ReturnType<typeof posts>[number] }) {
           </div>
         </div>
 
+        <div className="max-w-article">
         <div className="mb-16">
           <Markdown body={post.body ?? ""} />
         </div>
@@ -217,6 +219,7 @@ function PostPage({ post }: { post: ReturnType<typeof posts>[number] }) {
         <JsonLdScript schema={articleLd({ title: post.title, description: post.summary, path: `/blog/${post.slug}` })} />
         <JsonLdScript schema={breadcrumbLd([blog.list.title, "/blog"], [post.title, `/blog/${post.slug}`])} />
         <Community page={`post/${post.slug}`} title={post.title} />
+        </div>
       </div>
     </div>
   );

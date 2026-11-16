@@ -4,7 +4,7 @@
   "topics": ["af", "exposure", "composition", "gear", "color", "video"],
   "levels": ["newbie", "mid", "pro"],
   "categories": ["ky-thuat", "ky-nang"],
-  "blockTypes": ["tldr", "h", "p", "menu", "table", "callout", "compare", "checklist", "figure", "embed", "faq", "set"],
+  "blockTypes": ["tldr", "h", "p", "menu", "table", "callout", "compare", "checklist", "steps", "figure", "embed", "faq", "set"],
   "menuPrefixes": {
     "old": "^MENU → (Camera Settings[12]|Playback) → ",
     "oldVi": "^MENU → (Cài đặt máy ảnh[12]|Xem lại) → ",
@@ -18,7 +18,8 @@
     "tldrWords": [40, 70],
     "faqItems": [4, 6],
     "faqAnswerWords": [40, 70],
-    "tocMax": 28
+    "tocMax": 28,
+    "stepsItems": [2, 9]
   },
   "bannedPhrases": [
     { "id": "creative-look", "pattern": "Creative (Look|Style)", "flags": "i", "message": "có Creative Look/Style" },

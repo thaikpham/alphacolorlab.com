@@ -22,6 +22,7 @@ export function toMarkdown(a: any): string {
     else if (b.t === 'p') out.push(plain(b.text))
     else if (b.t === 'menu') out.push(`Menu: ${b.oldVi ?? b.old}${b.old && b.oldVi ? ` (${b.old})` : ''}`)
     else if (b.t === 'table') out.push([row(b.head), row(b.head.map(() => '---')), ...b.rows.map(row), b.caption ? `\n${plain(b.caption)}` : ''].join('\n'))
+    else if (b.t === 'steps') out.push(`${b.items.map((i: { text: string; check?: string }, k: number) => `${k + 1}. ${plain(i.text)}${i.check ? `\n   Kiểm: ${plain(i.check)}` : ''}`).join('\n')}${b.caption ? `\n\n${plain(b.caption)}` : ''}`)
     else if (b.t === 'callout') out.push(`> **${plain(b.label ?? '')}** ${plain(b.text)}`)
     else if (b.t === 'checklist') out.push(`**${plain(b.label ?? '')}**\n${b.items.map((i: string) => `- [ ] ${plain(i)}`).join('\n')}`)
     else if (b.t === 'figure') out.push(`![${plain(b.caption ?? '')}](${b.src})`)

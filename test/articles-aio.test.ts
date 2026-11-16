@@ -28,3 +28,15 @@ test('nhãn mục lục (toc) của mục h: không rỗng, tối đa 28 ký t�
   assert.deepEqual(tocProblems(42), ['nhãn mục lục rỗng hoặc thừa khoảng trắng: "42"'])
   assert.ok(checkArticle(withToc('Creative Look')).some((p) => p.startsWith('có Creative')))
 })
+
+test('khối steps: 2 đến 9 bước, mỗi bước có text, kiểm tùy chọn nhưng không rỗng, chú thích bắt buộc', () => {
+  const withSteps = (items: unknown[], caption: unknown = 'Chú thích thử.') => ({ ...articles[0], blocks: [articles[0].blocks[0], { t: 'steps', caption, items }, ...articles[0].blocks.slice(1)] })
+  const stepsProblems = (items: unknown[], caption?: unknown) => checkArticle(withSteps(items, caption)).filter((p) => /steps|kiểm của bước/.test(p))
+  const ok = [{ text: 'Bấm MENU.', check: 'Hiện màn hình menu.' }, { text: 'Chọn Chụp.' }]
+  assert.deepEqual(stepsProblems(ok), [])
+  assert.deepEqual(stepsProblems([{ text: 'Bấm MENU.' }]), ['khối steps cần 2 đến 9 bước, đang có 1'])
+  assert.deepEqual(stepsProblems([{ text: '' }, { text: 'Chọn Chụp.' }]), ['bước 1 của khối steps rỗng hoặc thừa khoảng trắng: ""'])
+  assert.deepEqual(stepsProblems([{ text: 'Bấm MENU.', check: '' }, { text: 'Chọn Chụp.' }]), ['kiểm của bước 1 rỗng hoặc thừa khoảng trắng: ""'])
+  assert.deepEqual(stepsProblems(ok, ''), ['khối steps thiếu chú thích (caption)'])
+  assert.ok(checkArticle(withSteps([{ text: 'Bấm MENU.', check: 'Creative Look' }, { text: 'Chọn Chụp.' }])).some((p) => p.startsWith('có Creative')))
+})

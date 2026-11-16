@@ -11896,7 +11896,7 @@
     "topic": "gear",
     "level": "newbie",
     "archetype": "explainer",
-    "read": "14 phút đọc",
+    "read": "15 phút đọc",
     "title": "ZV-E10 được định vị lại: máy hybrid APS-C giá tốt nhất hiện tại",
     "dek": "ZV-E10 không còn chỉ là máy vlog: cảm biến APS-C crop 1,5, màn trập cơ đồng bộ flash 1/160 giây và bộ M1–M4 cài sẵn cho người vừa chụp vừa quay.",
     "blocks": [
@@ -12036,7 +12036,7 @@
       },
       {
         "t": "p",
-        "text": "Godox iM20 là đèn flash chỉnh tay hình hộp nhỏ, nặng khoảng 31 g, kích thước 39 × 38 × 29,5 mm, có năm mức công suất từ 1/1 đến 1/16. Pin lithium trong đèn sạc đầy qua cổng USB-C trong khoảng 1 giờ 10 phút, đủ cho khoảng 440 lần nháy ở mức tối đa; mỗi lần nháy xong đèn cần khoảng 3 giây để nạp lại. Chân đèn chỉ có một tiếp điểm: máy ra lệnh nháy, còn sáng bao nhiêu là do bạn chọn bằng hai nút − và + ở mặt sau. Đèn không tự đo sáng và ô đèn không xoay được, nên cách dùng dưới đây dựa vào chính phép đo sáng của máy."
+        "text": "Godox iM20 là đèn flash chỉnh tay hình hộp nhỏ, nặng khoảng 31 g, kích thước 39 × 38 × 29,5 mm, có năm mức công suất từ 1/1 đến 1/16. Pin lithium trong đèn sạc đầy qua cổng USB-C trong khoảng 1 giờ 10 phút, đủ cho khoảng 440 lần nháy ở mức tối đa; mỗi lần nháy xong đèn cần khoảng 3 giây để nạp lại. Chân đèn chỉ có một tiếp điểm: máy ra lệnh nháy, còn sáng bao nhiêu là do bạn chọn bằng hai nút − và + ở mặt sau. Đèn không tự đo sáng và ô đèn không xoay được, nên cách chụp ở phần sau dựa vào chính phép đo sáng của máy. Trước khi chụp, nạp bộ M1–M4 bên dưới để có sẵn ô M4 cho đèn flash."
       },
       {
         "t": "figure",
@@ -12048,12 +12048,151 @@
       },
       {
         "t": "h",
+        "text": "Picture Profile Colorlab là gì và hợp với ZV-E10 ở điểm nào?",
+        "toc": "Picture Profile Colorlab"
+      },
+      {
+        "t": "p",
+        "text": "Picture Profile Colorlab là bộ công thức màu của Alpha ColorLab, chỉnh riêng trên ZV-E10 và lưu vào [[Picture Profile]] của máy. Mỗi công thức đặt sẵn đường gamma, chế độ màu, độ bão hòa và cân bằng trắng, nên ảnh JPEG và video ra màu hoàn chỉnh ngay trên máy, không cần hậu kỳ. [Color Bank](/colors) chia công thức thành bốn nhóm Ấm, Trung tính, Lạnh và Đen trắng; phần lớn nạp được qua file M1–M4, số còn lại cài tay theo bảng thông số. Từ một công thức, bạn tạo được bản mod của riêng mình rồi đưa vào ô nhớ."
+      },
+      {
+        "t": "h",
+        "text": "Bốn ô nhớ M1–M4 cài sẵn dùng vào việc gì?",
+        "toc": "Bốn ô nhớ M1–M4"
+      },
+      {
+        "t": "p",
+        "text": "Bộ ZV-E10 Hybrid là bốn ô [[Bộ nhớ cài đặt và Memory Recall|Memory Recall]] soạn sẵn cho bốn tình huống của người mới, mỗi ô đi kèm một công thức Colorlab. Gọi lại một ô là máy đổi cùng lúc chế độ chụp, lấy nét, đo sáng, làm mịn da và màu. Cả bốn ô lưu ở chế độ chụp ảnh, nên ô M3 lo ảnh sản phẩm và ảnh bìa của buổi livestream."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Ô nhớ",
+          "Dùng khi nào, cài gì",
+          "Công thức màu"
+        ],
+        "rows": [
+          [
+            "M1 Đời thường",
+            "Ảnh hằng ngày, đi chơi, quán cà phê: chế độ A, AF-C theo dõi vùng, ISO AUTO, cân bằng trắng tự động.",
+            "[[PP-049-Neutral Dark Rich|PP-049 Neutral Dark Rich]]"
+          ],
+          [
+            "M2 Chân dung",
+            "Chân dung ở bóng râm hoặc cạnh cửa sổ: vùng lấy nét Rộng, ưu tiên khuôn mặt, làm mịn da Trung bình.",
+            "[[PP-075-Warm Bright Muted|PP-075 Warm Bright Muted]]"
+          ],
+          [
+            "M3 Livestream",
+            "Ảnh sản phẩm và ảnh bìa trước giờ lên sóng: cân bằng trắng ưu tiên trắng, SteadyShot tắt để đặt chân máy.",
+            "[[PP-047-Neutral Deep Vivid|PP-047 Neutral Deep Vivid]]"
+          ],
+          [
+            "M4 Chụp với flash",
+            "Chụp trong nhà với Godox iM20: chế độ A, ISO AUTO, Flash Mode ở Rear Sync, xem lại ảnh 2 giây.",
+            "[[PP-050-Neutral Soft Rich|PP-050 Neutral Soft Rich]]"
+          ]
+        ],
+        "caption": "Bốn ô của bộ ZV-E10 Hybrid. Ở M4, bạn tự bù sáng −0,7 EV trên máy sau khi gọi ô."
+      },
+      {
+        "t": "set",
+        "id": "zv-e10-hybrid"
+      },
+      {
+        "t": "p",
+        "text": "Khối trên là chính bộ sẽ nạp vào máy: bấm vào từng ô để xem đủ cài đặt của ô đó. Muốn đổi cài đặt hay thay công thức màu, bấm Dùng bộ này để mở [Tạo bộ M1–M4](/tao-m1-m4?set=zv-e10-hybrid) trong Alpha Console, chỉnh từng ô và đưa bản mod Picture Profile của bạn vào. Ba mục tiếp theo đi đúng thứ tự làm: nạp bộ vào máy, gọi ô M4, rồi chụp với đèn flash."
+      },
+      {
+        "t": "h",
+        "text": "Cài bộ M1–M4 vào ZV-E10 và gọi lại như thế nào?",
+        "toc": "Cài bộ M1–M4 vào máy"
+      },
+      {
+        "t": "p",
+        "text": "Chép thư mục PRIVATE trong file ZIP vào gốc thẻ nhớ, lắp thẻ vào máy, rồi gọi từng ô tại MENU → Camera Settings1 → Shoot Mode → MR. Bốn ô M1–M4 là bốn file nằm trên thẻ nhớ, không nằm trong thân máy, nên thẻ phải ở trong máy mỗi lần gọi. Bộ này lưu cho chế độ chụp ảnh; ở chế độ quay phim, máy dùng một bộ M1–M4 khác."
+      },
+      {
+        "t": "steps",
+        "caption": "Bốn bước chép bộ ZV-E10 Hybrid vào thẻ nhớ, làm trên máy tính.",
+        "items": [
+          {
+            "text": "Ở khối bộ ZV-E10 Hybrid phía trên, chọn hệ PAL cho máy bán tại Việt Nam, bấm Tải ZIP 4 file rồi giải nén.",
+            "check": "Có thư mục PRIVATE và file HUONG_DAN.txt."
+          },
+          {
+            "text": "Tháo thẻ nhớ khỏi máy ảnh, cắm vào đầu đọc thẻ của máy tính. Hoặc đặt MENU → Setup → USB Connection → Mass Storage rồi nối máy ảnh với máy tính bằng cáp USB dữ liệu.",
+            "check": "Máy tính hiện thẻ nhớ như một ổ đĩa."
+          },
+          {
+            "text": "Chép thư mục PRIVATE vào gốc thẻ nhớ. Khi máy tính hỏi, chọn gộp thư mục và ghi đè.",
+            "check": "Trên thẻ có PRIVATE/SONY/SETTING/E10 chứa bốn file CAMPR01P.DAT đến CAMPR04P.DAT."
+          },
+          {
+            "text": "Tháo thẻ an toàn bằng lệnh Eject rồi lắp thẻ vào máy ảnh, tắt máy và bật lại. Trên macOS, làm thêm bước dọn file ẩn ghi trong HUONG_DAN.txt trước khi Eject.",
+            "check": "Máy chỉ đọc bộ mới sau lần khởi động lại này."
+          }
+        ]
+      },
+      {
+        "t": "figure",
+        "caption": "Bốn file của bộ nằm trong PRIVATE/SONY/SETTING/E10 trên thẻ nhớ, mỗi file là một ô. Đuôi P là hệ PAL, đuôi N là hệ NTSC.",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-d3.svg",
+        "alt": "Sơ đồ cây thư mục trên thẻ nhớ: PRIVATE, SONY, SETTING, E10 và bốn file CAMPR01P.DAT đến CAMPR04P.DAT ứng với ô M1 đến M4",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "t": "steps",
+        "caption": "Ba bước gọi lại một ô, làm trên máy ảnh; mỗi lần đổi ô chỉ cần làm lại ba bước này. Quy trình đã thử trên ZV-E10 hệ PAL bán tại Việt Nam.",
+        "items": [
+          {
+            "text": "Nhấn nút Still/Movie/S&Q trên đỉnh máy để về chế độ chụp ảnh.",
+            "check": "Góc trái màn hình hiện biểu tượng máy ảnh."
+          },
+          {
+            "text": "Vào MENU → Camera Settings1 → Shoot Mode, rồi chọn MR trong dãy biểu tượng P, A, S, M. Menu tiếng Việt ghi Cài đặt máy ảnh1, Chế độ chụp.",
+            "check": "Màn hình hiện các ô 1, M1, M2, M3 và M4."
+          },
+          {
+            "text": "Xoay bánh xe điều khiển tới ô cần dùng, ví dụ M4 để chụp với đèn flash, rồi nhấn nút giữa.",
+            "check": "Chế độ chụp, ISO và cân bằng trắng trên màn hình đổi theo ô vừa gọi."
+          }
+        ]
+      },
+      {
+        "t": "figure",
+        "caption": "Sơ đồ đường gọi lại một ô: MENU, Camera Settings1, Shoot Mode, MR, rồi chọn ô. Ô 1 lưu trong thân máy, M1 đến M4 đọc từ thẻ nhớ.",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-d4.svg",
+        "alt": "Sơ đồ đường gọi lại ô nhớ trên ZV-E10 từ MENU tới MR và năm ô 1, M1, M2, M3, M4",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "t": "figure",
+        "caption": "Mặt sau ZV-E10: nút MENU và bánh xe điều khiển dùng để gọi lại ô nhớ. Ảnh: Sony",
+        "src": "/blog/zv-e10-may-hybrid-aps-c-3.jpg",
+        "alt": "Sony ZV-E10 nhìn từ phía sau với màn hình, nút MENU, nút Fn và bánh xe điều khiển",
+        "width": 705,
+        "height": 470
+      },
+      {
+        "t": "callout",
+        "label": "Đừng nhầm MR Memory với MR Recall",
+        "text": "Hai mục dùng chung biểu tượng MR. Mục Camera Set. Memory dùng để lưu: nhấn nút giữa ở đó là máy ghi đè file bạn vừa chép và báo Registered. Muốn gọi ô, luôn đi từ Shoot Mode. Format thẻ nhớ cũng xóa cả bốn ô M1–M4; khi đó chép lại thư mục PRIVATE từ file ZIP."
+      },
+      {
+        "t": "p",
+        "text": "Dùng Chrome hoặc Edge trên máy tính thì không cần tải ZIP và chép tay: mở [Tạo bộ M1–M4](/tao-m1-m4?set=zv-e10-hybrid), cắm thẻ nhớ rồi ghi thẳng bộ vào thẻ. Công cụ sao lưu bộ cũ trước khi ghi đè và đọc lại để so từng byte; ghi xong vẫn tháo thẻ an toàn và khởi động lại máy. Gọi một ô là cài đặt trong ô thay cho những gì bạn vừa chỉnh trên máy, vì vậy hãy gọi ô trước rồi mới chỉnh khẩu độ và bù sáng."
+      },
+      {
+        "t": "h",
         "text": "Chụp flash chỉnh tay ở chế độ A với phơi sáng tự động như thế nào?",
         "toc": "Flash ở chế độ A"
       },
       {
         "t": "p",
-        "text": "Để máy ở chế độ A với ISO AUTO cho máy tự phơi sáng phần nền, hạ [[Bù sáng|bù sáng]] xuống −0,7 EV, rồi tự chọn mức đèn cho khuôn mặt. Máy không biết có đèn trên đế phụ kiện, nên vẫn đo sáng và chọn tốc độ, ISO như lúc chưa gắn đèn. Lượng sáng của đèn do mức công suất và khoảng cách quyết định. Hai nguồn sáng tách nhau nên dễ chỉnh: nền tối hay sáng thì đổi bù sáng, mặt tối hay sáng thì đổi mức đèn. Cách phối hai thanh chỉnh này có trong bài [[body-ev-vs-flash-ev-sony-flash-ttl|Body EV và Flash EV]]."
+        "text": "Gọi ô M4 để máy vào chế độ A với ISO AUTO và tự phơi sáng phần nền, hạ [[Bù sáng|bù sáng]] xuống −0,7 EV, rồi tự chọn mức đèn cho khuôn mặt. Máy không biết có đèn trên đế phụ kiện, nên vẫn đo sáng và chọn tốc độ, ISO như lúc chưa gắn đèn. Lượng sáng của đèn do mức công suất và khoảng cách quyết định. Hai nguồn sáng tách nhau nên dễ chỉnh: nền tối hay sáng thì đổi bù sáng, mặt tối hay sáng thì đổi mức đèn. Cách phối hai thanh chỉnh này có trong bài [[body-ev-vs-flash-ev-sony-flash-ttl|Body EV và Flash EV]]."
       },
       {
         "t": "table",
@@ -12102,45 +12241,34 @@
         "caption": "Bảy mục cần đặt trước khi chụp với iM20. Năm mục đầu nằm ở MENU → Camera Settings1, hai mục cuối ở MENU → Camera Settings2. Ô M4 của bộ ZV-E10 Hybrid đặt sẵn chế độ A, ISO AUTO, Rear Sync và Setting Effect OFF."
       },
       {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Thao tác",
-          "Nhìn gì để kiểm"
-        ],
-        "rows": [
-          [
-            "1",
-            "Tắt máy, gắn iM20 vào đế phụ kiện và đẩy hết chân đèn, rồi bật máy và bật đèn bằng nút nguồn ở cạnh đèn.",
-            "Đèn báo mức ở mặt sau iM20 sáng."
-          ],
-          [
-            "2",
-            "Gọi ô M4, hoặc đặt máy theo bảng trên, rồi chọn khẩu F4 và chỉnh bù sáng về −0,7 EV.",
-            "Màn hình hiện chế độ A, F4 và mức bù −0,7."
-          ],
-          [
-            "3",
-            "Đứng cách chủ thể khoảng 1,5 m, nhấn nửa nút chụp để máy đo sáng.",
-            "Đọc ISO và tốc độ màn trập ở đáy màn hình."
-          ],
-          [
-            "4",
-            "Nếu tốc độ nhanh hơn 1/160, khép khẩu dần cho tới khi tốc độ về 1/160 hoặc chậm hơn.",
-            "Tốc độ hiện 1/160, 1/125, 1/60 hoặc chậm hơn."
-          ],
-          [
-            "5",
-            "Nhấn nút − hoặc + ở mặt sau iM20 để chọn mức đèn theo ISO máy vừa hiển thị.",
-            "Tra ở bảng mức đèn theo ISO bên dưới."
-          ],
-          [
-            "6",
-            "Chụp một tấm, xem lại rồi chỉnh: mặt cháy thì giảm một mức đèn, mặt tối thì tăng một mức, nền quá tối thì đưa bù sáng về −0,3 EV.",
-            "Mặt sáng đều, nền còn thấy rõ không gian."
-          ]
-        ],
-        "caption": "Sáu bước chụp một tấm với Godox iM20 ở chế độ A. Khi đổi khẩu độ, khoảng cách hoặc ánh sáng phòng, làm lại từ bước 3."
+        "t": "steps",
+        "caption": "Sáu bước chụp một tấm với Godox iM20 ở chế độ A. Khi đổi khẩu độ, khoảng cách hoặc ánh sáng phòng, làm lại từ bước 3.",
+        "items": [
+          {
+            "text": "Tắt máy, gắn iM20 vào đế phụ kiện và đẩy hết chân đèn, rồi bật máy và bật đèn bằng nút nguồn ở cạnh đèn.",
+            "check": "Đèn báo mức ở mặt sau iM20 sáng."
+          },
+          {
+            "text": "Gọi ô M4 tại MENU → Camera Settings1 → Shoot Mode → MR, hoặc đặt máy theo bảng trên. Sau đó chọn khẩu F4 và chỉnh bù sáng về −0,7 EV.",
+            "check": "Màn hình hiện chế độ A, F4 và mức bù −0,7."
+          },
+          {
+            "text": "Đứng cách chủ thể khoảng 1,5 m, nhấn nửa nút chụp để máy đo sáng.",
+            "check": "Đọc ISO và tốc độ màn trập ở đáy màn hình."
+          },
+          {
+            "text": "Nếu tốc độ nhanh hơn 1/160, khép khẩu dần cho tới khi tốc độ về 1/160 hoặc chậm hơn.",
+            "check": "Tốc độ hiện 1/160, 1/125, 1/60 hoặc chậm hơn."
+          },
+          {
+            "text": "Nhấn nút − hoặc + ở mặt sau iM20 để chọn mức đèn theo ISO máy vừa hiển thị.",
+            "check": "Tra ở bảng mức đèn theo ISO bên dưới."
+          },
+          {
+            "text": "Chụp một tấm, xem lại rồi chỉnh: mặt cháy thì giảm một mức đèn, mặt tối thì tăng một mức, nền quá tối thì đưa bù sáng về −0,3 EV.",
+            "check": "Mặt sáng đều, nền còn thấy rõ không gian."
+          }
+        ]
       },
       {
         "t": "figure",
@@ -12261,69 +12389,16 @@
         "text": "Ở chế độ A, máy đẩy tốc độ màn trập vượt 1/160 giây và ảnh có dải tối. Chuyển sang chế độ S, đặt 1/160 giây và giữ ISO AUTO. Đèn nhỏ chỉ đủ xóa bóng trên khuôn mặt khi chủ thể đứng trong bóng râm, cách máy khoảng 1 m, ở mức 1/1."
       },
       {
-        "t": "h",
-        "text": "Picture Profile Colorlab là gì và hợp với ZV-E10 ở điểm nào?",
-        "toc": "Picture Profile Colorlab"
-      },
-      {
-        "t": "p",
-        "text": "Picture Profile Colorlab là bộ công thức màu của Alpha ColorLab, chỉnh riêng trên ZV-E10 và lưu vào [[Picture Profile]] của máy. Mỗi công thức đặt sẵn đường gamma, chế độ màu, độ bão hòa và cân bằng trắng, nên ảnh JPEG và video ra màu hoàn chỉnh ngay trên máy, không cần hậu kỳ. [Color Bank](/colors) chia công thức thành bốn nhóm Ấm, Trung tính, Lạnh và Đen trắng; phần lớn nạp được qua file M1–M4, số còn lại cài tay theo bảng thông số. Từ một công thức, bạn tạo được bản mod của riêng mình rồi đưa vào ô nhớ."
-      },
-      {
-        "t": "h",
-        "text": "Bốn ô nhớ M1–M4 cài sẵn dùng vào việc gì?",
-        "toc": "Bốn ô nhớ M1–M4"
-      },
-      {
-        "t": "p",
-        "text": "Bộ ZV-E10 Hybrid là bốn ô [[Bộ nhớ cài đặt và Memory Recall|Memory Recall]] soạn sẵn cho bốn tình huống của người mới, mỗi ô đi kèm một công thức Colorlab. Gọi lại một ô là máy đổi cùng lúc chế độ chụp, lấy nét, đo sáng, làm mịn da và màu. Cả bốn ô lưu ở chế độ chụp ảnh, nên ô M3 lo ảnh sản phẩm và ảnh bìa của buổi livestream."
-      },
-      {
-        "t": "table",
-        "head": [
-          "Ô nhớ",
-          "Dùng khi nào, cài gì",
-          "Công thức màu"
-        ],
-        "rows": [
-          [
-            "M1 Đời thường",
-            "Ảnh hằng ngày, đi chơi, quán cà phê: chế độ A, AF-C theo dõi vùng, ISO AUTO, cân bằng trắng tự động.",
-            "[[PP-049-Neutral Dark Rich|PP-049 Neutral Dark Rich]]"
-          ],
-          [
-            "M2 Chân dung",
-            "Chân dung ở bóng râm hoặc cạnh cửa sổ: vùng lấy nét Rộng, ưu tiên khuôn mặt, làm mịn da Trung bình.",
-            "[[PP-075-Warm Bright Muted|PP-075 Warm Bright Muted]]"
-          ],
-          [
-            "M3 Livestream",
-            "Ảnh sản phẩm và ảnh bìa trước giờ lên sóng: cân bằng trắng ưu tiên trắng, SteadyShot tắt để đặt chân máy.",
-            "[[PP-047-Neutral Deep Vivid|PP-047 Neutral Deep Vivid]]"
-          ],
-          [
-            "M4 Chụp với flash",
-            "Chụp trong nhà với Godox iM20: chế độ A, ISO AUTO, Flash Mode ở Rear Sync, xem lại ảnh 2 giây.",
-            "[[PP-050-Neutral Soft Rich|PP-050 Neutral Soft Rich]]"
-          ]
-        ],
-        "caption": "Bốn ô của bộ ZV-E10 Hybrid. Ở M4, bạn tự bù sáng −0,7 EV trên máy sau khi gọi ô."
-      },
-      {
-        "t": "set",
-        "id": "zv-e10-hybrid"
-      },
-      {
-        "t": "p",
-        "text": "Chọn hệ PAL cho máy bán tại Việt Nam rồi bấm Tải ZIP 4 file. Giải nén, chép thư mục PRIVATE vào gốc thẻ nhớ, lắp thẻ vào máy rồi gọi từng ô tại MENU → Camera Settings1 → Shoot Mode → MR, theo file hướng dẫn kèm trong ZIP. Muốn đổi cài đặt hay thay công thức màu, bấm Dùng bộ này để mở [Tạo bộ M1–M4](/tao-m1-m4?set=zv-e10-hybrid) trong Alpha Console: chỉnh từng ô, đưa bản mod Picture Profile của bạn vào, rồi tải ZIP hoặc ghi thẳng vào thẻ nhớ bằng Chrome hay Edge trên máy tính."
-      },
-      {
-        "t": "figure",
-        "caption": "Mặt sau ZV-E10: nút MENU và bánh xe điều khiển dùng để gọi lại ô nhớ. Ảnh: Sony",
-        "src": "/blog/zv-e10-may-hybrid-aps-c-3.jpg",
-        "alt": "Sony ZV-E10 nhìn từ phía sau với màn hình, nút MENU, nút Fn và bánh xe điều khiển",
-        "width": 705,
-        "height": 470
+        "t": "checklist",
+        "label": "Mẹo chỉnh flash khi đang chụp",
+        "items": [
+          "Mỗi lần chỉ đổi một thứ: nền thì chỉnh bù sáng, khuôn mặt thì chỉnh mức đèn.",
+          "Gọi ô M4 trước, rồi mới chỉnh khẩu độ và bù sáng.",
+          "Đổi khoảng cách nhanh hơn bấm nút: lùi từ 1,5 m ra 2 m là ánh đèn yếu đi gần một mức.",
+          "Chờ khoảng 3 giây giữa hai tấm để đèn nạp lại.",
+          "Xem ảnh hiện lại 2 giây sau mỗi tấm để chỉnh ngay cho tấm kế tiếp.",
+          "Giữ máy yên tới khi thấy đèn nháy, vì Rear Sync cho đèn nháy ở cuối."
+        ]
       },
       {
         "t": "h",
@@ -12582,6 +12657,18 @@
         {
           "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001116942.html",
           "title": "ZV-E10 Help Guide: Recall Camera Set.",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001117013.html",
+          "title": "ZV-E10 Help Guide: Camera Set. Memory",
+          "publisher": "Sony",
+          "checkedAt": "2026-11-16"
+        },
+        {
+          "url": "https://helpguide.sony.net/ilc/2070/v1/en/contents/TP0001117088.html",
+          "title": "ZV-E10 Help Guide: Format",
           "publisher": "Sony",
           "checkedAt": "2026-11-16"
         },

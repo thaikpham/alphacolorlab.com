@@ -10,7 +10,7 @@ export interface Edge { source: string; target: string }
 
 /** Every reader-visible string of an article block (text, captions, list items, FAQ, table cells), so a link counts wherever it sits. */
 const blockTexts = (b: any): string[] =>
-  [b.text, b.label, b.caption, ...(b.items ?? []).flatMap((i: any) => (typeof i === "string" ? [i] : [i.q, i.a])), ...(b.head ?? []), ...(b.rows ?? []).flat()].filter(
+  [b.text, b.label, b.caption, ...(b.items ?? []).flatMap((i: any) => (typeof i === "string" ? [i] : [i.q, i.a, i.text, i.check])), ...(b.head ?? []), ...(b.rows ?? []).flat()].filter(
     (s): s is string => typeof s === "string" && s.length > 0,
   );
 

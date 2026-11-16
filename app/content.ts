@@ -1743,6 +1743,7 @@ export const blog = {
     menuOld: "ZV-E10, A6400",
     menuNew: "Máy menu mới",
     tldrLabel: "Tóm tắt",
+    checkLabel: "Kiểm:",
   },
   // Split view hints (md+)
   split: {

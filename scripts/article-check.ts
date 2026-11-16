@@ -40,6 +40,7 @@ function texts(b: any): string[] {
     case 'tldr': return b.items
     case 'callout': return [b.label ?? '', b.text]
     case 'checklist': return [b.label ?? '', ...b.items]
+    case 'steps': return [b.caption ?? '', ...b.items.flatMap((i: any) => [i.text ?? '', i.check ?? ''])]
     case 'table': return [...b.head, ...b.rows.flat(), b.caption ?? '']
     case 'faq': return b.items.flatMap((i: any) => [i.q, i.a])
     case 'figure': case 'compare': return [b.caption ?? '']
@@ -93,6 +94,19 @@ export function checkArticle(a: any): string[] {
   // Khối set phải trỏ tới bộ công khai trong data/preset-sets.json (bộ unlisted không hiện trong bài)
   for (const b of blocks) {
     if (b.t === 'set' && !presetSets.some((s) => s.id === b.id && !s.unlisted)) out.push(`khối set: không có bộ "${b.id}" trong danh sách công khai`)
+  }
+
+  // Khối steps: số bước trong stepsItems; mỗi bước có text (việc làm) và check tùy chọn (dấu hiệu bước đã xong)
+  for (const b of blocks) {
+    if (b.t !== 'steps') continue
+    const [min, max] = L.stepsItems
+    const items: any[] = Array.isArray(b.items) ? b.items : []
+    if (items.length < min || items.length > max) out.push(`khối steps cần ${min} đến ${max} bước, đang có ${items.length}`)
+    if (typeof b.caption !== 'string' || !b.caption.trim()) out.push('khối steps thiếu chú thích (caption)')
+    items.forEach((it, i) => {
+      if (typeof it?.text !== 'string' || !it.text.trim() || it.text !== it.text.trim()) out.push(`bước ${i + 1} của khối steps rỗng hoặc thừa khoảng trắng: "${it?.text}"`)
+      if (it?.check !== undefined && (typeof it.check !== 'string' || !it.check.trim() || it.check !== it.check.trim())) out.push(`kiểm của bước ${i + 1} rỗng hoặc thừa khoảng trắng: "${it.check}"`)
+    })
   }
 
   const blockTexts = blocks.flatMap(texts)
