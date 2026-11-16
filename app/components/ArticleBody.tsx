@@ -189,7 +189,8 @@ export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
                     alt={alt}
                     width={width}
                     height={height}
-                    unoptimized={block.src.endsWith(".svg")}
+                    // public/blog files are saved at web size: serve them as they are, no /_next/image (it answers 402 once the host's image quota is used up)
+                    unoptimized
                     loading={isFirstFigure ? "eager" : "lazy"}
                     fetchPriority={isFirstFigure ? "high" : "auto"}
                     sizes="(min-width: 720px) 672px, calc(100vw - 32px)"

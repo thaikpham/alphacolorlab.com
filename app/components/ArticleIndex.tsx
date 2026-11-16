@@ -70,7 +70,8 @@ function ArticleCard({ item, active, eager }: { item: IndexItem; active: boolean
             fill
             sizes="(min-width: 1536px) 14vw, (min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 31vw, 46vw"
             preload={eager}
-            unoptimized={img.svg}
+            // Same file as the article's first figure, served as it is (see ArticleBody)
+            unoptimized
             className={img.svg ? "object-contain p-4" : "object-cover"}
           />
         </div>

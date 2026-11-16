@@ -92,6 +92,7 @@ Header 0x00–0x37 (ngày, tên ô, byte 0x35 chưa giải mã) phải lấy ngu
 - Trang có nội dung không đặt `noindex` (Lighthouse trừ SEO); `noindex` chỉ dành cho trang chỉ có ở `npm run dev` (`/admin`, `/giai-ma`) và trang không tìm thấy (`/kol/[handle]`, `/bo-m1-m4/[id]` lạ). Mỗi trang tự đặt `alternates.canonical`: layout gốc đặt canonical là trang chủ, trang quên đặt sẽ bị Google gộp vào trang chủ.
 - JS tải ngay của thanh điều hướng không kéo theo dữ liệu lớn (bảng preset, codec `.DAT`, danh mục sản phẩm): đồng bộ tài khoản tải bằng `import()` (`lib/useAccountSync.ts`). `test/clientBundle.test.ts` kiểm.
 - `unicode-range` của các bản font không chồng nhau (`test/fontRanges.test.ts`).
+- Ảnh trong `public/blog/` hiện nguyên bản (`unoptimized` ở `ArticleBody` và `ArticleIndex`), không qua `/_next/image`: bản deploy hết hạn mức tối ưu ảnh thì `/_next/image` trả 402 và ảnh vỡ. Lưu ảnh bài viết sẵn ở cỡ web (rộng tối đa 1200px). Tạm thời từ 2026-11-16, `images.unoptimized: true` trong `next.config.ts` tắt bộ tối ưu cho mọi ảnh: ảnh sản phẩm tải thẳng từ sony.jp, nặng hơn. Gỡ dòng đó khi hạn mức có lại (chủ dự án quyết); khi ấy ảnh sản phẩm lại qua `/_next/image`, giữ cache 31 ngày (`minimumCacheTTL`).
 
 ## Trước khi báo xong
 
