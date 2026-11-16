@@ -114,12 +114,12 @@ test("lib/game/analyze.ts (client-safe) vẫn đi tới được từ file clien
   assert.ok(parent.has(join(ROOT, "lib/game/analyze.ts")), "lib/game/analyze.ts không đi tới được: kiểm tra lại đồ thị");
 });
 
-// Thanh điều hướng có ở mọi trang (AppNav, SiteHeader, nút avatar bên trong) và landing: JS tải ngay khi mở trang không được kéo theo
-// bảng preset, codec .DAT hay danh mục sản phẩm. Những phần đó chỉ được tải bằng import() khi cần (đồng bộ tài khoản, túi đồ ở bước 2).
-const SHELL = ["app/components/AppNav.tsx", "app/components/SiteHeader.tsx", "app/components/LandingFlow.tsx"];
+// Thanh điều hướng có ở mọi trang (AppNav, SiteHeader, nút avatar bên trong): JS tải ngay khi mở trang không được kéo theo
+// bảng preset, codec .DAT hay danh mục sản phẩm. Đồng bộ tài khoản tải chúng bằng import() khi đã đăng nhập.
+const SHELL = ["app/components/AppNav.tsx", "app/components/SiteHeader.tsx"];
 const HEAVY = ["lib/zve10/presets.json", "lib/zve10/profile.json", "data/products.json"];
 
-test("JS tải ngay của thanh điều hướng và landing không kéo theo dữ liệu lớn", () => {
+test("JS tải ngay của thanh điều hướng không kéo theo dữ liệu lớn", () => {
   const parent = reachable(SHELL.map((f) => join(ROOT, f)), true);
   for (const bad of HEAVY) {
     const abs = join(ROOT, bad);

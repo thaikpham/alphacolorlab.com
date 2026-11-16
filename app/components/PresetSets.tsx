@@ -53,24 +53,25 @@ function KolSetRow({ set }: { set: RemoteSet }) {
 
 /**
  * Bộ KOL đã công khai, mới nhất trước, một danh sách phẳng (mỗi KOL một bộ; bản cũ có nhiều bộ thì hiện hết). Tải sau khi trang mở.
- * Đang tải thì một dòng "Đang tải bộ…"; tải xong không có bộ thì ẩn cả mục. taken: id mọi bộ trong repo (kể cả unlisted, vẫn bị chiếm).
- * hasListed: danh sách repo có bộ đang hiện. Không có bộ nào ở cả hai nguồn sau khi tải thì dòng đó đổi thành "Chưa có bộ nào được chia sẻ.".
+ * Đang tải thì giữ chỗ bằng một hàng xám; tải xong không có bộ thì ẩn cả mục. taken: id mọi bộ trong repo (kể cả unlisted, vẫn bị chiếm).
+ * hasListed: danh sách repo có bộ đang hiện. Không có bộ nào ở cả hai nguồn sau khi tải thì hiện một dòng chữ.
  */
 export function KolSetGroups({ taken, hasListed }: { taken: string[]; hasListed: boolean }) {
   const takenIds = useMemo(() => new Set(taken), [taken]);
   const remote = useRemoteSetList(takenIds);
-  if (remote && remote.length === 0 && hasListed) return null;
+  if (remote && remote.length === 0) return hasListed ? null : <p className="text-body text-secondary">{kolSets.empty}</p>;
   return (
     <section aria-labelledby="kol-sets-title">
       <h2 id="kol-sets-title" className="text-title3 font-medium">
         {kolSets.fromKol}
       </h2>
       <ul className="mt-3 overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator">
-        {remote?.length ? (
-          remote.map((set) => <KolSetRow key={set.id} set={set} />)
+        {remote === undefined ? (
+          <li className="px-4 py-2.5">
+            <span aria-hidden="true" className="block h-11 rounded-control bg-fill" />
+          </li>
         ) : (
-          // Đang tải và "chưa có bộ" là cùng một dòng (chỉ đổi chữ): dòng chữ có sẵn trong HTML nên là LCP ngay lần vẽ đầu
-          <li className="flex min-h-11 items-center px-4 py-2.5 text-body text-secondary">{remote === undefined ? kolSets.loading : kolSets.empty}</li>
+          remote.map((set) => <KolSetRow key={set.id} set={set} />)
         )}
       </ul>
     </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useIndexView, type IndexApp } from "@/lib/indexView";
 
@@ -10,9 +10,7 @@ import { useIndexView, type IndexApp } from "@/lib/indexView";
  * lg+: the index leaves the grid and sits in the vertical nav, fixed right under its app links (AppSidebar).
  * The whole split is the page's <main> (pages under it render a <div>), so phones on the list route still have a main landmark.
  * `browse` (opt-in: /blog, /wiki) + Lưới: no index column at any width. The list route is `header` + index in page flow
- * (cards at all widths); a detail route is only its children. Once the list route has been shown, the index stays mounted (hidden) on
- * detail routes so its filters survive; a detail route opened directly does not render the hidden grid at all (an accessory page
- * carried 146 hidden cards, 440 KB of HTML, which the browser parsed over several frames and split FCP from LCP).
+ * (cards at all widths); a detail route is only its children. The index stays mounted (hidden) on detail routes so its filters survive.
  * Danh sách (list) view and every other layout keep the split above.
  */
 export function SplitLayout({ header, index, children, lists = [], browse }: { header: ReactNode; index: ReactNode; children: ReactNode; lists?: string[]; browse?: IndexApp }) {
@@ -21,20 +19,13 @@ export function SplitLayout({ header, index, children, lists = [], browse }: { h
   const detail = segments.length > 0 && !(segments.length === 1 && lists.includes(segments[0]));
   // Hook luôn gọi; `browse` chưa đặt thì app "blog" chỉ để giữ thứ tự hook, không dùng kết quả
   const view = useIndexView(browse ?? "blog");
-  // Lưới: đã mở trang danh sách trong phiên này thì giữ index (ẩn) khi sang trang chi tiết; mở thẳng trang chi tiết thì không dựng nó
-  const [listSeen, setListSeen] = useState(!detail);
-  useEffect(() => {
-    if (!detail) setListSeen(true);
-  }, [detail]);
   if (browse && view === "grid") {
     return (
       <main className="max-w-page mx-auto">
-        {(listSeen || !detail) && (
-          <div className={`${detail ? "hidden" : ""} px-4 sm:px-6 md:px-8 xl:px-12 pt-8 pb-24 sm:pt-10 md:pt-6`}>
-            <div className="mb-8">{header}</div>
-            {index}
-          </div>
-        )}
+        <div className={`${detail ? "hidden" : ""} px-4 sm:px-6 md:px-8 xl:px-12 pt-8 pb-24 sm:pt-10 md:pt-6`}>
+          <div className="mb-8">{header}</div>
+          {index}
+        </div>
         <div className={detail ? "" : "hidden"}>{children}</div>
       </main>
     );

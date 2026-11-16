@@ -8,7 +8,7 @@ File này ghi trạng thái và việc còn mở cho AI làm tiếp. Luật dự
 - **Push lên `main` là phát hành production**: Vercel project `sonyalphacolorlab` tự deploy. Tên miền chính `www.alphacolorlab.com`. `sonycolorlab.app` là tên miền cũ của ColorLab 2.0, giữ lại để chuyển hướng người dùng cũ. Không bao giờ viết "alphacolorlab.app".
 - Mỗi lần push cần chủ dự án đồng ý rõ ràng. Việc dọn dẹp trong repo (xóa code chết, đặt tên, commit cục bộ) thì tự quyết rồi báo lại một dòng.
 - Lần chạy cuối (2026-11-16): `npm test` 747/747 pass, `npm run check:design` sạch, `npm run build` thành công.
-- Lighthouse (bản build production, mobile và desktop): mọi trang đo được đạt 100 ở Performance, Accessibility, Best Practices và SEO, kể cả `/tai-khoan`, `/ho-so`, `/do-thi/*` sau khi bỏ `noindex` (mục 3).
+- Lighthouse sau khi khôi phục giao diện (mobile, 2026-11-16): Accessibility, Best Practices, SEO 100; Performance `/` 93, `/wiki` 91, trang sản phẩm 95, `/blog` 97, `/ho-so` 96. Chủ dự án chọn giữ giao diện thay vì điểm Performance 100 (mục 3).
 - Các nhánh `chore/dead-code-cleanup`, `chore/ui-audit-no-tab-bar`, `fix/landing-step2-missing` đã nằm trọn trong `main`, xóa được.
 
 ## 2. Lịch sử gần đây
@@ -19,23 +19,20 @@ File này ghi trạng thái và việc còn mở cho AI làm tiếp. Luật dự
 | 11-12 | `da8a2fc` … `d2269f9` | Bàn giải mã (chỉ admin), bộ M1–M4 của KOL, Lưới/Danh sách cho Blog và Wiki, `supabase/cleanup.sql`. |
 | 11-12 | `d913436`, `b8cf68e` | Landing 3 bước, cá nhân hóa theo túi đồ, bước 2 báo rõ còn thiếu gì. |
 | 11-16 | `3ba541e` | Rà UI: bỏ thanh tab ở đáy điện thoại, sửa route, xóa code chết. |
-| 11-16 | `2058019` | Lighthouse 100 (mục 3). |
-| 11-16 | commit sau `2058019` | Mở chỉ mục `/tai-khoan`, `/ho-so`, `/do-thi/*`; sửa dữ liệu phụ kiện (mục 3, cuối). |
+| 11-16 | `2058019` | Lighthouse 100; phần đổi giao diện đã gỡ (mục 3). |
+| 11-16 | `474c65e` | Mở chỉ mục `/tai-khoan`, `/ho-so`, `/do-thi/*`; sửa dữ liệu phụ kiện. |
+| 11-16 | commit sau `474c65e` | Khôi phục giao diện về `3ba541e` (mục 3). |
 
-## 3. Phiên 2026-11-16: Lighthouse 100
+## 3. Phiên 2026-11-16: hiệu năng, SEO, dữ liệu; giao diện giữ như `3ba541e`
 
-Luật để giữ điểm đã ghi trong `AGENTS.md`, mục "Hiệu năng (Lighthouse 100)". Tóm tắt những gì đã đổi:
+**Giao diện đã khôi phục về `3ba541e` theo yêu cầu chủ dự án.** Đợt Lighthouse 100 (`2058019`) từng đổi giao diện để lấy điểm: thẻ ngang ảnh 80px ở Lưới `/wiki`, `/blog` dưới sm; ảnh sản phẩm 112px cạnh tóm tắt; đồ thị landing vẽ nét liền nhạt ở bước 1–2; dòng chờ "Đang mở hồ sơ…" và "Đang tải bộ…"; `SplitLayout` không dựng lưới ẩn; `GearManager` tải bằng `next/dynamic`. Chủ dự án báo ảnh Wiki không hiện trên điện thoại (ảnh cỡ mới phải tạo lại từ sony.jp) và đồ thị mất phối cảnh gần xa, nên toàn bộ phần đó đã gỡ: `ArticleIndex`, `ProductIndex`, `wiki/san-pham/[slug]/page.tsx`, `Constellation`, `LandingGraph`, `LandingFlow`, `PresetSets`, `SplitLayout`, `Compare` giống hệt `3ba541e`. Luật mới trong `AGENTS.md` ("Hiệu năng và SEO"): không đổi giao diện để lấy điểm khi chưa được duyệt.
+
+Phần giữ lại (không đổi giao diện):
 
 - **Font:** `unicode-range` của bản latin-ext từng chồng lên bản tiếng Việt, nên trang nào cũng tải thêm 168 KB trước LCP. Đã tách hẳn, `test/fontRanges.test.ts` chặn tái phát.
-- **JS chung:** `AccountButton` và `LandingStart` bật đồng bộ qua `lib/useAccountSync.ts` (`import()` khi đã đăng nhập). `GearManager` ở landing tải bằng `next/dynamic`. Bảng preset, codec `.DAT` và danh mục sản phẩm không còn trong JS tải ngay; `test/clientBundle.test.ts` kiểm.
-- **LCP là chữ có sẵn trong HTML.** Lighthouse mô phỏng cộng cả thời gian JS vào LCP khi LCP là ảnh hoặc chữ hiện sau hydrate (khoảng 3 giây trên điện thoại). Vì vậy:
-  - Lưới `/wiki`, `/blog` dưới sm là thẻ ngang một cột, ảnh 80px bên trái.
-  - Trang sản phẩm dưới sm: tóm tắt và ảnh 112px đứng cạnh nhau. Dòng mã ẩn khi trùng tên.
-  - `/ho-so` và danh sách "Bộ từ KOL" render dòng chờ trong HTML rồi chỉ đổi chữ trong cùng phần tử.
-- **Lưới ẩn:** mở thẳng trang chi tiết `/wiki/*`, `/blog/*` thì `SplitLayout` không dựng lưới index ẩn (trang phụ kiện giảm từ 443 KB xuống 114 KB HTML). Đã mở trang danh sách thì lưới vẫn giữ mount như cũ để giữ bộ lọc. Index ẩn không còn preload ảnh.
-- **Đồ thị landing:** prop `backdrop` của `Constellation` dùng ở bước 1–2 (dpr 1, mọi cạnh một nét liền nhạt). Lần vẽ đầu đã tính sẵn zoom vừa khung, nên mở trang chỉ vẽ một khung. Bước 3 vẽ lại đủ nét chấm. Trong Lighthouse canvas rasterize bằng CPU; nét chấm ở dpr thiết bị từng làm một khung dài hơn 100 ms.
-- **Sửa nhỏ:** `PresetBuilder` bỏ kết quả tải file mẫu cũ khi đổi PAL/NTSC nhanh; id menu avatar lấy từ `useId`; chữ nút So sánh khi khóa dùng `secondary`.
-- **SEO (chủ dự án yêu cầu):** `/tai-khoan`, `/ho-so`, `/do-thi/[app]` bỏ `noindex`, có mô tả riêng (`profile.description`, `profile.sharedDescription`, `appHome[app].graph`) và canonical của chính trang. `/do-thi/*` vào sitemap; `/tai-khoan`, `/ho-so` không vào vì khách chưa đăng nhập chỉ thấy hồ sơ trống. `/ho-so` mở không kèm `#` thì hiện `profile.noShare` (giới thiệu trang) thay vì báo link hỏng. Layout gốc đặt canonical là trang chủ, nên trang nào quên đặt `alternates.canonical` sẽ bị Google gộp vào trang chủ: `/search` từng bị vậy, đã sửa.
+- **JS chung:** `AccountButton` và `LandingStart` bật đồng bộ qua `lib/useAccountSync.ts` (`import()` khi đã đăng nhập), nên thanh điều hướng không kéo theo bảng preset, codec `.DAT`, danh mục sản phẩm; `test/clientBundle.test.ts` kiểm.
+- **Sửa nhỏ:** `PresetBuilder` bỏ kết quả tải file mẫu cũ khi đổi PAL/NTSC nhanh; id menu avatar lấy từ `useId`.
+- **SEO (chủ dự án yêu cầu):** `/tai-khoan`, `/ho-so`, `/do-thi/[app]` bỏ `noindex`, có mô tả riêng (`profile.description`, `profile.sharedDescription`, `appHome[app].graph`) và canonical của chính trang. `/do-thi/*` vào sitemap; `/tai-khoan`, `/ho-so` không vào vì khách chưa đăng nhập chỉ thấy hồ sơ trống. `/ho-so` mở không kèm `#` thì hiện `profile.noShare` thay vì báo link hỏng. Layout gốc đặt canonical là trang chủ, nên trang nào quên đặt `alternates.canonical` sẽ bị Google gộp vào trang chủ: `/search` từng bị vậy, đã sửa.
 - **Dữ liệu phụ kiện (đối chiếu sony.jp 2026-11-16):** "積載カメラ質量" là tải trọng, không phải khối lượng. GP-VPT1 nặng 116 g (tải 1 kg), VCT-MP1 nặng 935 g (tải 2 kg, khối lượng chỉ có ở `feature_1.html`, ghi trong `FEATURE_WEIGHT`). ADP-AMA và ADP-MAA là シューアダプター, sang nhóm mới `shoe-adapter` ("Bộ chuyển đế đèn"). Sửa ở `scripts/product-specs.ts` (`MASS`, `CATEGORY_GROUP`) rồi chạy lại từ cache; `test/products.test.ts` chốt các giá trị này.
 
 Cách đo lại:
