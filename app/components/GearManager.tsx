@@ -149,7 +149,7 @@ export function GearManager({ title, compact }: { title: string; compact?: boole
               <h3 className="text-footnote font-semibold text-secondary">
                 {T.groups[cat]} <span className="tabular-nums">{bag[cat].length}</span>
               </h3>
-              <ul className="mt-2 grid grid-cols-4 gap-2 sm:grid-cols-6">
+              <ul className="mt-2 grid grid-cols-4 gap-2 lg:grid-cols-6">
                 {bag[cat].map((id) => {
                   const item: Item | undefined = catalog[cat].find((i) => i.id === id);
                   const name = item?.name ?? id;

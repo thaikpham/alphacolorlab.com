@@ -29,6 +29,15 @@ test('nhãn mục lục (toc) của mục h: không rỗng, tối đa 28 ký t�
   assert.ok(checkArticle(withToc('Creative Look')).some((p) => p.startsWith('có Creative')))
 })
 
+test('icon của mục h: không có thì bỏ qua, có thì phải nằm trong headingIcons', () => {
+  const withIcon = (icon: unknown) => ({ ...articles[0], blocks: [...articles[0].blocks, { t: 'h', text: 'Mục thử', icon }, { t: 'p', text: 'Đoạn thử.' }] })
+  const iconProblems = (icon: unknown) => checkArticle(withIcon(icon)).filter((p) => p.includes('icon đề mục'))
+  assert.deepEqual(iconProblems(undefined), [])
+  assert.deepEqual(iconProblems('camera'), [])
+  assert.deepEqual(iconProblems('khong-co'), ['icon đề mục không có trong danh sách: "khong-co"'])
+  assert.deepEqual(iconProblems(42), ['icon đề mục không có trong danh sách: "42"'])
+})
+
 test('khối steps: 2 đến 9 bước, mỗi bước có text, kiểm tùy chọn nhưng không rỗng, chú thích bắt buộc', () => {
   const withSteps = (items: unknown[], caption: unknown = 'Chú thích thử.') => ({ ...articles[0], blocks: [articles[0].blocks[0], { t: 'steps', caption, items }, ...articles[0].blocks.slice(1)] })
   const stepsProblems = (items: unknown[], caption?: unknown) => checkArticle(withSteps(items, caption)).filter((p) => /steps|kiểm của bước/.test(p))

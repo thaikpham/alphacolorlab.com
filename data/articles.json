@@ -11923,7 +11923,8 @@
       {
         "t": "h",
         "text": "ZV-E10 đứng ở đâu trong bốn thân máy APS-C ngàm E?",
-        "toc": "Vị trí của ZV-E10"
+        "toc": "Vị trí của ZV-E10",
+        "icon": "camera"
       },
       {
         "t": "p",
@@ -11968,7 +11969,8 @@
       {
         "t": "h",
         "text": "Cảm biến crop 1,5 lớn hơn khổ crop 1,6 bao nhiêu?",
-        "toc": "Cảm biến crop 1,5"
+        "toc": "Cảm biến crop 1,5",
+        "icon": "sensor"
       },
       {
         "t": "p",
@@ -12020,7 +12022,8 @@
       {
         "t": "h",
         "text": "Màn trập cơ đồng bộ flash 1/160 giây giúp gì khi chụp trong nhà?",
-        "toc": "Đồng bộ flash 1/160 giây"
+        "toc": "Đồng bộ flash 1/160 giây",
+        "icon": "flash"
       },
       {
         "t": "p",
@@ -12049,7 +12052,8 @@
       {
         "t": "h",
         "text": "Picture Profile Colorlab là gì và hợp với ZV-E10 ở điểm nào?",
-        "toc": "Picture Profile Colorlab"
+        "toc": "Picture Profile Colorlab",
+        "icon": "color"
       },
       {
         "t": "p",
@@ -12058,7 +12062,8 @@
       {
         "t": "h",
         "text": "Bốn ô nhớ M1–M4 cài sẵn dùng vào việc gì?",
-        "toc": "Bốn ô nhớ M1–M4"
+        "toc": "Bốn ô nhớ M1–M4",
+        "icon": "memory"
       },
       {
         "t": "p",
@@ -12106,7 +12111,8 @@
       {
         "t": "h",
         "text": "Cài bộ M1–M4 vào ZV-E10 và gọi lại như thế nào?",
-        "toc": "Cài bộ M1–M4 vào máy"
+        "toc": "Cài bộ M1–M4 vào máy",
+        "icon": "card"
       },
       {
         "t": "p",
@@ -12188,7 +12194,8 @@
       {
         "t": "h",
         "text": "Chụp flash chỉnh tay ở chế độ A với phơi sáng tự động như thế nào?",
-        "toc": "Flash ở chế độ A"
+        "toc": "Flash ở chế độ A",
+        "icon": "mode"
       },
       {
         "t": "p",
@@ -12281,7 +12288,8 @@
       {
         "t": "h",
         "text": "Chọn mức đèn theo ISO và khoảng cách ra sao?",
-        "toc": "Mức đèn theo ISO"
+        "toc": "Mức đèn theo ISO",
+        "icon": "levels"
       },
       {
         "t": "p",
@@ -12343,7 +12351,8 @@
       {
         "t": "h",
         "text": "Vì sao đặt Flash Mode ở Rear Sync khi chụp chế độ A?",
-        "toc": "Vì sao Rear Sync"
+        "toc": "Vì sao Rear Sync",
+        "icon": "timer"
       },
       {
         "t": "p",
@@ -12403,7 +12412,8 @@
       {
         "t": "h",
         "text": "Livestream bằng ZV-E10 cần chuẩn bị gì ngoài ô M3?",
-        "toc": "Livestream"
+        "toc": "Livestream",
+        "icon": "broadcast"
       },
       {
         "t": "p",
@@ -12420,7 +12430,8 @@
       {
         "t": "h",
         "text": "Ống kính ngàm E nào hợp với ZV-E10?",
-        "toc": "Ống kính ngàm E"
+        "toc": "Ống kính ngàm E",
+        "icon": "lens"
       },
       {
         "t": "p",
@@ -12429,7 +12440,8 @@
       {
         "t": "h",
         "text": "Chụp đời thường và du lịch nên chọn ống nào?",
-        "toc": "Ống đời thường, du lịch"
+        "toc": "Ống đời thường, du lịch",
+        "icon": "pin"
       },
       {
         "t": "p",
@@ -12472,7 +12484,8 @@
       {
         "t": "h",
         "text": "Chụp chân dung nên chọn ống nào?",
-        "toc": "Ống chân dung"
+        "toc": "Ống chân dung",
+        "icon": "person"
       },
       {
         "t": "p",
@@ -12515,7 +12528,8 @@
       {
         "t": "h",
         "text": "Quay vlog và livestream nên chọn ống nào?",
-        "toc": "Ống vlog, livestream"
+        "toc": "Ống vlog, livestream",
+        "icon": "video"
       },
       {
         "t": "p",

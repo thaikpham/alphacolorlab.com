@@ -960,9 +960,7 @@ export const landing = {
     },
   },
   start: {
-    title: "Bắt đầu với bộ máy của bạn",
     signedIn: (name: string) => `Đã đăng nhập: ${name}`,
-    note: "Nội dung trang web hiển thị sẽ được tối ưu theo những sản phẩm Sony Alpha mà bạn đang sở hữu.",
     syncTip: {
       term: "Đăng nhập Google",
       lines: [

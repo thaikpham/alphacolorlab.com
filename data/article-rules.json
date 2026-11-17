@@ -5,6 +5,7 @@
   "levels": ["newbie", "mid", "pro"],
   "categories": ["ky-thuat", "ky-nang"],
   "blockTypes": ["tldr", "h", "p", "menu", "table", "callout", "compare", "checklist", "steps", "figure", "embed", "faq", "set"],
+  "headingIcons": ["camera", "sensor", "flash", "color", "memory", "card", "mode", "levels", "timer", "broadcast", "lens", "pin", "person", "video", "question", "focus", "exposure", "light", "night", "grid", "settings", "alert", "practice", "phone", "next", "image"],
   "menuPrefixes": {
     "old": "^MENU → (Camera Settings[12]|Playback) → ",
     "oldVi": "^MENU → (Cài đặt máy ảnh[12]|Xem lại) → ",

@@ -34,6 +34,15 @@ test("article-rules.json", async (t) => {
     assert.deepStrictEqual(missing, []);
   });
 
+  await t.test("headingIcons lists exactly the keys of ARTICLE_ICONS, in order", () => {
+    // ArticleIcon.tsx chứa JSX, test runner của node không nạp được .tsx: đọc tên khóa từ mã nguồn
+    const iconSrc = readFileSync(join(projectRoot, "app/components/ArticleIcon.tsx"), "utf-8");
+    const body = iconSrc.match(/export const ARTICLE_ICONS = \{([\s\S]*?)\n\} satisfies/)?.[1] ?? "";
+    const keys = [...body.matchAll(/^  ([a-z]\w*): /gm)].map((m) => m[1]);
+    assert.ok(keys.length > 0, "ARTICLE_ICONS keys not found in app/components/ArticleIcon.tsx");
+    assert.deepStrictEqual(rules.headingIcons, keys);
+  });
+
   await t.test("every banned rule has a unique id and a pattern that compiles", () => {
     const lists = [rules.bannedPhrases, rules.faqAnswerBanned, rules.sectionLeadBanned, rules.headingBanned];
     const ids = lists.flat().map((r: { id: string }) => r.id);

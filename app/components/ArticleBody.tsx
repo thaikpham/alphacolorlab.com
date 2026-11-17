@@ -7,6 +7,7 @@ import presetSetsJson from "@/data/preset-sets.json";
 import { RichText } from "./RichText";
 import { DataTable } from "./DataTable";
 import { SetActions, SetSlots } from "./SetDetail";
+import { ArticleIcon, isArticleIcon } from "./ArticleIcon";
 
 // Chỉ bộ công khai mới nhúng được vào bài (khối set); bộ unlisted và id lạ không hiện
 const LISTED_SETS = new Map(listedSets(validatePresetSets(presetSetsJson)).map((s) => [s.id, s]));
@@ -80,8 +81,11 @@ export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
 
           case "h":
             return (
-              <h2 key={idx} className="text-title3 font-medium pt-8 scroll-mt-20" id={`section-${idx}`}>
-                <RichText text={block.text} />
+              <h2 key={idx} className="flex items-start gap-3 pt-10 text-title2 font-semibold text-label scroll-mt-20" id={`section-${idx}`}>
+                {isArticleIcon(block.icon) && <ArticleIcon name={block.icon} className="mt-1 size-6 shrink-0 text-accent-text" />}
+                <span className="min-w-0">
+                  <RichText text={block.text} />
+                </span>
               </h2>
             );
 
@@ -237,7 +241,10 @@ export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
           case "faq":
             return (
               <div key={idx} className="space-y-3">
-                <h3 className="text-title3 font-medium pt-8">{seo.faqLabel}</h3>
+                <h3 className="flex items-start gap-3 pt-10 text-title2 font-semibold text-label">
+                  <ArticleIcon name="question" className="mt-1 size-6 shrink-0 text-accent-text" />
+                  <span className="min-w-0">{seo.faqLabel}</span>
+                </h3>
                 <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
                   {block.items.map((item, i) => (
                     <div key={i} className="px-4 py-3">

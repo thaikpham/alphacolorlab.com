@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { landing } from "@/app/content";
+import { gearManager, landing } from "@/app/content";
 import type { CGraph } from "@/lib/constellation";
 import { authReady, useSession } from "@/lib/auth";
 import { useGear } from "@/lib/gear";
@@ -15,7 +15,7 @@ const STEP_KEY = "landing-step";
 type Step = 1 | 2 | 3;
 
 /** Landing là một flow 3 bước trong đúng một màn hình, không cuộn trang (cuộn theo mốc từng kéo người dùng đi khi đang nhập máy):
- * 1 giới thiệu, 2 túi đồ + đăng nhập Google (bắt buộc cả hai mới sang được bước 3), 3 đồ thị đã cá nhân hóa + nút vào dự án.
+ * 1 giới thiệu, 2 túi đồ + đăng nhập Google trong bảng điều khiển hai cột (bắt buộc cả hai mới sang được bước 3), 3 đồ thị đã cá nhân hóa + nút vào dự án.
  * Đồ thị tổng hợp nằm nền suốt flow. Bước đang đứng lưu trong sessionStorage: vòng đăng nhập Google rời trang rồi quay lại "/"
  * thì về đúng bước 2. Góc dưới trái: nút quay lại + chấm đếm bước; góc dưới phải: nút cam của bước (bước 3 là EnterLink trong đồ thị). */
 export function LandingFlow({ graph }: { graph: CGraph }) {
@@ -86,21 +86,50 @@ export function LandingFlow({ graph }: { graph: CGraph }) {
       )}
 
       {shown === 2 && (
-        <section aria-label={landing.start.title} className="absolute inset-0 z-10 overflow-y-auto bg-bg px-4 pt-10 pb-24 sm:px-6 lg:px-8">
-          <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col justify-center gap-4">
-            <GearManager title={landing.start.title} compact />
-            <LandingStart />
-            <p className="rounded-control bg-fill px-4 py-3 text-subhead text-label text-pretty">{landing.start.note}</p>
-            <ul ref={needsList} id="flow-missing" aria-label={T.needs.label} className="rounded-card bg-card shadow-card divide-y divide-separator">
-              {needs.map((n) => (
-                <li key={n.label} className="flex min-h-11 items-center justify-between gap-3 px-4 py-2 text-callout">
-                  <span className="text-pretty">{n.label}</span>
-                  <span className={`shrink-0 rounded-badge px-2 py-0.5 text-footnote font-semibold ${n.ok ? "bg-success-fill text-success" : "bg-warning-fill text-warning"}`}>
-                    {n.ok ? T.needs.done : T.needs.todo}
-                  </span>
-                </li>
-              ))}
-            </ul>
+        <section aria-labelledby="flow-title" className="absolute inset-0 z-10 overflow-y-auto bg-bg px-4 pt-10 pb-24 sm:px-6 lg:px-8">
+          <div className="mx-auto flex min-h-full w-full max-w-dashboard flex-col justify-center gap-4">
+            <h2 id="flow-title" className="text-title">
+              {T.steps[1]}
+            </h2>
+            <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_20rem] md:gap-6">
+              <GearManager title={gearManager.title} compact />
+              <div className="flex flex-col gap-4 md:gap-6">
+                <LandingStart />
+                <div className="rounded-card bg-card p-5 shadow-card sm:p-6 md:flex-1">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h2 id="flow-needs-title" className="text-title3 font-medium">
+                      {T.needs.label}
+                    </h2>
+                    <span className="text-callout font-semibold text-secondary tabular-nums">{T.count(needs.filter((n) => n.ok).length, needs.length)}</span>
+                  </div>
+                  <ul ref={needsList} id="flow-missing" aria-labelledby="flow-needs-title" className="mt-2 divide-y divide-separator">
+                    {needs.map((n) => (
+                      <li key={n.label} className="flex min-h-11 items-center gap-3 py-2 text-callout">
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                          className={`shrink-0 ${n.ok ? "text-success" : "text-tertiary"}`}
+                        >
+                          <circle cx="9" cy="9" r="7.25" />
+                          {n.ok && <path d="M5.75 9.25l2.25 2.25 4.25-4.75" />}
+                        </svg>
+                        <span className="min-w-0 flex-1 text-pretty">{n.label}</span>
+                        <span className={`shrink-0 rounded-badge px-2 py-0.5 text-footnote font-semibold ${n.ok ? "bg-success-fill text-success" : "bg-warning-fill text-warning"}`}>
+                          {n.ok ? T.needs.done : T.needs.todo}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       )}

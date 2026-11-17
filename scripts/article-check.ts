@@ -84,6 +84,8 @@ export function checkArticle(a: any): string[] {
       else if (t.length > L.tocMax) out.push(`nhãn mục lục dài quá ${L.tocMax} ký tự: "${t}"`)
       else if (/[.?:!]$/.test(t)) out.push(`nhãn mục lục không được kết thúc bằng . ? : !: "${t}"`)
     }
+    // Icon đề mục: tùy chọn; nếu có thì phải là tên trong headingIcons (vẽ ở app/components/ArticleIcon.tsx)
+    if (b.icon !== undefined && !(typeof b.icon === 'string' && rules.headingIcons.includes(b.icon))) out.push(`icon đề mục không có trong danh sách: "${b.icon}"`)
     const next = blocks[i + 1]
     const dup = headingBanned.find((r) => matches(r, b.text))
     if (next?.t === 'faq' || dup) out.push(`bỏ mục "${b.text}": ${dup?.message ?? 'khối faq cuối bài tự có tiêu đề'}`)

@@ -3,6 +3,7 @@ import { list, byId, posts } from "@/lib/blog";
 import { blog, seo } from "@/app/content";
 import { BackLink } from "@/app/components/BackLink";
 import { ArticleBody } from "@/app/components/ArticleBody";
+import { ArticleToc } from "@/app/components/ArticleToc";
 import { Markdown } from "@/app/components/Markdown";
 import { LinkRow } from "@/app/components/LinkRow";
 import { resolve } from "@/lib/wikilinks";
@@ -101,16 +102,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
         {/* Container ≥ 48rem (@3xl): contents in a sticky left column, article on the right. Phones: one column, contents hidden; DOM order body, related, sources, comments. */}
         <div className="@container">
         <div className={hasToc ? "@3xl:grid @3xl:grid-cols-[14rem_minmax(0,1fr)] @3xl:gap-x-8" : undefined}>
-        {hasToc && (
-        <aside className="hidden @3xl:block @3xl:sticky @3xl:top-navbar @3xl:self-start @3xl:max-h-split @3xl:overflow-y-auto">
-          <nav aria-labelledby="toc-heading">
-            <h2 id="toc-heading" className="mb-2 text-footnote font-medium text-label">{blog.detail.toc}</h2>
-            {toc.map((h) => (
-              <a key={h.id} href={`#${h.id}`} className="flex min-h-9 items-center text-footnote leading-snug text-secondary transition-colors hover:text-label focus-visible:text-label pointer-coarse:min-h-11">{h.text}</a>
-            ))}
-          </nav>
-        </aside>
-        )}
+        {hasToc && <ArticleToc label={blog.detail.toc} items={toc} />}
 
         {/* Reading column: at most max-w-article, left against the contents; what is left on the right is the safe margin */}
         <div className="min-w-0 max-w-article">
