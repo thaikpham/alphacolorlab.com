@@ -39,7 +39,8 @@ const tables: { table: string; key: string; rows: Record<string, unknown>[] }[] 
     key: 'id',
     rows: (articles as any[]).map((a) => ({
       id: a.id, status: 'published', kind: a.kind, topic: a.topic, level: a.level, archetype: a.archetype, read: a.read,
-      title: a.title, dek: a.dek, blocks: a.blocks, meta: a.meta, category: a.category ?? null, ...(a.updatedAt && { updated_at: a.updatedAt }),
+      // blocks keeps the default variant so readers without variants still get the body; variants needs the column in supabase/content.sql
+      title: a.title, dek: a.dek, blocks: a.blocks ?? a.variants[0].blocks, variants: a.variants ?? null, meta: a.meta, category: a.category ?? null, ...(a.updatedAt && { updated_at: a.updatedAt }),
     })),
   },
 ]

@@ -55,7 +55,8 @@ function SetBlock({ set }: { set: PresetSet }) {
   );
 }
 
-export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
+/** `idPrefix` đặt id đề mục (`${idPrefix}-${i}`, khớp với mục lục); `eager` cho ảnh đầu tải sớm (tắt cho bản không hiện). */
+export function ArticleBody({ blocks, idPrefix = "section", eager = true }: { blocks: readonly Block[]; idPrefix?: string; eager?: boolean }) {
   if (!blocks.length) return null;
 
   // Find first figure for priority
@@ -81,7 +82,7 @@ export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
 
           case "h":
             return (
-              <h2 key={idx} className="flex items-start gap-3 pt-10 text-title2 font-semibold text-label scroll-mt-20" id={`section-${idx}`}>
+              <h2 key={idx} className="flex items-start gap-3 pt-10 text-title2 font-semibold text-label scroll-mt-20" id={`${idPrefix}-${idx}`}>
                 {isArticleIcon(block.icon) && <ArticleIcon name={block.icon} className="mt-1 size-6 shrink-0 text-accent-text" />}
                 <span className="min-w-0">
                   <RichText text={block.text} />
@@ -214,8 +215,8 @@ export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
                     height={height}
                     // public/blog files are saved at web size: serve them as they are, no /_next/image (it answers 402 once the host's image quota is used up)
                     unoptimized
-                    loading={isFirstFigure ? "eager" : "lazy"}
-                    fetchPriority={isFirstFigure ? "high" : "auto"}
+                    loading={isFirstFigure && eager ? "eager" : "lazy"}
+                    fetchPriority={isFirstFigure && eager ? "high" : "auto"}
                     sizes="(min-width: 720px) 672px, calc(100vw - 32px)"
                     className="h-full w-full object-contain"
                   />

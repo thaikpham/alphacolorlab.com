@@ -47,6 +47,15 @@ export type ArticleMeta = {
   order: string | null
 }
 
+/** Một bản của bài (ví dụ Legacy Menu, New-gen Menu): nội dung riêng, chọn bằng công tắc trên trang. */
+export type Variant = {
+  readonly id: string
+  readonly label: string
+  /** Ids máy (app/content.ts: zve10, a6400, a7c2) mà bản này là mặc định. */
+  readonly models: readonly string[]
+  readonly blocks: readonly Block[]
+}
+
 export type Article = {
   readonly id: string
   readonly kind: 'article'
@@ -56,7 +65,9 @@ export type Article = {
   readonly read: string
   readonly title: string
   readonly dek: string
-  readonly blocks: readonly Block[]
+  /** Bài một bản. Bài nhiều bản dùng `variants` thay cho `blocks` (đúng một trong hai). */
+  readonly blocks?: readonly Block[]
+  readonly variants?: readonly Variant[]
   readonly meta: ArticleMeta
   readonly updatedAt?: string
   readonly category?: string
@@ -127,8 +138,19 @@ export type Thumb = { src: string; svg: boolean }
 
 export type IndexItem = { href: string; title: string; read?: string; steps?: number; image?: Thumb }
 
+/** Khối của một bản; không truyền id thì lấy bản đầu (bản mặc định: ảnh đại diện, JSON-LD). */
+export function blocksOf(a: Article, variantId?: string): readonly Block[] {
+  if (!a.variants) return a.blocks ?? []
+  return a.variants.find((v) => v.id === variantId)?.blocks ?? a.variants[0].blocks
+}
+
+/** Mọi khối của mọi bản: để quét wikilink trong đồ thị. */
+export function allBlocks(a: Article): readonly Block[] {
+  return a.variants ? a.variants.flatMap((v) => v.blocks) : (a.blocks ?? [])
+}
+
 export function thumbOf(a: Article): Thumb | undefined {
-  const figure = a.blocks.find((b): b is Extract<Block, { t: 'figure' }> => b.t === 'figure')
+  const figure = blocksOf(a).find((b): b is Extract<Block, { t: 'figure' }> => b.t === 'figure')
   return figure ? { src: figure.src, svg: figure.src.endsWith('.svg') } : undefined
 }
 

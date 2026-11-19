@@ -20,7 +20,20 @@ const pages = new Set([
 ]);
 
 test("every fixed destination is a page of this app", () => {
-  for (const r of redirects) if (!r.destination.includes(":")) assert.ok(pages.has(r.destination), `${r.source} → ${r.destination}`);
+  for (const r of redirects) if (!r.destination.includes(":")) assert.ok(pages.has(r.destination.split("?")[0]), `${r.source} → ${r.destination}`);
+});
+
+test("the menu article's old slugs and /cai-tay/:chuong are permanent redirects to its variants", () => {
+  const rule = (source: string) => redirects.find((r) => r.source === source);
+  const menu = "/blog/menu-may-anh-toi-uu-nguoi-moi";
+  for (const [source, destination] of [
+    ["/blog/menu-may-anh-toi-uu-nguoi-moi-legacy-menu", `${menu}?menu=legacy`],
+    ["/blog/menu-may-anh-toi-uu-nguoi-moi-new-gen-menu", `${menu}?menu=new-gen`],
+    ["/cai-tay/:chuong", `${menu}?menu=legacy`],
+  ]) {
+    assert.equal(rule(source)?.destination, destination, source);
+    assert.equal(rule(source)?.permanent, true, source);
+  }
 });
 
 test("pattern destinations only reuse params their source captures", () => {

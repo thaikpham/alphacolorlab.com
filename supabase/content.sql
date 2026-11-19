@@ -42,6 +42,8 @@ create table if not exists public.learning_paths (
 
 -- Blog articles keep living in lab_articles (same ids); the site groups them by category.
 alter table public.lab_articles add column if not exists category text;
+-- Articles with variants (menu switch) keep each variant's blocks here; blocks holds the default variant.
+alter table public.lab_articles add column if not exists variants jsonb;
 
 alter table public.products enable row level security;
 alter table public.knowledge_notes enable row level security;

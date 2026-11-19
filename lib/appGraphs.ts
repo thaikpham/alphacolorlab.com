@@ -15,7 +15,7 @@ const SERIES_LABELS: Record<string, string> = { GM: "G Master", G: "Ống kính 
  * Data: sections + sonyBodies + cameraModels from content.ts.
  * Cameras are the 3 guide cameras linked to chapters.
  * Steps are linked to their chapter. Model-restricted steps linked to their camera.
- * Chapters and steps link to the Legacy Menu article (the menu guide now lives there).
+ * Chapters and steps link to the menu article's Legacy variant (the menu guide now lives there).
  */
 function buildConsoleGraph(): CGraph {
   const edges: CEdge[] = [];

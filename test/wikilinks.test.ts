@@ -3,6 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { splitWiki } from '../lib/markdown.ts'
 import { fold, resolve } from '../lib/wikilinks.ts'
+import { allBlocks } from '../lib/blog.ts'
 
 const knowledge = JSON.parse(readFileSync('data/knowledge.json', 'utf8'))
 const articles = JSON.parse(readFileSync('data/articles.json', 'utf8'))
@@ -39,7 +40,7 @@ test('every wikilink in knowledge bodies resolves', () => {
 })
 
 test('every wikilink in article blocks resolves', () => {
-  assert.deepEqual(articles.flatMap((a: any) => a.blocks.flatMap((b: any, i: number) => blockTexts(b).flatMap((t) => unresolved(`${a.id} block[${i}]`, t)))), [])
+  assert.deepEqual(articles.flatMap((a: any) => allBlocks(a).flatMap((b: any, i: number) => blockTexts(b).flatMap((t) => unresolved(`${a.id} block[${i}]`, t)))), [])
 })
 
 test('no Creative Look or Creative Style anywhere', () => {

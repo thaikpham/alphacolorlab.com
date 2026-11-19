@@ -1,6 +1,7 @@
 // AIO/SEO structure and house-style checks for one article (the rules in AGENTS.md "Nội dung" and the alphaskill checklist).
 //   node --experimental-strip-types scripts/article-check.ts <id | draft.json> [more…]   prints problems, exits 1 if any
 // Giới hạn và cụm cấm nằm ở data/article-rules.json (cùng file với công cụ colorlab_article của alphaskill).
+// Bài nhiều bản (variants): mỗi bản được kiểm như bài một bản; lỗi của bản có tiền tố [id bản].
 // test/articles-aio.test.ts runs the same checks on every article in data/articles.json.
 import { readFileSync } from 'node:fs'
 import articles from '../data/articles.json' with { type: 'json' }
@@ -48,12 +49,22 @@ function texts(b: any): string[] {
   }
 }
 
-export function checkArticle(a: any): string[] {
+/** Luật cấm, viết hoa câu mới, wikilink hỏng: chạy trên từng chuỗi hiển thị. */
+function checkStrings(strings: string[]): string[] {
   const out: string[] = []
-  const blocks: any[] = a.blocks
-  const dek = (a.dek ?? '').length
-  if (dek < L.dekChars[0] || dek > L.dekChars[1]) out.push(`dek ${dek} ký tự, cần ${L.dekChars[0]}–${L.dekChars[1]}`)
+  for (const s of strings) {
+    for (const r of banned) if (r.max === undefined && matches(r, s)) out.push(`${r.message}: "${s.slice(0, 60)}"`)
+    // A dash swapped for a period leaves "Sony. xoay": the new sentence must start with a capital (M.M., v.v., F8... are fine)
+    for (const m of plain(s).matchAll(/(?<![A-Z]\.[A-Z]|v\.v|\.\.|Prior)\. (\p{Ll}\S*)/gu)) out.push(`câu mới mở bằng chữ thường "${m[1]}": "${s.slice(0, 60)}"`)
+    for (const m of s.matchAll(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|[^\]]+)?\]\]/g))
+      if (!resolve(m[1])) out.push(`wikilink hỏng: [[${m[1]}]]`)
+  }
+  return out
+}
 
+/** Luật khối của một bản: tldr, faq, mục, set, steps, luật đếm. `head` là tiêu đề và tóm tắt, chỉ tính vào luật đếm scope 'all'. */
+function checkBlocks(blocks: any[], head: string[]): string[] {
+  const out: string[] = []
   const tldr = blocks[0]?.t === 'tldr' ? blocks[0] : null
   if (!tldr) out.push('khối đầu tiên phải là tldr')
   else {
@@ -112,23 +123,75 @@ export function checkArticle(a: any): string[] {
   }
 
   const blockTexts = blocks.flatMap(texts)
-  const all = [a.title, a.dek ?? '', ...blockTexts]
-  for (const s of all) {
-    for (const r of banned) if (r.max === undefined && matches(r, s)) out.push(`${r.message}: "${s.slice(0, 60)}"`)
-    // A dash swapped for a period leaves "Sony. xoay": the new sentence must start with a capital (M.M., v.v., F8... are fine)
-    for (const m of plain(s).matchAll(/(?<![A-Z]\.[A-Z]|v\.v|\.\.|Prior)\. (\p{Ll}\S*)/gu)) out.push(`câu mới mở bằng chữ thường "${m[1]}": "${s.slice(0, 60)}"`)
-    for (const m of s.matchAll(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|[^\]]+)?\]\]/g))
-      if (!resolve(m[1])) out.push(`wikilink hỏng: [[${m[1]}]]`)
-  }
+  out.push(...checkStrings(blockTexts))
 
   for (const r of banned) {
     if (r.max === undefined) continue
-    const pool = r.scope === 'all' ? all : blockTexts
+    const pool = r.scope === 'all' ? [...head, ...blockTexts] : blockTexts
     const n = pool.reduce((k, s) => k + [...subject(r, s).matchAll(new RegExp(r.pattern, r.flags + 'g'))].length, 0)
     if (n > r.max) out.push(`${r.message}: ${n} lần, tối đa ${r.max}`)
   }
+  return out
+}
 
+/** Các bản cần kiểm: `variants` (mỗi bản có blocks riêng) hoặc `blocks` (một bản). Lỗi cấu trúc đưa vào `errors`. */
+function bundlesOf(a: any): { bundles: { label: string | null; blocks: any[] }[]; errors: string[] } {
+  const errors: string[] = []
+  const hasBlocks = a.blocks !== undefined
+  const hasVariants = a.variants !== undefined
+  if (hasBlocks === hasVariants) return { bundles: [], errors: ['bài phải có đúng một trong hai: blocks (một bản) hoặc variants (nhiều bản)'] }
+  if (!hasVariants) {
+    if (!Array.isArray(a.blocks)) return { bundles: [], errors: ['blocks phải là mảng'] }
+    return { bundles: [{ label: null, blocks: a.blocks }], errors }
+  }
+  if (!Array.isArray(a.variants) || a.variants.length === 0) return { bundles: [], errors: ['variants phải là mảng có ít nhất một bản'] }
+
+  const bundles: { label: string | null; blocks: any[] }[] = []
+  const ids = new Set<string>()
+  const owners = new Map<string, string>()
+  for (const v of a.variants) {
+    if (typeof v?.id !== 'string' || !v.id.trim()) {
+      errors.push(`bản thiếu id: ${JSON.stringify(v?.id)}`)
+      continue
+    }
+    const id: string = v.id
+    if (ids.has(id)) errors.push(`trùng id bản: "${id}"`)
+    ids.add(id)
+    if (typeof v.label !== 'string' || !v.label.trim()) errors.push(`bản "${id}" thiếu label`)
+    if (!Array.isArray(v.models) || v.models.length === 0 || v.models.some((m: unknown) => typeof m !== 'string' || !m)) {
+      errors.push(`bản "${id}": models phải là mảng có ít nhất một mã máy`)
+    } else {
+      // Một máy chỉ thuộc một bản, để chọn bản mặc định không mơ hồ
+      for (const m of v.models as string[]) {
+        const owner = owners.get(m)
+        if (owner && owner !== id) errors.push(`máy "${m}" thuộc cả hai bản "${owner}" và "${id}"`)
+        owners.set(m, id)
+      }
+    }
+    if (!Array.isArray(v.blocks)) {
+      errors.push(`bản "${id}": blocks phải là mảng`)
+      continue
+    }
+    bundles.push({ label: id, blocks: v.blocks })
+  }
+  return { bundles, errors }
+}
+
+export function checkArticle(a: any): string[] {
+  const out: string[] = []
+  const dek = (a.dek ?? '').length
+  if (dek < L.dekChars[0] || dek > L.dekChars[1]) out.push(`dek ${dek} ký tự, cần ${L.dekChars[0]}–${L.dekChars[1]}`)
+
+  // Tiêu đề, tóm tắt và năm đọc dùng chung cho mọi bản: kiểm một lần
+  out.push(...checkStrings([a.title ?? '', a.dek ?? '']))
   if (!new RegExp(rules.readPattern).test(a.read ?? '')) out.push(`read "${a.read}" sai dạng "N phút đọc"`)
+
+  const { bundles, errors } = bundlesOf(a)
+  out.push(...errors)
+  const head = [a.title ?? '', a.dek ?? '']
+  for (const bundle of bundles) {
+    for (const p of checkBlocks(bundle.blocks, head)) out.push(bundle.label ? `[${bundle.label}] ${p}` : p)
+  }
   return out
 }
 

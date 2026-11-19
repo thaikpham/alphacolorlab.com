@@ -230,7 +230,7 @@ export const kolStudio = {
 };
 
 // Đường dẫn cũ của trang chủ một trang (/#…) → route mới; may-cua-ban ở lại "/"
-export const LEGACY_MENU_ARTICLE = "/blog/menu-may-anh-toi-uu-nguoi-moi-legacy-menu";
+export const LEGACY_MENU_ARTICLE = "/blog/menu-may-anh-toi-uu-nguoi-moi?menu=legacy";
 export const consoleHashRoutes: Record<string, string> = {
   "phoi-sang": LEGACY_MENU_ARTICLE,
   "lay-net": LEGACY_MENU_ARTICLE,
@@ -1736,6 +1736,7 @@ export const blog = {
     menuNew: "Máy menu mới",
     tldrLabel: "Tóm tắt",
     checkLabel: "Kiểm:",
+    variants: "Bản menu",
   },
   // Split view hints (md+)
   split: {

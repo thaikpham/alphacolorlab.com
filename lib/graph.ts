@@ -3,6 +3,7 @@ import articles from "../data/articles.json" with { type: "json" };
 import products from "../data/products.json" with { type: "json" };
 import { resolve } from "./wikilinks.ts";
 import { parseInline } from "./markdown.ts";
+import { allBlocks, type Article } from "./blog.ts";
 
 export type NodeKind = "recipe" | "gamma" | "mode" | "note" | "article" | "product";
 export interface Node { id: string; kind: NodeKind; label: string }
@@ -53,7 +54,7 @@ export function generateSiteGraph() {
 
   // Wikilinks in article blocks and note bodies
   for (const a of articles) {
-    for (const block of a.blocks || []) {
+    for (const block of allBlocks(a as Article)) {
       for (const text of blockTexts(block)) {
         const inlines = parseInline(text);
         for (const inline of inlines) {

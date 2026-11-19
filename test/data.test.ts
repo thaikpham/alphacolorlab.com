@@ -3,6 +3,7 @@ import assert from 'node:assert'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import fs from 'fs'
+import { allBlocks } from '../lib/blog.ts'
 
 const projectRoot = process.cwd()
 
@@ -14,7 +15,7 @@ test('data validation', async (t) => {
     for (const article of articles) {
       assert(article.id, 'Article missing id')
       assert(article.title, 'Article missing title')
-      assert(article.blocks, 'Article missing blocks')
+      assert(article.blocks || article.variants, 'Article missing blocks or variants')
       assert(!ids.has(article.id), `Duplicate article id: ${article.id}`)
       ids.add(article.id)
     }
@@ -24,7 +25,7 @@ test('data validation', async (t) => {
     const articles = JSON.parse(readFileSync(join(projectRoot, 'data/articles.json'), 'utf-8'))
     const validTypes = new Set(['tldr', 'h', 'p', 'menu', 'table', 'callout', 'compare', 'checklist', 'steps', 'figure', 'embed', 'faq', 'set'])
     for (const article of articles) {
-      for (const block of article.blocks) {
+      for (const block of allBlocks(article)) {
         assert(validTypes.has(block.t), `Invalid block type: ${block.t}`)
       }
     }
@@ -33,7 +34,7 @@ test('data validation', async (t) => {
   await t.test('all figures have src under /blog/ with valid width/height', () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, 'data/articles.json'), 'utf-8'))
     for (const article of articles) {
-      for (const block of article.blocks) {
+      for (const block of allBlocks(article)) {
         if (block.t === 'figure') {
           assert(block.src, `Figure in ${article.id} missing src`)
           assert(block.src.startsWith('/blog/'), `Figure src must start with /blog/: ${block.src}`)

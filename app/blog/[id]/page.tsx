@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
-import { list, byId, posts } from "@/lib/blog";
+import { list, byId, posts, blocksOf, type Block } from "@/lib/blog";
 import { blog, seo } from "@/app/content";
 import { BackLink } from "@/app/components/BackLink";
 import { ArticleBody } from "@/app/components/ArticleBody";
 import { ArticleToc } from "@/app/components/ArticleToc";
+import { ArticleVariants } from "@/app/components/ArticleVariants";
 import { Markdown } from "@/app/components/Markdown";
 import { LinkRow } from "@/app/components/LinkRow";
 import { resolve } from "@/lib/wikilinks";
@@ -20,11 +21,15 @@ export async function generateStaticParams() {
 // Ghi chú chỉ có cấp "cơ bản" / "nâng cao"; nhãn lấy từ thang cấp độ của blog
 const noteLevel = (level: string) => blog.levels[level === "nâng cao" ? "mid" : "newbie"];
 
+// Mục lục của một dãy khối; id đề mục khớp với ArticleBody (`${prefix}-${i}`)
+const tocOf = (blocks: readonly Block[], prefix: string) =>
+  blocks.flatMap((b, i) => (b.t === "h" ? [{ id: `${prefix}-${i}`, text: b.toc ?? b.text }] : []));
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const article = byId(id);
   if (article) {
-    const image = leadImage(article.blocks);
+    const image = leadImage(blocksOf(article));
     return {
       title: `${article.title}${seo.blogSuffix}`,
       description: article.dek,
@@ -58,9 +63,17 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
     return <PostPage post={post} />;
   }
 
-  // Same ids as ArticleBody gives headings
-  const toc = article.blocks.flatMap((b, i) => (b.t === "h" ? [{ id: `section-${i}`, text: b.toc ?? b.text }] : []));
-  const hasToc = toc.length > 1;
+  // Bài một bản: mục lục và id đề mục `section-N`. Bài nhiều bản: mỗi bản có mục lục và id riêng, xem ArticleVariants.
+  const singleToc = article.variants ? [] : tocOf(blocksOf(article), "section");
+  const hasToc = article.variants ? true : singleToc.length > 1;
+  // Bản đầu là bản server dựng: ảnh đầu của bản đó tải sớm, bản còn lại tải lười
+  const tabs = article.variants?.map((v, i) => ({
+    id: v.id,
+    label: v.label,
+    models: v.models,
+    toc: tocOf(v.blocks, `${v.id}-section`),
+    body: <ArticleBody blocks={v.blocks} idPrefix={`${v.id}-section`} eager={i === 0} />,
+  }));
 
   const topicLabel = blog.topics[article.topic];
   const levelLabel = blog.levels[article.level];
@@ -70,6 +83,79 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
 
   const knowledgeBySlug = new Map(
     (knowledgeData as Array<{ slug: string; title: string }>).map((k) => [k.slug, k])
+  );
+
+  // Phần sau thân bài, dùng chung cho mọi bản
+  const after = (
+    <>
+      {/* Related knowledge */}
+      {relatedKnowledge.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-title3 font-medium mb-3">{blog.detail.relatedKnowledge}</h2>
+          <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
+            {relatedKnowledge.map((r) => {
+              const note = knowledgeBySlug.get(r.id);
+              const target = note ? resolve(note.title) : null;
+              return target ? (
+                <LinkRow
+                  key={r.id}
+                  href={target.href}
+                  title={target.title}
+                />
+              ) : null;
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* Related articles */}
+      {relatedArticles.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-title3 font-medium mb-3">{blog.detail.relatedArticles}</h2>
+          <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
+            {relatedArticles
+              .map((r) => byId(r.id))
+              .filter((a): a is typeof article => !!a)
+              .map((a) => (
+                <LinkRow
+                  key={a.id}
+                  href={`/blog/${a.id}`}
+                  title={a.title}
+                  detail={a.dek}
+                  trailing={a.read}
+                />
+              ))}
+          </div>
+        </section>
+      )}
+
+      {/* Sources */}
+      {article.meta.sources.length > 0 && (
+        <section>
+          <h2 className="text-title3 font-medium mb-3">{blog.detail.sources}</h2>
+          <div className="space-y-2">
+            {article.meta.sources.map((src, i) => (
+              <div key={i} className="text-footnote">
+                <a
+                  href={src.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent-text underline underline-offset-2 hover:opacity-75"
+                >
+                  {src.title}
+                </a>
+                {src.publisher && <span className="text-secondary"> · {src.publisher}</span>}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <JsonLdScript schema={articleLd({ title: article.title, description: article.dek, path: `/blog/${article.id}`, blocks: blocksOf(article), updatedAt: article.updatedAt, reviewedAt: article.meta.reviewedAt, authorName: article.meta.authorName })} />
+      <JsonLdScript schema={faqLd(blocksOf(article))} />
+      <JsonLdScript schema={breadcrumbLd([blog.list.title, "/blog"], [article.title, `/blog/${article.id}`])} />
+      <Community page={`post/${article.id}`} title={article.title} />
+    </>
   );
 
   return (
@@ -102,82 +188,24 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
         {/* Container ≥ 48rem (@3xl): contents in a sticky left column, article on the right. Phones: one column, contents hidden; DOM order body, related, sources, comments. */}
         <div className="@container">
         <div className={hasToc ? "@3xl:grid @3xl:grid-cols-[14rem_minmax(0,1fr)] @3xl:gap-x-8" : undefined}>
-        {hasToc && <ArticleToc label={blog.detail.toc} items={toc} />}
+        {tabs ? (
+          <ArticleVariants tocLabel={blog.detail.toc} switchLabel={blog.detail.variants} variants={tabs}>
+            {after}
+          </ArticleVariants>
+        ) : (
+          <>
+            {hasToc && <ArticleToc label={blog.detail.toc} items={singleToc} />}
 
-        {/* Reading column: at most max-w-article, left against the contents; what is left on the right is the safe margin */}
-        <div className="min-w-0 max-w-article">
-        <div className="mb-16">
-          <ArticleBody blocks={article.blocks} />
-        </div>
-
-        {/* Related knowledge */}
-        {relatedKnowledge.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-title3 font-medium mb-3">{blog.detail.relatedKnowledge}</h2>
-            <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
-              {relatedKnowledge.map((r) => {
-                const note = knowledgeBySlug.get(r.id);
-                const target = note ? resolve(note.title) : null;
-                return target ? (
-                  <LinkRow
-                    key={r.id}
-                    href={target.href}
-                    title={target.title}
-                  />
-                ) : null;
-              })}
+            {/* Reading column: at most max-w-article, left against the contents; what is left on the right is the safe margin */}
+            <div className="min-w-0 max-w-article">
+            <div className="mb-16">
+              <ArticleBody blocks={blocksOf(article)} />
             </div>
-          </section>
-        )}
 
-        {/* Related articles */}
-        {relatedArticles.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-title3 font-medium mb-3">{blog.detail.relatedArticles}</h2>
-            <div className="rounded-card bg-card shadow-card divide-y divide-separator overflow-hidden">
-              {relatedArticles
-                .map((r) => byId(r.id))
-                .filter((a): a is typeof article => !!a)
-                .map((a) => (
-                  <LinkRow
-                    key={a.id}
-                    href={`/blog/${a.id}`}
-                    title={a.title}
-                    detail={a.dek}
-                    trailing={a.read}
-                  />
-                ))}
+            {after}
             </div>
-          </section>
+          </>
         )}
-
-        {/* Sources */}
-        {article.meta.sources.length > 0 && (
-          <section>
-            <h2 className="text-title3 font-medium mb-3">{blog.detail.sources}</h2>
-            <div className="space-y-2">
-              {article.meta.sources.map((src, i) => (
-                <div key={i} className="text-footnote">
-                  <a
-                    href={src.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent-text underline underline-offset-2 hover:opacity-75"
-                  >
-                    {src.title}
-                  </a>
-                  {src.publisher && <span className="text-secondary"> · {src.publisher}</span>}
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        <JsonLdScript schema={articleLd({ title: article.title, description: article.dek, path: `/blog/${article.id}`, blocks: article.blocks, updatedAt: article.updatedAt, reviewedAt: article.meta.reviewedAt, authorName: article.meta.authorName })} />
-        <JsonLdScript schema={faqLd(article.blocks)} />
-        <JsonLdScript schema={breadcrumbLd([blog.list.title, "/blog"], [article.title, `/blog/${article.id}`])} />
-        <Community page={`post/${article.id}`} title={article.title} />
-        </div>
         </div>
         </div>
       </div>

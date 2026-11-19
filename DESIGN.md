@@ -194,6 +194,7 @@ Nút chính: `h-11 rounded-full bg-accent px-5 text-subhead font-semibold text-o
 
 ### Segmented control
 Rãnh `bg-fill rounded-full p-1`, núm `bg-card shadow-thumb`. Dùng cho lựa chọn loại trừ.
+Công tắc bản của bài (`ArticleVariants.tsx`, `role="group"`, nhãn đọc màn hình là `blog.detail.variants`): đặt dưới tiêu đề và mô tả, trên thân bài, trong cột đọc `max-w-article`. Rãnh `mb-6 flex gap-1 rounded-full bg-fill p-1`; mỗi nút `flex-1 min-h-11 rounded-full px-3 py-2 text-subhead text-label`; nút đang chọn `bg-card shadow-thumb font-semibold` với `aria-pressed="true"`, nút còn lại `font-medium`, hover `bg-fill-strong`. Nhãn là `label` của bản. Không nhãn phía trên, không màu cam (công tắc không phải nút chính).
 
 ### Inputs
 `h-11 rounded-control bg-card text-callout` với viền `separator`; focus vòng `accent`. Không nhỏ hơn 16px chữ (iOS tự zoom).

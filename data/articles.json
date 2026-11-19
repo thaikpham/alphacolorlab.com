@@ -12746,463 +12746,897 @@
     "category": "ky-thuat"
   },
   {
-    "id": "menu-may-anh-toi-uu-nguoi-moi-legacy-menu",
+    "id": "menu-may-anh-toi-uu-nguoi-moi",
     "kind": "article",
     "topic": "gear",
     "level": "newbie",
     "archetype": "setup-guide",
     "read": "11 phút đọc",
-    "title": "Menu máy ảnh tối ưu cho người mới sử dụng máy ảnh (Legacy Menu)",
-    "dek": "Đặt 19 mục menu cho ZV-E10 và A6400 theo bốn chương: phơi sáng, lấy nét, màu và da, màn hình, kèm đường dẫn MENU và ghi chú cho từng bước.",
-    "blocks": [
+    "title": "Menu máy ảnh tối ưu cho người mới sử dụng máy ảnh",
+    "dek": "Đặt menu cho ZV-E10, A6400 và A7C II theo bốn chương: phơi sáng, lấy nét, màu và da, màn hình, kèm đường dẫn MENU hoặc nút bấm cho từng bước.",
+    "variants": [
       {
-        "t": "tldr",
-        "items": [
-          "Bài này đặt 19 mục menu cho [[ZV-E10]] và [[A6400]], chia bốn chương: phơi sáng, lấy nét, màu và da, màn hình.",
-          "Bước 3 chỉ có trên A6400. Các bước 7, 11, 17 và 18 không lưu trong bộ M1–M4, nên cần cài tay một lần.",
-          "Máy menu mới như [[A7C II]] có bài riêng: [[menu-may-anh-toi-uu-nguoi-moi-new-gen-menu|Menu máy ảnh tối ưu cho người mới sử dụng máy ảnh (New-gen Menu)]]."
+        "id": "legacy",
+        "label": "Legacy Menu · ZV-E10, A6400",
+        "models": [
+          "zve10",
+          "a6400"
+        ],
+        "blocks": [
+          {
+            "t": "tldr",
+            "items": [
+              "Bài này đặt 19 mục menu cho [[ZV-E10]] và [[A6400]], chia bốn chương: phơi sáng, lấy nét, màu và da, màn hình.",
+              "Bước 3 chỉ có trên A6400. Các bước 7, 11, 17 và 18 không lưu trong bộ M1–M4, nên cần cài tay một lần.",
+              "Bảng cuối bài liệt kê giá trị của cả 19 bước để bạn đối chiếu với máy."
+            ]
+          },
+          {
+            "t": "p",
+            "text": "Cài tay là đặt các mục menu bằng tay để máy chụp đúng ý bạn ngay từ đầu. Mỗi chương có một bảng gồm tên trên máy, giá trị và đường dẫn MENU, rồi ghi chú cho từng bước. Bảng tóm tắt ở cuối liệt kê giá trị của cả 19 bước."
+          },
+          {
+            "t": "h",
+            "text": "Phơi sáng: chế độ A, ISO AUTO và flash",
+            "toc": "Phơi sáng",
+            "icon": "exposure"
+          },
+          {
+            "t": "p",
+            "text": "Chương này đặt chế độ A để bạn chọn khẩu độ, còn máy lo tốc độ và ISO. Bước 3 giữ tốc độ tối thiểu ở 1/125 s cho ISO AUTO, và chỉ có trên A6400."
+          },
+          {
+            "t": "figure",
+            "caption": "Chế độ A: bạn chọn khẩu độ để xóa phông, máy lo tốc độ và ISO.",
+            "src": "/blog/menu-cai-tay-01-aperture.jpg",
+            "alt": "Ảnh chân dung xóa phông chụp ở chế độ ưu tiên khẩu độ",
+            "width": 667,
+            "height": 1000
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "1. Chế độ chụp",
+                "Shoot Mode: Aperture Priority",
+                "A",
+                "MENU → Cài đặt máy ảnh1 → Chế độ chụp"
+              ],
+              [
+                "2. Tắt tự động xem lại ảnh vừa chụp",
+                "Auto Review: Off",
+                "Tắt",
+                "MENU → Cài đặt máy ảnh2 → Tự động xem lại"
+              ],
+              [
+                "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
+                "ISO AUTO Min. SS",
+                "1/125",
+                "MENU → Cài đặt máy ảnh1 → Cài đặt ISO → ISO AUTO tốc độ tối thiểu"
+              ],
+              [
+                "4. Chế độ flash",
+                "Flash Mode: Rear Sync.",
+                "Đồng bộ sau",
+                "MENU → Cài đặt máy ảnh1 → Chế độ flash"
+              ],
+              [
+                "5. Cài đặt bù sáng",
+                "Exp.comp.set: Ambient&flash",
+                "Môi trường & flash",
+                "MENU → Cài đặt máy ảnh1 → Cài đặt bù sáng"
+              ],
+              [
+                "6. Màn trập trước điện tử",
+                "e-Front Curtain Shutter: On",
+                "Bật",
+                "MENU → Cài đặt máy ảnh2 → Màn trập trước điện tử"
+              ],
+              [
+                "7. Vòng xoay/bánh xe bù sáng",
+                "Dial/Wheel Ev Comp: Dial",
+                "Vòng xoay",
+                "MENU → Cài đặt máy ảnh2 → Vòng xoay/bánh xe bù sáng"
+              ]
+            ],
+            "caption": "Bảy bước của chương Phơi sáng"
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ chụp:** A6400: xoay vòng chế độ sang A hoặc chọn trong menu. ZV-E10 không có vòng chế độ: nhấn nút Ảnh tĩnh/Phim/S&Q để về chế độ ảnh tĩnh, rồi chọn Ưu tiên khẩu độ trong menu."
+          },
+          {
+            "t": "p",
+            "text": "**Tắt tự động xem lại ảnh vừa chụp:** Màn hình không dừng lại để hiện ảnh vừa chụp, bạn bám chủ thể liên tục và đỡ tốn pin."
+          },
+          {
+            "t": "p",
+            "text": "**Tốc độ tối thiểu cho ISO AUTO (tùy chọn):** ZV-E10: máy này không có mục này. Khi cần giữ tốc độ, dùng chế độ S ở 1/125 s, hoặc chế độ M kèm ISO AUTO."
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ flash:** Ở chế độ P/A/S/M có ba lựa chọn: Đèn flash cưỡng bức, Đồng bộ chậm, Đồng bộ sau. Đồng bộ sau: flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động của xe chạy hay người đi trông tự nhiên. ZV-E10 không có flash tích hợp. Cài đặt này hoạt động với flash ngoài gắn trên giày Multi Interface. A6400 có flash tích hợp."
+          },
+          {
+            "t": "p",
+            "text": "**Cài đặt bù sáng:** Bù sáng điều chỉnh cả ánh sáng xung quanh lẫn công suất flash. Chọn Chỉ môi trường nếu muốn flash giữ nguyên."
+          },
+          {
+            "t": "p",
+            "text": "**Màn trập trước điện tử:** Rút ngắn độ trễ từ lúc nhấn nút chụp đến lúc màn trập mở. Đặt Tắt khi dùng ống kính hãng khác, ống kính qua ngàm chuyển, hoặc khi vùng bokeh bị cắt ở tốc độ cao với ống kính khẩu lớn."
+          },
+          {
+            "t": "p",
+            "text": "**Vòng xoay/bánh xe bù sáng:** Xoay vòng xoay điều khiển để bù sáng, không cần vào menu. Chức năng gốc của vòng xoay chuyển sang bánh xe. Không dùng được ở chế độ M khi ISO là ISO AUTO. Không lưu trong bộ M1–M4: cài tay một lần."
+          },
+          {
+            "t": "h",
+            "text": "Lấy nét: AF-C và theo dõi theo vùng",
+            "toc": "Lấy nét",
+            "icon": "focus"
+          },
+          {
+            "t": "p",
+            "text": "Chương này chọn AF liên tục và vùng Theo dõi để máy bám nét khi chủ thể chuyển động. Bước 11 là tùy chọn, tách lấy nét khỏi nút chụp. Bước 12 chỉnh SteadyShot của ống kính."
+          },
+          {
+            "t": "figure",
+            "caption": "Máy nhận dạng chủ thể và bám mắt khi người di chuyển.",
+            "src": "/blog/menu-cai-tay-02-eye-af.jpg",
+            "alt": "Khung lấy nét mắt màu xanh bám theo mắt người mẫu đang đi bộ",
+            "width": 1600,
+            "height": 745
+          },
+          {
+            "t": "figure",
+            "caption": "AF-C bám nét liên tục với chủ thể chuyển động.",
+            "src": "/blog/menu-cai-tay-03-afc.jpg",
+            "alt": "Chủ thể chuyển động được AF liên tục bám nét",
+            "width": 1000,
+            "height": 667
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "8. Pre-AF",
+                "Pre-AF (still image): On",
+                "Bật",
+                "MENU → Cài đặt máy ảnh1 → Pre-AF"
+              ],
+              [
+                "9. Chế độ lấy nét",
+                "Focus Mode: Continuous AF",
+                "AF-C",
+                "MENU → Cài đặt máy ảnh1 → Chế độ lấy nét"
+              ],
+              [
+                "10. Vùng lấy nét",
+                "Focus Area: Tracking: Zone",
+                "Theo dõi: Vùng",
+                "MENU → Cài đặt máy ảnh1 → Vùng lấy nét"
+              ],
+              [
+                "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
+                "Custom Key → AEL Button: AF On · AF w/ shutter: Off",
+                "Bật AF",
+                "MENU → Cài đặt máy ảnh2 → Nút tùy chỉnh → Nút AEL (A6400) hoặc Nút giữa (ZV-E10)"
+              ],
+              [
+                "12. SteadyShot",
+                "SteadyShot (still image): Off",
+                "Tắt",
+                "MENU → Cài đặt máy ảnh2 → SteadyShot"
+              ]
+            ],
+            "caption": "Năm bước của chương Lấy nét"
+          },
+          {
+            "t": "p",
+            "text": "**Pre-AF:** Máy lấy nét sẵn trước khi bạn nhấn nửa nút chụp, nên bắt nét nhanh hơn. Chỉ có khi gắn ống kính ngàm E."
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ lấy nét:** Chọn AF liên tục: máy bám nét liên tục khi chủ thể hoặc người chụp di chuyển."
+          },
+          {
+            "t": "p",
+            "text": "**Vùng lấy nét:** Các mục Theo dõi chỉ chọn được khi Chế độ lấy nét đang là AF-C."
+          },
+          {
+            "t": "p",
+            "text": "**Tách lấy nét khỏi nút chụp (tùy chọn):** ZV-E10 và A6400: sau đó đặt Cài đặt máy ảnh1 → AF khi chụp: Tắt. ZV-E10 không có nút AEL: gán Bật AF cho nút giữa bánh xe điều khiển (Center Button). Ngón cái giữ nút giữa để lấy nét, ngón trỏ bấm nút chụp. Bấm thẳng xuống để không xoay bánh xe. Nút C1 cũng dùng được. Người mới có thể giữ mặc định. Không lưu trong bộ M1–M4: cài tay một lần."
+          },
+          {
+            "t": "p",
+            "text": "**SteadyShot:** ZV-E10 và A6400 không có chống rung trên thân, nên mục này bật hoặc tắt chống rung của ống kính. Chỉ chọn được khi tên ống kính có chữ OSS. Sony khuyên tắt khi dùng chân máy."
+          },
+          {
+            "t": "h",
+            "text": "Màu và da: trung tính, da mịn tự nhiên",
+            "toc": "Màu và da",
+            "icon": "color"
+          },
+          {
+            "t": "p",
+            "text": "Chương này đo sáng đa điểm có ưu tiên khuôn mặt, chỉnh màu bằng Picture Profile PP1, làm mịn da và ưu tiên màu trắng trong AWB."
+          },
+          {
+            "t": "figure",
+            "caption": "Các mức làm mịn da trên cùng một khuôn mặt.",
+            "src": "/blog/menu-cai-tay-04-soft-skin.jpg",
+            "alt": "So sánh các mức làm mịn da trên cùng một khuôn mặt",
+            "width": 1600,
+            "height": 745
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "13. Chế độ đo sáng",
+                "Metering Mode: Multi · Face Priority in Multi Metering: On",
+                "Đa điểm + mặt",
+                "MENU → Cài đặt máy ảnh1 → Chế độ đo sáng"
+              ],
+              [
+                "14. Màu bằng Picture Profile",
+                "Picture Profile: PP1",
+                "PP1",
+                "MENU → Cài đặt máy ảnh1 → Picture Profile"
+              ],
+              [
+                "15. Làm mịn da",
+                "Soft Skin Effect: On: Mid",
+                "Bật: Trung bình",
+                "MENU → Cài đặt máy ảnh1 → Làm mịn da"
+              ],
+              [
+                "16. Ưu tiên trong AWB",
+                "Priority Set in AWB: White",
+                "Trắng",
+                "MENU → Cài đặt máy ảnh1 → Ưu tiên trong AWB"
+              ]
+            ],
+            "caption": "Bốn bước của chương Màu và da"
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ đo sáng:** Chọn Đa điểm, rồi bật thêm Cài đặt máy ảnh1 → Ưu tiên mặt (đa điểm): Bật để máy đo sáng theo khuôn mặt."
+          },
+          {
+            "t": "p",
+            "text": "Trang này chỉnh màu hoàn toàn bằng Picture Profile. Bạn có thể giữ màu hiện tại hoặc chỉnh tay PP1: chọn PP1, nhấn cạnh phải bánh xe điều khiển để vào từng mục. Thư viện màu đang được cập nhật. ZV-E10 và A6400 cùng đường dẫn này."
+          },
+          {
+            "t": "p",
+            "text": "**Làm mịn da:** Không áp dụng cho file RAW, không hoạt động khi dùng Zoom số. A6400: chỉ áp dụng ảnh tĩnh. ZV-E10: áp dụng cả khi quay phim."
+          },
+          {
+            "t": "p",
+            "text": "**Ưu tiên trong AWB:** Chỉ có tác dụng khi cân bằng trắng là Tự động. Trắng: giữ màu trắng trung tính khi nguồn sáng có nhiệt độ màu thấp, như đèn sợi đốt."
+          },
+          {
+            "t": "h",
+            "text": "Màn hình: nhìn rõ khi ra nắng",
+            "toc": "Màn hình",
+            "icon": "image"
+          },
+          {
+            "t": "p",
+            "text": "Chương này chỉnh độ sáng và chất lượng hiển thị của màn hình, cùng cách hiện ảnh Live View."
+          },
+          {
+            "t": "figure",
+            "caption": "Màn hình sáng hơn khi ra nắng, hình xem lại mịn hơn để kiểm tra nét.",
+            "src": "/blog/menu-cai-tay-05-monitor.jpg",
+            "alt": "Mặt sau máy ZV-E10 với màn hình lật và các nút MENU, Fn",
+            "width": 500,
+            "height": 500
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "17. Độ sáng màn hình",
+                "Monitor Brightness: Sunny Weather",
+                "Thời tiết nắng",
+                "MENU → Cài đặt → Độ sáng màn hình"
+              ],
+              [
+                "18. Chất lượng hiển thị",
+                "Display Quality: High",
+                "Cao",
+                "MENU → Cài đặt → Chất lượng hiển thị"
+              ],
+              [
+                "19. Hiển thị Live View",
+                "Live View Display: Setting Effect ON",
+                "Bật hiệu ứng cài đặt",
+                "MENU → Cài đặt máy ảnh2 → Hiển thị Live View"
+              ]
+            ],
+            "caption": "Ba bước của chương Màn hình"
+          },
+          {
+            "t": "p",
+            "text": "**Độ sáng màn hình:** Vào trong nhà: trả về Thủ công để đánh giá phơi sáng đúng và đỡ tốn pin. Không lưu trong bộ M1–M4: cài tay một lần."
+          },
+          {
+            "t": "p",
+            "text": "**Chất lượng hiển thị:** Tốn pin hơn mức Tiêu chuẩn. Khi máy nóng, máy có thể tự khóa về Tiêu chuẩn. Không lưu trong bộ M1–M4: cài tay một lần."
+          },
+          {
+            "t": "p",
+            "text": "**Hiển thị Live View:** Màn hình hiện ảnh gần giống kết quả cuối, theo bù sáng và cân bằng trắng đang đặt. Chế độ tự động và chế độ cảnh không cho chọn Tắt hiệu ứng cài đặt."
+          },
+          {
+            "t": "h",
+            "text": "Tóm tắt cài đặt",
+            "toc": "Tóm tắt",
+            "icon": "settings"
+          },
+          {
+            "t": "p",
+            "text": "Bảng dưới đây liệt kê giá trị của 19 bước. Bước 3 chỉ có trên A6400, còn ZV-E10 bỏ qua bước này."
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Giá trị"
+            ],
+            "rows": [
+              [
+                "1. Chế độ chụp",
+                "A"
+              ],
+              [
+                "2. Tắt tự động xem lại ảnh vừa chụp",
+                "Tắt"
+              ],
+              [
+                "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
+                "1/125 trên A6400. Bỏ qua trên ZV-E10"
+              ],
+              [
+                "4. Chế độ flash",
+                "Đồng bộ sau"
+              ],
+              [
+                "5. Cài đặt bù sáng",
+                "Môi trường & flash"
+              ],
+              [
+                "6. Màn trập trước điện tử",
+                "Bật"
+              ],
+              [
+                "7. Vòng xoay/bánh xe bù sáng",
+                "Vòng xoay"
+              ],
+              [
+                "8. Pre-AF",
+                "Bật"
+              ],
+              [
+                "9. Chế độ lấy nét",
+                "AF-C"
+              ],
+              [
+                "10. Vùng lấy nét",
+                "Theo dõi: Vùng"
+              ],
+              [
+                "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
+                "Bật AF"
+              ],
+              [
+                "12. SteadyShot",
+                "Tắt"
+              ],
+              [
+                "13. Chế độ đo sáng",
+                "Đa điểm + mặt"
+              ],
+              [
+                "14. Màu bằng Picture Profile",
+                "PP1"
+              ],
+              [
+                "15. Làm mịn da",
+                "Bật: Trung bình"
+              ],
+              [
+                "16. Ưu tiên trong AWB",
+                "Trắng"
+              ],
+              [
+                "17. Độ sáng màn hình",
+                "Thời tiết nắng"
+              ],
+              [
+                "18. Chất lượng hiển thị",
+                "Cao"
+              ],
+              [
+                "19. Hiển thị Live View",
+                "Bật hiệu ứng cài đặt"
+              ]
+            ],
+            "caption": "Giá trị của 19 bước trên ZV-E10 và A6400"
+          },
+          {
+            "t": "faq",
+            "items": [
+              {
+                "q": "Vì sao bước 3 chỉ có trên A6400?",
+                "a": "ZV-E10 không có mục ISO AUTO tốc độ tối thiểu. Khi cần giữ tốc độ, bạn dùng chế độ S ở 1/125 s, hoặc chế độ M kèm ISO AUTO. A6400 đặt mục này tại MENU → Cài đặt máy ảnh1 → Cài đặt ISO → ISO AUTO tốc độ tối thiểu. Bước này là tùy chọn trên A6400."
+              },
+              {
+                "q": "Những bước nào không lưu được trong bộ M1–M4?",
+                "a": "Bước 7, bước 11, bước 17 và bước 18 không lưu được trong bộ M1–M4, nên cần cài tay một lần. Các bước còn lại ghi được vào bộ M1–M4. Riêng bước 3 không có trên ZV-E10, nên không ghi được trên máy đó."
+              },
+              {
+                "q": "Vì sao bước 4 chọn Đồng bộ sau cho ảnh có vệt chuyển động?",
+                "a": "Với Đồng bộ sau, flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động của xe chạy hay người đi trông tự nhiên. ZV-E10 không có flash tích hợp, nên cài đặt này cần flash ngoài gắn trên giày Multi Interface. A6400 có flash tích hợp."
+              },
+              {
+                "q": "Vì sao cần bật Ưu tiên mặt khi đo sáng?",
+                "a": "Bước 13 chọn Đa điểm, rồi bật Ưu tiên mặt (đa điểm) để máy đo sáng theo khuôn mặt. Mục này nằm trong Cài đặt máy ảnh1, cùng nhóm với Chế độ đo sáng. Cả ZV-E10 và A6400 đều đặt được bước này."
+              },
+              {
+                "q": "Khi nào nên tắt Màn trập trước điện tử?",
+                "a": "Bước 6 đặt Bật để rút ngắn độ trễ từ lúc nhấn nút chụp đến lúc màn trập mở. Đặt Tắt khi dùng ống kính hãng khác, ống kính qua ngàm chuyển, hoặc khi vùng bokeh bị cắt ở tốc độ cao với ống kính khẩu lớn."
+              }
+            ]
+          }
         ]
       },
       {
-        "t": "p",
-        "text": "Cài tay là đặt các mục menu bằng tay để máy chụp đúng ý bạn ngay từ đầu. Mỗi chương có một bảng gồm tên trên máy, giá trị và đường dẫn MENU, rồi ghi chú cho từng bước. Bảng tóm tắt ở cuối liệt kê giá trị của cả 19 bước."
-      },
-      {
-        "t": "h",
-        "text": "Phơi sáng: chế độ A, ISO AUTO và flash",
-        "toc": "Phơi sáng",
-        "icon": "exposure"
-      },
-      {
-        "t": "p",
-        "text": "Chương này đặt chế độ A để bạn chọn khẩu độ, còn máy lo tốc độ và ISO. Bước 3 giữ tốc độ tối thiểu ở 1/125 s cho ISO AUTO, và chỉ có trên A6400."
-      },
-      {
-        "t": "figure",
-        "caption": "Chế độ A: bạn chọn khẩu độ để xóa phông, máy lo tốc độ và ISO.",
-        "src": "/blog/menu-cai-tay-01-aperture.jpg",
-        "alt": "Ảnh chân dung xóa phông chụp ở chế độ ưu tiên khẩu độ",
-        "width": 667,
-        "height": 1000
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
+        "id": "new-gen",
+        "label": "New-gen Menu · A7C II",
+        "models": [
+          "a7c2"
         ],
-        "rows": [
-          [
-            "1. Chế độ chụp",
-            "Shoot Mode: Aperture Priority",
-            "A",
-            "MENU → Cài đặt máy ảnh1 → Chế độ chụp"
-          ],
-          [
-            "2. Tắt tự động xem lại ảnh vừa chụp",
-            "Auto Review: Off",
-            "Tắt",
-            "MENU → Cài đặt máy ảnh2 → Tự động xem lại"
-          ],
-          [
-            "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
-            "ISO AUTO Min. SS",
-            "1/125",
-            "MENU → Cài đặt máy ảnh1 → Cài đặt ISO → ISO AUTO tốc độ tối thiểu"
-          ],
-          [
-            "4. Chế độ flash",
-            "Flash Mode: Rear Sync.",
-            "Đồng bộ sau",
-            "MENU → Cài đặt máy ảnh1 → Chế độ flash"
-          ],
-          [
-            "5. Cài đặt bù sáng",
-            "Exp.comp.set: Ambient&flash",
-            "Môi trường & flash",
-            "MENU → Cài đặt máy ảnh1 → Cài đặt bù sáng"
-          ],
-          [
-            "6. Màn trập trước điện tử",
-            "e-Front Curtain Shutter: On",
-            "Bật",
-            "MENU → Cài đặt máy ảnh2 → Màn trập trước điện tử"
-          ],
-          [
-            "7. Vòng xoay/bánh xe bù sáng",
-            "Dial/Wheel Ev Comp: Dial",
-            "Vòng xoay",
-            "MENU → Cài đặt máy ảnh2 → Vòng xoay/bánh xe bù sáng"
-          ]
-        ],
-        "caption": "Bảy bước của chương Phơi sáng"
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ chụp:** A6400: xoay vòng chế độ sang A hoặc chọn trong menu. ZV-E10 không có vòng chế độ: nhấn nút Ảnh tĩnh/Phim/S&Q để về chế độ ảnh tĩnh, rồi chọn Ưu tiên khẩu độ trong menu."
-      },
-      {
-        "t": "p",
-        "text": "**Tắt tự động xem lại ảnh vừa chụp:** Màn hình không dừng lại để hiện ảnh vừa chụp, bạn bám chủ thể liên tục và đỡ tốn pin."
-      },
-      {
-        "t": "p",
-        "text": "**Tốc độ tối thiểu cho ISO AUTO (tùy chọn):** ZV-E10: máy này không có mục này. Khi cần giữ tốc độ, dùng chế độ S ở 1/125 s, hoặc chế độ M kèm ISO AUTO."
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ flash:** Ở chế độ P/A/S/M có ba lựa chọn: Đèn flash cưỡng bức, Đồng bộ chậm, Đồng bộ sau. Đồng bộ sau: flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động của xe chạy hay người đi trông tự nhiên. ZV-E10 không có flash tích hợp. Cài đặt này hoạt động với flash ngoài gắn trên giày Multi Interface. A6400 có flash tích hợp."
-      },
-      {
-        "t": "p",
-        "text": "**Cài đặt bù sáng:** Bù sáng điều chỉnh cả ánh sáng xung quanh lẫn công suất flash. Chọn Chỉ môi trường nếu muốn flash giữ nguyên."
-      },
-      {
-        "t": "p",
-        "text": "**Màn trập trước điện tử:** Rút ngắn độ trễ từ lúc nhấn nút chụp đến lúc màn trập mở. Đặt Tắt khi dùng ống kính hãng khác, ống kính qua ngàm chuyển, hoặc khi vùng bokeh bị cắt ở tốc độ cao với ống kính khẩu lớn."
-      },
-      {
-        "t": "p",
-        "text": "**Vòng xoay/bánh xe bù sáng:** Xoay vòng xoay điều khiển để bù sáng, không cần vào menu. Chức năng gốc của vòng xoay chuyển sang bánh xe. Không dùng được ở chế độ M khi ISO là ISO AUTO. Không lưu trong bộ M1–M4: cài tay một lần."
-      },
-      {
-        "t": "h",
-        "text": "Lấy nét: AF-C và theo dõi theo vùng",
-        "toc": "Lấy nét",
-        "icon": "focus"
-      },
-      {
-        "t": "p",
-        "text": "Chương này chọn AF liên tục và vùng Theo dõi để máy bám nét khi chủ thể chuyển động. Bước 11 là tùy chọn, tách lấy nét khỏi nút chụp. Bước 12 chỉnh SteadyShot của ống kính."
-      },
-      {
-        "t": "figure",
-        "caption": "Máy nhận dạng chủ thể và bám mắt khi người di chuyển.",
-        "src": "/blog/menu-cai-tay-02-eye-af.jpg",
-        "alt": "Khung lấy nét mắt màu xanh bám theo mắt người mẫu đang đi bộ",
-        "width": 1600,
-        "height": 745
-      },
-      {
-        "t": "figure",
-        "caption": "AF-C bám nét liên tục với chủ thể chuyển động.",
-        "src": "/blog/menu-cai-tay-03-afc.jpg",
-        "alt": "Chủ thể chuyển động được AF liên tục bám nét",
-        "width": 1000,
-        "height": 667
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
-        ],
-        "rows": [
-          [
-            "8. Pre-AF",
-            "Pre-AF (still image): On",
-            "Bật",
-            "MENU → Cài đặt máy ảnh1 → Pre-AF"
-          ],
-          [
-            "9. Chế độ lấy nét",
-            "Focus Mode: Continuous AF",
-            "AF-C",
-            "MENU → Cài đặt máy ảnh1 → Chế độ lấy nét"
-          ],
-          [
-            "10. Vùng lấy nét",
-            "Focus Area: Tracking: Zone",
-            "Theo dõi: Vùng",
-            "MENU → Cài đặt máy ảnh1 → Vùng lấy nét"
-          ],
-          [
-            "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
-            "Custom Key → AEL Button: AF On · AF w/ shutter: Off",
-            "Bật AF",
-            "MENU → Cài đặt máy ảnh2 → Nút tùy chỉnh → Nút AEL (A6400) hoặc Nút giữa (ZV-E10)"
-          ],
-          [
-            "12. SteadyShot",
-            "SteadyShot (still image): Off",
-            "Tắt",
-            "MENU → Cài đặt máy ảnh2 → SteadyShot"
-          ]
-        ],
-        "caption": "Năm bước của chương Lấy nét"
-      },
-      {
-        "t": "p",
-        "text": "**Pre-AF:** Máy lấy nét sẵn trước khi bạn nhấn nửa nút chụp, nên bắt nét nhanh hơn. Chỉ có khi gắn ống kính ngàm E."
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ lấy nét:** Chọn AF liên tục: máy bám nét liên tục khi chủ thể hoặc người chụp di chuyển."
-      },
-      {
-        "t": "p",
-        "text": "**Vùng lấy nét:** Các mục Theo dõi chỉ chọn được khi Chế độ lấy nét đang là AF-C."
-      },
-      {
-        "t": "p",
-        "text": "**Tách lấy nét khỏi nút chụp (tùy chọn):** ZV-E10 và A6400: sau đó đặt Cài đặt máy ảnh1 → AF khi chụp: Tắt. ZV-E10 không có nút AEL: gán Bật AF cho nút giữa bánh xe điều khiển (Center Button). Ngón cái giữ nút giữa để lấy nét, ngón trỏ bấm nút chụp. Bấm thẳng xuống để không xoay bánh xe. Nút C1 cũng dùng được. Người mới có thể giữ mặc định. Không lưu trong bộ M1–M4: cài tay một lần."
-      },
-      {
-        "t": "p",
-        "text": "**SteadyShot:** ZV-E10 và A6400 không có chống rung trên thân, nên mục này bật hoặc tắt chống rung của ống kính. Chỉ chọn được khi tên ống kính có chữ OSS. Sony khuyên tắt khi dùng chân máy."
-      },
-      {
-        "t": "h",
-        "text": "Màu và da: trung tính, da mịn tự nhiên",
-        "toc": "Màu và da",
-        "icon": "color"
-      },
-      {
-        "t": "p",
-        "text": "Chương này đo sáng đa điểm có ưu tiên khuôn mặt, chỉnh màu bằng Picture Profile PP1, làm mịn da và ưu tiên màu trắng trong AWB."
-      },
-      {
-        "t": "figure",
-        "caption": "Các mức làm mịn da trên cùng một khuôn mặt.",
-        "src": "/blog/menu-cai-tay-04-soft-skin.jpg",
-        "alt": "So sánh các mức làm mịn da trên cùng một khuôn mặt",
-        "width": 1600,
-        "height": 745
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
-        ],
-        "rows": [
-          [
-            "13. Chế độ đo sáng",
-            "Metering Mode: Multi · Face Priority in Multi Metering: On",
-            "Đa điểm + mặt",
-            "MENU → Cài đặt máy ảnh1 → Chế độ đo sáng"
-          ],
-          [
-            "14. Màu bằng Picture Profile",
-            "Picture Profile: PP1",
-            "PP1",
-            "MENU → Cài đặt máy ảnh1 → Picture Profile"
-          ],
-          [
-            "15. Làm mịn da",
-            "Soft Skin Effect: On: Mid",
-            "Bật: Trung bình",
-            "MENU → Cài đặt máy ảnh1 → Làm mịn da"
-          ],
-          [
-            "16. Ưu tiên trong AWB",
-            "Priority Set in AWB: White",
-            "Trắng",
-            "MENU → Cài đặt máy ảnh1 → Ưu tiên trong AWB"
-          ]
-        ],
-        "caption": "Bốn bước của chương Màu và da"
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ đo sáng:** Chọn Đa điểm, rồi bật thêm Cài đặt máy ảnh1 → Ưu tiên mặt (đa điểm): Bật để máy đo sáng theo khuôn mặt."
-      },
-      {
-        "t": "p",
-        "text": "Trang này chỉnh màu hoàn toàn bằng Picture Profile. Bạn có thể giữ màu hiện tại hoặc chỉnh tay PP1: chọn PP1, nhấn cạnh phải bánh xe điều khiển để vào từng mục. Thư viện màu đang được cập nhật. ZV-E10 và A6400 cùng đường dẫn này."
-      },
-      {
-        "t": "p",
-        "text": "**Làm mịn da:** Không áp dụng cho file RAW, không hoạt động khi dùng Zoom số. A6400: chỉ áp dụng ảnh tĩnh. ZV-E10: áp dụng cả khi quay phim."
-      },
-      {
-        "t": "p",
-        "text": "**Ưu tiên trong AWB:** Chỉ có tác dụng khi cân bằng trắng là Tự động. Trắng: giữ màu trắng trung tính khi nguồn sáng có nhiệt độ màu thấp, như đèn sợi đốt."
-      },
-      {
-        "t": "h",
-        "text": "Màn hình: nhìn rõ khi ra nắng",
-        "toc": "Màn hình",
-        "icon": "image"
-      },
-      {
-        "t": "p",
-        "text": "Chương này chỉnh độ sáng và chất lượng hiển thị của màn hình, cùng cách hiện ảnh Live View."
-      },
-      {
-        "t": "figure",
-        "caption": "Màn hình sáng hơn khi ra nắng, hình xem lại mịn hơn để kiểm tra nét.",
-        "src": "/blog/menu-cai-tay-05-monitor.jpg",
-        "alt": "Mặt sau máy ZV-E10 với màn hình lật và các nút MENU, Fn",
-        "width": 500,
-        "height": 500
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
-        ],
-        "rows": [
-          [
-            "17. Độ sáng màn hình",
-            "Monitor Brightness: Sunny Weather",
-            "Thời tiết nắng",
-            "MENU → Cài đặt → Độ sáng màn hình"
-          ],
-          [
-            "18. Chất lượng hiển thị",
-            "Display Quality: High",
-            "Cao",
-            "MENU → Cài đặt → Chất lượng hiển thị"
-          ],
-          [
-            "19. Hiển thị Live View",
-            "Live View Display: Setting Effect ON",
-            "Bật hiệu ứng cài đặt",
-            "MENU → Cài đặt máy ảnh2 → Hiển thị Live View"
-          ]
-        ],
-        "caption": "Ba bước của chương Màn hình"
-      },
-      {
-        "t": "p",
-        "text": "**Độ sáng màn hình:** Vào trong nhà: trả về Thủ công để đánh giá phơi sáng đúng và đỡ tốn pin. Không lưu trong bộ M1–M4: cài tay một lần."
-      },
-      {
-        "t": "p",
-        "text": "**Chất lượng hiển thị:** Tốn pin hơn mức Tiêu chuẩn. Khi máy nóng, máy có thể tự khóa về Tiêu chuẩn. Không lưu trong bộ M1–M4: cài tay một lần."
-      },
-      {
-        "t": "p",
-        "text": "**Hiển thị Live View:** Màn hình hiện ảnh gần giống kết quả cuối, theo bù sáng và cân bằng trắng đang đặt. Chế độ tự động và chế độ cảnh không cho chọn Tắt hiệu ứng cài đặt."
-      },
-      {
-        "t": "h",
-        "text": "Tóm tắt cài đặt",
-        "toc": "Tóm tắt",
-        "icon": "settings"
-      },
-      {
-        "t": "p",
-        "text": "Bảng dưới đây liệt kê giá trị của 19 bước. Bước 3 chỉ có trên A6400, còn ZV-E10 bỏ qua bước này."
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Giá trị"
-        ],
-        "rows": [
-          [
-            "1. Chế độ chụp",
-            "A"
-          ],
-          [
-            "2. Tắt tự động xem lại ảnh vừa chụp",
-            "Tắt"
-          ],
-          [
-            "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
-            "1/125 trên A6400. Bỏ qua trên ZV-E10"
-          ],
-          [
-            "4. Chế độ flash",
-            "Đồng bộ sau"
-          ],
-          [
-            "5. Cài đặt bù sáng",
-            "Môi trường & flash"
-          ],
-          [
-            "6. Màn trập trước điện tử",
-            "Bật"
-          ],
-          [
-            "7. Vòng xoay/bánh xe bù sáng",
-            "Vòng xoay"
-          ],
-          [
-            "8. Pre-AF",
-            "Bật"
-          ],
-          [
-            "9. Chế độ lấy nét",
-            "AF-C"
-          ],
-          [
-            "10. Vùng lấy nét",
-            "Theo dõi: Vùng"
-          ],
-          [
-            "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
-            "Bật AF"
-          ],
-          [
-            "12. SteadyShot",
-            "Tắt"
-          ],
-          [
-            "13. Chế độ đo sáng",
-            "Đa điểm + mặt"
-          ],
-          [
-            "14. Màu bằng Picture Profile",
-            "PP1"
-          ],
-          [
-            "15. Làm mịn da",
-            "Bật: Trung bình"
-          ],
-          [
-            "16. Ưu tiên trong AWB",
-            "Trắng"
-          ],
-          [
-            "17. Độ sáng màn hình",
-            "Thời tiết nắng"
-          ],
-          [
-            "18. Chất lượng hiển thị",
-            "Cao"
-          ],
-          [
-            "19. Hiển thị Live View",
-            "Bật hiệu ứng cài đặt"
-          ]
-        ],
-        "caption": "Giá trị của 19 bước trên ZV-E10 và A6400"
-      },
-      {
-        "t": "faq",
-        "items": [
+        "blocks": [
           {
-            "q": "Vì sao bước 3 chỉ có trên A6400?",
-            "a": "ZV-E10 không có mục ISO AUTO tốc độ tối thiểu. Khi cần giữ tốc độ, bạn dùng chế độ S ở 1/125 s, hoặc chế độ M kèm ISO AUTO. A6400 đặt mục này tại MENU → Cài đặt máy ảnh1 → Cài đặt ISO → ISO AUTO tốc độ tối thiểu. Bước này là tùy chọn trên A6400."
+            "t": "tldr",
+            "items": [
+              "Bài này đặt 17 mục menu cho [[A7C II]], chia thành bốn chương: phơi sáng, lấy nét, màu và da, màn hình.",
+              "Bước 1 dùng vòng chế độ, không có đường dẫn MENU. Bước 6 và 7 chỉ có trên ZV-E10 và A6400, nên bỏ qua.",
+              "Bảng cuối bài liệt kê giá trị của cả 17 bước để bạn đối chiếu với máy."
+            ]
           },
           {
-            "q": "Những bước nào không lưu được trong bộ M1–M4?",
-            "a": "Bước 7, bước 11, bước 17 và bước 18 không lưu được trong bộ M1–M4, nên cần cài tay một lần. Các bước còn lại ghi được vào bộ M1–M4. Riêng bước 3 không có trên ZV-E10, nên không ghi được trên máy đó."
+            "t": "p",
+            "text": "Cài tay là đặt các mục menu bằng tay để máy chụp đúng ý bạn ngay từ đầu. Mỗi chương có một bảng gồm tên trên máy, giá trị và đường dẫn MENU, rồi ghi chú cho từng bước. Bảng tóm tắt ở cuối liệt kê giá trị của cả 17 bước."
           },
           {
-            "q": "Vì sao bước 4 chọn Đồng bộ sau cho ảnh có vệt chuyển động?",
-            "a": "Với Đồng bộ sau, flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động của xe chạy hay người đi trông tự nhiên. ZV-E10 không có flash tích hợp, nên cài đặt này cần flash ngoài gắn trên giày Multi Interface. A6400 có flash tích hợp."
+            "t": "h",
+            "text": "Phơi sáng: chế độ A và ISO AUTO",
+            "toc": "Phơi sáng",
+            "icon": "exposure"
           },
           {
-            "q": "Vì sao cần bật Ưu tiên mặt khi đo sáng?",
-            "a": "Bước 13 chọn Đa điểm, rồi bật Ưu tiên mặt (đa điểm) để máy đo sáng theo khuôn mặt. Mục này nằm trong Cài đặt máy ảnh1, cùng nhóm với Chế độ đo sáng. Cả ZV-E10 và A6400 đều đặt được bước này."
+            "t": "p",
+            "text": "Chương này đặt chế độ A, để bạn chọn khẩu độ còn máy lo tốc độ và ISO. Bước 3 là tùy chọn, giữ tốc độ tối thiểu ở 1/125 s cho ISO AUTO."
           },
           {
-            "q": "Khi nào nên tắt Màn trập trước điện tử?",
-            "a": "Bước 6 đặt Bật để rút ngắn độ trễ từ lúc nhấn nút chụp đến lúc màn trập mở. Đặt Tắt khi dùng ống kính hãng khác, ống kính qua ngàm chuyển, hoặc khi vùng bokeh bị cắt ở tốc độ cao với ống kính khẩu lớn."
+            "t": "figure",
+            "caption": "Chế độ A: bạn chọn khẩu độ để xóa phông, máy lo tốc độ và ISO.",
+            "src": "/blog/menu-cai-tay-01-aperture.jpg",
+            "alt": "Ảnh chân dung xóa phông chụp ở chế độ ưu tiên khẩu độ",
+            "width": 667,
+            "height": 1000
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "1. Chế độ chụp",
+                "Mode Dial: A (Aperture Priority)",
+                "A",
+                "Vòng chế độ trên thân máy, không có đường dẫn MENU"
+              ],
+              [
+                "2. Tắt tự động xem lại ảnh vừa chụp",
+                "Auto Review: Off",
+                "Tắt",
+                "MENU → Cài đặt → Tùy chọn hiển thị → Tự động xem lại"
+              ],
+              [
+                "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
+                "ISO AUTO Min. SS",
+                "1/125",
+                "MENU → Phơi sáng/màu → Phơi sáng → ISO AUTO tốc độ tối thiểu"
+              ],
+              [
+                "4. Chế độ flash",
+                "Flash Mode: Rear Sync.",
+                "Đồng bộ sau",
+                "MENU → Phơi sáng/màu → Đèn flash → Chế độ flash"
+              ],
+              [
+                "5. Cài đặt bù sáng",
+                "Exp.comp.set: Ambient&flash",
+                "Môi trường & flash",
+                "MENU → Phơi sáng/màu → Đèn flash → Cài đặt bù sáng"
+              ]
+            ],
+            "caption": "Năm bước của chương Phơi sáng"
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ chụp:** A7C II: gạt vòng Ảnh tĩnh/Phim/S&Q về ảnh tĩnh, rồi xoay vòng chế độ sang A."
+          },
+          {
+            "t": "p",
+            "text": "**Tắt tự động xem lại ảnh vừa chụp:** Màn hình không dừng lại để hiện ảnh vừa chụp, bạn bám chủ thể liên tục và đỡ tốn pin."
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ flash:** Đồng bộ sau: flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động trông tự nhiên. A7C II không có flash tích hợp: cài đặt này dùng với flash ngoài gắn trên giày Multi Interface."
+          },
+          {
+            "t": "p",
+            "text": "**Cài đặt bù sáng:** Bù sáng điều chỉnh cả ánh sáng xung quanh lẫn công suất flash. Chọn Chỉ môi trường nếu muốn flash giữ nguyên."
+          },
+          {
+            "t": "p",
+            "text": "Bước 6 và bước 7 bỏ qua trên A7C II. A7C II không có mục Màn trập trước điện tử, vì Loại màn trập chỉ có Màn trập cơ và Màn trập điện tử. A7C II đã gán bù sáng cho vòng xoay sau R từ đầu, không cần cài."
+          },
+          {
+            "t": "h",
+            "text": "Lấy nét: AF-C và theo dõi theo vùng",
+            "toc": "Lấy nét",
+            "icon": "focus"
+          },
+          {
+            "t": "p",
+            "text": "Chương này chọn AF liên tục và vùng Theo dõi để máy bám nét khi chủ thể chuyển động. Bước 11 là tùy chọn, tách lấy nét khỏi nút chụp."
+          },
+          {
+            "t": "figure",
+            "caption": "Máy nhận dạng chủ thể và bám mắt khi người di chuyển.",
+            "src": "/blog/menu-cai-tay-02-eye-af.jpg",
+            "alt": "Khung lấy nét mắt màu xanh bám theo mắt người mẫu đang đi bộ",
+            "width": 1600,
+            "height": 745
+          },
+          {
+            "t": "figure",
+            "caption": "AF-C bám nét liên tục với chủ thể chuyển động.",
+            "src": "/blog/menu-cai-tay-03-afc.jpg",
+            "alt": "Chủ thể chuyển động được AF liên tục bám nét",
+            "width": 1000,
+            "height": 667
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "8. Pre-AF",
+                "Pre-AF (still image): On",
+                "Bật",
+                "MENU → Lấy nét → AF/MF → Pre-AF"
+              ],
+              [
+                "9. Chế độ lấy nét",
+                "Focus Mode: Continuous AF",
+                "AF-C",
+                "MENU → Lấy nét → AF/MF → Chế độ lấy nét"
+              ],
+              [
+                "10. Vùng lấy nét",
+                "Focus Area: Tracking: Zone",
+                "Theo dõi: Vùng",
+                "MENU → Lấy nét → Vùng lấy nét → Vùng lấy nét"
+              ],
+              [
+                "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
+                "AF w/ Shutter: Off",
+                "Tắt",
+                "MENU → Lấy nét → AF/MF → AF khi chụp"
+              ],
+              [
+                "12. SteadyShot",
+                "SteadyShot (still image): Off",
+                "Tắt",
+                "MENU → Chụp → Ổn định ảnh → SteadyShot"
+              ]
+            ],
+            "caption": "Năm bước của chương Lấy nét"
+          },
+          {
+            "t": "p",
+            "text": "**Pre-AF:** Máy lấy nét sẵn trước khi bạn nhấn nửa nút chụp, nên bắt nét nhanh hơn. Chỉ có khi gắn ống kính ngàm E."
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ lấy nét:** Chọn AF liên tục: máy bám nét liên tục khi chủ thể hoặc người chụp di chuyển."
+          },
+          {
+            "t": "p",
+            "text": "**Vùng lấy nét:** Các mục Theo dõi chỉ chọn được khi Chế độ lấy nét đang là AF-C."
+          },
+          {
+            "t": "p",
+            "text": "**Tách lấy nét khỏi nút chụp (tùy chọn):** A7C II có sẵn nút AF-ON: chỉ cần tắt AF khi chụp, rồi giữ AF-ON bằng ngón cái để lấy nét."
+          },
+          {
+            "t": "p",
+            "text": "**SteadyShot:** A7C II có chống rung trên thân. Gắn ống có công tắc SteadyShot thì chỉ đổi được bằng công tắc trên ống. Sony khuyên tắt khi dùng chân máy."
+          },
+          {
+            "t": "h",
+            "text": "Màu và da: trung tính, da mịn tự nhiên",
+            "toc": "Màu và da",
+            "icon": "color"
+          },
+          {
+            "t": "p",
+            "text": "Chương này đo sáng đa điểm có ưu tiên khuôn mặt, chỉnh màu bằng Picture Profile PP1, làm mịn da và ưu tiên màu trắng trong AWB."
+          },
+          {
+            "t": "figure",
+            "caption": "Các mức làm mịn da trên cùng một khuôn mặt.",
+            "src": "/blog/menu-cai-tay-04-soft-skin.jpg",
+            "alt": "So sánh các mức làm mịn da trên cùng một khuôn mặt",
+            "width": 1600,
+            "height": 745
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "13. Chế độ đo sáng",
+                "Metering Mode: Multi · Face Priority in Multi Metering: On",
+                "Đa điểm + mặt",
+                "MENU → Phơi sáng/màu → Đo sáng → Chế độ đo sáng"
+              ],
+              [
+                "14. Màu bằng Picture Profile",
+                "Picture Profile: PP1",
+                "PP1",
+                "MENU → Phơi sáng/màu → Màu/tông màu → Picture Profile"
+              ],
+              [
+                "15. Làm mịn da",
+                "Soft Skin Effect: On: Mid",
+                "Bật: Trung bình",
+                "MENU → Phơi sáng/màu → Màu/tông màu → Làm mịn da"
+              ],
+              [
+                "16. Ưu tiên trong AWB",
+                "Priority Set in AWB: White",
+                "Trắng",
+                "MENU → Phơi sáng/màu → Cân bằng trắng → Ưu tiên trong AWB"
+              ]
+            ],
+            "caption": "Bốn bước của chương Màu và da"
+          },
+          {
+            "t": "p",
+            "text": "**Chế độ đo sáng:** Chọn Đa điểm, rồi bật thêm Phơi sáng/màu → Đo sáng → Ưu tiên mặt (đa điểm): Bật để máy đo sáng theo khuôn mặt."
+          },
+          {
+            "t": "p",
+            "text": "Trang này chỉnh màu hoàn toàn bằng Picture Profile. A7C II áp Picture Profile cho cả ảnh tĩnh và phim: chọn PP1, nhấn cạnh phải bánh xe điều khiển để vào từng mục."
+          },
+          {
+            "t": "p",
+            "text": "**Làm mịn da:** Không áp dụng cho file RAW, không hoạt động khi dùng Zoom số. A7C II: áp dụng cả khi quay phim."
+          },
+          {
+            "t": "p",
+            "text": "**Ưu tiên trong AWB:** Chỉ có tác dụng khi cân bằng trắng là Tự động. Trắng: giữ màu trắng trung tính khi nguồn sáng có nhiệt độ màu thấp, như đèn sợi đốt."
+          },
+          {
+            "t": "h",
+            "text": "Màn hình: nhìn rõ khi ra nắng",
+            "toc": "Màn hình",
+            "icon": "image"
+          },
+          {
+            "t": "p",
+            "text": "Chương này chỉnh độ sáng và chất lượng hiển thị của màn hình, cùng cách hiện ảnh Live View."
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Tên trên máy",
+              "Giá trị",
+              "Đường dẫn"
+            ],
+            "rows": [
+              [
+                "17. Độ sáng màn hình",
+                "Monitor Brightness: Sunny Weather",
+                "Thời tiết nắng",
+                "MENU → Cài đặt → Ống ngắm/màn hình → Độ sáng màn hình"
+              ],
+              [
+                "18. Chất lượng hiển thị",
+                "Display Quality: High",
+                "Cao",
+                "MENU → Cài đặt → Ống ngắm/màn hình → Chất lượng hiển thị"
+              ],
+              [
+                "19. Hiển thị Live View",
+                "Live View Display: Setting Effect ON",
+                "Bật hiệu ứng cài đặt",
+                "MENU → Chụp → Hiển thị khi chụp → Cài đặt hiển thị Live View → Hiển thị Live View"
+              ]
+            ],
+            "caption": "Ba bước của chương Màn hình"
+          },
+          {
+            "t": "p",
+            "text": "**Độ sáng màn hình:** Vào trong nhà: trả về Thủ công để đánh giá phơi sáng đúng và đỡ tốn pin."
+          },
+          {
+            "t": "p",
+            "text": "**Chất lượng hiển thị:** Tốn pin hơn mức Tiêu chuẩn. Khi máy nóng, máy có thể tự khóa về Tiêu chuẩn."
+          },
+          {
+            "t": "p",
+            "text": "**Hiển thị Live View:** Màn hình hiện ảnh gần giống kết quả cuối, theo bù sáng và cân bằng trắng đang đặt. Chế độ tự động và chế độ cảnh không cho chọn Tắt hiệu ứng cài đặt."
+          },
+          {
+            "t": "h",
+            "text": "Tóm tắt cài đặt",
+            "toc": "Tóm tắt",
+            "icon": "settings"
+          },
+          {
+            "t": "p",
+            "text": "Bảng dưới đây liệt kê giá trị của 17 bước. Bước 6 và bước 7 không có trên A7C II, nên không nằm trong bảng."
+          },
+          {
+            "t": "table",
+            "head": [
+              "Bước",
+              "Giá trị"
+            ],
+            "rows": [
+              [
+                "1. Chế độ chụp",
+                "A"
+              ],
+              [
+                "2. Tắt tự động xem lại ảnh vừa chụp",
+                "Tắt"
+              ],
+              [
+                "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
+                "1/125"
+              ],
+              [
+                "4. Chế độ flash",
+                "Đồng bộ sau"
+              ],
+              [
+                "5. Cài đặt bù sáng",
+                "Môi trường & flash"
+              ],
+              [
+                "8. Pre-AF",
+                "Bật"
+              ],
+              [
+                "9. Chế độ lấy nét",
+                "AF-C"
+              ],
+              [
+                "10. Vùng lấy nét",
+                "Theo dõi: Vùng"
+              ],
+              [
+                "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
+                "Tắt"
+              ],
+              [
+                "12. SteadyShot",
+                "Tắt"
+              ],
+              [
+                "13. Chế độ đo sáng",
+                "Đa điểm + mặt"
+              ],
+              [
+                "14. Màu bằng Picture Profile",
+                "PP1"
+              ],
+              [
+                "15. Làm mịn da",
+                "Bật: Trung bình"
+              ],
+              [
+                "16. Ưu tiên trong AWB",
+                "Trắng"
+              ],
+              [
+                "17. Độ sáng màn hình",
+                "Thời tiết nắng"
+              ],
+              [
+                "18. Chất lượng hiển thị",
+                "Cao"
+              ],
+              [
+                "19. Hiển thị Live View",
+                "Bật hiệu ứng cài đặt"
+              ]
+            ],
+            "caption": "Giá trị của 17 bước trên A7C II"
+          },
+          {
+            "t": "faq",
+            "items": [
+              {
+                "q": "Vì sao bước 1 không có đường dẫn MENU trên A7C II?",
+                "a": "Chế độ chụp trên A7C II đặt bằng vòng chế độ trên thân máy. Trước khi xoay vòng sang A, bạn gạt vòng Ảnh tĩnh/Phim/S&Q về ảnh tĩnh. Trên ZV-E10 và A6400, bước này nằm trong MENU → Cài đặt máy ảnh1 → Chế độ chụp."
+              },
+              {
+                "q": "Vì sao bài này không có bước Màn trập trước điện tử?",
+                "a": "A7C II không có mục Màn trập trước điện tử, vì Loại màn trập chỉ có Màn trập cơ và Màn trập điện tử. Bước bù sáng bằng vòng xoay cũng không cần cài, vì A7C II đã gán bù sáng cho vòng xoay sau R từ đầu. Hai bước này chỉ có trên ZV-E10 và A6400."
+              },
+              {
+                "q": "Làm sao tách lấy nét khỏi nút chụp trên A7C II?",
+                "a": "Đặt AF khi chụp trong MENU → Lấy nét → AF/MF về Tắt. A7C II có sẵn nút AF-ON, nên sau đó bạn chỉ cần giữ AF-ON bằng ngón cái để lấy nét. Đây là bước tùy chọn trong bài."
+              },
+              {
+                "q": "Vì sao cần flash ngoài để dùng Đồng bộ sau trên A7C II?",
+                "a": "A7C II không có flash tích hợp, nên cài đặt Đồng bộ sau dùng với flash ngoài gắn trên giày Multi Interface. Đồng bộ sau làm flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động trông tự nhiên. Chế độ flash nằm trong MENU → Phơi sáng/màu → Đèn flash."
+              },
+              {
+                "q": "Làm mịn da có áp dụng khi quay phim trên A7C II không?",
+                "a": "Có. Trên A7C II, Làm mịn da áp dụng cả khi quay phim, với mức Trung bình đặt trong Phơi sáng/màu, Màu/tông màu. Mục này không áp dụng cho file RAW và không hoạt động khi dùng Zoom số. Nếu muốn đổi mức, chỉnh ở bước 15 của bài."
+              }
+            ]
           }
         ]
       }
@@ -13224,10 +13658,6 @@
         {
           "kind": "knowledge",
           "id": "tam-giac-phoi-sang"
-        },
-        {
-          "kind": "article",
-          "id": "menu-may-anh-toi-uu-nguoi-moi-new-gen-menu"
         }
       ],
       "prerequisites": [
@@ -13348,466 +13778,7 @@
           "title": "ILCE-6400 | Help Guide | Focus Area",
           "publisher": "Sony",
           "checkedAt": "2026-11-11"
-        }
-      ],
-      "authorName": null,
-      "reviewedAt": "2026-11-19",
-      "section": null,
-      "order": null
-    },
-    "updatedAt": "2026-11-19",
-    "category": "ky-nang"
-  },
-  {
-    "id": "menu-may-anh-toi-uu-nguoi-moi-new-gen-menu",
-    "kind": "article",
-    "topic": "gear",
-    "level": "newbie",
-    "archetype": "setup-guide",
-    "read": "9 phút đọc",
-    "title": "Menu máy ảnh tối ưu cho người mới sử dụng máy ảnh (New-gen Menu)",
-    "dek": "Đặt 17 mục menu cho A7C II theo bốn chương: phơi sáng, lấy nét, màu và da, màn hình, kèm đường dẫn MENU hoặc nút bấm cho từng bước.",
-    "blocks": [
-      {
-        "t": "tldr",
-        "items": [
-          "Bài này đặt 17 mục menu cho [[A7C II]], chia thành bốn chương: phơi sáng, lấy nét, màu và da, màn hình.",
-          "Bước 1 dùng vòng chế độ, không có đường dẫn MENU. Bước 6 và 7 chỉ có trên ZV-E10 và A6400, nên bỏ qua.",
-          "Máy menu cũ ([[ZV-E10]], [[A6400]]) có bài riêng: [[menu-may-anh-toi-uu-nguoi-moi-legacy-menu|Menu máy ảnh tối ưu cho người mới sử dụng máy ảnh (Legacy Menu)]]."
-        ]
-      },
-      {
-        "t": "p",
-        "text": "Cài tay là đặt các mục menu bằng tay để máy chụp đúng ý bạn ngay từ đầu. Mỗi chương có một bảng gồm tên trên máy, giá trị và đường dẫn MENU, rồi ghi chú cho từng bước. Bảng tóm tắt ở cuối liệt kê giá trị của cả 17 bước."
-      },
-      {
-        "t": "h",
-        "text": "Phơi sáng: chế độ A và ISO AUTO",
-        "toc": "Phơi sáng",
-        "icon": "exposure"
-      },
-      {
-        "t": "p",
-        "text": "Chương này đặt chế độ A, để bạn chọn khẩu độ còn máy lo tốc độ và ISO. Bước 3 là tùy chọn, giữ tốc độ tối thiểu ở 1/125 s cho ISO AUTO."
-      },
-      {
-        "t": "figure",
-        "caption": "Chế độ A: bạn chọn khẩu độ để xóa phông, máy lo tốc độ và ISO.",
-        "src": "/blog/menu-cai-tay-01-aperture.jpg",
-        "alt": "Ảnh chân dung xóa phông chụp ở chế độ ưu tiên khẩu độ",
-        "width": 667,
-        "height": 1000
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
-        ],
-        "rows": [
-          [
-            "1. Chế độ chụp",
-            "Mode Dial: A (Aperture Priority)",
-            "A",
-            "Vòng chế độ trên thân máy, không có đường dẫn MENU"
-          ],
-          [
-            "2. Tắt tự động xem lại ảnh vừa chụp",
-            "Auto Review: Off",
-            "Tắt",
-            "MENU → Cài đặt → Tùy chọn hiển thị → Tự động xem lại"
-          ],
-          [
-            "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
-            "ISO AUTO Min. SS",
-            "1/125",
-            "MENU → Phơi sáng/màu → Phơi sáng → ISO AUTO tốc độ tối thiểu"
-          ],
-          [
-            "4. Chế độ flash",
-            "Flash Mode: Rear Sync.",
-            "Đồng bộ sau",
-            "MENU → Phơi sáng/màu → Đèn flash → Chế độ flash"
-          ],
-          [
-            "5. Cài đặt bù sáng",
-            "Exp.comp.set: Ambient&flash",
-            "Môi trường & flash",
-            "MENU → Phơi sáng/màu → Đèn flash → Cài đặt bù sáng"
-          ]
-        ],
-        "caption": "Năm bước của chương Phơi sáng"
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ chụp:** A7C II: gạt vòng Ảnh tĩnh/Phim/S&Q về ảnh tĩnh, rồi xoay vòng chế độ sang A."
-      },
-      {
-        "t": "p",
-        "text": "**Tắt tự động xem lại ảnh vừa chụp:** Màn hình không dừng lại để hiện ảnh vừa chụp, bạn bám chủ thể liên tục và đỡ tốn pin."
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ flash:** Đồng bộ sau: flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động trông tự nhiên. A7C II không có flash tích hợp: cài đặt này dùng với flash ngoài gắn trên giày Multi Interface."
-      },
-      {
-        "t": "p",
-        "text": "**Cài đặt bù sáng:** Bù sáng điều chỉnh cả ánh sáng xung quanh lẫn công suất flash. Chọn Chỉ môi trường nếu muốn flash giữ nguyên."
-      },
-      {
-        "t": "p",
-        "text": "Bước 6 và bước 7 bỏ qua trên A7C II. A7C II không có mục Màn trập trước điện tử, vì Loại màn trập chỉ có Màn trập cơ và Màn trập điện tử. A7C II đã gán bù sáng cho vòng xoay sau R từ đầu, không cần cài."
-      },
-      {
-        "t": "h",
-        "text": "Lấy nét: AF-C và theo dõi theo vùng",
-        "toc": "Lấy nét",
-        "icon": "focus"
-      },
-      {
-        "t": "p",
-        "text": "Chương này chọn AF liên tục và vùng Theo dõi để máy bám nét khi chủ thể chuyển động. Bước 11 là tùy chọn, tách lấy nét khỏi nút chụp."
-      },
-      {
-        "t": "figure",
-        "caption": "Máy nhận dạng chủ thể và bám mắt khi người di chuyển.",
-        "src": "/blog/menu-cai-tay-02-eye-af.jpg",
-        "alt": "Khung lấy nét mắt màu xanh bám theo mắt người mẫu đang đi bộ",
-        "width": 1600,
-        "height": 745
-      },
-      {
-        "t": "figure",
-        "caption": "AF-C bám nét liên tục với chủ thể chuyển động.",
-        "src": "/blog/menu-cai-tay-03-afc.jpg",
-        "alt": "Chủ thể chuyển động được AF liên tục bám nét",
-        "width": 1000,
-        "height": 667
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
-        ],
-        "rows": [
-          [
-            "8. Pre-AF",
-            "Pre-AF (still image): On",
-            "Bật",
-            "MENU → Lấy nét → AF/MF → Pre-AF"
-          ],
-          [
-            "9. Chế độ lấy nét",
-            "Focus Mode: Continuous AF",
-            "AF-C",
-            "MENU → Lấy nét → AF/MF → Chế độ lấy nét"
-          ],
-          [
-            "10. Vùng lấy nét",
-            "Focus Area: Tracking: Zone",
-            "Theo dõi: Vùng",
-            "MENU → Lấy nét → Vùng lấy nét → Vùng lấy nét"
-          ],
-          [
-            "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
-            "AF w/ Shutter: Off",
-            "Tắt",
-            "MENU → Lấy nét → AF/MF → AF khi chụp"
-          ],
-          [
-            "12. SteadyShot",
-            "SteadyShot (still image): Off",
-            "Tắt",
-            "MENU → Chụp → Ổn định ảnh → SteadyShot"
-          ]
-        ],
-        "caption": "Năm bước của chương Lấy nét"
-      },
-      {
-        "t": "p",
-        "text": "**Pre-AF:** Máy lấy nét sẵn trước khi bạn nhấn nửa nút chụp, nên bắt nét nhanh hơn. Chỉ có khi gắn ống kính ngàm E."
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ lấy nét:** Chọn AF liên tục: máy bám nét liên tục khi chủ thể hoặc người chụp di chuyển."
-      },
-      {
-        "t": "p",
-        "text": "**Vùng lấy nét:** Các mục Theo dõi chỉ chọn được khi Chế độ lấy nét đang là AF-C."
-      },
-      {
-        "t": "p",
-        "text": "**Tách lấy nét khỏi nút chụp (tùy chọn):** A7C II có sẵn nút AF-ON: chỉ cần tắt AF khi chụp, rồi giữ AF-ON bằng ngón cái để lấy nét."
-      },
-      {
-        "t": "p",
-        "text": "**SteadyShot:** A7C II có chống rung trên thân. Gắn ống có công tắc SteadyShot thì chỉ đổi được bằng công tắc trên ống. Sony khuyên tắt khi dùng chân máy."
-      },
-      {
-        "t": "h",
-        "text": "Màu và da: trung tính, da mịn tự nhiên",
-        "toc": "Màu và da",
-        "icon": "color"
-      },
-      {
-        "t": "p",
-        "text": "Chương này đo sáng đa điểm có ưu tiên khuôn mặt, chỉnh màu bằng Picture Profile PP1, làm mịn da và ưu tiên màu trắng trong AWB."
-      },
-      {
-        "t": "figure",
-        "caption": "Các mức làm mịn da trên cùng một khuôn mặt.",
-        "src": "/blog/menu-cai-tay-04-soft-skin.jpg",
-        "alt": "So sánh các mức làm mịn da trên cùng một khuôn mặt",
-        "width": 1600,
-        "height": 745
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
-        ],
-        "rows": [
-          [
-            "13. Chế độ đo sáng",
-            "Metering Mode: Multi · Face Priority in Multi Metering: On",
-            "Đa điểm + mặt",
-            "MENU → Phơi sáng/màu → Đo sáng → Chế độ đo sáng"
-          ],
-          [
-            "14. Màu bằng Picture Profile",
-            "Picture Profile: PP1",
-            "PP1",
-            "MENU → Phơi sáng/màu → Màu/tông màu → Picture Profile"
-          ],
-          [
-            "15. Làm mịn da",
-            "Soft Skin Effect: On: Mid",
-            "Bật: Trung bình",
-            "MENU → Phơi sáng/màu → Màu/tông màu → Làm mịn da"
-          ],
-          [
-            "16. Ưu tiên trong AWB",
-            "Priority Set in AWB: White",
-            "Trắng",
-            "MENU → Phơi sáng/màu → Cân bằng trắng → Ưu tiên trong AWB"
-          ]
-        ],
-        "caption": "Bốn bước của chương Màu và da"
-      },
-      {
-        "t": "p",
-        "text": "**Chế độ đo sáng:** Chọn Đa điểm, rồi bật thêm Phơi sáng/màu → Đo sáng → Ưu tiên mặt (đa điểm): Bật để máy đo sáng theo khuôn mặt."
-      },
-      {
-        "t": "p",
-        "text": "Trang này chỉnh màu hoàn toàn bằng Picture Profile. A7C II áp Picture Profile cho cả ảnh tĩnh và phim: chọn PP1, nhấn cạnh phải bánh xe điều khiển để vào từng mục."
-      },
-      {
-        "t": "p",
-        "text": "**Làm mịn da:** Không áp dụng cho file RAW, không hoạt động khi dùng Zoom số. A7C II: áp dụng cả khi quay phim."
-      },
-      {
-        "t": "p",
-        "text": "**Ưu tiên trong AWB:** Chỉ có tác dụng khi cân bằng trắng là Tự động. Trắng: giữ màu trắng trung tính khi nguồn sáng có nhiệt độ màu thấp, như đèn sợi đốt."
-      },
-      {
-        "t": "h",
-        "text": "Màn hình: nhìn rõ khi ra nắng",
-        "toc": "Màn hình",
-        "icon": "image"
-      },
-      {
-        "t": "p",
-        "text": "Chương này chỉnh độ sáng và chất lượng hiển thị của màn hình, cùng cách hiện ảnh Live View."
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Tên trên máy",
-          "Giá trị",
-          "Đường dẫn"
-        ],
-        "rows": [
-          [
-            "17. Độ sáng màn hình",
-            "Monitor Brightness: Sunny Weather",
-            "Thời tiết nắng",
-            "MENU → Cài đặt → Ống ngắm/màn hình → Độ sáng màn hình"
-          ],
-          [
-            "18. Chất lượng hiển thị",
-            "Display Quality: High",
-            "Cao",
-            "MENU → Cài đặt → Ống ngắm/màn hình → Chất lượng hiển thị"
-          ],
-          [
-            "19. Hiển thị Live View",
-            "Live View Display: Setting Effect ON",
-            "Bật hiệu ứng cài đặt",
-            "MENU → Chụp → Hiển thị khi chụp → Cài đặt hiển thị Live View → Hiển thị Live View"
-          ]
-        ],
-        "caption": "Ba bước của chương Màn hình"
-      },
-      {
-        "t": "p",
-        "text": "**Độ sáng màn hình:** Vào trong nhà: trả về Thủ công để đánh giá phơi sáng đúng và đỡ tốn pin."
-      },
-      {
-        "t": "p",
-        "text": "**Chất lượng hiển thị:** Tốn pin hơn mức Tiêu chuẩn. Khi máy nóng, máy có thể tự khóa về Tiêu chuẩn."
-      },
-      {
-        "t": "p",
-        "text": "**Hiển thị Live View:** Màn hình hiện ảnh gần giống kết quả cuối, theo bù sáng và cân bằng trắng đang đặt. Chế độ tự động và chế độ cảnh không cho chọn Tắt hiệu ứng cài đặt."
-      },
-      {
-        "t": "h",
-        "text": "Tóm tắt cài đặt",
-        "toc": "Tóm tắt",
-        "icon": "settings"
-      },
-      {
-        "t": "p",
-        "text": "Bảng dưới đây liệt kê giá trị của 17 bước. Bước 6 và bước 7 không có trên A7C II, nên không nằm trong bảng."
-      },
-      {
-        "t": "table",
-        "head": [
-          "Bước",
-          "Giá trị"
-        ],
-        "rows": [
-          [
-            "1. Chế độ chụp",
-            "A"
-          ],
-          [
-            "2. Tắt tự động xem lại ảnh vừa chụp",
-            "Tắt"
-          ],
-          [
-            "3. Tốc độ tối thiểu cho ISO AUTO (tùy chọn)",
-            "1/125"
-          ],
-          [
-            "4. Chế độ flash",
-            "Đồng bộ sau"
-          ],
-          [
-            "5. Cài đặt bù sáng",
-            "Môi trường & flash"
-          ],
-          [
-            "8. Pre-AF",
-            "Bật"
-          ],
-          [
-            "9. Chế độ lấy nét",
-            "AF-C"
-          ],
-          [
-            "10. Vùng lấy nét",
-            "Theo dõi: Vùng"
-          ],
-          [
-            "11. Tách lấy nét khỏi nút chụp (tùy chọn)",
-            "Tắt"
-          ],
-          [
-            "12. SteadyShot",
-            "Tắt"
-          ],
-          [
-            "13. Chế độ đo sáng",
-            "Đa điểm + mặt"
-          ],
-          [
-            "14. Màu bằng Picture Profile",
-            "PP1"
-          ],
-          [
-            "15. Làm mịn da",
-            "Bật: Trung bình"
-          ],
-          [
-            "16. Ưu tiên trong AWB",
-            "Trắng"
-          ],
-          [
-            "17. Độ sáng màn hình",
-            "Thời tiết nắng"
-          ],
-          [
-            "18. Chất lượng hiển thị",
-            "Cao"
-          ],
-          [
-            "19. Hiển thị Live View",
-            "Bật hiệu ứng cài đặt"
-          ]
-        ],
-        "caption": "Giá trị của 17 bước trên A7C II"
-      },
-      {
-        "t": "faq",
-        "items": [
-          {
-            "q": "Vì sao bước 1 không có đường dẫn MENU trên A7C II?",
-            "a": "Chế độ chụp trên A7C II đặt bằng vòng chế độ trên thân máy. Trước khi xoay vòng sang A, bạn gạt vòng Ảnh tĩnh/Phim/S&Q về ảnh tĩnh. Trên ZV-E10 và A6400, bước này nằm trong MENU → Cài đặt máy ảnh1 → Chế độ chụp."
-          },
-          {
-            "q": "Vì sao bài này không có bước Màn trập trước điện tử?",
-            "a": "A7C II không có mục Màn trập trước điện tử, vì Loại màn trập chỉ có Màn trập cơ và Màn trập điện tử. Bước bù sáng bằng vòng xoay cũng không cần cài, vì A7C II đã gán bù sáng cho vòng xoay sau R từ đầu. Hai bước này chỉ có trên ZV-E10 và A6400."
-          },
-          {
-            "q": "Làm sao tách lấy nét khỏi nút chụp trên A7C II?",
-            "a": "Đặt AF khi chụp trong MENU → Lấy nét → AF/MF về Tắt. A7C II có sẵn nút AF-ON, nên sau đó bạn chỉ cần giữ AF-ON bằng ngón cái để lấy nét. Đây là bước tùy chọn trong bài."
-          },
-          {
-            "q": "Vì sao cần flash ngoài để dùng Đồng bộ sau trên A7C II?",
-            "a": "A7C II không có flash tích hợp, nên cài đặt Đồng bộ sau dùng với flash ngoài gắn trên giày Multi Interface. Đồng bộ sau làm flash nháy ngay trước khi kết thúc phơi sáng, nên vệt chuyển động trông tự nhiên. Chế độ flash nằm trong MENU → Phơi sáng/màu → Đèn flash."
-          },
-          {
-            "q": "Làm mịn da có áp dụng khi quay phim trên A7C II không?",
-            "a": "Có. Trên A7C II, Làm mịn da áp dụng cả khi quay phim, với mức Trung bình đặt trong Phơi sáng/màu, Màu/tông màu. Mục này không áp dụng cho file RAW và không hoạt động khi dùng Zoom số. Nếu muốn đổi mức, chỉnh ở bước 15 của bài."
-          }
-        ]
-      }
-    ],
-    "meta": {
-      "related": [
-        {
-          "kind": "knowledge",
-          "id": "he-menu-legacy-va-new-gen"
         },
-        {
-          "kind": "knowledge",
-          "id": "picture-profile"
-        },
-        {
-          "kind": "knowledge",
-          "id": "lay-net"
-        },
-        {
-          "kind": "article",
-          "id": "menu-may-anh-toi-uu-nguoi-moi-legacy-menu"
-        }
-      ],
-      "prerequisites": [
-        "he-menu-legacy-va-new-gen"
-      ],
-      "concepts": [],
-      "sources": [
         {
           "url": "https://helpguide.sony.net/ilc/2360/v1/en/contents/0302B_aperture_priority.html",
           "title": "ILCE-7CM2 | Help Guide | Aperture Priority",

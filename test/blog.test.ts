@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { allBlocks } from "../lib/blog.ts";
 
 const projectRoot = process.cwd();
 const rules = JSON.parse(readFileSync(join(projectRoot, "data/article-rules.json"), "utf-8"));
@@ -23,7 +24,7 @@ test("Blog", async (t) => {
     const invalidBlocks: string[] = [];
 
     for (const article of articles) {
-      for (const block of article.blocks) {
+      for (const block of allBlocks(article)) {
         if (!validBlockTypes.has(block.t)) {
           invalidBlocks.push(`${article.id}: block type "${block.t}"`);
         }
@@ -37,7 +38,7 @@ test("Blog", async (t) => {
     const missingFiles: string[] = [];
 
     for (const article of articles) {
-      for (const block of article.blocks) {
+      for (const block of allBlocks(article)) {
         if (block.t === "figure") {
           if (!block.width || block.width <= 0 || !block.height || block.height <= 0) {
             missingFiles.push(`${article.id}: figure has invalid dimensions ${block.width}x${block.height}`);
@@ -105,7 +106,7 @@ test("Blog", async (t) => {
     const oldViPrefix = new RegExp(rules.menuPrefixes.oldVi);
     const englishTab = new RegExp(rules.menuPrefixes.englishTabs);
     for (const article of articles) {
-      for (const block of article.blocks) {
+      for (const block of allBlocks(article)) {
         if (block.t !== "menu") continue;
         if (!oldPrefix.test(block.old)) bad.push(`${article.id}: old "${block.old}"`);
         if (block.oldVi !== undefined && !oldViPrefix.test(block.oldVi)) bad.push(`${article.id}: oldVi "${block.oldVi}"`);
