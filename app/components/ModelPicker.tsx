@@ -10,7 +10,7 @@ import { InfoTip } from "./InfoTip";
 const copy = guide.modelPicker;
 type Menu = (typeof copy.groups)[number]["menu"];
 
-/** Decode status chip: Đã giải mã / Đang giải mã / Chưa giải mã (lib/decodeProgress.ts). Chỉ hiện khi showDecodeStatus (npm run dev), chỉ trên /giai-ma. */
+/** Decode status chip: Đã giải mã / Đang giải mã / Chưa giải mã (lib/decodeProgress.ts). Chỉ hiện khi showDecodeStatus (npm run dev). */
 export function Status({ id }: { id?: string }) {
   if (!showDecodeStatus) return null;
   const state = decodeProgress(id).state;

@@ -40,10 +40,10 @@ test("A7C II: M1 and M2 hold the same settings (only the save time differs)", ()
   assert.deepStrictEqual(diffA7c2(parseA7c2(m1), parseA7c2(m2)), []);
 });
 
-// Game: bộ M1–M4 A7C II dựng từ file máy thật, mỗi ô đổi một bản ghi và lưu muộn hơn ô trước
-import { verify } from "../lib/game/verify.ts";
-import { generateMission } from "../lib/game/mission.ts";
-import type { CardFile } from "../lib/game/types.ts";
+// Bộ M1–M4 A7C II dựng từ file máy thật, mỗi ô đổi một bản ghi và lưu muộn hơn ô trước
+import { verify } from "../lib/decode/verify.ts";
+import { generateMission } from "../lib/decode/mission.ts";
+import type { CardFile } from "../lib/decode/types.ts";
 
 function slotFile(slot: number, edit?: (b: Uint8Array) => void): CardFile {
   const dat = parseA7c2(m1);
@@ -55,13 +55,13 @@ function slotFile(slot: number, edit?: (b: Uint8Array) => void): CardFile {
   return { folder: "7CM2", name: `CAMPR0${slot}P.DAT`, bytes };
 }
 
-test("A7C II game: a valid M1–M4 set passes the structural checks", () => {
+test("A7C II: a valid M1–M4 set passes the structural checks", () => {
   const v = verify(generateMission("a7c2", 7), [1, 2, 3, 4].map((s) => slotFile(s)), "en");
   assert.deepStrictEqual(v.structural.filter((s) => !s.ok), []);
   assert.strictEqual(v.ok, true);
 });
 
-test("A7C II game: a slot with a broken checksum or another camera's file must be redone", () => {
+test("A7C II: a slot with a broken checksum or another camera's file must be redone", () => {
   const files = [1, 2, 3, 4].map((s) => slotFile(s));
   files[1] = slotFile(2, (b) => (b[0x300] ^= 1));
   files[2] = slotFile(3, (b) => b.set(new TextEncoder().encode("ILCE-7M4\0"), 5));

@@ -3,12 +3,12 @@ import assert from "node:assert";
 import { readFileSync } from "node:fs";
 import { decodeMatrix, modelSummary, MODELS, ROUNDS_CAP } from "../lib/decode/matrix.ts";
 import { catalogRows, statusRows } from "../lib/decode/status.ts";
-import { getCatalog } from "../lib/game/catalog.ts";
-import type { GameModel } from "../lib/game/types.ts";
+import { getCatalog } from "../lib/decode/catalog.ts";
+import type { DecodeModel } from "../lib/decode/types.ts";
 import type { LocalFindings } from "../lib/decode/status.ts";
 
 // Điền đủ mọi giá trị (cả giá trị chỉ có trong codec) và định vị mọi cài đặt của một máy
-function everything(model: GameModel): LocalFindings {
+function everything(model: DecodeModel): LocalFindings {
   const rows = statusRows(model, {}, false);
   return {
     values: rows.filter((r) => !r.numeric).flatMap((r) => r.cells.map((c) => ({ model, settingId: r.settingId, valueId: c.valueId }))),

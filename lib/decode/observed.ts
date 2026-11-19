@@ -1,33 +1,33 @@
 /**
  * Quan sát từ file máy thật: giá trị nào đã thấy trong file do máy lưu (test/fixtures/camera-saved.json),
- * và phát hiện từ lượt chơi trong test/fixtures/rounds/ (analyzeRound tạo ra).
+ * và phát hiện từ lượt giải mã trong test/fixtures/rounds/ (analyzeRound tạo ra).
  * scanObserved là hàm thuần: nhận byte đã đọc sẵn, không đụng ổ đĩa. lib/decode/scanFs.ts đọc file và ghi data/decode-observed.json.
  */
-import type { Finding, GameModel, Mission, RoundFile } from "../game/types.ts";
-import { analyzeRound } from "../game/analyze.ts";
+import type { Finding, DecodeModel, Mission, RoundFile } from "./types.ts";
+import { analyzeRound } from "./analyze.ts";
 import { adaptersFor } from "./adapters.ts";
 
-export type CameraFile = { file: string; model: GameModel; bytes: Uint8Array };
-export type RoundInput = { model: GameModel; missionId: string; mission: Mission; files: RoundFile[] };
+export type CameraFile = { file: string; model: DecodeModel; bytes: Uint8Array };
+export type RoundInput = { model: DecodeModel; missionId: string; mission: Mission; files: RoundFile[] };
 
-// Phát hiện từ một lượt chơi, kèm mã lượt
+// Phát hiện từ một lượt giải mã, kèm mã lượt
 export type Candidate = Finding & { missionId: string };
 
 type ValueMap = Record<string, Record<string, string[]>>; // settingId → khóa → các file
 
 export type Observed = {
   version: 1;
-  files: { file: string; model: GameModel; readable: boolean }[];
+  files: { file: string; model: DecodeModel; readable: boolean }[];
   // settingId → valueId → file đã đọc ra giá trị đó
-  values: Record<GameModel, ValueMap>;
+  values: Record<DecodeModel, ValueMap>;
   // settingId → raw (khi valueId là null) → file
-  raws: Record<GameModel, ValueMap>;
+  raws: Record<DecodeModel, ValueMap>;
   candidates: Candidate[];
 };
 
-const MODELS: GameModel[] = ["zve10", "a6400", "a7c2"];
+const MODELS: DecodeModel[] = ["zve10", "a6400", "a7c2"];
 
-const byModel = (): Record<GameModel, ValueMap> => ({ zve10: {}, a6400: {}, a7c2: {} });
+const byModel = (): Record<DecodeModel, ValueMap> => ({ zve10: {}, a6400: {}, a7c2: {} });
 
 function addTo(map: ValueMap, settingId: string, key: string, file: string): void {
   const byKey = (map[settingId] ??= {});
@@ -66,8 +66,8 @@ export function scanObserved(files: CameraFile[], rounds: RoundInput[] = []): Ob
     .map((c) => ({ c, key: stableJson(c, 0) }));
   const candidates = keyed.sort((x, y) => (x.key < y.key ? -1 : x.key > y.key ? 1 : 0)).map((k) => k.c);
 
-  const sortedValues = {} as Record<GameModel, ValueMap>;
-  const sortedRaws = {} as Record<GameModel, ValueMap>;
+  const sortedValues = {} as Record<DecodeModel, ValueMap>;
+  const sortedRaws = {} as Record<DecodeModel, ValueMap>;
   for (const m of MODELS) {
     sortedValues[m] = sortMap(values[m]);
     sortedRaws[m] = sortMap(raws[m]);

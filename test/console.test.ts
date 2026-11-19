@@ -6,7 +6,7 @@ import { sections, cameraModels, sonyBodies, consoleHashRoutes, LEGACY_MENU_ARTI
 const routes = new Set([LEGACY_MENU_ARTICLE, '/tao-m1-m4', '/console'])
 
 test('old one-page hashes land on a console route', () => {
-  for (const h of [...sections.map((s) => s.id), 'tom-tat', 'huong-dan', 'tao-preset', 'choi-game']) {
+  for (const h of [...sections.map((s) => s.id), 'tom-tat', 'huong-dan', 'tao-preset']) {
     assert.ok(routes.has(consoleHashRoutes[h]), `#${h} → ${consoleHashRoutes[h]}`)
   }
   assert.equal(consoleHashRoutes['may-cua-ban'], undefined, '#may-cua-ban stays on /')

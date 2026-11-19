@@ -1,11 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert";
 import { readFileSync } from "node:fs";
-import { analyzeRound, localFindings, mergeLocal } from "../lib/game/analyze.ts";
-import type { Finding } from "../lib/game/analyze.ts";
-import { planMission } from "../lib/game/plan.ts";
-import { getCatalog } from "../lib/game/catalog.ts";
-import type { GameModel, Mission, SlotStep, SlotTask } from "../lib/game/types.ts";
+import { analyzeRound, localFindings, mergeLocal } from "../lib/decode/analyze.ts";
+import type { Finding } from "../lib/decode/analyze.ts";
+import { planMission } from "../lib/decode/plan.ts";
+import { getCatalog } from "../lib/decode/catalog.ts";
+import type { DecodeModel, Mission, SlotStep, SlotTask } from "../lib/decode/types.ts";
 import { adaptersFor } from "../lib/decode/adapters.ts";
 import type { SettingAdapter } from "../lib/decode/adapters.ts";
 import type { LocalFindings } from "../lib/decode/status.ts";
@@ -48,7 +48,7 @@ const file = (fill: Record<number, number>): Uint8Array => {
 };
 
 const step = (settingId: string, valueId: string, role: "control" | "target"): SlotStep => ({ settingId, valueId, role });
-const missionOf = (slots: SlotTask[], model: GameModel = "zve10"): Mission => ({ id: "t", model, seed: 1, createdAt: 0, slots });
+const missionOf = (slots: SlotTask[], model: DecodeModel = "zve10"): Mission => ({ id: "t", model, seed: 1, createdAt: 0, slots });
 
 test("a) confirm: cài đặt đã định vị, file đúng giá trị đề bài", () => {
   const m = missionOf([{ slot: 1, steps: [step("seen", "on", "control")] }]);

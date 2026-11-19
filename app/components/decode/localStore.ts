@@ -1,8 +1,8 @@
-// Phát hiện giải mã của người chơi, lưu trên máy (localStorage "decode-findings").
-// Bảng giải mã đọc qua useSyncExternalStore; lượt chơi ghi qua addLocal, mọi nơi đang mở đều nhận sự kiện.
+// Phát hiện giải mã trên máy này, lưu trong (localStorage "decode-findings").
+// Bảng giải mã đọc qua useSyncExternalStore; lượt giải mã ghi qua addLocal, mọi nơi đang mở đều nhận sự kiện.
 import type { LocalFindings } from "@/lib/decode/statusCore";
-import { cleanLocal } from "@/lib/game/planRequest";
-import { mergeLocal } from "@/lib/game/analyze";
+import { cleanLocal } from "@/lib/decode/planRequest";
+import { mergeLocal } from "@/lib/decode/analyze";
 
 export const LOCAL_KEY = "decode-findings";
 export const LOCAL_EVENT = "decode-findings-change";

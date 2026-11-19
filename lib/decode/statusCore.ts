@@ -7,21 +7,21 @@
  * - predicted: đã định vị và có mã, nhưng chưa thấy trong file máy thật.
  * - pending: đã định vị nhưng chưa có mã.
  * - unknown: chưa định vị.
- * inCatalog:false: giá trị hoặc cài đặt chỉ có trong codec, không có trong data/game-tasks.json.
+ * inCatalog:false: giá trị hoặc cài đặt chỉ có trong codec, không có trong data/decode-catalog.json.
  * numeric: cài đặt số (ISO, nhiệt độ màu, mức đen) chỉ có raw; không có ô, observedCount là số raw khác nhau đã thấy.
  * Số liệu (matrix.ts) chỉ tính ô trong danh mục, và bỏ hàng numeric.
  */
-import type { GameModel } from "../game/types.ts";
-import { getCatalog } from "../game/catalog.ts";
+import type { DecodeModel } from "./types.ts";
+import { getCatalog } from "./catalog.ts";
 import { adaptersFor } from "./adapters.ts";
 import type { Observed } from "./observed.ts";
 
 export type ValueStatus = "confirmed" | "predicted" | "pending" | "unknown";
 
-// Phát hiện từ lượt chơi trên máy người dùng (analyze.ts tạo ra)
+// Phát hiện từ lượt giải mã trên máy người dùng (analyze.ts tạo ra)
 export type LocalFindings = {
-  values?: readonly { model: GameModel; settingId: string; valueId: string }[];
-  located?: readonly { model: GameModel; settingId: string }[];
+  values?: readonly { model: DecodeModel; settingId: string; valueId: string }[];
+  located?: readonly { model: DecodeModel; settingId: string }[];
 };
 
 export type MatrixCell = {
@@ -41,17 +41,17 @@ export type MatrixRow = {
   cells: MatrixCell[];
 };
 
-function observedHas(observed: Observed, model: GameModel, settingId: string, valueId: string): boolean {
+function observedHas(observed: Observed, model: DecodeModel, settingId: string, valueId: string): boolean {
   return (observed.values[model]?.[settingId]?.[valueId] ?? []).length > 0;
 }
 
 // Số raw khác nhau của một cài đặt đã thấy trong file máy thật (raws chỉ ghi khi không có valueId)
-function observedRawCount(observed: Observed, model: GameModel, settingId: string): number {
+function observedRawCount(observed: Observed, model: DecodeModel, settingId: string): number {
   return Object.keys(observed.raws[model]?.[settingId] ?? {}).length;
 }
 
 // observed null: không dùng quan sát (analyze.ts gọi rowsFor(model, {}, null) để isNew không phụ thuộc file đóng gói)
-export function rowsFor(model: GameModel, local: LocalFindings, observed: Observed | null): MatrixRow[] {
+export function rowsFor(model: DecodeModel, local: LocalFindings, observed: Observed | null): MatrixRow[] {
   const localValues = new Set((local.values ?? []).filter((v) => v.model === model).map((v) => `${v.settingId}|${v.valueId}`));
   const localLocated = new Set((local.located ?? []).filter((l) => l.model === model).map((l) => l.settingId));
   const catalog = new Map(getCatalog()[model].settings.map((s) => [s.id, s] as const));

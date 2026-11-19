@@ -1,11 +1,10 @@
 // Lập lượt giải mã trên server: trình duyệt gửi model, seed, focus và phát hiện trên máy; trả mission và yield.
 // Bảng trạng thái đầy đủ và data/decode-observed.json không ra khỏi server; client chỉ nhận đúng một lượt.
-// Production: /giai-ma trả 404, nơi gọi duy nhất là /admin/decode, nên route này cũng đòi verifyAdmin
-// (ADMIN_EMAILS trống thì 404). Khi npm run dev thì mở, để trang /giai-ma trên máy dùng được.
+// Nơi gọi duy nhất là /admin/decode. Production đòi verifyAdmin (ADMIN_EMAILS trống thì 404); npm run dev thì mở.
 import { NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/adminAuth";
-import { planMission, planYield } from "@/lib/game/plan";
-import { parsePlanRequest } from "@/lib/game/planRequest";
+import { planMission, planYield } from "@/lib/decode/plan";
+import { parsePlanRequest } from "@/lib/decode/planRequest";
 
 const MAX_BODY = 65536;
 const NO_STORE = { "Cache-Control": "no-store" };

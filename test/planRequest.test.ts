@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { cleanLocal, parsePlanRequest } from "../lib/game/planRequest.ts";
+import { cleanLocal, parsePlanRequest } from "../lib/decode/planRequest.ts";
 
 test("cleanLocal bỏ mục sai kiểu, sai máy, chuỗi rỗng hoặc quá 64 ký tự", () => {
   const out = cleanLocal({

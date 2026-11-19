@@ -1,6 +1,6 @@
-import catalogData from "../../data/game-tasks.json" with { type: "json" };
-import type { GameModel, Lang, Catalog, CatalogSetting } from "./types.ts";
-import { adaptersFor } from "../decode/adapters.ts";
+import catalogData from "../../data/decode-catalog.json" with { type: "json" };
+import type { DecodeModel, Lang, Catalog, CatalogSetting } from "./types.ts";
+import { adaptersFor } from "./adapters.ts";
 
 let catalog: Catalog | null = null;
 
@@ -10,7 +10,7 @@ function load(): Catalog {
   if (catalog) return catalog;
   const cat: Catalog = structuredClone(catalogData);
   catalog = cat; // adaptersFor gọi getCatalog() để lấy id và giá trị; gán trước để không đệ quy
-  for (const model of Object.keys(cat) as GameModel[]) {
+  for (const model of Object.keys(cat) as DecodeModel[]) {
     const adapters = new Map(adaptersFor(model).map(a => [a.settingId, a] as const));
     for (const setting of cat[model].settings) {
       const a = adapters.get(setting.id);
@@ -20,7 +20,7 @@ function load(): Catalog {
   return cat;
 }
 
-export function labelOf(model: GameModel, settingId: string, valueId: string, lang: Lang): string | null {
+export function labelOf(model: DecodeModel, settingId: string, valueId: string, lang: Lang): string | null {
   const cat = getCatalog()[model];
   const setting = cat.settings.find(s => s.id === settingId);
   if (!setting) return null;
@@ -28,7 +28,7 @@ export function labelOf(model: GameModel, settingId: string, valueId: string, la
   return value ? value.label[lang] : null;
 }
 
-export function settingOf(model: GameModel, settingId: string): CatalogSetting | null {
+export function settingOf(model: DecodeModel, settingId: string): CatalogSetting | null {
   const cat = getCatalog()[model];
   return cat.settings.find(s => s.id === settingId) ?? null;
 }

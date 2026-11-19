@@ -1,5 +1,5 @@
 /**
- * Bộ chuyển đổi cài đặt: đọc một cài đặt từ file .DAT của từng máy rồi đổi về id trong data/game-tasks.json.
+ * Bộ chuyển đổi cài đặt: đọc một cài đặt từ file .DAT của từng máy rồi đổi về id trong data/decode-catalog.json.
  * adaptersFor(model): một adapter cho mỗi cài đặt của danh mục (theo thứ tự danh mục, located:false nếu chưa đọc được),
  * rồi đến các cài đặt chỉ có trong codec (inCatalog:false; planner không chọn làm mục tiêu).
  * read() không ném lỗi: null nghĩa là file không đọc được với máy này. valueId là giá trị codec đọc được, kể cả khi
@@ -8,8 +8,8 @@
  * raw và codeOf() dùng bản ghi/rule đầu tiên của cài đặt. Vài cài đặt có hai rule trùng mã (AF-S và AF-C cùng 2),
  * nên khi cần định danh giá trị hãy dùng valueId.
  */
-import type { GameModel } from "../game/types.ts";
-import { getCatalog } from "../game/catalog.ts";
+import type { DecodeModel } from "./types.ts";
+import { getCatalog } from "./catalog.ts";
 import { decodeDat, FOCUS_PROFILE, FOCUS_AREA_PROFILE, METERING_PROFILE, FACE_PRIORITY_PROFILE, SOFT_SKIN_PROFILE, AUTO_REVIEW_PROFILE, FLASH_MODE_PROFILE, EXP_COMP_SET_PROFILE, AWB_PRIORITY_PROFILE, PRE_AF_PROFILE, STEADY_SHOT_PROFILE, E_FRONT_CURTAIN_PROFILE, LIVE_VIEW_PROFILE, PROFILE, GAMMAS, COLOR_MODES } from "../zve10/dat.ts";
 import type { DecodedSettings } from "../zve10/dat.ts";
 import { parseA6400, toA6400Offset, decodeA6400, A6400_FIELDS } from "../a6400/dat.ts";
@@ -25,7 +25,7 @@ export type SettingAdapter = {
   where: string | null;
   // Byte (ZV-E10, α6400) hoặc ID bản ghi (A7C II) mà cài đặt chiếm. Cài đặt chưa định vị thì rỗng.
   owns: readonly number[];
-  // false: cài đặt chỉ có trong codec, không có trong data/game-tasks.json
+  // false: cài đặt chỉ có trong codec, không có trong data/decode-catalog.json
   inCatalog: boolean;
   // Giá trị codec biết (đã đổi sang id danh mục khi có); có thể gồm giá trị danh mục chưa có
   codecValues: readonly string[];
@@ -521,7 +521,7 @@ function a7c2Core(): Codec[] {
   ];
 }
 
-function builtFor(model: GameModel): Codec[] {
+function builtFor(model: DecodeModel): Codec[] {
   if (model === "a7c2") return [...a7c2Adapters(), ...a7c2Core()];
   return model === "zve10" ? [...zveAndA6400("zve10"), ...zveCore()] : [...zveAndA6400("a6400"), ...a6400Core()];
 }
@@ -529,7 +529,7 @@ function builtFor(model: GameModel): Codec[] {
 /**
  * Một adapter cho mỗi cài đặt của danh mục (theo thứ tự danh mục), rồi đến các cài đặt chỉ có trong codec (inCatalog:false).
  */
-export function adaptersFor(model: GameModel): SettingAdapter[] {
+export function adaptersFor(model: DecodeModel): SettingAdapter[] {
   const settings = getCatalog()[model].settings;
   const built = new Map<string, Codec>(builtFor(model).map((a) => [a.settingId, a] as const));
   const catalogIds = new Set(settings.map((s) => s.id));

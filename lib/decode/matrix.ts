@@ -7,15 +7,15 @@
  * (confirm: predicted hoặc pending; learn: unknown ở ô 2–4), rồi lặp đến khi mọi giá trị trong danh mục đã confirmed.
  * Không thoát sớm được ROUNDS_CAP: nếu lượt nào không có mục tiêu thì roundsLeft là ROUNDS_CAP.
  */
-import type { GameModel } from "../game/types.ts";
-import { planMission, yieldTargets } from "../game/plan.ts";
+import type { DecodeModel } from "./types.ts";
+import { planMission, yieldTargets } from "./plan.ts";
 import { catalogRows, statusRows } from "./status.ts";
 import type { LocalFindings, MatrixRow, ValueStatus } from "./status.ts";
 import { ROUNDS_CAP } from "./cap.ts";
 
 export type { LocalFindings, MatrixCell, MatrixRow, ValueStatus } from "./status.ts";
 
-export const MODELS: readonly GameModel[] = ["zve10", "a6400", "a7c2"];
+export const MODELS: readonly DecodeModel[] = ["zve10", "a6400", "a7c2"];
 // Số lượt mô phỏng tối đa (định nghĩa ở cap.ts); roundsLeft bằng ROUNDS_CAP nghĩa là chưa hết trong giới hạn hoặc không còn mục tiêu tiến được
 export { ROUNDS_CAP };
 
@@ -30,11 +30,11 @@ export type ModelSummary = {
   roundsLeft: number;
 };
 
-export function decodeMatrix(local?: LocalFindings): Record<GameModel, MatrixRow[]> {
+export function decodeMatrix(local?: LocalFindings): Record<DecodeModel, MatrixRow[]> {
   return { zve10: statusRows("zve10", local), a6400: statusRows("a6400", local), a7c2: statusRows("a7c2", local) };
 }
 
-function roundsLeftOf(model: GameModel, local: LocalFindings): number {
+function roundsLeftOf(model: DecodeModel, local: LocalFindings): number {
   const state = {
     values: [...(local.values ?? [])],
     located: [...(local.located ?? [])],
@@ -54,7 +54,7 @@ function roundsLeftOf(model: GameModel, local: LocalFindings): number {
   return ROUNDS_CAP;
 }
 
-export function modelSummary(model: GameModel, local?: LocalFindings): ModelSummary {
+export function modelSummary(model: DecodeModel, local?: LocalFindings): ModelSummary {
   const rows = catalogRows(model, local);
   // Ô trong danh mục của hàng danh mục, và mọi ô của hàng chỉ có trong codec; hàng numeric không có ô
   const cells = statusRows(model, local ?? {})

@@ -9,13 +9,13 @@ import { NextRound } from "@/app/components/decode/NextRound";
 import { setModel, useModel } from "@/lib/model";
 import type { TableRow } from "@/lib/decode/table";
 import type { ModelSummary } from "@/lib/decode/matrix";
-import type { GameModel } from "@/lib/game/types";
+import type { DecodeModel } from "@/lib/decode/types";
 import { Candidates } from "./Candidates";
 import type { Candidate } from "./Candidates";
 
 export type AdminData = {
   rows: TableRow[];
-  summaries: Record<GameModel, ModelSummary>;
+  summaries: Record<DecodeModel, ModelSummary>;
   candidates: Candidate[];
 };
 

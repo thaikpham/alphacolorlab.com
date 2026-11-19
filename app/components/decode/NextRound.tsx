@@ -1,19 +1,18 @@
 "use client";
 
-// Lượt giải mã tiếp theo và mini game. Dùng ở /giai-ma (công khai) và /admin/decode (chỉ dev, có nút lưu lượt). Không có bảng tham số ở đây.
-// Lượt lập trên server (/giai-ma/plan): trình duyệt chỉ nhận đúng một lượt, không tải bảng trạng thái.
+// Lượt giải mã tiếp theo và nút chạy một lượt (RoundRunner). Chỉ dùng ở /admin/decode, có nút lưu lượt vào dự án khi npm run dev. Không có bảng tham số ở đây.
+// Lượt lập trên server (/admin/decode/plan): trình duyệt chỉ nhận đúng một lượt, không tải bảng trạng thái.
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { alphaConsole, cameraModels, decodeConsole, guide, sonyBodies } from "@/app/content";
-import { GameDialog } from "@/app/components/game/GameDialog";
-import { InfoTip } from "@/app/components/InfoTip";
+import { alphaConsole, cameraModels, decodeConsole, sonyBodies } from "@/app/content";
+import { RoundRunner } from "@/app/components/decode/RoundRunner";
 import { getLocalRaw, parseLocal, subscribeLocal } from "@/app/components/decode/localStore";
 import { fetchPlan } from "@/app/components/decode/planClient";
 import type { PlanResponse } from "@/app/components/decode/planClient";
 import { useModel } from "@/lib/model";
-import { labelOf, settingOf } from "@/lib/game/catalog";
-import type { GameModel, SlotStep } from "@/lib/game/types";
+import { labelOf, settingOf } from "@/lib/decode/catalog";
+import type { DecodeModel, SlotStep } from "@/lib/decode/types";
 
-function StepGroup({ title, steps, model }: { title: string; steps: SlotStep[]; model: GameModel }) {
+function StepGroup({ title, steps, model }: { title: string; steps: SlotStep[]; model: DecodeModel }) {
   if (steps.length === 0) return null;
   return (
     <div className="space-y-1">
@@ -34,7 +33,7 @@ export function NextRound({
   focus,
   showDevSave,
 }: {
-  model?: GameModel; // mặc định: máy đang chọn (useModel)
+  model?: DecodeModel; // mặc định: máy đang chọn (useModel)
   focus?: string[];
   showDevSave?: boolean; // nút lưu lượt vào dự án: chỉ trang admin, và chỉ khi npm run dev
 } = {}) {
@@ -118,15 +117,9 @@ export function NextRound({
         )}
       </section>
 
-      <section aria-labelledby="decode-game" className="rounded-card bg-card p-4 shadow-card sm:p-5">
-        <div className="flex items-center gap-1.5">
-          <h2 id="decode-game" className="text-subhead font-semibold">{alphaConsole.decodePage.game}</h2>
-          <InfoTip entry={{ term: alphaConsole.decodePage.game, lines: [{ t: guide.contribute.lead }] }} />
-        </div>
-        <div className="mt-4">
-          <GameDialog mission={plan?.mission ?? null} onRoundDone={nextSeed} devSave={showDevSave} />
-        </div>
-      </section>
+      <div className="rounded-card bg-card p-4 shadow-card sm:p-5">
+        <RoundRunner key={model} model={model} mission={plan?.mission ?? null} onRoundDone={nextSeed} devSave={showDevSave} />
+      </div>
     </>
   );
 }

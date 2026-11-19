@@ -1,5 +1,5 @@
 /**
- * Phân tích một lượt chơi: so từng file đã lưu với đề bài và trả về danh sách phát hiện (Finding).
+ * Phân tích một lượt giải mã: so từng file đã lưu với đề bài và trả về danh sách phát hiện (Finding).
  * - confirm: cài đặt đã định vị, file có đúng giá trị đề bài (isNew: giá trị này chưa có trong dữ liệu tĩnh).
  * - code: cài đặt đã định vị nhưng chưa có mã; file có một mã (raw) mới cho đúng giá trị đề bài.
  * - mismatch: cài đặt đã định vị, file có giá trị khác đề bài.
@@ -11,11 +11,11 @@
  * localFindings: confirm và code thành values; locate thành located cùng values (valueId và fromValueId nếu có).
  * Không ném lỗi: đầu vào hỏng thì bỏ qua phần đó. Adapter truyền vào để kiểm thử; mặc định là adapter của máy.
  */
-import type { Finding, FindingChange, GameModel, Mission, RoundFile } from "../game/types.ts";
-import { adaptersFor } from "../decode/adapters.ts";
-import type { SettingAdapter } from "../decode/adapters.ts";
-import { rowsFor } from "../decode/statusCore.ts";
-import type { LocalFindings } from "../decode/statusCore.ts";
+import type { Finding, FindingChange, DecodeModel, Mission, RoundFile } from "./types.ts";
+import { adaptersFor } from "./adapters.ts";
+import type { SettingAdapter } from "./adapters.ts";
+import { rowsFor } from "./statusCore.ts";
+import type { LocalFindings } from "./statusCore.ts";
 import { parseA7c2, diffA7c2 } from "../a7c2/dat.ts";
 import type { A7c2Dat } from "../a7c2/dat.ts";
 
@@ -37,7 +37,7 @@ function tryParse(bytes: Uint8Array): A7c2Dat | null {
 }
 
 // Các thay đổi giữa hai ô, bỏ phần đã thuộc cài đặt đã định vị (owned)
-function changesBetween(model: GameModel, prev: Uint8Array, cur: Uint8Array, owned: ReadonlySet<number>): FindingChange[] {
+function changesBetween(model: DecodeModel, prev: Uint8Array, cur: Uint8Array, owned: ReadonlySet<number>): FindingChange[] {
   if (model === "a7c2") {
     const a = tryParse(prev);
     const b = tryParse(cur);
@@ -156,8 +156,8 @@ export function analyzeRound(
 
 // Chuyển phát hiện thành LocalFindings để statusRows (và nhờ đó planner và số liệu) dùng ngay
 export function localFindings(findings: readonly Finding[]): LocalFindings {
-  const values: { model: GameModel; settingId: string; valueId: string }[] = [];
-  const located: { model: GameModel; settingId: string }[] = [];
+  const values: { model: DecodeModel; settingId: string; valueId: string }[] = [];
+  const located: { model: DecodeModel; settingId: string }[] = [];
   for (const f of findings) {
     if (f.kind === "confirm" || f.kind === "code") {
       values.push({ model: f.model, settingId: f.settingId, valueId: f.valueId });
@@ -172,11 +172,11 @@ export function localFindings(findings: readonly Finding[]): LocalFindings {
 
 // Hợp của hai LocalFindings, bỏ trùng (model + settingId + valueId, hoặc model + settingId)
 export function mergeLocal(a: LocalFindings, b: LocalFindings): LocalFindings {
-  const values = new Map<string, { model: GameModel; settingId: string; valueId: string }>();
+  const values = new Map<string, { model: DecodeModel; settingId: string; valueId: string }>();
   for (const v of [...(a.values ?? []), ...(b.values ?? [])]) {
     values.set(`${v.model}|${v.settingId}|${v.valueId}`, { model: v.model, settingId: v.settingId, valueId: v.valueId });
   }
-  const located = new Map<string, { model: GameModel; settingId: string }>();
+  const located = new Map<string, { model: DecodeModel; settingId: string }>();
   for (const l of [...(a.located ?? []), ...(b.located ?? [])]) {
     located.set(`${l.model}|${l.settingId}`, { model: l.model, settingId: l.settingId });
   }

@@ -1,11 +1,11 @@
 /**
  * Quét dự án bằng node:fs (chỉ dùng trong script và kiểm thử, không đưa vào bundle của trang).
- * Đọc file máy thật (test/fixtures/camera-saved.json) và lượt chơi (test/fixtures/rounds/), tính quan sát và số liệu,
+ * Đọc file máy thật (test/fixtures/camera-saved.json) và lượt giải mã (test/fixtures/rounds/), tính quan sát và số liệu,
  * rồi ghi data/decode-observed.json và data/decode-summary.json (ghi file tạm rồi đổi tên).
  */
 import { existsSync, readdirSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import type { GameModel, Mission, RoundFile } from "../game/types.ts";
+import type { DecodeModel, Mission, RoundFile } from "./types.ts";
 import { scanObserved, serializeObserved, stableJson } from "./observed.ts";
 import type { CameraFile, RoundInput } from "./observed.ts";
 import { modelSummary, MODELS } from "./matrix.ts";
@@ -20,7 +20,7 @@ const DAT = /\.dat$/i;
 export function loadCameraFiles(root: string): CameraFile[] {
   const manifest = JSON.parse(readFileSync(join(root, "test/fixtures/camera-saved.json"), "utf8")) as {
     dir: string;
-    model: GameModel;
+    model: DecodeModel;
   }[];
   const out: CameraFile[] = [];
   for (const entry of manifest) {
@@ -44,7 +44,7 @@ export function loadCameraFiles(root: string): CameraFile[] {
           if (!DAT.test(name)) continue;
           out.push({
             file: `test/fixtures/rounds/${model}/${missionId}/${name}`,
-            model: model as GameModel,
+            model: model as DecodeModel,
             bytes: new Uint8Array(readFileSync(join(dir, name))),
           });
         }
@@ -71,10 +71,10 @@ export function loadRounds(root: string): RoundInput[] {
         .sort()
         .map((n) => {
           const m = n.match(/CAMPR0([1-4])[PN]\.DAT$/i);
-          if (!m) throw new Error(`Tên file lượt chơi không đúng: ${dir}/${n}`);
+          if (!m) throw new Error(`Tên file lượt giải mã không đúng: ${dir}/${n}`);
           return { slot: Number(m[1]), bytes: new Uint8Array(readFileSync(join(dir, n))) };
         });
-      out.push({ model: model as GameModel, missionId, mission, files });
+      out.push({ model: model as DecodeModel, missionId, mission, files });
     }
   }
   return out;
@@ -85,7 +85,7 @@ export function scanProject(root: string): { observed: string; summary: string }
   const observed = scanObserved(loadCameraFiles(root), loadRounds(root));
   setObserved(observed);
   try {
-    const models = Object.fromEntries(MODELS.map((m) => [m, modelSummary(m)])) as Record<GameModel, ModelSummary>;
+    const models = Object.fromEntries(MODELS.map((m) => [m, modelSummary(m)])) as Record<DecodeModel, ModelSummary>;
     return { observed: serializeObserved(observed), summary: stableJson({ version: 1, models }) + "\n" };
   } finally {
     setObserved(null);

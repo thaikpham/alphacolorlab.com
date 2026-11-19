@@ -1,15 +1,15 @@
 import { test } from "node:test";
 import assert from "node:assert";
-import catalogJson from "../data/game-tasks.json" with { type: "json" };
-import { getCatalog } from "../lib/game/catalog.ts";
+import catalogJson from "../data/decode-catalog.json" with { type: "json" };
+import { getCatalog } from "../lib/decode/catalog.ts";
 import { adaptersFor } from "../lib/decode/adapters.ts";
-import type { GameModel } from "../lib/game/types.ts";
+import type { DecodeModel } from "../lib/decode/types.ts";
 
-const MODELS: GameModel[] = ["zve10", "a6400", "a7c2"];
+const MODELS: DecodeModel[] = ["zve10", "a6400", "a7c2"];
 
-test("data/game-tasks.json: cờ decoded khớp giá trị suy ra từ adapter lúc nạp", () => {
+test("data/decode-catalog.json: cờ decoded khớp giá trị suy ra từ adapter lúc nạp", () => {
   const cat = getCatalog();
-  const json = catalogJson as unknown as Record<GameModel, { settings: { id: string; decoded: boolean }[] }>;
+  const json = catalogJson as unknown as Record<DecodeModel, { settings: { id: string; decoded: boolean }[] }>;
   for (const m of MODELS) {
     assert.deepStrictEqual(
       json[m].settings.map((s) => [s.id, s.decoded]),

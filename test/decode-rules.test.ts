@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert";
-import { allowsControl, baselineSkips, baselineValues, BASELINE_ORDER, needsAfC } from "../lib/game/rules.ts";
-import type { CatalogValue } from "../lib/game/types.ts";
+import { allowsControl, baselineSkips, baselineValues, BASELINE_ORDER, needsAfC } from "../lib/decode/rules.ts";
+import type { CatalogValue } from "../lib/decode/types.ts";
 
 const pend = (...pairs: [string, string][]) => new Map(pairs);
 const vals = (...ids: string[]): CatalogValue[] => ids.map((id) => ({ id, label: id }) as unknown as CatalogValue);

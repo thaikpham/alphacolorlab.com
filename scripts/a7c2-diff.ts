@@ -1,4 +1,4 @@
-// So file Memory Recall A7C II theo thứ tự (ví dụ M1→M2→M3→M4 của một nhiệm vụ game) để giải mã:
+// So file Memory Recall A7C II theo thứ tự (ví dụ M1→M2→M3→M4 của một lượt giải mã) để giải mã:
 // node --experimental-strip-types scripts/a7c2-diff.ts CAMPR01P.DAT CAMPR02P.DAT …
 import { readFileSync } from "node:fs";
 import { parseA7c2, diffA7c2 } from "../lib/a7c2/dat.ts";

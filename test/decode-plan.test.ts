@@ -1,13 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert";
-import { planMission, planYield, yieldTargets } from "../lib/game/plan.ts";
-import { allowsControl, prerequisitesMet } from "../lib/game/rules.ts";
+import { planMission, planYield, yieldTargets } from "../lib/decode/plan.ts";
+import { allowsControl, prerequisitesMet } from "../lib/decode/rules.ts";
 import { catalogRows, statusRows } from "../lib/decode/status.ts";
 import { modelSummary } from "../lib/decode/matrix.ts";
-import { getCatalog } from "../lib/game/catalog.ts";
-import type { GameModel, SlotStep } from "../lib/game/types.ts";
+import { getCatalog } from "../lib/decode/catalog.ts";
+import type { DecodeModel, SlotStep } from "../lib/decode/types.ts";
 
-const MODELS: GameModel[] = ["zve10", "a6400", "a7c2"];
+const MODELS: DecodeModel[] = ["zve10", "a6400", "a7c2"];
 const SEEDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const MANY = Array.from({ length: 200 }, (_, i) => i + 1);
 
@@ -18,8 +18,8 @@ function stepValid(step: SlotStep, steps: SlotStep[]): boolean {
 }
 
 // Số lượt để mọi giá trị đã xác nhận, giả định mọi mục tiêu thành công (cùng quy tắc với matrix.ts)
-function exhaustionRound(m: GameModel): number {
-  const state = { values: [] as { model: GameModel; settingId: string; valueId: string }[], located: [] as { model: GameModel; settingId: string }[] };
+function exhaustionRound(m: DecodeModel): number {
+  const state = { values: [] as { model: DecodeModel; settingId: string; valueId: string }[], located: [] as { model: DecodeModel; settingId: string }[] };
   for (let round = 1; round <= 12; round++) {
     const remaining = catalogRows(m, state).flatMap((r) => r.cells).filter((c) => c.status !== "confirmed").length;
     if (remaining === 0) return round - 1;

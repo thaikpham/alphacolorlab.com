@@ -1,6 +1,6 @@
 "use client";
 
-// Bảng tham số giải mã. Chỉ dùng trong AdminDecode (sau cổng /admin/decode); không import từ /giai-ma.
+// Bảng tham số giải mã. Chỉ dùng trong AdminDecode (sau cổng /admin/decode).
 // Nhận rows và summaries qua props (dữ liệu từ /admin/decode/data), không đọc lib/decode lúc chạy.
 import { Fragment, useState } from "react";
 import { cameraModels, codecSettingLabels, decodeConsole } from "@/app/content";
@@ -8,7 +8,7 @@ import type { TableCell, TableRow } from "@/lib/decode/table";
 import { ROUNDS_CAP } from "@/lib/decode/cap";
 import type { ModelSummary } from "@/lib/decode/matrix";
 import type { ValueStatus } from "@/lib/decode/status";
-import type { GameModel } from "@/lib/game/types";
+import type { DecodeModel } from "@/lib/decode/types";
 
 const VALUE_TONE: Record<ValueStatus, string> = {
   confirmed: "bg-success-fill text-success",
@@ -144,10 +144,10 @@ export function DecodeTable({
   current,
 }: {
   rows: TableRow[];
-  summaries: Record<GameModel, ModelSummary>;
+  summaries: Record<DecodeModel, ModelSummary>;
   focus: string[];
   onToggleFocus: (settingId: string) => void;
-  current: GameModel;
+  current: DecodeModel;
 }) {
   const t = decodeConsole.table;
   const [filter, setFilter] = useState<"all" | "missing">("all");

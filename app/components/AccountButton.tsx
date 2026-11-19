@@ -12,7 +12,7 @@ import { GoogleG } from "./GoogleG";
 import { IndexViewSwitch } from "./IndexViewSwitch";
 import { PersonalMenuRow } from "./PersonalToggle";
 
-const APP_OF: [string, AppId][] = [["/colors", "colors"], ["/wiki", "wiki"], ["/blog", "blog"], ["/console", "console"], ["/cai-tay", "console"], ["/tao-m1-m4", "console"], ["/bo-m1-m4", "console"], ["/giai-ma", "console"], ["/kol", "console"]];
+const APP_OF: [string, AppId][] = [["/colors", "colors"], ["/wiki", "wiki"], ["/blog", "blog"], ["/console", "console"], ["/cai-tay", "console"], ["/tao-m1-m4", "console"], ["/bo-m1-m4", "console"], ["/kol", "console"]];
 const HOME: Record<AppId, string> = { console: "/console", colors: "/colors", wiki: "/wiki", blog: "/blog" };
 const appName = (href: string) => nav.apps.find((a) => a.href === href)!.label;
 

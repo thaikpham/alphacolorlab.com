@@ -1,4 +1,4 @@
-import type { GameModel, Mission, SlotTask, SlotStep } from "./types.ts";
+import type { DecodeModel, Mission, SlotTask, SlotStep } from "./types.ts";
 import { getCatalog } from "./catalog.ts";
 import { allowsControl, baselineSkips, baselineValues, BASELINE_ORDER } from "./rules.ts";
 import type { BaselineContext } from "./rules.ts";
@@ -14,7 +14,7 @@ export function mulberry32(seed: number) {
 }
 
 export function generateMission(
-  model: GameModel,
+  model: DecodeModel,
   seed: number = Date.now(),
   counts?: Record<string, number>,
   createdAt: number = Date.now()

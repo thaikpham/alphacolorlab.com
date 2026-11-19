@@ -4,13 +4,13 @@ import path from "path";
 import { importDat } from "@/lib/datImport";
 import { verifyAdmin } from "@/lib/adminAuth";
 import { writeScan } from "@/lib/decode/scanFs";
-import type { GameModel, Mission, SlotTask } from "@/lib/game/types";
+import type { DecodeModel, Mission, SlotTask } from "@/lib/decode/types";
 
-// Lưu một lượt mini game (mission + 4 file máy đã lưu) vào test/fixtures/rounds/<model>/<id>/ rồi quét lại dự án. Chỉ chạy khi npm run dev
+// Lưu một lượt giải mã (mission + 4 file máy đã lưu) vào test/fixtures/rounds/<model>/<id>/ rồi quét lại dự án. Chỉ chạy khi npm run dev
 // và khi verifyAdmin xác nhận tài khoản quản trị (Bearer là phiên Google).
 // Mọi đầu vào được kiểm tra trước khi ghi đĩa. Lượt đã có thư mục thì trả 409, không ghi đè.
 
-const MODEL_IDS: readonly GameModel[] = ["zve10", "a6400", "a7c2"];
+const MODEL_IDS: readonly DecodeModel[] = ["zve10", "a6400", "a7c2"];
 const MISSION_ID = /^[A-Za-z0-9_-]{1,64}$/;
 const SETTING_ID = /^[A-Za-z0-9._-]{1,64}$/;
 const FILE_NAME = /^CAMPR0[1-4][NP]\.DAT$/;
@@ -58,8 +58,8 @@ function parseSlots(v: unknown): SlotTask[] | null {
 function check(body: unknown): Checked | { error: string } {
   if (!isObj(body) || !isObj(body.mission) || !Array.isArray(body.files)) return { error: "Thiếu mission hoặc files." };
   const m = body.mission;
-  if (!MODEL_IDS.includes(m.model as GameModel)) return { error: "Máy của lượt không hợp lệ." };
-  const model = m.model as GameModel;
+  if (!MODEL_IDS.includes(m.model as DecodeModel)) return { error: "Máy của lượt không hợp lệ." };
+  const model = m.model as DecodeModel;
   if (typeof m.id !== "string" || !MISSION_ID.test(m.id)) return { error: "Mã lượt không hợp lệ." };
   if (typeof m.seed !== "number" || typeof m.createdAt !== "number") return { error: "Thiếu seed hoặc createdAt." };
   const slots = parseSlots(m.slots);

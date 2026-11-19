@@ -4,8 +4,8 @@
  * Số đếm trong ô khớp modelSummary: giá trị trong danh mục, và mọi giá trị của cài đặt chỉ có trong codec (inCatalog:false).
  * Hàng numeric không đếm (ô không có giá trị liệt kê; hiển thị observedCount). Giá trị chỉ có trong codec vẫn nằm trong values với inCatalog:false.
  */
-import type { GameModel, Localized } from "../game/types.ts";
-import { getCatalog } from "../game/catalog.ts";
+import type { DecodeModel, Localized } from "./types.ts";
+import { getCatalog } from "./catalog.ts";
 import { observedFiles, statusRows } from "./status.ts";
 import type { LocalFindings, MatrixRow, ValueStatus } from "./status.ts";
 
@@ -33,10 +33,10 @@ export type TableRow = {
   settingId: string;
   label: Localized;
   inCatalog: boolean;
-  cells: Record<GameModel, TableCell | null>; // null: máy đó không có cài đặt này
+  cells: Record<DecodeModel, TableCell | null>; // null: máy đó không có cài đặt này
 };
 
-const MODELS: readonly GameModel[] = ["zve10", "a6400", "a7c2"];
+const MODELS: readonly DecodeModel[] = ["zve10", "a6400", "a7c2"];
 
 // Nhãn cài đặt: từ danh mục của máy nào có; không có thì dùng id (cài đặt chỉ có trong codec)
 function settingLabel(settingId: string): Localized {
@@ -48,7 +48,7 @@ function settingLabel(settingId: string): Localized {
 }
 
 // Nhãn giá trị: ưu tiên danh mục của chính máy, rồi máy khác; không có thì dùng id (giá trị chỉ có trong codec)
-function valueLabel(model: GameModel, settingId: string, valueId: string): Localized {
+function valueLabel(model: DecodeModel, settingId: string, valueId: string): Localized {
   const order = [model, ...MODELS.filter((m) => m !== model)];
   for (const m of order) {
     const v = getCatalog()[m].settings.find((s) => s.id === settingId)?.values.find((x) => x.id === valueId);
@@ -57,7 +57,7 @@ function valueLabel(model: GameModel, settingId: string, valueId: string): Local
   return { vi: valueId, en: valueId };
 }
 
-function toCell(model: GameModel, row: MatrixRow): TableCell {
+function toCell(model: DecodeModel, row: MatrixRow): TableCell {
   const values: TableValue[] = row.cells.map((c) => ({
     valueId: c.valueId,
     label: valueLabel(model, row.settingId, c.valueId),
@@ -98,7 +98,7 @@ export const CODEC_SETTING_IDS: readonly string[] = [
 
 // Thứ tự hàng: lõi file M1–M4, rồi danh mục zve10, cài đặt chỉ có ở máy khác (theo danh mục), cuối cùng là cài đặt chỉ có trong codec
 export function decodeTable(local: LocalFindings = {}): TableRow[] {
-  const rows = Object.fromEntries(MODELS.map((m) => [m, statusRows(m, local)])) as Record<GameModel, MatrixRow[]>;
+  const rows = Object.fromEntries(MODELS.map((m) => [m, statusRows(m, local)])) as Record<DecodeModel, MatrixRow[]>;
   const ids: string[] = [];
   const add = (id: string) => {
     if (!ids.includes(id)) ids.push(id);
@@ -108,7 +108,7 @@ export function decodeTable(local: LocalFindings = {}): TableRow[] {
   for (const m of MODELS) for (const r of rows[m]) add(r.settingId);
 
   return ids.map((settingId): TableRow => {
-    const cells = {} as Record<GameModel, TableCell | null>;
+    const cells = {} as Record<DecodeModel, TableCell | null>;
     let inCatalog = false;
     for (const m of MODELS) {
       const row = rows[m].find((r) => r.settingId === settingId);

@@ -2,12 +2,12 @@ import { test } from "node:test";
 import assert from "node:assert";
 import { readFileSync } from "node:fs";
 import { adaptersFor } from "../lib/decode/adapters.ts";
-import { getCatalog } from "../lib/game/catalog.ts";
+import { getCatalog } from "../lib/decode/catalog.ts";
 import { buildSet, decodeDat } from "../lib/zve10/dat.ts";
-import type { GameModel } from "../lib/game/types.ts";
+import type { DecodeModel } from "../lib/decode/types.ts";
 
 const load = (path: string) => new Uint8Array(readFileSync(path));
-const MODELS: GameModel[] = ["zve10", "a6400", "a7c2"];
+const MODELS: DecodeModel[] = ["zve10", "a6400", "a7c2"];
 
 // Cài đặt trong danh mục ZV-E10 → trường tương ứng của decodeDat
 const ZVE_FIELD: Record<string, string> = {

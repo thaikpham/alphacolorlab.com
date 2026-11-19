@@ -12,7 +12,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const FORBIDDEN = [
   "data/decode-observed.json",
   "lib/decode/status.ts",
-  "lib/game/plan.ts",
+  "lib/decode/plan.ts",
   "lib/decode/matrix.ts",
   "lib/decode/table.ts",
   "lib/decode/scanFs.ts",
@@ -109,9 +109,9 @@ test("bundle client không kéo tới data/decode-observed.json hay bộ lập l
   }
 });
 
-test("lib/game/analyze.ts (client-safe) vẫn đi tới được từ file client", () => {
+test("lib/decode/analyze.ts (client-safe) vẫn đi tới được từ file client", () => {
   const parent = reachable(clientRoots());
-  assert.ok(parent.has(join(ROOT, "lib/game/analyze.ts")), "lib/game/analyze.ts không đi tới được: kiểm tra lại đồ thị");
+  assert.ok(parent.has(join(ROOT, "lib/decode/analyze.ts")), "lib/decode/analyze.ts không đi tới được: kiểm tra lại đồ thị");
 });
 
 // Thanh điều hướng có ở mọi trang (AppNav, SiteHeader, nút avatar bên trong): JS tải ngay khi mở trang không được kéo theo

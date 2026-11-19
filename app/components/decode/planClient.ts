@@ -1,9 +1,9 @@
-// Gọi /giai-ma/plan để lấy đúng một lượt. Ném lỗi khi mạng hỏng hoặc server trả lỗi; signal để hủy khi lượt đã cũ.
+// Gọi /admin/decode/plan để lấy đúng một lượt. Ném lỗi khi mạng hỏng hoặc server trả lỗi; signal để hủy khi lượt đã cũ.
 // Có phiên đăng nhập thì gửi kèm token: bản production chỉ lập lượt cho tài khoản quản trị (verifyAdmin trên server).
 import { authReady, getSession } from "@/lib/auth";
-import type { Mission } from "@/lib/game/types";
-import type { PlanYield } from "@/lib/game/plan";
-import type { PlanRequest } from "@/lib/game/planRequest";
+import type { Mission } from "@/lib/decode/types";
+import type { PlanYield } from "@/lib/decode/plan";
+import type { PlanRequest } from "@/lib/decode/planRequest";
 
 export type PlanResponse = { mission: Mission; yield: PlanYield };
 
@@ -19,7 +19,7 @@ async function authHeader(): Promise<Record<string, string>> {
 
 export async function fetchPlan(req: PlanRequest, signal?: AbortSignal): Promise<PlanResponse> {
   const auth = await authHeader();
-  const res = await fetch("/giai-ma/plan", {
+  const res = await fetch("/admin/decode/plan", {
     method: "POST",
     headers: { "Content-Type": "application/json", ...auth },
     body: JSON.stringify(req),

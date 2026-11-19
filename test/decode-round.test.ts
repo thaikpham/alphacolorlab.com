@@ -1,10 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { generateMission } from "../lib/game/mission.ts";
-import { verify, scoreOf } from "../lib/game/verify.ts";
-import { getCatalog, labelOf, settingOf } from "../lib/game/catalog.ts";
-import { settingDir, readSettingFiles } from "../lib/game/card.ts";
-import type { CardFile, Verification } from "../lib/game/types.ts";
+import { generateMission } from "../lib/decode/mission.ts";
+import { verify } from "../lib/decode/verify.ts";
+import { getCatalog, labelOf, settingOf } from "../lib/decode/catalog.ts";
+import { settingDir, readSettingFiles } from "../lib/decode/card.ts";
+import type { CardFile, Verification } from "../lib/decode/types.ts";
 import type { FileSystemDirectoryHandle, FileSystemFileHandle, File } from "../lib/cardWriter.ts";
 
 /**
@@ -197,72 +197,6 @@ test("verify: checks file sizes", () => {
   assert.ok(v.structural.some(s => s.id.includes("size")));
 });
 
-test("score: perfect accuracy and fast speed", () => {
-  const v: Verification = {
-    ok: true,
-    checks: [
-      { slot: 1, settingId: "focusMode", expected: "AF-C", actual: "AF-C", ok: true },
-      { slot: 1, settingId: "metering", expected: "multi", actual: "multi", ok: true }
-    ],
-    structural: [],
-    retrySlots: []
-  };
-
-  const score = scoreOf(v, 2 * 60 * 1000, 0);
-  assert.equal(score.total, 1000);
-  assert.equal(score.accuracy, 700);
-  assert.equal(score.speed, 300);
-});
-
-test("score: penalizes retries", () => {
-  const v: Verification = {
-    ok: true,
-    checks: [
-      { slot: 1, settingId: "focusMode", expected: "AF-C", actual: "AF-C", ok: true },
-      { slot: 1, settingId: "metering", expected: "multi", actual: "multi", ok: true }
-    ],
-    structural: [],
-    retrySlots: []
-  };
-
-  const score1 = scoreOf(v, 2 * 60 * 1000, 0);
-  const score2 = scoreOf(v, 2 * 60 * 1000, 1);
-
-  assert.ok(score2.total < score1.total);
-  assert.ok(score2.accuracy < score1.accuracy);
-});
-
-test("score: with slow speed", () => {
-  const v: Verification = {
-    ok: true,
-    checks: [
-      { slot: 1, settingId: "focusMode", expected: "AF-C", actual: "AF-C", ok: true }
-    ],
-    structural: [],
-    retrySlots: []
-  };
-
-  const score = scoreOf(v, 19 * 60 * 1000, 0);
-  assert.ok(score.speed < 100);
-  assert.ok(score.total < 750);
-});
-
-test("score: with incorrect controls", () => {
-  const v: Verification = {
-    ok: true,
-    checks: [
-      { slot: 1, settingId: "focusMode", expected: "AF-C", actual: "AF-S", ok: false },
-      { slot: 1, settingId: "metering", expected: "multi", actual: "multi", ok: true }
-    ],
-    structural: [],
-    retrySlots: []
-  };
-
-  const score = scoreOf(v, 2 * 60 * 1000, 0);
-  assert.ok(score.accuracy < 700);
-  assert.ok(score.accuracy > 0);
-});
-
 test("mission: ZV-E10 targets are never decoded settings", () => {
   const cat = getCatalog();
   const decodedIds = new Set(cat.zve10.settings.filter(s => s.decoded).map(s => s.id));
@@ -441,103 +375,4 @@ test("card: readSettingFiles returns same results from card root and SETTING dir
   assert.equal(filesFromSetting.length, filesFromRoot.length);
   assert.equal(filesFromSetting[0].name, filesFromRoot[0].name);
   assert.equal(filesFromSetting[0].folder, filesFromRoot[0].folder);
-});
-
-test("firmware: reads ZV-E10 from photo EXIF", async () => {
-  const { readFirmware } = await import("../lib/game/firmware.ts");
-  const root = new FakeDirectory("root");
-  const dcim = new FakeDirectory("DCIM");
-  const folder100 = new FakeDirectory("100MSDCF");
-  
-  // Create a synthetic photo with ZV-E10 v2.01 in the bytes
-  const photoBytes = new Uint8Array(65536);
-  const softwareName = "ZV-E10 v2.01";
-  const encoder = new TextEncoder();
-  const encoded = encoder.encode(softwareName);
-  photoBytes.set(encoded, 1000); // Place at offset 1000
-  
-  folder100.setFileData("DSC00001.JPG", photoBytes);
-  (dcim as any).subdirs.set("100MSDCF", folder100);
-  (root as any).subdirs.set("DCIM", dcim);
-
-  const result = await readFirmware(root as any);
-  assert.ok(result);
-  assert.equal(result.model, "ZV-E10");
-  assert.equal(result.version, "2.01");
-});
-
-test("firmware: reads A6400 from photo EXIF", async () => {
-  const { readFirmware } = await import("../lib/game/firmware.ts");
-  const root = new FakeDirectory("root");
-  const dcim = new FakeDirectory("DCIM");
-  const folder100 = new FakeDirectory("100MSDCF");
-  
-  const photoBytes = new Uint8Array(65536);
-  const softwareName = "ILCE-6400 v2.00";
-  const encoder = new TextEncoder();
-  const encoded = encoder.encode(softwareName);
-  photoBytes.set(encoded, 2000);
-  
-  folder100.setFileData("DSC00001.ARW", photoBytes);
-  (dcim as any).subdirs.set("100MSDCF", folder100);
-  (root as any).subdirs.set("DCIM", dcim);
-
-  const result = await readFirmware(root as any);
-  assert.ok(result);
-  assert.equal(result.model, "ILCE-6400");
-  assert.equal(result.version, "2.00");
-});
-
-test("firmware: picks newest file by name", async () => {
-  const { readFirmware } = await import("../lib/game/firmware.ts");
-  const root = new FakeDirectory("root");
-  const dcim = new FakeDirectory("DCIM");
-  const folder100 = new FakeDirectory("100MSDCF");
-  
-  // Create two photos, newest one has v2.01
-  const oldPhotoBytes = new Uint8Array(65536);
-  const newPhotoBytes = new Uint8Array(65536);
-  
-  const encoder = new TextEncoder();
-  oldPhotoBytes.set(encoder.encode("ZV-E10 v1.00"), 1000);
-  newPhotoBytes.set(encoder.encode("ZV-E10 v2.01"), 1000);
-  
-  folder100.setFileData("DSC00001.JPG", oldPhotoBytes);
-  folder100.setFileData("DSC00002.JPG", newPhotoBytes);
-  (dcim as any).subdirs.set("100MSDCF", folder100);
-  (root as any).subdirs.set("DCIM", dcim);
-
-  const result = await readFirmware(root as any);
-  assert.equal(result?.version, "2.01");
-});
-
-test("firmware: returns null when no DCIM", async () => {
-  const { readFirmware } = await import("../lib/game/firmware.ts");
-  const root = new FakeDirectory("root");
-
-  const result = await readFirmware(root as any);
-  assert.equal(result, null);
-});
-
-test("firmware: returns null for non-matching photo", async () => {
-  const { readFirmware } = await import("../lib/game/firmware.ts");
-  const root = new FakeDirectory("root");
-  const dcim = new FakeDirectory("DCIM");
-  const folder100 = new FakeDirectory("100MSDCF");
-  
-  const photoBytes = new Uint8Array(65536);
-  folder100.setFileData("DSC00001.JPG", photoBytes); // No firmware string
-  (dcim as any).subdirs.set("100MSDCF", folder100);
-  (root as any).subdirs.set("DCIM", dcim);
-
-  const result = await readFirmware(root as any);
-  assert.equal(result, null);
-});
-
-test("firmware: returns null for PRIVATE folder (no parent access)", async () => {
-  const { readFirmware } = await import("../lib/game/firmware.ts");
-  const privateFolder = new FakeDirectory("PRIVATE");
-
-  const result = await readFirmware(privateFolder as any);
-  assert.equal(result, null);
 });

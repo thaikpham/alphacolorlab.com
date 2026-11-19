@@ -1,8 +1,8 @@
-import type { Mission, CardFile, Verification, Score, CheckResult, StructuralCheck, Lang } from "./types.ts";
+import type { Mission, CardFile, Verification, CheckResult, StructuralCheck, Lang } from "./types.ts";
 import { labelOf, getCatalog } from "./catalog.ts";
 import { parseDat } from "../zve10/dat.ts";
 import { parseA7c2 } from "../a7c2/dat.ts";
-import { adaptersFor } from "../decode/adapters.ts";
+import { adaptersFor } from "./adapters.ts";
 
 function extractDate(bytes: Uint8Array): string | null {
   // Try ASCII "YYYYMMDD_HHMMSS" near 0x18, within first 0x40 bytes
@@ -282,7 +282,7 @@ export function verify(
 
       const adapter = adapters.get(step.settingId);
       if (!adapter) continue;
-      // Máy khác ZV-E10 chỉ kiểm ô đã hiệu chỉnh hoặc giá trị đã xác nhận tĩnh; giá trị còn lại là dự đoán (GameDialog dùng generateMission cho mọi máy)
+      // Máy khác ZV-E10 chỉ kiểm ô đã hiệu chỉnh hoặc giá trị đã xác nhận tĩnh; giá trị còn lại là dự đoán (RoundRunner dùng generateMission cho mọi máy)
       if (mission.model !== "zve10" && adapter.calibrated !== true && !adapter.staticConfirmed.includes(step.valueId)) continue;
 
       // Ô không đọc được (file lỗi) thì bỏ qua, không tính vào tổng
@@ -348,31 +348,5 @@ export function verify(
     checks,
     structural,
     retrySlots: [...new Set(retrySlots)].sort()
-  };
-}
-
-export function scoreOf(v: Verification, durationMs: number, retries: number): Score {
-  const totalControls = v.checks.length;
-  const correctControls = v.checks.filter(c => c.ok).length;
-
-  // Accuracy: 700 points max
-  const accuracy = Math.round(700 * (totalControls > 0 ? correctControls / totalControls : 1));
-
-  // Speed: 300 points for ≤3 min, linear to 0 at 20 min
-  const speedMs = Math.min(durationMs, 20 * 60 * 1000);
-  const thresholdMs = 3 * 60 * 1000;
-  const speed = speedMs <= thresholdMs
-    ? 300
-    : Math.max(0, 300 - ((speedMs - thresholdMs) / (20 * 60 * 1000 - thresholdMs)) * 300);
-
-  // Retries penalty: × max(0, 1 − 0.15 × retries)
-  const penalty = Math.max(0, 1 - 0.15 * retries);
-
-  const total = Math.round((accuracy + speed) * penalty);
-
-  return {
-    accuracy: Math.round(accuracy * penalty),
-    speed: Math.round(speed * penalty),
-    total
   };
 }

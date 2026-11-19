@@ -6,8 +6,8 @@ import { scanObserved, serializeObserved } from "../lib/decode/observed.ts";
 import type { RoundInput } from "../lib/decode/observed.ts";
 import { loadCameraFiles, loadRounds, ROOT } from "../lib/decode/scanFs.ts";
 import { buildSet } from "../lib/zve10/dat.ts";
-import { getCatalog } from "../lib/game/catalog.ts";
-import type { Mission } from "../lib/game/types.ts";
+import { getCatalog } from "../lib/decode/catalog.ts";
+import type { Mission } from "../lib/decode/types.ts";
 
 const load = (path: string) => new Uint8Array(readFileSync(join(ROOT, path)));
 
@@ -34,8 +34,8 @@ test("scanObserved là hàm thuần: cùng đầu vào cho cùng kết quả và
   files.forEach((f, i) => assert.deepStrictEqual(f.bytes, before[i], f.file));
 });
 
-// Lượt chơi tổng hợp: ô 2 đổi một cài đặt chưa định vị (isoMin) bằng đúng một byte
-test("vòng chơi: cài đặt chưa định vị đổi đúng một byte cho ứng viên locate với candidates là byte đó", () => {
+// Lượt giải mã tổng hợp: ô 2 đổi một cài đặt chưa định vị (isoMin) bằng đúng một byte
+test("lượt giải mã: cài đặt chưa định vị đổi đúng một byte cho ứng viên locate với candidates là byte đó", () => {
   const a = load("public/dat/zve10-base-pal.dat");
   const b = Uint8Array.from(a);
   b[0x100] = a[0x100] ^ 1;
@@ -68,8 +68,8 @@ test("vòng chơi: cài đặt chưa định vị đổi đúng một byte cho �
   assert.strictEqual(first.missionId, "learn-1");
 });
 
-// Lượt chơi tổng hợp: ô 2 ghi đo sáng Điểm giữa (center), cài đặt đã định vị cho ứng viên confirm (isNew là boolean)
-test("vòng chơi: cài đặt đã định vị đọc đúng giá trị đề bài cho ứng viên confirm", () => {
+// Lượt giải mã tổng hợp: ô 2 ghi đo sáng Điểm giữa (center), cài đặt đã định vị cho ứng viên confirm (isNew là boolean)
+test("lượt giải mã: cài đặt đã định vị đọc đúng giá trị đề bài cho ứng viên confirm", () => {
   const headers = [1, 2, 3, 4].map((i) => load(`public/dat/zve10-pal-m${i}.dat`));
   const base = load("public/dat/zve10-base-pal.dat");
   const built = buildSet(base, [{ metering: "multi" }, { metering: "center" }, { metering: "center" }, { metering: "center" }] as any, undefined, undefined, headers);

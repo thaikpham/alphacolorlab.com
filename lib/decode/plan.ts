@@ -1,5 +1,5 @@
 /**
- * Lập lượt chơi (4 ô) từ trạng thái giá trị (status.ts). Chỉ dùng hàng và ô trong danh mục (inCatalog).
+ * Lập lượt giải mã (4 ô) từ trạng thái giá trị (status.ts). Chỉ dùng hàng và ô trong danh mục (inCatalog).
  * Mục tiêu là mọi giá trị chưa xác nhận: pending (đã định vị, chưa có mã), predicted (đã có mã, chưa thấy), unknown (chưa định vị).
  * Thứ tự ưu tiên: mục focus trước; đã định vị thì cài đặt còn cần nhiều lần đặt nhất (để đủ min(4, số chưa xác nhận) giá trị
  * khác nhau trong 4 ô), rồi nhiều giá trị còn lại, rồi pending trước predicted; chưa định vị thì cài đặt ít giá trị còn lại trước;
@@ -12,13 +12,13 @@
  * Khi ô không lập được mục tiêu nào: lấy ô tương ứng của generateMission (ô dự phòng).
  * Cùng seed và cùng trạng thái thì cùng kết quả.
  */
-import type { GameModel, Mission, SlotStep, SlotTask } from "./types.ts";
+import type { DecodeModel, Mission, SlotStep, SlotTask } from "./types.ts";
 import { getCatalog } from "./catalog.ts";
 import { generateMission, mulberry32 } from "./mission.ts";
 import { allowsControl, prerequisitesMet } from "./rules.ts";
 import type { Target } from "./rules.ts";
-import { catalogRows } from "../decode/status.ts";
-import type { LocalFindings, ValueStatus } from "../decode/status.ts";
+import { catalogRows } from "./status.ts";
+import type { LocalFindings, ValueStatus } from "./status.ts";
 
 export type PlanOptions = {
   seed?: number; // mặc định 1
@@ -62,7 +62,7 @@ function better(a: Candidate, b: Candidate): number {
   return a.tie - b.tie;
 }
 
-export function planMission(model: GameModel, opts: PlanOptions = {}): Mission {
+export function planMission(model: DecodeModel, opts: PlanOptions = {}): Mission {
   const seed = opts.seed ?? 1;
   const rng = mulberry32(seed);
   const maxTargets = opts.maxTargetsPerSlot ?? 3;

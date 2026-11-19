@@ -3,13 +3,13 @@
 // Mã và vị trí ứng viên mà bộ phân tích rút ra từ các lượt đã lưu (qua /admin/decode/data). Chỉ dùng ở /admin/decode.
 // Ứng viên chưa phải kết luận: đưa vào codec (lib/zve10, lib/a6400, lib/a7c2) rồi mới tính là đã giải mã.
 import { cameraModels, codecSettingLabels, decodeConsole } from "@/app/content";
-import { labelOf, settingOf } from "@/lib/game/catalog";
-import type { Finding, GameModel } from "@/lib/game/types";
+import { labelOf, settingOf } from "@/lib/decode/catalog";
+import type { Finding, DecodeModel } from "@/lib/decode/types";
 
 export type Candidate = Finding & { missionId: string };
 
-const settingName = (model: GameModel, id: string) => settingOf(model, id)?.label.vi ?? codecSettingLabels[id] ?? id;
-const valueName = (model: GameModel, id: string, value: string) => labelOf(model, id, value, "vi") ?? value;
+const settingName = (model: DecodeModel, id: string) => settingOf(model, id)?.label.vi ?? codecSettingLabels[id] ?? id;
+const valueName = (model: DecodeModel, id: string, value: string) => labelOf(model, id, value, "vi") ?? value;
 const changes = (c: { where: string; from: number | string | null; to: number | string }[]) =>
   c.map((x) => `${x.where} (${x.from ?? "?"} thành ${x.to})`).join(", ");
 

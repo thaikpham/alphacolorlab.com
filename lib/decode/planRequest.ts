@@ -1,17 +1,17 @@
 /**
- * Yêu cầu lập lượt gửi lên /giai-ma/plan, và làm sạch phát hiện trên máy (LocalFindings).
+ * Yêu cầu lập lượt gửi lên /admin/decode/plan, và làm sạch phát hiện trên máy (LocalFindings).
  * Không import JSON và không import plan.ts: file này dùng được ở client (localStore.ts, planClient.ts) và server (route.ts).
  * Mục sai kiểu hoặc sai máy thì bỏ mục đó. parsePlanRequest trả null khi model hoặc seed sai.
  */
-import type { GameModel } from "./types.ts";
-import type { LocalFindings } from "../decode/statusCore.ts";
+import type { DecodeModel } from "./types.ts";
+import type { LocalFindings } from "./statusCore.ts";
 
-export type PlanRequest = { model: GameModel; seed: number; focus: string[]; local: LocalFindings };
+export type PlanRequest = { model: DecodeModel; seed: number; focus: string[]; local: LocalFindings };
 
-const MODELS: readonly GameModel[] = ["zve10", "a6400", "a7c2"];
+const MODELS: readonly DecodeModel[] = ["zve10", "a6400", "a7c2"];
 const MAX_FOCUS = 16;
 
-const isModel = (v: unknown): v is GameModel => typeof v === "string" && (MODELS as readonly string[]).includes(v);
+const isModel = (v: unknown): v is DecodeModel => typeof v === "string" && (MODELS as readonly string[]).includes(v);
 const isText = (v: unknown): v is string => typeof v === "string" && v.length > 0 && v.length <= 64;
 
 // Phát hiện trên máy: mục sai kiểu hoặc sai máy thì bỏ mục đó
