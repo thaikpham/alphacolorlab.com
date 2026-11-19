@@ -207,4 +207,17 @@ test("Blog", async (t) => {
     assert.deepStrictEqual([...hrefs].sort(), [...expected].sort());
     assert.strictEqual(new Set(hrefs).size, hrefs.length, "no item twice");
   });
+
+  await t.test("blog index: bài ghim đứng đầu theo pinned, không lặp ở nhóm cấp độ", async () => {
+    const { blogIndex, list } = await import("../lib/blog.ts");
+    const pinned = list().filter((a) => a.pinned !== undefined).sort((a, b) => (a.pinned ?? 0) - (b.pinned ?? 0));
+    const ids = pinned.map((a) => `/blog/${a.id}`);
+    assert.deepStrictEqual(ids, ["/blog/menu-may-anh-toi-uu-nguoi-moi", "/blog/zv-e10-may-hybrid-aps-c"]);
+    assert.strictEqual(new Set(pinned.map((a) => a.pinned)).size, pinned.length, "pinned values unique");
+    const groups = blogIndex();
+    assert.strictEqual(groups[0].group, "highlight");
+    assert.deepStrictEqual(groups[0].items.map((i) => i.href), ids);
+    const levelHrefs = groups.slice(1).flatMap((g) => g.items.map((i) => i.href));
+    for (const href of ids) assert.ok(!levelHrefs.includes(href), `${href} lặp ở nhóm cấp độ`);
+  });
 });

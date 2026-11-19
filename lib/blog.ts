@@ -71,6 +71,8 @@ export type Article = {
   readonly meta: ArticleMeta
   readonly updatedAt?: string
   readonly category?: string
+  /** Thứ tự ghim vào nhóm Nổi bật đầu /blog (1, 2, …). Không có thì bài nằm theo cấp độ. */
+  readonly pinned?: number
 }
 
 export type LearningPathStep = {
@@ -156,14 +158,19 @@ export function thumbOf(a: Article): Thumb | undefined {
 
 const levelRank: Record<string, number> = { newbie: 0, 'cơ bản': 0, mid: 1, 'nâng cao': 1, pro: 2 }
 
-/** Left column of /blog: articles and posts grouped by level (Căn bản, Nâng cao, Chuyên nghiệp), then learning paths (drafts only outside production). */
+const articleItem = (a: Article): IndexItem => ({ href: `/blog/${a.id}`, title: a.title, read: a.read, image: thumbOf(a) })
+
+/** Left column of /blog: pinned articles (`highlight`, by `pinned`), then articles and posts grouped by level (Căn bản, Nâng cao, Chuyên nghiệp), then learning paths (drafts only outside production). A pinned article is not repeated in its level group. */
 export function blogIndex(): { group: string; items: IndexItem[] }[] {
+  const pinned = list().filter((a) => a.pinned !== undefined).sort((a, b) => (a.pinned ?? 0) - (b.pinned ?? 0))
+  const pinnedIds = new Set(pinned.map((a) => a.id))
   const ranked = [
-    ...list().map((a) => ({ level: a.level as string, item: { href: `/blog/${a.id}`, title: a.title, read: a.read, image: thumbOf(a) } })),
+    ...list().filter((a) => !pinnedIds.has(a.id)).map((a) => ({ level: a.level as string, item: articleItem(a) })),
     ...posts().map((p) => ({ level: p.level as string, item: { href: `/blog/${p.slug}`, title: p.title } })),
   ].sort((a, b) => a.item.title.localeCompare(b.item.title, 'vi'))
   const levelOf = (l: string) => (['newbie', 'mid', 'pro'] as const)[levelRank[l] ?? 0]
   return [
+    { group: 'highlight', items: pinned.map(articleItem) },
     ...(['newbie', 'mid', 'pro'] as const).map((group) => ({ group, items: ranked.filter((r) => levelOf(r.level) === group).map((r) => r.item) })),
     { group: 'lo-trinh', items: learningPaths().filter(isPublished).map((p) => ({ href: `/blog/lo-trinh/${p.slug}`, title: p.title, steps: p.steps.length })) },
   ].filter((g) => g.items.length > 0)

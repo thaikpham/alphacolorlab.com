@@ -15,10 +15,12 @@ export type ArticleGroup = { key: string; label: string; items: IndexItem[] };
 
 // Lộ trình học chỉ có danh sách, không vào lưới
 const LIST_ONLY = "lo-trinh";
+// Nổi bật (bài ghim): thẻ lớn hơn, 2 cột từ sm
+const FEATURED = "highlight";
 
 const detailOf = (i: IndexItem) => i.read ?? (i.steps ? blog.split.steps(i.steps) : undefined);
 
-/** Index của /blog: bài theo cấp độ (rồi lộ trình). Lưới: chỉ thẻ; Danh sách: chỉ dòng. */
+/** Index của /blog: Nổi bật (bài ghim), bài theo cấp độ (rồi lộ trình). Lưới: chỉ thẻ; Danh sách: chỉ dòng. */
 export function ArticleIndex({ groups: all }: { groups: ArticleGroup[] }) {
   const view = useIndexView("blog");
   // Cá nhân hóa: chỉ giữ bài nối với túi đồ; không bài nào nối thì hiện đủ
@@ -32,14 +34,15 @@ export function ArticleIndex({ groups: all }: { groups: ArticleGroup[] }) {
       <PersonalBar state={personal} />
       {groups.map((g, gi) => {
         const cards = grid && g.key !== LIST_ONLY;
+        const featured = g.key === FEATURED;
         return (
           <section key={g.key}>
             <h2 className={`mb-2 text-footnote text-secondary ${cards ? "" : "px-4"}`}>{g.label}</h2>
             {cards ? (
-              <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+              <ul className={featured ? "grid grid-cols-1 gap-4 sm:grid-cols-2" : "grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"}>
                 {g.items.map((i, n) => (
                   <li key={i.href}>
-                    <ArticleCard item={i} active={i.href === pathname} eager={gi === 0 && n < 2} />
+                    <ArticleCard item={i} active={i.href === pathname} eager={gi === 0 && n < 2} large={featured} />
                   </li>
                 ))}
               </ul>
@@ -58,17 +61,17 @@ export function ArticleIndex({ groups: all }: { groups: ArticleGroup[] }) {
   );
 }
 
-function ArticleCard({ item, active, eager }: { item: IndexItem; active: boolean; eager: boolean }) {
+function ArticleCard({ item, active, eager, large }: { item: IndexItem; active: boolean; eager: boolean; large: boolean }) {
   const img = item.image;
   return (
     <Link href={item.href} aria-current={active ? "page" : undefined} className="group block overflow-hidden rounded-card bg-card shadow-card">
       {img && (
-        <div className="relative aspect-[3/2] bg-card">
+        <div className={`relative bg-card ${large ? "aspect-[16/9] sm:aspect-[4/3]" : "aspect-[3/2]"}`}>
           <Image
             src={img.src}
             alt=""
             fill
-            sizes="(min-width: 1536px) 14vw, (min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 31vw, 46vw"
+            sizes={large ? "(min-width: 640px) 46vw, 100vw" : "(min-width: 1536px) 14vw, (min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 31vw, 46vw"}
             preload={eager}
             // Same file as the article's first figure, served as it is (see ArticleBody)
             unoptimized
@@ -77,7 +80,7 @@ function ArticleCard({ item, active, eager }: { item: IndexItem; active: boolean
         </div>
       )}
       <div className={`px-4 py-3 transition-colors ${img ? "border-t border-separator" : ""} ${active ? "bg-fill" : "group-hover:bg-fill"}`}>
-        <p className="line-clamp-2 text-subhead font-semibold text-label">{item.title}</p>
+        <p className={`line-clamp-2 font-semibold text-label ${large ? "text-title3" : "text-subhead"}`}>{item.title}</p>
         {item.read && <p className="mt-1 text-footnote text-secondary">{item.read}</p>}
       </div>
     </Link>

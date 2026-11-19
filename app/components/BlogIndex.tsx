@@ -5,11 +5,16 @@ import { BlogParts } from "./BlogParts";
 import { ArticleIndex, type ArticleGroup } from "./ArticleIndex";
 import { IndexRow } from "./IndexRow";
 
-/** Bài theo cấp độ (rồi lộ trình), dùng cho cột index và lưới của /blog. */
+function groupLabel(group: string): string {
+  if (group === "highlight") return blog.highlight;
+  return group in blog.levels ? blog.levels[group as keyof typeof blog.levels] : blog.categories[group as keyof typeof blog.categories];
+}
+
+/** Nổi bật (bài ghim), rồi bài theo cấp độ, rồi lộ trình: dùng cho cột index và lưới của /blog. */
 export function articleGroups(): ArticleGroup[] {
   return blogIndex().map((g) => ({
     key: g.group,
-    label: g.group in blog.levels ? blog.levels[g.group as keyof typeof blog.levels] : blog.categories[g.group as keyof typeof blog.categories],
+    label: groupLabel(g.group),
     items: g.items,
   }));
 }

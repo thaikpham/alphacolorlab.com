@@ -1707,6 +1707,8 @@ export const blog = {
     color: "Màu sắc",
     video: "Quay phim",
   },
+  // Nhóm bài ghim (trường pinned) đứng đầu danh sách bài viết
+  highlight: "Nổi bật",
   // Ba cấp độ, cũng là ba nhóm trong danh sách bài viết
   levels: {
     newbie: "Căn bản",

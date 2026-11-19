@@ -185,6 +185,7 @@ export function checkArticle(a: any): string[] {
   // Tiêu đề, tóm tắt và năm đọc dùng chung cho mọi bản: kiểm một lần
   out.push(...checkStrings([a.title ?? '', a.dek ?? '']))
   if (!new RegExp(rules.readPattern).test(a.read ?? '')) out.push(`read "${a.read}" sai dạng "N phút đọc"`)
+  if (a.pinned !== undefined && !(Number.isInteger(a.pinned) && a.pinned > 0)) out.push(`pinned "${a.pinned}" phải là số nguyên dương`)
 
   const { bundles, errors } = bundlesOf(a)
   out.push(...errors)
