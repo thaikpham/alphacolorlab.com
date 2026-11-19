@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
 <title>Ba bước Tracking: đặt khung, giữ nửa cò, đặt lại</title>
 <rect width="720" height="480" fill="#ffffff"/>
-<rect x="56" y="80" width="208" height="100" rx="14" fill="#f3f4f6"/>
-<rect x="56" y="210" width="208" height="100" rx="14" fill="#f3f4f6"/>
-<rect x="56" y="340" width="208" height="100" rx="14" fill="#f3f4f6"/>
-<rect x="122" y="92" width="76" height="76" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<rect x="56" y="80" width="208" height="100" rx="14" fill="#f2f2f7"/>
+<rect x="56" y="210" width="208" height="100" rx="14" fill="#f2f2f7"/>
+<rect x="56" y="340" width="208" height="100" rx="14" fill="#f2f2f7"/>
+<rect x="122" y="92" width="76" height="76" rx="8" fill="none" stroke="#c2410c" stroke-width="4"/>
 <circle cx="160" cy="112" r="13" fill="#7c8594"/>
 <rect x="142" y="130" width="36" height="30" rx="12" fill="#7c8594"/>
 <rect x="122" y="222" width="76" height="76" rx="8" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="6 6"/>
-<rect x="172" y="222" width="76" height="76" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<rect x="172" y="222" width="76" height="76" rx="8" fill="none" stroke="#c2410c" stroke-width="4"/>
 <circle cx="210" cy="242" r="13" fill="#7c8594"/>
 <rect x="192" y="260" width="36" height="30" rx="12" fill="#7c8594"/>
 <rect x="122" y="352" width="76" height="76" rx="8" fill="none" stroke="#7c8594" stroke-width="3" stroke-dasharray="6 6"/>

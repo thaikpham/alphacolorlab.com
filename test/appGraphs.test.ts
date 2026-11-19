@@ -1,7 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
 import { consoleGraph, colorsGraph, wikiGraph, blogGraph, graphFor } from "../lib/appGraphs.ts";
-import { sections } from "../app/content.ts";
+import { sections, LEGACY_MENU_ARTICLE } from "../app/content.ts";
 import { products } from "../lib/wiki.ts";
 import presets from "../lib/zve10/presets.ts";
 import { RADIUS } from "../lib/layout3d.ts";
@@ -143,14 +143,11 @@ describe("appGraphs", () => {
       assert(toolIds.has("tao-m1-m4"), "Missing M1–M4 tool");
     });
 
-    it("chapter hrefs match section ids", () => {
+    it("chapter hrefs point to the Legacy Menu article", () => {
       for (const node of graph.nodes) {
-        if (node.kind === "chapter" && node.id !== "tom-tat") {
-          const sectionId = node.id;
-          assert(sections.some((s) => s.id === sectionId), `Chapter ${node.id} has invalid section`);
-          assert.strictEqual(node.href, `/cai-tay/${sectionId}`);
-        } else if (node.id === "tom-tat") {
-          assert.strictEqual(node.href, "/cai-tay/tom-tat");
+        if (node.kind === "chapter") {
+          assert(node.id === "tom-tat" || sections.some((s) => s.id === node.id), `Chapter ${node.id} has invalid section`);
+          assert.strictEqual(node.href, LEGACY_MENU_ARTICLE);
         }
       }
     });
@@ -171,12 +168,11 @@ describe("appGraphs", () => {
       }
     });
 
-    it("step hrefs point to chapter pages", () => {
+    it("step hrefs point to the Legacy Menu article", () => {
       for (const node of graph.nodes) {
         if (node.kind === "step") {
-          const match = node.id.match(/^step-(.+)-(\d+)$/);
-          assert(match, `Step id ${node.id} doesn't match pattern`);
-          assert.strictEqual(node.href, `/cai-tay/${match[1]}`);
+          assert(/^step-(.+)-(\d+)$/.test(node.id), `Step id ${node.id} doesn't match pattern`);
+          assert.strictEqual(node.href, LEGACY_MENU_ARTICLE);
         }
       }
     });

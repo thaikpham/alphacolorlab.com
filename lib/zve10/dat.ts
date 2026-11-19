@@ -367,12 +367,11 @@ export function parseDat(bytes: Uint8Array): ParsedInfo {
       );
   }
 
-  // Validate checksums
+  // Validate checksums. The expected tail is computed once, not per byte.
+  const expectedTail = tail(bytes.slice(0, 0x1000));
   if (
     bytes[0x38] !== checksum38(bytes) ||
-    !bytes
-      .slice(0x1000)
-      .every((v, i) => v === tail(bytes.slice(0, 0x1000))[i])
+    !bytes.slice(0x1000).every((v, i) => v === expectedTail[i])
   ) {
     throw new Error(
       "Checksum không khớp. Hãy dùng file máy vừa lưu, chưa bị sửa."
@@ -664,6 +663,8 @@ export interface SlotSettings {
   eFrontCurtain?: "off" | "on" | "keep";
   liveView?: "setting-effect-on" | "setting-effect-off" | "keep";
 }
+
+// Memory Recall does not store USB connection, PC Remote, smartphone control or PC Remote method (verified 2026-11-19), so sets cannot set them.
 
 // Port của zve10_dat.with_supplement: phủ mã enum Dot6, cờ AWB lẻ và offset phơi sáng lên hồ sơ đã học.
 export function withSupplement(profile: any, supplement: any): any {
@@ -957,7 +958,8 @@ export function applySettings(
         put(b, PP_OFFSETS[key], encoded(rule, value), 1, Boolean(rule.signed));
       }
     }
-    if (settings.ppOn === true) b[0x315] = 1;
+    // Slot có giá trị pp (không tắt PP) thì chọn PP1, kể cả khi ppOn không được đặt
+    if (settings.ppOn === true || (pp && Object.keys(pp).length > 0)) b[0x315] = 1;
   }
 
   // ---- PP2–PP10 banks
@@ -1016,7 +1018,7 @@ export function buildSet(
   settings: SlotSettings[],
   date?: Date,
   profile: any = PROFILE,
-  headers?: Uint8Array[] // file do máy lưu cho từng ô: mượn header 0x00–0x37 để tên ô và byte 0x35 khớp
+  headers?: Uint8Array[] // header 0x00–0x37 từng ô: CHỈ dùng file mẫu đi kèm (public/dat/zve10-<hệ>-m1..4.dat). Không mượn header từ file đang có trên thẻ: ZV-E10 báo File Error với header 0x24=03 (thử 18/11/2026)
 ): BuiltSet[] {
   const result: BuiltSet[] = [];
   const bases = Array.isArray(base) ? base : [base, base, base, base];

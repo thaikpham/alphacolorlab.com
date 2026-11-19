@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
 <title>Ba nấc 1/3 stop từ 1/60 đến 1/125 s</title>
 <rect width="720" height="480" fill="#ffffff"/>
-<rect x="40" y="60" width="640" height="360" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="40" y="60" width="640" height="360" rx="14" fill="#f2f2f7" stroke="#7c8594" stroke-width="3"/>
 <text x="360" y="122" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Một stop, ba nấc</text>
-<line x1="100" y1="150" x2="580" y2="150" stroke="#f05a14" stroke-width="4"/>
-<line x1="100" y1="150" x2="100" y2="170" stroke="#f05a14" stroke-width="4"/>
-<line x1="580" y1="150" x2="580" y2="170" stroke="#f05a14" stroke-width="4"/>
+<line x1="100" y1="150" x2="580" y2="150" stroke="#c2410c" stroke-width="4"/>
+<line x1="100" y1="150" x2="100" y2="170" stroke="#c2410c" stroke-width="4"/>
+<line x1="580" y1="150" x2="580" y2="170" stroke="#c2410c" stroke-width="4"/>
 <line x1="100" y1="270" x2="580" y2="270" stroke="#0b0d12" stroke-width="4"/>
 <circle cx="100" cy="270" r="14" fill="#ffffff" stroke="#0b0d12" stroke-width="4"/>
 <circle cx="260" cy="270" r="14" fill="#ffffff" stroke="#0b0d12" stroke-width="4"/>

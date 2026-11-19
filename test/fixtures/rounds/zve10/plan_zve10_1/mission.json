@@ -1,0 +1,108 @@
+{
+  "id": "plan_zve10_1",
+  "model": "zve10",
+  "seed": 1,
+  "createdAt": 1794906411676,
+  "slots": [
+    {
+      "slot": 1,
+      "steps": [
+        {
+          "settingId": "focusMode",
+          "valueId": "AF-S",
+          "role": "control"
+        },
+        {
+          "settingId": "softSkin",
+          "valueId": "off",
+          "role": "control"
+        },
+        {
+          "settingId": "wb",
+          "valueId": "shade",
+          "role": "target"
+        },
+        {
+          "settingId": "expComp",
+          "valueId": "plus-1.0",
+          "role": "target"
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "steps": [
+        {
+          "settingId": "autoReview",
+          "valueId": "5s",
+          "role": "control"
+        },
+        {
+          "settingId": "e-front-curtain",
+          "valueId": "off",
+          "role": "control"
+        },
+        {
+          "settingId": "wb",
+          "valueId": "fluorescent-2",
+          "role": "target"
+        },
+        {
+          "settingId": "expComp",
+          "valueId": "minus-1.0",
+          "role": "target"
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "steps": [
+        {
+          "settingId": "metering",
+          "valueId": "spot-large",
+          "role": "control"
+        },
+        {
+          "settingId": "flash-mode",
+          "valueId": "slow-sync",
+          "role": "control"
+        },
+        {
+          "settingId": "wb",
+          "valueId": "flash",
+          "role": "target"
+        },
+        {
+          "settingId": "dro",
+          "valueId": "dro-auto",
+          "role": "target"
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "steps": [
+        {
+          "settingId": "autoReview",
+          "valueId": "off",
+          "role": "control"
+        },
+        {
+          "settingId": "exp-comp-set",
+          "valueId": "ambient-only",
+          "role": "control"
+        },
+        {
+          "settingId": "wb",
+          "valueId": "cloudy",
+          "role": "target"
+        },
+        {
+          "settingId": "dro",
+          "valueId": "hdrauto",
+          "role": "target"
+        }
+      ]
+    }
+  ]
+}

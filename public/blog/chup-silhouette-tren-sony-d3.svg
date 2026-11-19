@@ -4,7 +4,7 @@
 <text x="190" y="80" text-anchor="middle" font-size="30" font-weight="600" fill="#127a3a">Đúng</text>
 <text x="530" y="80" text-anchor="middle" font-size="30" font-weight="600" fill="#c8261b">Sai</text>
 <g>
-<rect x="50" y="96" width="280" height="236" rx="14" fill="#f05a14" stroke="#7c8594" stroke-width="3"/>
+<rect x="50" y="96" width="280" height="236" rx="14" fill="#c2410c" stroke="#7c8594" stroke-width="3"/>
 <path d="M50 296 H330 V318 Q330 332 316 332 H64 Q50 332 50 318 Z" fill="#e3e6eb"/>
 <circle cx="190" cy="190" r="18" fill="#0b0d12"/>
 <rect x="172" y="212" width="36" height="56" rx="12" fill="#0b0d12"/>

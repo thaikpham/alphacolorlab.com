@@ -4,7 +4,6 @@ import { SITE_URL } from "../lib/site.ts";
 import { list, posts, publishedLearningPaths } from "../lib/blog.ts";
 import { entryHref, knowledge, productHref, products } from "../lib/wiki.ts";
 import presets from "../lib/zve10/presets.json" with { type: "json" };
-import { sections } from "../app/content.ts";
 
 type Entry = [path: string, priority: number, lastModified?: string];
 
@@ -12,8 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries: Entry[] = [
     ["/", 1],
     ["/huong-dan", 0.8],
-    ...sections.map((s): Entry => [`/cai-tay/${s.id}`, 0.7]),
-    ["/cai-tay/tom-tat", 0.7],
     ["/tao-m1-m4", 0.7],
     ["/colors", 0.8],
     ...presets.map((p): Entry => [`/colors/${p.id}`, 0.6]),

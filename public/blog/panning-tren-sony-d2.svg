@@ -4,8 +4,8 @@
 <text x="56" y="129" font-size="26" font-weight="600" fill="#0b0d12">1/250 s</text>
 <rect x="220" y="96" width="120" height="48" rx="8" fill="#e3e6eb"/>
 <text x="56" y="219" font-size="26" font-weight="600" fill="#0b0d12">1/125 s</text>
-<rect x="220" y="186" width="200" height="48" rx="8" fill="#f05a14"/>
-<text x="436" y="219" font-size="26" font-weight="600" fill="#b43f00">Xe máy</text>
+<rect x="220" y="186" width="200" height="48" rx="8" fill="#c2410c"/>
+<text x="436" y="219" font-size="26" font-weight="600" fill="#c2410c">Xe máy</text>
 <text x="56" y="309" font-size="26" font-weight="600" fill="#0b0d12">1/60 s</text>
 <rect x="220" y="276" width="320" height="48" rx="8" fill="#e3e6eb"/>
 <text x="56" y="399" font-size="26" font-weight="600" fill="#0b0d12">1/30 s</text>

@@ -92,7 +92,7 @@ export function AppNav() {
   );
 }
 
-/** Thanh điều hướng dọc (từ lg): launcher + avatar, tìm kiếm, cao đúng `h-sidebar-head`.
+/** Thanh điều hướng dọc (từ lg): launcher, tìm kiếm, cao đúng `h-sidebar-head`. Avatar không nằm trong thanh: nút cố định góc trên phải (xem return).
  * Thanh trong suốt, không nhận chuột (chỉ phần đầu có nền) và nằm trên index (z-50) để gợi ý tìm kiếm không bị che.
  * Phần dưới là index của app đang mở: cột index của SplitLayout cố định ngay dưới (`top-sidebar-head`). Landing không có.
  * Blog và Wiki ở Lưới và /admin cũng không có (`wide`): thanh trên cùng của AppNav thay chỗ từ lg. */
@@ -102,14 +102,21 @@ export function AppSidebar() {
   const wide = useWideBrowse(pathname);
   if (pathname === "/" || wide) return null;
   return (
-    <aside className="app-sidebar pointer-events-none fixed inset-y-0 left-0 z-50 hidden w-sidebar border-r border-separator lg:block">
-      <div className="pointer-events-auto flex h-sidebar-head flex-col border-b border-separator bg-bg px-3">
-      <div className="flex h-14 shrink-0 items-center justify-between">
-        <Logo />
-        {lg && <AccountButton />}
-      </div>
-      {lg && pathname !== "/search" && <div className="flex"><SearchField /></div>}
-      </div>
-    </aside>
+    <>
+      <aside className="app-sidebar pointer-events-none fixed inset-y-0 left-0 z-50 hidden w-sidebar border-r border-separator lg:block">
+        <div className="pointer-events-auto flex h-sidebar-head flex-col border-b border-separator bg-bg px-3">
+          <div className="flex h-14 shrink-0 items-center">
+            <Logo />
+          </div>
+          {lg && pathname !== "/search" && <div className="flex"><SearchField /></div>}
+        </div>
+      </aside>
+      {/* Avatar luôn ở góc trên phải mọi màn có thanh dọc; lề phải của #main-content (--spacing-avatar-gutter) giữ chỗ cho nó */}
+      {lg && (
+        <div className="fixed top-4 right-4 z-50 rounded-full bg-card shadow-thumb">
+          <AccountButton />
+        </div>
+      )}
+    </>
   );
 }

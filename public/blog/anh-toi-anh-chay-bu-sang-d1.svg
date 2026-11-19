@@ -3,11 +3,11 @@
 <rect width="720" height="480" fill="#ffffff"/>
 <line x1="360" y1="124" x2="360" y2="396" stroke="#e3e6eb" stroke-width="3"/>
 <text x="60" y="110" font-size="26" font-weight="600" fill="#0b0d12">Cài đặt</text>
-<rect x="60" y="124" width="600" height="36" rx="18" fill="#f3f4f6" stroke="#e3e6eb" stroke-width="2"/>
+<rect x="60" y="124" width="600" height="36" rx="18" fill="#f2f2f7" stroke="#e3e6eb" stroke-width="2"/>
 <text x="60" y="202" font-size="26" font-weight="600" fill="#0b0d12">Khi chụp ảnh</text>
 <rect x="180" y="216" width="360" height="36" rx="18" fill="#7c8594"/>
 <text x="60" y="294" font-size="26" font-weight="600" fill="#0b0d12">Khi quay phim</text>
-<rect x="240" y="308" width="240" height="36" rx="18" fill="#f05a14"/>
+<rect x="240" y="308" width="240" height="36" rx="18" fill="#c2410c"/>
 <line x1="60" y1="396" x2="660" y2="396" stroke="#7c8594" stroke-width="2"/>
 <line x1="60" y1="396" x2="60" y2="406" stroke="#7c8594" stroke-width="2"/>
 <line x1="180" y1="396" x2="180" y2="406" stroke="#7c8594" stroke-width="2"/>

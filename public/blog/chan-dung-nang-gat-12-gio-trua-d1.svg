@@ -2,11 +2,11 @@
 <title>Bóng râm mở: tường chắn nắng và bầu trời làm nguồn sáng mềm</title>
 <rect width="720" height="480" fill="#ffffff"/>
 <rect x="40" y="300" width="250" height="80" fill="#e3e6eb"/>
-<rect x="330" y="300" width="350" height="80" fill="#f3f4f6"/>
+<rect x="330" y="300" width="350" height="80" fill="#f2f2f7"/>
 <line x1="40" y1="380" x2="680" y2="380" stroke="#7c8594" stroke-width="3"/>
 <rect x="300" y="130" width="24" height="250" fill="#4a5260"/>
 <text x="312" y="116" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Tường</text>
-<circle cx="600" cy="90" r="34" fill="#f05a14"/>
+<circle cx="600" cy="90" r="34" fill="#c2410c"/>
 <text x="600" y="44" text-anchor="middle" font-size="24" font-weight="600" fill="#4a5260">Mặt trời</text>
 <line x1="575" y1="118" x2="500" y2="290" stroke="#7c8594" stroke-width="3" stroke-dasharray="10 8"/>
 <line x1="612" y1="124" x2="598" y2="290" stroke="#7c8594" stroke-width="3" stroke-dasharray="10 8"/>

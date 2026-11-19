@@ -3,19 +3,16 @@
 import { useEffect } from "react";
 import { account, community, landing } from "@/app/content";
 import { authReady, getSession, signIn, useSession } from "@/lib/auth";
-import { useAccountSync } from "@/lib/useAccountSync";
 import { GoogleG } from "./GoogleG";
 import { InfoTip } from "./InfoTip";
 
 const button = "inline-flex h-11 items-center gap-2 rounded-full bg-fill px-5 text-subhead font-semibold text-label transition-colors hover:bg-fill-strong";
 
-/** Thẻ tài khoản ở cột phải của bước 2 landing (landing không có nút avatar): đăng nhập Google, hoàn tất vòng đăng nhập khi Google trả về "/",
- * bật đồng bộ theo tài khoản. Đã đăng nhập thì hiện avatar Google (56px) và tên, không có nút sang hồ sơ. Bản chưa bật đăng nhập thì không hiện gì. */
+/** Thẻ tài khoản ở cột phải của bước 2 landing: đăng nhập Google, hoàn tất vòng đăng nhập khi Google trả về "/".
+ * Đồng bộ tài khoản không chạy ở đây (nút avatar của LandingFlow chạy một lần). Đã đăng nhập thì hiện avatar Google (56px) và tên, không có nút sang hồ sơ. Bản chưa bật đăng nhập thì không hiện gì. */
 export function LandingStart() {
   const session = useSession();
   useEffect(() => void getSession(), []);
-  const userId = session?.user.id;
-  useAccountSync(userId);
 
   if (!authReady) return null;
   return (

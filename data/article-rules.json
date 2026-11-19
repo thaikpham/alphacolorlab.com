@@ -11,7 +11,7 @@
     "oldVi": "^MENU → (Cài đặt máy ảnh[12]|Xem lại) → ",
     "englishTabs": "Camera Settings|Playback"
   },
-  "requiredSourcePattern": "^https://helpguide\\.sony\\.net/ilc/(2070|1810)/v1/en/contents/TP\\w+\\.html$",
+  "requiredSourcePattern": "^https://helpguide\\.sony\\.net/ilc/(2070|1810)/v1/en/contents/TP\\w+\\.html$|^https://helpguide\\.sony\\.net/ilc/2360/v1/en/contents/\\w+\\.html$",
   "readPattern": "^\\d+ phút đọc$",
   "limits": {
     "dekChars": [120, 155],

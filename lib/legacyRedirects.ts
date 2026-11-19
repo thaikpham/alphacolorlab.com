@@ -173,6 +173,8 @@ export function legacyRedirects(): Redirect[] {
     ...anyLocale("/wiki/san-pham", "/wiki"),
     ...anyLocale("/wiki/kien-thuc", "/blog/kien-thuc"),
     ...anyLocale("/wiki/kien-thuc/:path*", "/blog/kien-thuc/:path*"),
+    // Alpha Console "Cài tay" chapters moved into the Legacy Menu article (no anchors: headings have no stable ids)
+    { source: "/cai-tay/:chuong", destination: "/blog/menu-may-anh-toi-uu-nguoi-moi-legacy-menu", permanent: true },
     // Locale prefix dropped where the path still exists here
     { source: "/:locale(vi|en)/blog/:id", destination: "/blog/:id", permanent: true },
     { source: "/:locale(vi|en)/:section(blog|search)", destination: "/:section", permanent: true },

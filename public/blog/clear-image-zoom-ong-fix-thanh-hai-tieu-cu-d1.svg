@@ -6,8 +6,8 @@
 <rect x="48" y="136" width="123" height="44" rx="8" fill="#7c8594"/>
 <text x="187" y="168" font-size="30" font-weight="600" fill="#0b0d12">1,4×</text>
 <text x="48" y="216" font-size="26" font-weight="600" fill="#0b0d12">Zoom rõ nét</text>
-<rect x="48" y="228" width="246" height="44" rx="8" fill="#f05a14"/>
-<text x="310" y="260" font-size="30" font-weight="600" fill="#b43f00">2,8×</text>
+<rect x="48" y="228" width="246" height="44" rx="8" fill="#c2410c"/>
+<text x="310" y="260" font-size="30" font-weight="600" fill="#c2410c">2,8×</text>
 <text x="48" y="308" font-size="26" font-weight="600" fill="#0b0d12">Zoom số</text>
 <rect x="48" y="320" width="500" height="44" rx="8" fill="#7c8594"/>
 <text x="564" y="352" font-size="30" font-weight="600" fill="#0b0d12">5,7×</text>

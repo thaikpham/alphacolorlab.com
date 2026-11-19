@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { guide, sections, cameraModels, sonyBodies, getStepCount, alphaConsole as C, consoleHashRoutes, kolSets, type ModelId } from "@/app/content";
+import { guide, cameraModels, sonyBodies, alphaConsole as C, consoleHashRoutes, kolSets, type ModelId } from "@/app/content";
 import { ModelPicker } from "./ModelPicker";
 import { LinkRow } from "./LinkRow";
 import { useCart } from "@/lib/cart";
@@ -13,7 +13,7 @@ const decodedIds = cameraModels.filter((m) => decoded.has(m.id)).map((m) => m.id
 const card = "overflow-hidden rounded-card bg-card shadow-card divide-y divide-separator";
 const heading = "mb-1.5 px-4 text-footnote font-medium text-secondary";
 
-/** Alpha Console index column: camera picker, the Công cụ block (only for decoded cameras), then the 4 chapters + summary. Model-dependent text renders every variant with data-model-only (no hydration mismatch). */
+/** Alpha Console index column: camera picker, then the Công cụ block (only for decoded cameras). Model-dependent text renders every variant with data-model-only (no hydration mismatch). */
 export function ConsoleIndex() {
   const pathname = usePathname();
   const router = useRouter();
@@ -35,8 +35,6 @@ export function ConsoleIndex() {
   const row = (href: string, title: React.ReactNode, trailing?: React.ReactNode) => (
     <LinkRow key={href} href={href} title={title} trailing={trailing} isActive={pathname === href || pathname.startsWith(`${href}/`)} />
   );
-  const perModel = (render: (id: ModelId) => React.ReactNode) =>
-    cameraModels.map((m) => <span key={m.id} data-model-only={m.id}>{render(m.id)}</span>);
 
   return (
     <div className="space-y-6">
@@ -55,16 +53,6 @@ export function ConsoleIndex() {
             cartCount > 0 ? <span className="rounded-full bg-accent/10 px-2.5 py-1 font-semibold text-accent-text tabular-nums">{C.cartCount(cartCount)}</span> : undefined,
           )}
           {row("/bo-m1-m4", kolSets.title)}
-        </div>
-      </nav>
-
-      <nav aria-labelledby="guide-heading">
-        <h2 id="guide-heading" className={heading}>{perModel((id) => C.guideGroup(getStepCount(id)))}</h2>
-        <div className={card}>
-          {sections.map((s) =>
-            row(`/cai-tay/${s.id}`, s.title, <span className="tabular-nums">{perModel((id) => s.steps.filter((st) => !st.only || st.only.includes(id)).length)}</span>),
-          )}
-          {row("/cai-tay/tom-tat", C.summary)}
         </div>
       </nav>
     </div>

@@ -8,9 +8,9 @@
 <text x="95" y="280" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Máy</text>
 <rect x="250" y="200" width="20" height="180" rx="8" fill="#4a5260"/>
 <text x="260" y="170" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Tiền cảnh</text>
-<rect x="420" y="240" width="20" height="140" rx="8" fill="#f05a14"/>
+<rect x="420" y="240" width="20" height="140" rx="8" fill="#c2410c"/>
 <text x="430" y="210" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Trung cảnh</text>
-<text x="430" y="425" font-size="28" font-weight="600" text-anchor="middle" fill="#b43f00">Lấy nét ở đây</text>
+<text x="430" y="425" font-size="28" font-weight="600" text-anchor="middle" fill="#c2410c">Lấy nét ở đây</text>
 <rect x="600" y="270" width="20" height="110" rx="8" fill="#7c8594"/>
 <text x="610" y="240" font-size="28" font-weight="600" text-anchor="middle" fill="#0b0d12">Hậu cảnh</text>
 </svg>

@@ -7,7 +7,7 @@
 <path d="M80 204H220M80 196V212M220 196V212" stroke="#7c8594" stroke-width="2" fill="none"/>
 <text x="236" y="212" font-size="24" fill="#4a5260">Một chu kỳ 10 ms</text>
 <text x="32" y="282" font-size="26" font-weight="600" fill="#0b0d12">Màn trập 1/50 s</text>
-<rect x="80" y="296" width="280" height="44" rx="8" fill="#f05a14"/>
+<rect x="80" y="296" width="280" height="44" rx="8" fill="#c2410c"/>
 <text x="384" y="326" font-size="26" font-weight="600" fill="#0b0d12">Khớp nhịp</text>
 <text x="32" y="384" font-size="26" font-weight="600" fill="#0b0d12">Màn trập 1/125 s</text>
 <rect x="80" y="398" width="112" height="44" rx="8" fill="#7c8594"/>

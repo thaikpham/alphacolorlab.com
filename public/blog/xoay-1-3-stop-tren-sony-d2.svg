@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
 <title>Khép hai stop rồi bù lại bằng tốc hoặc ISO</title>
 <rect width="720" height="480" fill="#ffffff"/>
-<rect x="40" y="40" width="640" height="400" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="40" y="40" width="640" height="400" rx="14" fill="#f2f2f7" stroke="#7c8594" stroke-width="3"/>
 <line x1="80" y1="380" x2="640" y2="380" stroke="#7c8594" stroke-width="3"/>
 <rect x="120" y="140" width="120" height="240" fill="#7c8594"/>
 <rect x="300" y="320" width="120" height="60" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
-<rect x="480" y="140" width="120" height="240" fill="#f05a14"/>
+<rect x="480" y="140" width="120" height="240" fill="#c2410c"/>
 <line x1="252" y1="350" x2="280" y2="350" stroke="#7c8594" stroke-width="4"/>
 <polygon points="280,340 296,350 280,360" fill="#7c8594"/>
 <line x1="432" y1="350" x2="462" y2="350" stroke="#7c8594" stroke-width="4"/>

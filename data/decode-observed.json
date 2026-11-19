@@ -1,5 +1,189 @@
 {
-  "candidates": [],
+  "candidates": [
+    {
+      "candidates": [
+        {
+          "from": 0,
+          "to": 211,
+          "where": "0x011D"
+        },
+        {
+          "from": 64,
+          "to": 0,
+          "where": "0x011E"
+        },
+        {
+          "from": 80,
+          "to": 30,
+          "where": "0x0151"
+        }
+      ],
+      "fromValueId": null,
+      "kind": "locate",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "dro",
+      "slot": 3,
+      "valueId": "dro-auto"
+    },
+    {
+      "candidates": [
+        {
+          "from": 211,
+          "to": 206,
+          "where": "0x011D"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "where": "0x0203"
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "where": "0x0205"
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "where": "0x020B"
+        }
+      ],
+      "fromValueId": "dro-auto",
+      "kind": "locate",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "dro",
+      "slot": 4,
+      "valueId": "hdrauto"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "autoReview",
+      "slot": 2,
+      "valueId": "5s"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "autoReview",
+      "slot": 4,
+      "valueId": "off"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "e-front-curtain",
+      "slot": 2,
+      "valueId": "off"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "exp-comp-set",
+      "slot": 4,
+      "valueId": "ambient-only"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "flash-mode",
+      "slot": 3,
+      "valueId": "slow-sync"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "focusMode",
+      "slot": 1,
+      "valueId": "AF-S"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "metering",
+      "slot": 3,
+      "valueId": "spot-large"
+    },
+    {
+      "isNew": false,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "softSkin",
+      "slot": 1,
+      "valueId": "off"
+    },
+    {
+      "isNew": true,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "expComp",
+      "slot": 1,
+      "valueId": "plus-1.0"
+    },
+    {
+      "isNew": true,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "expComp",
+      "slot": 2,
+      "valueId": "minus-1.0"
+    },
+    {
+      "isNew": true,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "wb",
+      "slot": 1,
+      "valueId": "shade"
+    },
+    {
+      "isNew": true,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "wb",
+      "slot": 2,
+      "valueId": "fluorescent-2"
+    },
+    {
+      "isNew": true,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "wb",
+      "slot": 3,
+      "valueId": "flash"
+    },
+    {
+      "isNew": true,
+      "kind": "confirm",
+      "missionId": "plan_zve10_1",
+      "model": "zve10",
+      "settingId": "wb",
+      "slot": 4,
+      "valueId": "cloudy"
+    }
+  ],
   "files": [
     {
       "file": "test/fixtures/a6400/dot1/CAMPR01P.DAT",
@@ -333,6 +517,26 @@
     },
     {
       "file": "test/fixtures/new8/CAMPR04P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+      "model": "zve10",
+      "readable": true
+    },
+    {
+      "file": "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
       "model": "zve10",
       "readable": true
     },
@@ -1078,6 +1282,40 @@
           "test/fixtures/metering/CAMPR02P.DAT",
           "test/fixtures/metering/CAMPR03P.DAT",
           "test/fixtures/metering/CAMPR04P.DAT"
+        ],
+        "5397": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
+        ]
+      },
+      "expComp": {
+        "0": [
+          "test/fixtures/auto-review/CAMPR01P.DAT",
+          "test/fixtures/auto-review/CAMPR02P.DAT",
+          "test/fixtures/auto-review/CAMPR03P.DAT",
+          "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/focus-area/CAMPR01P.DAT",
+          "test/fixtures/focus-area/CAMPR02P.DAT",
+          "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/focus-area/CAMPR04P.DAT",
+          "test/fixtures/metering/CAMPR01P.DAT",
+          "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/values/CAMPR01P.DAT",
+          "test/fixtures/values/CAMPR02P.DAT",
+          "test/fixtures/values/CAMPR03P.DAT",
+          "test/fixtures/values/CAMPR04P.DAT"
+        ],
+        "254": [
+          "test/fixtures/zve10/CAMPR01P.DAT",
+          "test/fixtures/zve10/CAMPR04P.DAT"
         ]
       },
       "flash-mode": {
@@ -1094,6 +1332,8 @@
           "test/fixtures/metering/CAMPR02P.DAT",
           "test/fixtures/metering/CAMPR03P.DAT",
           "test/fixtures/metering/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -1104,6 +1344,10 @@
       },
       "iso": {
         "0": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/zve10/CAMPR01P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
         ],
@@ -1144,6 +1388,8 @@
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
           "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
         ],
         "1": [
@@ -1151,6 +1397,8 @@
           "test/fixtures/auto-review/CAMPR02P.DAT",
           "test/fixtures/auto-review/CAMPR03P.DAT",
           "test/fixtures/auto-review/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -1186,6 +1434,12 @@
         "253": [
           "test/fixtures/zve10/CAMPR01P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "254": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ]
       },
       "shutter": {
@@ -1210,6 +1464,10 @@
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
           "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -1262,6 +1520,10 @@
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
           "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2461,6 +2723,8 @@
           "test/fixtures/zve10/CAMPR04P.DAT"
         ],
         "5s": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
           "test/fixtures/values/CAMPR01P.DAT"
         ],
         "off": [
@@ -2470,7 +2734,9 @@
           "test/fixtures/new8/CAMPR01P.DAT",
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
-          "test/fixtures/new8/CAMPR04P.DAT"
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ]
       },
       "awb-priority": {
@@ -2491,6 +2757,10 @@
           "test/fixtures/metering/CAMPR03P.DAT",
           "test/fixtures/metering/CAMPR04P.DAT",
           "test/fixtures/new8/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2506,7 +2776,10 @@
       "e-front-curtain": {
         "off": [
           "test/fixtures/new8/CAMPR01P.DAT",
-          "test/fixtures/new8/CAMPR02P.DAT"
+          "test/fixtures/new8/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ],
         "on": [
           "test/fixtures/auto-review/CAMPR01P.DAT",
@@ -2523,6 +2796,7 @@
           "test/fixtures/metering/CAMPR04P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
           "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2546,6 +2820,9 @@
           "test/fixtures/metering/CAMPR03P.DAT",
           "test/fixtures/metering/CAMPR04P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2556,7 +2833,18 @@
         "ambient-only": [
           "test/fixtures/new8/CAMPR01P.DAT",
           "test/fixtures/new8/CAMPR02P.DAT",
-          "test/fixtures/new8/CAMPR04P.DAT"
+          "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
+        ]
+      },
+      "expComp": {
+        "minus-1.0": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
+        ],
+        "plus-1.0": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT"
         ]
       },
       "facePriority": {
@@ -2579,6 +2867,10 @@
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
           "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2596,7 +2888,9 @@
           "test/fixtures/new8/CAMPR04P.DAT"
         ],
         "slow-sync": [
-          "test/fixtures/new8/CAMPR03P.DAT"
+          "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ]
       },
       "focusArea": {
@@ -2623,6 +2917,10 @@
         ],
         "tracking-zone": [
           "test/fixtures/focus-area/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/zve10/CAMPR01P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
         ],
@@ -2657,6 +2955,12 @@
           "test/fixtures/values/CAMPR04P.DAT",
           "test/fixtures/zve10/CAMPR01P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "AF-S": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ]
       },
       "live-view-display": {
@@ -2679,6 +2983,10 @@
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
           "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2713,10 +3021,14 @@
           "test/fixtures/focus-area/CAMPR04P.DAT",
           "test/fixtures/metering/CAMPR01P.DAT",
           "test/fixtures/metering/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
           "test/fixtures/zve10/CAMPR01P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
         ],
         "spot-large": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR02P.DAT"
         ],
         "spot-standard": [
@@ -2751,6 +3063,12 @@
         "Pro": [
           "test/fixtures/zve10/CAMPR01P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
+        ],
+        "Still": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ]
       },
       "ppGamma": {
@@ -2781,6 +3099,12 @@
           "test/fixtures/metering/CAMPR02P.DAT",
           "test/fixtures/metering/CAMPR03P.DAT",
           "test/fixtures/metering/CAMPR04P.DAT"
+        ],
+        "Still": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ]
       },
       "pre-af": {
@@ -2803,6 +3127,10 @@
           "test/fixtures/metering/CAMPR04P.DAT",
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR04P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2824,6 +3152,10 @@
           "test/fixtures/new8/CAMPR01P.DAT",
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
@@ -2868,7 +3200,11 @@
           "test/fixtures/focus-area/CAMPR04P.DAT",
           "test/fixtures/metering/CAMPR01P.DAT",
           "test/fixtures/metering/CAMPR02P.DAT",
-          "test/fixtures/metering/CAMPR03P.DAT"
+          "test/fixtures/metering/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
         ]
       },
       "steady-shot": {
@@ -2891,12 +3227,30 @@
           "test/fixtures/new8/CAMPR01P.DAT",
           "test/fixtures/new8/CAMPR02P.DAT",
           "test/fixtures/new8/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT",
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT",
           "test/fixtures/values/CAMPR01P.DAT",
           "test/fixtures/values/CAMPR02P.DAT",
           "test/fixtures/values/CAMPR03P.DAT",
           "test/fixtures/values/CAMPR04P.DAT",
           "test/fixtures/zve10/CAMPR01P.DAT",
           "test/fixtures/zve10/CAMPR04P.DAT"
+        ]
+      },
+      "wb": {
+        "cloudy": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR04P.DAT"
+        ],
+        "flash": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR03P.DAT"
+        ],
+        "fluorescent-2": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR02P.DAT"
+        ],
+        "shade": [
+          "test/fixtures/rounds/zve10/plan_zve10_1/CAMPR01P.DAT"
         ]
       }
     }

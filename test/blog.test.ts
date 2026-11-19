@@ -89,7 +89,7 @@ test("Blog", async (t) => {
     assert.deepStrictEqual(invalid, [], `Found invalid topic/level: ${invalid.join(", ")}`);
   });
 
-  await t.test("should cite the ZV-E10 or A6400 Help Guide in every article", () => {
+  await t.test("should cite a Sony Help Guide (2070, 1810 or 2360) in every article", () => {
     const articles = JSON.parse(readFileSync(join(projectRoot, "data/articles.json"), "utf-8"));
     const sourcePattern = new RegExp(rules.requiredSourcePattern);
     const missing = (articles as Array<{ id: string; meta: { sources: Array<{ url: string }> } }>)

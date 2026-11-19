@@ -2,7 +2,7 @@
 <title>Sơ đồ từ trên xuống: khoảng cách máy tới người và người tới nền</title>
 <rect width="720" height="480" fill="#ffffff"/>
 <line x1="164" y1="240" x2="336" y2="240" stroke="#7c8594" stroke-width="2" stroke-dasharray="8 8"/>
-<rect x="60" y="216" width="100" height="48" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="3"/>
+<rect x="60" y="216" width="100" height="48" rx="8" fill="#f2f2f7" stroke="#0b0d12" stroke-width="3"/>
 <rect x="150" y="226" width="14" height="28" rx="4" fill="#0b0d12"/>
 <text x="110" y="196" text-anchor="middle" font-size="28" font-weight="600" fill="#0b0d12">Máy ảnh</text>
 <circle cx="370" cy="240" r="34" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
@@ -18,8 +18,8 @@
 <polygon points="110,320 124,314 124,326" fill="#0b0d12"/>
 <polygon points="336,320 322,314 322,326" fill="#0b0d12"/>
 <text x="223" y="360" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Máy tới người</text>
-<line x1="404" y1="320" x2="628" y2="320" stroke="#f05a14" stroke-width="3"/>
-<polygon points="404,320 418,314 418,326" fill="#f05a14"/>
-<polygon points="628,320 614,314 614,326" fill="#f05a14"/>
-<text x="516" y="360" text-anchor="middle" font-size="26" font-weight="600" fill="#b43f00">Người tới nền</text>
+<line x1="404" y1="320" x2="628" y2="320" stroke="#c2410c" stroke-width="3"/>
+<polygon points="404,320 418,314 418,326" fill="#c2410c"/>
+<polygon points="628,320 614,314 614,326" fill="#c2410c"/>
+<text x="516" y="360" text-anchor="middle" font-size="26" font-weight="600" fill="#c2410c">Người tới nền</text>
 </svg>

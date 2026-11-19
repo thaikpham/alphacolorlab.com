@@ -2,10 +2,10 @@
 <title>Nhiều nguồn sáng: đo theo đèn chính, nguồn phụ thành màu không khí</title>
 <rect width="720" height="480" fill="#ffffff"/>
 <text x="360" y="60" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Chọn một nguồn làm chuẩn</text>
-<rect x="40" y="100" width="280" height="110" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
-<text x="180" y="146" text-anchor="middle" font-size="30" font-weight="600" fill="#b43f00">Đèn vàng</text>
+<rect x="40" y="100" width="280" height="110" rx="14" fill="#ffffff" stroke="#c2410c" stroke-width="3"/>
+<text x="180" y="146" text-anchor="middle" font-size="30" font-weight="600" fill="#c2410c">Đèn vàng</text>
 <text x="180" y="186" text-anchor="middle" font-size="24" fill="#4a5260">Chọn làm chuẩn</text>
-<rect x="400" y="100" width="280" height="110" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="2"/>
+<rect x="400" y="100" width="280" height="110" rx="14" fill="#f2f2f7" stroke="#7c8594" stroke-width="2"/>
 <text x="540" y="146" text-anchor="middle" font-size="30" font-weight="600" fill="#0b0d12">Cửa sổ</text>
 <text x="540" y="186" text-anchor="middle" font-size="24" fill="#4a5260">Thành màu không khí</text>
 <path d="M260 210 V316" fill="none" stroke="#0b0d12" stroke-width="3"/>

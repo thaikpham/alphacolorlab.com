@@ -161,10 +161,23 @@ function a6400Rule(settingId: string, profile: RuleProfile): Codec {
   };
 }
 
-// Chế độ WB đọc tại 0x19A. Codec không có danh sách giá trị cho chế độ này nên valueId luôn null, chỉ trả raw.
+// Mã chế độ WB của ZV-E10 tại 0x19A, chỉ gồm mã đã thấy trong file máy lưu (test/fixtures/rounds/zve10/).
+// 1 = AWB và 14 = nhiệt độ màu (dat.ts) không có trong danh mục nên không ghi ở đây.
+export const ZVE_WB_CODES: Record<string, number> = {
+  cloudy: 3, // plan_zve10_1 M4
+  shade: 4, // plan_zve10_1 M1
+  "fluorescent-2": 5, // plan_zve10_1 M2
+  flash: 10, // plan_zve10_1 M3
+};
+
+// Bù phơi sáng ZV-E10 tại 0x1DA: byte có dấu, bước 1/3 EV (plan_zve10_1: M1 +1.0 = 3, M2 −1.0 = 253; file máy lưu ở 0.0 = 0)
+export const ZVE_EXP_COMP_CODES: Record<string, number> = { "plus-1.0": 3, "minus-1.0": 253 };
+
+// Chế độ WB đọc tại 0x19A. ZV-E10: valueId theo ZVE_WB_CODES (mã chưa có thì null); α6400: chưa có bảng mã, chỉ trả raw.
 function wbMode(model: "zve10" | "a6400"): Codec {
   const off = (model === "zve10" ? sameOffset : a6400Offset)(0x19a);
   const valid = (b: Uint8Array) => (model === "zve10" ? decodeZve(b) !== null : a6400Ok(b));
+  const table: Record<string, number> = model === "zve10" ? ZVE_WB_CODES : {};
   return {
     settingId: "wb",
     located: off !== null,
@@ -173,9 +186,10 @@ function wbMode(model: "zve10" | "a6400"): Codec {
     codecValues: [],
     read(bytes) {
       if (off === null || !valid(bytes)) return null;
-      return { valueId: null, raw: readRule(bytes, off, 1) };
+      const raw = readRule(bytes, off, 1);
+      return { valueId: raw === null ? null : nameFromCode(table, raw), raw };
     },
-    codeOf: () => null,
+    codeOf: tableCode(table),
     staticConfirmed: [],
   };
 }
@@ -402,8 +416,16 @@ function zveCore(): Codec[] {
     codecRow({ settingId: "ppColorMode", ...atOffset(pp(9), 1), codecValues: COLOR_MODES, codeOf: tableCode(PROFILE.pp.color_mode.values), read: zveRead(pp(9), 1, (d) => (d.pp1.color_mode as string | null) ?? null) }),
     codecRow({ settingId: "ppLevels", ...atOffset(pp(0), 1), codecValues: [], numeric: true, read: zveRead(pp(0), 1, null) }),
     codecRow({ settingId: "wbKelvin", ...atOffset(0x1d8, 1), codecValues: [], numeric: true, read: zveRead(0x1d8, 1, null) }),
+    codecRow({
+      settingId: "expComp",
+      ...atOffset(0x1da, 1),
+      codecValues: [],
+      codeOf: tableCode(ZVE_EXP_COMP_CODES),
+      read: (b) => (decodeZve(b) ? { valueId: nameFromCode(ZVE_EXP_COMP_CODES, b[0x1da]), raw: b[0x1da] } : null),
+    }),
   ];
 }
+
 
 // Lõi file M1–M4 của α6400 (chỉ có trong codec): cùng trường với SPEC của lib/a6400/dat.ts, giá trị từ decodeA6400
 function a6400Core(): Codec[] {

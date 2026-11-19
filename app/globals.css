@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — nguồn duy nhất. Mô tả và luật dùng: DESIGN.md.
+ * Design tokens. Nguồn: design/tokens/tokens.json. Khối giữa tokens:start và tokens:end do npm run tokens sinh ra, không sửa tay. Mô tả và luật dùng: DESIGN.md.
  * Mỗi biến --color-*, --text-*, --radius-*, --shadow-*, --ease-*, --container-* sinh ra utility Tailwind cùng tên
  * (bg-accent, text-footnote, rounded-card, shadow-card, ease-ios, max-w-page…). Không dùng giá trị tùy ý trong className.
  */
@@ -15,53 +15,45 @@
   /* Noto Sans tự host (public/fonts, @font-face bên dưới): một font cho cả trang, đủ dấu tiếng Việt, chạy offline. */
   --font-sans: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  /* Nền và chữ: giấy trắng lạnh, chữ gần đen. Chỉ giao diện sáng. */
-  --color-bg: #f3f4f6;
+  /* tokens:start */
+  /* Sinh từ design/tokens/tokens.json bởi npm run tokens. Không sửa tay. */
+
+  /* Màu */
+  --color-bg: #f2f2f7;
   --color-card: #ffffff;
-  --color-label: #0b0d12; /* 19.4:1 trên card */
-  --color-secondary: #4a5260; /* chữ phụ: 7.9:1 trên card, 7.2:1 trên bg */
-  --color-tertiary: #7c8594; /* chỉ trang trí: nút lá trên đồ thị, icon mờ, chấm trống; không dùng cho chữ */
+  --color-card-elevated: #ffffff; /* Sheet, popover. */
+  --color-label: #0b0d12;
+  --color-secondary: #4a5260; /* Chữ phụ. */
+  --color-tertiary: #7c8594; /* Chỉ trang trí, không dùng cho chữ. */
   --color-separator: #e3e6eb;
-  --color-fill: rgb(11 13 18 / 0.05); /* chip, rãnh segmented, ô ghi chú */
-  --color-fill-strong: rgb(11 13 18 / 0.09); /* hover trên fill */
+  --color-fill: rgb(11 13 18 / 0.05); /* Chip, rãnh segmented. Bán trong suốt. */
+  --color-fill-strong: rgb(11 13 18 / 0.09); /* Hover trên fill. Bán trong suốt. */
+  --color-accent: #c2410c; /* Một màu nhấn. Light: nền nút chính, chọn, focus. Dark: chỉ nền nút chính (chữ trắng); viền chọn, focus và icon nhấn dùng accent-text. */
+  --color-on-accent: #ffffff; /* Chữ và icon trên nền accent. */
+  --color-accent-text: #c2410c; /* Chữ và link màu nhấn. */
+  --color-app-console: #c2410c; /* Bằng accent. */
+  --color-app-colors: #0789b0; /* Màu nhận diện app. Chỉ trang trí, ≥3:1 trên nền. */
+  --color-app-wiki: #0b9468; /* Màu nhận diện app. Chỉ trang trí, ≥3:1 trên nền. */
+  --color-app-blog: #5a55d6; /* Màu nhận diện app. Chỉ trang trí, ≥3:1 trên nền. */
+  --color-success: #127a3a;
+  --color-success-fill: rgb(18 160 70 / 0.1); /* Nền badge. Bán trong suốt. */
+  --color-warning: #a84e00;
+  --color-warning-fill: rgb(240 140 20 / 0.12); /* Nền badge. Bán trong suốt. */
+  --color-danger: #c8261b;
+  --color-danger-fill: rgb(220 40 30 / 0.08); /* Nền badge. Bán trong suốt. */
 
-  /* Một màu nhấn: cam Alpha. Nền nút chính, chọn, focus, chấm tín hiệu. Chữ trên nền này dùng on-accent. */
-  --color-accent: #f05a14;
-  --color-on-accent: #0b0d12; /* 5.7:1 trên accent; chữ trắng chỉ đạt 3.4:1 nên không dùng */
-  --color-accent-text: #b43f00; /* chữ/link màu nhấn: 5.8:1 trên card, 5.2:1 trên bg */
-
-  /* Màu nhận diện của 4 app: chỉ cho nút đồ thị, chấm nhận diện tab. Không làm nền nút. ≥3:1 trên bg và card. */
-  --color-app-console: #f05a14;
-  --color-app-colors: #0789b0;
-  --color-app-wiki: #0b9468;
-  --color-app-blog: #5a55d6;
-
-  /* Ngữ nghĩa */
-  --color-warning: #a84e00; /* 5.6:1 trên card */
-  --color-warning-fill: rgb(240 140 20 / 0.12);
-  --color-success: #127a3a; /* 5.4:1 trên card */
-  --color-success-fill: rgb(18 160 70 / 0.1);
-  --color-danger: #c8261b; /* 5.6:1 trên card */
-  --color-danger-fill: rgb(220 40 30 / 0.08);
-
-  /* Màu thương hiệu Google: chỉ logo G (GoogleG) và viền thẻ Tài khoản bước 2 landing (.google-ring). Ngoại lệ "không gradient", người dùng yêu cầu 2026-11-17. */
-  --color-google-blue: #4285f4;
-  --color-google-red: #ea4335;
-  --color-google-yellow: #fbbc05;
-  --color-google-green: #34a853;
-
-  /* Cỡ chữ: thang cũ giữ tên, line-height nới cho dấu tiếng Việt */
+  /* Chữ */
   --text-footnote: 13px;
   --text-footnote--line-height: 19px;
   --text-subhead: 15px;
   --text-subhead--line-height: 22px;
-  --text-callout: 16px; /* tối thiểu cho input/select: dưới 16px iOS Safari tự zoom */
+  --text-callout: 16px; /* Tối thiểu cho input/select: dưới 16px iOS Safari tự zoom. */
   --text-callout--line-height: 24px;
   --text-body: 17px;
   --text-body--line-height: 27px;
   --text-title3: 20px;
   --text-title3--line-height: 28px;
-  --text-title2: 24px; /* đề mục trong bài viết */
+  --text-title2: 24px; /* Đề mục trong bài viết. */
   --text-title2--line-height: 32px;
   --text-title2--letter-spacing: -0.01em;
   --text-title: clamp(28px, 4vw, 40px);
@@ -71,17 +63,24 @@
   --text-display--line-height: 1.02;
   --text-display--letter-spacing: -0.045em;
 
-  /* Hình khối */
+  /* Bo góc */
   --radius-card: 24px;
   --radius-control: 14px;
   --radius-badge: 8px;
 
-  /* Độ sâu: viền tóc + bóng rất nhẹ, không bóng màu */
+  /* Bóng */
   --shadow-card: 0 0 0 1px rgb(11 13 18 / 0.06), 0 1px 2px rgb(11 13 18 / 0.04);
   --shadow-thumb: 0 0 0 1px rgb(11 13 18 / 0.08), 0 2px 6px rgb(11 13 18 / 0.12);
 
   /* Chuyển động */
   --ease-ios: cubic-bezier(0.16, 1, 0.3, 1);
+  /* tokens:end */
+
+  /* Màu thương hiệu Google: chỉ logo G (GoogleG) và viền thẻ Tài khoản bước 2 landing (.google-ring). Ngoại lệ "không gradient", người dùng yêu cầu 2026-11-17. */
+  --color-google-blue: #4285f4;
+  --color-google-red: #ea4335;
+  --color-google-yellow: #fbbc05;
+  --color-google-green: #34a853;
 
   /* Bố cục */
   --container-page: 100%; /* full width (chủ trang, 2026-11-09); đoạn văn dài tự giới hạn bằng max-w-2xl */
@@ -93,9 +92,10 @@
   --spacing-split: calc(100dvh - 3.5rem); /* cột index master–detail (md+): cao màn hình trừ thanh điều hướng h-14 */
   --spacing-stage: calc(100dvh - 3.5rem); /* sân khấu đồ thị (md+): cao màn hình trừ thanh điều hướng h-14 */
   --spacing-sidebar: 20rem; /* thanh điều hướng dọc (lg+), chứa luôn index của app; nội dung lùi vào đúng bằng chừng này */
-  --spacing-sidebar-head: 7rem; /* phần đầu thanh dọc: launcher + avatar h-14, tìm kiếm h-11, phần còn lại (gồm viền dưới) làm lề; index của app bắt đầu ngay dưới */
+  --spacing-sidebar-head: 7rem; /* phần đầu thanh dọc: launcher h-14, tìm kiếm h-11, phần còn lại (gồm viền dưới) làm lề; index của app bắt đầu ngay dưới */
   --spacing-stage-phone: calc(100dvh - 3.5rem - env(safe-area-inset-bottom)); /* sân khấu đồ thị dưới lg: trừ thanh trên cùng h-14 và vùng an toàn đáy */
   --spacing-navbar: 3.5rem; /* mép trên của phần dính khi cuộn (mục lục bài): dưới thanh h-14; lg+ không có thanh thì 0 (xem media dưới) */
+  --spacing-avatar-gutter: 4.5rem; /* lề phải lg+ khi có thanh dọc: chừa chỗ cho nút avatar cố định góc trên phải (right-4 + 44px = 3.75rem, chừa thêm 0.75rem) */
 }
 
 /* Noto Sans (SIL OFL 1.1, public/fonts/OFL.txt): biến thiên 100–900, tách theo bảng chữ; trình duyệt chỉ tải phần cần. */
@@ -146,7 +146,7 @@ body {
 }
 
 ::selection {
-  background: rgb(240 90 20 / 0.2);
+  background: rgb(194 65 12 / 0.2);
 }
 
 /* Một kiểu focus cho mọi phần tử tương tác */
@@ -414,12 +414,13 @@ dialog::backdrop {
   transition: opacity 0.3s, visibility 0s 0.3s;
 }
 
-/* Thanh điều hướng dọc (AppSidebar, lg+): khi có nó (mọi trang trừ landing, /admin và Blog/Wiki ở Lưới), nội dung lùi sang phải đúng bề rộng thanh.
+/* Thanh điều hướng dọc (AppSidebar, lg+): khi có nó (mọi trang trừ landing, /admin và Blog/Wiki ở Lưới), nội dung lùi sang phải đúng bề rộng thanh, còn lề phải `--spacing-avatar-gutter` giữ chỗ cho nút avatar góc trên phải.
    Không còn thanh trên cùng nên cột split và sân khấu đồ thị cao hết màn hình.
    Blog/Wiki ở Lưới và /admin (`.site-nav-wide`, SiteHeader) có thanh trên cùng h-14 cả từ lg: cột split và sân khấu trừ đúng 3.5rem. */
 @media (width >= 64rem) {
   body:has(> .app-sidebar) #main-content {
     margin-left: var(--spacing-sidebar);
+    padding-right: var(--spacing-avatar-gutter);
   }
   :root {
     --spacing-split: 100dvh;
@@ -431,12 +432,10 @@ dialog::backdrop {
     --spacing-stage: calc(100dvh - 3.5rem);
     --spacing-navbar: 3.5rem;
   }
-  /* Menu avatar dưới thanh dọc, góc trên trái (chỉ khi có thanh dọc) */
+  /* Nút avatar góc trên phải (AppSidebar, chỉ khi có thanh dọc): menu thẳng theo mép phải của nút, top 4rem từ .account-menu */
   body:has(> .app-sidebar) .account-menu {
-    top: 3.5rem;
-    left: 0.75rem;
-    right: auto;
-    transform-origin: top left;
+    right: 1rem;
+    transform-origin: top right;
   }
   /* Thanh trên cùng ở Lưới có px-3: nút avatar cách mép phải 0.75rem, menu thẳng theo */
   :root:has(.site-nav-wide) .account-menu {

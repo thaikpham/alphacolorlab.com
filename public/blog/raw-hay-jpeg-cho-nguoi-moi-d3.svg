@@ -3,16 +3,16 @@
 <rect width="720" height="480" fill="#ffffff"/>
 <rect x="32" y="90" width="200" height="340" rx="14" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
 <text x="132" y="140" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">RAW</text>
-<rect x="52" y="190" width="160" height="100" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<rect x="52" y="190" width="160" height="100" rx="8" fill="#f2f2f7" stroke="#0b0d12" stroke-width="2"/>
 <text x="132" y="249" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">RAW</text>
-<rect x="260" y="90" width="200" height="340" rx="14" fill="#ffffff" stroke="#f05a14" stroke-width="3"/>
-<text x="360" y="140" text-anchor="middle" font-size="26" font-weight="600" fill="#b43f00">RAW &amp; JPEG</text>
-<rect x="280" y="180" width="160" height="80" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<rect x="260" y="90" width="200" height="340" rx="14" fill="#ffffff" stroke="#c2410c" stroke-width="3"/>
+<text x="360" y="140" text-anchor="middle" font-size="26" font-weight="600" fill="#c2410c">RAW &amp; JPEG</text>
+<rect x="280" y="180" width="160" height="80" rx="8" fill="#f2f2f7" stroke="#0b0d12" stroke-width="2"/>
 <text x="360" y="229" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">RAW</text>
-<rect x="280" y="290" width="160" height="80" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<rect x="280" y="290" width="160" height="80" rx="8" fill="#f2f2f7" stroke="#0b0d12" stroke-width="2"/>
 <text x="360" y="339" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">JPEG</text>
 <rect x="488" y="90" width="200" height="340" rx="14" fill="#ffffff" stroke="#7c8594" stroke-width="2"/>
 <text x="588" y="140" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">JPEG</text>
-<rect x="508" y="190" width="160" height="100" rx="8" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2"/>
+<rect x="508" y="190" width="160" height="100" rx="8" fill="#f2f2f7" stroke="#0b0d12" stroke-width="2"/>
 <text x="588" y="249" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">JPEG</text>
 </svg>

@@ -8,13 +8,13 @@
 <polygon points="244,253 228,256 233,240" fill="#7c8594"/>
 <line x1="84" y1="320" x2="236" y2="320" stroke="#7c8594" stroke-width="4" stroke-dasharray="10 8"/>
 <polygon points="244,320 228,313 228,327" fill="#7c8594"/>
-<rect x="250" y="230" width="260" height="150" rx="14" fill="#f3f4f6" stroke="#7c8594" stroke-width="3"/>
+<rect x="250" y="230" width="260" height="150" rx="14" fill="#f2f2f7" stroke="#7c8594" stroke-width="3"/>
 <circle cx="380" cy="275" r="18" fill="#ffffff" stroke="#0b0d12" stroke-width="3"/>
 <text x="380" y="340" text-anchor="middle" font-size="26" font-weight="600" fill="#0b0d12">Bàn cà phê</text>
-<circle cx="580" cy="110" r="34" fill="#f05a14"/>
-<text x="580" y="62" text-anchor="middle" font-size="26" font-weight="600" fill="#b43f00">Đèn trần vàng</text>
-<line x1="560" y1="140" x2="500" y2="222" stroke="#f05a14" stroke-width="4" stroke-dasharray="10 8"/>
-<polygon points="495,229 497,212 510,222" fill="#f05a14"/>
+<circle cx="580" cy="110" r="34" fill="#c2410c"/>
+<text x="580" y="62" text-anchor="middle" font-size="26" font-weight="600" fill="#c2410c">Đèn trần vàng</text>
+<line x1="560" y1="140" x2="500" y2="222" stroke="#c2410c" stroke-width="4" stroke-dasharray="10 8"/>
+<polygon points="495,229 497,212 510,222" fill="#c2410c"/>
 <rect x="350" y="404" width="60" height="40" rx="8" fill="#0b0d12"/>
 <text x="380" y="470" text-anchor="middle" font-size="24" font-weight="600" fill="#0b0d12">Máy ảnh</text>
 </svg>

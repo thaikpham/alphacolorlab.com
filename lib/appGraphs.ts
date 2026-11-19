@@ -3,7 +3,7 @@ import { layout3d } from "./layout3d.ts";
 import { generateSiteGraph } from "./graph.ts";
 import { hubIdFromValue } from "./hubId.ts";
 import { entryHref, productHref, products } from "./wiki.ts";
-import { sections, sonyBodies, cameraModels, colorBank, wiki } from "../app/content.ts";
+import { sections, sonyBodies, cameraModels, colorBank, wiki, LEGACY_MENU_ARTICLE } from "../app/content.ts";
 import { fold } from "./fold.ts";
 import presets from "./zve10/presets.ts";
 
@@ -15,6 +15,7 @@ const SERIES_LABELS: Record<string, string> = { GM: "G Master", G: "Ống kính 
  * Data: sections + sonyBodies + cameraModels from content.ts.
  * Cameras are the 3 guide cameras linked to chapters.
  * Steps are linked to their chapter. Model-restricted steps linked to their camera.
+ * Chapters and steps link to the Legacy Menu article (the menu guide now lives there).
  */
 function buildConsoleGraph(): CGraph {
   const edges: CEdge[] = [];
@@ -57,11 +58,11 @@ function buildConsoleGraph(): CGraph {
   // Add chapter hubs
   for (const section of sections) {
     const chapterId = section.id;
-    addNode(chapterId, section.title, "chapter", true, `/cai-tay/${section.id}`);
+    addNode(chapterId, section.title, "chapter", true, LEGACY_MENU_ARTICLE);
   }
 
   // Add summary chapter
-  addNode("tom-tat", "Tóm tắt", "chapter", true, "/cai-tay/tom-tat");
+  addNode("tom-tat", "Tóm tắt", "chapter", true, LEGACY_MENU_ARTICLE);
 
   // Add tool hubs
   addNode("tao-m1-m4", "Tạo bộ M1–M4", "tool", true, "/tao-m1-m4");
@@ -71,7 +72,7 @@ function buildConsoleGraph(): CGraph {
   for (const section of sections) {
     for (const step of section.steps) {
       const stepId = `step-${section.id}-${step.n}`;
-      addNode(stepId, step.title, "step", false, `/cai-tay/${section.id}`);
+      addNode(stepId, step.title, "step", false, LEGACY_MENU_ARTICLE);
     }
   }
 

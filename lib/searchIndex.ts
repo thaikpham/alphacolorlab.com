@@ -3,7 +3,7 @@ import knowledge from '../data/knowledge.json' with { type: 'json' }
 import articles from '../data/articles.json' with { type: 'json' }
 import products from '../data/products.json' with { type: 'json' }
 import presets from './zve10/presets.json' with { type: 'json' }
-import { blog, sections } from '../app/content.ts'
+import { blog } from '../app/content.ts'
 import { entryHref, productHref } from './wiki.ts'
 import type { SearchItem } from './search.ts'
 
@@ -42,12 +42,6 @@ export function buildIndex(): SearchItem[] {
   }
 
   for (const p of presets) items.push({ kind: 'recipe', title: p.name, extra: p.group, summary: p.description_vi, href: `/colors/${p.id}` })
-
-  // Guide sections with route per chapter
-  for (const s of sections) {
-    const stepTitles = s.steps.map(step => step.title).join(', ')
-    items.push({ kind: 'guide', title: s.title, extra: '', summary: `${s.lead}. ${stepTitles}`, href: `/cai-tay/${s.id}` })
-  }
 
   return items
 }

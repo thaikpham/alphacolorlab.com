@@ -4,7 +4,7 @@
 <text x="48" y="92" font-size="28" font-weight="600" fill="#0b0d12">Trước khi bật</text>
 <text x="384" y="92" font-size="28" font-weight="600" fill="#0b0d12">Sau khi bật</text>
 <rect x="48" y="120" width="288" height="220" rx="14" fill="#0b0d12"/>
-<rect x="384" y="120" width="288" height="220" rx="14" fill="#f3f4f6"/>
+<rect x="384" y="120" width="288" height="220" rx="14" fill="#f2f2f7"/>
 <g fill="#7c8594">
 <circle cx="90" cy="150" r="3"/>
 <circle cx="150" cy="172" r="3"/>
@@ -23,7 +23,7 @@
 <circle cx="604" cy="198" r="3"/>
 </g>
 <path d="M396 300 L466 230 L526 280 L586 215 L660 300 L660 328 L396 328 Z" fill="#7c8594"/>
-<rect x="530" y="186" width="112" height="84" rx="8" fill="none" stroke="#f05a14" stroke-width="4"/>
+<rect x="530" y="186" width="112" height="84" rx="8" fill="none" stroke="#c2410c" stroke-width="4"/>
 <path d="M346 230 H366" stroke="#7c8594" stroke-width="3" fill="none"/>
 <polygon points="382,230 366,222 366,238" fill="#7c8594"/>
 <text x="192" y="382" font-size="24" fill="#0b0d12" text-anchor="middle">Chủ thể khó thấy</text>

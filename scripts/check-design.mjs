@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Kiểm tra design system (DESIGN.md). Chạy: npm run check:design (tự chạy trước npm run build).
 // Mọi màu, cỡ chữ, bo góc, bóng phải đi qua token trong app/globals.css. Thêm token mới ở đó + DESIGN.md, không thêm ngoại lệ ở đây.
+import { spawnSync } from "node:child_process";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -60,6 +61,12 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     if (file === TOKENS_FILE) continue;
     if (file.endsWith(".css")) problems.push({ file, line: 1, rule: "extra-css", hit: file, msg: `CSS chỉ nằm trong ${TOKENS_FILE}.` });
     problems.push(...lint(readFileSync(abs, "utf8"), file));
+  }
+  // Khối tokens trong globals.css phải khớp tokens.json, và các cặp tương phản phải đạt (build --check không ghi gì).
+  const sync = spawnSync(process.execPath, [join(root, "design/tokens/build.mjs"), "--check"], { encoding: "utf8" });
+  if (sync.status !== 0) {
+    const detail = (sync.stderr || sync.stdout || sync.error?.message || "").trim().split("\n").join("\n    ");
+    problems.push({ file: "design/tokens/build.mjs", line: 1, rule: "token-sync", hit: "--check", msg: `Lệch design/tokens/tokens.json hoặc tương phản không đạt. Chạy: npm run tokens.\n    ${detail}` });
   }
   for (const p of problems) console.log(`${p.file}:${p.line}  ${p.rule}  ${p.hit}\n    ${p.msg}`);
   console.log(problems.length ? `\n✗ ${problems.length} lỗi design system. Xem DESIGN.md.` : "Design system: không có lỗi.");

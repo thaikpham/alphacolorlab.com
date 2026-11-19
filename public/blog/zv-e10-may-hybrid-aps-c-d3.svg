@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Noto Sans, system-ui, sans-serif">
 <title>Cây thư mục trên thẻ nhớ: PRIVATE, SONY, SETTING, E10 và bốn file CAMPR01P.DAT đến CAMPR04P.DAT</title>
 <defs>
-<path id="folder" d="M0 2h11l4 5h13v15H0z" fill="#f3f4f6" stroke="#4a5260" stroke-width="2" stroke-linejoin="round"/>
+<path id="folder" d="M0 2h11l4 5h13v15H0z" fill="#f2f2f7" stroke="#4a5260" stroke-width="2" stroke-linejoin="round"/>
 <path id="file" d="M2 0h14l8 8v16H2z" fill="#ffffff" stroke="#4a5260" stroke-width="2" stroke-linejoin="round"/>
-<path id="card" d="M2 0h16l8 8v16H2z" fill="#f3f4f6" stroke="#0b0d12" stroke-width="2" stroke-linejoin="round"/>
-<path id="arrow" d="M0 0h40m-9 -7l9 7l-9 7" fill="none" stroke="#b43f00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="card" d="M2 0h16l8 8v16H2z" fill="#f2f2f7" stroke="#0b0d12" stroke-width="2" stroke-linejoin="round"/>
+<path id="arrow" d="M0 0h40m-9 -7l9 7l-9 7" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </defs>
 <rect width="720" height="480" fill="#ffffff"/>
 <text x="24" y="40" font-size="26" font-weight="700" fill="#0b0d12">Bốn file nằm ở đâu trên thẻ nhớ</text>
@@ -39,7 +39,7 @@
 <use href="#arrow" x="462" y="320"/>
 <use href="#arrow" x="462" y="360"/>
 <use href="#arrow" x="462" y="400"/>
-<g font-size="24" font-weight="700" fill="#b43f00">
+<g font-size="24" font-weight="700" fill="#c2410c">
 <text x="518" y="288">Ô M1</text>
 <text x="518" y="328">Ô M2</text>
 <text x="518" y="368">Ô M3</text>

@@ -21,13 +21,13 @@
       "values": 104
     },
     "zve10": {
-      "confirmed": 48,
-      "located": 14,
-      "pending": 12,
-      "predicted": 21,
-      "roundsLeft": 4,
+      "confirmed": 56,
+      "located": 15,
+      "pending": 8,
+      "predicted": 19,
+      "roundsLeft": 2,
       "settings": 18,
-      "unknown": 11,
+      "unknown": 9,
       "values": 92
     }
   },

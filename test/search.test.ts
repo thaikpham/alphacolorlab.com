@@ -9,21 +9,19 @@ const index = buildIndex()
 
 test('buildIndex returns all categories', () => {
   const kinds = new Set(index.map((i) => i.kind))
-  assert.deepEqual(kinds, new Set(['guide', 'note', 'article', 'product', 'recipe']))
+  assert.deepEqual(kinds, new Set(['note', 'article', 'product', 'recipe']))
   assert(index.length > 0, 'index should not be empty')
 })
 
-test('index includes products, notes, articles, recipes and guide sections', () => {
+test('index includes products, notes, articles and recipes', () => {
   const products = index.filter((i) => i.kind === 'product')
   const articles = index.filter((i) => i.kind === 'article')
   const recipes = index.filter((i) => i.kind === 'recipe')
-  const guides = index.filter((i) => i.kind === 'guide')
   const knowledgeNotes = index.filter((i) => i.kind === 'note')
 
   assert(products.length >= 124, `should have at least 124 products, got ${products.length}`)
   assert(articles.length >= 20, `should have at least 20 articles, got ${articles.length}`)
   assert(recipes.length >= 40, `should have at least 40 recipes, got ${recipes.length}`)
-  assert(guides.length >= 3, `should have at least 3 guide sections, got ${guides.length}`)
   assert(knowledgeNotes.length >= 20, `should have at least 20 knowledge notes, got ${knowledgeNotes.length}`)
 })
 
@@ -42,7 +40,7 @@ test('every href is unique and valid', () => {
   for (const item of index) {
     assert(!hrefs.has(item.href), `duplicate href: ${item.href}`)
     assert(
-      item.href.startsWith('/wiki/') || item.href.startsWith('/blog/') || item.href.startsWith('/colors/') || item.href.startsWith('/cai-tay/') || item.href.startsWith('/#'),
+      item.href.startsWith('/wiki/') || item.href.startsWith('/blog/') || item.href.startsWith('/colors/') || item.href.startsWith('/#'),
       `invalid href: ${item.href}`
     )
     hrefs.add(item.href)

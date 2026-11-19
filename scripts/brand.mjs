@@ -3,7 +3,7 @@
 import sharp from "sharp";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
-const C = { label: "#0b0d12", white: "#ffffff", bg: "#f3f4f6", accent: "#f05a14", colors: "#0789b0", wiki: "#0b9468", blog: "#5a55d6" };
+const C = { label: "#0b0d12", white: "#ffffff", bg: "#f2f2f7", accent: "#c2410c", colors: "#0789b0", wiki: "#0b9468", blog: "#5a55d6" };
 const APPS = [C.colors, C.wiki, C.blog];
 const APPS4 = [C.colors, C.wiki, C.blog, C.accent];
 const f = (n) => +n.toFixed(2);

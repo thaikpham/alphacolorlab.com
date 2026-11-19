@@ -4,7 +4,7 @@ import { fold } from './fold.ts'
 import { ROMAN, synonymGroups } from './searchSynonyms.ts'
 
 export type SearchItem = {
-  kind: 'guide' | 'note' | 'article' | 'product' | 'recipe'
+  kind: 'note' | 'article' | 'product' | 'recipe'
   title: string
   extra: string
   summary: string
@@ -101,7 +101,7 @@ function alternatives(tokens: string[]): string[][] {
   return out
 }
 
-const KIND_ORDER = { product: 0, guide: 1, note: 2, article: 3, recipe: 4 }
+const KIND_ORDER = { product: 0, note: 2, article: 3, recipe: 4 }
 
 export function searchIndex(items: SearchItem[], query: string): SearchItem[] {
   const tokens = words(query)

@@ -6,6 +6,7 @@ import type { CGraph } from "@/lib/constellation";
 import { authReady, useSession } from "@/lib/auth";
 import { useGear } from "@/lib/gear";
 import { resetPersonalOff } from "@/lib/usePersonal";
+import { AccountButton } from "./AccountButton";
 import { GearManager } from "./GearManager";
 import { LandingGraph } from "./LandingGraph";
 import { LandingStart } from "./LandingStart";
@@ -17,7 +18,7 @@ type Step = 1 | 2 | 3;
 /** Landing là một flow 3 bước trong đúng một màn hình, không cuộn trang (cuộn theo mốc từng kéo người dùng đi khi đang nhập máy):
  * 1 giới thiệu, 2 túi đồ + đăng nhập Google trong bảng điều khiển hai cột (bắt buộc cả hai mới sang được bước 3), 3 đồ thị đã cá nhân hóa + nút vào dự án.
  * Đồ thị tổng hợp nằm nền suốt flow. Bước đang đứng lưu trong sessionStorage: vòng đăng nhập Google rời trang rồi quay lại "/"
- * thì về đúng bước 2. Góc dưới trái: nút quay lại + chấm đếm bước; góc dưới phải: nút cam của bước (bước 3 là EnterLink trong đồ thị). */
+ * thì về đúng bước 2. Góc trên phải: avatar, cùng vị trí ở mọi bước. Góc dưới trái: nút quay lại + chấm đếm bước; góc dưới phải: nút cam của bước (bước 3 là EnterLink trong đồ thị). */
 export function LandingFlow({ graph }: { graph: CGraph }) {
   const [step, setStep] = useState<Step>(1);
   const session = useSession();
@@ -65,6 +66,10 @@ export function LandingFlow({ graph }: { graph: CGraph }) {
       <div className="absolute inset-0">
         <LandingGraph graph={graph} active={shown === 3} />
       </div>
+      {/* Avatar và menu người dùng ở mọi bước, cùng vị trí góc trên phải: LandingFlow đặt một nút duy nhất (đồng bộ tài khoản chạy một lần) */}
+      <div className="absolute top-2 right-2 z-20 rounded-full bg-card shadow-thumb md:top-4 md:right-4">
+        <AccountButton previewPersonal />
+      </div>
 
       {shown === 1 && (
         <section aria-labelledby="gioi-thieu-title" className="absolute inset-0 z-10 flex flex-col items-center justify-center overflow-x-clip intro-overlay px-4 py-24 text-center sm:px-6">
@@ -86,7 +91,7 @@ export function LandingFlow({ graph }: { graph: CGraph }) {
       )}
 
       {shown === 2 && (
-        <section aria-labelledby="flow-title" className="absolute inset-0 z-10 overflow-y-auto bg-bg px-4 pt-10 pb-24 sm:px-6 lg:px-8">
+        <section aria-labelledby="flow-title" className="absolute inset-0 z-10 overflow-y-auto bg-bg pt-16 pr-14 pb-24 pl-4 sm:pl-6 md:pr-avatar-gutter lg:pl-8">
           <div className="mx-auto flex min-h-full w-full max-w-dashboard flex-col justify-center gap-4">
             <h2 id="flow-title" className="text-title">
               {T.steps[1]}

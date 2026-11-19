@@ -5,7 +5,7 @@
 <text x="530" y="80" text-anchor="middle" font-size="30" font-weight="600" fill="#c8261b">Sai</text>
 <g>
 <rect x="50" y="96" width="280" height="236" rx="14" fill="#ffffff" stroke="#7c8594" stroke-width="3"/>
-<path d="M70 140 H310 M70 178 H310 M70 216 H310 M70 254 H310" fill="none" stroke="#f05a14" stroke-width="10" stroke-linecap="round"/>
+<path d="M70 140 H310 M70 178 H310 M70 216 H310 M70 254 H310" fill="none" stroke="#c2410c" stroke-width="10" stroke-linecap="round"/>
 <circle cx="190" cy="190" r="18" fill="#0b0d12"/>
 <rect x="172" y="212" width="36" height="56" rx="12" fill="#0b0d12"/>
 <rect x="174" y="262" width="12" height="34" rx="5" fill="#0b0d12"/>

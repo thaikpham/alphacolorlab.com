@@ -80,16 +80,9 @@ export const hero = {
 // Alpha Console dạng split view: cột trái (ConsoleIndex) là máy + danh sách việc, cột phải là một việc, mỗi việc một URL
 export const alphaConsole = {
   makeSet: "Tạo bộ M1–M4",
-  guideGroup: (n: number) => `Cài tay ${n} bước`,
-  summary: "Tóm tắt",
-  summaryTitle: "Tóm tắt cài đặt",
-  skipped: "Bỏ qua",
   tools: "Công cụ",
   cartCount: (k: number) => `${k} công thức`,
   back: "Alpha Console",
-  prev: "Chương trước",
-  next: "Chương tiếp",
-  chapterNav: "Chuyển chương",
   sources: "Nguồn",
   sourcesTail: "tên menu theo bộ nhớ dịch ILDC · bộ slide \"10 bước\"",
   preset: {
@@ -98,7 +91,7 @@ export const alphaConsole = {
   },
   notDecoded: {
     title: "Công cụ này dùng cho ZV-E10",
-    text: (name: string) => `${name} chưa tạo được file M1–M4 trên trang này. Bạn vẫn cài tay được theo 4 chương bên cạnh.`,
+    text: (name: string) => `${name} chưa tạo được file M1–M4 trên trang này. Bạn vẫn cài tay được theo bài hướng dẫn menu trong Blog.`,
     useZve10: "Tôi dùng ZV-E10",
   },
   decodePage: { title: "Giải mã ô nhớ M1–M4", all: "Tiến độ các máy", game: "Mini game giải mã" },
@@ -237,13 +230,14 @@ export const kolStudio = {
 };
 
 // Đường dẫn cũ của trang chủ một trang (/#…) → route mới; may-cua-ban ở lại "/"
+export const LEGACY_MENU_ARTICLE = "/blog/menu-may-anh-toi-uu-nguoi-moi-legacy-menu";
 export const consoleHashRoutes: Record<string, string> = {
-  "phoi-sang": "/cai-tay/phoi-sang",
-  "lay-net": "/cai-tay/lay-net",
-  "mau-da": "/cai-tay/mau-da",
-  "man-hinh": "/cai-tay/man-hinh",
-  "tom-tat": "/cai-tay/tom-tat",
-  "huong-dan": "/cai-tay/phoi-sang",
+  "phoi-sang": LEGACY_MENU_ARTICLE,
+  "lay-net": LEGACY_MENU_ARTICLE,
+  "mau-da": LEGACY_MENU_ARTICLE,
+  "man-hinh": LEGACY_MENU_ARTICLE,
+  "tom-tat": LEGACY_MENU_ARTICLE,
+  "huong-dan": LEGACY_MENU_ARTICLE,
   "tao-preset": "/tao-m1-m4",
   "choi-game": "/console",
 };
@@ -814,7 +808,7 @@ export const nav = {
   tabBarLabel: "Ứng dụng",
   skipLink: "Bỏ qua đến nội dung",
   apps: [
-    { href: "/console", label: "Alpha Console", match: ["/console", "/cai-tay", "/tao-m1-m4", "/bo-m1-m4", "/giai-ma", "/kol", "/do-thi/console"] },
+    { href: "/console", label: "Alpha Console", match: ["/console", "/tao-m1-m4", "/bo-m1-m4", "/giai-ma", "/kol", "/do-thi/console"] },
     { href: "/colors", label: "Color Bank", match: ["/colors", "/do-thi/colors"] },
     { href: "/wiki", label: "Product Wiki", match: ["/wiki", "/do-thi/wiki"] },
     { href: "/blog", label: "Blog", match: ["/blog", "/do-thi/blog"] },
@@ -843,7 +837,7 @@ export const help = {
         {
           q: "Máy ảnh nào được hỗ trợ?",
           link: { href: "/console", label: "Mở Alpha Console" },
-          a: "Cài tay hỗ trợ ZV-E10, A6400 và A7C II, đường dẫn menu theo đúng từng máy. Tạo file Memory Recall M1–M4 hiện chỉ dành cho ZV-E10.",
+          a: "Hướng dẫn menu hỗ trợ ZV-E10, A6400 và A7C II, đường dẫn menu theo đúng từng máy, trong hai bài viết của Blog. Tạo file Memory Recall M1–M4 hiện chỉ dành cho ZV-E10.",
         },
         {
           q: "\"Của tôi\" và \"Tất cả\" khác nhau thế nào?",
@@ -851,7 +845,7 @@ export const help = {
         },
         {
           q: "Có cần đăng nhập Google không?",
-          a: "Ở trang chủ, bước 2 yêu cầu lưu ít nhất một sản phẩm vào túi đồ và đăng nhập Google rồi mới sang được bước 3. Các trang Cài tay, Color Bank, Product Wiki, Blog, đồ thị và Tạo bộ M1–M4 vẫn mở được bằng đường dẫn trực tiếp khi chưa đăng nhập. Đăng nhập còn để đồng bộ túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn sang máy khác.",
+          a: "Ở trang chủ, bước 2 yêu cầu lưu ít nhất một sản phẩm vào túi đồ và đăng nhập Google rồi mới sang được bước 3. Các trang Color Bank, Product Wiki, Blog, đồ thị và Tạo bộ M1–M4 vẫn mở được bằng đường dẫn trực tiếp khi chưa đăng nhập. Đăng nhập còn để đồng bộ túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn sang máy khác.",
         },
       ],
     },
@@ -1606,7 +1600,7 @@ export const datImport = {
 // Trang đồ thị /do-thi/[app] (mở từ menu người dùng): tên app, nút về danh sách, tên đồ thị cho trình đọc màn hình
 export const appHome = {
   views: { graph: "Đồ thị", list: "Danh sách" },
-  console: { title: "Alpha Console", graph: "Đồ thị Alpha Console: máy, chương cài tay, bước và công cụ" },
+  console: { title: "Alpha Console", graph: "Đồ thị Alpha Console: máy, chương hướng dẫn menu, bước và công cụ" },
   colors: { title: "Color Bank", graph: "Đồ thị Color Bank: công thức màu, Gamma và Chế độ màu" },
   wiki: { title: "Product Wiki", graph: "Đồ thị Product Wiki: máy ảnh, ống kính, phụ kiện" },
   blog: { title: "Blog", graph: "Đồ thị Blog: bài viết, kiến thức và sản phẩm" },

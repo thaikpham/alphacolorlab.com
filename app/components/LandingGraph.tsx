@@ -6,12 +6,11 @@ import type { CGraph } from "@/lib/constellation";
 import { MineConstellation } from "./MineConstellation";
 import { SearchField } from "./SearchField";
 import { EnterLink } from "./EnterLink";
-import { AccountButton } from "./AccountButton";
 
 /** Đồ thị tổng hợp của landing, nằm nền suốt flow 3 bước (LandingFlow). Bước 1 và 2: zoom gần làm nền (1.3³), mọi nút điều khiển ẩn
  * (.graph-legend). Bước 3 (`active`): vừa khung, đã lọc theo túi đồ; góc trên trái là chú giải 4 app,
  * góc trên phải là kính lúp (mở ô tìm ngay bên dưới; ô tìm duy nhất của trang vì landing không có thanh điều hướng) và nút chế độ xem,
- * sát mép phải là nút avatar mở menu người dùng (AccountButton), góc dưới phải là nút cam vào dự án (EnterLink, vào app đang chọn ở chú giải). */
+ * góc dưới phải là nút cam vào dự án (EnterLink, vào app đang chọn ở chú giải). */
 export function LandingGraph({ graph, active }: { graph: CGraph; active: boolean }) {
   const [searching, setSearching] = useState(false);
   const field = useRef<HTMLDivElement>(null);
@@ -36,10 +35,6 @@ export function LandingGraph({ graph, active }: { graph: CGraph; active: boolean
   return (
     <div className="relative h-full">
       <MineConstellation graph={graph} title={landing.graphLabel} controls={false} zoom={zoom} legend legendAction={(app) => <EnterLink app={app} />} tools={searchButton} quietLabels preview />
-      {/* Nút avatar và menu người dùng (hồ sơ, Danh sách/Lưới, Của tôi/Tất cả, đăng xuất): sát góc trên phải, bên phải kính lúp và nút chế độ xem */}
-      <div className="graph-legend absolute top-2 right-2 z-20 rounded-full bg-card shadow-thumb transition-opacity duration-300 ease-ios md:top-4 md:right-4">
-        <AccountButton previewPersonal />
-      </div>
       {searching && (
         <div
           ref={field}
