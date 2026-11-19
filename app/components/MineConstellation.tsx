@@ -9,7 +9,7 @@ import { Constellation, type ConstellationProps } from "./Constellation";
 /** Constellation với nút của người dùng: túi đồ (mọi đồ thị) và giỏ màu M1–M4 (Color Bank, đồ thị tổng hợp).
  * Không chọn sẵn nút nào: đồ thị mở ở trạng thái chờ (tự xoay, vừa khung) cho tới khi người dùng tương tác.
  * Đang cá nhân hóa (lib/usePersonal) thì chỉ còn các nút nối với túi đồ; bật tắt bằng hàng "Nội dung" trong menu avatar (trên đồ thị không còn nút riêng, tránh trùng).
- * preview (landing): lọc ngay khi túi đã lưu có món, để xem trước đồ thị của riêng mình.. */
+ * preview (trang chủ): lọc ngay khi túi đã lưu có món, để xem trước đồ thị của riêng mình.. */
 export function MineConstellation({ preview, ...props }: Omit<ConstellationProps, "mine"> & { preview?: boolean }) {
   const bag = useGear();
   const cart = useCart();

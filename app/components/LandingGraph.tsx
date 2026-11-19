@@ -7,15 +7,15 @@ import { MineConstellation } from "./MineConstellation";
 import { SearchField } from "./SearchField";
 import { EnterLink } from "./EnterLink";
 
-/** Đồ thị tổng hợp của landing, nằm nền suốt flow 3 bước (LandingFlow). Bước 1 và 2: zoom gần làm nền (1.3³), mọi nút điều khiển ẩn
- * (.graph-legend). Bước 3 (`active`): vừa khung, đã lọc theo túi đồ; góc trên trái là chú giải 4 app,
- * góc trên phải là kính lúp (mở ô tìm ngay bên dưới; ô tìm duy nhất của trang vì landing không có thanh điều hướng) và nút chế độ xem,
+/** Đồ thị tổng hợp ở trang chủ, lớp cố định nằm dưới cả trang (Landing). Chưa tới màn đồ thị (`on` = false): zoom gần làm nền (1.3³),
+ * mọi nút điều khiển ẩn (.graph-legend). Tới màn đồ thị (`on`): vừa khung, đã lọc theo túi đồ; góc trên trái là chú giải 4 app,
+ * góc trên phải là kính lúp (mở ô tìm ngay bên dưới; ô tìm duy nhất của trang vì trang chủ không có thanh điều hướng) và nút chế độ xem,
  * góc dưới phải là nút cam vào dự án (EnterLink, vào app đang chọn ở chú giải). */
-export function LandingGraph({ graph, active }: { graph: CGraph; active: boolean }) {
+export function LandingGraph({ graph, on }: { graph: CGraph; on: boolean }) {
   const [searching, setSearching] = useState(false);
   const field = useRef<HTMLDivElement>(null);
-  // Chưa tới bước đồ thị thì đồ thị chỉ làm nền (zoom gần); tới bước đồ thị thì lùi về vừa khung
-  const zoom = active ? 1 : 1.3 ** 3;
+  // Chưa tới màn đồ thị thì đồ thị chỉ làm nền (zoom gần); tới màn đồ thị thì lùi về vừa khung
+  const zoom = on ? 1 : 1.3 ** 3;
   // Mở ô tìm thì đưa con trỏ vào luôn
   useEffect(() => {
     if (searching) field.current?.querySelector("input")?.focus({ preventScroll: true });

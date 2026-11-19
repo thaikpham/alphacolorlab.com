@@ -61,7 +61,7 @@ Chỉ có giao diện sáng. Không có chế độ tối.
 - Mỗi app là danh sách 2 cột: index bên trái, nội dung chi tiết bên phải (`SplitLayout`), trừ `/wiki` và `/blog` khi ở Lưới (mặc định, xem "Lưới index"). Alpha Console ở `/console`.
 - Cột trái Alpha Console (`ConsoleIndex`): `ModelPicker` không có nhãn trạng thái, chỉ có chữ. Tên máy và dòng phụ mỗi thứ một dòng, cắt bằng `truncate`. Máy đã giải mã có nút phụ "Tạo bộ M1–M4" (`h-11 rounded-full bg-fill text-accent-text`) cạnh `details`, là anh em chứ không lồng trong `summary`; hàng hẹp thì nút xuống dòng riêng dưới hàng (`flex-wrap`, `details` `min-w-48`). Mục Công cụ chỉ hiện cho máy đã giải mã (`data-model-only`); máy khác không thấy mục này.
 - Đồ thị của từng app còn là trang riêng `/do-thi/[app]`, mở từ menu avatar ("Xem đồ thị"). Mọi đồ thị cùng kiểu, cùng chức năng (một component `Constellation`).
-- Nền `bg` trắng lạnh, thẻ `card` trắng có viền tóc. Không gradient, không phát sáng. Ngoại lệ: viền bốn màu Google của thẻ Tài khoản bước 2 landing (xem bước 1 ở trên).
+- Nền `bg` trắng lạnh, thẻ `card` trắng có viền tóc. Không gradient, không phát sáng. Ngoại lệ: glow và gradient chữ của màn 1 landing (xem trên).
 - Một màu nhấn `accent` (cam Alpha) cho hành động chính, trạng thái chọn và focus. Chữ trên nền cam là `on-accent` (trắng, 5.2:1 trên `accent`).
 - Mỗi app một màu nhận diện (`app-*`), chỉ dùng cho nút đồ thị và chấm nhận diện. Không làm nền nút.
 - Noto Sans là font duy nhất, tự host, chạy offline.
@@ -83,13 +83,13 @@ Chỉ có giao diện sáng. Không có chế độ tối.
 | `accent-text` | #c2410c | Chữ và link màu nhấn trên nền sáng (5.2:1 trên card, 4.6:1 trên bg) |
 | `app-console` / `app-colors` / `app-wiki` / `app-blog` | cam / xanh lục lam / xanh lá / chàm | Nút chính trên đồ thị của app, chấm cạnh tên app. ≥3:1 trên bg |
 | `warning`, `success`, `danger` (+ `-fill`) | | Ghi chú cảnh báo, trạng thái, lỗi |
-| `google-blue` / `google-red` / `google-yellow` / `google-green` | #4285f4 / #ea4335 / #fbbc05 / #34a853 | Chỉ logo G của Google (`GoogleG`) và viền thẻ Tài khoản bước 2 landing (`.google-ring`). Thương hiệu Google, không dùng cho nút, chữ hay trạng thái |
+| `google-blue` / `google-red` / `google-yellow` / `google-green` | #4285f4 / #ea4335 / #fbbc05 / #34a853 | Chỉ logo G của Google (`GoogleG`) ở mục đăng nhập trong menu avatar. Thương hiệu Google, không dùng cho nút, chữ hay trạng thái |
 
 ### Named Rules
 - **Một nút cam mỗi màn.** Hành động chính duy nhất dùng `bg-accent text-on-accent`. Nút phụ dùng `bg-fill text-label`.
 - **Màu app không phải màu nút.** `app-*` chỉ vẽ chấm và nút đồ thị.
 - **Không chữ xám nhạt.** Chữ đọc được tối thiểu là `secondary`. Người dùng đã phản ánh chữ xám nhạt khó đọc.
-- **Màu Google chỉ cho thương hiệu Google.** `google-*` chỉ vẽ logo G và viền thẻ Tài khoản bước 2 landing, ngoại lệ người dùng yêu cầu 2026-11-17 (xem Overview).
+- **Màu Google chỉ cho thương hiệu Google.** `google-*` chỉ vẽ logo G (`GoogleG`) ở mục đăng nhập trong menu avatar.
 
 ## Typography
 
@@ -145,7 +145,7 @@ Hai mức: `shadow-card` (viền tóc + bóng 1–2px) cho thẻ; `shadow-thumb`
 - Chọn nút: nút bay về giữa, khung lấy nét bốn góc khóa vào nút, các nút nối với nó xếp thành vòng đều, phần còn lại lùi ra và mờ còn 12%.
 - Bấm (hoặc chạm) lần hai vào nút đang chọn thì mở trang. Rê chuột lên nút đang chọn hiện chỉ dẫn "Bấm lần nữa để mở"; trên màn cảm ứng chỉ dẫn hiện ngay sau lần chạm đầu.
 - Kéo nền để xoay, kéo nút để dời, lăn chuột hoặc hai ngón để zoom. Bấm nền để về toàn cảnh.
-- Trang chứa đồ thị mà cuộn được: lăn chuột để cuộn trang, Ctrl/⌘ + lăn hoặc chụm trackpad để zoom; trên cảm ứng vuốt dọc cuộn trang, vuốt ngang xoay. Landing và `/do-thi/[app]` không cuộn nên lăn chuột là zoom.
+- Trang chứa đồ thị mà cuộn được: lăn chuột để cuộn trang, Ctrl/⌘ + lăn hoặc chụm trackpad để zoom; trên cảm ứng vuốt dọc cuộn trang, vuốt ngang xoay. Landing (hai màn cuộn được) thì lăn chuột cuộn trang kể cả trên đồ thị, Ctrl/⌘ + lăn để zoom. `/do-thi/[app]` không cuộn nên lăn chuột là zoom.
 - Các nút đung đưa rất nhẹ; tắt khi `prefers-reduced-motion`, dừng vẽ khi khuất màn hình.
 - Máy chậm (lần vẽ đầu hoặc trung bình trượt quá 12 ms, `SLOW_MS`): không bật tự xoay, đung đưa, tín hiệu và không đặt hẹn nào sau khi vẽ. Đồ thị đứng yên, chỉ vẽ lại khi chạm, lăn, tìm, lọc hoặc đổi cỡ. Máy nhanh giữ chuyển động.
 - Tìm nút bằng thanh tìm kiếm chung trên thanh điều hướng (nhóm gợi ý "Trên đồ thị").
@@ -209,7 +209,7 @@ Mặc định là lưới. Hai núm "Danh sách / Lưới" (`IndexViewSwitch`, m
 Từ lg (mọi trang trừ landing): thanh dọc `AppSidebar` cố định bên trái, rộng `w-sidebar` (20rem), nền `bg`, viền phải `separator`, không có thanh trên cùng (trừ `/wiki` và `/blog` ở Lưới, xem dưới). Phần đầu cao đúng `h-sidebar-head` (7rem): nút launcher bên trái (logo chấm 3×3, chấm giữa cam, + tên app đang dùng, chưa ở app nào thì "alphacolorlab.com"; bấm bung popover `.app-launcher` gồm 4 app, chấm màu + tên, mục đang mở `bg-fill`); ô tìm kiếm. Avatar luôn ở góc trên phải mọi màn, không nằm trong thanh (nút cố định, xem Layout). Ngay dưới là index của app đang mở: cột index của `SplitLayout` rời lưới, cố định `top-sidebar-head` tới đáy, cuộn riêng; trang split chỉ còn cột chi tiết; `/wiki` và `/blog` ở Lưới không có thanh dọc, thay bằng thanh trên cùng `site-nav-wide` (xem "Lưới index"). `/admin` và `/admin/decode` luôn như vậy (`wideBrowseOf` trong `lib/indexView.ts`), không có cột index. Nội dung lùi trái đúng `--spacing-sidebar` và lùi phải đúng `--spacing-avatar-gutter` (globals.css, `body:has(> .app-sidebar)`); `h-split`, `h-stage` thành 100dvh (`:root:has(.site-nav-wide)` trừ thêm 3.5rem); thanh cố định ở đáy (giỏ màu, so sánh) dùng `lg:left-sidebar`, trừ khay so sánh ở Blog và Wiki Lưới. Tìm kiếm và avatar chỉ mount ở một nơi (`useLg` trong `AppNav.tsx`: thanh trên cùng dưới lg hoặc khi wide, avatar cố định của `AppSidebar` từ lg). Dưới lg: thanh trên cùng gồm launcher trái (logo chấm + tên app đang mở, cắt gọn ở `max-w-28` dưới sm; chưa ở app nào thì dưới sm chỉ có logo chấm), tìm kiếm + avatar phải. Nút avatar mở menu: Túi đồ (`/tai-khoan`), Xem đồ thị (của app đang mở, chọn sẵn nút của trang đang xem), Danh sách/Lưới của Blog và Product Wiki (`IndexViewSwitch`), Đăng nhập/Đăng xuất. Dưới lg không có thanh tab ở đáy: launcher là lối đổi app duy nhất; các thanh cố định ở đáy (giỏ màu, so sánh, thanh lưu của `/admin`) dính `bottom-0` kèm `pb-safe`.
 
 ### Search
-Cả trang chỉ có **một** ô tìm kiếm: `SearchField` trên thanh điều hướng; landing không có thanh điều hướng nên ô đó nằm trên đồ thị tổng hợp, mở bằng nút kính lúp ở góc trên phải, chỉ có ở bước 3. Không đặt ô tìm thứ hai trong trang hay trên đồ thị. Trang cần tìm riêng thì đăng ký nguồn qua `lib/pageSearch.ts`: đồ thị thêm nút của nó lên đầu gợi ý (chọn thì bay tới nút), Ngoại lệ: ô nhập thêm đồ của `GearManager` (nhập để thêm, không phải tìm trang) và hộp thoại modal (thanh điều hướng bị che).
+Cả trang chỉ có **một** ô tìm kiếm: `SearchField` trên thanh điều hướng; landing không có thanh điều hướng nên ô đó nằm trên đồ thị tổng hợp, mở bằng nút kính lúp cạnh avatar ở góc trên phải, chỉ có ở màn 2. Không đặt ô tìm thứ hai trong trang hay trên đồ thị. Trang cần tìm riêng thì đăng ký nguồn qua `lib/pageSearch.ts`: đồ thị thêm nút của nó lên đầu gợi ý (chọn thì bay tới nút), Ngoại lệ: ô nhập thêm đồ của `GearManager` (nhập để thêm, không phải tìm trang) và hộp thoại modal (thanh điều hướng bị che).
 
 ### InfoTip
 Nút "i" cạnh nhãn, nội dung trong `app/content.ts`. Thay cho mọi dòng chữ phụ dưới tiêu đề.

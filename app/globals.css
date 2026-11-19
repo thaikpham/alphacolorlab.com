@@ -76,7 +76,7 @@
   --ease-ios: cubic-bezier(0.16, 1, 0.3, 1);
   /* tokens:end */
 
-  /* Màu thương hiệu Google: chỉ logo G (GoogleG) và viền thẻ Tài khoản bước 2 landing (.google-ring). Ngoại lệ "không gradient", người dùng yêu cầu 2026-11-17. */
+  /* Màu thương hiệu Google: chỉ logo G (GoogleG) trong menu avatar. */
   --color-google-blue: #4285f4;
   --color-google-red: #ea4335;
   --color-google-yellow: #fbbc05;
@@ -87,7 +87,6 @@
   --container-dialog: 672px; /* hộp thoại mini game, túi đồ */
   --container-article: 52rem; /* cột đọc của bài viết (/blog/[id]): căn trái sát mục lục, phần còn lại bên phải là biên an toàn (chủ trang, 2026-11-16) */
   --container-article-page: 90rem; /* trang bài viết: mục lục 14rem + 2rem, cột đọc 52rem, biên phải 16rem, lề xl:px-12; màn rộng hơn thì căn giữa */
-  --container-dashboard: 64rem; /* bước 2 của landing (túi đồ + tài khoản + tiến độ): rộng tối đa, căn giữa cả ngang lẫn dọc (2026-11-17) */
   --spacing-safe: env(safe-area-inset-bottom);
   --spacing-split: calc(100dvh - 3.5rem); /* cột index master–detail (md+): cao màn hình trừ thanh điều hướng h-14 */
   --spacing-stage: calc(100dvh - 3.5rem); /* sân khấu đồ thị (md+): cao màn hình trừ thanh điều hướng h-14 */
@@ -368,7 +367,7 @@ dialog::backdrop {
 .over-graph {
   text-shadow: 0 0 2px var(--color-card), 0 0 6px var(--color-card), 0 0 12px var(--color-card);
 }
-/* Lớp giới thiệu của landing: trắng 85% phủ đồ thị, 30% cuối trong dần để đồ thị tổng hợp hiện lại trước khi tách thành 4 app (không có vạch cắt) */
+/* Lớp giới thiệu (màn 1 của trang chủ): trắng 85% phủ đồ thị, 30% cuối trong dần để đồ thị hiện lại ngay bên dưới (không có vạch cắt) */
 .intro-overlay {
   background-image: linear-gradient(
     to bottom,
@@ -390,24 +389,13 @@ dialog::backdrop {
   pointer-events: none;
 }
 
-/* Viền 2px bốn màu Google của thẻ Tài khoản ở bước 2 landing (ngoại lệ "không gradient", người dùng yêu cầu 2026-11-17, chỉ thẻ này).
-   Lớp dưới (border-box) là conic-gradient bốn góc phần tư; lớp trên (padding-box) là nền thẻ, nên bg-card vẫn giữ nguyên. Tĩnh, không bóng. */
-.google-ring {
-  border: 2px solid transparent;
-  background-image:
-    linear-gradient(var(--color-card), var(--color-card)),
-    conic-gradient(var(--color-google-blue) 0 25%, var(--color-google-red) 0 50%, var(--color-google-yellow) 0 75%, var(--color-google-green) 0 100%);
-  background-origin: padding-box, border-box;
-  background-clip: padding-box, border-box;
-}
-
-/* Landing: chỉ dẫn lần đầu của đồ thị tổng hợp chỉ hiện ở bước 3 của flow landing (LandingFlow đặt data-step),
+/* Chỉ dẫn lần đầu của đồ thị tổng hợp ở trang chủ chỉ hiện khi đã tới màn đồ thị (Landing.tsx đặt data-graph="on" trên .landing-page),
    không lộ dưới lớp giới thiệu */
-.landing-flow:not([data-step="3"]) .graph-hint {
+.landing-page:not([data-graph="on"]) .graph-hint {
   opacity: 0;
 }
-/* Chú giải màu và ô tìm trên đồ thị tổng hợp của landing: cũng chỉ hiện và bấm được ở bước 3 */
-.landing-flow:not([data-step="3"]) .graph-legend {
+/* Chú giải màu và ô tìm trên đồ thị tổng hợp ở trang chủ: cũng chỉ hiện và bấm được khi đã tới màn đồ thị */
+.landing-page:not([data-graph="on"]) .graph-legend {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;

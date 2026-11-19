@@ -19,7 +19,7 @@ function subscribe(f: () => void) {
 // Máy người dùng đã tự chọn (có trong localStorage); lib/model trả mặc định ZV-E10 nên không phân biệt được người mới
 const stored = () => cameraModels.find((m) => m.id === localStorage.getItem(KEY))?.id ?? null;
 
-/** Nút cam vào dự án ở bước 3 (đồ thị) của landing, góc dưới phải. Đích là app đang xem ở chú giải (`app`), chưa chọn
+/** Nút cam vào dự án ở màn đồ thị của trang chủ, góc dưới phải. Đích là app đang xem ở chú giải (`app`), chưa chọn
  * app nào thì Alpha Console (vào thẳng máy được hướng dẫn nếu túi có, `/console?model=`). Túi đồ đã lưu có món: chữ là
  * "Tối ưu nội dung và Truy cập", bấm thì bật cá nhân hóa theo túi đồ (lib/usePersonal). Túi trống: "Mở <app>", hoặc
  * "Tiếp tục với <máy>" cho người quay lại, "Mở Alpha Console" cho người mới. */

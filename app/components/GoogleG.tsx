@@ -1,5 +1,5 @@
 /** Logo "G" chính thức của Google, 4 màu thương hiệu qua token `google-*` (fill-google-*, không hex trong .tsx).
- * Chỉ dùng ở nút đăng nhập Google và thẻ Tài khoản của bước 2 landing (ngoại lệ 2026-11-17, xem DESIGN.md). */
+ * Chỉ dùng ở mục "Đăng nhập bằng Google" của menu avatar (AccountButton), xem DESIGN.md. */
 export function GoogleG({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" className={className}>

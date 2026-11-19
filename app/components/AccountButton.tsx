@@ -8,6 +8,7 @@ import { authReady, getSession, signIn, signOut, useSession } from "@/lib/auth";
 import { useGear } from "@/lib/gear";
 import { useAccountSync } from "@/lib/useAccountSync";
 import type { AppId } from "@/lib/constellation";
+import { GoogleG } from "./GoogleG";
 import { IndexViewSwitch } from "./IndexViewSwitch";
 import { PersonalMenuRow } from "./PersonalToggle";
 
@@ -25,7 +26,7 @@ function graphTarget(pathname: string): { app: AppId; href: string } | null {
 
 /** Nút avatar trên thanh điều hướng (ảnh Google, hoặc icon người khi chưa đăng nhập), mở menu: túi đồ, xem đồ thị, Danh sách/Lưới của Blog và Product Wiki (IndexViewSwitch, lưu trên máy), "Của tôi / Tất cả" khi túi đồ có món (PersonalMenuRow), đăng nhập/đăng xuất.
  * Khi đăng nhập, túi đồ, giỏ, danh sách so sánh và máy đang chọn đồng bộ theo tài khoản. Bấm núm Danh sách/Lưới không đóng menu. */
-/** previewPersonal (landing): hàng "Nội dung" đọc trạng thái xem trước như đồ thị ở landing (mặc định "Của tôi" khi túi có món). */
+/** previewPersonal (trang chủ): hàng "Nội dung" đọc trạng thái xem trước như đồ thị ở trang chủ (mặc định "Của tôi" khi túi có món). */
 export function AccountButton({ previewPersonal = false }: { previewPersonal?: boolean } = {}) {
   const session = useSession();
   const pathname = usePathname();
@@ -119,9 +120,13 @@ export function AccountButton({ previewPersonal = false }: { previewPersonal?: b
                 }}
                 className={item}
               >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  {session ? <path d="M8 4H4.5v12H8M12 6.5l3.5 3.5-3.5 3.5M15.5 10H8" /> : <path d="M12 4h3.5v12H12M8 6.5l3.5 3.5L8 13.5M11.5 10H4" />}
-                </svg>
+                {session ? (
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M8 4H4.5v12H8M12 6.5l3.5 3.5-3.5 3.5M15.5 10H8" />
+                  </svg>
+                ) : (
+                  <GoogleG className="size-5 shrink-0" />
+                )}
                 <span className="flex-1 text-left">{session ? community.account.signOut : community.account.signIn}</span>
               </button>
             </li>

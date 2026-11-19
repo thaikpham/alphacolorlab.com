@@ -24,7 +24,7 @@ export function setPersonal(on: boolean) {
   dispatchEvent(new Event(EVENT));
 }
 
-/** Bỏ lựa chọn "Tất cả" đã lưu, về trạng thái chưa chọn: nơi xem trước (bước 3 của landing) lại mặc định "Của tôi". Không bật lọc cho cả site. */
+/** Bỏ lựa chọn "Tất cả" đã lưu, về trạng thái chưa chọn: nơi xem trước (màn đồ thị ở trang chủ) lại mặc định "Của tôi". Không bật lọc cho cả site. */
 export function resetPersonalOff() {
   if (localStorage.getItem(KEY) !== "0") return;
   localStorage.removeItem(KEY);

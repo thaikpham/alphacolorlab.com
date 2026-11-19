@@ -841,11 +841,11 @@ export const help = {
         },
         {
           q: "\"Của tôi\" và \"Tất cả\" khác nhau thế nào?",
-          a: "Ở trang chủ, thêm máy và ống kính vào túi đồ, bấm Lưu túi đồ, cuộn xuống đồ thị rồi bấm Tối ưu nội dung và Truy cập. Từ đó Blog, Color Bank và các đồ thị chỉ hiện nội dung nối với sản phẩm của bạn: bài viết, bước cài, công thức màu. Product Wiki luôn hiện đủ sản phẩm. Chọn Tất cả ở đầu danh sách hoặc trong menu avatar để xem toàn bộ. Mục nào không có nội dung nối với túi đồ thì vẫn hiện đủ.",
+          a: "Thêm máy và ống kính vào túi đồ ở menu avatar › Hồ sơ và túi đồ, rồi cuộn xuống đồ thị ở trang chủ và bấm Tối ưu nội dung và Truy cập. Từ đó Blog, Color Bank và các đồ thị chỉ hiện nội dung nối với sản phẩm của bạn: bài viết, bước cài, công thức màu. Product Wiki luôn hiện đủ sản phẩm. Chọn Tất cả ở đầu danh sách hoặc trong menu avatar để xem toàn bộ. Mục nào không có nội dung nối với túi đồ thì vẫn hiện đủ.",
         },
         {
           q: "Có cần đăng nhập Google không?",
-          a: "Ở trang chủ, bước 2 yêu cầu lưu ít nhất một sản phẩm vào túi đồ và đăng nhập Google rồi mới sang được bước 3. Các trang Color Bank, Product Wiki, Blog, đồ thị và Tạo bộ M1–M4 vẫn mở được bằng đường dẫn trực tiếp khi chưa đăng nhập. Đăng nhập còn để đồng bộ túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn sang máy khác.",
+          a: "Đăng nhập Google từ menu avatar ở góc trên phải, mục Đăng nhập bằng Google. Các trang Color Bank, Product Wiki, Blog, đồ thị và Tạo bộ M1–M4 vẫn mở được bằng đường dẫn trực tiếp khi chưa đăng nhập. Đăng nhập còn để đồng bộ túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn sang máy khác.",
         },
       ],
     },
@@ -917,7 +917,7 @@ export const help = {
   ],
 };
 
-// Landing "/": lớp giới thiệu trên đồ thị tổng hợp, đồ thị tổng hợp toàn màn hình, rồi một màn gộp túi đồ, đăng nhập và danh sách 4 app kèm nút vào dự án
+// Trang chủ "/" (Landing): màn 1 giới thiệu với nút Bắt đầu; màn 2 đồ thị tổng hợp toàn màn hình, nút vào dự án ở góc dưới phải
 export const landing = {
   graphLabel: "Đồ thị tổng hợp: máy, ống kính, bước cài đặt, công thức màu, bài viết và kiến thức, nối với nhau",
   // Tiêu đề lớp giới thiệu: "color" tô dải màu đổi sắc
@@ -929,41 +929,7 @@ export const landing = {
       ["Kiến thức về sản phẩm, ánh sáng và màu sắc được nối với nhau bằng từ khóa,", "thành một hệ thống liền mạch thay vì những mảnh rời rạc."],
     ],
   },
-  // Màn cuối: thêm máy vào túi đồ ngay ở landing, đăng nhập Google để đồng bộ
-  // Flow 3 bước của landing (LandingFlow)
-  flow: {
-    nav: "Các bước",
-    steps: ["Giới thiệu", "Túi đồ và đăng nhập", "Nội dung của bạn"],
-    stepOf: (n: number, name: string) => `Bước ${n}/3: ${name}`,
-    count: (n: number, of: number) => `${n}/${of}`,
-    start: "Bắt đầu",
-    next: "Tiếp tục",
-    back: "Quay lại bước trước",
-    missing: {
-      bag: "lưu ít nhất một sản phẩm vào túi đồ",
-      login: "đăng nhập bằng Google",
-      lead: (items: string[]) => `Để tiếp tục, bạn cần ${items.join(" và ")}.`,
-    },
-    // Danh sách điều kiện ở bước 2: mỗi dòng một điều kiện kèm trạng thái
-    needs: {
-      label: "Điều kiện để tiếp tục",
-      bag: "Lưu ít nhất một sản phẩm vào túi đồ",
-      login: "Đăng nhập bằng Google",
-      todo: "Còn thiếu",
-      done: "Đã xong",
-    },
-  },
-  start: {
-    signedIn: (name: string) => `Đã đăng nhập: ${name}`,
-    syncTip: {
-      term: "Đăng nhập Google",
-      lines: [
-        { t: "Cần đăng nhập để sang bước xem nội dung của bạn." },
-        { t: "Đăng nhập để túi đồ, giỏ M1–M4, danh sách so sánh, hồ sơ và máy đang chọn mở trên máy khác vẫn còn." },
-        { t: "Món trong túi đồ có vòng chấm trên đồ thị." },
-      ],
-    },
-  },
+  start: "Bắt đầu",
 };
 
 // Landing: nút vào dự án (Alpha Console) và h1 cho trình đọc màn hình
@@ -1000,10 +966,6 @@ export const gearManager = {
   inputLabel: "Tên hoặc mã sản phẩm",
   placeholder: "Ví dụ: A6400, ILCE-7CM2, FE 50mm F1.8",
   add: "Thêm",
-  save: "Lưu túi đồ",
-  saved: "Đã lưu túi đồ",
-  removed: (name: string) => `Đã bỏ ${name}`,
-  remove: (name: string) => `Bỏ ${name}`,
   unsupportedTitle: "Sản phẩm này chưa được hỗ trợ",
   unsupported: (q: string) => `"${q}" chưa có trong dự án. Thử gõ đúng tên hoặc mã Sony, ví dụ A7 IV hoặc ILCE-7M4.`,
   close: "Đóng",

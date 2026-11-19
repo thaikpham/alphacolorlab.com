@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { access, appInfo, seo } from "@/app/content";
 import { SITE_URL } from "@/lib/site";
 import { allGraph } from "@/lib/appGraphs";
-import { LandingFlow } from "@/app/components/LandingFlow";
+import { Landing } from "@/app/components/Landing";
 import { LegacyHomeLinks } from "@/app/components/LegacyHomeLinks";
 
 export const metadata: Metadata = {
@@ -11,14 +11,13 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
 };
 
-/** Landing (không có thanh điều hướng): flow 3 bước trong một màn hình, không cuộn trang (LandingFlow):
- * giới thiệu, túi đồ + đăng nhập Google, rồi đồ thị đã cá nhân hóa kèm nút vào dự án. */
-export default function Landing() {
+/** Trang chủ (không có thanh điều hướng): một trang cuộn gồm giới thiệu và đồ thị toàn màn hình (Landing). */
+export default function Home() {
   return (
     <main>
       <LegacyHomeLinks />
       <h1 className="sr-only">{access.pageTitle}</h1>
-      <LandingFlow graph={allGraph()} />
+      <Landing graph={allGraph()} />
     </main>
   );
 }
